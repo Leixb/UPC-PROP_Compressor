@@ -9,11 +9,7 @@ public class DCT {
         for (int u = 0; u < 8; u++) {
             for (int v = 0; v < 8; v++) {
 
-                G[u][v] = 0.25;
-
-                // Make orthonormal
-                if (u == 0) G[u][v] *= 1/Math.sqrt(2);
-                if (v == 0) G[u][v] *= 1/Math.sqrt(2);
+                G[u][v] = 0;
 
                 for (int x = 0; x < 8; x++) {
                     for (int y = 0; y < 8; y++) {
@@ -21,6 +17,14 @@ public class DCT {
                                                * Math.cos((2 * y + 1) *v*Math.PI/16);
                     }
                 }
+
+                double ortho = 0.25;
+
+                // Make orthonormal
+                if (u == 0) ortho *= 1/Math.sqrt(2);
+                if (v == 0) ortho *= 1/Math.sqrt(2);
+
+                G[u][v]*=ortho;
 
             }
         }

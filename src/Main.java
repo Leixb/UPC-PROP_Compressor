@@ -5,13 +5,12 @@ public class Main {
 
     public static void main(String[] args) {
         //System.out.println("Enter filename of ppm image:");
-
         //Scanner scanner = new Scanner(System.in);
-        //String filename = scanner.nextLine();
-        String filename = "/home/leix/16x16.ppm";
-        String filename_out = "/home/leix/16x16_2.ppm";
-        String filename_YCbCr = "/home/leix/16x16_YCbCr.ppm";
-        String filename_RGB = "/home/leix/16x16_RGB.ppm";
+
+        String filename = "images/gradient8.ppm";
+        String filename_out = "generated/test.ppm";
+        String filename_YCbCr = "generated/test_YCbCr.ppm";
+        String filename_RGB = "generated/test_RGB.ppm";
 
         Image image = null;
 

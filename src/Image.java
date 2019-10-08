@@ -85,7 +85,15 @@ public class Image {
         return n;
     }
 
-    // Convert data from YCbCr to RGB TODO: this does not work
+    private byte doubleToByte(double d) {
+        int n = (int) d;
+
+        if (n < 0) n = 0;
+        else if (n > 255) n = 255;
+
+        return (byte) n;
+    }
+
     public void toRGB() {
         // Do nothing if already RGB
         if (this.channel == Channel.RGB) return;
@@ -95,13 +103,13 @@ public class Image {
         for (int i = 0; i < this.width; ++i) {
             for (int j = 0; j < this.height; ++j) {
                 //final byte Y = this.pixels[i][j][0], Cb = this.pixels[i][j][1], Cr = this.pixels[i][j][2];
-                final int Y = Byte.toUnsignedInt(this.pixels[i][j][0]);
-                final int Cb = Byte.toUnsignedInt(this.pixels[i][j][1]);
-                final int Cr = Byte.toUnsignedInt(this.pixels[i][j][2]);
+                final double Y = Byte.toUnsignedInt(this.pixels[i][j][0]);
+                final double Cb = Byte.toUnsignedInt(this.pixels[i][j][1]);
+                final double Cr = Byte.toUnsignedInt(this.pixels[i][j][2]);
 
-                R = (byte) (Y + 1.402*(Cr - 128));
-                G = (byte) (Y - 0.34414*(Cb-128) - 0.71414*(Cr-128));
-                B = (byte) (Y    + 1.772*(Cb-128));
+                R = doubleToByte(Y                    + 1.402*(Cr-128));
+                G = doubleToByte(Y - 0.34414*(Cb-128) - 0.71414*(Cr-128));
+                B = doubleToByte(Y +   1.772*(Cb-128));
 
                 this.pixels[i][j][0] = R;
                 this.pixels[i][j][1] = G;
@@ -110,7 +118,7 @@ public class Image {
         }
 
     }
-    // Convert data from RGB to YCbCr TODO: this does not work
+
     public void toYCbCr() {
         // Do nothing if already YCbCr
         if (this.channel == Channel.YCbCr) return;
@@ -119,13 +127,13 @@ public class Image {
         byte Y, Cb, Cr;
         for (int i = 0; i < this.width; ++i) {
             for (int j = 0; j < this.height; ++j) {
-                final int R = Byte.toUnsignedInt(this.pixels[i][j][0]);
-                final int G = Byte.toUnsignedInt(this.pixels[i][j][1]);
-                final int B = Byte.toUnsignedInt(this.pixels[i][j][2]);
+                final double R = Byte.toUnsignedInt(this.pixels[i][j][0]);
+                final double G = Byte.toUnsignedInt(this.pixels[i][j][1]);
+                final double B = Byte.toUnsignedInt(this.pixels[i][j][2]);
 
-                Y   = (byte) (0.299*R + 0.587*G + 0.114*B);
-                Cb  = (byte) (-0.1687*R -0.3313*G + 0.5*B + 128);
-                Cr  = (byte) (0.5*R -0.4187*G -0.0813*B + 128);
+                Y = doubleToByte(   0 + 0.299*R  + 0.587*G  + 0.114 * B);
+                Cb = doubleToByte(128 - 0.1687*R - 0.3313*G + 0.5 * B);
+                Cr = doubleToByte(128 + 0.5*R    - 0.4187*G - 0.0813*B);
 
                 this.pixels[i][j][0] = Y;
                 this.pixels[i][j][1] = Cb;

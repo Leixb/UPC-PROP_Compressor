@@ -53,27 +53,114 @@
     <exclude name="**/?*.aj"/>
   </patternset>
 
+  <!-- JDK definitions -->
+
+  <property name="jdk.bin.1.8_(2)" value="${jdk.home.1.8_(2)}/bin"/>
+  <path id="jdk.classpath.1.8_(2)">
+    <fileset dir="${jdk.home.1.8_(2)}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+
   <property name="project.jdk.home" value="${jdk.home.1.8_(2)}"/>
   <property name="project.jdk.bin" value="${jdk.bin.1.8_(2)}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.1.8_(2)"/>
-  <!-- Register Custom Compiler Taskdefs -->
-  <property name="javac2.home" value="${idea.home}/lib"/>
-  <path id="javac2.classpath">
-    <fileset dir="${javac2.home}">
-      <include name="javac2.jar"/>
-      <include name="jdom.jar"/>
-      <include name="asm-all*.jar"/>
-      <include name="forms-*.jar"/>
-    </fileset>
-  </path>
-  <target name="register.custom.compilers">
-    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
-    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
-  </target>
 
   <!-- Modules -->
 
-  <import file="${basedir}/module_projecteprop.xml"/>
+
+  <!-- Module ProjecteProp -->
+
+  <dirname property="module.projecteprop.basedir" file="${ant.file}"/>
+
+
+  <property name="module.jdk.home.projecteprop" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.projecteprop" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.projecteprop" value="${project.jdk.classpath}"/>
+
+  <property name="compiler.args.projecteprop" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+
+  <property name="projecteprop.output.dir" value="${module.projecteprop.basedir}/out/production/ProjecteProp"/>
+  <property name="projecteprop.testoutput.dir" value="${module.projecteprop.basedir}/out/test/ProjecteProp"/>
+
+  <path id="projecteprop.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+
+  <path id="projecteprop.module.production.classpath">
+    <path refid="${module.jdk.classpath.projecteprop}"/>
+  </path>
+
+  <path id="projecteprop.runtime.production.module.classpath">
+    <pathelement location="${projecteprop.output.dir}"/>
+  </path>
+
+  <path id="projecteprop.module.classpath">
+    <path refid="${module.jdk.classpath.projecteprop}"/>
+    <pathelement location="${projecteprop.output.dir}"/>
+  </path>
+
+  <path id="projecteprop.runtime.module.classpath">
+    <pathelement location="${projecteprop.testoutput.dir}"/>
+    <pathelement location="${projecteprop.output.dir}"/>
+  </path>
+
+
+  <patternset id="excluded.from.module.projecteprop">
+    <patternset refid="ignored.files"/>
+  </patternset>
+
+  <patternset id="excluded.from.compilation.projecteprop">
+    <patternset refid="excluded.from.module.projecteprop"/>
+  </patternset>
+
+  <path id="projecteprop.module.sourcepath">
+    <dirset dir="${module.projecteprop.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+
+
+  <target name="compile.module.projecteprop" depends="compile.module.projecteprop.production,compile.module.projecteprop.tests" description="Compile module ProjecteProp"/>
+
+  <target name="compile.module.projecteprop.production" description="Compile module ProjecteProp; production classes">
+    <mkdir dir="${projecteprop.output.dir}"/>
+    <javac destdir="${projecteprop.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.projecteprop}/javac">
+      <compilerarg line="${compiler.args.projecteprop}"/>
+      <bootclasspath refid="projecteprop.module.bootclasspath"/>
+      <classpath refid="projecteprop.module.production.classpath"/>
+      <src refid="projecteprop.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.projecteprop"/>
+    </javac>
+
+    <copy todir="${projecteprop.output.dir}">
+      <fileset dir="${module.projecteprop.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="compile.module.projecteprop.tests" depends="compile.module.projecteprop.production" description="compile module ProjecteProp; test classes" unless="skip.tests"/>
+
+  <target name="clean.module.projecteprop" description="cleanup module">
+    <delete dir="${projecteprop.output.dir}"/>
+    <delete dir="${projecteprop.testoutput.dir}"/>
+  </target>
 
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
@@ -85,5 +172,5 @@
 
   <target name="all" depends="build.modules" description="build all"/>
 
-  <target name="test" depends="all"/>
+  <target name="test" depends="all" description="build all and test"/>
 </project>

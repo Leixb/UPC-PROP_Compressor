@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_projecteprop" default="compile.module.projecteprop">
+  <dirname property="module.projecteprop.basedir" file="${ant.file.module_projecteprop}"/>
+  
+  <property name="module.jdk.home.projecteprop" value=""/>
+  <property name="module.jdk.bin.projecteprop" value=""/>
+  <property name="module.jdk.classpath.projecteprop" value=""/>
+  
+  <property name="compiler.args.projecteprop" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="projecteprop.output.dir" value="undefined"/>
+  <property name="projecteprop.testoutput.dir" value="undefined"/>
+  
+  <path id="projecteprop.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="projecteprop.module.production.classpath"/>
+  
+  <path id="projecteprop.runtime.production.module.classpath"/>
+  
+  <path id="projecteprop.module.classpath"/>
+  
+  <path id="projecteprop.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.projecteprop">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.projecteprop">
+    <patternset refid="excluded.from.module.projecteprop"/>
+  </patternset>
+  
+  
+  <target name="compile.module.projecteprop" depends="compile.module.projecteprop.production,compile.module.projecteprop.tests" description="Compile module ProjecteProp"/>
+  
+  <target name="compile.module.projecteprop.production" depends="register.custom.compilers" description="Compile module ProjecteProp; production classes"/>
+  
+  <target name="compile.module.projecteprop.tests" depends="register.custom.compilers,compile.module.projecteprop.production" description="compile module ProjecteProp; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.projecteprop" description="cleanup module">
+    <delete dir="${projecteprop.output.dir}"/>
+    <delete dir="${projecteprop.testoutput.dir}"/>
+  </target>
+</project>

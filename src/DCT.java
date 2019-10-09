@@ -70,4 +70,80 @@ public class DCT {
         return f;
 
     }
+
+    public static byte[] unfoldFromBlock(byte[][] block) throws IllegalArgumentException {
+        if (block.length != 8 || block[0].length != 8) {
+            throw new IllegalArgumentException("block must be 8x8");
+        }
+        byte[][] RLE_table = makeRleTable();
+
+        byte[] L = new byte[8*8];
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                L[RLE_table[i][j]] = block[i][j];
+            }
+        }
+
+        return L;
+    }
+
+    public static byte[][] foldToBlock(byte[] L) throws IllegalArgumentException {
+        if (L.length != 8*8) {
+            throw new IllegalArgumentException("block must be 8x8");
+        }
+        byte[][] RLE_table = makeRleTable();
+
+        byte[][] block = new byte[8][8];
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                block[i][j] = L[RLE_table[i][j]];
+            }
+        }
+
+        return block;
+
+    }
+
+    private static byte[][] makeRleTable() {
+
+        byte[][] RLE_table = new byte[8][8];
+
+        int i=0, j=0;
+        boolean up = true;
+        for (byte pos = 0; pos < 8*8; ++pos) {
+            RLE_table[i][j] = pos;
+
+            if (up) {
+                --i; ++j;
+            } else {
+                ++i; --j;
+            }
+
+            boolean change_dir = true;
+
+            if (i == 8 && j == -1) {
+                i = 7;
+                j = 1;
+            } else if (i < 0) {
+                i = 0;
+            } else if (j < 0) {
+                j = 0;
+            } else if (i >= 8) {
+                i = 7;
+                j += 2;
+            } else if (j >= 8) {
+                j = 7;
+                i += 2;
+            } else {
+                change_dir = false;
+            }
+
+            if (change_dir) {
+                up = !up;
+            }
+        }
+        return RLE_table;
+    }
 }

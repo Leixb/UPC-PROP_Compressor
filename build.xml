@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="projecteprop" default="all">
-  
-  
+
+
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
-  <!-- 
+  <!--
   <property name="skip.tests" value="true"/>
    -->
-  
+
   <!-- Compiler options -->
-  
+
   <property name="compiler.debug" value="on"/>
   <property name="compiler.generate.no.warnings" value="off"/>
   <property name="compiler.args" value=""/>
@@ -52,7 +52,7 @@
     <exclude name="**/?*.clj"/>
     <exclude name="**/?*.aj"/>
   </patternset>
-  
+
   <property name="project.jdk.home" value="${jdk.home.1.8_(2)}"/>
   <property name="project.jdk.bin" value="${jdk.bin.1.8_(2)}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.1.8_(2)"/>
@@ -70,18 +70,20 @@
     <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
     <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
   </target>
-  
+
   <!-- Modules -->
-  
+
   <import file="${basedir}/module_projecteprop.xml"/>
-  
+
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
   </target>
-  
+
   <target name="clean" depends="clean.module.projecteprop" description="cleanup all"/>
-  
+
   <target name="build.modules" depends="init, clean, compile.module.projecteprop" description="build all modules"/>
-  
+
   <target name="all" depends="build.modules" description="build all"/>
+
+  <target name="test" depends="all"/>
 </project>

@@ -53,33 +53,6 @@
     <exclude name="**/?*.aj"/>
   </patternset>
 
-  <!-- JDK definitions -->
-
-  <property name="jdk.bin.1.8_(2)" value="${jdk.home.1.8_(2)}/bin"/>
-  <path id="jdk.classpath.1.8_(2)">
-    <fileset dir="${jdk.home.1.8_(2)}">
-      <include name="jre/lib/charsets.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
-      <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jaccess.jar"/>
-      <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
-      <include name="jre/lib/ext/sunec.jar"/>
-      <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunpkcs11.jar"/>
-      <include name="jre/lib/ext/zipfs.jar"/>
-      <include name="jre/lib/jce.jar"/>
-      <include name="jre/lib/jsse.jar"/>
-      <include name="jre/lib/management-agent.jar"/>
-      <include name="jre/lib/resources.jar"/>
-      <include name="jre/lib/rt.jar"/>
-    </fileset>
-  </path>
-
-  <property name="project.jdk.home" value="${jdk.home.1.8_(2)}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8_(2)}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8_(2)"/>
-
   <!-- Modules -->
 
 
@@ -88,9 +61,6 @@
   <dirname property="module.projecteprop.basedir" file="${ant.file}"/>
 
 
-  <property name="module.jdk.home.projecteprop" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.projecteprop" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.projecteprop" value="${project.jdk.classpath}"/>
 
   <property name="compiler.args.projecteprop" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
 
@@ -101,16 +71,13 @@
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
 
-  <path id="projecteprop.module.production.classpath">
-    <path refid="${module.jdk.classpath.projecteprop}"/>
-  </path>
+  <path id="projecteprop.module.production.classpath"/>
 
   <path id="projecteprop.runtime.production.module.classpath">
     <pathelement location="${projecteprop.output.dir}"/>
   </path>
 
   <path id="projecteprop.module.classpath">
-    <path refid="${module.jdk.classpath.projecteprop}"/>
     <pathelement location="${projecteprop.output.dir}"/>
   </path>
 
@@ -139,7 +106,7 @@
 
   <target name="compile.module.projecteprop.production" description="Compile module ProjecteProp; production classes">
     <mkdir dir="${projecteprop.output.dir}"/>
-    <javac destdir="${projecteprop.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.projecteprop}/javac">
+    <javac destdir="${projecteprop.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.projecteprop}"/>
       <bootclasspath refid="projecteprop.module.bootclasspath"/>
       <classpath refid="projecteprop.module.production.classpath"/>
@@ -172,5 +139,5 @@
 
   <target name="all" depends="build.modules" description="build all"/>
 
-  <target name="test" depends="all" description="build all and test"/>
+  <target name="test" depends="all"/>
 </project>

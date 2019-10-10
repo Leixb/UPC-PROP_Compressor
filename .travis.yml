@@ -5,3 +5,5 @@ branches:
   - master
   - /^test-.*$/
   - /^deploy-.*$/
+notifications:
+  slack: grupprop22:xEQjUsvIeCpH44ZJwrmMByS2

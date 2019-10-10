@@ -1,1 +1,5 @@
 out
+generated
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/vcs.xml

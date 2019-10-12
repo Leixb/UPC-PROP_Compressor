@@ -1,5 +1,5 @@
-public class DCT {
-    double[][] forwardDCT(byte[][] block) throws IllegalArgumentException {
+public class Dct {
+    static double[][] forwardDct(byte[][] block) throws IllegalArgumentException {
         if (block.length != 8 || block[0].length != 8) {
             throw new IllegalArgumentException("block must be 8x8");
         }
@@ -33,7 +33,7 @@ public class DCT {
 
     }
 
-    byte[][] backwardDCT(double[][] block) throws IllegalArgumentException {
+    static byte[][] backwardDct(double[][] block) throws IllegalArgumentException {
         if (block.length != 8 || block[0].length != 8) {
             throw new IllegalArgumentException("block must be 8x8");
         }

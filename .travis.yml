@@ -3,7 +3,22 @@ jdk: openjdk8
 branches:
   only:
   - master
-  - /^test-.*$/
-  - /^deploy-.*$/
+  - "/^test-.*$/"
+  - "/^deploy-.*$/"
+  - "/^v[0-9].*$/"
+
 notifications:
   slack: grupprop22:xEQjUsvIeCpH44ZJwrmMByS2
+
+before_deploy: mvn package -DskipTests=true -Djar.finalName=compressor-$TRAVIS_TAG
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: SUWnKwJ62Jdeuec/UATckXNqmb6Ztzc00HtKp28cJtGbYttOdbwyGsu6igJ2FmDFa9QMPNNTwScei/lWBpGY76KJqUfPcWDr1Tpq4E8f+Ys1qTOr9AzRu9ANAgkTjP3H8+uLE8PJZIwUxAfo0cGu/f650mK3p05glmQ1vG5Y0KuSZc0V3KqicTO4cB2/RT4g/oDLtfi8fkSJXp7kqFW27Yyan+rq2QuNE6Ib+NX19CrFyM2pxfC986NHBwPXMMqWGJCe6BIVkML+ESXEwlu02GrVCfzYyZxA0qTozOM1v83nwy+MXn3pwCY3AjEhVP/msDSnyE4b+eJq/5MJhw+s9jUI4rP1nFRi6z25cKvE9g9uy5V8n6OoVKlTc11TnEcSDqJmiTY2S6pCngrEOsPElEXHCoffAEm1QL5uDL7LjrPyF4BE2+NOqPUJ+hiAB2P3x03l9dZHa2nsXrmpcbVaRwODsnHU6x5Wp4bArZbD4gbHJz9bANuK2xyt2YYANBho8IAQGOppyL1WCzX4EsCByCdrBVuG7+jtPckwrqliANsRVLRyoG9+Cs38ALNmh7os6kpVUb7ZMMsECmKWKE8ydIwz+kbSo+gnADLpJhyvorJxZe/eZA668uOoTqlXGiBGzxs3MvjIHYDVPg9FTZVlhHgLD2b896OXbdgdkgZFkWM=
+  file: target/compressor-$TRAVIS_TAG.jar
+  on:
+    repo: Leixb/Compressor_PROP
+    branch: master
+    tags: true

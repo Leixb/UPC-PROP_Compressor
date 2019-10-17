@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class IO {
-    public class reader {
+    public static class reader {
         private FileInputStream fin;
         private BufferedInputStream bin;
 
@@ -22,7 +22,7 @@ public class IO {
         }
     }
 
-    public class writer {
+    public static class writer {
         private FileOutputStream fout;
         private BufferedOutputStream bout;
 

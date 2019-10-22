@@ -1,4 +1,6 @@
-# El Compressor [![Build Status](https://travis-ci.com/Leixb/Compressor_PROP.svg?token=qEz3Uk5fvSr9HeEEwxjb&branch=master)](https://travis-ci.com/Leixb/Compressor_PROP)
+# El Compressor 
+[![Build Status](https://travis-ci.com/Leixb/Compressor_PROP.svg?token=qEz3Uk5fvSr9HeEEwxjb&branch=master)](https://travis-ci.com/Leixb/Compressor_PROP)
+[![CodeFactor](https://www.codefactor.io/repository/github/leixb/compressor_prop/badge?s=f6f48f3e67e69da4aefc3048aba7e871deb081ed)](https://www.codefactor.io/repository/github/leixb/compressor_prop)
 
 Projecte PROP Quatrimestre tardor 2019/20
 

@@ -9,12 +9,8 @@ public class IO {
             fin = new FileInputStream(filename);
             bin = new BufferedInputStream(fin);
         }
-        public byte[] read(int n) throws IOException {
-            byte[] buffer = new byte[n];
-
-            bin.read(buffer);
-
-            return buffer;
+        public int read(byte[] buffer) throws IOException {
+            return bin.read(buffer);
         }
         public void close () throws IOException {
             bin.close();

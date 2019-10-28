@@ -1,3 +1,7 @@
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 public class Dct {
     static double[][] forwardDct(byte[][] block) throws IllegalArgumentException {
         if (block.length != 8 || block[0].length != 8) {
@@ -158,7 +162,7 @@ public class Dct {
         { 72 , 92 , 95 , 98 , 112 , 100 , 103 ,  99 }
     };
 
-    double QuantizationValue(short quality, short x, short y) throws IllegalArgumentException {
+    static double QuantizationValue(short quality, short x, short y) throws IllegalArgumentException {
         if (quality < 1 || quality > 100) throw new IllegalArgumentException("Quality must be between 1 and 100");
         if (x < 0 || x >= 8) throw new IllegalArgumentException("0 < x < 8");
         if (y < 0 || y >= 8) throw new IllegalArgumentException("0 < y < 8");
@@ -167,5 +171,67 @@ public class Dct {
         if (quality >= 50) q = 200 - 2*quality;
 
         return (q*QTable[x][y] + 50)/100;
+    }
+
+    static byte[][] Quanitzate(short quality, double[][] block) throws IllegalArgumentException {
+        if (block.length != 8 || block[0].length != 8) {
+            throw new IllegalArgumentException("block must be 8x8");
+        }
+        byte[][] data = new byte[8][8];
+        for (short i = 0; i < 8; ++i) {
+            for (short j = 0; j < 8; ++j) {
+                //data[i][j] = (byte)(block[i][j]/QuantizationValue(quality, i, j));
+                data[i][j] = (byte)(block[i][j]);
+            }
+        }
+        return data;
+    }
+
+    static double[][] DeQuanitzate(short quality, byte[][] block) throws IllegalArgumentException {
+        if (block.length != 8 || block[0].length != 8) {
+            throw new IllegalArgumentException("block must be 8x8");
+        }
+        double[][] data = new double[8][8];
+        for (short i = 0; i < 8; ++i) {
+            for (short j = 0; j < 8; ++j) {
+                //data[i][j] = block[i][j]*QuantizationValue(quality, i, j);
+                data[i][j] = block[i][j];
+            }
+        }
+        return data;
+    }
+
+    // Codifica en RLE (primer byte = nombre de 0 precedents, segon valor.
+    // Acaba amb 0,0
+    static byte[] RLE(byte[] data) {
+        ByteArrayOutputStream rleData = new ByteArrayOutputStream();
+        for (int i = 0; i < data.length; ++i) {
+            byte count = 0;
+            while (i < data.length && data[i] == 0) {
+                ++i;
+                ++count;
+            }
+
+            if (i >= data.length) break;
+
+            rleData.write(count);
+            rleData.write(data[i]);
+        }
+        rleData.write((byte)0);
+        rleData.write((byte)0);
+        return rleData.toByteArray();
+    }
+
+    static byte[] undoRLE(byte[] rleData) throws IOException {
+        byte[] data = new byte[64];
+        ByteArrayInputStream inputData = new ByteArrayInputStream(rleData);
+        byte[] RLEtuple = new byte[2];
+        int i = 0;
+        while (inputData.read(RLEtuple) == 2) {
+            if (RLEtuple[0] == 0 && RLEtuple[1] == 0) break;
+            i += RLEtuple[0];
+            data[i] = RLEtuple[1];
+        }
+        return data;
     }
 }

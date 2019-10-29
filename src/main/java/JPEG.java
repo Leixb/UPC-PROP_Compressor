@@ -2,19 +2,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class JPEG {
+interface codec<A, B> {
+    static <A, B> B encode(A data) {return null;};
+    static <A, B> A decode(B data) {return null;};
+}
 
-    private interface codec<A, B> {
-        static <A, B> B encode(A data) {return null;};
-        static <A, B> A decode(B data) {return null;};
-    }
-
-    /*
-       private class Block <T> {
-       private final static short BLOCK_SIZE = 8;
-       private T[][] data;
-       }
-       */
+public class JPEG implements codec<byte[][], byte[]> {
 
     public static class DCT implements codec<byte[][], double[][]> {
         public static double[][] encode(byte[][] data) {
@@ -277,4 +270,29 @@ public class JPEG {
             return data;
         }
     }
+
+    public static byte[] encode(byte[][] data) {
+
+        double[][] DctEnc = DCT.encode(data);
+        byte[][] quantEnc = Quantization.encode(DctEnc); //TODO: quality and chromincance
+        byte[] zigEnc = ZigZag.encode(quantEnc);
+        byte[] rleEnc = RLE.encode(zigEnc);
+        byte[] result = Huffman.encode(rleEnc);
+
+        return result;
+
+    }
+
+    public static byte[][] decode(byte[] data) {
+
+        byte[] huffDec = Huffman.decode(data);
+        byte[] rleDec = RLE.decode(huffDec);
+        byte[][] zigDec = ZigZag.decode(rleDec);
+        double[][] quantDec = Quantization.decode(zigDec); // TODO: quality and chrominance
+        byte[][] result = DCT.decode(quantDec);
+
+        return result;
+
+    }
+
 }

@@ -7,27 +7,23 @@ public class PpmImage {
     private enum Channel {RGB, YCbCr};
     private Channel channel;
 
-    public void readFile(String filename) throws IOException, InvalidFileFormat {
-        FileInputStream file = new FileInputStream(filename);
+    public void readFromPpmFile(String filename) throws IOException, InvalidFileFormat {
+        IO.reader file = new IO.reader(filename);
 
         byte[] magic = new byte[2];
         if (2 != file.read(magic)) throw new EOFException();
 
-        // TODO: support for P3 (and maybe grayscale)?
         if (magic[0] != 'P' || magic[1] != '6') throw new InvalidFileFormat();
 
         this.width = readInt(file);
         this.height = readInt(file);
         int maxVal = readInt(file);
 
-        // TODO: support >24bit images?
         if (maxVal >= 256) throw new InvalidFileFormat();
 
         this.pixels = new byte[this.width][this.height][3];
 
         this.channel = Channel.RGB;
-
-        System.err.printf("W %d H %d\n", this.width, this.height); // TODO: remove this
 
         for (int i = 0; i < this.width; ++i) {
             for (int j = 0; j < this.height; ++j) {
@@ -40,12 +36,7 @@ public class PpmImage {
     }
 
     public void writeFile(String filename) throws IOException {
-        File file = new File(filename);
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-
-        FileOutputStream fout = new FileOutputStream(file);
+        IO.writer fout = new IO.writer(filename);
 
         final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
         fout.write(header);
@@ -56,7 +47,6 @@ public class PpmImage {
             }
         }
 
-        fout.flush();
         fout.close();
     }
 
@@ -64,7 +54,7 @@ public class PpmImage {
         public InvalidFileFormat() { super(); }
     }
 
-    private int readInt(FileInputStream file) throws IOException {
+    private int readInt(IO.reader file) throws IOException {
 
         // Read till we find ascii integers
         char c;

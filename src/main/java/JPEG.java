@@ -3,8 +3,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 interface codec<A, B> {
-    static <A, B> B encode(A data) {return null;};
-    static <A, B> A decode(B data) {return null;};
+    static <A, B> B encode(A data) {
+        return null;
+    }
+    static <A, B> A decode(B data) {
+        return null;
+    }
 }
 
 public class JPEG implements codec<byte[][], byte[]> {
@@ -110,6 +114,10 @@ public class JPEG implements codec<byte[][], byte[]> {
             return (q*QTable[x][y] + 50)/100;
         }
 
+        public static byte[][] encode(double[][] data) {
+            return encode((short)50, true, data);
+        }
+
         public static byte[][] encode(short quality, boolean isChrominance, double[][] block) {
             byte[][] data = new byte[8][8];
             for (short i = 0; i < 8; ++i) {
@@ -125,6 +133,10 @@ public class JPEG implements codec<byte[][], byte[]> {
             return data;
         }
 
+        public static double[][] decode(byte[][] data) {
+            return decode((short)50, true, data);
+        }
+
         public static double[][] decode(short quality, boolean isChrominance, byte[][] block) {
             double[][] data = new double[8][8];
             for (short i = 0; i < 8; ++i) {
@@ -133,13 +145,6 @@ public class JPEG implements codec<byte[][], byte[]> {
                 }
             }
             return data;
-        }
-
-        public static byte[][] encode(double[][] data) {
-            return encode((short)50, true, data);
-        }
-        public static double[][] decode(byte[][] data) {
-            return decode((short)50, true, data);
         }
     }
 
@@ -157,9 +162,11 @@ public class JPEG implements codec<byte[][], byte[]> {
                 table[i][j] = pos;
 
                 if (up) {
-                    --i; ++j;
+                    --i;
+                    ++j;
                 } else {
-                    ++i; --j;
+                    ++i;
+                    --j;
                 }
 
                 boolean change_dir = true;

@@ -8,20 +8,20 @@ public class Image {
     private Channel channel;
 
     public void readFromPpmFile(String filename) throws IOException, InvalidFileFormat {
-        FileInputStream file = new FileInputStream(filename);
+        IO.reader file = new IO.reader(filename);
 
         byte[] magic = new byte[2];
         if (2 != file.read(magic)) throw new EOFException();
 
         // TODO: support for P3 (and maybe grayscale)?
-        if (magic[0] != 'P' || magic[1] != '6') throw new Image.InvalidFileFormat();
+        if (magic[0] != 'P' || magic[1] != '6') throw new InvalidFileFormat();
 
         this.width = readInt(file);
         this.height = readInt(file);
         int maxVal = readInt(file);
 
         // TODO: support >24bit images?
-        if (maxVal >= 256) throw new Image.InvalidFileFormat();
+        if (maxVal >= 256) throw new InvalidFileFormat();
 
         this.pixels = new byte[this.width][this.height][3];
 
@@ -40,12 +40,7 @@ public class Image {
     }
 
     public void writeToPpmFile(String filename) throws IOException {
-        File file = new File(filename);
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-
-        FileOutputStream fout = new FileOutputStream(file);
+        IO.writer fout = new IO.writer(filename);
 
         final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
         fout.write(header);
@@ -56,15 +51,14 @@ public class Image {
             }
         }
 
-        fout.flush();
         fout.close();
     }
 
-    public class InvalidFileFormat extends Exception {
+    public static class InvalidFileFormat extends Exception {
         public InvalidFileFormat() { super(); }
     }
 
-    private int readInt(FileInputStream file) throws IOException {
+    private int readInt(IO.reader file) throws IOException {
 
         // Read till we find ascii integers
         char c;

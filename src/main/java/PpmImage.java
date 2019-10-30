@@ -1,27 +1,27 @@
 import java.io.*;
 
-public class Image {
+public class PpmImage {
     private byte[][][] pixels; // width * height * channel
     private int width, height;
 
     private enum Channel {RGB, YCbCr};
     private Channel channel;
 
-    public void readFromPpmFile(String filename) throws IOException, InvalidFileFormat {
+    public void readFile(String filename) throws IOException, InvalidFileFormat {
         FileInputStream file = new FileInputStream(filename);
 
         byte[] magic = new byte[2];
         if (2 != file.read(magic)) throw new EOFException();
 
         // TODO: support for P3 (and maybe grayscale)?
-        if (magic[0] != 'P' || magic[1] != '6') throw new Image.InvalidFileFormat();
+        if (magic[0] != 'P' || magic[1] != '6') throw new InvalidFileFormat();
 
         this.width = readInt(file);
         this.height = readInt(file);
         int maxVal = readInt(file);
 
         // TODO: support >24bit images?
-        if (maxVal >= 256) throw new Image.InvalidFileFormat();
+        if (maxVal >= 256) throw new InvalidFileFormat();
 
         this.pixels = new byte[this.width][this.height][3];
 
@@ -39,7 +39,7 @@ public class Image {
 
     }
 
-    public void writeToPpmFile(String filename) throws IOException {
+    public void writeFile(String filename) throws IOException {
         File file = new File(filename);
         if (!file.exists()) {
             file.createNewFile();
@@ -60,7 +60,7 @@ public class Image {
         fout.close();
     }
 
-    public class InvalidFileFormat extends Exception {
+    public static class InvalidFileFormat extends Exception {
         public InvalidFileFormat() { super(); }
     }
 
@@ -140,6 +140,47 @@ public class Image {
                 this.pixels[i][j][2] = Cr;
             }
         }
+    }
+
+    public byte[][] getBlock(int channel, int x, int y) {
+        byte[][] block =  new byte[8][8];
+
+        for (int i = 0; i < 8; ++i) {
+            int posX = Math.min(8*x+i, width-1);
+            for (int j = 0; j < 8; ++j) {
+                int posY = Math.min(8*y+j, height-1);
+                block[i][j] = pixels[posX][posY][channel];
+            }
+        }
+
+        return block;
+    }
+
+    public void writeBlock(byte[][] block, int channel, int x, int y) {
+        for (int i = 0; i < 8; ++i) {
+            int posX = 8*x+i;
+            if (posX >= width) break;
+            for (int j = 0; j < 8; ++j) {
+                int posY = 8*y+j;
+                if (posY >= height) break;
+                pixels[posX][posY][channel] = block[i][j];
+            }
+        }
+    }
+
+    public int width() {
+        return width;
+    }
+
+    public int height() {
+        return height;
+    }
+
+    public int columns() {
+        return width/8 + ((width%8 == 0)? 0 : 1);
+    }
+    public int rows() {
+        return height/8 + ((height%8 == 0)? 0 : 1);
     }
 
     //TODO: remove this

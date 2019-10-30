@@ -29,8 +29,8 @@ class JPEGTest {
 
     @Test
     void ZigZag() {
-        byte[] line = new byte[64];
-        byte[][] block = new byte[8][8];
+        short[] line = new short[64];
+        short[][] block = new short[8][8];
 
         for (int i=0; i < 8; ++i) {
             for (int j=0; j < 8; ++j) {
@@ -39,8 +39,8 @@ class JPEGTest {
             }
         }
 
-        byte[] gotLine = JPEG.ZigZag.encode(JPEG.ZigZag.decode(line));
-        byte[][] gotBlock = JPEG.ZigZag.decode(JPEG.ZigZag.encode(block));
+        short[] gotLine = JPEG.ZigZag.encode(JPEG.ZigZag.decode(line));
+        short[][] gotBlock = JPEG.ZigZag.decode(JPEG.ZigZag.encode(block));
 
         assertArrayEquals(line, gotLine);
         for (int i = 0; i < 8; ++i) {
@@ -50,11 +50,15 @@ class JPEGTest {
 
     @Test
     void RLE() {
-        byte[] smallInput = {11, 0, 24, 12, 30, 0, 0, 0, 0, 5, 0, 1, 2, 0, 0, 0, 0, 0, 0};
-        final byte[] expected = {0, 11, 1, 24, 0, 12, 0, 30, 4, 5, 1, 1, 0, 2, 0, 0};
+        short[] smallInput = {0x1FF, 11, 0, 24, 12, 30, 0, 0, 0, 0, 5, 0, 1, 2, 0, 0, 0, 0, 0, 0};
+        final byte[] expected = {0, (byte)0xFF, 0, 0x1, 0, 11, 3, 24, 1, 12, 1, 30, 9, 5, 3, 1, 1, 2, 0, 0};
+        // Al passar de short a int tenim sempre el doble de 0 i un extra
 
-        byte[] input = new byte[64];
+        short[] input = new short[64];
         System.arraycopy(smallInput, 0, input, 0, smallInput.length);
+
+        print("EXPECTED: ", expected);
+        print("GOT", JPEG.RLE.encode(input));
 
         assertArrayEquals(JPEG.RLE.encode(input), expected, "RLE encode");
         assertArrayEquals(JPEG.RLE.decode(expected), input, "RLE decode");
@@ -84,14 +88,14 @@ class JPEGTest {
         byte[][] input = sampleBlock;
 
         double[][] DctEnc = JPEG.DCT.encode(input);
-        byte[][] quantEnc = JPEG.Quantization.encode(quality, isChrominance, DctEnc);
-        byte[] zigEnc = JPEG.ZigZag.encode(quantEnc);
+        short[][] quantEnc = JPEG.Quantization.encode(quality, isChrominance, DctEnc);
+        short[] zigEnc = JPEG.ZigZag.encode(quantEnc);
         byte[] rleEnc = JPEG.RLE.encode(zigEnc);
         byte[] huffEnc = JPEG.Huffman.encode(rleEnc);
 
         byte[] huffDec = JPEG.Huffman.decode(huffEnc);
-        byte[] rleDec = JPEG.RLE.decode(huffDec);
-        byte[][] zigDec = JPEG.ZigZag.decode(rleDec);
+        short[] rleDec = JPEG.RLE.decode(huffDec);
+        short[][] zigDec = JPEG.ZigZag.decode(rleDec);
         double[][] quantDec = JPEG.Quantization.decode(quality, isChrominance, zigDec);
         byte[][] result = JPEG.DCT.decode(quantDec);
 
@@ -161,6 +165,22 @@ class JPEGTest {
         for (int i=0; i < array.length; ++i)
             System.out.printf("%03d ", array[i]);
         System.out.println();
+    }
+
+    void print(String name, short[] array) {
+        System.out.println(name);
+        for (int i=0; i < array.length; ++i)
+            System.out.printf("%03d ", array[i]);
+        System.out.println();
+    }
+
+    void print(String name, short[][] data) {
+        System.out.println(name);
+        for (int i=0; i < data.length; ++i) {
+            for (int j=0; j < data[i].length; ++j)
+                System.out.printf("%03d ", data[i][j]);
+            System.out.println();
+        }
     }
 
 }

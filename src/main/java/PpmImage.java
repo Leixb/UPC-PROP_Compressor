@@ -7,7 +7,7 @@ public class PpmImage {
     private enum Channel {RGB, YCbCr};
     private Channel channel;
 
-    public void readFromPpmFile(String filename) throws IOException, InvalidFileFormat {
+    public void readFile(String filename) throws IOException, InvalidFileFormat {
         try (IO.reader file = new IO.reader(filename)) {
 
             byte[] magic = new byte[2];

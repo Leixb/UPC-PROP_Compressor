@@ -8,50 +8,39 @@ public class Image {
     private Channel channel;
 
     public void readFromPpmFile(String filename) throws IOException, InvalidFileFormat {
-        IO.reader file = new IO.reader(filename);
+        try (IO.reader file = new IO.reader(filename)) {
 
-        byte[] magic = new byte[2];
-        if (2 != file.read(magic)) throw new EOFException();
+            byte[] magic = new byte[2];
+            if (2 != file.read(magic)) throw new EOFException();
 
-        // TODO: support for P3 (and maybe grayscale)?
-        if (magic[0] != 'P' || magic[1] != '6') throw new InvalidFileFormat();
+            if (magic[0] != 'P' || magic[1] != '6') throw new InvalidFileFormat();
 
-        this.width = readInt(file);
-        this.height = readInt(file);
-        int maxVal = readInt(file);
+            this.width = readInt(file);
+            this.height = readInt(file);
+            int maxVal = readInt(file);
 
-        // TODO: support >24bit images?
-        if (maxVal >= 256) throw new InvalidFileFormat();
+            if (maxVal >= 256) throw new InvalidFileFormat();
 
-        this.pixels = new byte[this.width][this.height][3];
+            this.pixels = new byte[this.width][this.height][3];
+            this.channel = Channel.RGB;
 
-        this.channel = Channel.RGB;
 
-        System.err.printf("W %d H %d\n", this.width, this.height); // TODO: remove this
-
-        for (int i = 0; i < this.width; ++i) {
-            for (int j = 0; j < this.height; ++j) {
-                if (file.read(this.pixels[i][j]) != 3) throw new EOFException();
-            }
+            for (int i = 0; i < this.width; ++i)
+                for (int j = 0; j < this.height; ++j)
+                    if (file.read(this.pixels[i][j]) != 3) throw new EOFException();
         }
-
-        file.close();
-
     }
 
     public void writeToPpmFile(String filename) throws IOException {
-        IO.writer fout = new IO.writer(filename);
+        try (IO.writer fout = new IO.writer(filename)) {
 
         final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
         fout.write(header);
 
-        for (int i = 0; i < this.width; ++i) {
-            for (int j = 0; j < this.height; ++j) {
+        for (int i = 0; i < this.width; ++i)
+            for (int j = 0; j < this.height; ++j)
                 fout.write(pixels[i][j]);
-            }
         }
-
-        fout.close();
     }
 
     public static class InvalidFileFormat extends Exception {
@@ -143,8 +132,8 @@ public class Image {
             for (int i = 0; i < this.width; ++i) {
                 for (int j = 0; j < this.height; ++j) {
                     int n = Byte.toUnsignedInt(
-                        this.pixels[i][j][k]
-                    );
+                            this.pixels[i][j][k]
+                            );
                     System.out.printf("%03d ", n);
                 }
                 System.out.println();

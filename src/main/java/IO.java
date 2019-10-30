@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class IO {
-    public static class reader {
+    public static class reader implements AutoCloseable {
         private FileInputStream fin;
         private BufferedInputStream bin;
 
@@ -22,7 +22,7 @@ public class IO {
         }
     }
 
-    public static class writer {
+    public static class writer implements AutoCloseable {
         private FileOutputStream fout;
         private BufferedOutputStream bout;
 

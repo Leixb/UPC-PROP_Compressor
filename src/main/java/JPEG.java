@@ -1,6 +1,8 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.ByteOrder;
+import java.nio.ByteBuffer;
 
 public class JPEG implements Codec<byte[][], byte[]> {
 
@@ -67,7 +69,7 @@ public class JPEG implements Codec<byte[][], byte[]> {
         }
     }
 
-    public static class Quantization implements Codec<double[][], byte[][]> {
+    public static class Quantization implements Codec<double[][], short[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
             {  12 ,  12 ,  14 ,  19 ,  26 ,  58 ,  60 ,  55 },
@@ -104,30 +106,27 @@ public class JPEG implements Codec<byte[][], byte[]> {
             return (q*QTable[x][y] + 50)/100;
         }
 
-        public static byte[][] encode(double[][] data) {
+        public static short[][] encode(double[][] data) {
             return encode((short)50, true, data);
         }
 
-        public static byte[][] encode(short quality, boolean isChrominance, double[][] block) {
-            byte[][] data = new byte[8][8];
+        public static short[][] encode(short quality, boolean isChrominance, double[][] block) {
+            short[][] data = new short[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
                     double quantVal = block[i][j]/QuantizationValue(quality, isChrominance, i, j);
 
-                    if (quantVal > 127) quantVal = 127;
-                    else if (quantVal < -128) quantVal = -128;
-
-                    data[i][j] = (byte) quantVal;
+                    data[i][j] = (short) quantVal;
                 }
             }
             return data;
         }
 
-        public static double[][] decode(byte[][] data) {
+        public static double[][] decode(short[][] data) {
             return decode((short)50, true, data);
         }
 
-        public static double[][] decode(short quality, boolean isChrominance, byte[][] block) {
+        public static double[][] decode(short quality, boolean isChrominance, short[][] block) {
             double[][] data = new double[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
@@ -138,7 +137,7 @@ public class JPEG implements Codec<byte[][], byte[]> {
         }
     }
 
-    public static class ZigZag implements Codec<byte[][], byte[]> {
+    public static class ZigZag implements Codec<short[][], short[]> {
 
         // Correspondencia coordenades taula amb ZigZag
         private static byte[][] table;
@@ -182,15 +181,17 @@ public class JPEG implements Codec<byte[][], byte[]> {
             }
         }
 
-        public static byte[] encode(byte[][] block) {
+        public static short[] encode(short[][] block) {
             if (table == null) {
                 calculateCorrespondenceTable();
             }
 
-            byte[] L = new byte[8*8];
+            short[] L = new short[8*8];
 
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
+                    if (table[i][j] > L.length)
+                        System.out.println(table[i][j]);
                     L[table[i][j]] = block[i][j];
                 }
             }
@@ -198,11 +199,11 @@ public class JPEG implements Codec<byte[][], byte[]> {
             return L;
         }
 
-        public static byte[][] decode(byte[] L) {
+        public static short[][] decode(short[] L) {
             if (table == null) {
                 calculateCorrespondenceTable();
             }
-            byte[][] block = new byte[8][8];
+            short[][] block = new short[8][8];
 
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -215,30 +216,37 @@ public class JPEG implements Codec<byte[][], byte[]> {
 
     }
 
-    public static class RLE implements Codec<byte[], byte[]> {
+    public static class RLE implements Codec<short[], byte[]> {
         // Codifica en RLE (primer byte = nombre de 0 precedents, segon valor.
         // Acaba amb 0,0
-        public static byte[] encode(byte[] data) {
+        public static byte[] encode(short[] data) {
+
+            // to turn shorts to bytes.
+            byte[] dataBytes = new byte[data.length * 2];
+            ByteBuffer.wrap(dataBytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().put(data);
+
             ByteArrayOutputStream rleData = new ByteArrayOutputStream();
-            for (int i = 0; i < data.length; ++i) {
+            for (int i = 0; i < dataBytes.length; ++i) {
                 byte count = 0;
-                while (i < data.length && data[i] == 0) {
+                while (i < dataBytes.length && dataBytes[i] == 0) {
                     ++i;
                     ++count;
                 }
 
-                if (i >= data.length) break;
+                if (i >= dataBytes.length) break;
 
                 rleData.write(count);
-                rleData.write(data[i]);
+                rleData.write(dataBytes[i]);
             }
             rleData.write((byte)0);
             rleData.write((byte)0);
             return rleData.toByteArray();
         }
 
-        public static byte[] decode(byte[] data) {
-            byte[] decodedData = new byte[64];
+        public static short[] decode(byte[] data) {
+
+            byte[] decodedData = new byte[64*2];
+
             ByteArrayInputStream inputData = new ByteArrayInputStream(data);
             byte[] RLEtuple = new byte[2];
             int i = 0;
@@ -254,7 +262,11 @@ public class JPEG implements Codec<byte[][], byte[]> {
                 decodedData[i] = RLEtuple[1];
                 ++i;
             }
-            return decodedData;
+
+            short[] dataShort = new short[64];
+            // to turn bytes to shorts as either big endian or little endian.
+            ByteBuffer.wrap(decodedData).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(dataShort);
+            return dataShort;
         }
     }
 
@@ -274,8 +286,8 @@ public class JPEG implements Codec<byte[][], byte[]> {
     public static byte[] encode(short quality, boolean isChrominance, byte[][] data) {
 
         double[][] DctEnc = DCT.encode(data);
-        byte[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
-        byte[] zigEnc = ZigZag.encode(quantEnc);
+        short[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
+        short[] zigEnc = ZigZag.encode(quantEnc);
         byte[] rleEnc = RLE.encode(zigEnc);
         byte[] result = Huffman.encode(rleEnc);
 
@@ -290,8 +302,8 @@ public class JPEG implements Codec<byte[][], byte[]> {
     public static byte[][] decode(short quality, boolean isChrominance, byte[] data) {
 
         byte[] huffDec = Huffman.decode(data);
-        byte[] rleDec = RLE.decode(huffDec);
-        byte[][] zigDec = ZigZag.decode(rleDec);
+        short[] rleDec = RLE.decode(huffDec);
+        short[][] zigDec = ZigZag.decode(rleDec);
         double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
         byte[][] result = DCT.decode(quantDec);
 

@@ -17,16 +17,18 @@ public class JPEG implements Codec<byte[][], byte[]> {
 
                     for (int x = 0; x < 8; x++) {
                         for (int y = 0; y < 8; y++) {
-                            G[u][v] += data[x][y] * Math.cos((2 * x + 1) *u*Math.PI/16)
-                                * Math.cos((2 * y + 1) *v*Math.PI/16);
+                            int dataxy = Byte.toUnsignedInt(data[x][y]) - 128;
+                            //G[u][v] += data[x][y] * Math.cos((2 * x + 1)*u*Math.PI/16.0)
+                            G[u][v] += dataxy * Math.cos((2 * x + 1)*u*Math.PI/16.0)
+                                * Math.cos((2 * y + 1)*v*Math.PI/16.0);
                         }
                     }
 
                     double ortho = 0.25;
 
                     // Make orthonormal
-                    if (u == 0) ortho *= 1/Math.sqrt(2);
-                    if (v == 0) ortho *= 1/Math.sqrt(2);
+                    if (u == 0) ortho *= 1.0/Math.sqrt(2);
+                    if (v == 0) ortho *= 1.0/Math.sqrt(2);
 
                     G[u][v]*=ortho;
 
@@ -42,26 +44,27 @@ public class JPEG implements Codec<byte[][], byte[]> {
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
 
-                    float fxy = 0;
+                    double fxy = 0;
 
                     for (int u = 0; u < 8; u++) {
                         for (int v = 0; v < 8; v++) {
 
                             // Make orthonormal
                             double ortho = 1;
-                            if (u == 0) ortho *= 1/Math.sqrt(2);
-                            if (v == 0) ortho *= 1/Math.sqrt(2);
+                            if (u == 0) ortho *= 1.0/Math.sqrt(2);
+                            if (v == 0) ortho *= 1.0/Math.sqrt(2);
 
-                            fxy += ortho * data[u][v] * Math.cos((2 * x + 1) *u*Math.PI/16)
-                                * Math.cos((2 * y + 1) *v*Math.PI/16);
+                            fxy += ortho * data[u][v] * Math.cos((2 * x + 1)*u*Math.PI/16.0)
+                                * Math.cos((2 * y + 1)*v*Math.PI/16.0);
                         }
                     }
 
                     fxy *= 0.25;
 
-                    if (fxy > 127) fxy = 127;
-                    if (fxy < -128) fxy = -128;
-                    f[x][y] = (byte) fxy;
+                    if (fxy >= 127) fxy = 127;
+                    if (fxy <= -128) fxy = -128;
+                    int v = ((int)fxy +128)&0xFF;
+                    f[x][y] = ((byte) v);
 
                 }
             }

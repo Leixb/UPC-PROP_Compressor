@@ -268,9 +268,13 @@ public class JPEG implements Codec<byte[][], byte[]> {
     }
 
     public static byte[] encode(byte[][] data) {
+        return encode((short)50, true, data);
+    }
+
+    public static byte[] encode(short quality, boolean isChrominance, byte[][] data) {
 
         double[][] DctEnc = DCT.encode(data);
-        byte[][] quantEnc = Quantization.encode(DctEnc);
+        byte[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
         byte[] zigEnc = ZigZag.encode(quantEnc);
         byte[] rleEnc = RLE.encode(zigEnc);
         byte[] result = Huffman.encode(rleEnc);
@@ -280,11 +284,15 @@ public class JPEG implements Codec<byte[][], byte[]> {
     }
 
     public static byte[][] decode(byte[] data) {
+        return decode((short)50, true, data);
+    }
+
+    public static byte[][] decode(short quality, boolean isChrominance, byte[] data) {
 
         byte[] huffDec = Huffman.decode(data);
         byte[] rleDec = RLE.decode(huffDec);
         byte[][] zigDec = ZigZag.decode(rleDec);
-        double[][] quantDec = Quantization.decode(zigDec);
+        double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
         byte[][] result = DCT.decode(quantDec);
 
         return result;

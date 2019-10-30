@@ -18,9 +18,8 @@ public class JPEG implements Codec<byte[][], byte[]> {
                     for (int x = 0; x < 8; x++) {
                         for (int y = 0; y < 8; y++) {
                             int dataxy = Byte.toUnsignedInt(data[x][y]) - 128;
-                            //G[u][v] += data[x][y] * Math.cos((2 * x + 1)*u*Math.PI/16.0)
                             G[u][v] += dataxy * Math.cos((2 * x + 1)*u*Math.PI/16.0)
-                                * Math.cos((2 * y + 1)*v*Math.PI/16.0);
+                                              * Math.cos((2 * y + 1)*v*Math.PI/16.0);
                         }
                     }
 
@@ -55,7 +54,7 @@ public class JPEG implements Codec<byte[][], byte[]> {
                             if (v == 0) ortho *= 1.0/Math.sqrt(2);
 
                             fxy += ortho * data[u][v] * Math.cos((2 * x + 1)*u*Math.PI/16.0)
-                                * Math.cos((2 * y + 1)*v*Math.PI/16.0);
+                                                      * Math.cos((2 * y + 1)*v*Math.PI/16.0);
                         }
                     }
 

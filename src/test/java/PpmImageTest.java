@@ -29,8 +29,8 @@ class PpmImageTest {
                     for (int j = 0; j < img.rows(); ++j) {
                         byte[][] block = img.getBlock(channel, i, j);
 
-                        byte[] encoded = JPEG.encode(quality, i!=0 , block);
-                        byte[][] decoded = JPEG.decode(quality, i!=0, encoded);
+                        byte[] encoded = JPEG.encode(quality, channel!=0 , block);
+                        byte[][] decoded = JPEG.decode(quality, channel!=0, encoded);
 
                         compressed_size += encoded.length;
 

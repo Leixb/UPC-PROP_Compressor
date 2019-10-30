@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class IO {
-    public static class reader {
+    public static class reader implements AutoCloseable {
         private FileInputStream fin;
         private BufferedInputStream bin;
 
@@ -12,17 +12,27 @@ public class IO {
         public int read(byte[] buffer) throws IOException {
             return bin.read(buffer);
         }
+
+        public int read() throws IOException {
+            return bin.read();
+        }
         public void close () throws IOException {
             bin.close();
             fin.close();
         }
     }
 
-    public static class writer {
+    public static class writer implements AutoCloseable {
         private FileOutputStream fout;
         private BufferedOutputStream bout;
 
-        public writer(String filename) throws FileNotFoundException {
+        public writer(String filename) throws IOException {
+            // Create file if not exists
+            File file = new File(filename);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
             fout = new FileOutputStream(filename);
             bout = new BufferedOutputStream(fout);
         }

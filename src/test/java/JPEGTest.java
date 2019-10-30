@@ -119,7 +119,7 @@ class JPEGTest {
 
     @Test
     void encodeDecode() {
-        final int TOLERANCE = 15;
+        final int TOLERANCE = 20;
 
         byte[] encoded = JPEG.encode(sampleBlock);
         byte[][] result = JPEG.decode(encoded);

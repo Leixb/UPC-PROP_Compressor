@@ -2,18 +2,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-interface codec<A, B> {
-    static <A, B> B encode(A data) {
-        return null;
-    }
-    static <A, B> A decode(B data) {
-        return null;
-    }
-}
+public class JPEG implements Codec<byte[][], byte[]> {
 
-public class JPEG implements codec<byte[][], byte[]> {
-
-    public static class DCT implements codec<byte[][], double[][]> {
+    public static class DCT implements Codec<byte[][], double[][]> {
         public static double[][] encode(byte[][] data) {
             double[][]G = new double[8][8];
 
@@ -66,7 +57,6 @@ public class JPEG implements codec<byte[][], byte[]> {
 
                     fxy *= 0.25;
 
-                    //TODO: doubleToInt
                     if (fxy > 127) fxy = 127;
                     if (fxy < -128) fxy = -128;
                     f[x][y] = (byte) fxy;
@@ -77,7 +67,7 @@ public class JPEG implements codec<byte[][], byte[]> {
         }
     }
 
-    public static class Quantization implements codec<double[][], byte[][]> {
+    public static class Quantization implements Codec<double[][], byte[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
             {  12 ,  12 ,  14 ,  19 ,  26 ,  58 ,  60 ,  55 },
@@ -148,7 +138,7 @@ public class JPEG implements codec<byte[][], byte[]> {
         }
     }
 
-    public static class ZigZag implements codec<byte[][], byte[]> {
+    public static class ZigZag implements Codec<byte[][], byte[]> {
 
         // Correspondencia coordenades taula amb ZigZag
         private static byte[][] table;
@@ -225,7 +215,7 @@ public class JPEG implements codec<byte[][], byte[]> {
 
     }
 
-    public static class RLE implements codec<byte[], byte[]> {
+    public static class RLE implements Codec<byte[], byte[]> {
         // Codifica en RLE (primer byte = nombre de 0 precedents, segon valor.
         // Acaba amb 0,0
         public static byte[] encode(byte[] data) {
@@ -268,8 +258,7 @@ public class JPEG implements codec<byte[][], byte[]> {
         }
     }
 
-    // TODO
-    public static class Huffman implements codec<byte[], byte[]> {
+    public static class Huffman implements Codec<byte[], byte[]> {
         public static byte[] encode(byte[] data) {
             return data;
         }
@@ -281,7 +270,7 @@ public class JPEG implements codec<byte[][], byte[]> {
     public static byte[] encode(byte[][] data) {
 
         double[][] DctEnc = DCT.encode(data);
-        byte[][] quantEnc = Quantization.encode(DctEnc); //TODO: quality and chromincance
+        byte[][] quantEnc = Quantization.encode(DctEnc);
         byte[] zigEnc = ZigZag.encode(quantEnc);
         byte[] rleEnc = RLE.encode(zigEnc);
         byte[] result = Huffman.encode(rleEnc);
@@ -295,7 +284,7 @@ public class JPEG implements codec<byte[][], byte[]> {
         byte[] huffDec = Huffman.decode(data);
         byte[] rleDec = RLE.decode(huffDec);
         byte[][] zigDec = ZigZag.decode(rleDec);
-        double[][] quantDec = Quantization.decode(zigDec); // TODO: quality and chrominance
+        double[][] quantDec = Quantization.decode(zigDec);
         byte[][] result = DCT.decode(quantDec);
 
         return result;

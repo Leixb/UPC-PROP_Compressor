@@ -34,12 +34,12 @@ public class PpmImage {
     public void writeFile(String filename) throws IOException {
         try (IO.writer fout = new IO.writer(filename)) {
 
-        final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
-        fout.write(header);
+            final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
+            fout.write(header);
 
-        for (int i = 0; i < this.width; ++i)
-            for (int j = 0; j < this.height; ++j)
-                fout.write(pixels[i][j]);
+            for (int i = 0; i < this.width; ++i)
+                for (int j = 0; j < this.height; ++j)
+                    fout.write(pixels[i][j]);
         }
     }
 

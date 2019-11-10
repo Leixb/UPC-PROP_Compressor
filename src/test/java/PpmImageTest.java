@@ -9,8 +9,8 @@ class PpmImageTest {
     @Test
     void readWriteImage() {
         final short quality = 75;
-        final String imageFile = "images/boat.ppm";
-        final String outputFile = "boat.ppm";
+        final String imageFile = "images/gradients32.ppm";
+        final String outputFile = "gradients32.ppm";
 
         PpmImage img = new PpmImage();
         try {

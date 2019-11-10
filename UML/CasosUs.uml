@@ -1,0 +1,30 @@
+@startuml
+
+left to right direction
+
+title Diagrama de Casos d'ús
+
+rectangle "Compressor" {
+    usecase Com as "Comprimir
+    ==
+    Demana nom del fitxer a comprimir
+    i del fitxer destí"
+    usecase (Descomprimir) as Des
+    usecase (Automàtic) as Auto
+    usecase (LZ78)
+    usecase (LZSS)
+    usecase (LZW)
+    usecase (JPEG)
+}
+
+:Usuari:
+
+Usuari --> Com
+Usuari --> Des
+(Com) ..> Auto
+(Com) ..> (LZ78)
+(Com) ..> (LZSS)
+(Com) ..> (LZW)
+(Com) ..> (JPEG)
+
+@enduml

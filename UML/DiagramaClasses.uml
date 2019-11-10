@@ -1,0 +1,51 @@
+@startuml
+
+title Diagrama de classes
+
+package Presentació {
+    class "VistaPrincipal" as VPrin
+    class "CtrlPresentacio" as CPre
+
+    CPre o-- VPrin
+}
+
+package Domini {
+    class "CtrlDomini" as CDom
+
+    class JPEG
+    class LZ78
+    class LZW
+    class LZSS
+
+    class PpmImage
+    class IO
+
+    abstract class LZ
+
+    interface Codec<A,B> {
+        B encode(A)
+        A decode(B)
+    }
+
+    Codec <|-- JPEG
+    Codec <|-- LZ
+
+    LZ <|-- LZ78
+    LZ <|-- LZSS
+    LZ <|-- LZW
+
+    CDom o-- Codec
+    CDom o-- IO
+    CDom o-- PpmImage
+
+    PpmImage ..> IO
+
+}
+
+package Persistència {
+    class "CtrlPersistencia" as CPer
+}
+
+CPre o-- CDom
+
+@enduml

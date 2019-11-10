@@ -11,13 +11,14 @@ public class IO {
             fin = new FileInputStream(filename);
             bin = new BufferedInputStream(fin);
         }
+
         public int read(byte[] buffer) throws IOException {
             return bin.read(buffer);
         }
-
         public int read() throws IOException {
             return bin.read();
         }
+
         public void close () throws IOException {
             bin.close();
             fin.close();
@@ -38,9 +39,14 @@ public class IO {
             fout = new FileOutputStream(filename);
             bout = new BufferedOutputStream(fout);
         }
+
         public void write(byte[] buffer) throws IOException {
             bout.write(buffer);
         }
+        public void write(byte b) throws IOException {
+            bout.write(b);
+        }
+
         public void close () throws IOException {
             bout.flush();
             bout.close();

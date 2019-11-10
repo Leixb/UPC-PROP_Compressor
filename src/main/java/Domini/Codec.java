@@ -1,3 +1,5 @@
+package Domini;
+
 interface Codec<A, B> {
     static <A, B> B encode(A data) {
         return null;

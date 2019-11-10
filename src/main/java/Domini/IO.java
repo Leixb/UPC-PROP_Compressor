@@ -1,3 +1,5 @@
+package Domini;
+
 import java.io.*;
 
 public class IO {

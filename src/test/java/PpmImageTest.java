@@ -1,3 +1,5 @@
+import Domini.JPEG;
+import Domini.PpmImage;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -6,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PpmImageTest {
 
-    @Test
     void readWriteImage() {
         final short quality = 75;
         final String imageFile = "images/gradients32.ppm";

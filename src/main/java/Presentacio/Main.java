@@ -1,3 +1,5 @@
+package Presentacio;
+
 import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.sql.SQLOutput;
@@ -34,7 +36,7 @@ public class Main {
         System.out.println("[1] LZ78");
         System.out.println("[2] LZSS");
         System.out.println("[3] LZW");
-        System.out.println("[4] JPEG");
+        System.out.println("[4] Domini.JPEG");
         short opt = scanner.nextShort();
 
         switch (opt) {
@@ -77,7 +79,7 @@ public class Main {
         System.out.println("[2] LZ78");
         System.out.println("[3] LZSS");
         System.out.println("[4] LZW");
-        System.out.println("[5] JPEG");
+        System.out.println("[5] Domini.JPEG");
         short opt = scanner.nextShort();
 
         System.out.println("Introdueix el nom del fitxer:");

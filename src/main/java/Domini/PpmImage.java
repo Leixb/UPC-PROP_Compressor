@@ -1,3 +1,7 @@
+package Domini;
+
+import Domini.IO;
+
 import java.io.*;
 
 public class PpmImage {

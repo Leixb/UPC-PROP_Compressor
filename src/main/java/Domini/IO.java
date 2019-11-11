@@ -19,6 +19,20 @@ public class IO {
             return bin.read();
         }
 
+        public String readLine() throws IOException {
+            StringBuffer sbuf = new StringBuffer();
+
+            int c = bin.read();
+            while (c != -1) {
+                char Ch = (char) c;
+                if (Ch == '\n') break;
+                sbuf.append(Ch);
+
+                c = bin.read(); // Read next char
+            }
+            return sbuf.toString();
+        }
+
         public void close () throws IOException {
             bin.close();
             fin.close();

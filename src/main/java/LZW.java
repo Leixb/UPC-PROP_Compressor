@@ -1,5 +1,4 @@
-import IO.reader;
-import IO.writer;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class LZW {
@@ -25,7 +24,7 @@ public class LZW {
     }
 
 
-    public void compress_LZW (String filename) throws FileNotFoundException, IOException {
+    public void compress_LZW (String filename) throws IOException {
 
         //INICIALIZE THE DICTIONARY
         HashMap<String, Integer> dictionary = createCompressionDictionary();
@@ -34,7 +33,7 @@ public class LZW {
         try (IO.reader input  = new IO.reader(filename);
              IO.writer output = new IO.writer("Compressed_" + filename)) {
 
-            java.lang.String chars = "";
+            String chars = "";
 
             int ch = input.read();
             while (ch != -1) {
@@ -44,7 +43,13 @@ public class LZW {
                 }
                 else {
                     int code = dictionary.get(chars);
-                    output.write(code);
+
+                    // Esto es horrible, se tiene que cambiar en IO para hacer write de un solo byte
+                    byte[] buf = new byte[1];
+                    buf[0] = (byte)code;
+                    // -----------------------------------------------------------------------------
+                    output.write(buf);
+
                     dictionary.put(aux,i);
                     ++i;
                     chars = "" + (char) ch;
@@ -52,23 +57,27 @@ public class LZW {
                 ch = input.read();
             }
             int code = dictionary.get(chars);
-            output.write(code);
+            // Esto es horrible, se tiene que cambiar en IO para hacer write de un solo byte
+            byte[] buf = new byte[1];
+            buf[0] = (byte)code;
+            // -----------------------------------------------------------------------------
+            output.write(buf);
         }
     }
 
 
-    public void decompress_LZW (String filename) {
-        HashMap<Integer, Stirng> dictionary = createDecompressionDictionary();
+    public void decompress_LZW (String filename) throws IOException {
+        HashMap<Integer, String> dictionary = createDecompressionDictionary();
         int i = DICTIONARY_SIZE;
 
         try (IO.reader input  = new IO.reader(filename);
              IO.writer output = new IO.writer("Decompressed_" + filename)) {
 
-            java.lang.String chars = "";
+            String chars = "";
             int old_code = input.read();
             if (dictionary.containsKey(old_code)) {
                 chars = dictionary.get(old_code);
-                output.write(chars);
+                output.write(chars.getBytes());
             }
 
             int code = input.read();
@@ -81,10 +90,12 @@ public class LZW {
                     chars = dictionary.get(code);
                     chars += chars.charAt(0);
                 }
-                output.write(chars);
+                output.write(chars.getBytes());
 
                 String aux = dictionary.get(old_code) + chars.charAt(0);
-                dictionary.put(aux);
+                
+                dictionary.put(i, aux);
+                ++i;
 
                 old_code = code;
 

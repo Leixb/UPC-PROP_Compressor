@@ -41,6 +41,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
+            <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <configuration>
+                    <mainClass>Presentacio.Main</mainClass>
+                  </configuration>
+            </plugin>
         </plugins>
     </build>
 

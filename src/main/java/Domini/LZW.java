@@ -42,8 +42,9 @@ public class LZW {
 
         String chars = "";
 
-        byte ch = input.read();
-        while (ch != -1) {
+        int c = input.read();
+        while (c != -1) {
+            byte ch = (byte) c;
             String aux = chars + (char) ch;
             if (dictionary.containsKey(aux)) {
                 chars = aux;
@@ -60,7 +61,7 @@ public class LZW {
                 ++i;
                 chars = "" + (char) ch;
             }
-            ch = input.read();
+            c = input.read();
 
             if (i >= 255) {
                 throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");
@@ -79,15 +80,16 @@ public class LZW {
         HashMap<Byte, String> dictionary = createDecompressionDictionary();
         byte i = DICTIONARY_SIZE;
         String chars = "";
-        byte old_code = input.read();
+        byte old_code = (byte) input.read();
         if (dictionary.containsKey(old_code)) {
             chars = dictionary.get(old_code);
             output.write(chars.getBytes());
         }
 
-        byte code = input.read();
+        int c = input.read();
 
-        while (code != -1) {
+        while (c != -1) {
+            byte code = (byte) c;
             if (dictionary.containsKey(code)) {
                 chars = dictionary.get(code);
             }
@@ -104,7 +106,7 @@ public class LZW {
 
             old_code = code;
 
-            code = input.read();
+            c = input.read();
 
             if (i >= 255) {
                 throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");

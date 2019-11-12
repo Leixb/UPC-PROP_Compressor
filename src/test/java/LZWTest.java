@@ -1,27 +1,23 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import Domini.LZW;
 import Domini.IO;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 class LZWTest {
 
     @Test
-    void compressDecompressFile {
+    void compressDecompressFile() {
         final String inputFile = "~/Imágenes/sampleInput.jpg";
         final String outputFile = "sampleOutput.jpg";
-        final String aux = "compressedFile";​
+        final String aux = "compressedFile";
 
         try {
-            try (IO.reader input = new IO.reader(inputFile), IO.writer output = new IO.writer(aux)) {
+            try (IO.reader input = new IO.reader(inputFile); IO.writer output = new IO.writer(aux)) {
                 LZW.compress(input,output);
             }
-​
-            try (IO.reader input = new IO.reader(aux), IO.writer output = new IO.writer(output)) {
+            try (IO.reader input = new IO.reader(aux); IO.writer output = new IO.writer(outputFile)) {
                 LZW.decompress(input,output);
             }
         } catch (Exception e) {

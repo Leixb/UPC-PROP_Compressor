@@ -1,8 +1,5 @@
 package Presentacio;
 
-import javax.sound.midi.Soundbank;
-import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {

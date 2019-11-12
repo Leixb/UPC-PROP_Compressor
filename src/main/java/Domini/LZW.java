@@ -7,6 +7,9 @@ import Domini.IO;
 
 public class LZW implements FileCodec {
 
+    private static HashMap<String, Byte> compressionDictionary;
+    private static HashMap<Byte, String> decompressionDictionary;
+
     public static class TooManyStringsException extends Exception {
 
         public TooManyStringsException() { super(); }
@@ -17,27 +20,25 @@ public class LZW implements FileCodec {
 
     static final byte DICTIONARY_SIZE = 0x7E-0x20;
 
-    private static HashMap<String,Byte> createCompressionDictionary() {
-        HashMap<String, Byte> dictionary = new HashMap<>();
+    private static void createCompressionDictionary() {
+        compressionDictionary = new HashMap<>();
         for (byte i = 0; i < DICTIONARY_SIZE; ++i){
             char c = (char) (i+0x20);
-            dictionary.put(Character.toString(c),i);
+            compressionDictionary.put(Character.toString(c),i);
         }
-        return dictionary;
     }
 
-    private static HashMap<Byte, String> createDecompressionDictionary () {
-        HashMap<Byte, String> dictionary = new HashMap<>();
+    private static void createDecompressionDictionary () {
+        decompressionDictionary = new HashMap<>();
         for (byte i = 0; i < DICTIONARY_SIZE; ++i){
             char c = (char) (i+32);
-            dictionary.put(i,Character.toString(c));
+            decompressionDictionary.put(i,Character.toString(c));
         }
-        return dictionary;
     }
 
 
     public static void compress (IO.reader input, IO.writer output) throws IOException, TooManyStringsException {
-        HashMap<String, Byte> dictionary = createCompressionDictionary();
+        createCompressionDictionary();
         byte i = DICTIONARY_SIZE;
 
         String chars = "";
@@ -46,18 +47,18 @@ public class LZW implements FileCodec {
         while (c != -1) {
             byte ch = (byte) c;
             String aux = chars + (char) ch;
-            if (dictionary.containsKey(aux)) {
+            if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
             }
             else {
-                byte code = dictionary.get(chars);
+                byte code = compressionDictionary.get(chars);
 
                 byte[] buf = new byte[1];
                 buf[0] = (byte) code;
 
                 output.write(buf);
 
-                dictionary.put(aux,i);
+                compressionDictionary.put(aux,i);
                 ++i;
                 chars = "" + (char) ch;
             }
@@ -67,7 +68,7 @@ public class LZW implements FileCodec {
                 throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");
             }
         }
-        byte code = dictionary.get(chars);
+        byte code = compressionDictionary.get(chars);
 
         byte[] buf = new byte[1];
         buf[0] = code;
@@ -77,12 +78,12 @@ public class LZW implements FileCodec {
 
 
     public static void decompress (IO.reader input, IO.writer output) throws IOException, TooManyStringsException{
-        HashMap<Byte, String> dictionary = createDecompressionDictionary();
+        createDecompressionDictionary();
         byte i = DICTIONARY_SIZE;
         String chars = "";
         byte old_code = (byte) input.read();
-        if (dictionary.containsKey(old_code)) {
-            chars = dictionary.get(old_code);
+        if (decompressionDictionary.containsKey(old_code)) {
+            chars = decompressionDictionary.get(old_code);
             output.write(chars.getBytes());
         }
 
@@ -90,18 +91,18 @@ public class LZW implements FileCodec {
 
         while (c != -1) {
             byte code = (byte) c;
-            if (dictionary.containsKey(code)) {
-                chars = dictionary.get(code);
+            if (decompressionDictionary.containsKey(code)) {
+                chars = decompressionDictionary.get(code);
             }
             else {
-                chars = dictionary.get(code);
+                chars = decompressionDictionary.get(code);
                 chars += chars.charAt(0);
             }
             output.write(chars.getBytes());
 
-            String aux = dictionary.get(old_code) + chars.charAt(0);
+            String aux = decompressionDictionary.get(old_code) + chars.charAt(0);
 
-            dictionary.put(i, aux);
+            decompressionDictionary.put(i, aux);
             ++i;
 
             old_code = code;

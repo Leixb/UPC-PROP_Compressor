@@ -4,6 +4,7 @@ import java.util.BitSet;
 
 public class BitSetL extends BitSet {
     int _length_;
+    int l;
 
     public BitSetL() {
         super();
@@ -12,7 +13,7 @@ public class BitSetL extends BitSet {
 
     public BitSetL(int n) {
         super(n);
-        _length_ = -1;
+        _length_ = n-1;
     }
 
     public BitSetL(String s) {
@@ -30,4 +31,17 @@ public class BitSetL extends BitSet {
     public int length() {
         return _length_ + 1;
     }
+
+    public BitSetL(byte b, int l){
+        super(l);
+        _length_= l-1;
+        int bint = (int) b;
+        int n=0;
+        while (bint>0) {
+            if (bint%2==1) this.set(n);
+            ++n;
+            bint/=2;
+        }
+    }
+
 }

@@ -18,8 +18,10 @@ public class LZ78 {
                 if (dict.get(charac) == null) {
                     dict.put(charac, num);
                     ++num;
-                    output.write(charac);
+                    byte[] letter = charac.getBytes(); //String convertido a array de bytes
                     //Escribir la entrada del dict en el archivo comprimido
+                    output.write(letter);
+                    output.write((byte) num);
                     //o guardarlo para despues codificarlo en binario
                 } else {
                     chars = charac;

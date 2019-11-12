@@ -3,7 +3,9 @@ package Domini;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LZW {
+import Domini.IO;
+
+public class LZW implements FileCodec {
 
     public static class TooManyStringsException extends Exception {
 
@@ -15,7 +17,7 @@ public class LZW {
 
     static final byte DICTIONARY_SIZE = 0x7E-0x20;
 
-    private HashMap<String,Byte> createCompressionDictionary () {
+    private static HashMap<String,Byte> createCompressionDictionary() {
         HashMap<String, Byte> dictionary = new HashMap<>();
         for (byte i = 0; i < DICTIONARY_SIZE; ++i){
             char c = (char) (i+0x20);
@@ -24,7 +26,7 @@ public class LZW {
         return dictionary;
     }
 
-    private HashMap<Byte, String> createDecompressionDictionary () {
+    private static HashMap<Byte, String> createDecompressionDictionary () {
         HashMap<Byte, String> dictionary = new HashMap<>();
         for (byte i = 0; i < DICTIONARY_SIZE; ++i){
             char c = (char) (i+32);
@@ -34,9 +36,7 @@ public class LZW {
     }
 
 
-    public void compress_LZW (IO.reader input, IO.writer output) throws IOException, TooManyStringsException {
-
-        //INICIALIZE THE DICTIONARY
+    public static void compress (IO.reader input, IO.writer output) throws IOException, TooManyStringsException {
         HashMap<String, Byte> dictionary = createCompressionDictionary();
         byte i = DICTIONARY_SIZE;
 
@@ -76,7 +76,7 @@ public class LZW {
     }
 
 
-    public void decompress_LZW (IO.reader input, IO.writer output) throws IOException, TooManyStringsException{
+    public static void decompress (IO.reader input, IO.writer output) throws IOException, TooManyStringsException{
         HashMap<Byte, String> dictionary = createDecompressionDictionary();
         byte i = DICTIONARY_SIZE;
         String chars = "";

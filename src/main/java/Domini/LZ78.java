@@ -6,9 +6,9 @@ public class LZ78 {
     private static HashMap<String, Byte> compress_dict = new HashMap<String, Byte>();
     private static HashMap<Byte, String> decompress_dict = new HashMap<Byte, String>();
 
-    public void LZ78_compressor(String filename) throws IOException {
+    public static void compressor(String filename) throws IOException {
         try (IO.reader input = new IO.reader(filename);
-             IO.writer output = new IO.writer("Compressed_" + filename)) {
+             IO.writer output = new IO.writer("texts/out.txt")) {
 
             String chars = "";
             byte num = 1;
@@ -38,7 +38,8 @@ public class LZ78 {
                     byte letter = (byte)last_char; //String convertido a bytes
                     int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
                     BitSetL bs = new BitSetL (codnum, nbits);
-                    for(int i=0; i<bs.l; ++i) output.writeBit(bs.get(i)); //Escribe el codnum con los bits necesarios
+                    //for(int i=0; i<bs.l; ++i) output.writeBit(bs.get(i)); //Escribe el codnum con los bits necesarios
+                    output.write((byte) (codnum + 0x30));
                     output.write(letter); //Escribe el string como un vector de bytes en el archivo comprimido
                     ++nchar;
                 }
@@ -49,8 +50,9 @@ public class LZ78 {
                 codnum=compress_dict.get(chars);
                 int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
                 BitSetL bs = new BitSetL (codnum, nbits);
-                for(int i=0; i<bs.l; ++i) output.writeBit(bs.get(i)); //Escribe el codnum con los bits necesarios
-                for(int i=0; i<8; ++i) output.writeBit(false);
+                //for(int i=0; i<bs.l; ++i) output.writeBit(bs.get(i)); //Escribe el codnum con los bits necesarios
+                output.write((byte) (codnum + 0x30));
+                output.write((byte)0x30);
             }
         }
     }
@@ -60,44 +62,58 @@ public class LZ78 {
         return (int) (Math.log(n) / Math.log(2) + 1e-10)+1;
     }
 
-    public void LZ78_decompressor(String filename) throws IOException{
+    public static void decompressor(String filename) throws IOException{
         try (IO.reader input = new IO.reader(filename);
-             IO.writer output = new IO.writer("Decompressed_" + filename)) {
+             IO.writer output = new IO.writer("texts/dec_out.txt")) {
 
             //String chars = "";
-            byte num = 1;
-            int nchar=0;
+            //byte num = 1;
+            //int nchar=0;
             //byte codnum=0;
             //boolean newchar = true;
-            int number=0;
+            //int number=0;
             String charac="";
             //boolean bitin = input.readBit();
-            while (input.read()!=-1) { //cambiar para que sea a nivel de un bit
-                int nbits = bits_needed(nchar);
+            int number = input.read();
+            while (number!=-1) { //cambiar para que sea a nivel de un bit
+                /*int nbits = bits_needed(nchar);
                 for (int i = nbits; i > 0; --i) {
                     if (input.readBit()) {
-                        //for (int j=0; j<=i; ++j) number*=2; si es 1 number+=2^i
+                        int bint = 1;
+                        for (int j = 0; j < i; ++j) bint *= 2;
+                        number += bint;
                     }
-                }
-                int chin = input.read();
-                if (chin=0) {
+                }*/
+                //int chin = input.read();
+                int last_char = input.read();
+                if ((char)last_char==0x30) {
+                    //output.write((byte) 0x40);
                     charac=decompress_dict.get((byte) number);
                     output.write(charac.getBytes());
                 }
                 else {
-                    char last_char = (char) chin;
-                    if (number > 0) {
-                        charac = decompress_dict.get((byte) number) + last_char;
+                    //int last_char = input.read();
+                    if ((char)number > 0x30) {
+                        output.write((byte)number);
+                        output.write(decompress_dict.get((byte)number).getBytes());
+                        charac = decompress_dict.get((byte) number) + (char) last_char;
+                        output.write((byte) 0x40);
                         output.write(charac.getBytes());
                     } else {
-                        charac += (char) chin;
-                        output.write((byte) last_char);
+                        charac += (char) last_char;
+                        output.write(charac.getBytes());
                     }
-                    decompress_dict.put(num, charac);
-                    ++num;
-                    ++nchar;
+                    byte nume=1;
+                    output.write(nume);
+                    //output.write(nume);
+                    output.write(charac.getBytes());
+                    decompress_dict.put(nume, charac);
+                    charac="";
+                    ++nume;
+                    //++nchar;
                     number = 0;
                 }
+                number = input.read();
             }
         }
     }

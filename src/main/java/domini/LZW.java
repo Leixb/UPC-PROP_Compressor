@@ -1,4 +1,4 @@
-package Domini;
+package domini;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,7 +7,11 @@ public class LZW {
 
     public static class TooManyStringsException extends Exception {
 
-        public TooManyStringsException() { super(); }
+        private static final long serialVersionUID = -3749513648532868661L;
+
+        public TooManyStringsException() {
+            super();
+        }
 
         public TooManyStringsException(String s) { super(s); }
 
@@ -34,7 +38,7 @@ public class LZW {
     }
 
 
-    public void compress_LZW (IO.reader input, IO.writer output) throws IOException, TooManyStringsException {
+    public void compress_LZW (IO.Byte.reader input, IO.Byte.writer output) throws IOException, TooManyStringsException {
 
         //INICIALIZE THE DICTIONARY
         HashMap<String, Byte> dictionary = createCompressionDictionary();
@@ -76,14 +80,14 @@ public class LZW {
     }
 
 
-    public void decompress_LZW (IO.reader input, IO.writer output) throws IOException, TooManyStringsException{
+    public void decompress_LZW (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
         HashMap<Byte, String> dictionary = createDecompressionDictionary();
         byte i = DICTIONARY_SIZE;
         String chars = "";
         byte old_code = (byte) input.read();
         if (dictionary.containsKey(old_code)) {
             chars = dictionary.get(old_code);
-            output.write(chars.getBytes());
+            output.write(chars);
         }
 
         int c = input.read();
@@ -97,7 +101,7 @@ public class LZW {
                 chars = dictionary.get(code);
                 chars += chars.charAt(0);
             }
-            output.write(chars.getBytes());
+            output.write(chars);
 
             String aux = dictionary.get(old_code) + chars.charAt(0);
 

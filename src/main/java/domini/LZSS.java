@@ -1,20 +1,16 @@
-package Domini;
+package domini;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LZSS {
+public class LZSS implements FileCodec{
     final static int MAX_SIZE_SW = 4096; // 13 bits for offset
     final static int MAX_LENGTH_COINCIDENCE = 34; // 5 bits for length
 
-    public static void compress(String fileIn, String fileOut) throws IOException {
-            IO.reader input = new IO.reader(fileIn);
-            IO.writer output = new IO.writer(fileOut);
-
+    public static void compress(IO.Char.reader input, IO.Char.writer output) throws IOException {
             ArrayList<Character> slidingWindow = new ArrayList<Character>();
             ArrayList<Character> actualCharacters = new ArrayList<Character>();
-            int index, prevIndex, length;
+            int index, prevIndex = -1, length = 0;
 
             int c = input.read();
             while(c != -1) {
@@ -23,10 +19,21 @@ public class LZSS {
                 index = kmp(actualCharacters,slidingWindow);
 
                 if(index == -1) {
+                    if(length >= 3) {
 
+                    }
+                    else {
+                        for(int i = 0; i < actualCharacters.size(); ++i) {
+                            output.write('0');
+                            output.write(actualCharacters.get(0).charValue());
+                            slidingWindow.add(actualCharacters.get(0));
+                            actualCharacters.remove(0);
+                        }
+                    }
                 }
                 else {
-
+                    ++length;
+                    prevIndex = index;
                 }
 
                 /*actualCharacters.add((char)c);

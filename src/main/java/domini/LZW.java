@@ -40,8 +40,9 @@ public class LZW implements FileCodec {
 
 
     public static void compress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException {
-        createCompressionDictionary();
+        output.write(0x69);
 
+        createCompressionDictionary();
         char i = DICTIONARY_SIZE;
 
         String chars = "";
@@ -54,7 +55,7 @@ public class LZW implements FileCodec {
             if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
             }
-            else {
+            else if (i < 0xFFFF){
                 if (!compressionDictionary.containsKey(chars)) {
                     compressionDictionary.put(chars,i);
                     ++i;
@@ -66,12 +67,11 @@ public class LZW implements FileCodec {
                 ++i;
                 chars = "" + ch;
             }
+            else {
+                output.write(c);
+            }
 
             c = input.read();
-
-            if (i >= 255) {
-                throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");
-            }
         }
 
         if (!compressionDictionary.containsKey(chars)) {
@@ -99,26 +99,27 @@ public class LZW implements FileCodec {
                 String aux = decompressionDictionary.get(code);
                 output.write(aux);
 
-                aux = decompressionDictionary.get(old_code) + aux.charAt(0);
-                decompressionDictionary.put(i,aux);
-                ++i;
+                if (i < 0xFFFF) {
+                    aux = decompressionDictionary.get(old_code) + aux.charAt(0);
+                    decompressionDictionary.put(i, aux);
+                    ++i;
+                }
                 old_code = code;
             }
-            else {
+            else if (i < 0xFFFF) {
                 String aux = decompressionDictionary.get(old_code);
                 aux += aux.charAt(0);
 
-                decompressionDictionary.put(i,aux);
+                decompressionDictionary.put(i, aux);
                 i++;
 
                 output.write(aux);
             }
+            else{
+                output.write(c);
+            }
 
             c = input.read();
-
-            if (i >= 255) {
-                throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");
-            }
         }
     }
 }

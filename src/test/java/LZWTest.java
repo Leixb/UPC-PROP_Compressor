@@ -9,8 +9,8 @@ class LZWTest {
 
     @Test
     void compressDecompressFile() {
-        final String inputFile = "texts/sampleInput.txt";
-        final String outputFile = "texts/sampleOutput.txt";
+        final String inputFile = "texts/sampleInput.txt";//"images/gonza.ppm";//"texts/DonQuijote.txt";
+        final String outputFile = "texts/sampleOutput.txt";//"images/gonzaOut.ppm";//"texts/DonQuijoteOut.txt";
         final String aux = "texts/compressedFile";
 
         try {
@@ -18,6 +18,8 @@ class LZWTest {
                 LZW.compress(input,output);
             }
             try (IO.Char.reader input = new IO.Char.reader(aux); IO.Char.writer output = new IO.Char.writer(outputFile)) {
+                int c = input.read();
+                if (c == 0x69) System.out.println("Todo OK.");
                 LZW.decompress(input,output);
             }
         } catch (Exception e) {

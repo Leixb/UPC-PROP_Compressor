@@ -1,52 +1,55 @@
-package Domini;
+package domini;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import Domini.IO;
+import domini.IO;
 
 public class LZW implements FileCodec {
 
-    private static HashMap<String, Byte> compressionDictionary;
-    private static HashMap<Byte, String> decompressionDictionary;
+    private static HashMap<String, Character> compressionDictionary;
+    private static HashMap<Character, String> decompressionDictionary;
 
     public static class TooManyStringsException extends Exception {
 
-        public TooManyStringsException() { super(); }
+        private static final long serialVersionUID = -3749513648532868661L;
+
+        public TooManyStringsException() {
+            super();
+        }
 
         public TooManyStringsException(String s) { super(s); }
 
     }
 
-    private static final byte DICTIONARY_SIZE = 0x7E;
+    private static final char DICTIONARY_SIZE = 0xFF;
 
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
-        for (byte i = 0; i < DICTIONARY_SIZE; ++i){
-            char c = (char) i;
-            compressionDictionary.put(Character.toString(c),i);
+        for (char i = 0; i < DICTIONARY_SIZE; ++i){
+            compressionDictionary.put(Character.toString(i),i);
         }
     }
 
     private static void createDecompressionDictionary () {
         decompressionDictionary = new HashMap<>();
-        for (byte i = 0; i < DICTIONARY_SIZE; ++i){
-            char c = (char) i;
-            decompressionDictionary.put(i,Character.toString(c));
+        for (char i = 0; i < DICTIONARY_SIZE; ++i){
+            decompressionDictionary.put(i,Character.toString(i));
         }
     }
 
 
-    public static void compress (IO.reader input, IO.writer output) throws IOException, TooManyStringsException {
+    public static void compress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException {
         createCompressionDictionary();
-        byte i = DICTIONARY_SIZE;
+
+        char i = DICTIONARY_SIZE;
 
         String chars = "";
 
         int c = input.read();
         while (c != -1) {
-            byte ch = (byte) c;
-            String aux = chars + (char) ch;
+            char ch = (char) c;
+            String aux = chars + ch;
 
             if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
@@ -56,16 +59,12 @@ public class LZW implements FileCodec {
                     compressionDictionary.put(chars,i);
                     ++i;
                 }
-                byte code = compressionDictionary.get(chars);
-
-                byte[] buf = new byte[1];
-                buf[0] = (byte) code;
-
-                output.write(buf);
+                char code = compressionDictionary.get(chars);
+                output.write(code);
 
                 compressionDictionary.put(aux,i);
                 ++i;
-                chars = "" + (char) ch;
+                chars = "" + ch;
             }
 
             c = input.read();
@@ -78,32 +77,27 @@ public class LZW implements FileCodec {
         if (!compressionDictionary.containsKey(chars)) {
             compressionDictionary.put(chars,i);
         }
-        byte code = compressionDictionary.get(chars);
-
-        byte[] buf = new byte[1];
-        buf[0] = code;
-
-        output.write(buf);
+        char code = compressionDictionary.get(chars);
+        output.write(code);
     }
 
 
-    public static void decompress (IO.reader input, IO.writer output) throws IOException, TooManyStringsException{
+    public static void decompress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
         createDecompressionDictionary();
-        byte i = DICTIONARY_SIZE;
+        char i = DICTIONARY_SIZE;
 
-        byte old_code = (byte) input.read();
+        char old_code = (char) input.read();
         if (decompressionDictionary.containsKey(old_code)) {
             String aux = decompressionDictionary.get(old_code);
-            output.write(aux.getBytes());
+            output.write(aux);
         }
 
         int c = input.read();
-
         while (c != -1) {
-            byte code = (byte) c;
+            char code = (char) c;
             if (decompressionDictionary.containsKey(code)) {
                 String aux = decompressionDictionary.get(code);
-                output.write(aux.getBytes());
+                output.write(aux);
 
                 aux = decompressionDictionary.get(old_code) + aux.charAt(0);
                 decompressionDictionary.put(i,aux);
@@ -117,7 +111,7 @@ public class LZW implements FileCodec {
                 decompressionDictionary.put(i,aux);
                 i++;
 
-                output.write(aux.getBytes());
+                output.write(aux);
             }
 
             c = input.read();

@@ -1,6 +1,6 @@
-package Domini;
+package domini;
 
-import Domini.IO;
+import domini.IO;
 
 import java.io.*;
 
@@ -12,7 +12,7 @@ public class PpmImage {
     private Channel channel;
 
     public void readFile(String filename) throws IOException, InvalidFileFormat {
-        try (IO.reader file = new IO.reader(filename)) {
+        try (IO.Byte.reader file = new IO.Byte.reader(filename)) {
 
             byte[] magic = new byte[2];
             if (2 != file.read(magic)) throw new EOFException();
@@ -36,7 +36,7 @@ public class PpmImage {
     }
 
     public void writeFile(String filename) throws IOException {
-        try (IO.writer fout = new IO.writer(filename)) {
+        try (IO.Byte.writer fout = new IO.Byte.writer(filename)) {
 
             final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
             fout.write(header);
@@ -48,10 +48,14 @@ public class PpmImage {
     }
 
     public static class InvalidFileFormat extends Exception {
-        public InvalidFileFormat() { super(); }
+        private static final long serialVersionUID = -7627960741299880112L;
+
+        public InvalidFileFormat() {
+            super();
+        }
     }
 
-    private int readInt(IO.reader file) throws IOException {
+    private int readInt(IO.Byte.reader file) throws IOException {
 
         // Read till we find ascii integers
         char c;

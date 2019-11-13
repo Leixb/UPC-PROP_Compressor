@@ -1,8 +1,10 @@
-package Domini;
+package domini;
 
 import java.util.BitSet;
 
 public class BitSetL extends BitSet {
+    private static final long serialVersionUID = 1L;
+
     int _length_;
 
     public BitSetL() {

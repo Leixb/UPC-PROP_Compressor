@@ -2,8 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import Domini.LZW;
-import Domini.IO;
+import domini.LZW;
+import domini.IO;
 
 class LZWTest {
 
@@ -14,10 +14,10 @@ class LZWTest {
         final String aux = "texts/compressedFile";
 
         try {
-            try (IO.reader input = new IO.reader(inputFile); IO.writer output = new IO.writer(aux)) {
+            try (IO.Char.reader input = new IO.Char.reader(inputFile); IO.Char.writer output = new IO.Char.writer(aux)) {
                 LZW.compress(input,output);
             }
-            try (IO.reader input = new IO.reader(aux); IO.writer output = new IO.writer(outputFile)) {
+            try (IO.Char.reader input = new IO.Char.reader(aux); IO.Char.writer output = new IO.Char.writer(outputFile)) {
                 LZW.decompress(input,output);
             }
         } catch (Exception e) {

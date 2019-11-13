@@ -1,4 +1,4 @@
-package Domini;
+package domini;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

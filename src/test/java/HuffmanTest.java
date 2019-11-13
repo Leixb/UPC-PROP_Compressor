@@ -1,5 +1,5 @@
-import Domini.Huffman;
-import Domini.BitSetL;
+import domini.Huffman;
+import domini.BitSetL;
 
 import org.junit.jupiter.api.Test;
 

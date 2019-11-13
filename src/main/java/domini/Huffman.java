@@ -1,4 +1,4 @@
-package Domini;
+package domini;
 
 import java.util.HashMap;
 
@@ -42,9 +42,9 @@ public class Huffman {
 
     private void readTable(String filename) throws IOException {
         table = new HashMap<Short, BitSetL>();
-        try(IO.reader input = new IO.reader(filename)) {
+        try(IO.Char.reader input = new IO.Char.reader(filename)) {
             String s = input.readLine();
-            while (!s.isEmpty()) {
+            while (s != null) {
                 String[] sp = s.split(" ", 2);
 
                 if (sp.length != 2) throw new IOException("Invalid input table");

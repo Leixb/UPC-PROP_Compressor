@@ -1,4 +1,4 @@
-package Domini;
+package domini;
 
 interface Codec<A, B> {
     static <A, B> B encode(A data) {

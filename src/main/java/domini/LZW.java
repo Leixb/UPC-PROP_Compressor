@@ -55,7 +55,7 @@ public class LZW implements FileCodec {
             if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
             }
-            else if (i < 0xFFFF){
+            else {
                 if (!compressionDictionary.containsKey(chars)) {
                     compressionDictionary.put(chars,i);
                     ++i;
@@ -67,8 +67,11 @@ public class LZW implements FileCodec {
                 ++i;
                 chars = "" + ch;
             }
-            else {
-                output.write(c);
+
+            if (i >= 0xFFFF) {
+                output.write(0xFFFF);
+                createCompressionDictionary();
+                i = DICTIONARY_SIZE;
             }
 
             c = input.read();
@@ -98,15 +101,12 @@ public class LZW implements FileCodec {
             if (decompressionDictionary.containsKey(code)) {
                 String aux = decompressionDictionary.get(code);
                 output.write(aux);
-
-                if (i < 0xFFFF) {
-                    aux = decompressionDictionary.get(old_code) + aux.charAt(0);
-                    decompressionDictionary.put(i, aux);
-                    ++i;
-                }
+                aux = decompressionDictionary.get(old_code) + aux.charAt(0);
+                decompressionDictionary.put(i, aux);
+                ++i;
                 old_code = code;
             }
-            else if (i < 0xFFFF) {
+            else {
                 String aux = decompressionDictionary.get(old_code);
                 aux += aux.charAt(0);
 
@@ -115,11 +115,14 @@ public class LZW implements FileCodec {
 
                 output.write(aux);
             }
-            else{
-                output.write(c);
-            }
 
             c = input.read();
+
+            if (c == 0xFFFF) {
+                createDecompressionDictionary();
+                i = DICTIONARY_SIZE;
+                c = input.read();
+            }
         }
     }
 }

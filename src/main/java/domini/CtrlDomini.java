@@ -1,4 +1,4 @@
-package Domini;
+package domini;
 
 public class CtrlDomini {
 }

@@ -14,15 +14,13 @@ import java.io.IOException;
 public class IO {
     public static class Char {
         public static class reader extends BufferedReader {
-
-            reader(String filename) throws FileNotFoundException {
+            public reader(String filename) throws FileNotFoundException {
                 super(new FileReader(filename));
             }
-
         }
 
         public static class writer extends BufferedWriter {
-            writer(String filename) throws IOException {
+            public writer(String filename) throws IOException {
                 super(new FileWriter(filename));
             }
         }
@@ -30,15 +28,13 @@ public class IO {
 
     public static class Byte {
         public static class reader extends BufferedInputStream {
-
-            reader(String filename) throws FileNotFoundException {
+            public reader(String filename) throws FileNotFoundException {
                 super(new FileInputStream(filename));
             }
-
         }
 
         public static class writer extends BufferedOutputStream {
-            writer(String filename) throws IOException {
+            public writer(String filename) throws IOException {
                 super(new FileOutputStream(filename));
             }
         }

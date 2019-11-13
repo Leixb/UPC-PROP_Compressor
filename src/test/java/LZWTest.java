@@ -10,8 +10,8 @@ class LZWTest {
     @Test
     void compressDecompressFile() {
         final String inputFile = "texts/sampleInput.txt";
-        final String outputFile = "sampleOutput.txt";
-        final String aux = "compressedFile";
+        final String outputFile = "texts/sampleOutput.txt";
+        final String aux = "texts/compressedFile";
 
         try {
             try (IO.reader input = new IO.reader(inputFile); IO.writer output = new IO.writer(aux)) {

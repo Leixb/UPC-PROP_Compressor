@@ -7,10 +7,18 @@ branches:
   - "/^deploy-.*$/"
   - "/^v[0-9].*$/"
 
+env:
+  global:
+    secure: "Cnydqp5SKg5hom/nLgKlxxzcKJ/zeinU44jOK3yau5FLITuNk6qbmnAhwIoVx78K25OLgfHyCC3B3UP39oIsxAw+ag65Cj/okfS9shkNPWdRdCctIzcQlQGwvWok9x8ivOVts0iyNJpu1u55vB7iKJTueHOkbTPM+K9iIIowRf4kXbOeayZJS7pz1dBPVeAf55XnavKBmd2LxEILpErL5fuPBqmiK5u8kC8VFUzaF6Yrrwj3glX/vRJ6PWx+aQGyc5VYWOOP8jixeTr4blf/b59kC1vCNwkaDkIxgjXckpo2rqRAnofuXfpvNPFALu1weofOjUU1tOd+bOXS9d8KWS8sCj6BeRlCPdUqU0lNRdqGqDs70XKAh2juIQbaLvKRj8S8uQxkcnazhSdTvnOkOj+bMcmGI09ueUWM4jnoKG5O6Wm+yJMtraFQSDFLTmkaXS2eVBW4/2+Xe8mx0v1qDWMh9lTe77jSAfyaRS8ny3tMnclOktwngjP1nVyPbpDFkSe8itcpLxbpUAXrDBnx6z2L00hhigbGy16fC4jQPahimnSDqu5S7eAasdFhP46sAHWNX4wZpuZc2yz2VpN4eN+UKJTQXprvJutWnutgRTQP8p7K6amPC2XKwW3ZdfcceSjLftBKRwO/3G3lC6E7UybHCb9yiJqdjrXnZzTI808="
+
 notifications:
   slack: grupprop22:xEQjUsvIeCpH44ZJwrmMByS2
 
-before_deploy: mvn package -DskipTests=true -Djar.finalName=compressor-$TRAVIS_TAG
+before_deploy:
+  - mvn package -DskipTests=true -Djar.finalName=compressor-$TRAVIS_TAG
+  - mkdir -p ~/.m2
+  - echo "<settings><servers><server><id>github</id><username>Leixb</username><password>${GH_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+  - mvn deploy -Dregistry=https://maven.pkg.github.com/Leixb -Dtoken=$GH_TOKEN
 
 deploy:
   provider: releases

@@ -1,5 +1,5 @@
-import Domini.JPEG;
-import Domini.PpmImage;
+import domini.JPEG;
+import domini.PpmImage;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

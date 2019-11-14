@@ -1,4 +1,4 @@
-import domini.JPEG;
+import domini.JPEGBlock;
 import domini.PpmImage;
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +30,8 @@ class PpmImageTest {
                     for (int j = 0; j < img.rows(); ++j) {
                         byte[][] block = img.getBlock(channel, i, j);
 
-                        byte[] encoded = JPEG.encode(quality, channel!=0 , block);
-                        byte[][] decoded = JPEG.decode(quality, channel!=0, encoded);
+                        short[] encoded = JPEGBlock.encode(quality, channel!=0 , block);
+                        byte[][] decoded = JPEGBlock.decode(quality, channel!=0, encoded);
 
                         compressed_size += encoded.length;
 

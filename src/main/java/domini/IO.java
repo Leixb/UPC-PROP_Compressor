@@ -139,13 +139,13 @@ public class IO {
             }
 
             public int readByte() throws IOException {
-                return readMask(0x8);
-            }
-            public int readChar() throws IOException {
                 return readMask(0x80);
             }
-            public int readInt() throws IOException {
+            public int readChar() throws IOException {
                 return readMask(0x8000);
+            }
+            public int readInt() throws IOException {
+                return readMask(0x80000000);
             }
 
             public void close() throws IOException {

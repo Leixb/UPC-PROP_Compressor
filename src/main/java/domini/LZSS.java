@@ -1,5 +1,6 @@
 package domini;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -161,29 +162,32 @@ public class LZSS {
         ArrayList<Character> actualCharacters = new ArrayList<Character>();
 
         boolean c = input.read();
-        while(true) {
-            if(c == true) {
-                boolean[] bits = new boolean[14];
-                for(int i = 0; i < 14; ++i) bits[i] = input.read();
-                int index = bitsToInt(bits) + 1;
-                bits = new boolean[6];
-                for(int i = 0; i < 6; ++i) bits[i] = input.read();
-                int length = bitsToInt(bits) + 2;
-                int indexBase = slidingWindow.size() - index;
-                for(int i = 0; i < length; ++i) {
-                    char cAux = slidingWindow.get(indexBase+i).charValue();
+        try {
+            while (true) {
+                if (c == true) {
+                    boolean[] bits = new boolean[14];
+                    for (int i = 0; i < 14; ++i) bits[i] = input.read();
+                    int index = bitsToInt(bits) + 1;
+                    bits = new boolean[6];
+                    for (int i = 0; i < 6; ++i) bits[i] = input.read();
+                    int length = bitsToInt(bits) + 2;
+                    int indexBase = slidingWindow.size() - index;
+                    for (int i = 0; i < length; ++i) {
+                        char cAux = slidingWindow.get(indexBase + i).charValue();
+                        output.write(cAux);
+                        slidingWindow.add(cAux);
+                    }
+                } else {
+                    boolean[] bits = new boolean[16];
+                    for (int i = 0; i < 16; ++i) bits[i] = input.read();
+                    char cAux = (char) bitsToInt(bits);
                     output.write(cAux);
                     slidingWindow.add(cAux);
                 }
+                c = input.read();
             }
-            else {
-                boolean[] bits = new boolean[16];
-                for(int i = 0; i < 16; ++i) bits[i] = input.read();
-                char cAux = (char) bitsToInt(bits);
-                output.write(cAux);
-                slidingWindow.add(cAux);
-            }
-            c = input.read();
+        } catch (EOFException e) {
+
         }
     }
 

@@ -74,11 +74,10 @@ public class IO {
                 out.flush();
             }
 
-			public void close() throws Exception {
+            public void close() throws Exception {
                 flush();
                 out.close();
             }
-            
         }
 
         public static class reader implements AutoCloseable {
@@ -109,7 +108,6 @@ public class IO {
             public void close() throws IOException {
                 in.close();
             }
-            
         }
     }
 }

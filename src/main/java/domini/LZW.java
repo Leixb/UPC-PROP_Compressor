@@ -56,10 +56,6 @@ public class LZW implements FileCodec {
                 chars = aux;
             }
             else {
-                if (!compressionDictionary.containsKey(chars)) {
-                    compressionDictionary.put(chars,i);
-                    ++i;
-                }
                 char code = compressionDictionary.get(chars);
                 output.write(code);
 
@@ -69,6 +65,7 @@ public class LZW implements FileCodec {
             }
 
             if (i >= 0xFFFF) {
+                System.out.println("[DICTIONARY OVERFLOW]");
                 output.write(0xFFFF);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
@@ -90,35 +87,35 @@ public class LZW implements FileCodec {
         char i = DICTIONARY_SIZE;
 
         char old_code = (char) input.read();
-        if (decompressionDictionary.containsKey(old_code)) {
-            String aux = decompressionDictionary.get(old_code);
-            output.write(aux);
-        }
+
+        String aux = decompressionDictionary.get(old_code);
+        output.write(aux);
+
+        char ch = aux.charAt(0);
 
         int c = input.read();
         while (c != -1) {
             char code = (char) c;
             if (decompressionDictionary.containsKey(code)) {
-                String aux = decompressionDictionary.get(code);
-                output.write(aux);
-                aux = decompressionDictionary.get(old_code) + aux.charAt(0);
-                decompressionDictionary.put(i, aux);
-                ++i;
-                old_code = code;
+                aux = decompressionDictionary.get(code);
             }
             else {
-                String aux = decompressionDictionary.get(old_code);
-                aux += aux.charAt(0);
-
-                decompressionDictionary.put(i, aux);
-                i++;
-
-                output.write(aux);
+                aux = decompressionDictionary.get(old_code) + ch;
             }
+
+            output.write(aux);
+
+            ch = aux.charAt(0);
+
+            decompressionDictionary.put(i, decompressionDictionary.get(old_code) + ch);
+            i++;
+
+            old_code = code;
 
             c = input.read();
 
             if (c == 0xFFFF) {
+                System.out.println("[DICTIONARY OVERFLOW DETECTED]");
                 createDecompressionDictionary();
                 i = DICTIONARY_SIZE;
                 c = input.read();

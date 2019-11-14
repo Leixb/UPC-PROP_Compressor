@@ -53,10 +53,10 @@ class JPEG_Test {
         System.out.println();
     }
 
-    @Test
+    //@Test
     void test() {
         try {
-            JPEG.compress("images/boat_frag32.ppm", "boat.out", (short) 50);
+            JPEG.compress("images/boat.ppm", "boat.out", (short) 50);
             JPEG.decompress("boat.out", "boat_rec.ppm", (short) 50);
         } catch (Exception e) {
             // TODO Auto-generated catch block

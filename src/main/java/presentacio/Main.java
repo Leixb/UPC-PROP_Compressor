@@ -2,6 +2,8 @@ package presentacio;
 
 import java.util.Scanner;
 
+import domini.JPEG;
+
 public class Main {
 
     private static String banner =
@@ -33,7 +35,7 @@ public class Main {
         System.out.println("[1] LZ78");
         System.out.println("[2] LZSS");
         System.out.println("[3] LZW");
-        System.out.println("[4] Domini.JPEG");
+        System.out.println("[4] JPEG");
         short opt = scanner.nextShort();
 
         switch (opt) {
@@ -76,7 +78,7 @@ public class Main {
         System.out.println("[2] LZ78");
         System.out.println("[3] LZSS");
         System.out.println("[4] LZW");
-        System.out.println("[5] Domini.JPEG");
+        System.out.println("[5] JPEG");
         short opt = scanner.nextShort();
 
         System.out.println("Introdueix el nom del fitxer:");
@@ -110,5 +112,13 @@ public class Main {
     private static void testLZ78() {}
     private static void testLZSS() {}
     private static void testLZW() {}
-    private static void testJPEG() {}
+    private static void testJPEG() {
+        try {
+            JPEG.compress("images/boat.ppm", "boat.out", (short) 90);
+            JPEG.decompress("boat.out", "boat_rec.ppm", (short) 90);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

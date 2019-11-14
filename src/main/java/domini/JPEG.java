@@ -1,318 +1,150 @@
 package domini;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+import java.io.File;
 import java.io.IOException;
-import java.nio.ByteOrder;
-import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
-public class JPEG implements Codec<byte[][], byte[]> {
+import domini.IO.Bit.writer;
+import domini.PpmImage.InvalidFileFormat;
 
-    public static class DCT implements Codec<byte[][], double[][]> {
-        public static double[][] encode(byte[][] data) {
-            double[][]G = new double[8][8];
+public class JPEG {
+    public static void compress(String inputFile, String outputFile, short quality)
+            throws Exception, InvalidFileFormat {
+        PpmImage img = new PpmImage();
+        img.readFile(inputFile);
 
-            for (int u = 0; u < 8; u++) {
-                for (int v = 0; v < 8; v++) {
+        img.toYCbCr();
 
-                    G[u][v] = 0;
+        Huffman huff = new Huffman(true, true);
 
-                    for (int x = 0; x < 8; x++) {
-                        for (int y = 0; y < 8; y++) {
-                            int dataxy = Byte.toUnsignedInt(data[x][y]) - 128;
-                            G[u][v] += dataxy * Math.cos((2 * x + 1)*u*Math.PI/16.0)
-                                              * Math.cos((2 * y + 1)*v*Math.PI/16.0);
+        try (IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
+
+            // file.write(0x92); // work around IO.Bit.writer eager buffer read
+
+            // System.out.println(img.width());
+            // System.out.println(img.height());
+
+            // file.write(img.width());
+            // file.write(img.height());
+            for (int channel = 0; channel < 3; ++channel)
+                for (int i = 0; i < img.columns(); ++i) {
+                    for (int j = 0; j < img.rows(); ++j) {
+                        byte[][] block = img.getBlock(channel, i, j);
+
+                        short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
+
+                        writeBlock(encoded, huff,file);
+
+                    }
+                }
+            // Padding at EOF
+            for (int i = 0; i < 8; ++i)
+                file.write(0);
+        }
+    }
+
+    public static void decompress(String inputFile, String outputFile, short quality) throws IOException {
+        PpmImage img = new PpmImage();
+        Huffman huff = new Huffman(true, true);
+
+        try (IO.Bit.reader file = new IO.Bit.reader(inputFile)) {
+
+            // int w = file.readInt();
+            // int h = file.readInt();
+
+            // System.out.println(w);
+            // System.out.println(h);
+
+            // file.fill(); // work around
+
+            // img.setDimensions(w, h);
+            img.setDimensions(1215, 911);
+            //img.setDimensions(32, 32);
+
+            int channel = 0, i = 0, j = 0;
+
+            try {
+                for (channel = 0; channel < 3; ++channel)
+                    for (i = 0; i < img.columns(); ++i) {
+                        for (j = 0; j < img.rows(); ++j) {
+                            short[] encoded = decodeBlock(huff, file);
+
+                            byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
+
+                            // System.out.printf("%d, %d, %d\n", channel, i, j);
+                            img.writeBlock(data, channel, i, j);
+
                         }
                     }
-
-                    double ortho = 0.25;
-
-                    // Make orthonormal
-                    if (u == 0) ortho *= 1.0/Math.sqrt(2);
-                    if (v == 0) ortho *= 1.0/Math.sqrt(2);
-
-                    G[u][v]*=ortho;
-
-                }
+            } catch (EOFException e) {
+                System.out.println("EOF");
+                System.out.printf("%d, %d, %d\n", channel, i, j);
+                System.out.printf("%d, %d, %d\n", 3, img.columns(), img.rows());
             }
-
-            return G;
         }
-
-        public static byte[][] decode(double[][] data) {
-            byte[][] f = new byte[8][8];
-
-            for (int x = 0; x < 8; x++) {
-                for (int y = 0; y < 8; y++) {
-
-                    double fxy = 0;
-
-                    for (int u = 0; u < 8; u++) {
-                        for (int v = 0; v < 8; v++) {
-
-                            // Make orthonormal
-                            double ortho = 1;
-                            if (u == 0) ortho *= 1.0/Math.sqrt(2);
-                            if (v == 0) ortho *= 1.0/Math.sqrt(2);
-
-                            fxy += ortho * data[u][v] * Math.cos((2 * x + 1)*u*Math.PI/16.0)
-                                                      * Math.cos((2 * y + 1)*v*Math.PI/16.0);
-                        }
-                    }
-
-                    fxy *= 0.25;
-
-                    if (fxy >= 127) fxy = 127;
-                    if (fxy <= -128) fxy = -128;
-                    int v = ((int)fxy +128)&0xFF;
-                    f[x][y] = ((byte) v);
-
-                }
-            }
-            return f;
-        }
+        img.toRGB();
+        img.writeFile(outputFile);
     }
 
-    public static class Quantization implements Codec<double[][], short[][]> {
-        final static private byte[][] LuminanceTable = {
-            {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
-            {  12 ,  12 ,  14 ,  19 ,  26 ,  58 ,  60 ,  55 },
-            {  14 ,  13 ,  16 ,  24 ,  40 ,  57 ,  69 ,  56 },
-            {  14 ,  17 ,  22 ,  29 ,  51 ,  87 ,  80 ,  62 },
-            {  18 ,  22 ,  37 ,  56 ,  68 , 109 , 103 ,  77 },
-            {  24 ,  35 ,  55 ,  64 ,  81 , 104 , 113 ,  92 },
-            {  49 ,  64 ,  78 ,  87 , 103 , 121 , 120 , 101 },
-            {  72 ,  92 ,  95 ,  98 , 112 , 100 , 103 ,  99 }
-        };
+    public static short[] decodeBlock(Huffman huff, IO.Bit.reader file) throws IOException {
+        ArrayList<Short> block = new ArrayList<>();
 
-        final static private byte[][] ChrominanceTable = {
-            {  17 ,  18 ,  24 ,  47 ,  99 ,  99 ,  99 ,  99 },
-            {  18 ,  21 ,  26 ,  66 ,  99 ,  99 ,  99 ,  99 },
-            {  24 ,  26 ,  56 ,  99 ,  99 ,  99 ,  99 ,  99 },
-            {  47 ,  66 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 },
-            {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 },
-            {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 },
-            {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 },
-            {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 }
-        };
-
-        static double QuantizationValue(short quality, boolean isChrominance, short x, short y) throws IllegalArgumentException {
-            if (quality < 1 || quality > 100) throw new IllegalArgumentException("Quality must be between 1 and 100");
-            if (x < 0 || x >= 8) throw new IllegalArgumentException("0 < x < 8");
-            if (y < 0 || y >= 8) throw new IllegalArgumentException("0 < y < 8");
-
-            byte[][] QTable = LuminanceTable;
-            if (isChrominance) QTable = ChrominanceTable;
-
-            double q = 5000.0/quality;
-            if (quality >= 50) q = 200 - 2*quality;
-
-            return (q*QTable[x][y] + 50)/100;
-        }
-
-        public static short[][] encode(double[][] data) {
-            return encode((short)50, true, data);
-        }
-
-        public static short[][] encode(short quality, boolean isChrominance, double[][] block) {
-            short[][] data = new short[8][8];
-            for (short i = 0; i < 8; ++i) {
-                for (short j = 0; j < 8; ++j) {
-                    double quantVal = block[i][j]/QuantizationValue(quality, isChrominance, i, j);
-
-                    data[i][j] = (short) quantVal;
-                }
+        for (int i = 0; i < 64; ++i) {
+            Huffman.Node n = huff.decode(file.read());
+            while (!n.isLeaf()) {
+                n = huff.decode(n, file.read());
             }
-            return data;
-        }
 
-        public static double[][] decode(short[][] data) {
-            return decode((short)50, true, data);
-        }
+            block.add(n.getValue());
 
-        public static double[][] decode(short quality, boolean isChrominance, short[][] block) {
-            double[][] data = new double[8][8];
-            for (short i = 0; i < 8; ++i) {
-                for (short j = 0; j < 8; ++j) {
-                    data[i][j] = block[i][j]*QuantizationValue(quality, isChrominance, i, j);
-                }
+            if (n.getValue() == 0x00)
+                break;
+
+            int length = n.getValue() & 0xF;
+
+            if (length == 0)
+                continue;
+
+            BitSetL bs = new BitSetL(length);
+
+            for (int k = 0; k < length; ++k) {
+                bs.set(k, file.read());
             }
-            return data;
+
+            short num =0;
+            if (bs.get(0)) {
+                num = (short) bs.asInt();
+            } else {
+                bs.flip();
+                num = (short) -bs.asInt();
+            }
+
+            block.add(num);
         }
+
+        short[] r = new short[block.size()];
+        for (int i = 0; i < block.size(); ++i) {
+            r[i] = block.get(i);
+        }
+        return r;
     }
 
-    public static class ZigZag implements Codec<short[][], short[]> {
-
-        // Correspondencia coordenades taula amb ZigZag
-        private static byte[][] table;
-
-        private static void calculateCorrespondenceTable() {
-            table = new byte[8][8];
-
-            int i=0, j=0;
-            boolean up = true;
-            for (byte pos = 0; pos < 8*8; ++pos) {
-                table[i][j] = pos;
-
-                if (up) {
-                    --i;
-                    ++j;
+    public static void writeBlock(short[] encoded, Huffman huff, IO.Bit.writer file) throws IOException {
+        for (int k = 0; k < encoded.length; ++k) {
+            file.write(huff.encode(encoded[k]));
+            int l = encoded[k]&0x0F;
+            if (l != 0) {
+                ++k;
+                BitSetL bs;
+                if (encoded[k] < 0) {
+                    bs = new BitSetL(-encoded[k], l);
+                    bs.flip();
                 } else {
-                    ++i;
-                    --j;
+                    bs = new BitSetL(encoded[k], l);
                 }
-
-                boolean change_dir = true;
-
-                if (i == 8 && j == -1) {
-                    i = 7;
-                    j = 1;
-                } else if (i < 0) {
-                    i = 0;
-                } else if (j < 0) {
-                    j = 0;
-                } else if (i >= 8) {
-                    i = 7;
-                    j += 2;
-                } else if (j >= 8) {
-                    j = 7;
-                    i += 2;
-                } else {
-                    change_dir = false;
-                }
-
-                if (change_dir) up = !up;
+                file.write(bs);
             }
         }
-
-        public static short[] encode(short[][] block) {
-            if (table == null) {
-                calculateCorrespondenceTable();
-            }
-
-            short[] L = new short[8*8];
-
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    if (table[i][j] > L.length)
-                        System.out.println(table[i][j]);
-                    L[table[i][j]] = block[i][j];
-                }
-            }
-
-            return L;
-        }
-
-        public static short[][] decode(short[] L) {
-            if (table == null) {
-                calculateCorrespondenceTable();
-            }
-            short[][] block = new short[8][8];
-
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    block[i][j] = L[table[i][j]];
-                }
-            }
-
-            return block;
-        }
-
     }
-
-    public static class RLE implements Codec<short[], byte[]> {
-        // Codifica en RLE (primer byte = nombre de 0 precedents, segon valor.
-        // Acaba amb 0,0
-        public static byte[] encode(short[] data) {
-
-            // to turn shorts to bytes.
-            byte[] dataBytes = new byte[data.length * 2];
-            ByteBuffer.wrap(dataBytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().put(data);
-
-            ByteArrayOutputStream rleData = new ByteArrayOutputStream();
-            for (int i = 0; i < dataBytes.length; ++i) {
-                byte count = 0;
-                while (i < dataBytes.length && dataBytes[i] == 0) {
-                    ++i;
-                    ++count;
-                }
-
-                if (i >= dataBytes.length) break;
-
-                rleData.write(count);
-                rleData.write(dataBytes[i]);
-            }
-            rleData.write((byte)0);
-            rleData.write((byte)0);
-            return rleData.toByteArray();
-        }
-
-        public static short[] decode(byte[] data) {
-
-            byte[] decodedData = new byte[64*2];
-
-            ByteArrayInputStream inputData = new ByteArrayInputStream(data);
-            byte[] RLEtuple = new byte[2];
-            int i = 0;
-            while (true) {
-                try {
-                    if (!(inputData.read(RLEtuple) == 2)) break;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    break;
-                }
-                if (RLEtuple[0] == 0 && RLEtuple[1] == 0) break;
-                i += RLEtuple[0];
-                decodedData[i] = RLEtuple[1];
-                ++i;
-            }
-
-            short[] dataShort = new short[64];
-            // to turn bytes to shorts as either big endian or little endian.
-            ByteBuffer.wrap(decodedData).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(dataShort);
-            return dataShort;
-        }
-    }
-
-    public static class Huffman implements Codec<byte[], byte[]> {
-        public static byte[] encode(byte[] data) {
-            return data;
-        }
-        public static byte[] decode(byte[] data) {
-            return data;
-        }
-    }
-
-    public static byte[] encode(byte[][] data) {
-        return encode((short)50, true, data);
-    }
-
-    public static byte[] encode(short quality, boolean isChrominance, byte[][] data) {
-
-        double[][] DctEnc = DCT.encode(data);
-        short[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
-        short[] zigEnc = ZigZag.encode(quantEnc);
-        byte[] rleEnc = RLE.encode(zigEnc);
-        byte[] result = Huffman.encode(rleEnc);
-
-        return result;
-
-    }
-
-    public static byte[][] decode(byte[] data) {
-        return decode((short)50, true, data);
-    }
-
-    public static byte[][] decode(short quality, boolean isChrominance, byte[] data) {
-
-        byte[] huffDec = Huffman.decode(data);
-        short[] rleDec = RLE.decode(huffDec);
-        short[][] zigDec = ZigZag.decode(rleDec);
-        double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
-        byte[][] result = DCT.decode(quantDec);
-
-        return result;
-
-    }
-
 }

@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -61,6 +62,17 @@ public class IO {
                 if (n >= 8) clear();
             }
 
+            public void write(BitSetL bs) throws IOException {
+                for (int i = 0; i < bs.length(); ++i) {
+                    write(bs.get(i));
+                }
+            }
+
+            // ! No tenen en compte el buffer -> no es garanteix l ordre si es barreja write de bool i no bool
+            public void write(byte b) throws IOException { out.write(b); }
+            public void write(char c) throws IOException { out.write(c); }
+            public void write(int n)  throws IOException { out.write(n); }
+
             private void clear() throws IOException {
                 if (n == 0) return;
                 buffer <<= (8 - n);
@@ -93,7 +105,7 @@ public class IO {
                 fill();
             }
 
-            private void fill() throws IOException {
+            public void fill() throws IOException {
                 buffer = in.read();
                 n = 8;
                 if (buffer == -1) throw new EOFException();
@@ -104,6 +116,11 @@ public class IO {
                 boolean bit = ((buffer >> n) & 1) == 1;
                 if (n == 0) fill();
                 return bit;
+            }
+
+            public int readInt() throws IOException {
+                DataInputStream din = new DataInputStream(in);
+                return din.readInt();
             }
 
             public void close() throws IOException {

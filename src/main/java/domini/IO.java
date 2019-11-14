@@ -61,6 +61,29 @@ public class IO {
                 if (n >= 8) clear();
             }
 
+            public void write(BitSetL bs) throws IOException {
+                for (int i = 0; i < bs.length(); ++i) {
+                    write(bs.get(i));
+                }
+            }
+
+            public void write(byte b) throws IOException { 
+                writeMask(n, 0x8);
+            }
+            public void write(char c) throws IOException { 
+                writeMask(n, 0x80);
+            }
+            public void write(int n)  throws IOException {
+                writeMask(n, 0x8000);
+            }
+
+            private void writeMask(int n, int mask) throws IOException {
+                while (mask != 0) {
+                    write((n&mask) != 0);
+                    mask >>= 1;
+                }
+            }
+
             private void clear() throws IOException {
                 if (n == 0) return;
                 buffer <<= (8 - n);
@@ -74,11 +97,10 @@ public class IO {
                 out.flush();
             }
 
-			public void close() throws Exception {
+            public void close() throws Exception {
                 flush();
                 out.close();
             }
-            
         }
 
         public static class reader implements AutoCloseable {
@@ -94,6 +116,7 @@ public class IO {
             }
 
             private void fill() throws IOException {
+
                 buffer = in.read();
                 n = 8;
                 if (buffer == -1) throw new EOFException();
@@ -106,10 +129,28 @@ public class IO {
                 return bit;
             }
 
+            private int readMask(int mask) throws IOException {
+                int n = 0;
+                while (mask != 0) {
+                    if (read())  n |= mask;
+                    mask>>=1;
+                }
+                return n;
+            }
+
+            public int readByte() throws IOException {
+                return readMask(0x8);
+            }
+            public int readChar() throws IOException {
+                return readMask(0x80);
+            }
+            public int readInt() throws IOException {
+                return readMask(0x8000);
+            }
+
             public void close() throws IOException {
                 in.close();
             }
-            
         }
     }
 }

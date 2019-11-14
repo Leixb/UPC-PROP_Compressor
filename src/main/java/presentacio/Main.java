@@ -106,7 +106,6 @@ public class Main {
         System.out.println("Introdueix el nom del fitxer:");
         String filename = scanner.nextLine();
 
-        // TODO
     }
 
     private static void testLZ78() {}
@@ -117,7 +116,6 @@ public class Main {
             JPEG.compress("images/boat.ppm", "boat.out", (short) 90);
             JPEG.decompress("boat.out", "boat_rec.ppm", (short) 90);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

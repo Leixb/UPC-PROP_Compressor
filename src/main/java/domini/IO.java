@@ -68,13 +68,6 @@ public class IO {
                 }
             }
 
-            private void writeMask(int n, int mask) throws IOException {
-                while (mask != 0) {
-                    write((n&mask) != 0);
-                    mask >>= 1;
-                }
-            }
-
             public void write(byte b) throws IOException { 
                 writeMask(n, 0x8);
             }
@@ -83,6 +76,13 @@ public class IO {
             }
             public void write(int n)  throws IOException {
                 writeMask(n, 0x8000);
+            }
+
+            private void writeMask(int n, int mask) throws IOException {
+                while (mask != 0) {
+                    write((n&mask) != 0);
+                    mask >>= 1;
+                }
             }
 
             private void clear() throws IOException {

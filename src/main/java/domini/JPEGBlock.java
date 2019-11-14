@@ -280,7 +280,8 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
                 ++i;
                 if (length == 0) continue;
                 decodedData[j] = data[i];
-                ++i; ++j;
+                ++i;
+                ++j;
             }
 
             return decodedData;

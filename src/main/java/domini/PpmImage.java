@@ -1,15 +1,19 @@
 package domini;
 
-import domini.IO;
-
 import java.io.*;
 
 public class PpmImage {
     private byte[][][] pixels; // width * height * channel
     private int width, height;
 
-    private enum Channel {RGB, YCbCr};
-    private Channel channel;
+    //private enum Channel {RGB, YCbCr};
+    //private Channel channel;
+
+    public void setDimensions(int w, int h) {
+        pixels = new byte[w][h][3];
+        width = w;
+        height = h;
+    }
 
     public void readFile(String filename) throws IOException, InvalidFileFormat {
         try (IO.Byte.reader file = new IO.Byte.reader(filename)) {
@@ -26,7 +30,7 @@ public class PpmImage {
             if (maxVal >= 256) throw new InvalidFileFormat();
 
             this.pixels = new byte[this.width][this.height][3];
-            this.channel = Channel.RGB;
+            //this.channel = Channel.RGB;
 
 
             for (int i = 0; i < this.width; ++i)
@@ -87,8 +91,8 @@ public class PpmImage {
 
     public void toRGB() {
         // Do nothing if already RGB
-        if (this.channel == Channel.RGB) return;
-        this.channel = Channel.RGB;
+        //if (this.channel == Channel.RGB) return;
+        //this.channel = Channel.RGB;
 
         byte R, G, B;
         for (int i = 0; i < this.width; ++i) {
@@ -112,8 +116,8 @@ public class PpmImage {
 
     public void toYCbCr() {
         // Do nothing if already YCbCr
-        if (this.channel == Channel.YCbCr) return;
-        this.channel = Channel.YCbCr;
+        //if (this.channel == Channel.YCbCr) return;
+        //this.channel = Channel.YCbCr;
 
         byte Y, Cb, Cr;
         for (int i = 0; i < this.width; ++i) {

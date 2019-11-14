@@ -7,9 +7,10 @@ import java.util.ArrayList;
 public class LZSS {
     final static int MAX_SIZE_SW = 8192; // 14 bits for offset
     final static int MAX_LENGTH_COINCIDENCE = 65; // 6 bits for length
+    public final static byte MAGIC_BYTE = 0x55;
 
     public static void compress(IO.Char.reader input, IO.Bit.writer output) throws IOException {
-
+        output.write(MAGIC_BYTE);
 
         ArrayList<Character> slidingWindow = new ArrayList<Character>();
         ArrayList<Character> actualCharacters = new ArrayList<Character>();
@@ -158,6 +159,8 @@ public class LZSS {
     }
 
     public static void decompress(IO.Bit.reader input, IO.Char.writer output) throws IOException {
+        input.readByte();
+
         ArrayList<Character> slidingWindow = new ArrayList<Character>();
         ArrayList<Character> actualCharacters = new ArrayList<Character>();
 

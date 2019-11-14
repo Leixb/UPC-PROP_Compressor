@@ -6,6 +6,7 @@ public class BitSetL extends BitSet {
     private static final long serialVersionUID = 1L;
 
     int _length_;
+    int l;
 
     public BitSetL() {
         super();
@@ -57,4 +58,17 @@ public class BitSetL extends BitSet {
     public int length() {
         return _length_;
     }
+
+    public BitSetL(byte b, int l){
+        super(l);
+        _length_= l-1;
+        int bint = (int) b;
+        int n=0;
+        while (bint>0) {
+            if (bint%2==1) this.set(n);
+            ++n;
+            bint/=2;
+        }
+    }
+
 }

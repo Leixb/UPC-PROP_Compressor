@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -116,7 +115,8 @@ public class IO {
                 fill();
             }
 
-            public void fill() throws IOException {
+            private void fill() throws IOException {
+
                 buffer = in.read();
                 n = 8;
                 if (buffer == -1) throw new EOFException();

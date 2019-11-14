@@ -67,11 +67,11 @@ public class IO {
                 }
             }
 
-            public void write(byte b) throws IOException { 
-                writeMask(n, 0x8);
+            public void write(byte b) throws IOException {
+                writeMask(b, 0x8);
             }
             public void write(char c) throws IOException { 
-                writeMask(n, 0x80);
+                writeMask(c, 0x80);
             }
             public void write(int n)  throws IOException {
                 writeMask(n, 0x8000);

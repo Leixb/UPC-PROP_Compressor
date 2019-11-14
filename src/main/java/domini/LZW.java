@@ -3,7 +3,12 @@ package domini;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LZW {
+import domini.IO;
+
+public class LZW implements FileCodec {
+
+    private static HashMap<String, Character> compressionDictionary;
+    private static HashMap<Character, String> decompressionDictionary;
 
     public static class TooManyStringsException extends Exception {
 
@@ -17,103 +22,103 @@ public class LZW {
 
     }
 
-    static final byte DICTIONARY_SIZE = 0x7E-0x20;
+    private static final char DICTIONARY_SIZE = 0xFF;
 
-    private HashMap<String,Byte> createCompressionDictionary () {
-        HashMap<String, Byte> dictionary = new HashMap<>();
-        for (byte i = 0; i < DICTIONARY_SIZE; ++i){
-            char c = (char) (i+0x20);
-            dictionary.put(Character.toString(c),i);
+    private static void createCompressionDictionary() {
+        compressionDictionary = new HashMap<>();
+        for (char i = 0; i < DICTIONARY_SIZE; ++i){
+            compressionDictionary.put(Character.toString(i),i);
         }
-        return dictionary;
     }
 
-    private HashMap<Byte, String> createDecompressionDictionary () {
-        HashMap<Byte, String> dictionary = new HashMap<>();
-        for (byte i = 0; i < DICTIONARY_SIZE; ++i){
-            char c = (char) (i+32);
-            dictionary.put(i,Character.toString(c));
+    private static void createDecompressionDictionary () {
+        decompressionDictionary = new HashMap<>();
+        for (char i = 0; i < DICTIONARY_SIZE; ++i){
+            decompressionDictionary.put(i,Character.toString(i));
         }
-        return dictionary;
     }
 
 
-    public void compress_LZW (IO.Byte.reader input, IO.Byte.writer output) throws IOException, TooManyStringsException {
+    public static void compress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException {
+        output.write(0x69);
 
-        //INICIALIZE THE DICTIONARY
-        HashMap<String, Byte> dictionary = createCompressionDictionary();
-        byte i = DICTIONARY_SIZE;
+        createCompressionDictionary();
+        char i = DICTIONARY_SIZE;
 
         String chars = "";
 
         int c = input.read();
         while (c != -1) {
-            byte ch = (byte) c;
-            String aux = chars + (char) ch;
-            if (dictionary.containsKey(aux)) {
+            char ch = (char) c;
+            String aux = chars + ch;
+
+            if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
             }
             else {
-                byte code = dictionary.get(chars);
+                char code = compressionDictionary.get(chars);
+                output.write(code);
 
-                byte[] buf = new byte[1];
-                buf[0] = (byte) code;
-
-                output.write(buf);
-
-                dictionary.put(aux,i);
+                compressionDictionary.put(aux,i);
                 ++i;
-                chars = "" + (char) ch;
+                chars = "" + ch;
             }
+
+            if (i >= 0xFFFF) {
+                System.out.println("[DICTIONARY OVERFLOW]");
+                output.write(0xFFFF);
+                createCompressionDictionary();
+                i = DICTIONARY_SIZE;
+            }
+
             c = input.read();
-
-            if (i >= 255) {
-                throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");
-            }
         }
-        byte code = dictionary.get(chars);
 
-        byte[] buf = new byte[1];
-        buf[0] = code;
-
-        output.write(buf);
+        if (!compressionDictionary.containsKey(chars)) {
+            compressionDictionary.put(chars,i);
+        }
+        char code = compressionDictionary.get(chars);
+        output.write(code);
     }
 
 
-    public void decompress_LZW (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
-        HashMap<Byte, String> dictionary = createDecompressionDictionary();
-        byte i = DICTIONARY_SIZE;
-        String chars = "";
-        byte old_code = (byte) input.read();
-        if (dictionary.containsKey(old_code)) {
-            chars = dictionary.get(old_code);
-            output.write(chars);
-        }
+    public static void decompress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
+        createDecompressionDictionary();
+        char i = DICTIONARY_SIZE;
+
+        char old_code = (char) input.read();
+
+        String aux = decompressionDictionary.get(old_code);
+        output.write(aux);
+
+        char ch = aux.charAt(0);
 
         int c = input.read();
-
         while (c != -1) {
-            byte code = (byte) c;
-            if (dictionary.containsKey(code)) {
-                chars = dictionary.get(code);
+            char code = (char) c;
+            if (decompressionDictionary.containsKey(code)) {
+                aux = decompressionDictionary.get(code);
             }
             else {
-                chars = dictionary.get(code);
-                chars += chars.charAt(0);
+                aux = decompressionDictionary.get(old_code) + ch;
             }
-            output.write(chars);
 
-            String aux = dictionary.get(old_code) + chars.charAt(0);
+            output.write(aux);
 
-            dictionary.put(i, aux);
-            ++i;
+            ch = aux.charAt(0);
+
+            decompressionDictionary.put(i, decompressionDictionary.get(old_code) + ch);
+            i++;
 
             old_code = code;
 
             c = input.read();
 
-            if (i >= 255) {
-                throw new TooManyStringsException("Dictionary not large enough. Too many unique strings.");
+            if (c == 0xFFFF) {
+                System.out.println("[DICTIONARY OVERFLOW DETECTED]");
+                createDecompressionDictionary();
+                i = DICTIONARY_SIZE;
+                c = input.read();
             }
         }
     }

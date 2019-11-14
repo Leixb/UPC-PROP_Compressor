@@ -68,13 +68,13 @@ public class IO {
             }
 
             public void write(byte b) throws IOException {
-                writeMask(b, 0x8);
+                writeMask(b, 0x80);
             }
             public void write(char c) throws IOException { 
-                writeMask(c, 0x80);
+                writeMask(c, 0x8000);
             }
             public void write(int n)  throws IOException {
-                writeMask(n, 0x8000);
+                writeMask(n, 0x80000000);
             }
 
             private void writeMask(int n, int mask) throws IOException {

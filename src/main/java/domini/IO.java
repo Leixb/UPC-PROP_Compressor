@@ -68,10 +68,22 @@ public class IO {
                 }
             }
 
-            // ! No tenen en compte el buffer -> no es garanteix l ordre si es barreja write de bool i no bool
-            public void write(byte b) throws IOException { out.write(b); }
-            public void write(char c) throws IOException { out.write(c); }
-            public void write(int n)  throws IOException { out.write(n); }
+            private void writeMask(int n, int mask) throws IOException {
+                while (mask != 0) {
+                    write((n&mask) != 0);
+                    mask >>= 1;
+                }
+            }
+
+            public void write(byte b) throws IOException { 
+                writeMask(n, 0x8);
+            }
+            public void write(char c) throws IOException { 
+                writeMask(n, 0x80);
+            }
+            public void write(int n)  throws IOException {
+                writeMask(n, 0x8000);
+            }
 
             private void clear() throws IOException {
                 if (n == 0) return;
@@ -118,9 +130,23 @@ public class IO {
                 return bit;
             }
 
+            private int readMask(int mask) throws IOException {
+                int n = 0;
+                while (mask != 0) {
+                    if (read())  n |= mask;
+                    mask>>=1;
+                }
+                return n;
+            }
+
+            public int readByte() throws IOException {
+                return readMask(0x8);
+            }
+            public int readChar() throws IOException {
+                return readMask(0x80);
+            }
             public int readInt() throws IOException {
-                DataInputStream din = new DataInputStream(in);
-                return din.readInt();
+                return readMask(0x8000);
             }
 
             public void close() throws IOException {

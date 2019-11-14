@@ -20,13 +20,10 @@ public class JPEG {
 
         try (IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
 
-            // file.write(0x92); // work around IO.Bit.writer eager buffer read
+            //file.write(0x92); // magic byte
 
-            // System.out.println(img.width());
-            // System.out.println(img.height());
-
-            // file.write(img.width());
-            // file.write(img.height());
+            file.write(img.width());
+            file.write(img.height());
             for (int channel = 0; channel < 3; ++channel)
                 for (int i = 0; i < img.columns(); ++i) {
                     for (int j = 0; j < img.rows(); ++j) {
@@ -50,17 +47,12 @@ public class JPEG {
 
         try (IO.Bit.reader file = new IO.Bit.reader(inputFile)) {
 
-            // int w = file.readInt();
-            // int h = file.readInt();
-
-            // System.out.println(w);
-            // System.out.println(h);
+            int w = file.readInt();
+            int h = file.readInt();
 
             // file.fill(); // work around
 
-            // img.setDimensions(w, h);
-            img.setDimensions(1215, 911);
-            //img.setDimensions(32, 32);
+            img.setDimensions(w, h);
 
             int channel = 0, i = 0, j = 0;
 

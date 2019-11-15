@@ -31,10 +31,8 @@ public class LZSS {
                 if(prevIndex != -1) actualCharacters.remove(actualCharacters.size()-1);
                 if(length >= minLength) {
                     output.write(true);
-                    boolean[] bits = intToNBits(prevIndex-1, nBitsOffset);
-                    for(int j = nBitsOffset-1; j >= 0; --j) output.write(bits[j]);
-                    bits = intToNBits(length-minLength, nBitsLength);
-                    for(int j = nBitsLength-1; j >= 0; --j) output.write(bits[j]);
+                    output.write(new BitSetL(prevIndex-1,nBitsOffset));
+                    output.write(new BitSetL(length-minLength,nBitsLength));
                     for(int i = 0; i < length; ++i) {
                         slidingWindow.add(actualCharacters.get(0));
                         actualCharacters.remove(0);
@@ -44,8 +42,7 @@ public class LZSS {
                     int lengthAux = actualCharacters.size();
                     for(int i = 0; i < lengthAux; ++i) {
                         output.write(false);
-                        boolean[] bits = intToNBits(actualCharacters.get(0),16);
-                        for(int j = 15; j >= 0; --j) output.write(bits[j]);
+                        output.write(new BitSetL(actualCharacters.get(0),16));
                         slidingWindow.add(actualCharacters.get(0));
                         actualCharacters.remove(0);
                     }
@@ -56,8 +53,7 @@ public class LZSS {
                     index = kmp(actualCharacters,slidingWindow);
                     if (index == -1) {
                         output.write(false);
-                        boolean[] bits = intToNBits(actualCharacters.get(0),16);
-                        for(int i = 15; i >= 0; --i) output.write(bits[i]);
+                        output.write(new BitSetL(actualCharacters.get(0),16));
                         slidingWindow.add(actualCharacters.get(0));
                         actualCharacters.remove(0);
                     }
@@ -93,16 +89,13 @@ public class LZSS {
         if(actualCharacters.size()>0) {
             if(length >= minLength) {
                 output.write(true);
-                boolean[] bits = intToNBits(prevIndex-1,nBitsOffset);
-                for(int j = nBitsOffset-1; j >= 0; --j) output.write(bits[j]);
-                bits = intToNBits(length-minLength,nBitsLength);
-                for(int j = nBitsLength-1; j >= 0; --j) output.write(bits[j]);
+                output.write(new BitSetL(prevIndex-1,nBitsOffset));
+                output.write(new BitSetL(length-minLength,nBitsLength));
             }
             else {
                 int lengthAux = actualCharacters.size();
                 output.write(false);
-                boolean[] bits = intToNBits(actualCharacters.get(0),16);
-                for(int j = 15; j >= 0; --j) output.write(bits[j]);
+                output.write(new BitSetL(actualCharacters.get(0),16));
             }
         }
     }
@@ -120,12 +113,8 @@ public class LZSS {
         try {
             while (true) {
                 if (c == true) {
-                    boolean[] bits = new boolean[nBitsOffset];
-                    for (int i = 0; i < nBitsOffset; ++i) bits[i] = input.read();
-                    int index = bitsToInt(bits) + 1;
-                    bits = new boolean[nBitsLength];
-                    for (int i = 0; i < nBitsLength; ++i) bits[i] = input.read();
-                    int length = bitsToInt(bits) + minLength;
+                    int index = input.readBitSet(nBitsOffset).asInt()+1;
+                    int length = input.readBitSet(nBitsLength).asInt()+minLength;
                     int indexBase = slidingWindow.size() - index;
                     for (int i = 0; i < length; ++i) {
                         char cAux = slidingWindow.get(indexBase + i).charValue();
@@ -133,9 +122,7 @@ public class LZSS {
                         slidingWindow.add(cAux);
                     }
                 } else {
-                    boolean[] bits = new boolean[16];
-                    for (int i = 0; i < 16; ++i) bits[i] = input.read();
-                    char cAux = (char) bitsToInt(bits);
+                    char cAux = (char) input.readBitSet(16).asInt();
                     output.write(cAux);
                     slidingWindow.add(cAux);
                 }
@@ -197,24 +184,6 @@ public class LZSS {
         }
 
         return -1;
-    }
-
-    private static boolean[] intToNBits(int cInt, int n) {
-        boolean[] bits = new boolean[n];
-        for(int i = 0; i < n; ++i) {
-            int aux = cInt % 2;
-            if(aux == 1) bits[i] = true;
-            cInt /= 2;
-        }
-        return bits;
-    }
-
-    private static int bitsToInt(boolean[] bits) {
-        int size = bits.length, result = 0;
-        for(int i = 0; i < size; ++i) {
-            if(bits[i]) result += Math.pow(2,size - 1 - i);
-        }
-        return  result;
     }
 
     private static double log2(double n) {

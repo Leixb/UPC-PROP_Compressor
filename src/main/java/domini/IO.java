@@ -74,14 +74,14 @@ public class IO {
             public void write(char c) throws IOException { 
                 writeMask(c, 0x8000);
             }
-            public void write(int n)  throws IOException {
-                writeMask(n, 0x80000000);
+            public void write(int num)  throws IOException {
+                writeMask(num, 0x80000000);
             }
 
-            private void writeMask(int n, int mask) throws IOException {
+            private void writeMask(int num, int mask) throws IOException {
                 while (mask != 0) {
-                    write((n&mask) != 0);
-                    mask >>= 1;
+                    write((num&mask) != 0);
+                    mask >>>= 1;
                 }
             }
 
@@ -124,18 +124,18 @@ public class IO {
 
             public boolean read() throws IOException {
                 n--;
-                boolean bit = ((buffer >> n) & 1) == 1;
+                boolean bit = ((buffer >>> n) & 1) == 1;
                 if (n == 0) fill();
                 return bit;
             }
 
             private int readMask(int mask) throws IOException {
-                int n = 0;
+                int num = 0;
                 while (mask != 0) {
-                    if (read())  n |= mask;
-                    mask>>=1;
+                    if (read())  num |= mask;
+                    mask>>>=1;
                 }
-                return n;
+                return num;
             }
 
             public int readByte() throws IOException {

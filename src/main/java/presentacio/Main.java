@@ -9,12 +9,12 @@ public class Main {
 
     private static String banner =
             "██████╗ ██╗███████╗     ██████╗ ██████╗ ███╗   ███╗██████╗ ██████╗ ███████╗███████╗███████╗ ██████╗ ██████╗ \n" +
-                    "██╔══██╗██║╚══███╔╝    ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██╔═══██╗██╔══██╗\n" +
-                    "██████╔╝██║  ███╔╝     ██║     ██║   ██║██╔████╔██║██████╔╝██████╔╝█████╗  ███████╗███████╗██║   ██║██████╔╝\n" +
-                    "██╔═══╝ ██║ ███╔╝      ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██╔══██╗██╔══╝  ╚════██║╚════██║██║   ██║██╔══██╗\n" +
-                    "██║     ██║███████╗    ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ██║  ██║███████╗███████║███████║╚██████╔╝██║  ██║\n" +
-                    "╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝\n" +
-                    "                                                                                                            \n";
+            "██╔══██╗██║╚══███╔╝    ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██╔═══██╗██╔══██╗\n" +
+            "██████╔╝██║  ███╔╝     ██║     ██║   ██║██╔████╔██║██████╔╝██████╔╝█████╗  ███████╗███████╗██║   ██║██████╔╝\n" +
+            "██╔═══╝ ██║ ███╔╝      ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██╔══██╗██╔══╝  ╚════██║╚════██║██║   ██║██╔══██╗\n" +
+            "██║     ██║███████╗    ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ██║  ██║███████╗███████║███████║╚██████╔╝██║  ██║\n" +
+            "╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝\n" +
+            "                                                                                                            \n";
 
     private static Scanner scanner;
 
@@ -97,7 +97,7 @@ public class Main {
         else if(opt==4) alg = CtrlDomini.Alg.LZWd;
         else if(opt==5) {
             alg = CtrlDomini.Alg.JPEGd;
-            System.out.println("Amb quina qualitat vol que es comprimeixi [1-99]?");
+            System.out.println("Qualitat [1-99]:");
             quality = scanner.nextShort();
         }
 
@@ -109,7 +109,7 @@ public class Main {
     }
 
     private static void descomprimir() {
-        System.out.println("Fitxer a descomprimir:");
+        System.out.println("Fitxer a descomprimir (*.piz):");
         scanner.nextLine();
         String fileIn = scanner.nextLine();
 
@@ -119,7 +119,7 @@ public class Main {
         try{
             CtrlDomini.decompress(fileIn,fileOut);
         } catch (Exception e) {
-            System.out.println("Error en la compressió.");
+            System.out.println("Error en la descompressió.");
             e.printStackTrace();
         }
     }

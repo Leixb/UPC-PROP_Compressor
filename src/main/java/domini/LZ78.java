@@ -34,9 +34,9 @@ public class LZ78 {
                 ++num;
                 int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
                 BitSetL bs_num = new BitSetL(codnum,nbits);
-                for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum con los bits necesarios
+                output.write(bs_num);
                 BitSetL bs_char = new BitSetL((int)last_char,16);
-                for (int i=0; i<16; ++i) output.write(bs_char.get(i));
+                output.write(bs_char);
                 ++nchar;
             }
             chin = input.read();
@@ -47,7 +47,8 @@ public class LZ78 {
             codnum = compress_dict.get(chars);
             int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
             BitSetL bs_num = new BitSetL(codnum,nbits);
-            for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum con los bits necesarios
+            //for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum con los bits necesarios
+            output.write(bs_num);
             for(int i=0; i<16; ++i) output.write(false);
         }
         input.close();
@@ -75,30 +76,10 @@ public class LZ78 {
         try {
             for (;;) {
                 number = input.readBitSet(nbits).asInt();
-                /*boolean[] n = new boolean[nbits];
-                for (int i = 1; i<nbits; ++i) {
-                    if (input.read()) n[i]=true;
-                    else n[i]=false;
-                }*/
+
                 int last_char = input.readBitSet(16).asInt();
                 charac = "";
-                /*boolean[] character = new boolean[16];
-                if (nbits==0){
-                    character[0]=first;
-                    for(int i=1; i<16; ++i){
-                        if (input.read()) character[i]=true;
-                        else character[i]=false;
-                    }
-                }else{
-                    n[0]=first;
-                    number=bit_to_int(n);
-                    for(int i=0; i<16; ++i){
-                        if (input.read()) character[i]=true;
-                        else character[i]=false;
-                    }
-                }
-                int last_char = bit_to_int(character);
-                */
+
                 if (number > 0){
                     if (last_char>0) charac = decompress_dict.get(number) + (char) last_char;
                     else charac = decompress_dict.get(number);
@@ -119,14 +100,5 @@ public class LZ78 {
 
         input.close();
     }
-
-    /*public static int bit_to_int (boolean[] b){
-        int result=0;
-        for (int i=0; i<b.length; ++i) {
-            result *=2;
-            if (b[i]) ++result;
-        }
-        return result;
-    }*/
 
 }

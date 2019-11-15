@@ -1,12 +1,6 @@
 package domini;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.ByteOrder;
-import java.nio.ShortBuffer;
 import java.util.ArrayList;
-import java.nio.ByteBuffer;
 
 public class JPEGBlock implements Codec<byte[][], short[]> {
 

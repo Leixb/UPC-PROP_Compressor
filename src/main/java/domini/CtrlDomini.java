@@ -1,8 +1,6 @@
 package domini;
 
 import java.io.EOFException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 
 public class CtrlDomini {

@@ -1,7 +1,6 @@
 package domini;
 
 import java.io.File;
-import java.time.Instant;
 
 public class Statistics {
     private long startingTime;

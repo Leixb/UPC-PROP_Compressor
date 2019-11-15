@@ -1,6 +1,6 @@
 import domini.JPEGBlock;
 import domini.PpmImage;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 import java.io.File;
 

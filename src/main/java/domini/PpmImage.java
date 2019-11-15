@@ -177,21 +177,4 @@ public class PpmImage {
     public int rows() {
         return height/8 + ((height%8 == 0)? 0 : 1);
     }
-
-    //TODO: remove this
-    public void debug() {
-        for (int k = 0; k < 3; ++k) {
-            System.out.println(k);
-            for (int i = 0; i < this.width; ++i) {
-                for (int j = 0; j < this.height; ++j) {
-                    int n = Byte.toUnsignedInt(
-                            this.pixels[i][j][k]
-                            );
-                    System.out.printf("%03d ", n);
-                }
-                System.out.println();
-            }
-        }
-    }
-
 }

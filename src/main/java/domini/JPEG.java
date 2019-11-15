@@ -1,11 +1,9 @@
 package domini;
 
 import java.io.EOFException;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import domini.IO.Bit.writer;
 import domini.PpmImage.InvalidFileFormat;
 
 public class JPEG {

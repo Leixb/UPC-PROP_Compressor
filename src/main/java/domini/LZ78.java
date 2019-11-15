@@ -64,27 +64,31 @@ public class LZ78 {
         int num = 1;
         int nchar=0;
         int number;
-        boolean first;
+        String charac = "";
+        int first_char=input.readBitSet(16).asInt();
+        charac+= (char) first_char;
+        output.write((char)first_char);
+        decompress_dict.put(num,charac);
+        ++num;
+        ++nchar;
+        int nbits = bits_needed(nchar);
         try {
             for (;;) {
-                if (input.read()) first=true;
-                else first=false;
-                String charac="";
-                int nbits = bits_needed(nchar);
-                boolean[] n = new boolean[nbits];
+                number = input.readBitSet(nbits).asInt();
+                /*boolean[] n = new boolean[nbits];
                 for (int i = 1; i<nbits; ++i) {
                     if (input.read()) n[i]=true;
                     else n[i]=false;
-                }
-
-                boolean[] character = new boolean[16];
+                }*/
+                int last_char = input.readBitSet(16).asInt();
+                charac = "";
+                /*boolean[] character = new boolean[16];
                 if (nbits==0){
                     character[0]=first;
                     for(int i=1; i<16; ++i){
                         if (input.read()) character[i]=true;
                         else character[i]=false;
                     }
-                    number=bit_to_int(n);
                 }else{
                     n[0]=first;
                     number=bit_to_int(n);
@@ -94,7 +98,7 @@ public class LZ78 {
                     }
                 }
                 int last_char = bit_to_int(character);
-
+                */
                 if (number > 0){
                     if (last_char>0) charac = decompress_dict.get(number) + (char) last_char;
                     else charac = decompress_dict.get(number);
@@ -106,6 +110,7 @@ public class LZ78 {
                 decompress_dict.put(num, charac);
                 ++num;
                 ++nchar;
+                nbits = bits_needed(nchar);
             }
 
         }catch (EOFException e) {
@@ -115,13 +120,13 @@ public class LZ78 {
         input.close();
     }
 
-    public static int bit_to_int (boolean[] b){
+    /*public static int bit_to_int (boolean[] b){
         int result=0;
         for (int i=0; i<b.length; ++i) {
             result *=2;
             if (b[i]) ++result;
         }
         return result;
-    }
+    }*/
 
 }

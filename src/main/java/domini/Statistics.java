@@ -9,9 +9,7 @@ public class Statistics {
     private static long iniFileSize;
     private static long finFileSize;
 
-    public static void start () {
-        startingTime = Instant.now().getEpochSecond();
-    }
+    public static void start () { startingTime = Instant.now().getEpochSecond(); }
 
     public static void stop () {
         endingTime = Instant.now().getEpochSecond();
@@ -21,25 +19,15 @@ public class Statistics {
         return endingTime - startingTime;
     }
 
-    public static void initialFileSize (String filename) {
-        File file = new File(filename);
-        iniFileSize = file.length();
-    }
+    public static void initialFileSize (String filename) { iniFileSize = new File(filename).length(); }
 
-    public static void finalFileSize (String filename) {
-        File file = new File(filename);
-        finFileSize = file.length();
-    }
+    public static void finalFileSize (String filename) { finFileSize = new File(filename).length(); }
 
     public static long getBytesCompressed () {
         return finFileSize - iniFileSize;
     }
 
-    public static long getPercentageCompressed () {
-        return ((finFileSize - iniFileSize)/iniFileSize) * 100;
-    }
+    public static double getPercentageCompressed () { return 100 * ((double)(finFileSize - iniFileSize))/iniFileSize; }
 
-    public static long getBytesPerTime () {
-        return (finFileSize - iniFileSize)/ (endingTime - startingTime);
-    }
+    public static double getBytesPerTime () { return ((double) (finFileSize - iniFileSize))/ (endingTime - startingTime); }
 }

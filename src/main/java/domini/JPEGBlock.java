@@ -252,7 +252,6 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
                     count %= 16;
                 }
 
-                // TODO: why do we have this overflow for quality>=99?
                 if (data[i] > 1023) {
                     System.out.printf("padding -> %d\n", data[i]);
                     data[i] = 1023;

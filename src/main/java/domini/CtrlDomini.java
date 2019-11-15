@@ -7,8 +7,7 @@ import java.io.IOException;
 
 public class CtrlDomini {
     public enum Alg {AUTOd, LZ78d, LZSSd, LZWd, JPEGd};
-    public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
-        Statistics stats = new Statistics();
+    public static void compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
         switch(alg) {
             case AUTOd:
                 break;
@@ -19,11 +18,7 @@ public class CtrlDomini {
                 break;
             case LZSSd:
                 try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
-                    stats.start();
                     LZSS.compress(input,output);
-                    stats.stop();
-                    stats.initialFileSize(fileIn);
-                    stats.finalFileSize(fileOut);
                 }
                 break;
             case LZWd:
@@ -36,11 +31,6 @@ public class CtrlDomini {
                 break;
             default:
         }
-        System.out.print("Time (s): ");
-        System.out.println(stats.getTime());
-        System.out.print("Compression (%): ");
-        System.out.println(stats.getPercentageCompressed());
-        return stats;
     }
 
     public static void decompress(String fileIn, String fileOut) throws Exception {
@@ -52,7 +42,7 @@ public class CtrlDomini {
 
         if(b == -1) throw new EOFException();
 
-        if(b==0x78) alg = Alg.LZ78d;
+        if(b==LZ78.MAGIC_BYTE) alg = Alg.LZ78d;
         else if(b==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
         else if(b==0x11) alg = Alg.LZWd;
         else if(b==0x92) alg = Alg.JPEGd;

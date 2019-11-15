@@ -36,7 +36,7 @@ public class Main {
         System.out.println("[1] LZ78");
         System.out.println("[2] LZSS");
         System.out.println("[3] LZW");
-        System.out.println("[4] Domini.JPEG");
+        System.out.println("[4] JPEG");
         short opt = scanner.nextShort();
 
         switch (opt) {

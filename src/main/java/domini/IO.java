@@ -147,7 +147,9 @@ public class IO {
             public int readInt() throws IOException {
                 return readMask(0x80000000);
             }
-
+            public BitSetL readBitSet(int n) throws IOException {
+                return new BitSetL(readMask(0x1<<(n-1)),n);
+            }
             public void close() throws IOException {
                 in.close();
             }

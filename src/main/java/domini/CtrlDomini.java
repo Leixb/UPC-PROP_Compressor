@@ -40,18 +40,13 @@ public class CtrlDomini {
         }
 
         if(b == -1) throw new EOFException();
-
-        System.out.printf("%x\n",b);
-
         if(b==0x78) alg = Alg.LZ78d;
         else if(b==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
-        else if(b==0x69) alg = Alg.LZWd;
+        else if(b==0x11) alg = Alg.LZWd;
         else if(b==0x92) alg = Alg.JPEGd;
         else throw new Exception("Fitxer invàlid.");
 
         switch(alg) {
-            case AUTOd:
-                break;
             case LZ78d:
                 try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
                     LZ78.decompressor(input,output);

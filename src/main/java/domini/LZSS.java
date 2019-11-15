@@ -12,6 +12,10 @@ public class LZSS {
     public static void compress(IO.Char.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
+        int nBitsLength = (int)log2(MAX_LENGTH_COINCIDENCE-1);
+        int nBitsOffset = (int)log2(MAX_SIZE_SW);
+        int minLength = (1+nBitsLength+nBitsOffset)/17 + 1;
+
         ArrayList<Character> slidingWindow = new ArrayList<Character>();
         ArrayList<Character> actualCharacters = new ArrayList<Character>();
         int index, prevIndex = -1, length = 0;
@@ -25,12 +29,12 @@ public class LZSS {
 
             if(index == -1 || length == MAX_LENGTH_COINCIDENCE) {
                 if(prevIndex != -1) actualCharacters.remove(actualCharacters.size()-1);
-                if(length >= 2) {
+                if(length >= minLength) {
                     output.write(true);
-                    boolean[] bits = intToNBits(prevIndex-1,14);
-                    for(int j = 13; j >= 0; --j) output.write(bits[j]);
-                    bits = intToNBits(length-2,6);
-                    for(int j = 5; j >= 0; --j) output.write(bits[j]);
+                    boolean[] bits = intToNBits(prevIndex-1, nBitsOffset);
+                    for(int j = nBitsOffset-1; j >= 0; --j) output.write(bits[j]);
+                    bits = intToNBits(length-minLength, nBitsLength);
+                    for(int j = nBitsLength-1; j >= 0; --j) output.write(bits[j]);
                     for(int i = 0; i < length; ++i) {
                         slidingWindow.add(actualCharacters.get(0));
                         actualCharacters.remove(0);
@@ -44,12 +48,6 @@ public class LZSS {
                         for(int j = 15; j >= 0; --j) output.write(bits[j]);
                         slidingWindow.add(actualCharacters.get(0));
                         actualCharacters.remove(0);
-                    }
-                }
-
-                if(slidingWindow.size() > MAX_SIZE_SW) {
-                    for(int i = 0; i < slidingWindow.size() - MAX_SIZE_SW; ++i) {
-                        slidingWindow.remove(0);
                     }
                 }
 
@@ -82,27 +80,81 @@ public class LZSS {
                 prevIndex = index;
             }
 
+            if(slidingWindow.size() > MAX_SIZE_SW) {
+                int auxSize = slidingWindow.size();
+                for(int i = 0; i < auxSize - MAX_SIZE_SW; ++i) {
+                    slidingWindow.remove(0);
+                }
+            }
+
             c = input.read();
         }
 
         if(actualCharacters.size()>0) {
-            if(length >= 2) {
+            if(length >= minLength) {
                 output.write(true);
-                boolean[] bits = intToNBits(prevIndex-1,14);
-                for(int j = 13; j >= 0; --j) output.write(bits[j]);
-                bits = intToNBits(length-2,6);
-                for(int j = 5; j >= 0; --j) output.write(bits[j]);
+                boolean[] bits = intToNBits(prevIndex-1,nBitsOffset);
+                for(int j = nBitsOffset-1; j >= 0; --j) output.write(bits[j]);
+                bits = intToNBits(length-minLength,nBitsLength);
+                for(int j = nBitsLength-1; j >= 0; --j) output.write(bits[j]);
             }
             else {
                 int lengthAux = actualCharacters.size();
-                for(int i = 0; i < lengthAux; ++i) {
-                    output.write(false);
-                    boolean[] bits = intToNBits(actualCharacters.get(0),16);
-                    for(int j = 15; j >= 0; --j) output.write(bits[j]);
-                }
+                output.write(false);
+                boolean[] bits = intToNBits(actualCharacters.get(0),16);
+                for(int j = 15; j >= 0; --j) output.write(bits[j]);
             }
         }
     }
+
+    public static void decompress(IO.Bit.reader input, IO.Char.writer output) throws IOException {
+        input.readByte();
+
+        int nBitsLength = (int)log2(MAX_LENGTH_COINCIDENCE-1);
+        int nBitsOffset = (int)log2(MAX_SIZE_SW);
+        int minLength = (1+nBitsLength+nBitsOffset)/17 + 1;
+
+        ArrayList<Character> slidingWindow = new ArrayList<Character>();
+        ArrayList<Character> actualCharacters = new ArrayList<Character>();
+
+        boolean c = input.read();
+        try {
+            while (true) {
+                if (c == true) {
+                    boolean[] bits = new boolean[nBitsOffset];
+                    for (int i = 0; i < nBitsOffset; ++i) bits[i] = input.read();
+                    int index = bitsToInt(bits) + 1;
+                    bits = new boolean[nBitsLength];
+                    for (int i = 0; i < nBitsLength; ++i) bits[i] = input.read();
+                    int length = bitsToInt(bits) + minLength;
+                    int indexBase = slidingWindow.size() - index;
+                    for (int i = 0; i < length; ++i) {
+                        char cAux = slidingWindow.get(indexBase + i).charValue();
+                        output.write(cAux);
+                        slidingWindow.add(cAux);
+                    }
+                } else {
+                    boolean[] bits = new boolean[16];
+                    for (int i = 0; i < 16; ++i) bits[i] = input.read();
+                    char cAux = (char) bitsToInt(bits);
+                    output.write(cAux);
+                    slidingWindow.add(cAux);
+                }
+
+                if(slidingWindow.size() > MAX_SIZE_SW) {
+                    int auxSize = slidingWindow.size();
+                    for(int i = 0; i < auxSize - MAX_SIZE_SW; ++i) {
+                        slidingWindow.remove(0);
+                    }
+                }
+
+                c = input.read();
+            }
+        } catch (EOFException e) {
+
+        }
+    }
+
     private static void computeLPSArray (ArrayList<Character> pattern, int[] lps) {
         int patLength = pattern.size();
         int length = 0;
@@ -158,47 +210,15 @@ public class LZSS {
         return bits;
     }
 
-    public static void decompress(IO.Bit.reader input, IO.Char.writer output) throws IOException {
-        input.readByte();
-
-        ArrayList<Character> slidingWindow = new ArrayList<Character>();
-        ArrayList<Character> actualCharacters = new ArrayList<Character>();
-
-        boolean c = input.read();
-        try {
-            while (true) {
-                if (c == true) {
-                    boolean[] bits = new boolean[14];
-                    for (int i = 0; i < 14; ++i) bits[i] = input.read();
-                    int index = bitsToInt(bits) + 1;
-                    bits = new boolean[6];
-                    for (int i = 0; i < 6; ++i) bits[i] = input.read();
-                    int length = bitsToInt(bits) + 2;
-                    int indexBase = slidingWindow.size() - index;
-                    for (int i = 0; i < length; ++i) {
-                        char cAux = slidingWindow.get(indexBase + i).charValue();
-                        output.write(cAux);
-                        slidingWindow.add(cAux);
-                    }
-                } else {
-                    boolean[] bits = new boolean[16];
-                    for (int i = 0; i < 16; ++i) bits[i] = input.read();
-                    char cAux = (char) bitsToInt(bits);
-                    output.write(cAux);
-                    slidingWindow.add(cAux);
-                }
-                c = input.read();
-            }
-        } catch (EOFException e) {
-
-        }
-    }
-
     private static int bitsToInt(boolean[] bits) {
         int size = bits.length, result = 0;
         for(int i = 0; i < size; ++i) {
             if(bits[i]) result += Math.pow(2,size - 1 - i);
         }
         return  result;
+    }
+
+    private static double log2(double n) {
+        return Math.log(n)/Math.log(2);
     }
 }

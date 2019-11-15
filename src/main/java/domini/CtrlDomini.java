@@ -3,7 +3,7 @@ package domini;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.SQLOutput;
+
 
 public class CtrlDomini {
     public enum Alg {AUTOd, LZ78d, LZSSd, LZWd, JPEGd};
@@ -51,6 +51,7 @@ public class CtrlDomini {
         }
 
         if(b == -1) throw new EOFException();
+
         if(b==0x78) alg = Alg.LZ78d;
         else if(b==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
         else if(b==0x11) alg = Alg.LZWd;

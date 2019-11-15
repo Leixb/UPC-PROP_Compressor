@@ -7,8 +7,10 @@ import java.util.HashMap;
 public class LZ78 {
     private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>();
     private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
+    public final static byte MAGIC_BYTE = 0x78;
 
     public static void compress(IO.Char.reader input, IO.Bit.writer output) throws IOException {
+        output.write(MAGIC_BYTE);
 
         String chars = "";
         int num = 1;
@@ -61,6 +63,7 @@ public class LZ78 {
 
 
     public static void decompress(IO.Bit.reader input, IO.Char.writer output) throws IOException{
+        input.readByte();
 
         int num = 1;
         int nchar=0;

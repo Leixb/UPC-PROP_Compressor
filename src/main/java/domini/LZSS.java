@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LZSS {
-    final static int MAX_SIZE_SW = 8192; // 14 bits for offset
-    final static int MAX_LENGTH_COINCIDENCE = 65; // 6 bits for length
+    final static int MAX_SIZE_SW = 8192;
+    final static int MAX_LENGTH_COINCIDENCE = 65;
     public final static byte MAGIC_BYTE = 0x55;
 
     public static void compress(IO.Char.reader input, IO.Bit.writer output) throws IOException {
@@ -115,7 +115,6 @@ public class LZSS {
         int minLength = (1+nBitsLength+nBitsOffset)/17 + 1;
 
         ArrayList<Character> slidingWindow = new ArrayList<Character>();
-        ArrayList<Character> actualCharacters = new ArrayList<Character>();
 
         boolean c = input.read();
         try {

@@ -40,7 +40,7 @@ public class CtrlDomini {
         }
 
         if(b == -1) throw new EOFException();
-        if(b==0x78) alg = Alg.LZ78d;
+        if(b==LZ78.MAGIC_BYTE) alg = Alg.LZ78d;
         else if(b==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
         else if(b==0x11) alg = Alg.LZWd;
         else if(b==0x92) alg = Alg.JPEGd;

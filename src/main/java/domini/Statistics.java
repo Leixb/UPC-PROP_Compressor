@@ -9,31 +9,62 @@ public class Statistics {
     private static long iniFileSize;
     private static long finFileSize;
 
-    public static void start () { startingTime = Instant.now().getEpochSecond(); }
-
-    public static void stop () {
-        endingTime = Instant.now().getEpochSecond();
+    public Statistics () {
+        startingTime = 0;
+        endingTime = 0;
+        iniFileSize = 0;
+        finFileSize = 0;
     }
 
-    public static long getTime (){
-        return endingTime - startingTime;
+    public static void setStartingTime () {
+        startingTime = System.currentTimeMillis();
     }
 
-    public static void initialFileSize (String filename) { iniFileSize = new File(filename).length(); }
+    public static void setEndingTime () {
+        endingTime = System.currentTimeMillis();
+    }
 
-    public static void finalFileSize (String filename) { finFileSize = new File(filename).length(); }
+    public static void setIniFileSize (String filename) {
+        iniFileSize = new File(filename).length();
+    }
+
+    public static void setFinFileSize (String filename) {
+        finFileSize = new File(filename).length();
+    }
+
+    public static double getTime () {
+        return (double)(endingTime - startingTime)/1000.0;
+    }
+
+    public static double getIniFileSize() {
+        return iniFileSize/1000;
+    }
+
+    public static double getFinFileSize() {
+        return finFileSize/1000;
+    }
 
     public static long getBytesCompressed () {
+        return iniFileSize - finFileSize;
+    }
+
+    public static long getBytesDecompressed () {
         return finFileSize - iniFileSize;
     }
 
-    public static long getBytesDecompressed () { return iniFileSize - finFileSize; }
+    public static double getPercentageCompressed () {
+        return Math.round(10000.0 * (double) getBytesCompressed() / iniFileSize)/100.0;
+    }
 
-    public static double getPercentageCompressed () { return 100 * ((double) getBytesCompressed()) / iniFileSize; }
+    public static double getPercentageDecompressed () {
+        return Math.round(10000.0 * (double) getBytesDecompressed() / iniFileSize)/100.0;
+    }
 
-    public static double getPercentageDecompressed () { return 100 * ((double) getBytesDecompressed()) / finFileSize; }
+    public static double getSpeedCompressed () {
+        return (double)iniFileSize / getTime() / 1000.0;
+    }
 
-    public static double getSpeedCompression () { return ((double) getBytesCompressed()) / getTime(); }
-
-    public static double getSpeedDecompression () { return ((double) getBytesDecompressed()) / getTime(); }
+    public static double getSpeedDecompressed () {
+        return (double)finFileSize / getTime() / 1000.0;
+    }
 }

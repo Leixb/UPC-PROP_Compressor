@@ -1,8 +1,10 @@
 package presentacio;
 
-import java.util.Scanner;
+import domini.CtrlDomini;
+import domini.Statistics;
 
-import domini.JPEG;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -81,42 +83,52 @@ public class Main {
         System.out.println("[5] JPEG");
         short opt = scanner.nextShort();
 
-        System.out.println("Introdueix el nom del fitxer:");
+        System.out.println("Fitxer a comprimir:");
         scanner.nextLine();
-        String filename = scanner.nextLine();
+        String fileIn = scanner.nextLine();
 
-        //TODO
-        switch (opt) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            default:
-                quit();
+        System.out.println("Fitxer desti (*.piz):");
+        String fileOut = scanner.nextLine();
+
+        short quality = 0;
+
+        CtrlDomini.Alg alg = CtrlDomini.Alg.AUTOd;
+        if(opt==2) alg = CtrlDomini.Alg.LZ78d;
+        else if(opt==3) alg = CtrlDomini.Alg.LZSSd;
+        else if(opt==4) alg = CtrlDomini.Alg.LZWd;
+        else if(opt==5) {
+            alg = CtrlDomini.Alg.JPEGd;
+            System.out.println("Qualitat [1-99]:");
+            quality = scanner.nextShort();
+        }
+
+        try{
+            Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
+            CtrlPresentacio.printStatsCompress(stats);
+        } catch (Exception e) {
+            System.out.println("Error en la compressió.");
         }
     }
 
     private static void descomprimir() {
-        System.out.println("Introdueix el nom del fitxer:");
-        String filename = scanner.nextLine();
+        System.out.println("Fitxer a descomprimir (*.piz):");
+        scanner.nextLine();
+        String fileIn = scanner.nextLine();
 
+        System.out.println("Fitxer desti:");
+        String fileOut = scanner.nextLine();
+
+        try{
+            Statistics stats = CtrlDomini.decompress(fileIn,fileOut);
+            CtrlPresentacio.printStatsDecompress(stats);
+
+        } catch (Exception e) {
+            System.out.println("Error en la descompressió.");
+        }
     }
 
     private static void testLZ78() {}
     private static void testLZSS() {}
     private static void testLZW() {}
-    private static void testJPEG() {
-        try {
-            JPEG.compress("images/boat.ppm", "boat.out", (short) 90);
-            JPEG.decompress("boat.out", "boat_rec.ppm", (short) 90);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private static void testJPEG() {}
 }

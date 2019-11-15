@@ -2,13 +2,10 @@ import domini.Huffman;
 import domini.IO;
 import domini.JPEG;
 import domini.JPEGBlock;
-import domini.PpmImage.InvalidFileFormat;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.IOException;
 
 class JPEG_Test {
 
@@ -30,10 +27,10 @@ class JPEG_Test {
             JPEG.writeBlock(code, huff, file);
         }
 
-        short[] result, resultB;
+        short[] result;
 
         try (IO.Bit.reader file = new IO.Bit.reader("testFile")) {
-            result = JPEG.decodeBlock(huff, file);
+            result = JPEG.readBlock(huff, file);
         }
 
         print("Original", code);
@@ -57,9 +54,8 @@ class JPEG_Test {
     void test() {
         try {
             JPEG.compress("images/boat.ppm", "boat.out", (short) 50);
-            JPEG.decompress("boat.out", "boat_rec.ppm", (short) 50);
+            JPEG.decompress("boat.out", "boat_rec.ppm");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             fail();
         }

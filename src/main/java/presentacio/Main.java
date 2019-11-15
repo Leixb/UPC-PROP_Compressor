@@ -1,6 +1,7 @@
 package presentacio;
 
 import domini.CtrlDomini;
+import domini.Statistics;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -102,7 +103,8 @@ public class Main {
         }
 
         try{
-            CtrlDomini.compress(alg,fileIn,fileOut,quality);
+            Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
+            CtrlPresentacio.printStatsCompress(stats);
         } catch (Exception e) {
             System.out.println("Error en la compressió.");
         }
@@ -117,10 +119,11 @@ public class Main {
         String fileOut = scanner.nextLine();
 
         try{
-            CtrlDomini.decompress(fileIn,fileOut);
+            Statistics stats = CtrlDomini.decompress(fileIn,fileOut);
+            CtrlPresentacio.printStatsDecompress(stats);
+
         } catch (Exception e) {
             System.out.println("Error en la descompressió.");
-            e.printStackTrace();
         }
     }
 

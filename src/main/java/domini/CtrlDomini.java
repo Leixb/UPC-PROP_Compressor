@@ -7,7 +7,12 @@ import java.io.IOException;
 
 public class CtrlDomini {
     public enum Alg {AUTOd, LZ78d, LZSSd, LZWd, JPEGd};
-    public static void compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
+
+    public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
+        Statistics stats = new Statistics();
+        stats.setIniFileSize(fileIn);
+        stats.setStartingTime();
+
         switch(alg) {
             case AUTOd:
                 break;
@@ -31,9 +36,16 @@ public class CtrlDomini {
                 break;
             default:
         }
+
+        stats.setEndingTime();
+        stats.setFinFileSize(fileOut);
+        return stats;
     }
 
-    public static void decompress(String fileIn, String fileOut) throws Exception {
+    public static Statistics decompress(String fileIn, String fileOut) throws Exception {
+        Statistics stats = new Statistics();
+        stats.setIniFileSize(fileIn);
+
         Alg alg;
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
@@ -48,6 +60,7 @@ public class CtrlDomini {
         else if(b==0x92) alg = Alg.JPEGd;
         else throw new Exception("Fitxer invàlid.");
 
+        stats.setStartingTime();
         switch(alg) {
             case LZ78d:
                 try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
@@ -69,5 +82,9 @@ public class CtrlDomini {
                 break;
             default:
         }
+
+        stats.setEndingTime();
+        stats.setFinFileSize(fileOut);
+        return stats;
     }
 }

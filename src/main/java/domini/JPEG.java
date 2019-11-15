@@ -52,7 +52,9 @@ public class JPEG {
 
                         short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
 
-                        writeBlock(encoded, huffAc, file);
+                        //System.out.printf("%d %d %d\n", i, j, channel);
+
+                        writeBlock(encoded, huffAc, huffDc, file);
 
                     }
                 }
@@ -96,7 +98,7 @@ public class JPEG {
                     }
                     for (i = 0; i < img.columns(); ++i) {
                         for (j = 0; j < img.rows(); ++j) {
-                            short[] encoded = readBlock(huffAc, file);
+                            short[] encoded = readBlock(huffAc, huffDc, file);
 
                             byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
 
@@ -115,40 +117,24 @@ public class JPEG {
         img.writeFile(outputFile);
     }
 
-    public static short[] readBlock(Huffman huff, IO.Bit.reader file) throws IOException {
+    public static short[] readBlock(Huffman huffAC, Huffman huffDC, IO.Bit.reader file) throws IOException {
         ArrayList<Short> block = new ArrayList<>();
 
-        for (int i = 0; i < 64; ++i) {
-            Huffman.Node n = huff.decode(file.read());
-            while (!n.isLeaf()) {
-                n = huff.decode(n, file.read());
-            }
+        block.add(readHuffman(huffDC, file));
+        block.add(read(block.get(0), file));
 
-            block.add(n.getValue());
+        //for (int i = 0; i < 63; ++i) {
+        for (int i = 0; i < 63; ++i) {
+            short decodedValue = readHuffman(huffAC, file);
 
-            if (n.getValue() == 0x00)
-                break;
+            block.add(decodedValue);
 
-            int length = n.getValue() & 0xF;
+            if (decodedValue == 0x00) break; // EOB
 
-            if (length == 0)
-                continue;
+            int length = decodedValue & 0xF;
+            if (length == 0) continue; // ZRL
 
-            BitSetL bs = new BitSetL(length);
-
-            for (int k = 0; k < length; ++k) {
-                bs.set(k, file.read());
-            }
-
-            short num =0;
-            if (bs.get(0)) {
-                num = (short) bs.asInt();
-            } else {
-                bs.flip();
-                num = (short) -bs.asInt();
-            }
-
-            block.add(num);
+            block.add(read(length, file));
         }
 
         short[] r = new short[block.size()];
@@ -158,21 +144,55 @@ public class JPEG {
         return r;
     }
 
-    public static void writeBlock(short[] encoded, Huffman huff, IO.Bit.writer file) throws IOException {
-        for (int k = 0; k < encoded.length; ++k) {
-            file.write(huff.encode(encoded[k]));
-            int l = encoded[k]&0x0F;
-            if (l != 0) {
-                ++k;
-                BitSetL bs;
-                if (encoded[k] < 0) {
-                    bs = new BitSetL(-encoded[k], l);
-                    bs.flip();
-                } else {
-                    bs = new BitSetL(encoded[k], l);
-                }
-                file.write(bs);
-            }
+    private static short readHuffman(Huffman huff, IO.Bit.reader file) throws IOException {
+        Huffman.Node n = huff.decode(file.read());
+        while (!n.isLeaf()) {
+            n = huff.decode(n, file.read());
         }
+        return n.getValue();
+    }
+
+    public static void writeBlock(short[] encoded, Huffman huffAC, Huffman huffDC, IO.Bit.writer file) throws IOException {
+        // write DC coefficient
+        file.write(huffDC.encode(encoded[0]));
+        write(encoded[1], encoded[0], file);
+
+        // write AC coefficients
+        for (int k = 2; k < encoded.length; ++k) {
+            // escriu codi huffman
+            file.write(huffAC.encode(encoded[k]));
+
+            int l = encoded[k]&0x0F;
+            if (l == 0) continue;
+
+            ++k;
+
+            write(encoded[k], l, file);
+
+        }
+    }
+
+    // Si es negatiu escriu el valor negat en binari.
+    private static void write(int value, int l, IO.Bit.writer file) throws IOException {
+        BitSetL bs;
+        if (value < 0) {
+            bs = new BitSetL(-value, l);
+            bs.flip();
+        } else {
+            bs = new BitSetL(value, l);
+        }
+        file.write(bs);
+    }
+    private static short read(int length, IO.Bit.reader file) throws IOException {
+        BitSetL bs = file.readBitSet(length);
+
+        short num =0;
+        if (bs.get(0)) {
+            num = (short) bs.asInt();
+        } else {
+            bs.flip();
+            num = (short) -bs.asInt();
+        }
+        return num;
     }
 }

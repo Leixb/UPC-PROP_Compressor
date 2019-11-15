@@ -33,10 +33,10 @@ public class LZ78 {
                 compress_dict.put(charac, num);
                 ++num;
                 int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
-                boolean [] bits_num = intToNBits(codnum, nbits);
-                for(int j = bits_num.length-1; j >= 0; --j) output.write(bits_num[j]); //Escribe el codnum con los bits necesarios
-                boolean[] bits_char = intToNBits((int)last_char, 16);
-                for(int j = 15; j >= 0; --j) output.write(bits_char[j]);
+                BitSetL bs_num = new BitSetL(codnum,nbits);
+                for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum con los bits necesarios
+                BitSetL bs_char = new BitSetL((int)last_char,16);
+                for (int i=0; i<16; ++i) output.write(bs_char.get(i));
                 ++nchar;
             }
             chin = input.read();
@@ -46,8 +46,8 @@ public class LZ78 {
         if (newchar == false) {
             codnum = compress_dict.get(chars);
             int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
-            boolean [] bits_num = intToNBits(codnum, nbits);
-            for(int j = bits_num.length-1; j >= 0; --j) output.write(bits_num[j]);  //Escribe el codnum con los bits necesarios
+            BitSetL bs_num = new BitSetL(codnum,nbits);
+            for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum con los bits necesarios
             for(int i=0; i<16; ++i) output.write(false);
         }
         input.close();
@@ -58,15 +58,6 @@ public class LZ78 {
         return (int) (Math.log(n) / Math.log(2) + 1e-10)+1;
     }
 
-    private static boolean[] intToNBits(int cInt, int n) {
-        boolean[] bits = new boolean[n];
-        for(int i = 0; i < n; ++i) {
-            int aux = cInt % 2;
-            if(aux == 1) bits[i] = true;
-            cInt /= 2;
-        }
-        return bits;
-    }
 
     public static void decompress(IO.Bit.reader input, IO.Char.writer output) throws IOException{
 
@@ -103,7 +94,7 @@ public class LZ78 {
                     }
                 }
                 int last_char = bit_to_int(character);
-                
+
                 if (number > 0){
                     if (last_char>0) charac = decompress_dict.get(number) + (char) last_char;
                     else charac = decompress_dict.get(number);

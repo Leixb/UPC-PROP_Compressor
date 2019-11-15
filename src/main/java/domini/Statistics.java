@@ -27,15 +27,13 @@ public class Statistics {
         return finFileSize - iniFileSize;
     }
 
-    public static long getBytesDecompressed () {
-        return iniFileSize - finFileSize;
-    }
+    public static long getBytesDecompressed () { return iniFileSize - finFileSize; }
 
-    public static double getPercentageCompressed () { return 100 * ((double)(finFileSize - iniFileSize))/iniFileSize; }
+    public static double getPercentageCompressed () { return 100 * ((double) getBytesCompressed()) / iniFileSize; }
 
-    public static double getPercentageDecompressed () { return 100 * ((double)(iniFileSize - finFileSize))/finFileSize; }
+    public static double getPercentageDecompressed () { return 100 * ((double) getBytesDecompressed()) / finFileSize; }
 
-    public static double getSpeedCompression () { return ((double) (finFileSize - iniFileSize))/ (endingTime - startingTime); }
+    public static double getSpeedCompression () { return ((double) getBytesCompressed()) / getTime(); }
 
-    public static double getSpeedDecompression () { return ((double) (iniFileSize - finFileSize))/ (endingTime - startingTime); }
+    public static double getSpeedDecompression () { return ((double) getBytesDecompressed()) / getTime(); }
 }

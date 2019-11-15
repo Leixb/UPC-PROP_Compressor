@@ -70,7 +70,7 @@ public class IO {
             public void write(byte b) throws IOException {
                 writeMask(b, 0x80);
             }
-            public void write(char c) throws IOException { 
+            public void write(char c) throws IOException {
                 writeMask(c, 0x8000);
             }
             public void write(int num)  throws IOException {

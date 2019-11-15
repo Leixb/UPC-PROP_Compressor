@@ -14,7 +14,7 @@ public class CtrlDomini {
                 break;
             case LZ78d:
                 try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
-                    LZ78.compressor(input,output);
+                    LZ78.compress(input,output);
                 }
                 break;
             case LZSSd:
@@ -61,7 +61,7 @@ public class CtrlDomini {
         switch(alg) {
             case LZ78d:
                 try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
-                    LZ78.decompressor(input,output);
+                    LZ78.decompress(input,output);
                 }
                 break;
             case LZSSd:

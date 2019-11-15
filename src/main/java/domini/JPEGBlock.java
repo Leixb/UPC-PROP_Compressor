@@ -228,8 +228,11 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
             ArrayList<Short> buff = new ArrayList<Short>();
 
             // Afegim DC
-            buff.add((short)bitLength(data[0]));
-            buff.add(data[0]);
+            if (data[0] == 0) buff.add((short)0);
+            else {
+                buff.add((short)bitLength(data[0]));
+                buff.add(data[0]);
+            }
 
             // Comencem des de 1 ja que 0 es el DC
             for (int i = 1; i < data.length; ++i) {
@@ -239,7 +242,7 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
                     ++count;
                 }
                 if (i >= data.length) {
-                    buff.add((short) 0x00); // EOB
+                    //buff.add((short) 0x00); // EOB
                     break;
                 }
                 if (count >= 16) {
@@ -249,13 +252,12 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
                     count %= 16;
                 }
 
-                //System.out.printf("%x %x %04x\n", count, bitLength(data[i]), data[i]);
-                //System.out.printf("%x %d %04x\n", count, bitLength(data[i]), data[i]);
-
+                // TODO: why do we have this overflow for quality>=99?
                 if (data[i] > 1023) {
-                    //System.out.printf("padding -> %d\n", data[i]);
+                    System.out.printf("padding -> %d\n", data[i]);
                     data[i] = 1023;
                 } else if (data[i] < -1023) {
+                    System.out.printf("padding -> %d\n", data[i]);
                     data[i] = -1023;
                 }
 
@@ -263,6 +265,7 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
                 buff.add(data[i]);
 
             }
+            buff.add((short) 0x00); // EOB
             //buff.add((short) 0x00);
             short[] r = new short[buff.size()];
             for (int i = 0; i < buff.size(); ++i) {
@@ -275,23 +278,27 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
 
             short[] decodedData = new short[64];
 
-            // data[0] = length DC, data[1] = DC
-            decodedData[0] = data[1];
+            // i (data), j (decodedData)
+            int i, j = 1;
 
-            int i = 2, j = 1;
+            // data[0] = length DC, data[1] = DC
+            if (data[0] == 0) {
+                decodedData[0] = 0;
+                i = 1;
+            } else {
+                decodedData[0] = data[1];
+                i = 2;
+            }
+
             for (; i < data.length; ) {
                 if (data[i] == 0x00) break;
 
                 int run = (data[i] & 0xF0)>>4;
                 int length = data[i] & 0x0F;
 
-                j += run;
+                j += run; // Fill with zeros
                 ++i;
-                if (j >= 64) {
-                    // TODO remove this
-                    System.out.println("WTF");
-                    break;
-                }
+
                 if (length == 0) continue;
                 decodedData[j] = data[i];
                 ++i;

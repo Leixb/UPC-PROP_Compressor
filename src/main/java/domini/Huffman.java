@@ -78,9 +78,14 @@ public class Huffman {
         n.value = value;
     }
 
-
-    public BitSetL encode(Short value) {
-        return table.get(value);
+    // TODO remove this exception...
+    public BitSetL encode(Short value) throws IOException {
+        BitSetL bs = table.get(value);
+        if (bs == null) {
+            System.out.printf("huffman lookup FAILED: %x\n", value);
+            throw new IOException("HUFFMAN FAIL");
+        }
+        return bs;
     }
 
     public Node decode(boolean b) {

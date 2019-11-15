@@ -36,6 +36,8 @@ public class JPEG {
 
             for (int channel = 0; channel < 3; ++channel) {
 
+                System.out.println(channel);
+
                 if (channel == 0) {
                     huffAc = huffAcLum;
                     huffDc = huffDcLum;
@@ -51,8 +53,6 @@ public class JPEG {
                         byte[][] block = img.getBlock(channel, i, j);
 
                         short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
-
-                        //System.out.printf("%d %d %d\n", i, j, channel);
 
                         writeBlock(encoded, huffAc, huffDc, file);
 
@@ -121,10 +121,14 @@ public class JPEG {
         ArrayList<Short> block = new ArrayList<>();
 
         block.add(readHuffman(huffDC, file));
-        block.add(read(block.get(0), file));
+        if (block.get(0) != 0) block.add(read(block.get(0), file));
 
         //for (int i = 0; i < 63; ++i) {
-        for (int i = 0; i < 63; ++i) {
+        for (int i = 0; i < 100; ++i) {
+            if (i >= 64) {
+                System.out.println("___WOT");
+                break;
+            }
             short decodedValue = readHuffman(huffAC, file);
 
             block.add(decodedValue);
@@ -155,10 +159,17 @@ public class JPEG {
     public static void writeBlock(short[] encoded, Huffman huffAC, Huffman huffDC, IO.Bit.writer file) throws IOException {
         // write DC coefficient
         file.write(huffDC.encode(encoded[0]));
-        write(encoded[1], encoded[0], file);
+
+        int k;
+        if (encoded[0] != 0) {
+            write(encoded[1], encoded[0], file);
+            k = 2;
+        } else {
+            k = 1;
+        }
 
         // write AC coefficients
-        for (int k = 2; k < encoded.length; ++k) {
+        for (; k < encoded.length; ++k) {
             // escriu codi huffman
             file.write(huffAC.encode(encoded[k]));
 

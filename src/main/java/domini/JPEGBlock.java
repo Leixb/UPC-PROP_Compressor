@@ -2,7 +2,9 @@ package domini;
 
 import java.util.ArrayList;
 
-public class JPEGBlock implements Codec<byte[][], short[]> {
+public final class JPEGBlock implements Codec<byte[][], short[]> {
+
+    private JPEGBlock () {}
 
     public static class DCT implements Codec<byte[][], double[][]> {
         public static double[][] encode(byte[][] data) {

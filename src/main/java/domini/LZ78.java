@@ -4,7 +4,10 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LZ78 {
+public final class LZ78 extends LZ {
+
+    private LZ78 () {}
+
     private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>();
     private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
     public final static byte MAGIC_BYTE = 0x78;

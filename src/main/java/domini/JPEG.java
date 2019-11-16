@@ -6,7 +6,10 @@ import java.util.ArrayList;
 
 import domini.PpmImage.InvalidFileFormat;
 
-public class JPEG {
+public final class JPEG {
+
+    private JPEG() {}
+
     public static void compress(String inputFile, String outputFile, short quality)
             throws Exception, InvalidFileFormat {
         PpmImage img = new PpmImage();

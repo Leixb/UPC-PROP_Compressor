@@ -4,7 +4,10 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LZSS {
+public final class LZSS extends LZ {
+
+    private LZSS() {}
+
     final static int MAX_SIZE_SW = 8192;
     final static int MAX_LENGTH_COINCIDENCE = 65;
     public final static byte MAGIC_BYTE = 0x55;

@@ -5,7 +5,9 @@ import java.util.HashMap;
 
 import domini.IO;
 
-public class LZW implements FileCodec {
+public final class LZW extends LZ {
+
+    private LZW() {}
 
     private static HashMap<String, Character> compressionDictionary;
     private static HashMap<Character, String> decompressionDictionary;

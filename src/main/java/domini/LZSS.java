@@ -93,7 +93,6 @@ public final class LZSS extends LZ {
                 output.write(new BitSetL(prevIndex - 1, nBitsOffset));
                 output.write(new BitSetL(length - minLength, nBitsLength));
             } else {
-                final int lengthAux = actualCharacters.size();
                 output.write(false);
                 output.write(new BitSetL(actualCharacters.get(0), 16));
             }

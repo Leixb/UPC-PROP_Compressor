@@ -68,11 +68,6 @@ public class Main {
         else quit();
     }
 
-    private static void quit() {
-        System.out.println("Aborted");
-        System.exit(-1);
-    }
-
     private static void comprimir() {
         System.out.println("Tipus de compressió:");
         System.out.println("[1] Automàtic");
@@ -89,9 +84,14 @@ public class Main {
         System.out.println("Fitxer desti (*.piz):");
         String fileOut = scanner.nextLine();
 
+        if(opt==1) {
+            if(fileIn.endsWith(".ppm")) opt = 5;
+            else opt = 2;
+        }
+
         short quality = 0;
 
-        CtrlDomini.Alg alg = CtrlDomini.Alg.AUTOd;
+        CtrlDomini.Alg alg = null;
         if(opt==2) alg = CtrlDomini.Alg.LZ78d;
         else if(opt==3) alg = CtrlDomini.Alg.LZSSd;
         else if(opt==4) alg = CtrlDomini.Alg.LZWd;
@@ -100,6 +100,7 @@ public class Main {
             System.out.println("Qualitat [1-99]:");
             quality = scanner.nextShort();
         }
+        else quit();
 
         try{
             Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
@@ -124,6 +125,11 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Error en la descompressió:" + e.getMessage());
         }
+    }
+
+    private static void quit() {
+        System.out.println("Aborted");
+        System.exit(-1);
     }
 
     private static void testLZ78() {}

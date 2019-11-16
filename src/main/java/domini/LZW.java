@@ -43,14 +43,18 @@ public class LZW implements FileCodec {
     public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
         output.write(MAGIC_BYTE);
 
+        System.out.println("Hola,hasta aqui bien");
         createCompressionDictionary();
+
+        System.out.println("Se ha creado correctamente el diccionario");
         int i = DICTIONARY_SIZE;
 
         String chars = "";
-
+        int count = 0;
         int c = input.read();
         while (c != -1) {
             char ch = (char) c;
+            System.out.println("Count: " + count++ + "c: " + c + "ch: " + ch);
             String aux = chars + ch;
 
             if (compressionDictionary.containsKey(aux)) {

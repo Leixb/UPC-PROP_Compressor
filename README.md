@@ -1,5 +1,5 @@
 # El Compressor 
-[![Build Status](https://travis-ci.com/Leixb/Compressor_PROP.svg?token=qEz3Uk5fvSr9HeEEwxjb&branch=master)](https://travis-ci.com/Leixb/Compressor_PROP)
+![Build Status](https://github.com/Leixb/Compressor_PROP/workflows/Java%20CI/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/leixb/compressor_prop/badge?s=f6f48f3e67e69da4aefc3048aba7e871deb081ed)](https://www.codefactor.io/repository/github/leixb/compressor_prop)
 
 Projecte PROP Quatrimestre tardor 2019/20
@@ -70,6 +70,10 @@ git checkout <nom-branca>
 git rebase master
 git push -u origin
 ```
+pull d'origin master amb rebase:
+```
+git pull --rebase origin master
+```
 
 ### log
 Mostra l'historial de commits.
@@ -81,7 +85,7 @@ git log
 Si no deixa fer pull per que teniu canvis respecte al origin que no voleu grardar podeu fer `git stash push`. Aquesta commanda mou els canvis no guardats a
 l'*stash* es poden recuperar els canvis amb `git stash pull` o buidar l'*stash* amb `git stash clear` (No es pot desfer el clear, anar amb compte).
 
-### He fet commits a master en comptes de la branca correcte
+### He fet commits a master en comptes de la branca correcta
 **DANGER:** es poden perdre commits si es fa malament. Només aplicar el mètode si saps que estas fent.
 ```bash
 # Si no tenies  branca creada:

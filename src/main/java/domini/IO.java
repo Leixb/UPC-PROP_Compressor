@@ -15,13 +15,13 @@ import java.io.IOException;
 public class IO {
     public static class Char {
         public static class reader extends BufferedReader {
-            public reader(String filename) throws FileNotFoundException {
+            public reader(final String filename) throws FileNotFoundException {
                 super(new FileReader(filename));
             }
         }
 
         public static class writer extends BufferedWriter {
-            public writer(String filename) throws IOException {
+            public writer(final String filename) throws IOException {
                 super(new FileWriter(filename));
             }
         }
@@ -29,13 +29,13 @@ public class IO {
 
     public static class Byte {
         public static class reader extends BufferedInputStream {
-            public reader(String filename) throws FileNotFoundException {
+            public reader(final String filename) throws FileNotFoundException {
                 super(new FileInputStream(filename));
             }
         }
 
         public static class writer extends BufferedOutputStream {
-            public writer(String filename) throws IOException {
+            public writer(final String filename) throws IOException {
                 super(new FileOutputStream(filename));
             }
         }
@@ -43,49 +43,54 @@ public class IO {
 
     public static class Bit {
         public static class writer implements AutoCloseable {
-            private BufferedOutputStream out;
+            private final BufferedOutputStream out;
             private int buffer;
             private int n;
 
-            public writer(String filename) throws FileNotFoundException {
+            public writer(final String filename) throws FileNotFoundException {
                 out = new BufferedOutputStream(new FileOutputStream(filename));
                 buffer = 0;
                 n = 0;
             }
 
-            public void write(boolean bit) throws IOException {
+            public void write(final boolean bit) throws IOException {
                 buffer <<= 1;
-                if (bit) buffer |= 1;
+                if (bit)
+                    buffer |= 1;
 
                 ++n;
-                if (n >= 8) clear();
+                if (n >= 8)
+                    clear();
             }
 
-            public void write(BitSetL bs) throws IOException {
+            public void write(final BitSetL bs) throws IOException {
                 for (int i = 0; i < bs.length(); ++i) {
                     write(bs.get(i));
                 }
             }
 
-            public void write(byte b) throws IOException {
+            public void write(final byte b) throws IOException {
                 writeMask(b, 0x80);
             }
-            public void write(char c) throws IOException {
+
+            public void write(final char c) throws IOException {
                 writeMask(c, 0x8000);
             }
-            public void write(int num)  throws IOException {
+
+            public void write(final int num) throws IOException {
                 writeMask(num, 0x80000000);
             }
 
-            private void writeMask(int num, int mask) throws IOException {
+            private void writeMask(final int num, int mask) throws IOException {
                 while (mask != 0) {
-                    write((num&mask) != 0);
+                    write((num & mask) != 0);
                     mask >>>= 1;
                 }
             }
 
             private void clear() throws IOException {
-                if (n == 0) return;
+                if (n == 0)
+                    return;
                 buffer <<= (8 - n);
                 out.write(buffer);
                 n = 0;
@@ -104,11 +109,11 @@ public class IO {
         }
 
         public static class reader implements AutoCloseable {
-            private BufferedInputStream in;
+            private final BufferedInputStream in;
             private int buffer;
             private int n;
 
-            public reader(String filename) throws IOException {
+            public reader(final String filename) throws IOException {
                 in = new BufferedInputStream(new FileInputStream(filename));
                 buffer = 0;
                 n = 0;
@@ -116,24 +121,26 @@ public class IO {
             }
 
             private void fill() throws IOException {
-
                 buffer = in.read();
                 n = 8;
-                if (buffer == -1) throw new EOFException();
+                if (buffer == -1)
+                    throw new EOFException();
             }
 
             public boolean read() throws IOException {
                 n--;
-                boolean bit = ((buffer >>> n) & 1) == 1;
-                if (n == 0) fill();
+                final boolean bit = ((buffer >>> n) & 1) == 1;
+                if (n == 0)
+                    fill();
                 return bit;
             }
 
             private int readMask(int mask) throws IOException {
                 int num = 0;
                 while (mask != 0) {
-                    if (read())  num |= mask;
-                    mask>>>=1;
+                    if (read())
+                        num |= mask;
+                    mask >>>= 1;
                 }
                 return num;
             }
@@ -141,14 +148,19 @@ public class IO {
             public int readByte() throws IOException {
                 return readMask(0x80);
             }
+
             public int readChar() throws IOException {
                 return readMask(0x8000);
             }
+
             public int readInt() throws IOException {
                 return readMask(0x80000000);
             }
-            public BitSetL readBitSet(int n) throws IOException {
-                return new BitSetL(readMask(0x1<<(n-1)),n);
+
+            public BitSetL readBitSet(final int length) throws IOException {
+                BitSetL bs = new BitSetL(length);
+                for (int k = 0; k < length; ++k) bs.set(k, read());
+                return bs;
             }
             public void close() throws IOException {
                 in.close();

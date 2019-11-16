@@ -1,125 +1,126 @@
 package domini;
 
 import java.io.IOException;
+import java.io.EOFException;
 import java.util.HashMap;
 
 import domini.IO;
 
-public class LZW implements FileCodec {
+public final class LZW extends LZ {
 
-    private static HashMap<String, Character> compressionDictionary;
-    private static HashMap<Character, String> decompressionDictionary;
+    private LZW() {}
+
+    private static final byte MAGIC_BYTE = 0x11;
+    private static final int DICTIONARY_SIZE = 0xFFFF;
+    private static final int END = 0;
+    private static HashMap<String, Integer> compressionDictionary;
+    private static HashMap<Integer, String> decompressionDictionary;
 
     public static class TooManyStringsException extends Exception {
 
         private static final long serialVersionUID = -3749513648532868661L;
 
+
         public TooManyStringsException() {
             super();
         }
 
-        public TooManyStringsException(String s) { super(s); }
+        public TooManyStringsException(final String s) {
+            super(s);
+        }
 
     }
-
-    private static final char DICTIONARY_SIZE = 0xFF;
 
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
-        for (char i = 0; i < DICTIONARY_SIZE; ++i){
-            compressionDictionary.put(Character.toString(i),i);
+        for (int i = 0; i <= DICTIONARY_SIZE; ++i){
+            char c = (char) i;
+            compressionDictionary.put(Character.toString(c) ,i);
         }
     }
 
-    private static void createDecompressionDictionary () {
+    private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
-        for (char i = 0; i < DICTIONARY_SIZE; ++i){
-            decompressionDictionary.put(i,Character.toString(i));
+        for (int i = 0; i <= DICTIONARY_SIZE; ++i){
+            char c = (char) i;
+            decompressionDictionary.put(i,Character.toString(c));
         }
     }
 
-
-    public static void compress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException {
-        output.write(0x69);
+    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
+        output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
-        char i = DICTIONARY_SIZE;
+        int i = DICTIONARY_SIZE + 1;
 
         String chars = "";
-
         int c = input.read();
         while (c != -1) {
-            char ch = (char) c;
-            String aux = chars + ch;
+            final char ch = (char) c;
+            final String aux = chars + ch;
 
             if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
-            }
-            else {
-                char code = compressionDictionary.get(chars);
+            } else {
+                final int code = compressionDictionary.get(chars);
                 output.write(code);
 
-                compressionDictionary.put(aux,i);
-                ++i;
+                compressionDictionary.put(aux,i++);
                 chars = "" + ch;
             }
 
-            if (i >= 0xFFFF) {
-                System.out.println("[DICTIONARY OVERFLOW]");
-                output.write(0xFFFF);
+            if (i == 0x0FFFFFFFF) {  //[DICTIONARY OVERFLOW]
+                output.write(0xFFFFFFFF);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
 
             c = input.read();
         }
-
-        if (!compressionDictionary.containsKey(chars)) {
-            compressionDictionary.put(chars,i);
-        }
-        char code = compressionDictionary.get(chars);
+        final int code = compressionDictionary.get(chars);
         output.write(code);
+
+        output.write(END);
     }
 
 
-    public static void decompress (IO.Char.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
+    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
+        input.readByte();
+
         createDecompressionDictionary();
-        char i = DICTIONARY_SIZE;
+        int i = DICTIONARY_SIZE + 1;
 
-        char old_code = (char) input.read();
-
-        String aux = decompressionDictionary.get(old_code);
-        output.write(aux);
-
-        char ch = aux.charAt(0);
-
-        int c = input.read();
-        while (c != -1) {
-            char code = (char) c;
-            if (decompressionDictionary.containsKey(code)) {
-                aux = decompressionDictionary.get(code);
-            }
-            else {
-                aux = decompressionDictionary.get(old_code) + ch;
-            }
-
+        try {
+            int old_code = input.readInt();
+            String aux = decompressionDictionary.get(old_code);
             output.write(aux);
 
-            ch = aux.charAt(0);
+            char ch = aux.charAt(0);
 
-            decompressionDictionary.put(i, decompressionDictionary.get(old_code) + ch);
-            i++;
+            while (true) {
+                int code = input.readInt();
+                if (decompressionDictionary.containsKey(code)) {
+                    aux = decompressionDictionary.get(code);
+                } else {
+                    aux = decompressionDictionary.get(old_code) + ch;
+                }
+                output.write(aux);
 
-            old_code = code;
+                ch = aux.charAt(0);
 
-            c = input.read();
+                decompressionDictionary.put(i++, decompressionDictionary.get(old_code) + ch);
 
-            if (c == 0xFFFF) {
-                System.out.println("[DICTIONARY OVERFLOW DETECTED]");
-                createDecompressionDictionary();
-                i = DICTIONARY_SIZE;
-                c = input.read();
+                old_code = code;
+
+                if (code == 0xFFFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
+                    createDecompressionDictionary();
+                    i = DICTIONARY_SIZE;
+                    code = input.readInt();
+                }
             }
+        } catch (EOFException e){
+            //End of file reached.
         }
+
     }
 }

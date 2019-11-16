@@ -1,6 +1,6 @@
 import domini.JPEGBlock;
 import domini.PpmImage;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
@@ -43,7 +43,6 @@ class PpmImageTest {
             img.toRGB();
 
             System.out.printf("%d -> %d (%.2f%%)\n", original_size, compressed_size, (100*compressed_size/(double)original_size));
-
 
             new File("generated/").mkdirs();
             img.writeFile("generated/" + outputFile);

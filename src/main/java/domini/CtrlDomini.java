@@ -1,9 +1,6 @@
 package domini;
 
 import java.io.EOFException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 
 public class CtrlDomini {
     public enum Alg {AUTOd, LZ78d, LZSSd, LZWd, JPEGd};
@@ -27,7 +24,7 @@ public class CtrlDomini {
                 }
                 break;
             case LZWd:
-                try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
+                try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
                     LZW.compress(input,output);
                 }
                 break;
@@ -73,12 +70,12 @@ public class CtrlDomini {
                 }
                 break;
             case LZWd:
-                try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
+                try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
                     LZW.decompress(input,output);
                 }
                 break;
             case JPEGd:
-                JPEG.decompress(fileIn,fileOut,(short)0);
+                JPEG.decompress(fileIn,fileOut);
                 break;
             default:
         }

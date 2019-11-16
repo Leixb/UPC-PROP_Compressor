@@ -1,18 +1,14 @@
 package domini;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.ByteOrder;
-import java.nio.ShortBuffer;
 import java.util.ArrayList;
-import java.nio.ByteBuffer;
 
-public class JPEGBlock implements Codec<byte[][], short[]> {
+public final class JPEGBlock implements Codec<byte[][], short[]> {
+
+    private JPEGBlock () {}
 
     public static class DCT implements Codec<byte[][], double[][]> {
-        public static double[][] encode(byte[][] data) {
-            double[][]G = new double[8][8];
+        public static double[][] encode(final byte[][] data) {
+            final double[][] G = new double[8][8];
 
             for (int u = 0; u < 8; u++) {
                 for (int v = 0; v < 8; v++) {
@@ -21,19 +17,21 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
 
                     for (int x = 0; x < 8; x++) {
                         for (int y = 0; y < 8; y++) {
-                            int dataxy = Byte.toUnsignedInt(data[x][y]) - 128;
-                            G[u][v] += dataxy * Math.cos((2 * x + 1)*u*Math.PI/16.0)
-                                              * Math.cos((2 * y + 1)*v*Math.PI/16.0);
+                            final int dataxy = Byte.toUnsignedInt(data[x][y]) - 128;
+                            G[u][v] += dataxy * Math.cos((2 * x + 1) * u * Math.PI / 16.0)
+                                    * Math.cos((2 * y + 1) * v * Math.PI / 16.0);
                         }
                     }
 
                     double ortho = 0.25;
 
                     // Make orthonormal
-                    if (u == 0) ortho *= 1.0/Math.sqrt(2);
-                    if (v == 0) ortho *= 1.0/Math.sqrt(2);
+                    if (u == 0)
+                        ortho *= 1.0 / Math.sqrt(2);
+                    if (v == 0)
+                        ortho *= 1.0 / Math.sqrt(2);
 
-                    G[u][v]*=ortho;
+                    G[u][v] *= ortho;
 
                 }
             }
@@ -41,8 +39,8 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
             return G;
         }
 
-        public static byte[][] decode(double[][] data) {
-            byte[][] f = new byte[8][8];
+        public static byte[][] decode(final double[][] data) {
+            final byte[][] f = new byte[8][8];
 
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
@@ -54,19 +52,23 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
 
                             // Make orthonormal
                             double ortho = 1;
-                            if (u == 0) ortho *= 1.0/Math.sqrt(2);
-                            if (v == 0) ortho *= 1.0/Math.sqrt(2);
+                            if (u == 0)
+                                ortho *= 1.0 / Math.sqrt(2);
+                            if (v == 0)
+                                ortho *= 1.0 / Math.sqrt(2);
 
-                            fxy += ortho * data[u][v] * Math.cos((2 * x + 1)*u*Math.PI/16.0)
-                                                      * Math.cos((2 * y + 1)*v*Math.PI/16.0);
+                            fxy += ortho * data[u][v] * Math.cos((2 * x + 1) * u * Math.PI / 16.0)
+                                    * Math.cos((2 * y + 1) * v * Math.PI / 16.0);
                         }
                     }
 
                     fxy *= 0.25;
 
-                    if (fxy >= 127) fxy = 127;
-                    if (fxy <= -128) fxy = -128;
-                    int v = ((int)fxy +128)&0xFF;
+                    if (fxy >= 127)
+                        fxy = 127;
+                    if (fxy <= -128)
+                        fxy = -128;
+                    final int v = ((int) fxy + 128) & 0xFF;
                     f[x][y] = ((byte) v);
 
                 }
@@ -98,29 +100,35 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
             {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 }
         };
 
-        static double QuantizationValue(short quality, boolean isChrominance, short x, short y) throws IllegalArgumentException {
-            if (quality < 1 || quality > 100) throw new IllegalArgumentException("Quality must be between 1 and 100");
-            if (x < 0 || x >= 8) throw new IllegalArgumentException("0 < x < 8");
-            if (y < 0 || y >= 8) throw new IllegalArgumentException("0 < y < 8");
+        static double QuantizationValue(final short quality, final boolean isChrominance, final short x, final short y)
+                throws IllegalArgumentException {
+            if (quality < 1 || quality > 100)
+                throw new IllegalArgumentException("Quality must be between 1 and 100");
+            if (x < 0 || x >= 8)
+                throw new IllegalArgumentException("0 < x < 8");
+            if (y < 0 || y >= 8)
+                throw new IllegalArgumentException("0 < y < 8");
 
             byte[][] QTable = LuminanceTable;
-            if (isChrominance) QTable = ChrominanceTable;
+            if (isChrominance)
+                QTable = ChrominanceTable;
 
-            double q = 5000.0/quality;
-            if (quality >= 50) q = 200 - 2*quality;
+            double q = 5000.0 / quality;
+            if (quality >= 50)
+                q = 200 - 2 * quality;
 
-            return (q*QTable[x][y] + 50)/100;
+            return (q * QTable[x][y] + 50) / 100;
         }
 
-        public static short[][] encode(double[][] data) {
-            return encode((short)50, true, data);
+        public static short[][] encode(final double[][] data) {
+            return encode((short) 50, true, data);
         }
 
-        public static short[][] encode(short quality, boolean isChrominance, double[][] block) {
-            short[][] data = new short[8][8];
+        public static short[][] encode(final short quality, final boolean isChrominance, final double[][] block) {
+            final short[][] data = new short[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
-                    double quantVal = block[i][j]/QuantizationValue(quality, isChrominance, i, j);
+                    final double quantVal = block[i][j] / QuantizationValue(quality, isChrominance, i, j);
 
                     data[i][j] = (short) quantVal;
                 }
@@ -128,15 +136,15 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
             return data;
         }
 
-        public static double[][] decode(short[][] data) {
-            return decode((short)50, true, data);
+        public static double[][] decode(final short[][] data) {
+            return decode((short) 50, true, data);
         }
 
-        public static double[][] decode(short quality, boolean isChrominance, short[][] block) {
-            double[][] data = new double[8][8];
+        public static double[][] decode(final short quality, final boolean isChrominance, final short[][] block) {
+            final double[][] data = new double[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
-                    data[i][j] = block[i][j]*QuantizationValue(quality, isChrominance, i, j);
+                    data[i][j] = block[i][j] * QuantizationValue(quality, isChrominance, i, j);
                 }
             }
             return data;
@@ -151,9 +159,9 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
         private static void calculateCorrespondenceTable() {
             table = new byte[8][8];
 
-            int i=0, j=0;
+            int i = 0, j = 0;
             boolean up = true;
-            for (byte pos = 0; pos < 8*8; ++pos) {
+            for (byte pos = 0; pos < 8 * 8; ++pos) {
                 table[i][j] = pos;
 
                 if (up) {
@@ -183,16 +191,17 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
                     change_dir = false;
                 }
 
-                if (change_dir) up = !up;
+                if (change_dir)
+                    up = !up;
             }
         }
 
-        public static short[] encode(short[][] block) {
+        public static short[] encode(final short[][] block) {
             if (table == null) {
                 calculateCorrespondenceTable();
             }
 
-            short[] L = new short[8*8];
+            final short[] L = new short[8 * 8];
 
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -205,11 +214,11 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
             return L;
         }
 
-        public static short[][] decode(short[] L) {
+        public static short[][] decode(final short[] L) {
             if (table == null) {
                 calculateCorrespondenceTable();
             }
-            short[][] block = new short[8][8];
+            final short[][] block = new short[8][8];
 
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -222,62 +231,88 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
 
     }
 
-    private static int bitLength(short n) {
-        return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2) + 1e6) + 1);
+    private static int bitLength(final short n) {
+        return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2)) + 1);
     }
 
     public static class RLE implements Codec<short[], short[]> {
         // Codifica en RLE (primer byte = nombre de 0 precedents, segon valor.
         // Acaba amb 0,0
-        public static short[] encode(short[] data) {
+        public static short[] encode(final short[] data) {
 
-            ArrayList<Short> buff = new ArrayList<Short>();
+            final ArrayList<Short> buff = new ArrayList<Short>();
 
-            for (int i = 0; i < data.length; ++i) {
+            // Afegim DC
+            if (data[0] == 0) buff.add((short)0);
+            else {
+                buff.add((short)bitLength(data[0]));
+                buff.add(data[0]);
+            }
+
+            // Comencem des de 1 ja que 0 es el DC
+            for (int i = 1; i < data.length; ++i) {
                 byte count = 0;
                 while (i < data.length && data[i] == 0) {
                     ++i;
                     ++count;
                 }
                 if (i >= data.length) {
-                    //buff.add((short) 0x00);
+                    // buff.add((short) 0x00); // EOB
                     break;
                 }
                 if (count >= 16) {
                     for (int j = 0; j < count / 16; ++j) {
-                        buff.add((short) 0xF0);
+                        buff.add((short) 0xF0); // ZRL
                     }
                     count %= 16;
                 }
 
-                //System.out.printf("%x %x %04x\n", count, bitLength(data[i]), data[i]);
-                //System.out.printf("%x %d %04x\n", count, bitLength(data[i]), data[i]);
+                if (data[i] > 1023) {
+                    System.out.printf("padding -> %d\n", data[i]);
+                    data[i] = 1023;
+                } else if (data[i] < -1023) {
+                    System.out.printf("padding -> %d\n", data[i]);
+                    data[i] = -1023;
+                }
 
-                buff.add((short) ((count<<4) | bitLength(data[i])));
+                buff.add((short) ((count << 4) | bitLength(data[i])));
                 buff.add(data[i]);
 
             }
-            buff.add((short) 0x00);
-            short[] r = new short[buff.size()];
+            buff.add((short) 0x00); // EOB
+
+            final short[] r = new short[buff.size()];
             for (int i = 0; i < buff.size(); ++i) {
                 r[i] = buff.get(i);
             }
             return r;
         }
 
-        public static short[] decode(short[] data) {
+        public static short[] decode(final short[] data) {
 
-            short[] decodedData = new short[64];
+            final short[] decodedData = new short[64];
 
-            int i = 0, j = 0;
+            // i (data), j (decodedData)
+            int i, j = 1;
+
+            // data[0] = length DC, data[1] = DC
+            if (data[0] == 0) {
+                decodedData[0] = 0;
+                i = 1;
+            } else {
+                decodedData[0] = data[1];
+                i = 2;
+            }
+
             for (; i < data.length; ) {
                 if (data[i] == 0x00) break;
 
-                int run = (data[i] & 0xF0)>>4;
-                int length = data[i] & 0x0F;
+                final int run = (data[i] & 0xF0) >> 4;
+                final int length = data[i] & 0x0F;
 
-                j += run;
+                j += run; // Fill with zeros
                 ++i;
+
                 if (length == 0) continue;
                 decodedData[j] = data[i];
                 ++i;
@@ -285,35 +320,35 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
             }
 
             return decodedData;
-            
+
         }
     }
 
-    public static short[] encode(byte[][] data) {
-        return encode((short)50, true, data);
+    public static short[] encode(final byte[][] data) {
+        return encode((short) 50, true, data);
     }
 
-    public static short[] encode(short quality, boolean isChrominance, byte[][] data) {
+    public static short[] encode(final short quality, final boolean isChrominance, final byte[][] data) {
 
-        double[][] DctEnc = DCT.encode(data);
-        short[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
-        short[] zigEnc = ZigZag.encode(quantEnc);
-        short[] result = RLE.encode(zigEnc);
+        final double[][] DctEnc = DCT.encode(data);
+        final short[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
+        final short[] zigEnc = ZigZag.encode(quantEnc);
+        final short[] result = RLE.encode(zigEnc);
 
         return result;
 
     }
 
-    public static byte[][] decode(short[] data) {
-        return decode((short)50, true, data);
+    public static byte[][] decode(final short[] data) {
+        return decode((short) 50, true, data);
     }
 
-    public static byte[][] decode(short quality, boolean isChrominance, short[] data) {
+    public static byte[][] decode(final short quality, final boolean isChrominance, final short[] data) {
 
-        short[] rleDec = RLE.decode(data);
-        short[][] zigDec = ZigZag.decode(rleDec);
-        double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
-        byte[][] result = DCT.decode(quantDec);
+        final short[] rleDec = RLE.decode(data);
+        final short[][] zigDec = ZigZag.decode(rleDec);
+        final double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
+        final byte[][] result = DCT.decode(quantDec);
 
         return result;
 

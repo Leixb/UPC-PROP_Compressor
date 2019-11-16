@@ -84,23 +84,22 @@ public class Main {
         System.out.println("Fitxer desti (*.piz):");
         String fileOut = scanner.nextLine();
 
-        if(opt==1) {
-            if(fileIn.endsWith(".ppm")) opt = 5;
-            else opt = 2;
-        }
-
         short quality = 0;
 
         CtrlDomini.Alg alg = null;
-        if(opt==2) alg = CtrlDomini.Alg.LZ78d;
+        if (opt == 1) {
+            if(fileIn.endsWith(".ppm")){
+                quality = 70; // auto JPEG qualitat 70.
+                alg = CtrlDomini.Alg.JPEGd;
+            } else alg = CtrlDomini.Alg.LZ78d;
+        } else if(opt==2) alg = CtrlDomini.Alg.LZ78d;
         else if(opt==3) alg = CtrlDomini.Alg.LZSSd;
         else if(opt==4) alg = CtrlDomini.Alg.LZWd;
         else if(opt==5) {
             alg = CtrlDomini.Alg.JPEGd;
             System.out.println("Qualitat [1-99]:");
             quality = scanner.nextShort();
-        }
-        else quit();
+        } else quit();
 
         try{
             Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);

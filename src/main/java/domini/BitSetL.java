@@ -24,7 +24,7 @@ public class BitSetL extends BitSet {
         for (int i = 0; i < l; ++i) {
             if ((n & mask) != 0)
                 set(i);
-            mask >>= 1;
+            mask >>>= 1;
         }
         _length_ = l;
     }

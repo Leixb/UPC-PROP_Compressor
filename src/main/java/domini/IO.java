@@ -117,7 +117,6 @@ public class IO {
                 in = new BufferedInputStream(new FileInputStream(filename));
                 buffer = 0;
                 n = 0;
-                fill();
             }
 
             private void fill() throws IOException {
@@ -128,10 +127,10 @@ public class IO {
             }
 
             public boolean read() throws IOException {
-                n--;
-                final boolean bit = ((buffer >>> n) & 1) == 1;
                 if (n == 0)
                     fill();
+                n--;
+                final boolean bit = ((buffer >>> n) & 1) == 1;
                 return bit;
             }
 

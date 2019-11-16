@@ -121,7 +121,6 @@ public class IO {
             }
 
             private void fill() throws IOException {
-
                 buffer = in.read();
                 n = 8;
                 if (buffer == -1)
@@ -157,6 +156,7 @@ public class IO {
             public int readInt() throws IOException {
                 return readMask(0x80000000);
             }
+
             public BitSetL readBitSet(final int length) throws IOException {
                 BitSetL bs = new BitSetL(length);
                 for (int k = 0; k < length; ++k) bs.set(k, read());

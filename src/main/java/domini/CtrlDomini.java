@@ -76,7 +76,7 @@ public class CtrlDomini {
                 }
                 break;
             case JPEGd:
-                JPEG.decompress(fileIn,fileOut,(short)0);
+                JPEG.decompress(fileIn,fileOut);
                 break;
             default:
         }

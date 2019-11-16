@@ -105,7 +105,7 @@ public class Main {
             Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
             CtrlPresentacio.printStatsCompress(stats);
         } catch (Exception e) {
-            System.out.println("Error en la compressió.");
+            System.out.println("Error en la compressió:" + e.getMessage());
         }
     }
 
@@ -122,7 +122,7 @@ public class Main {
             CtrlPresentacio.printStatsDecompress(stats);
 
         } catch (Exception e) {
-            System.out.println("Error en la descompressió.");
+            System.out.println("Error en la descompressió:" + e.getMessage());
         }
     }
 

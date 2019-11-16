@@ -157,9 +157,10 @@ public class IO {
             public int readInt() throws IOException {
                 return readMask(0x80000000);
             }
-
-            public BitSetL readBitSet(final int n) throws IOException {
-                return new BitSetL(readMask(0x1<<(n-1)),n);
+            public BitSetL readBitSet(final int length) throws IOException {
+                BitSetL bs = new BitSetL(length);
+                for (int k = 0; k < length; ++k) bs.set(k, read());
+                return bs;
             }
             public void close() throws IOException {
                 in.close();

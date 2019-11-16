@@ -9,18 +9,21 @@ import java.util.ArrayList;
 
 import domini.PpmImage.InvalidFileFormat;
 
-public class JPEG {
-    public static void compress(String inputFile, String outputFile, short quality)
+public final class JPEG {
+
+    private JPEG() {}
+
+    public static void compress(final String inputFile, final String outputFile, final short quality)
             throws Exception, InvalidFileFormat {
-        PpmImage img = new PpmImage();
+        final PpmImage img = new PpmImage();
         img.readFile(inputFile);
 
         img.toYCbCr();
 
-        Huffman huffAcChrom = new Huffman(true, true);
-        Huffman huffAcLum = new Huffman(true, false);
-        Huffman huffDcChrom = new Huffman(false, true);
-        Huffman huffDcLum = new Huffman(false, false);
+        final Huffman huffAcChrom = new Huffman(true, true);
+        final Huffman huffAcLum = new Huffman(true, false);
+        final Huffman huffDcChrom = new Huffman(false, true);
+        final Huffman huffDcLum = new Huffman(false, false);
 
         Huffman huffAc, huffDc;
 
@@ -50,9 +53,9 @@ public class JPEG {
 
                 for (int i = 0; i < cols; ++i) {
                     for (int j = 0; j < rows; ++j) {
-                        byte[][] block = img.getBlock(channel, i, j);
+                        final byte[][] block = img.getBlock(channel, i, j);
 
-                        short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
+                        final short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
 
                         writeBlock(encoded, huffAc, huffDc, file);
 
@@ -65,20 +68,21 @@ public class JPEG {
         }
     }
 
-    public static void decompress(String inputFile, String outputFile) throws IOException {
-        PpmImage img = new PpmImage();
+    public static void decompress(final String inputFile, final String outputFile)
+            throws IOException {
+        final PpmImage img = new PpmImage();
 
-        Huffman huffAcChrom = new Huffman(true, true);
-        Huffman huffAcLum = new Huffman(true, false);
-        Huffman huffDcChrom = new Huffman(false, true);
-        Huffman huffDcLum = new Huffman(false, false);
+        final Huffman huffAcChrom = new Huffman(true, true);
+        final Huffman huffAcLum = new Huffman(true, false);
+        final Huffman huffDcChrom = new Huffman(false, true);
+        final Huffman huffDcLum = new Huffman(false, false);
 
         Huffman huffAc, huffDc;
 
         try (IO.Bit.reader file = new IO.Bit.reader(inputFile)) {
 
             file.readByte(); // Discard magic byte
-            short quality = (short) file.readInt();
+            final short quality = (short) file.readInt();
             int w = file.readInt();
             int h = file.readInt();
 
@@ -98,16 +102,16 @@ public class JPEG {
                     }
                     for (i = 0; i < img.columns(); ++i) {
                         for (j = 0; j < img.rows(); ++j) {
-                            short[] encoded = readBlock(huffAc, huffDc, file);
+                            final short[] encoded = readBlock(huffAc, huffDc, file);
 
-                            byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
+                            final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
 
                             img.writeBlock(data, channel, i, j);
 
                         }
                     }
                 }
-            } catch (EOFException e) {
+            } catch (final EOFException e) {
                 System.out.println("EOF");
                 System.out.printf("%d, %d, %d\n", channel, i, j);
                 System.out.printf("%d, %d, %d\n", 3, img.columns(), img.rows());
@@ -117,8 +121,8 @@ public class JPEG {
         img.writeFile(outputFile);
     }
 
-    public static short[] readBlock(Huffman huffAC, Huffman huffDC, IO.Bit.reader file) throws IOException {
-        ArrayList<Short> block = new ArrayList<>();
+    public static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file) throws IOException {
+        final ArrayList<Short> block = new ArrayList<>();
 
         block.add(readHuffman(huffDC, file));
         if (block.get(0) != 0) block.add(read(block.get(0), file));
@@ -129,19 +133,19 @@ public class JPEG {
                 System.out.println("___WOT");
                 break;
             }
-            short decodedValue = readHuffman(huffAC, file);
+            final short decodedValue = readHuffman(huffAC, file);
 
             block.add(decodedValue);
 
             if (decodedValue == 0x00) break; // EOB
 
-            int length = decodedValue & 0xF;
+            final int length = decodedValue & 0xF;
             if (length == 0) continue; // ZRL
 
             block.add(read(length, file));
         }
 
-        short[] r = new short[block.size()];
+        final short[] r = new short[block.size()];
         for (int i = 0; i < block.size(); ++i) {
             r[i] = block.get(i);
         }
@@ -156,7 +160,7 @@ public class JPEG {
         return n.getValue();
     }
 
-    public static void writeBlock(short[] encoded, Huffman huffAC, Huffman huffDC, IO.Bit.writer file) throws IOException {
+    public static void writeBlock(final short[] encoded, final Huffman huffAC, final Huffman huffDC, final IO.Bit.writer file) throws IOException {
         // write DC coefficient
         file.write(huffDC.encode(encoded[0]));
 
@@ -173,7 +177,7 @@ public class JPEG {
             // escriu codi huffman
             file.write(huffAC.encode(encoded[k]));
 
-            int l = encoded[k]&0x0F;
+            final int l = encoded[k]&0x0F;
             if (l == 0) continue;
 
             ++k;

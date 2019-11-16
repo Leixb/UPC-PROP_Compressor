@@ -137,7 +137,7 @@ public final class LZSS extends LZ {
                 c = input.read();
             }
         } catch (final EOFException e) {
-
+            // EOF  
         }
     }
 

@@ -128,7 +128,7 @@ public class Main {
     }
 
     private static void quit() {
-        System.out.println("Aborted");
+        System.out.println("Opció invàlida. Finalitzant execució...");
         System.exit(-1);
     }
 

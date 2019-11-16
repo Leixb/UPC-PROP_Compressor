@@ -13,7 +13,7 @@ public final class JPEG {
 
     private JPEG() {}
 
-    public static byte MAGIC_BYTE = (byte) 0x98;
+    public final static byte MAGIC_BYTE = (byte) 0x98;
 
     public static void compress(final String inputFile, final String outputFile, final short quality)
             throws Exception, InvalidFileFormat {

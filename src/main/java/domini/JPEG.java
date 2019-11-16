@@ -13,6 +13,8 @@ public final class JPEG {
 
     private JPEG() {}
 
+    public final static byte MAGIC_BYTE = (byte) 0x98;
+
     public static void compress(final String inputFile, final String outputFile, final short quality)
             throws Exception, InvalidFileFormat {
         final PpmImage img = new PpmImage();
@@ -29,7 +31,7 @@ public final class JPEG {
 
         try (IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
 
-            file.write((byte)0x92); // magic byte
+            file.write(MAGIC_BYTE); // magic byte
             file.write((int)quality);
             file.write(img.width());
             file.write(img.height());

@@ -1,7 +1,6 @@
 package domini;
 
 import java.io.File;
-import java.time.Instant;
 
 public class Statistics {
     private long startingTime;
@@ -24,11 +23,11 @@ public class Statistics {
         endingTime = System.currentTimeMillis();
     }
 
-    public void setIniFileSize (String filename) {
+    public void setIniFileSize (final String filename) {
         iniFileSize = new File(filename).length();
     }
 
-    public void setFinFileSize (String filename) {
+    public void setFinFileSize(final String filename) {
         finFileSize = new File(filename).length();
     }
 

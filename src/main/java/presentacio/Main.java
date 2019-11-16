@@ -3,7 +3,6 @@ package presentacio;
 import domini.CtrlDomini;
 import domini.Statistics;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {

@@ -13,22 +13,23 @@ public class BitSetL extends BitSet {
         _length_ = -1;
     }
 
-    public BitSetL(int l) {
+    public BitSetL(final int l) {
         super(l);
         _length_ = l;
     }
 
-    public BitSetL(int n, int l) {
+    public BitSetL(final int n, final int l) {
         super(l);
-        int mask = 1<<(l-1);
+        int mask = 1 << (l - 1);
         for (int i = 0; i < l; ++i) {
-            if ((n & mask) != 0) set(i);
+            if ((n & mask) != 0)
+                set(i);
             mask >>= 1;
         }
         _length_ = l;
     }
 
-    public BitSetL(String s) {
+    public BitSetL(final String s) {
         super(s.length());
         for (int i = 0; i < s.length(); i++) {
             set(i, s.charAt(i) == '1');
@@ -39,7 +40,8 @@ public class BitSetL extends BitSet {
         int v = 0;
         for (int i = 0; i < _length_; ++i) {
             v <<= 1;
-            if (get(i)) v |= 1;
+            if (get(i))
+                v |= 1;
         }
         return v;
     }
@@ -50,18 +52,19 @@ public class BitSetL extends BitSet {
         }
     }
 
-    public void set(int pos, boolean val) {
+    public void set(final int pos, final boolean val) {
         super.set(pos, val);
-        if (pos+1 > _length_) _length_ = pos+1;
+        if (pos + 1 > _length_)
+            _length_ = pos + 1;
     }
 
     public int length() {
         return _length_;
     }
 
-    public BitSetL(byte b, int l){
+    public BitSetL(final byte b, final int l) {
         super(l);
-        _length_= l-1;
+        _length_ = l - 1;
         int bint = (int) b;
         int n=0;
         while (bint>0) {

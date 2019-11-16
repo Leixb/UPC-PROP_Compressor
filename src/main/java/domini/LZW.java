@@ -6,7 +6,9 @@ import java.util.HashMap;
 
 import domini.IO;
 
-public class LZW implements FileCodec {
+public final class LZW extends LZ {
+
+    private LZW() {}
 
     private static final byte MAGIC_BYTE = 0x11;
     private static final int DICTIONARY_SIZE = 0xFFFF;
@@ -23,7 +25,9 @@ public class LZW implements FileCodec {
             super();
         }
 
-        public TooManyStringsException(String s) { super(s); }
+        public TooManyStringsException(final String s) {
+            super(s);
+        }
 
     }
 
@@ -35,14 +39,13 @@ public class LZW implements FileCodec {
         }
     }
 
-    private static void createDecompressionDictionary () {
+    private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
             char c = (char) i;
             decompressionDictionary.put(i,Character.toString(c));
         }
     }
-
 
     public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
         output.write(MAGIC_BYTE);
@@ -53,14 +56,13 @@ public class LZW implements FileCodec {
         String chars = "";
         int c = input.read();
         while (c != -1) {
-            char ch = (char) c;
-            String aux = chars + ch;
+            final char ch = (char) c;
+            final String aux = chars + ch;
 
             if (compressionDictionary.containsKey(aux)) {
                 chars = aux;
-            }
-            else {
-                int code = compressionDictionary.get(chars);
+            } else {
+                final int code = compressionDictionary.get(chars);
                 output.write(code);
 
                 compressionDictionary.put(aux,i++);
@@ -75,7 +77,7 @@ public class LZW implements FileCodec {
 
             c = input.read();
         }
-        int code = compressionDictionary.get(chars);
+        final int code = compressionDictionary.get(chars);
         output.write(code);
 
         output.write(END);

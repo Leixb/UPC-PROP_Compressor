@@ -9,37 +9,40 @@ public class PpmImage {
     //private enum Channel {RGB, YCbCr};
     //private Channel channel;
 
-    public void setDimensions(int w, int h) {
+    public void setDimensions(final int w, final int h) {
         pixels = new byte[w][h][3];
         width = w;
         height = h;
     }
 
-    public void readFile(String filename) throws IOException, InvalidFileFormat {
+    public void readFile(final String filename) throws IOException, InvalidFileFormat {
         try (IO.Byte.reader file = new IO.Byte.reader(filename)) {
 
-            byte[] magic = new byte[2];
-            if (2 != file.read(magic)) throw new EOFException();
+            final byte[] magic = new byte[2];
+            if (2 != file.read(magic))
+                throw new EOFException();
 
-            if (magic[0] != 'P' || magic[1] != '6') throw new InvalidFileFormat();
+            if (magic[0] != 'P' || magic[1] != '6')
+                throw new InvalidFileFormat();
 
             this.width = readInt(file);
             this.height = readInt(file);
-            int maxVal = readInt(file);
+            final int maxVal = readInt(file);
 
-            if (maxVal >= 256) throw new InvalidFileFormat();
+            if (maxVal >= 256)
+                throw new InvalidFileFormat();
 
             this.pixels = new byte[this.width][this.height][3];
-            //this.channel = Channel.RGB;
-
+            // this.channel = Channel.RGB;
 
             for (int i = 0; i < this.width; ++i)
                 for (int j = 0; j < this.height; ++j)
-                    if (file.read(this.pixels[i][j]) != 3) throw new EOFException();
+                    if (file.read(this.pixels[i][j]) != 3)
+                        throw new EOFException();
         }
     }
 
-    public void writeFile(String filename) throws IOException {
+    public void writeFile(final String filename) throws IOException {
         try (IO.Byte.writer fout = new IO.Byte.writer(filename)) {
 
             final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
@@ -59,18 +62,19 @@ public class PpmImage {
         }
     }
 
-    private int readInt(IO.Byte.reader file) throws IOException {
+    private int readInt(final IO.Byte.reader file) throws IOException {
 
         // Read till we find ascii integers
         char c;
         do {
             c = (char) file.read();
             if (c == '#') { // Comment, discard till newline
-                while ( c != '\n') c = (char) file.read();
+                while (c != '\n')
+                    c = (char) file.read();
             }
         } while (c < '0' || c > '9');
 
-        //Read till not ascii integer
+        // Read till not ascii integer
         int n = 0;
         do {
             n = n * 10 + c - '0';
@@ -80,31 +84,34 @@ public class PpmImage {
         return n;
     }
 
-    private byte doubleToByte(double d) {
+    private byte doubleToByte(final double d) {
         int n = (int) d;
 
-        if (n < 0) n = 0;
-        else if (n > 255) n = 255;
+        if (n < 0)
+            n = 0;
+        else if (n > 255)
+            n = 255;
 
         return (byte) n;
     }
 
     public void toRGB() {
         // Do nothing if already RGB
-        //if (this.channel == Channel.RGB) return;
-        //this.channel = Channel.RGB;
+        // if (this.channel == Channel.RGB) return;
+        // this.channel = Channel.RGB;
 
         byte R, G, B;
         for (int i = 0; i < this.width; ++i) {
             for (int j = 0; j < this.height; ++j) {
-                //final byte Y = this.pixels[i][j][0], Cb = this.pixels[i][j][1], Cr = this.pixels[i][j][2];
+                // final byte Y = this.pixels[i][j][0], Cb = this.pixels[i][j][1], Cr =
+                // this.pixels[i][j][2];
                 final double Y = Byte.toUnsignedInt(this.pixels[i][j][0]);
                 final double Cb = Byte.toUnsignedInt(this.pixels[i][j][1]);
                 final double Cr = Byte.toUnsignedInt(this.pixels[i][j][2]);
 
-                R = doubleToByte(Y                    + 1.402*(Cr-128));
-                G = doubleToByte(Y - 0.34414*(Cb-128) - 0.71414*(Cr-128));
-                B = doubleToByte(Y +   1.772*(Cb-128));
+                R = doubleToByte(Y + 1.402 * (Cr - 128));
+                G = doubleToByte(Y - 0.34414 * (Cb - 128) - 0.71414 * (Cr - 128));
+                B = doubleToByte(Y + 1.772 * (Cb - 128));
 
                 this.pixels[i][j][0] = R;
                 this.pixels[i][j][1] = G;
@@ -116,8 +123,8 @@ public class PpmImage {
 
     public void toYCbCr() {
         // Do nothing if already YCbCr
-        //if (this.channel == Channel.YCbCr) return;
-        //this.channel = Channel.YCbCr;
+        // if (this.channel == Channel.YCbCr) return;
+        // this.channel = Channel.YCbCr;
 
         byte Y, Cb, Cr;
         for (int i = 0; i < this.width; ++i) {
@@ -126,9 +133,9 @@ public class PpmImage {
                 final double G = Byte.toUnsignedInt(this.pixels[i][j][1]);
                 final double B = Byte.toUnsignedInt(this.pixels[i][j][2]);
 
-                Y = doubleToByte(   0 + 0.299*R  + 0.587*G  + 0.114 * B);
-                Cb = doubleToByte(128 - 0.1687*R - 0.3313*G + 0.5 * B);
-                Cr = doubleToByte(128 + 0.5*R    - 0.4187*G - 0.0813*B);
+                Y = doubleToByte(0 + 0.299 * R + 0.587 * G + 0.114 * B);
+                Cb = doubleToByte(128 - 0.1687 * R - 0.3313 * G + 0.5 * B);
+                Cr = doubleToByte(128 + 0.5 * R - 0.4187 * G - 0.0813 * B);
 
                 this.pixels[i][j][0] = Y;
                 this.pixels[i][j][1] = Cb;
@@ -137,13 +144,13 @@ public class PpmImage {
         }
     }
 
-    public byte[][] getBlock(int channel, int x, int y) {
-        byte[][] block =  new byte[8][8];
+    public byte[][] getBlock(final int channel, final int x, final int y) {
+        final byte[][] block = new byte[8][8];
 
         for (int i = 0; i < 8; ++i) {
-            int posX = Math.min(8*x+i, width-1);
+            final int posX = Math.min(8 * x + i, width - 1);
             for (int j = 0; j < 8; ++j) {
-                int posY = Math.min(8*y+j, height-1);
+                final int posY = Math.min(8 * y + j, height - 1);
                 block[i][j] = pixels[posX][posY][channel];
             }
         }
@@ -151,12 +158,13 @@ public class PpmImage {
         return block;
     }
 
-    public void writeBlock(byte[][] block, int channel, int x, int y) {
+    public void writeBlock(final byte[][] block, final int channel, final int x, final int y) {
         for (int i = 0; i < 8; ++i) {
-            int posX = 8*x+i;
-            if (posX >= width) break;
+            final int posX = 8 * x + i;
+            if (posX >= width)
+                break;
             for (int j = 0; j < 8; ++j) {
-                int posY = 8*y+j;
+                final int posY = 8 * y + j;
                 if (posY >= height) break;
                 pixels[posX][posY][channel] = block[i][j];
             }
@@ -177,21 +185,4 @@ public class PpmImage {
     public int rows() {
         return height/8 + ((height%8 == 0)? 0 : 1);
     }
-
-    //TODO: remove this
-    public void debug() {
-        for (int k = 0; k < 3; ++k) {
-            System.out.println(k);
-            for (int i = 0; i < this.width; ++i) {
-                for (int j = 0; j < this.height; ++j) {
-                    int n = Byte.toUnsignedInt(
-                            this.pixels[i][j][k]
-                            );
-                    System.out.printf("%03d ", n);
-                }
-                System.out.println();
-            }
-        }
-    }
-
 }

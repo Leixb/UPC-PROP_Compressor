@@ -24,13 +24,17 @@ public class Huffman {
         }
     }
 
-    public Huffman(boolean isAC, boolean isChrominance) throws IOException {
+    public Huffman(final boolean isAC, final boolean isChrominance) throws IOException {
         String filename;
-        if (isAC) filename = "AC_";
-        else filename = "DC_";
+        if (isAC)
+            filename = "AC_";
+        else
+            filename = "DC_";
 
-        if (isChrominance) filename += "Chrom";
-        else filename += "Lum";
+        if (isChrominance)
+            filename += "Chrom";
+        else
+            filename += "Lum";
 
         filename += ".table";
 
@@ -39,18 +43,18 @@ public class Huffman {
         readTable(filename);
     }
 
-
-    private void readTable(String filename) throws IOException {
+    private void readTable(final String filename) throws IOException {
         table = new HashMap<Short, BitSetL>();
-        try(IO.Char.reader input = new IO.Char.reader(filename)) {
+        try (IO.Char.reader input = new IO.Char.reader(filename)) {
             String s = input.readLine();
             while (s != null) {
-                String[] sp = s.split(" ", 2);
+                final String[] sp = s.split(" ", 2);
 
-                if (sp.length != 2) throw new IOException("Invalid input table");
+                if (sp.length != 2)
+                    throw new IOException("Invalid input table");
 
-                Short value = Short.parseShort(sp[0], 16);
-                BitSetL bs = new BitSetL(sp[1]);
+                final Short value = Short.parseShort(sp[0], 16);
+                final BitSetL bs = new BitSetL(sp[1]);
 
                 table.put(value, bs);
                 addToTree(value, bs);
@@ -60,16 +64,19 @@ public class Huffman {
         }
     }
 
-    private void addToTree(Short value, BitSetL bs) {
-        if (root == null) root = new Node();
+    private void addToTree(final Short value, final BitSetL bs) {
+        if (root == null)
+            root = new Node();
         Node n = root;
 
         for (int i = 0; i < bs.length(); ++i) {
             if (bs.get(i)) {
-                if (n.R == null) n.R = new Node();
+                if (n.R == null)
+                    n.R = new Node();
                 n = n.R;
             } else {
-                if (n.L == null) n.L = new Node();
+                if (n.L == null)
+                    n.L = new Node();
                 n = n.L;
             }
         }
@@ -78,16 +85,20 @@ public class Huffman {
         n.value = value;
     }
 
-
-    public BitSetL encode(Short value) {
-        return table.get(value);
+    public BitSetL encode(final Short value) throws IOException {
+        BitSetL bs = table.get(value);
+        if (bs == null) {
+            System.out.printf("huffman lookup FAILED: %x\n", value);
+            throw new IOException("HUFFMAN FAIL");
+        }
+        return bs;
     }
 
-    public Node decode(boolean b) {
+    public Node decode(final boolean b) {
         return decode(root, b);
     }
 
-    public Node decode(Node n, boolean b) {
+    public Node decode(final Node n, final boolean b) {
         if (b) return n.R;
         else return n.L;
     }

@@ -1,7 +1,6 @@
 package domini;
 
 import java.io.File;
-import java.time.Instant;
 
 public class Statistics {
     private long startingTime;
@@ -24,11 +23,11 @@ public class Statistics {
         endingTime = System.currentTimeMillis();
     }
 
-    public void setIniFileSize (String filename) {
+    public void setIniFileSize (final String filename) {
         iniFileSize = new File(filename).length();
     }
 
-    public void setFinFileSize (String filename) {
+    public void setFinFileSize(final String filename) {
         finFileSize = new File(filename).length();
     }
 
@@ -36,12 +35,12 @@ public class Statistics {
         return (double)(endingTime - startingTime)/1000.0;
     }
 
-    public double getIniFileSize() {
-        return iniFileSize/1000;
+    public long getIniFileSize() {
+        return iniFileSize;
     }
 
-    public double getFinFileSize() {
-        return finFileSize/1000;
+    public long getFinFileSize() {
+        return finFileSize;
     }
 
     public long getBytesCompressed () {
@@ -53,18 +52,18 @@ public class Statistics {
     }
 
     public double getPercentageCompressed () {
-        return Math.round(10000.0 * (double) getBytesCompressed() / iniFileSize)/100.0;
+        return (double) getBytesCompressed()*100.0 / iniFileSize;
     }
 
     public double getPercentageDecompressed () {
-        return Math.round(10000.0 * (double) getBytesDecompressed() / iniFileSize)/100.0;
+        return (double) getBytesDecompressed()*100.0 / iniFileSize;
     }
 
     public double getSpeedCompressed () {
-        return (double)iniFileSize / getTime() / 1000.0;
+        return (double)iniFileSize / getTime();
     }
 
     public double getSpeedDecompressed () {
-        return (double)finFileSize / getTime() / 1000.0;
+        return (double)finFileSize / getTime();
     }
 }

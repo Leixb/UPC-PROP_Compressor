@@ -9,8 +9,8 @@ class LZWTest {
 
     @Test
     void compressDecompressFile() {
-        final String inputFile = "texts/prova.txt";//"texts/sampleInput.txt";//"texts/DonQuijote.txt";//"images/gonza.ppm";//
-        final String outputFile = "texts/provaOut.txt";//"texts/sampleOutput.txt";//"texts/DonQuijoteOut.txt";//"images/gonzaOut.ppm";//
+        final String inputFile = "texts/Gordo.txt";//"images/gonza.ppm";//"texts/DonQuijote.txt";//"texts/sampleInput.txt";//"texts/prova.txt";//
+        final String outputFile = "texts/GordoOut.txt";//"images/gonzaOut.ppm";//"texts/DonQuijoteOut.txt";//"texts/sampleOutput.txt";//"texts/provaOut.txt";//
         final String aux = "texts/compressedFile.txt";
 
         try {

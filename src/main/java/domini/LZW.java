@@ -9,7 +9,8 @@ import domini.IO;
 public class LZW implements FileCodec {
 
     private static final byte MAGIC_BYTE = 0x11;
-    private static final int DICTIONARY_SIZE = 0xFF;
+    private static final int DICTIONARY_SIZE = 0xFFFF;
+    private static final int END = 0;
     private static HashMap<String, Integer> compressionDictionary;
     private static HashMap<Integer, String> decompressionDictionary;
 
@@ -60,16 +61,13 @@ public class LZW implements FileCodec {
             }
             else {
                 int code = compressionDictionary.get(chars);
-                System.out.println("String: " + chars + " Code: " + code);
                 output.write(code);
 
-                //System.out.println("String: " + aux + " Code: " + i);
                 compressionDictionary.put(aux,i++);
                 chars = "" + ch;
             }
-            //System.out.println("i: " + i);
-            if (i == 0xFFFFFFFF) {
-                System.out.println("[DICTIONARY OVERFLOW]");
+
+            if (i == 0x0FFFFFFFF) {  //[DICTIONARY OVERFLOW]
                 output.write(0xFFFFFFFF);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
@@ -77,16 +75,10 @@ public class LZW implements FileCodec {
 
             c = input.read();
         }
-
-        /*
-        if (!compressionDictionary.containsKey(chars)) {
-            System.out.println("String: " + chars + " Code: " + i);
-            compressionDictionary.put(chars,i);
-        }
-         */
         int code = compressionDictionary.get(chars);
-        System.out.println("String: " + chars + " Code: " + code);
         output.write(code);
+
+        output.write(END);
     }
 
 
@@ -96,17 +88,15 @@ public class LZW implements FileCodec {
         createDecompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 
-        int old_code = input.readInt();
-
-        String aux = decompressionDictionary.get(old_code);
-        output.write(aux);
-
-        char ch = aux.charAt(0);
-
-        int code = input.readInt();
         try {
+            int old_code = input.readInt();
+            String aux = decompressionDictionary.get(old_code);
+            output.write(aux);
+
+            char ch = aux.charAt(0);
+
             while (true) {
-                System.out.println("Input code: " + code);
+                int code = input.readInt();
                 if (decompressionDictionary.containsKey(code)) {
                     aux = decompressionDictionary.get(code);
                 } else {
@@ -116,15 +106,11 @@ public class LZW implements FileCodec {
 
                 ch = aux.charAt(0);
 
-                System.out.println("String: " + (decompressionDictionary.get(old_code) + ch) + " Code: " + i);
                 decompressionDictionary.put(i++, decompressionDictionary.get(old_code) + ch);
 
                 old_code = code;
 
-                code = input.readInt();
-
-                if (code == 0xFFFFFFFF) {
-                    System.out.println("[DICTIONARY OVERFLOW DETECTED]");
+                if (code == 0xFFFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
                     createDecompressionDictionary();
                     i = DICTIONARY_SIZE;
                     code = input.readInt();
@@ -133,6 +119,6 @@ public class LZW implements FileCodec {
         } catch (EOFException e){
             //End of file reached.
         }
-        System.out.println("Last input code: " + code);
+
     }
 }

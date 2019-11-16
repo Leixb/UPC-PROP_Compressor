@@ -1,11 +1,12 @@
+/**
+ * @author ***REMOVED***
+ */
 package domini;
 
 import java.io.EOFException;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import domini.IO.Bit.writer;
 import domini.PpmImage.InvalidFileFormat;
 
 public class JPEG {
@@ -16,59 +17,96 @@ public class JPEG {
 
         img.toYCbCr();
 
-        Huffman huff = new Huffman(true, true);
+        Huffman huffAcChrom = new Huffman(true, true);
+        Huffman huffAcLum = new Huffman(true, false);
+        Huffman huffDcChrom = new Huffman(false, true);
+        Huffman huffDcLum = new Huffman(false, false);
+
+        Huffman huffAc, huffDc;
 
         try (IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
 
-            //file.write(0x92); // magic byte
-
+            file.write((byte)0x92); // magic byte
+            file.write((int)quality);
             file.write(img.width());
             file.write(img.height());
-            for (int channel = 0; channel < 3; ++channel)
-                for (int i = 0; i < img.columns(); ++i) {
-                    for (int j = 0; j < img.rows(); ++j) {
+
+            final int cols = img.columns();
+            final int rows = img.rows();
+
+            for (int channel = 0; channel < 3; ++channel) {
+
+                System.out.println(channel);
+
+                if (channel == 0) {
+                    huffAc = huffAcLum;
+                    huffDc = huffDcLum;
+                } else {
+                    huffAc = huffAcChrom;
+                    huffDc = huffDcChrom;
+                }
+
+                //int DC_prev = 0;
+
+                for (int i = 0; i < cols; ++i) {
+                    for (int j = 0; j < rows; ++j) {
                         byte[][] block = img.getBlock(channel, i, j);
 
                         short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
 
-                        writeBlock(encoded, huff,file);
+                        writeBlock(encoded, huffAc, huffDc, file);
 
                     }
                 }
+            }
             // Padding at EOF
             for (int i = 0; i < 8; ++i)
                 file.write(0);
         }
     }
 
-    public static void decompress(String inputFile, String outputFile, short quality) throws IOException {
+    public static void decompress(String inputFile, String outputFile) throws IOException {
         PpmImage img = new PpmImage();
-        Huffman huff = new Huffman(true, true);
+
+        Huffman huffAcChrom = new Huffman(true, true);
+        Huffman huffAcLum = new Huffman(true, false);
+        Huffman huffDcChrom = new Huffman(false, true);
+        Huffman huffDcLum = new Huffman(false, false);
+
+        Huffman huffAc, huffDc;
 
         try (IO.Bit.reader file = new IO.Bit.reader(inputFile)) {
 
+            file.readByte(); // Discard magic byte
+            short quality = (short) file.readInt();
             int w = file.readInt();
             int h = file.readInt();
-
-            // file.fill(); // work around
 
             img.setDimensions(w, h);
 
             int channel = 0, i = 0, j = 0;
 
             try {
-                for (channel = 0; channel < 3; ++channel)
+                for (channel = 0; channel < 3; ++channel) {
+                    if (channel == 0) {
+                        huffAc = huffAcLum;
+                        huffDc = huffDcLum;
+                    }
+                    else {
+                        huffAc = huffAcChrom;
+                        huffDc = huffDcChrom;
+                    }
                     for (i = 0; i < img.columns(); ++i) {
                         for (j = 0; j < img.rows(); ++j) {
-                            short[] encoded = decodeBlock(huff, file);
+                            short[] encoded = readBlock(huffAc, huffDc, file);
 
                             byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
 
-                            // System.out.printf("%d, %d, %d\n", channel, i, j);
                             img.writeBlock(data, channel, i, j);
 
                         }
                     }
+                }
             } catch (EOFException e) {
                 System.out.println("EOF");
                 System.out.printf("%d, %d, %d\n", channel, i, j);
@@ -79,40 +117,28 @@ public class JPEG {
         img.writeFile(outputFile);
     }
 
-    public static short[] decodeBlock(Huffman huff, IO.Bit.reader file) throws IOException {
+    public static short[] readBlock(Huffman huffAC, Huffman huffDC, IO.Bit.reader file) throws IOException {
         ArrayList<Short> block = new ArrayList<>();
 
-        for (int i = 0; i < 64; ++i) {
-            Huffman.Node n = huff.decode(file.read());
-            while (!n.isLeaf()) {
-                n = huff.decode(n, file.read());
-            }
+        block.add(readHuffman(huffDC, file));
+        if (block.get(0) != 0) block.add(read(block.get(0), file));
 
-            block.add(n.getValue());
-
-            if (n.getValue() == 0x00)
+        //for (int i = 0; i < 63; ++i) {
+        for (int i = 0; i < 100; ++i) {
+            if (i >= 64) {
+                System.out.println("___WOT");
                 break;
-
-            int length = n.getValue() & 0xF;
-
-            if (length == 0)
-                continue;
-
-            BitSetL bs = new BitSetL(length);
-
-            for (int k = 0; k < length; ++k) {
-                bs.set(k, file.read());
             }
+            short decodedValue = readHuffman(huffAC, file);
 
-            short num =0;
-            if (bs.get(0)) {
-                num = (short) bs.asInt();
-            } else {
-                bs.flip();
-                num = (short) -bs.asInt();
-            }
+            block.add(decodedValue);
 
-            block.add(num);
+            if (decodedValue == 0x00) break; // EOB
+
+            int length = decodedValue & 0xF;
+            if (length == 0) continue; // ZRL
+
+            block.add(read(length, file));
         }
 
         short[] r = new short[block.size()];
@@ -122,21 +148,62 @@ public class JPEG {
         return r;
     }
 
-    public static void writeBlock(short[] encoded, Huffman huff, IO.Bit.writer file) throws IOException {
-        for (int k = 0; k < encoded.length; ++k) {
-            file.write(huff.encode(encoded[k]));
-            int l = encoded[k]&0x0F;
-            if (l != 0) {
-                ++k;
-                BitSetL bs;
-                if (encoded[k] < 0) {
-                    bs = new BitSetL(-encoded[k], l);
-                    bs.flip();
-                } else {
-                    bs = new BitSetL(encoded[k], l);
-                }
-                file.write(bs);
-            }
+    private static short readHuffman(Huffman huff, IO.Bit.reader file) throws IOException {
+        Huffman.Node n = huff.decode(file.read());
+        while (!n.isLeaf()) {
+            n = huff.decode(n, file.read());
         }
+        return n.getValue();
+    }
+
+    public static void writeBlock(short[] encoded, Huffman huffAC, Huffman huffDC, IO.Bit.writer file) throws IOException {
+        // write DC coefficient
+        file.write(huffDC.encode(encoded[0]));
+
+        int k;
+        if (encoded[0] != 0) {
+            write(encoded[1], encoded[0], file);
+            k = 2;
+        } else {
+            k = 1;
+        }
+
+        // write AC coefficients
+        for (; k < encoded.length; ++k) {
+            // escriu codi huffman
+            file.write(huffAC.encode(encoded[k]));
+
+            int l = encoded[k]&0x0F;
+            if (l == 0) continue;
+
+            ++k;
+
+            write(encoded[k], l, file);
+
+        }
+    }
+
+    // Si es negatiu escriu el valor negat en binari.
+    private static void write(int value, int l, IO.Bit.writer file) throws IOException {
+        BitSetL bs;
+        if (value < 0) {
+            bs = new BitSetL(-value, l);
+            bs.flip();
+        } else {
+            bs = new BitSetL(value, l);
+        }
+        file.write(bs);
+    }
+    private static short read(int length, IO.Bit.reader file) throws IOException {
+        BitSetL bs = file.readBitSet(length);
+
+        short num =0;
+        if (bs.get(0)) {
+            num = (short) bs.asInt();
+        } else {
+            bs.flip();
+            num = (short) -bs.asInt();
+        }
+        return num;
     }
 }

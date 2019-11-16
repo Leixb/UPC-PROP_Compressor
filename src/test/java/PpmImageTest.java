@@ -44,7 +44,6 @@ class PpmImageTest {
 
             System.out.printf("%d -> %d (%.2f%%)\n", original_size, compressed_size, (100*compressed_size/(double)original_size));
 
-
             new File("generated/").mkdirs();
             img.writeFile("generated/" + outputFile);
         } catch (Exception e) {

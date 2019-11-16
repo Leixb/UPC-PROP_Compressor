@@ -1,12 +1,6 @@
 package domini;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.ByteOrder;
-import java.nio.ShortBuffer;
 import java.util.ArrayList;
-import java.nio.ByteBuffer;
 
 public class JPEGBlock implements Codec<byte[][], short[]> {
 
@@ -223,7 +217,7 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     private static int bitLength(short n) {
-        return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2) + 1e6) + 1);
+        return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2)) + 1);
     }
 
     public static class RLE implements Codec<short[], short[]> {
@@ -233,31 +227,45 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
 
             ArrayList<Short> buff = new ArrayList<Short>();
 
-            for (int i = 0; i < data.length; ++i) {
+            // Afegim DC
+            if (data[0] == 0) buff.add((short)0);
+            else {
+                buff.add((short)bitLength(data[0]));
+                buff.add(data[0]);
+            }
+
+            // Comencem des de 1 ja que 0 es el DC
+            for (int i = 1; i < data.length; ++i) {
                 byte count = 0;
                 while (i < data.length && data[i] == 0) {
                     ++i;
                     ++count;
                 }
                 if (i >= data.length) {
-                    //buff.add((short) 0x00);
+                    //buff.add((short) 0x00); // EOB
                     break;
                 }
                 if (count >= 16) {
                     for (int j = 0; j < count / 16; ++j) {
-                        buff.add((short) 0xF0);
+                        buff.add((short) 0xF0); // ZRL
                     }
                     count %= 16;
                 }
 
-                //System.out.printf("%x %x %04x\n", count, bitLength(data[i]), data[i]);
-                //System.out.printf("%x %d %04x\n", count, bitLength(data[i]), data[i]);
+                if (data[i] > 1023) {
+                    System.out.printf("padding -> %d\n", data[i]);
+                    data[i] = 1023;
+                } else if (data[i] < -1023) {
+                    System.out.printf("padding -> %d\n", data[i]);
+                    data[i] = -1023;
+                }
 
                 buff.add((short) ((count<<4) | bitLength(data[i])));
                 buff.add(data[i]);
 
             }
-            buff.add((short) 0x00);
+            buff.add((short) 0x00); // EOB
+            //buff.add((short) 0x00);
             short[] r = new short[buff.size()];
             for (int i = 0; i < buff.size(); ++i) {
                 r[i] = buff.get(i);
@@ -269,15 +277,27 @@ public class JPEGBlock implements Codec<byte[][], short[]> {
 
             short[] decodedData = new short[64];
 
-            int i = 0, j = 0;
+            // i (data), j (decodedData)
+            int i, j = 1;
+
+            // data[0] = length DC, data[1] = DC
+            if (data[0] == 0) {
+                decodedData[0] = 0;
+                i = 1;
+            } else {
+                decodedData[0] = data[1];
+                i = 2;
+            }
+
             for (; i < data.length; ) {
                 if (data[i] == 0x00) break;
 
                 int run = (data[i] & 0xF0)>>4;
                 int length = data[i] & 0x0F;
 
-                j += run;
+                j += run; // Fill with zeros
                 ++i;
+
                 if (length == 0) continue;
                 decodedData[j] = data[i];
                 ++i;

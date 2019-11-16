@@ -10,29 +10,29 @@ public final class JPEG {
 
     private JPEG() {}
 
-    public static void compress(String inputFile, String outputFile, short quality)
+    public static void compress(final String inputFile, final String outputFile, final short quality)
             throws Exception, InvalidFileFormat {
-        PpmImage img = new PpmImage();
+        final PpmImage img = new PpmImage();
         img.readFile(inputFile);
 
         img.toYCbCr();
 
-        Huffman huff = new Huffman(true, true);
+        final Huffman huff = new Huffman(true, true);
 
         try (IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
 
-            //file.write(0x92); // magic byte
+            // file.write(0x92); // magic byte
 
             file.write(img.width());
             file.write(img.height());
             for (int channel = 0; channel < 3; ++channel)
                 for (int i = 0; i < img.columns(); ++i) {
                     for (int j = 0; j < img.rows(); ++j) {
-                        byte[][] block = img.getBlock(channel, i, j);
+                        final byte[][] block = img.getBlock(channel, i, j);
 
-                        short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
+                        final short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
 
-                        writeBlock(encoded, huff,file);
+                        writeBlock(encoded, huff, file);
 
                     }
                 }
@@ -42,14 +42,15 @@ public final class JPEG {
         }
     }
 
-    public static void decompress(String inputFile, String outputFile, short quality) throws IOException {
-        PpmImage img = new PpmImage();
-        Huffman huff = new Huffman(true, true);
+    public static void decompress(final String inputFile, final String outputFile, final short quality)
+            throws IOException {
+        final PpmImage img = new PpmImage();
+        final Huffman huff = new Huffman(true, true);
 
         try (IO.Bit.reader file = new IO.Bit.reader(inputFile)) {
 
-            int w = file.readInt();
-            int h = file.readInt();
+            final int w = file.readInt();
+            final int h = file.readInt();
 
             // file.fill(); // work around
 
@@ -61,16 +62,16 @@ public final class JPEG {
                 for (channel = 0; channel < 3; ++channel)
                     for (i = 0; i < img.columns(); ++i) {
                         for (j = 0; j < img.rows(); ++j) {
-                            short[] encoded = decodeBlock(huff, file);
+                            final short[] encoded = decodeBlock(huff, file);
 
-                            byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
+                            final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
 
                             // System.out.printf("%d, %d, %d\n", channel, i, j);
                             img.writeBlock(data, channel, i, j);
 
                         }
                     }
-            } catch (EOFException e) {
+            } catch (final EOFException e) {
                 System.out.println("EOF");
                 System.out.printf("%d, %d, %d\n", channel, i, j);
                 System.out.printf("%d, %d, %d\n", 3, img.columns(), img.rows());
@@ -80,8 +81,8 @@ public final class JPEG {
         img.writeFile(outputFile);
     }
 
-    public static short[] decodeBlock(Huffman huff, IO.Bit.reader file) throws IOException {
-        ArrayList<Short> block = new ArrayList<>();
+    public static short[] decodeBlock(final Huffman huff, final IO.Bit.reader file) throws IOException {
+        final ArrayList<Short> block = new ArrayList<>();
 
         for (int i = 0; i < 64; ++i) {
             Huffman.Node n = huff.decode(file.read());
@@ -94,18 +95,18 @@ public final class JPEG {
             if (n.getValue() == 0x00)
                 break;
 
-            int length = n.getValue() & 0xF;
+            final int length = n.getValue() & 0xF;
 
             if (length == 0)
                 continue;
 
-            BitSetL bs = new BitSetL(length);
+            final BitSetL bs = new BitSetL(length);
 
             for (int k = 0; k < length; ++k) {
                 bs.set(k, file.read());
             }
 
-            short num =0;
+            short num = 0;
             if (bs.get(0)) {
                 num = (short) bs.asInt();
             } else {
@@ -116,17 +117,18 @@ public final class JPEG {
             block.add(num);
         }
 
-        short[] r = new short[block.size()];
+        final short[] r = new short[block.size()];
         for (int i = 0; i < block.size(); ++i) {
             r[i] = block.get(i);
         }
         return r;
     }
 
-    public static void writeBlock(short[] encoded, Huffman huff, IO.Bit.writer file) throws IOException {
+    public static void writeBlock(final short[] encoded, final Huffman huff, final IO.Bit.writer file)
+            throws IOException {
         for (int k = 0; k < encoded.length; ++k) {
             file.write(huff.encode(encoded[k]));
-            int l = encoded[k]&0x0F;
+            final int l = encoded[k] & 0x0F;
             if (l != 0) {
                 ++k;
                 BitSetL bs;

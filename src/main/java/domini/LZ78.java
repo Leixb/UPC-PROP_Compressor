@@ -12,7 +12,7 @@ public final class LZ78 extends LZ {
     private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
     public final static byte MAGIC_BYTE = 0x78;
 
-    public static void compress(IO.Char.reader input, IO.Bit.writer output) throws IOException {
+    public static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         String chars = "";
@@ -22,8 +22,8 @@ public final class LZ78 extends LZ {
         boolean newchar = true;
         int chin = input.read();
         while (chin != -1) {
-            char last_char = (char) chin;
-            String charac = chars + last_char;
+            final char last_char = (char) chin;
+            final String charac = chars + last_char;
             if (compress_dict.get(charac) != null) {
                 newchar = false;
                 chars = charac;
@@ -37,45 +37,49 @@ public final class LZ78 extends LZ {
                 }
                 compress_dict.put(charac, num);
                 ++num;
-                int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
-                BitSetL bs_num = new BitSetL(codnum,nbits);
+                final int nbits = bits_needed(nchar); // Numero de bits en que hay que codificar el nchar
+                final BitSetL bs_num = new BitSetL(codnum, nbits);
                 output.write(bs_num);
-                BitSetL bs_char = new BitSetL((int)last_char,16);
+                final BitSetL bs_char = new BitSetL((int) last_char, 16);
                 output.write(bs_char);
                 ++nchar;
             }
             chin = input.read();
         }
-        //Si aun quedan letras por codificar estas ya estan en el diccionario, simplemente
-        //se obtiene el value del diccionario y se escribe junto con un byte vacio, 8 bits a 0.
+        // Si aun quedan letras por codificar estas ya estan en el diccionario,
+        // simplemente
+        // se obtiene el value del diccionario y se escribe junto con un byte vacio, 8
+        // bits a 0.
         if (newchar == false) {
             codnum = compress_dict.get(chars);
-            int nbits = bits_needed(nchar); //Numero de bits en que hay que codificar el nchar
-            BitSetL bs_num = new BitSetL(codnum,nbits);
-            //for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum con los bits necesarios
+            final int nbits = bits_needed(nchar); // Numero de bits en que hay que codificar el nchar
+            final BitSetL bs_num = new BitSetL(codnum, nbits);
+            // for (int i=0; i<nbits; ++i) output.write(bs_num.get(i)); //Escribe el codnum
+            // con los bits necesarios
             output.write(bs_num);
-            for(int i=0; i<16; ++i) output.write(false);
+            for (int i = 0; i < 16; ++i)
+                output.write(false);
         }
         input.close();
     }
 
-    private static int bits_needed(int n){
-        if (n<=0) return 0;
-        return (int) (Math.log(n) / Math.log(2) + 1e-10)+1;
+    private static int bits_needed(final int n) {
+        if (n <= 0)
+            return 0;
+        return (int) (Math.log(n) / Math.log(2) + 1e-10) + 1;
     }
 
-
-    public static void decompress(IO.Bit.reader input, IO.Char.writer output) throws IOException{
+    public static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         input.readByte();
 
         int num = 1;
-        int nchar=0;
+        int nchar = 0;
         int number;
         String charac = "";
-        int first_char=input.readBitSet(16).asInt();
-        charac+= (char) first_char;
-        output.write((char)first_char);
-        decompress_dict.put(num,charac);
+        final int first_char = input.readBitSet(16).asInt();
+        charac += (char) first_char;
+        output.write((char) first_char);
+        decompress_dict.put(num, charac);
         ++num;
         ++nchar;
         int nbits = bits_needed(nchar);
@@ -83,12 +87,14 @@ public final class LZ78 extends LZ {
             for (;;) {
                 number = input.readBitSet(nbits).asInt();
 
-                int last_char = input.readBitSet(16).asInt();
+                final int last_char = input.readBitSet(16).asInt();
                 charac = "";
 
-                if (number > 0){
-                    if (last_char>0) charac = decompress_dict.get(number) + (char) last_char;
-                    else charac = decompress_dict.get(number);
+                if (number > 0) {
+                    if (last_char > 0)
+                        charac = decompress_dict.get(number) + (char) last_char;
+                    else
+                        charac = decompress_dict.get(number);
                     output.write(charac);
                 } else {
                     charac += (char) last_char;
@@ -100,7 +106,7 @@ public final class LZ78 extends LZ {
                 nbits = bits_needed(nchar);
             }
 
-        }catch (EOFException e) {
+        } catch (final EOFException e) {
             //EOF!
         }
 

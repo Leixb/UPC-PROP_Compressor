@@ -10,7 +10,7 @@ public final class LZW extends LZ {
 
     private LZW() {}
 
-    private static final byte MAGIC_BYTE = 0x11;
+    public static final byte MAGIC_BYTE = 0x11;
     private static final int DICTIONARY_SIZE = 0xFFFF;
     private static final int END = 0;
     private static HashMap<String, Integer> compressionDictionary;

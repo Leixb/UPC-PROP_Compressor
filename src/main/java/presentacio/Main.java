@@ -89,7 +89,7 @@ public class Main {
         CtrlDomini.Alg alg = null;
         if (opt == 1) {
             if(fileIn.endsWith(".ppm")){
-                quality = 70; // auto JPEG qualitat 70.
+                quality = 80; // auto JPEG qualitat 80.
                 alg = CtrlDomini.Alg.JPEGd;
             } else alg = CtrlDomini.Alg.LZ78d;
         } else if(opt==2) alg = CtrlDomini.Alg.LZ78d;

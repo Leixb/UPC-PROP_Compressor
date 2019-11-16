@@ -3,7 +3,7 @@ package domini;
 import java.io.EOFException;
 
 public class CtrlDomini {
-    public enum Alg {AUTOd, LZ78d, LZSSd, LZWd, JPEGd};
+    public enum Alg {LZ78d, LZSSd, LZWd, JPEGd};
 
     public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
         Statistics stats = new Statistics();
@@ -11,8 +11,6 @@ public class CtrlDomini {
         stats.setStartingTime();
 
         switch(alg) {
-            case AUTOd:
-                break;
             case LZ78d:
                 try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
                     LZ78.compress(input,output);
@@ -53,7 +51,7 @@ public class CtrlDomini {
 
         if(b==LZ78.MAGIC_BYTE) alg = Alg.LZ78d;
         else if(b==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
-        else if(b==0x11) alg = Alg.LZWd;
+        else if(b==LZW.MAGIC_BYTE) alg = Alg.LZWd;
         else if(b==0x92) alg = Alg.JPEGd;
         else throw new Exception("Fitxer invàlid.");
 

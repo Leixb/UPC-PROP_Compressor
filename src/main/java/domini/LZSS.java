@@ -22,8 +22,8 @@ public final class LZSS {
 
     /**
      * @brief Usando el algoritmo LZSS esta función comprime un archivo txt
-     * @param input objeto de lectura de tipo IO.Char.reader del archivo que se quiere comprimir
-     * @param output objeto de escritura de tipo IO.Bit.writer del archivo comprimido
+     * @param inputFilename nombre del archivo que se quiere comprimir
+     * @param outputFilename nombre del archivo comprimido
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
 
@@ -133,10 +133,10 @@ public final class LZSS {
 
     /**
      *
-     * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor.
-     * @param input es el objeto de lectura de tipo IO.Bit.reader del archivo comprimido.
-     * @param output es el objeto de escritura de tipo IO.Char.writer del archivo descomprimido.
-     * @throws IOException se lanza cuando hay un error de lecturo o escritura.
+     * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor
+     * @param inputFilename nombre del archivo comprimido
+     * @param outputFilename nombre del archivo descomprimido
+     * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
     public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
@@ -194,9 +194,9 @@ public final class LZSS {
 
     /**
      * @brief Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que
-     *        también es sufijo hasta esa posición.
+     *        también es sufijo hasta esa posición
      * @param lps es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud
-     *        máxima del prefijo que también es sufijo desde el principio hasta esa posición.
+     *        máxima del prefijo que también es sufijo desde el principio hasta esa posición
      */
     private static void computeLPSArray(final int[] lps) {
         final int patLength = actualCharacters.size();
@@ -220,9 +220,9 @@ public final class LZSS {
     }
 
     /**
-     * @brief Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron.
+     * @brief Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron
      * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de
-     *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow.
+     *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
      */
     private static int kmp() {
         final int patLength = actualCharacters.size();
@@ -252,9 +252,9 @@ public final class LZSS {
     }
 
     /**
-     * @brief Calcula el logaritmo en base 2 de un real.
-     * @param n es el numero para el cual queremos calcular su logaritmo en base 2.
-     * @return Devuelve el logaritmo en base 2 de n.
+     * @brief Calcula el logaritmo en base 2 de un real
+     * @param n es el numero para el cual queremos calcular su logaritmo en base 2
+     * @return Devuelve el logaritmo en base 2 de n
      */
     private static double log2(final double n) {
         return Math.log(n)/Math.log(2);

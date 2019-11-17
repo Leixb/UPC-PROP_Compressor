@@ -3,7 +3,6 @@
  */
 package domini;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -40,18 +39,15 @@ public final class JPEG {
             final int rows = img.rows();
 
             for (int channel = 0; channel < 3; ++channel) {
-
-                System.out.println(channel);
-
                 if (channel == 0) {
+                    // Luminance
                     huffAc = huffAcLum;
                     huffDc = huffDcLum;
                 } else {
+                    // Chrominance
                     huffAc = huffAcChrom;
                     huffDc = huffDcChrom;
                 }
-
-                //int DC_prev = 0;
 
                 for (int i = 0; i < cols; ++i) {
                     for (int j = 0; j < rows; ++j) {
@@ -64,9 +60,6 @@ public final class JPEG {
                     }
                 }
             }
-            // Padding at EOF
-            for (int i = 0; i < 8; ++i)
-                file.write(0);
         }
     }
 
@@ -92,31 +85,25 @@ public final class JPEG {
 
             int channel = 0, i = 0, j = 0;
 
-            try {
-                for (channel = 0; channel < 3; ++channel) {
-                    if (channel == 0) {
-                        huffAc = huffAcLum;
-                        huffDc = huffDcLum;
-                    }
-                    else {
-                        huffAc = huffAcChrom;
-                        huffDc = huffDcChrom;
-                    }
-                    for (i = 0; i < img.columns(); ++i) {
-                        for (j = 0; j < img.rows(); ++j) {
-                            final short[] encoded = readBlock(huffAc, huffDc, file);
+            for (channel = 0; channel < 3; ++channel) {
+                if (channel == 0) {
+                    huffAc = huffAcLum;
+                    huffDc = huffDcLum;
+                }
+                else {
+                    huffAc = huffAcChrom;
+                    huffDc = huffDcChrom;
+                }
+                for (i = 0; i < img.columns(); ++i) {
+                    for (j = 0; j < img.rows(); ++j) {
+                        final short[] encoded = readBlock(huffAc, huffDc, file);
 
-                            final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
+                        final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
 
-                            img.writeBlock(data, channel, i, j);
+                        img.writeBlock(data, channel, i, j);
 
-                        }
                     }
                 }
-            } catch (final EOFException e) {
-                System.out.println("EOF");
-                System.out.printf("%d, %d, %d\n", channel, i, j);
-                System.out.printf("%d, %d, %d\n", 3, img.columns(), img.rows());
             }
         }
         img.toRGB();
@@ -129,12 +116,7 @@ public final class JPEG {
         block.add(readHuffman(huffDC, file));
         if (block.get(0) != 0) block.add(read(block.get(0), file));
 
-        //for (int i = 0; i < 63; ++i) {
-        for (int i = 0; i < 100; ++i) {
-            if (i >= 64) {
-                System.out.println("___WOT");
-                break;
-            }
+        for (int i = 0; i < 64; ++i) {
             final short decodedValue = readHuffman(huffAC, file);
 
             block.add(decodedValue);

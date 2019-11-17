@@ -49,23 +49,6 @@ class JPEGBlockTest {
         }
     }
 
-    //@Test
-    void RLE() {
-        short[] smallInput = {0x1FF, 11, 0, 24, 12, 30, 0, 0, 0, 0, 5, 0, 1, 2, 0, 0, 0, 0, 0, 0};
-        final short[] expected = {0, (byte)0xFF, 0, 0x1, 0, 11, 3, 24, 1, 12, 1, 30, 9, 5, 3, 1, 1, 2, 0, 0};
-        // Al passar de short a int tenim sempre el doble de 0 i un extra
-
-        short[] input = new short[64];
-        System.arraycopy(smallInput, 0, input, 0, smallInput.length);
-
-        print("EXPECTED: ", expected);
-        print("GOT", JPEGBlock.RLE.encode(input));
-
-        assertArrayEquals(JPEGBlock.RLE.encode(input), expected, "RLE encode");
-        assertArrayEquals(JPEGBlock.RLE.decode(expected), input, "RLE decode");
-    }
-
-
     private static final byte[][] sampleBlock = {
             {16,11,21,27,25,27,27,27},
             {23,23,23,31,28,28,28,30},

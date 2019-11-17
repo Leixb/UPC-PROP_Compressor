@@ -1,5 +1,7 @@
 /**
  * @author Alex González
+ *
+ * @brief Compresor y descompresor de archivos de texto con LZ78
  */
 package domini;
 
@@ -10,7 +12,7 @@ import java.util.HashMap;
 public final class LZ78 extends LZ {
 
     private LZ78 () {}
-    ///Declaración de los HashMaps de Compression y Decompression
+    //Declaración de los HashMaps de Compression y Decompression
     private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>();
     private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
 
@@ -31,10 +33,10 @@ public final class LZ78 extends LZ {
         output.write(MAGIC_BYTE);
 
         String chars = "";
-        int num = 1;///Numero que representa el value de la siguiente entrada en el HashMap
-        int nchar = 0;///Numero de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
-        int codnum = 0;///Entrada del HashMap necesaria para codificar los chars que se esta leyendo
-        boolean newchar = true;///Indicador de si el char leído es nuevo o no
+        int num = 1;//Numero que representa el value de la siguiente entrada en el HashMap
+        int nchar = 0;//Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
+        int codnum = 0;//Entrada del HashMap necesaria para codificar los chars que se esta leyendo
+        boolean newchar = true;//Indicador de si el char leído es nuevo o no
         int chin = input.read();
         while (chin != -1) {
             final char last_char = (char) chin;
@@ -52,7 +54,7 @@ public final class LZ78 extends LZ {
                 }
                 compress_dict.put(charac, num);
                 ++num;
-                final int nbits = bits_needed(nchar); /// Numero de bits en que hay que codificar el nchar
+                final int nbits = bits_needed(nchar); // Numero de bits en que hay que codificar el nchar
                 final BitSetL bs_num = new BitSetL(codnum, nbits);
                 output.write(bs_num);
                 final BitSetL bs_char = new BitSetL((int) last_char, 16);
@@ -61,13 +63,13 @@ public final class LZ78 extends LZ {
             }
             chin = input.read();
         }
-        /**
+        /*
          * Si aun quedan letras por codificar estas ya estan en el diccionario, simplemente se obtiene el value
          * del diccionario y se escribe junto con un char vacio, 16 bits a 0.
         */
         if (newchar == false) {
             codnum = compress_dict.get(chars);
-            final int nbits = bits_needed(nchar); /// Numero de bits en que hay que codificar el nchar
+            final int nbits = bits_needed(nchar); // Numero de bits en que hay que codificar el nchar
             final BitSetL bs_num = new BitSetL(codnum, nbits);
             output.write(bs_num);
             for (int i = 0; i < 16; ++i)
@@ -97,11 +99,11 @@ public final class LZ78 extends LZ {
     public static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         input.readByte();
 
-        int num = 1;///Numero que representa el value de la siguiente entrada en el HashMap
-        int nchar = 0;///Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
-        int number;///Key del HashMap codificada antes de cada char en el archivo comprimido
+        int num = 1;//Numero que representa el value de la siguiente entrada en el HashMap
+        int nchar = 0;//Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
+        int number;//Key del HashMap codificada antes de cada char en el archivo comprimido
         String charac = "";
-        /**
+        /*
          * El primer char codificado no tiene ninguna key codifiacada delante por lo que se trata
          * primero y por separado
          */
@@ -114,19 +116,19 @@ public final class LZ78 extends LZ {
             ++num;
             ++nchar;
             int nbits = bits_needed(nchar);
-            /**
+            /*
              * Tras descodificar el primer char se van leiedo bit a bit las keys y values del HashMap de descompresion
              * codificados en el archivo comprimido. Siempre que haya bits por codificar se continua leyendo.
              */
             try {
                 while (true) {
                     number = input.readBitSet(nbits).asInt();
-                    
+
                     final int last_char = input.readBitSet(16).asInt();
                     charac = "";
-                    ///Si se referencie a alguna entrada del HashMap se concatena el value String con el char leido
+                    //Si se referencie a alguna entrada del HashMap se concatena el value String con el char leido
                     if (number > 0) {
-                        ///Si el ultimo char que se ha leido son 16 bits a 0, indica el final del archivo
+                        //Si el ultimo char que se ha leido son 16 bits a 0, indica el final del archivo
                         if (last_char > 0)
                             charac = decompress_dict.get(number) + (char) last_char;
                         else

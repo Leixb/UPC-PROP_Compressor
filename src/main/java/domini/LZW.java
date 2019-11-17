@@ -8,7 +8,7 @@ import java.util.HashMap;
  * @author Alex Herrero
  */
 
-public final class LZW extends LZ {
+public final class LZW {
 
     private LZW() {}
 

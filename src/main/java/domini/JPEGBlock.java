@@ -2,6 +2,9 @@ package domini;
 
 import java.util.ArrayList;
 
+/** 
+ * @author Aleix Boné
+ */
 public final class JPEGBlock implements Codec<byte[][], short[]> {
 
     private JPEGBlock () {}

@@ -12,6 +12,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/** 
+ * @author Aleix Boné
+ */
 public class IO {
     public static class Char {
         public static class reader extends BufferedReader {

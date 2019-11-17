@@ -2,6 +2,9 @@ package domini;
 
 import java.io.*;
 
+/** 
+ * @author Aleix Boné
+ */
 public class PpmImage {
     private byte[][][] pixels; // width * height * channel
     private int width, height;

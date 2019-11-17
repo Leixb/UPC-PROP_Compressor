@@ -1,6 +1,3 @@
-/**
- * @author Aleix Boné
- */
 package domini;
 
 import java.io.EOFException;
@@ -9,12 +6,24 @@ import java.util.ArrayList;
 
 import domini.PpmImage.InvalidFileFormat;
 
+/** 
+ * @author Aleix Boné
+ */
 public final class JPEG {
 
     private JPEG() {}
 
+    /// Magic Byte JPEG
     public final static byte MAGIC_BYTE = (byte) 0x98;
 
+    /**
+     * 
+     * @param inputFile 
+     * @param outputFile
+     * @param quality
+     * @throws Exception
+     * @throws InvalidFileFormat
+     */
     public static void compress(final String inputFile, final String outputFile, final short quality)
             throws Exception, InvalidFileFormat {
         final PpmImage img = new PpmImage();
@@ -70,6 +79,12 @@ public final class JPEG {
         }
     }
 
+    /**
+     * 
+     * @param inputFile
+     * @param outputFile
+     * @throws IOException
+     */
     public static void decompress(final String inputFile, final String outputFile)
             throws IOException {
         final PpmImage img = new PpmImage();
@@ -123,6 +138,14 @@ public final class JPEG {
         img.writeFile(outputFile);
     }
 
+    /**
+     * @brief Lee un bloque codificado con las tablas huffman.
+     * @param huffAC
+     * @param huffDC
+     * @param file
+     * @return 
+     * @throws IOException
+     */
     public static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file) throws IOException {
         final ArrayList<Short> block = new ArrayList<>();
 
@@ -200,6 +223,7 @@ public final class JPEG {
         }
         file.write(bs);
     }
+
     private static short read(int length, IO.Bit.reader file) throws IOException {
         BitSetL bs = file.readBitSet(length);
 

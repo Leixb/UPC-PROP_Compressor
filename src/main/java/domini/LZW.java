@@ -1,36 +1,32 @@
 package domini;
 
-import java.io.IOException;
 import java.io.EOFException;
+import java.io.IOException;
 import java.util.HashMap;
 
-import domini.IO;
+/**
+ * @author Alex Herrero
+ */
 
 public final class LZW extends LZ {
 
     private LZW() {}
 
-    public static final byte MAGIC_BYTE = 0x11;
-    private static final int DICTIONARY_SIZE = 0xFFFF;
-    private static final int END = 0;
+    /// Magic Byte LZW
+    public final static byte MAGIC_BYTE = (byte) 0x11;
+
+    /// Tamaño inicial del diccionario
+    private final static int DICTIONARY_SIZE = 0xFFFF;
+
+    /// Diccionario de compresión
     private static HashMap<String, Integer> compressionDictionary;
+
+    /// Diccionario de descompresión
     private static HashMap<Integer, String> decompressionDictionary;
 
-    public static class TooManyStringsException extends Exception {
-
-        private static final long serialVersionUID = -3749513648532868661L;
-
-
-        public TooManyStringsException() {
-            super();
-        }
-
-        public TooManyStringsException(final String s) {
-            super(s);
-        }
-
-    }
-
+    /**
+     * @brief Crea el diccionario de compresión y lo inicializa.
+     */
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
@@ -39,6 +35,9 @@ public final class LZW extends LZ {
         }
     }
 
+    /**
+     * @brief Crea el diccionario de descompresión y lo inicializa.
+     */
     private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
@@ -47,7 +46,14 @@ public final class LZW extends LZ {
         }
     }
 
-    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
+    /**
+     * @brief Comprime un archivo de texto implementando un algoritmo LZW.
+     *
+     * @param input objeto de lectura del archivo que se quiere comprimir.
+     * @param output objeto de ecritura del archivo comprimido.
+     * @throws IOException se se produce un error en la lectura del archivo.
+     */
+    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
@@ -69,22 +75,28 @@ public final class LZW extends LZ {
                 chars = "" + ch;
             }
 
-            if (i == 0x0FFFFFFFF) {  //[DICTIONARY OVERFLOW]
-                output.write(0xFFFFFFFF);
+            if (i >= 0x7FFFFFFF) {  //[DICTIONARY OVERFLOW]
+                output.write(0x7FFFFFFF);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
 
             c = input.read();
         }
-        final int code = compressionDictionary.get(chars);
-        output.write(code);
-
-        output.write(END);
+        if (compressionDictionary.containsKey(chars)) {
+            final int code = compressionDictionary.get(chars);
+            output.write(code);
+        }
     }
 
-
-    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
+    /**
+     * @brief Descomprime un archivo de texto implementando un algoritmo LZW.
+     *
+     * @param input es el objeto de lectura del archivo que se quiere descomprimir.
+     * @param output es el objeto de ecritura del archivo desccomprimido.
+     * @throws IOException se se produce un error en la lectura del archivo.
+     */
+    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
         input.readByte();
 
         createDecompressionDictionary();
@@ -112,7 +124,7 @@ public final class LZW extends LZ {
 
                 old_code = code;
 
-                if (code == 0xFFFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
+                if (code == 0x7FFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
                     createDecompressionDictionary();
                     i = DICTIONARY_SIZE;
                     code = input.readInt();

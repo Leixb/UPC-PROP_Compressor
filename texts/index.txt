@@ -1,0 +1,10 @@
+texts					Textos de prueba
+├── celestina.txt
+├── DonQuijote.txt
+├── Gordo.txt
+├── hola.txt
+├── prova.txt
+├── quijote.txt
+└── sampleInput.txt
+
+0 directories, 7 files

@@ -1,0 +1,37 @@
+src										Carpeta con codigos fuente
+├── main								Codigos principales (no tests)
+│   ├── java
+│   │   ├── domini
+│   │   │   ├── BitSetL.java 			Codigo classe BitSetL
+│   │   │   ├── Codec.java 				Codigo interficie Codec
+│   │   │   ├── CtrlDomini.java 		Controlador capa dominio
+│   │   │   ├── Huffman.java 			Codigo classe Huffman
+│   │   │   ├── IO.java 				Codigo classe IO
+│   │   │   ├── JPEGBlock.java 			Codigo classe JPEGBlock
+│   │   │   ├── JPEG.java 				Codigo classe JPEG
+│   │   │   ├── LZ78.java 				Codigo classe LZ78
+│   │   │   ├── LZSS.java 				Codigo classe LZSS
+│   │   │   ├── LZW.java 				Codigo classe LZW
+│   │   │   ├── PpmImage.java 			Codigo classe PpmImage
+│   │   │   └── Statistics.java 		Codigo classe Statistics
+│   │   ├── persistencia
+│   │   │   └── CtrlPersistencia.java 	Controlador de capa persistencia
+│   │   └── presentacio
+│   │       ├── CtrlPresentacio.java    Controlador de capa presentacion
+│   │       └── Main.java				main de la aplicación
+│   └── resource						ficheros adicionales usados por las classes
+│       ├── AC_Chrom.table 				tabla huffman de Chrominance para AC
+│       ├── AC_Lum.table 				tabla huffman de Luminance para AC
+│       ├── DC_Chrom.table 				tabla huffman de Chrominance para DC
+│       └── DC_Lum.table 				tabla huffman de Luminance para DC
+└── test								Tests Junit
+    └── java
+        ├── BitSetLTest.java 			Codigo JUnit BitSetL
+        ├── HuffmanTest.java 			Codigo JUnit Huffman
+        ├── IOBitTest.java 				Codigo JUnit IOBitTest
+        ├── JPEGBlockTest.java 			Codigo JUnit JPEGBlock
+        ├── JPEGTest.java 				Codigo JUnit JPEG
+        ├── LZSSTest.java 				Codigo JUnit LZSS
+        └── LZWTest.java 				Codigo JUnit LZW
+
+8 directories, 26 files

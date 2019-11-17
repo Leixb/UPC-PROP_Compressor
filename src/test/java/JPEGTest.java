@@ -27,7 +27,7 @@ class JPEGTest {
         new File("generated/").mkdirs();
         Huffman huffAC = new Huffman(true, true);
         Huffman huffDC = new Huffman(false, true);
-        short[] code = JPEGBlock.encode(sampleBlock);
+        short[] code = JPEGBlock.encode((short) 70, true, sampleBlock);
         try (IO.Bit.writer file = new IO.Bit.writer("generated/testFile")) {
             JPEG.writeBlock(code, huffAC, huffDC, file);
             JPEG.writeBlock(code, huffAC, huffDC, file);

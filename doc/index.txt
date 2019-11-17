@@ -1,0 +1,11 @@
+doc								carpeta documentacion
+├── Doxygen
+│   ├── html 					carpeta con documentacion Doxygen HTML
+│   └── latex 					carpeta con documentacion Doxygen LaTeX
+└── UML
+    ├── CasosUs.png				diagrama Casos de uso (imagen PNG)
+    ├── CasosUs.uml				diagrama Casos de uso (formato plantUML)
+    ├── DiagramaClasses.png     diagrama Classes (imagen PNG)
+    └── DiagramaClasses.uml		diagrama Classes (formato plantUML)
+
+4 directories, 4 files

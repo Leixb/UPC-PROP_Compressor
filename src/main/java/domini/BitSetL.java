@@ -2,22 +2,39 @@ package domini;
 
 import java.util.BitSet;
 
+/**
+ * @author Aleix Boné
+ *
+ * @brief BitSet con length() especifica
+ *
+ * BitSet con length distinta al BitSet estandard.
+ * El length de java.util.BitSet devuelve el numero de bits hasta el
+ * último 1. BitSetL devuelve el numero de bits del último bit modificado
+ * o el especificado al construir-se el BitSetL.
+ */
 public class BitSetL extends BitSet {
     private static final long serialVersionUID = 1L;
 
-    int _length_;
-    int l;
+    private int _length_;
 
+    /** Constructora vacía, inicializa length a -1 */
     public BitSetL() {
         super();
         _length_ = -1;
     }
 
+    /** Constructora con longitud, inicializa length a la longitud dada
+     * @param l longitud del bitset
+     */
     public BitSetL(final int l) {
         super(l);
         _length_ = l;
     }
 
+    /** Constructora con entero y longitud, inicializa length a la longitud dada
+     * y mete los l últimos bits del entero en el bitset.
+     * @param l longitud del bitset
+     */
     public BitSetL(final int n, final int l) {
         super(l);
         int mask = 1 << (l - 1);
@@ -29,6 +46,10 @@ public class BitSetL extends BitSet {
         _length_ = l;
     }
 
+    /** Constructora con String, inicializa length al tamaño del String
+     * y convierte la string en un bitset.
+     * @param s string de 0 y unos
+     */
     public BitSetL(final String s) {
         super(s.length());
         for (int i = 0; i < s.length(); i++) {
@@ -36,6 +57,11 @@ public class BitSetL extends BitSet {
         }
     }
 
+    /**
+     * @brief Devuelve el bitset como un entero (32 bits)
+     * @pre el bitset no tiene mas de 32 bits
+     * @return bitset como entero
+     */
     public int asInt() {
         int v = 0;
         for (int i = 0; i < _length_; ++i) {
@@ -46,32 +72,51 @@ public class BitSetL extends BitSet {
         return v;
     }
 
+    /**
+     * @brief Invierte los bits del bitset. (Solo hasta length)
+     */
     public void flip() {
         for (int i = 0; i < _length_; i++) {
             flip(i);
         }
     }
 
+    /**
+     * @brief mete a true el bit en la posición dada
+     * @param pos posición del bit a meter true
+     */
+    public void set(final int pos) {
+        super.set(pos);
+        if (pos + 1 > _length_)
+            _length_ = pos + 1;
+    }
+
+    /**
+     * @brief mete a true o false el bit en la posición dada en función del booleano val
+     * @param pos posición del bit a modificar
+     * @param val valor booleano que se asignar al bit
+     */
     public void set(final int pos, final boolean val) {
         super.set(pos, val);
         if (pos + 1 > _length_)
             _length_ = pos + 1;
     }
 
+    /**
+     * @brief mete a false el bit en la posición dada
+     * @param pos posicion del bit a meter true
+     */
+    public void clear(final int pos) {
+        super.clear(pos);
+        if (pos + 1 > _length_)
+            _length_ = pos + 1;
+    }
+
+    /**
+     * @brief devuelve la longitud del bitset
+     * @return longitud del bitset
+     */
     public int length() {
         return _length_;
     }
-
-    public BitSetL(final byte b, final int l) {
-        super(l);
-        _length_ = l - 1;
-        int bint = (int) b;
-        int n=0;
-        while (bint>0) {
-            if (bint%2==1) this.set(n);
-            ++n;
-            bint/=2;
-        }
-    }
-
 }

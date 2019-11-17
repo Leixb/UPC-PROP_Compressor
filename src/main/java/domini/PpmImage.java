@@ -2,16 +2,32 @@ package domini;
 
 import java.io.*;
 
+/**
+ * @author Aleix Boné
+ *
+ * @brief Imagen PPM
+ */
 public class PpmImage {
     private byte[][][] pixels; // width * height * channel
     private int width, height;
 
+    /**
+     * @brief Inicializa la imagen vacía con los valores de anchura y altura
+     * @param w anchura (width)
+     * @param h altura (height)
+     */
     public void setDimensions(final int w, final int h) {
         pixels = new byte[w][h][3];
         width = w;
         height = h;
     }
 
+    /**
+     * @brief Lee una fichero imagen y lo guarda en la memoria
+     * @param filename nombre del fichero a leer
+     * @throws IOException error en la lectura
+     * @throws InvalidFileFormat Formato de imagen invalido (No es PPM raw)
+     */
     public void readFile(final String filename) throws IOException, InvalidFileFormat {
         try (IO.Byte.reader file = new IO.Byte.reader(filename)) {
 
@@ -38,6 +54,11 @@ public class PpmImage {
         }
     }
 
+    /**
+     * @brief Escribe la imagen en un fichero
+     * @param filename nombre del fichero a escribir
+     * @throws IOException error al escribir el fichero
+     */
     public void writeFile(final String filename) throws IOException {
         try (IO.Byte.writer fout = new IO.Byte.writer(filename)) {
 
@@ -50,14 +71,24 @@ public class PpmImage {
         }
     }
 
+    /** El formato del fichero no es un PPM valido */
     public static class InvalidFileFormat extends Exception {
         private static final long serialVersionUID = -7627960741299880112L;
 
         public InvalidFileFormat() {
             super();
         }
+        public InvalidFileFormat(String s) {
+            super(s);
+        }
     }
 
+    /**
+     * @brief Lee el siguiente entero codificado en ASCII que encuentra en el fichero
+     * @param file fichero donde buscar el entero
+     * @return entero leído
+     * @throws IOException error en la lectura del fichero
+     */
     private int readInt(final IO.Byte.reader file) throws IOException {
 
         // Read till we find ascii integers
@@ -91,6 +122,7 @@ public class PpmImage {
         return (byte) n;
     }
 
+    /** @brief Convierte la imagen de espacio de color YCbCr a espacio RGB */
     public void toRGB() {
         byte R, G, B;
         for (int i = 0; i < this.width; ++i) {
@@ -111,6 +143,7 @@ public class PpmImage {
 
     }
 
+    /** @brief Convierte la imagen de espacio de color RGB a espacio YCbCr */
     public void toYCbCr() {
         byte Y, Cb, Cr;
         for (int i = 0; i < this.width; ++i) {
@@ -130,7 +163,14 @@ public class PpmImage {
         }
     }
 
-    public byte[][] getBlock(final int channel, final int x, final int y) {
+    /**
+     * @brief Devuelve un bloque de la imagen de 8x8
+     * @param channel canal de color del bloque
+     * @param x posición del bloque en coordenada x
+     * @param y posición del bloque en coordenada y
+     * @return bloque 8x8
+     */
+    public byte[][] readBlock(final int channel, final int x, final int y) {
         final byte[][] block = new byte[8][8];
 
         for (int i = 0; i < 8; ++i) {
@@ -144,6 +184,13 @@ public class PpmImage {
         return block;
     }
 
+    /**
+     * @brief Escribe un bloque de la imagen de 8x8
+     * @param block bloque 8x8 a escribir
+     * @param channel canal de color del bloque
+     * @param x posición del bloque en coordenada x
+     * @param y posición del bloque en coordenada y
+     */
     public void writeBlock(final byte[][] block, final int channel, final int x, final int y) {
         for (int i = 0; i < 8; ++i) {
             final int posX = 8 * x + i;
@@ -157,17 +204,38 @@ public class PpmImage {
         }
     }
 
+    /**
+     * @brief Devuelve la anchura de la imagen en pixels
+     * @return anchura de la imagen en pixels
+     */
     public int width() {
         return width;
     }
 
+    /**
+     * @brief Devuelve la altura de la imagen en pixels
+     * @return altura de la imagen en pixels
+     */
     public int height() {
         return height;
     }
 
+    /**
+     * @brief Devuelve la anchura de la imagen en bloques (8x8).
+     *
+     * Es decir, el número de bloques 8x8 que caben horizontalmente en la imagen.
+     * @return anchura de la imagen en bloques (8x8)
+     */
     public int columns() {
         return width/8 + ((width%8 == 0)? 0 : 1);
     }
+
+    /**
+     * @brief Devuelve la altura de la imagen en bloques (8x8).
+     *
+     * Es decir, el número de bloques 8x8 que caben verticalmente en la imagen.
+     * @return altura de la imagen en bloques (8x8)
+     */
     public int rows() {
         return height/8 + ((height%8 == 0)? 0 : 1);
     }

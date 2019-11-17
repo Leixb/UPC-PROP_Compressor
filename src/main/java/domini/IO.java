@@ -169,6 +169,7 @@ public class IO {
                 for (int k = 0; k < length; ++k) bs.set(k, read());
                 return bs;
             }
+
             public void close() throws IOException {
                 in.close();
             }

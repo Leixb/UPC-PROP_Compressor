@@ -27,7 +27,14 @@ public final class LZSS {
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
 
-    public static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
+    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+            compress(input, output);
+        }
+    }
+
+    private static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
         // writing LZSS magic byte
         output.write(MAGIC_BYTE);
 
@@ -131,8 +138,14 @@ public final class LZSS {
      * @param output es el objeto de escritura de tipo IO.Char.writer del archivo descomprimido.
      * @throws IOException se lanza cuando hay un error de lecturo o escritura.
      */
+    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+            decompress(input, output);
+        }
+    }
 
-    public static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
+    private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         // ignoring magic byte
         input.readByte();
 

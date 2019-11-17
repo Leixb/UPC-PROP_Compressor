@@ -15,21 +15,6 @@ public final class LZW extends LZ {
     private static HashMap<String, Integer> compressionDictionary;
     private static HashMap<Integer, String> decompressionDictionary;
 
-    public static class TooManyStringsException extends Exception {
-
-        private static final long serialVersionUID = -3749513648532868661L;
-
-
-        public TooManyStringsException() {
-            super();
-        }
-
-        public TooManyStringsException(final String s) {
-            super(s);
-        }
-
-    }
-
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
@@ -46,7 +31,7 @@ public final class LZW extends LZ {
         }
     }
 
-    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
+    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
@@ -68,8 +53,8 @@ public final class LZW extends LZ {
                 chars = "" + ch;
             }
 
-            if (i == 0x0FFFFFFFF) {  //[DICTIONARY OVERFLOW]
-                output.write(0xFFFFFFFF);
+            if (i >= 0x7FFFFFFF) {  //[DICTIONARY OVERFLOW]
+                output.write(0x7FFFFFFF);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
@@ -83,7 +68,7 @@ public final class LZW extends LZ {
     }
 
 
-    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
+    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
         input.readByte();
 
         createDecompressionDictionary();
@@ -111,7 +96,7 @@ public final class LZW extends LZ {
 
                 old_code = code;
 
-                if (code == 0xFFFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
+                if (code == 0x7FFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
                     createDecompressionDictionary();
                     i = DICTIONARY_SIZE;
                     code = input.readInt();

@@ -14,8 +14,11 @@ import java.io.IOException;
 
 /** 
  * @author Aleix Boné
+ * 
+ * @brief classes IO para lectura y escritura de Char, Byte, y Bit con buffer.
  */
 public class IO {
+    /** Lector / Escritor char a char con buffer */
     public static class Char {
         public static class reader extends BufferedReader {
             public reader(final String filename) throws FileNotFoundException {
@@ -30,6 +33,7 @@ public class IO {
         }
     }
 
+    /** Lector / Escritor byte a byte con buffer */
     public static class Byte {
         public static class reader extends BufferedInputStream {
             public reader(final String filename) throws FileNotFoundException {
@@ -44,6 +48,7 @@ public class IO {
         }
     }
 
+    /** Lector / Escritor bit a bit con buffer */
     public static class Bit {
         public static class writer implements AutoCloseable {
             private final BufferedOutputStream out;
@@ -105,7 +110,7 @@ public class IO {
                 out.flush();
             }
 
-            public void close() throws Exception {
+            public void close() throws IOException {
                 flush();
                 out.close();
             }

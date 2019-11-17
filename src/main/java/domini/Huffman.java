@@ -6,13 +6,15 @@ import java.io.IOException;
 
 /** 
  * @author Aleix Boné
+ * 
+ * @brief codificación y decodificación huffman con tablas predefinidas
  */
 public class Huffman {
 
     private Node root; //< Raíz del arbol Huffman
     private HashMap<Short, BitSetL> table; //< Tabla de Huffman
 
-    /// Node del arbol huffman
+    /// Nodo del arbol huffman
     public class Node {
         Short value;
         // L -> 0; R -> 1
@@ -104,24 +106,37 @@ public class Huffman {
     }
 
     /**
-     * @brief deuelve el còdigo Huffman associado a value
+     * @brief deuelve el còdigo Huffman associado a un valor
      * 
-     * @param value
+     * @param value valor a buscar en la tabla
      * @return código huffman
-     * @throws IOException cuando el valor no se enquentra en la tabla
+     * @throws HuffmanLookupException si el valor no se encuentra en la tabla
      */
-    public BitSetL encode(final Short value) throws IOException {
+    public BitSetL encode(final Short value) throws HuffmanLookupException {
         BitSetL bs = table.get(value);
         if (bs == null) {
-            System.out.printf("huffman lookup FAILED: %x\n", value);
-            throw new IOException("HUFFMAN FAIL");
+            throw new HuffmanLookupException(value);
         }
         return bs;
     }
 
+    public static class HuffmanLookupException extends Exception {
+        private static final long serialVersionUID = 716585856065058709L;
+
+        HuffmanLookupException() {
+            super();
+        }
+        HuffmanLookupException(String s) {
+            super(s);
+        }
+        HuffmanLookupException(Short n) {
+            super(String.format("Huffman lookup failed for: %d", n));
+        }
+    }
+
     /**
-     * @param b
-     * @return
+     * @param b booleano
+     * @return Siguiente nodo del arbol des de la raíz
      */
     public Node decode(final boolean b) {
         return decode(root, b);

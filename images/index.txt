@@ -1,0 +1,13 @@
+images					Imagenes PPM de prueba
+├── boat_frag32.ppm
+├── boat_frag.ppm
+├── boat.ppm
+├── church.ppm
+├── cliff.ppm
+├── gonza.ppm
+├── gradient_35.ppm
+├── gradient8.ppm
+├── gradients32.ppm
+└── lake.ppm
+
+0 directories, 10 files

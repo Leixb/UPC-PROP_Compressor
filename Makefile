@@ -2,6 +2,7 @@ TARGET = target
 
 CP = $(TARGET)/classes/
 CP_TESTS = $(TARGET)/test-classes/
+DIRS = $(CP) $(CP_TESTS)
 
 JFLAGS = -g
 JC = javac
@@ -27,12 +28,15 @@ TEST_RESOURCES = $(wildcard src/test/resources/*)
 build: copy_java_resources $(JAVA_FILES)
 	@$(JC) $(JFLAGS) -d $(CP) $(JAVA_FILES)
 
+dirs: $(DIRS)
+	mkdir -p $(DIRS)
+
 run:
 	@$(JAVA) -cp $(CP) $(MAIN)
 
-copy_java_resources: $(JAVA_RESOURCES)
+copy_java_resources: dirs $(JAVA_RESOURCES)
 	-@cp $(JAVA_RESOURCES) $(CP)
-copy_test_resources: $(TEST_RESOURCES)
+copy_test_resources: dirs $(TEST_RESOURCES)
 	-@cp $(TEST_RESOURCES) $(CP)
 
 build_test: copy_test_resources

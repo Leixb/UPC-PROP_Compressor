@@ -55,7 +55,14 @@ public final class LZW {
      * @param output objeto de ecritura del archivo comprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
+    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+            compress(input, output);
+        }
+    }
+
+    private static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
@@ -98,7 +105,14 @@ public final class LZW {
      * @param output es el objeto de ecritura del archivo desccomprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
+    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+            decompress(input, output);
+        }
+    }
+
+    private static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
         input.readByte();
 
         createDecompressionDictionary();

@@ -101,8 +101,8 @@ class JPEGBlockTest {
     void encodeDecode() {
         final int TOLERANCE = 20;
 
-        short[] encoded = JPEGBlock.encode(sampleBlock);
-        byte[][] result = JPEGBlock.decode(encoded);
+        short[] encoded = JPEGBlock.encode((short) 70, true, sampleBlock);
+        byte[][] result = JPEGBlock.decode((short) 70, true, encoded);
 
         assertTrue(
                 CompareWithTolerance(sampleBlock, result, TOLERANCE),

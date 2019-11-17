@@ -6,11 +6,13 @@ import java.util.HashMap;
 
 /**
  * @author Alex Herrero
+ *
+ * @brief compression y decompression de archivos de texto con LZW
  */
 
 public final class LZW extends LZ {
 
-    private LZW() {}
+    private LZW() { }
 
     /// Magic Byte LZW
     public final static byte MAGIC_BYTE = (byte) 0x11;

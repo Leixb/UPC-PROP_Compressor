@@ -2,9 +2,9 @@ package domini;
 
 import java.io.*;
 
-/** 
+/**
  * @author Aleix Boné
- * 
+ *
  * @brief Imagen PPM
  */
 public class PpmImage {
@@ -12,7 +12,7 @@ public class PpmImage {
     private int width, height;
 
     /**
-     * @brief Inicializa la imagen vacia con los valores de anchura y altura
+     * @brief Inicializa la imagen vacía con los valores de anchura y altura
      * @param w anchura (width)
      * @param h altura (height)
      */
@@ -26,7 +26,7 @@ public class PpmImage {
      * @brief Lee una fichero imagen y lo guarda en la memoria
      * @param filename nombre del fichero a leer
      * @throws IOException error en la lectura
-     * @throws InvalidFileFormat Formato de imagen invàlido (No es PPM raw)
+     * @throws InvalidFileFormat Formato de imagen invalido (No es PPM raw)
      */
     public void readFile(final String filename) throws IOException, InvalidFileFormat {
         try (IO.Byte.reader file = new IO.Byte.reader(filename)) {
@@ -84,9 +84,9 @@ public class PpmImage {
     }
 
     /**
-     * @brief Lee el siguiente entero codificado en ascii que encuentra en el fichero
+     * @brief Lee el siguiente entero codificado en ASCII que encuentra en el fichero
      * @param file fichero donde buscar el entero
-     * @return entero leido
+     * @return entero leído
      * @throws IOException error en la lectura del fichero
      */
     private int readInt(final IO.Byte.reader file) throws IOException {
@@ -166,8 +166,8 @@ public class PpmImage {
     /**
      * @brief Devuelve un bloque de la imagen de 8x8
      * @param channel canal de color del bloque
-     * @param x posicion del bloque en coordenada x
-     * @param y posicion del bloque en coordenada y
+     * @param x posición del bloque en coordenada x
+     * @param y posición del bloque en coordenada y
      * @return bloque 8x8
      */
     public byte[][] readBlock(final int channel, final int x, final int y) {
@@ -186,10 +186,10 @@ public class PpmImage {
 
     /**
      * @brief Escribe un bloque de la imagen de 8x8
-     * @param block bloque 8x8 a escibir
+     * @param block bloque 8x8 a escribir
      * @param channel canal de color del bloque
-     * @param x posicion del bloque en coordenada x
-     * @param y posicion del bloque en coordenada y
+     * @param x posición del bloque en coordenada x
+     * @param y posición del bloque en coordenada y
      */
     public void writeBlock(final byte[][] block, final int channel, final int x, final int y) {
         for (int i = 0; i < 8; ++i) {
@@ -205,16 +205,16 @@ public class PpmImage {
     }
 
     /**
-     * @brief Devuelve la anchura de la imagen en pixeles
-     * @return anchura de la imagen en pixeles
+     * @brief Devuelve la anchura de la imagen en pixels
+     * @return anchura de la imagen en pixels
      */
     public int width() {
         return width;
     }
 
     /**
-     * @brief Devuelve la altura de la imagen en pixeles
-     * @return altura de la imagen en pixeles
+     * @brief Devuelve la altura de la imagen en pixels
+     * @return altura de la imagen en pixels
      */
     public int height() {
         return height;
@@ -222,7 +222,7 @@ public class PpmImage {
 
     /**
      * @brief Devuelve la anchura de la imagen en bloques (8x8).
-     * 
+     *
      * Es decir, el número de bloques 8x8 que caben horizontalmente en la imagen.
      * @return anchura de la imagen en bloques (8x8)
      */
@@ -232,7 +232,7 @@ public class PpmImage {
 
     /**
      * @brief Devuelve la altura de la imagen en bloques (8x8).
-     * 
+     *
      * Es decir, el número de bloques 8x8 que caben verticalmente en la imagen.
      * @return altura de la imagen en bloques (8x8)
      */

@@ -8,8 +8,8 @@ import domini.PpmImage.InvalidFileFormat;
 
 /**
  * @author Aleix Boné
- * 
- * @brief compression y decompression de imagenes PPM con JPEG
+ *
+ * @brief compresión y descompresión de imágenes PPM con JPEG
  */
 public final class JPEG {
 
@@ -20,14 +20,13 @@ public final class JPEG {
 
     /**
      * @brief Comprime una imagen PPM bloque a bloque
-     * 
+     *
      * @param inputFile  nombre del fichero de entrada (imagen ppm)
      * @param outputFile nombre del fichero de salida (comprimido)
-     * @param quality    calidad de compressio (1-100) donde 100 es la mejor calidad
-     * @throws InvalidFileFormat      Si el fichero de entrada no es un PPM raw
-     *                                vàlido
+     * @param quality    calidad de compreso (1-100) donde 100 es la mejor calidad
+     * @throws InvalidFileFormat      Si el fichero de entrada no es un PPM raw valido
      * @throws IOException            Si se produce un error de lectura / escritura
-     * @throws HuffmanLookupException Si no se puede codificar algun valor (Solo sucede si la tabla huffman no es correcta)
+     * @throws HuffmanLookupException Si no se puede codificar algún valor (Solo sucede si la tabla Huffman no es correcta)
      */
     public static void compress(final String inputFile, final String outputFile, final short quality)
             throws InvalidFileFormat, IOException, HuffmanLookupException {
@@ -79,8 +78,8 @@ public final class JPEG {
     }
 
     /**
-     * @brief Descomprime un fichero comprimido en JPEG y lo guasrda la imagen resultante en un fichero PPM raw
-     * 
+     * @brief Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw
+     *
      * @param inputFile  nombre del fichero de entrada (comprimido)
      * @param outputFile nombre del fichero de salida (imagen PPM)
      * @throws IOException Si se produce un error de lectura / escritura
@@ -131,11 +130,11 @@ public final class JPEG {
     }
 
     /**
-     * @brief Lee un bloque codificado con las tablas huffman.
-     * @param huffAC tabla huffman de valores AC
-     * @param huffDC tabla huffman de valores DC
+     * @brief Lee un bloque codificado con las tablas Huffman.
+     * @param huffAC tabla Huffman de valores AC
+     * @param huffDC tabla Huffman de valores DC
      * @param file fichero comprimido del que leer
-     * @return bloque codificado sin huffman
+     * @return bloque codificado sin Huffman
      * @throws IOException error en la lectura
      */
     public static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file)
@@ -177,10 +176,10 @@ public final class JPEG {
     }
 
     /**
-     * @brief Escribe un bloque codificado con las tablas huffman.
-     * @param encoded codificado sin huffman
-     * @param huffAC tabla huffman de valores AC
-     * @param huffDC tabla huffman de valores DC
+     * @brief Escribe un bloque codificado con las tablas Huffman.
+     * @param encoded codificado sin Huffman
+     * @param huffAC tabla Huffman de valores AC
+     * @param huffDC tabla Huffman de valores DC
      * @param file fichero comprimido al que escribir
      * @throws IOException error en la escritura
      */

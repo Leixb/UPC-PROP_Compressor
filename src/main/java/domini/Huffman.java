@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import java.io.IOException;
 
-/** 
+/**
  * @author Aleix Boné
- * 
- * @brief codificación y decodificación huffman con tablas predefinidas
+ *
+ * @brief codificación y decodificación Huffman con tablas predefinidas
  */
 public class Huffman {
 
-    private Node root; //< Raíz del arbol Huffman
+    private Node root; //< Raíz del árbol Huffman
     private HashMap<Short, BitSetL> table; //< Tabla de Huffman
 
     /// Nodo del arbol huffman
@@ -31,8 +31,8 @@ public class Huffman {
     }
 
     /**
-     * @brief Leer la tabla del disco en memoria y construye el arbol.
-     * 
+     * @brief Leer la tabla del disco en memoria y construye el árbol.
+     *
      * @param isAC  si cierto se lee la tabla AC, sino la DC.
      * @param isChrominance  si cierto se lee la tabla de Chrominance, sino Luminance
      * @throws IOException si se produce un error en la lectura de las tablas.
@@ -79,12 +79,12 @@ public class Huffman {
 
     /**
      * @brief añade valor al árbol
-     * 
+     *
      * Añade el valor value en el árbol siguiendo el camino marcado por
      * el BitSetL bs
-     * 
+     *
      * @param value valor a añadir
-     * @param bs codigo huffman correspondiente
+     * @param bs código Huffman correspondiente
      */
     private void addToTree(final Short value, final BitSetL bs) {
         if (root == null)
@@ -108,10 +108,10 @@ public class Huffman {
     }
 
     /**
-     * @brief deuelve el còdigo Huffman associado a un valor
-     * 
+     * @brief devuelve el código Huffman asociado a un valor
+     *
      * @param value valor a buscar en la tabla
-     * @return código huffman
+     * @return código Huffman
      * @throws HuffmanLookupException si el valor no se encuentra en la tabla
      */
     public BitSetL encode(final Short value) throws HuffmanLookupException {
@@ -138,16 +138,16 @@ public class Huffman {
 
     /**
      * @param b booleano
-     * @return Siguiente nodo del arbol des de la raíz
+     * @return Siguiente nodo del árbol des de la raíz
      */
     public Node decode(final boolean b) {
         return decode(root, b);
     }
 
     /**
-     * @param n Nodo del arbol
+     * @param n Nodo del árbol
      * @param b booleano
-     * @return Siguiente nodo en el arbol
+     * @return Siguiente nodo en el árbol
      */
     public Node decode(final Node n, final boolean b) {
         if (b) return n.R;

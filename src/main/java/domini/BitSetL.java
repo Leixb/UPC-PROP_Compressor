@@ -2,11 +2,11 @@ package domini;
 
 import java.util.BitSet;
 
-/** 
+/**
  * @author Aleix Boné
- * 
+ *
  * @brief BitSet con length() especifica
- * 
+ *
  * BitSet con length distinta al BitSet estandard.
  * El length de java.util.BitSet devuelve el numero de bits hasta el
  * último 1. BitSetL devuelve el numero de bits del último bit modificado
@@ -17,7 +17,7 @@ public class BitSetL extends BitSet {
 
     private int _length_;
 
-    /** Constructora vacia, inicializa length a -1 */
+    /** Constructora vacía, inicializa length a -1 */
     public BitSetL() {
         super();
         _length_ = -1;
@@ -82,8 +82,8 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * @brief mete a true el bit en la posicion dada
-     * @param pos posicion del bit a meter true
+     * @brief mete a true el bit en la posición dada
+     * @param pos posición del bit a meter true
      */
     public void set(final int pos) {
         super.set(pos);
@@ -92,9 +92,9 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * @brief mete a true o false el bit en la posición dada en función del boolean val
-     * @param pos posicion del bit a modificar
-     * @param val valor booleano que se assignar al bit
+     * @brief mete a true o false el bit en la posición dada en función del booleano val
+     * @param pos posición del bit a modificar
+     * @param val valor booleano que se asignar al bit
      */
     public void set(final int pos, final boolean val) {
         super.set(pos, val);

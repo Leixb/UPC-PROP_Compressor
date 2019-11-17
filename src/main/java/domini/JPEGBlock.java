@@ -2,13 +2,13 @@ package domini;
 
 import java.util.ArrayList;
 
-/** 
+/**
  * @author Aleix Boné
- * 
+ *
  * @brief codifica y decodifica bloques 8x8 con JPEG
- * 
- * Algoritmo de compression JPEG para bloques 8x8. Engloba todos los processos
- * de codificación i decodificación de JPEG excepto Huffman.
+ *
+ * Algoritmo de compresión JPEG para bloques 8x8. Engloba todos los procesos
+ * de codificación y decodificación de JPEG excepto Huffman.
  */
 public final class JPEGBlock implements Codec<byte[][], short[]> {
 
@@ -86,7 +86,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         }
     }
 
-    /** @brief Quantización con tablas predefinidas ajusadas segun la calidad de compression especificada */
+    /** @brief Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada */
     public static class Quantization implements Codec<double[][], short[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
@@ -244,17 +244,17 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2)) + 1);
     }
 
-    /** 
+    /**
      * @brief Codifica/Decodifica en RLE (Run Length Encoding)
-     * 
-     * shorts en parejas, primer short contiene numero de zeros precedentes 
+     *
+     * shorts en parejas, primer short contiene numero de ceros precedentes
      * (4 bits en la mascara 0xF0) * y longitud del valor en bits (4 bits en la mascara 0x0F)
      * , segundo short contiene el valor.
-     * 
+     *
      * 2 casos especiales:
      *  - 00 -> EOB (End of Block) marca el fin del bloque (el resto son 0)
-     *  - F0 -> ZRL (Zero Run Lenght) 16 zeros seguidos
-     *  
+     *  - F0 -> ZRL (Zero Run Lenght) 16 ceros seguidos
+     *
      */
     public static class RLE implements Codec<short[], short[]> {
         public static short[] encode(final short[] data) {
@@ -342,8 +342,8 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /**
-     * @brief Comprime un bloque 8x8 aplicando DCT, quantización, zigZag y RLE
-     * @param quality calidad de compression (1-100)
+     * @brief Comprime un bloque 8x8 aplicando DCT, cuantización, zigZag y RLE
+     * @param quality calidad de compresión (1-100)
      * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
      * @param data bloque 8x8 a codificar
      * @return bloque 8x8 codificado en RLE
@@ -358,8 +358,8 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /**
-     * @brief Desace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original
-     * @param quality calidad de compression (1-100)
+     * @brief Deshace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original
+     * @param quality calidad de compresión (1-100)
      * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
      * @param data bloque 8x8 a codificado en RLE
      * @return bloque 8x8 decodificado

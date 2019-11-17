@@ -1,0 +1,17 @@
+name: make CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: build
+      run: make build
+    - name: build_jar
+      run: make jar
+    - name: test
+      run: make run_test

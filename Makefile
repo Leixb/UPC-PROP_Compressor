@@ -2,6 +2,7 @@ TARGET = target
 
 CP = $(TARGET)/classes/
 CP_TESTS = $(TARGET)/test-classes/
+DIRS = $(CP) $(CP_TESTS)
 
 JFLAGS = -g
 JC = javac
@@ -30,9 +31,12 @@ build: copy_java_resources $(JAVA_FILES)
 run:
 	@$(JAVA) -cp $(CP) $(MAIN)
 
-copy_java_resources: $(JAVA_RESOURCES)
+dirs:
+	@mkdir -p $(DIRS)
+
+copy_java_resources: dirs $(JAVA_RESOURCES)
 	-@cp $(JAVA_RESOURCES) $(CP)
-copy_test_resources: $(TEST_RESOURCES)
+copy_test_resources: dirs $(TEST_RESOURCES)
 	-@cp $(TEST_RESOURCES) $(CP)
 
 build_test: copy_test_resources
@@ -48,4 +52,4 @@ $(JAR_FILE): $(JAVA_FILES) $(JAVA_RESOURCES)
 	@$(JAR) -cfe $(JAR_FILE) $(MAIN) -C $(CP) .
 
 run_jar:
-	@java -jar $(JAR_FILE)
+	@$(JAVA) -jar $(JAR_FILE)

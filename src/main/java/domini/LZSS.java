@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @brief Compresión y decompresión de archivos de texto con LZSS
  */
 
-public final class LZSS extends LZ {
+public final class LZSS {
 
     private LZSS() {}
 

@@ -13,7 +13,7 @@ class LZWTest {
         new File("generated/").mkdirs();
         final String inputFile = "texts/Gordo.txt";
         final String outputFile = "generated/out.txt";
-        final String aux = "generated/compressedFile.txt";
+        final String aux = "generated/compressedFile.piz";
 
         try {
             LZW.compress(inputFile, aux);

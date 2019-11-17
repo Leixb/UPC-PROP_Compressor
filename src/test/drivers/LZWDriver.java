@@ -2,7 +2,7 @@ import domini.LZW;
 
 import java.util.Scanner;
 
-public class DriverLZW {
+public class LZWDriver {
 
     private static Scanner scanner;
 

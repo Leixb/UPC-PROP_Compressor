@@ -14,7 +14,7 @@ JAVA_RESOURCES = $(wildcard src/main/resources/*)
 TEST_FILES = $(shell find src/test/ -type f -name '*.java')
 TEST_RESOURCES = $(wildcard src/test/resources/*)
 
-.PHONY: all build run copy_java_resources
+.PHONY: all build run copy_java_resources copy_test_resources build_test run_test
 
 # all: build run
 
@@ -26,9 +26,11 @@ run:
 
 copy_java_resources:
 	@cp $(JAVA_RESOURCES) $(CP)
+copy_test_resources:
+	@cp $(TEST_RESOURCES) $(CP)
 
-build_test:
+build_test: copy_test_resources
 	@$(JC) -d $(CP_TESTS) -cp $(CP):$(TEST_JARS) $(TEST_FILES)
 
 run_test: build_test
-	@java -jar libs/junit-platform-console-standalone-1.5.2.jar -cp $(CP):$(CP_TESTS) --scan-class-path
+	@$(JAVA) -jar libs/junit-platform-console-standalone-1.5.2.jar -cp $(CP):$(CP_TESTS) --scan-class-path

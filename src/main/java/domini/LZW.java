@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * @author Alex Herrero
  *
- * @brief compression y decompression de archivos de texto con LZW
+ * @brief Compresión y descompresión de archivos de texto con LZW.
  */
 
 public final class LZW extends LZ {

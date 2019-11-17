@@ -107,8 +107,6 @@ public final class LZ78 extends LZ {
         } catch (final EOFException e) {
             //EOF!
         }
-
-        input.close();
     }
 
 }

@@ -2,6 +2,7 @@ TARGET = target
 
 CP = $(TARGET)/classes/
 CP_TESTS = $(TARGET)/test-classes/
+DIRS = $(CP) $(CP_TESTS)
 
 JFLAGS = -g
 JC = javac
@@ -25,18 +26,23 @@ TEST_RESOURCES = $(wildcard src/test/resources/*)
 # all: build run
 
 build: copy_java_resources $(JAVA_FILES)
-	@$(JC) $(JFLAGS) -d $(CP) $(JAVA_FILES)
+	$(JC) $(JFLAGS) -d $(CP) $(JAVA_FILES)
 
 run:
 	@$(JAVA) -cp $(CP) $(MAIN)
 
-copy_java_resources: $(JAVA_RESOURCES)
-	-@cp $(JAVA_RESOURCES) $(CP)
-copy_test_resources: $(TEST_RESOURCES)
-	-@cp $(TEST_RESOURCES) $(CP)
+dirs:
+	@mkdir -p $(DIRS)
+
+copy_java_resources: dirs $(JAVA_RESOURCES)
+	@if [ -n "$(JAVA_RESOURCES)" ]; then\
+		cp $(JAVA_RESOURCES) $(CP); fi
+copy_test_resources: dirs $(TEST_RESOURCES)
+	@if [ -n "$(TEST_RESOURCES)" ]; then\
+		cp $(TEST_RESOURCES) $(CP_TESTS); fi
 
 build_test: copy_test_resources
-	@$(JC) -d $(CP_TESTS) -cp $(CP):$(TEST_JARS) $(TEST_FILES)
+	$(JC) -d $(CP_TESTS) -cp $(CP):$(TEST_JARS) $(TEST_FILES)
 
 run_test: build_test
 	@$(JAVA) -jar libs/junit-platform-console-standalone-1.5.2.jar -cp $(CP):$(CP_TESTS) --scan-class-path
@@ -44,8 +50,8 @@ run_test: build_test
 jar: $(JAR_FILE)
 
 $(JAR_FILE): $(JAVA_FILES) $(JAVA_RESOURCES)
-	@make build
-	@$(JAR) -cfe $(JAR_FILE) $(MAIN) -C $(CP) .
+	make build
+	$(JAR) -cfe $(JAR_FILE) $(MAIN) -C $(CP) .
 
 run_jar:
-	@java -jar $(JAR_FILE)
+	@$(JAVA) -jar $(JAR_FILE)

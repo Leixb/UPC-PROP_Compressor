@@ -6,9 +6,6 @@ public class PpmImage {
     private byte[][][] pixels; // width * height * channel
     private int width, height;
 
-    //private enum Channel {RGB, YCbCr};
-    //private Channel channel;
-
     public void setDimensions(final int w, final int h) {
         pixels = new byte[w][h][3];
         width = w;
@@ -33,7 +30,6 @@ public class PpmImage {
                 throw new InvalidFileFormat();
 
             this.pixels = new byte[this.width][this.height][3];
-            // this.channel = Channel.RGB;
 
             for (int i = 0; i < this.width; ++i)
                 for (int j = 0; j < this.height; ++j)
@@ -96,15 +92,9 @@ public class PpmImage {
     }
 
     public void toRGB() {
-        // Do nothing if already RGB
-        // if (this.channel == Channel.RGB) return;
-        // this.channel = Channel.RGB;
-
         byte R, G, B;
         for (int i = 0; i < this.width; ++i) {
             for (int j = 0; j < this.height; ++j) {
-                // final byte Y = this.pixels[i][j][0], Cb = this.pixels[i][j][1], Cr =
-                // this.pixels[i][j][2];
                 final double Y = Byte.toUnsignedInt(this.pixels[i][j][0]);
                 final double Cb = Byte.toUnsignedInt(this.pixels[i][j][1]);
                 final double Cr = Byte.toUnsignedInt(this.pixels[i][j][2]);
@@ -122,10 +112,6 @@ public class PpmImage {
     }
 
     public void toYCbCr() {
-        // Do nothing if already YCbCr
-        // if (this.channel == Channel.YCbCr) return;
-        // this.channel = Channel.YCbCr;
-
         byte Y, Cb, Cr;
         for (int i = 0; i < this.width; ++i) {
             for (int j = 0; j < this.height; ++j) {

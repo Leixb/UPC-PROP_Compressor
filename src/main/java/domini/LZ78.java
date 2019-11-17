@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @brief Compresor y descompresor de archivos de texto con LZ78
  */
 
-public final class LZ78 extends LZ {
+public final class LZ78{
 
     private LZ78 () {}
     //Declaración de los HashMaps de Compression y Decompression

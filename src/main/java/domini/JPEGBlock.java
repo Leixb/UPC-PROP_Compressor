@@ -2,10 +2,19 @@ package domini;
 
 import java.util.ArrayList;
 
+/**
+ * @author ***REMOVED***
+ *
+ * @brief codifica y decodifica bloques 8x8 con JPEG
+ *
+ * Algoritmo de compresión JPEG para bloques 8x8. Engloba todos los procesos
+ * de codificación y decodificación de JPEG excepto Huffman.
+ */
 public final class JPEGBlock implements Codec<byte[][], short[]> {
 
     private JPEGBlock () {}
 
+    /** @brief DCT (Discrete Cosine Transform) */
     public static class DCT implements Codec<byte[][], double[][]> {
         public static double[][] encode(final byte[][] data) {
             final double[][] G = new double[8][8];
@@ -77,6 +86,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         }
     }
 
+    /** @brief Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada */
     public static class Quantization implements Codec<double[][], short[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
@@ -151,6 +161,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         }
     }
 
+    /** @brief _Aplasta_ un bloque 8x8 en zigZag. */
     public static class ZigZag implements Codec<short[][], short[]> {
 
         // Correspondencia coordenades taula amb ZigZag
@@ -233,9 +244,19 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2)) + 1);
     }
 
+    /**
+     * @brief Codifica/Decodifica en RLE (Run Length Encoding)
+     *
+     * shorts en parejas, primer short contiene numero de ceros precedentes
+     * (4 bits en la mascara 0xF0) * y longitud del valor en bits (4 bits en la mascara 0x0F)
+     * , segundo short contiene el valor.
+     *
+     * 2 casos especiales:
+     *  - 00 -> EOB (End of Block) marca el fin del bloque (el resto son 0)
+     *  - F0 -> ZRL (Zero Run Lenght) 16 ceros seguidos
+     *
+     */
     public static class RLE implements Codec<short[], short[]> {
-        // Codifica en RLE (primer byte = nombre de 0 precedents, segon valor.
-        // Acaba amb 0,0
         public static short[] encode(final short[] data) {
 
             final ArrayList<Short> buff = new ArrayList<Short>();
@@ -320,10 +341,13 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         }
     }
 
-    public static short[] encode(final byte[][] data) {
-        return encode((short) 50, true, data);
-    }
-
+    /**
+     * @brief Comprime un bloque 8x8 aplicando DCT, cuantización, zigZag y RLE
+     * @param quality calidad de compresión (1-100)
+     * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
+     * @param data bloque 8x8 a codificar
+     * @return bloque 8x8 codificado en RLE
+     */
     public static short[] encode(final short quality, final boolean isChrominance, final byte[][] data) {
         final double[][] DctEnc = DCT.encode(data);
         final short[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
@@ -333,10 +357,13 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         return result;
     }
 
-    public static byte[][] decode(final short[] data) {
-        return decode((short) 50, true, data);
-    }
-
+    /**
+     * @brief Deshace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original
+     * @param quality calidad de compresión (1-100)
+     * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
+     * @param data bloque 8x8 a codificado en RLE
+     * @return bloque 8x8 decodificado
+     */
     public static byte[][] decode(final short quality, final boolean isChrominance, final short[] data) {
         final short[] rleDec = RLE.decode(data);
         final short[][] zigDec = ZigZag.decode(rleDec);

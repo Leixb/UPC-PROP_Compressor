@@ -12,19 +12,13 @@ public class CtrlDomini {
 
         switch(alg) {
             case LZ78d:
-                try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
-                    LZ78.compress(input,output);
-                }
+                LZ78.compress(fileIn, fileOut);
                 break;
             case LZSSd:
-                try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
-                    LZSS.compress(input,output);
-                }
+                LZSS.compress(fileIn, fileOut);
                 break;
             case LZWd:
-                try(IO.Char.reader input = new IO.Char.reader(fileIn); IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
-                    LZW.compress(input,output);
-                }
+                LZW.compress(fileIn, fileOut);
                 break;
             case JPEGd:
                 JPEG.compress(fileIn,fileOut,quality);
@@ -58,22 +52,16 @@ public class CtrlDomini {
         stats.setStartingTime();
         switch(alg) {
             case LZ78d:
-                try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
-                    LZ78.decompress(input,output);
-                }
+                LZ78.decompress(fileIn, fileOut);
                 break;
             case LZSSd:
-                try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
-                    LZSS.decompress(input,output);
-                }
+                LZSS.decompress(fileIn, fileOut);
                 break;
             case LZWd:
-                try(IO.Bit.reader input = new IO.Bit.reader(fileIn); IO.Char.writer output = new IO.Char.writer(fileOut)) {
-                    LZW.decompress(input,output);
-                }
+                LZW.decompress(fileIn, fileOut);
                 break;
             case JPEGd:
-                JPEG.decompress(fileIn,fileOut);
+                JPEG.decompress(fileIn, fileOut);
                 break;
             default:
         }

@@ -6,13 +6,20 @@ import java.util.HashMap;
 
 public final class LZ78 extends LZ {
 
-    private LZ78 () {}
+    private LZ78() {}
 
     private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>();
     private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
     public final static byte MAGIC_BYTE = 0x78;
 
-    public static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
+    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+            compress(input, output);
+        }
+    }
+
+    private static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         String chars = "";
@@ -69,7 +76,14 @@ public final class LZ78 extends LZ {
         return (int) (Math.log(n) / Math.log(2) + 1e-10) + 1;
     }
 
-    public static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
+    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+            decompress(input, output);
+        }
+    }
+
+    private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         input.readByte();
 
         int num = 1;
@@ -107,10 +121,8 @@ public final class LZ78 extends LZ {
             }
 
         } catch (final EOFException e) {
-            //EOF!
+            // EOF!
         }
-
-        input.close();
     }
 
 }

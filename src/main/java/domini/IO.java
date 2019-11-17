@@ -102,7 +102,7 @@ public class IO {
                 out.flush();
             }
 
-            public void close() throws Exception {
+            public void close() throws IOException {
                 flush();
                 out.close();
             }
@@ -161,6 +161,7 @@ public class IO {
                 for (int k = 0; k < length; ++k) bs.set(k, read());
                 return bs;
             }
+
             public void close() throws IOException {
                 in.close();
             }

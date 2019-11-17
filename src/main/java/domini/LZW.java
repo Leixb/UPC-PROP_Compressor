@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.EOFException;
 import java.util.HashMap;
 
-import domini.IO;
-
 public final class LZW extends LZ {
 
     private LZW() {}
@@ -47,7 +45,14 @@ public final class LZW extends LZ {
         }
     }
 
-    public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
+    public static void compress(final String inputFilename, final String outputFilename) throws IOException, TooManyStringsException {
+        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+            compress(input, output);
+        }
+    }
+
+    private static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException, TooManyStringsException {
         output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
@@ -83,8 +88,14 @@ public final class LZW extends LZ {
         output.write(END);
     }
 
+    public static void decompress(final String inputFilename, final String outputFilename) throws IOException, TooManyStringsException {
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+            decompress(input, output);
+        }
+    }
 
-    public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException, TooManyStringsException{
+    private static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException, TooManyStringsException {
         input.readByte();
 
         createDecompressionDictionary();

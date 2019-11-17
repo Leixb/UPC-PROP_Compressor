@@ -53,7 +53,7 @@ public final class LZW extends LZ {
      *
      * @param input objeto de lectura del archivo que se quiere comprimir.
      * @param output objeto de ecritura del archivo comprimido.
-     * @throws IOException se se produce un error en la lectura del archivo.
+     * @throws IOException se se produce un error en la lectura / escritura.
      */
     public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
@@ -96,7 +96,7 @@ public final class LZW extends LZ {
      *
      * @param input es el objeto de lectura del archivo que se quiere descomprimir.
      * @param output es el objeto de ecritura del archivo desccomprimido.
-     * @throws IOException se se produce un error en la lectura del archivo.
+     * @throws IOException se se produce un error en la lectura / escritura.
      */
     public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
         input.readByte();

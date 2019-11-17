@@ -14,7 +14,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
 
     private JPEGBlock () {}
 
-    /** DCT (Discrete Cosine Transform) */
+    /** @brief DCT (Discrete Cosine Transform) */
     public static class DCT implements Codec<byte[][], double[][]> {
         public static double[][] encode(final byte[][] data) {
             final double[][] G = new double[8][8];
@@ -86,7 +86,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         }
     }
 
-    /** Quantización con tablas predefinidas ajusadas segun la calidad de compression especificada */
+    /** @brief Quantización con tablas predefinidas ajusadas segun la calidad de compression especificada */
     public static class Quantization implements Codec<double[][], short[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
@@ -161,7 +161,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         }
     }
 
-    /** _Aplasta_ un bloque 8x8 en zigZag. */
+    /** @brief _Aplasta_ un bloque 8x8 en zigZag. */
     public static class ZigZag implements Codec<short[][], short[]> {
 
         // Correspondencia coordenades taula amb ZigZag
@@ -245,7 +245,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /** 
-     * Codifica/Decodifica en RLE (Run Length Encoding)
+     * @brief Codifica/Decodifica en RLE (Run Length Encoding)
      * 
      * shorts en parejas, primer short contiene numero de zeros precedentes 
      * (4 bits en la mascara 0xF0) * y longitud del valor en bits (4 bits en la mascara 0x0F)
@@ -342,7 +342,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /**
-     * comprime un bloque 8x8 aplicando DCT, quantización, zigZag y RLE.
+     * @brief Comprime un bloque 8x8 aplicando DCT, quantización, zigZag y RLE
      * @param quality calidad de compression (1-100)
      * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
      * @param data bloque 8x8 a codificar
@@ -358,7 +358,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /**
-     *  Desace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original
+     * @brief Desace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original
      * @param quality calidad de compression (1-100)
      * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
      * @param data bloque 8x8 a codificado en RLE

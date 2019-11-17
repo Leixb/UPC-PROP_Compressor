@@ -19,7 +19,7 @@ public final class JPEG {
     public final static byte MAGIC_BYTE = (byte) 0x98;
 
     /**
-     * Comprime una imagen PPM bloque a bloque
+     * @brief Comprime una imagen PPM bloque a bloque
      * 
      * @param inputFile  nombre del fichero de entrada (imagen ppm)
      * @param outputFile nombre del fichero de salida (comprimido)
@@ -79,7 +79,7 @@ public final class JPEG {
     }
 
     /**
-     * Descomprime un fichero comprimido en JPEG y lo guasrda la imagen resultante en un fichero PPM raw
+     * @brief Descomprime un fichero comprimido en JPEG y lo guasrda la imagen resultante en un fichero PPM raw
      * 
      * @param inputFile  nombre del fichero de entrada (comprimido)
      * @param outputFile nombre del fichero de salida (imagen PPM)

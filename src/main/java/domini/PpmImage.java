@@ -12,7 +12,7 @@ public class PpmImage {
     private int width, height;
 
     /**
-     * Inicializa la imagen vacia con los valores de anchura y altura
+     * @brief Inicializa la imagen vacia con los valores de anchura y altura
      * @param w anchura (width)
      * @param h altura (height)
      */
@@ -23,7 +23,7 @@ public class PpmImage {
     }
 
     /**
-     * Lee una fichero imagen y lo guarda en la memoria
+     * @brief Lee una fichero imagen y lo guarda en la memoria
      * @param filename nombre del fichero a leer
      * @throws IOException error en la lectura
      * @throws InvalidFileFormat Formato de imagen invàlido (No es PPM raw)
@@ -55,7 +55,7 @@ public class PpmImage {
     }
 
     /**
-     * Escribe la imagen en un fichero
+     * @brief Escribe la imagen en un fichero
      * @param filename nombre del fichero a escribir
      * @throws IOException error al escribir el fichero
      */
@@ -84,7 +84,7 @@ public class PpmImage {
     }
 
     /**
-     * Lee el siguiente entero codificado en ascii que encuentra en el fichero
+     * @brief Lee el siguiente entero codificado en ascii que encuentra en el fichero
      * @param file fichero donde buscar el entero
      * @return entero leido
      * @throws IOException error en la lectura del fichero
@@ -122,7 +122,7 @@ public class PpmImage {
         return (byte) n;
     }
 
-    /** Convierte la imagen de espacio de color YCbCr a espacio RGB */
+    /** @brief Convierte la imagen de espacio de color YCbCr a espacio RGB */
     public void toRGB() {
         byte R, G, B;
         for (int i = 0; i < this.width; ++i) {
@@ -143,7 +143,7 @@ public class PpmImage {
 
     }
 
-    /** Convierte la imagen de espacio de color RGB a espacio YCbCr */
+    /** @brief Convierte la imagen de espacio de color RGB a espacio YCbCr */
     public void toYCbCr() {
         byte Y, Cb, Cr;
         for (int i = 0; i < this.width; ++i) {
@@ -164,7 +164,7 @@ public class PpmImage {
     }
 
     /**
-     * Devuelve un bloque de la imagen de 8x8
+     * @brief Devuelve un bloque de la imagen de 8x8
      * @param channel canal de color del bloque
      * @param x posicion del bloque en coordenada x
      * @param y posicion del bloque en coordenada y
@@ -185,7 +185,7 @@ public class PpmImage {
     }
 
     /**
-     * Escribe un bloque de la imagen de 8x8
+     * @brief Escribe un bloque de la imagen de 8x8
      * @param block bloque 8x8 a escibir
      * @param channel canal de color del bloque
      * @param x posicion del bloque en coordenada x
@@ -205,7 +205,7 @@ public class PpmImage {
     }
 
     /**
-     * Devuelve la anchura de la imagen en pixeles
+     * @brief Devuelve la anchura de la imagen en pixeles
      * @return anchura de la imagen en pixeles
      */
     public int width() {
@@ -213,7 +213,7 @@ public class PpmImage {
     }
 
     /**
-     * Devuelve la altura de la imagen en pixeles
+     * @brief Devuelve la altura de la imagen en pixeles
      * @return altura de la imagen en pixeles
      */
     public int height() {
@@ -221,7 +221,8 @@ public class PpmImage {
     }
 
     /**
-     * Devuelve la anchura de la imagen en bloques (8x8).
+     * @brief Devuelve la anchura de la imagen en bloques (8x8).
+     * 
      * Es decir, el número de bloques 8x8 que caben horizontalmente en la imagen.
      * @return anchura de la imagen en bloques (8x8)
      */
@@ -230,7 +231,8 @@ public class PpmImage {
     }
 
     /**
-     * Devuelve la altura de la imagen en bloques (8x8).
+     * @brief Devuelve la altura de la imagen en bloques (8x8).
+     * 
      * Es decir, el número de bloques 8x8 que caben verticalmente en la imagen.
      * @return altura de la imagen en bloques (8x8)
      */

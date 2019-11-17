@@ -58,7 +58,7 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * Devuelve el bitset como un entero (32 bits)
+     * @brief Devuelve el bitset como un entero (32 bits)
      * @pre el bitset no tiene mas de 32 bits
      * @return bitset como entero
      */
@@ -73,7 +73,7 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * Invierte los bits del bitset. (Solo hasta length)
+     * @brief Invierte los bits del bitset. (Solo hasta length)
      */
     public void flip() {
         for (int i = 0; i < _length_; i++) {
@@ -82,7 +82,7 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * mete a true el bit en la posicion dada
+     * @brief mete a true el bit en la posicion dada
      * @param pos posicion del bit a meter true
      */
     public void set(final int pos) {
@@ -92,8 +92,7 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * mete a true o false el bit en la posicion dada
-     * en función del boolean val
+     * @brief mete a true o false el bit en la posición dada en función del boolean val
      * @param pos posicion del bit a modificar
      * @param val valor booleano que se assignar al bit
      */
@@ -104,7 +103,7 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * mete a false el bit en la posicion dada
+     * @brief mete a false el bit en la posición dada
      * @param pos posicion del bit a meter true
      */
     public void clear(final int pos) {
@@ -114,6 +113,7 @@ public class BitSetL extends BitSet {
     }
 
     /**
+     * @brief devuelve la longitud del bitset
      * @return longitud del bitset
      */
     public int length() {

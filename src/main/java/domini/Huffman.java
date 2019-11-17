@@ -78,10 +78,12 @@ public class Huffman {
     }
 
     /**
-     * Añade el valor value en el àrbol siguiendo el camino marcado por
-     * el BitSetL bs.
+     * @brief añade valor al árbol
      * 
-     * @param value valor a anadir
+     * Añade el valor value en el árbol siguiendo el camino marcado por
+     * el BitSetL bs
+     * 
+     * @param value valor a añadir
      * @param bs codigo huffman correspondiente
      */
     private void addToTree(final Short value, final BitSetL bs) {

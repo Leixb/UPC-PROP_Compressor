@@ -205,8 +205,6 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
 
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    if (table[i][j] > L.length)
-                        System.out.println(table[i][j]);
                     L[table[i][j]] = block[i][j];
                 }
             }
@@ -268,10 +266,8 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
                 }
 
                 if (data[i] > 1023) {
-                    System.out.printf("padding -> %d\n", data[i]);
                     data[i] = 1023;
                 } else if (data[i] < -1023) {
-                    System.out.printf("padding -> %d\n", data[i]);
                     data[i] = -1023;
                 }
 
@@ -329,14 +325,12 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     public static short[] encode(final short quality, final boolean isChrominance, final byte[][] data) {
-
         final double[][] DctEnc = DCT.encode(data);
         final short[][] quantEnc = Quantization.encode(quality, isChrominance, DctEnc);
         final short[] zigEnc = ZigZag.encode(quantEnc);
         final short[] result = RLE.encode(zigEnc);
 
         return result;
-
     }
 
     public static byte[][] decode(final short[] data) {
@@ -344,14 +338,12 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     public static byte[][] decode(final short quality, final boolean isChrominance, final short[] data) {
-
         final short[] rleDec = RLE.decode(data);
         final short[][] zigDec = ZigZag.decode(rleDec);
         final double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
         final byte[][] result = DCT.decode(quantDec);
 
         return result;
-
     }
 
 }

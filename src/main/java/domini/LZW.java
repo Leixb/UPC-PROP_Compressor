@@ -12,7 +12,6 @@ public final class LZW extends LZ {
 
     public static final byte MAGIC_BYTE = 0x11;
     private static final int DICTIONARY_SIZE = 0xFFFF;
-    private static final int END = 0;
     private static HashMap<String, Integer> compressionDictionary;
     private static HashMap<Integer, String> decompressionDictionary;
 
@@ -77,10 +76,10 @@ public final class LZW extends LZ {
 
             c = input.read();
         }
-        final int code = compressionDictionary.get(chars);
-        output.write(code);
-
-        output.write(END);
+        if (compressionDictionary.containsKey(chars)) {
+            final int code = compressionDictionary.get(chars);
+            output.write(code);
+        }
     }
 
 

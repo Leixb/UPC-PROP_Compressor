@@ -1,13 +1,15 @@
-/**
- * @author Alex González
- *
- * @brief Compresor y descompresor de archivos de texto con LZ78
- */
 package domini;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
+
+
+/**
+ * @author Alex González
+ *
+ * @brief Compresor y descompresor de archivos de texto con LZ78
+ */
 
 public final class LZ78 extends LZ {
 
@@ -66,7 +68,7 @@ public final class LZ78 extends LZ {
         /*
          * Si aun quedan letras por codificar estas ya estan en el diccionario, simplemente se obtiene el value
          * del diccionario y se escribe junto con un char vacio, 16 bits a 0.
-        */
+         */
         if (newchar == false) {
             codnum = compress_dict.get(chars);
             final int nbits = bits_needed(nchar); // Numero de bits en que hay que codificar el nchar

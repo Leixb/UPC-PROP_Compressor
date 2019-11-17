@@ -5,13 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import domini.LZW;
 import domini.IO;
 
+import java.io.File;
+
 class LZWTest {
 
     @Test
     void compressDecompressFile() {
-        final String inputFile = "texts/Gordo.txt";//"images/gonza.ppm";//"texts/DonQuijote.txt";//"texts/sampleInput.txt";//"texts/prova.txt";//
-        final String outputFile = "texts/GordoOut.txt";//"images/gonzaOut.ppm";//"texts/DonQuijoteOut.txt";//"texts/sampleOutput.txt";//"texts/provaOut.txt";//
-        final String aux = "texts/compressedFile.txt";
+        new File("generated/").mkdirs();
+        final String inputFile = "texts/hola.txt";
+        final String outputFile = "generated/out.txt";
+        final String aux = "generated/compressedFile.txt";
 
         try {
             try (IO.Char.reader input = new IO.Char.reader(inputFile); IO.Bit.writer output = new IO.Bit.writer(aux)) {

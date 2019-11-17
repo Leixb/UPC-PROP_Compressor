@@ -1,20 +1,32 @@
 package domini;
 
-import java.io.IOException;
 import java.io.EOFException;
+import java.io.IOException;
 import java.util.HashMap;
 
-import domini.IO;
+/**
+ * @author Alex Herrero
+ */
 
 public final class LZW extends LZ {
 
     private LZW() {}
 
-    public static final byte MAGIC_BYTE = 0x11;
-    private static final int DICTIONARY_SIZE = 0xFFFF;
+    /// Magic Byte LZW
+    public final static byte MAGIC_BYTE = (byte) 0x11;
+
+    /// Tamaño inicial del diccionario
+    private final static int DICTIONARY_SIZE = 0xFFFF;
+
+    /// Diccionario de compresión
     private static HashMap<String, Integer> compressionDictionary;
+
+    /// Diccionario de descompresión
     private static HashMap<Integer, String> decompressionDictionary;
 
+    /**
+     * @brief Crea el diccionario de compresión y lo inicializa.
+     */
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
@@ -23,6 +35,9 @@ public final class LZW extends LZ {
         }
     }
 
+    /**
+     * @brief Crea el diccionario de descompresión y lo inicializa.
+     */
     private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
@@ -31,6 +46,13 @@ public final class LZW extends LZ {
         }
     }
 
+    /**
+     * @brief Comprime un archivo de texto implementando un algoritmo LZW.
+     *
+     * @param input objeto de lectura del archivo que se quiere comprimir.
+     * @param output objeto de ecritura del archivo comprimido.
+     * @throws IOException se se produce un error en la lectura del archivo.
+     */
     public static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
@@ -67,7 +89,13 @@ public final class LZW extends LZ {
         }
     }
 
-
+    /**
+     * @brief Descomprime un archivo de texto implementando un algoritmo LZW.
+     *
+     * @param input es el objeto de lectura del archivo que se quiere descomprimir.
+     * @param output es el objeto de ecritura del archivo desccomprimido.
+     * @throws IOException se se produce un error en la lectura del archivo.
+     */
     public static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
         input.readByte();
 

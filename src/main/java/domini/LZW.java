@@ -4,13 +4,9 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
 
-<<<<<<< HEAD
-=======
 /**
  * @author Alex Herrero
  */
-
->>>>>>> master
 public final class LZW extends LZ {
 
     private LZW() {}

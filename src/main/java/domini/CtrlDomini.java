@@ -49,10 +49,12 @@ public class CtrlDomini {
 
         if(b == -1) throw new EOFException();
 
-        if(b==LZ78.MAGIC_BYTE) alg = Alg.LZ78d;
-        else if(b==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
-        else if(b==LZW.MAGIC_BYTE) alg = Alg.LZWd;
-        else if(b==JPEG.MAGIC_BYTE) alg = Alg.JPEGd;
+        byte magicByte = (byte) b;
+
+        if(magicByte==LZ78.MAGIC_BYTE) alg = Alg.LZ78d;
+        else if(magicByte==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
+        else if(magicByte==LZW.MAGIC_BYTE) alg = Alg.LZWd;
+        else if(magicByte==JPEG.MAGIC_BYTE) alg = Alg.JPEGd;
         else throw new Exception("Fitxer invàlid.");
 
         stats.setStartingTime();

@@ -84,7 +84,6 @@ public class IO {
             private void writeMask(final int num, int mask) throws IOException {
                 while (mask != 0) {
                     write((num & mask) != 0);
-
                     mask >>>= 1;
                 }
             }

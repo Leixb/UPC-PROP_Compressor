@@ -20,7 +20,7 @@ JAVA_RESOURCES = $(wildcard src/main/resources/*)
 TEST_FILES = $(shell find src/test/ -type f -name '*.java')
 TEST_RESOURCES = $(wildcard src/test/resources/*)
 
-.PHONY: all build run copy_java_resources copy_test_resources build_test run_test jar
+.PHONY: all build run copy_java_resources copy_test_resources build_test run_test jar run_jar
 
 # all: build run
 

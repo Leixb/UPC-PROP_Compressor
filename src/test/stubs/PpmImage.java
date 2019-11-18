@@ -33,22 +33,22 @@ public class PpmImage {
     }
 
     public int width() {
-        System.out.printf("Llamda PpmImage.width() -> 10\n");
-        return 10;
-    }
-
-    public int height() {
-        System.out.printf("Llamda PpmImage.height() -> 20\n");
-        return 20;
-    }
-
-    public int columns() {
-        System.out.printf("Llamda PpmImage.columns() -> 2\n");
+        System.out.printf("Llamda PpmImage.width() -> 2\n");
         return 2;
     }
 
+    public int height() {
+        System.out.printf("Llamda PpmImage.height() -> 2\n");
+        return 2;
+    }
+
+    public int columns() {
+        System.out.printf("Llamda PpmImage.columns() -> 1\n");
+        return 1;
+    }
+
     public int rows() {
-        System.out.printf("Llamda PpmImage.rows() -> 3\n");
-        return 3;
+        System.out.printf("Llamda PpmImage.rows() -> 1\n");
+        return 1;
     }
 }

@@ -94,18 +94,18 @@ public class IO {
             }
 
             public int readByte() throws IOException {
-                System.out.printf("Llamda IO.Bit.reader.readByte() -> 0xEE\n");
-                return 0xFF;
+                System.out.printf("Llamda IO.Bit.reader.readByte() -> 0x07\n");
+                return 0x07;
             }
 
             public int readChar() throws IOException {
-                System.out.printf("Llamda IO.Bit.reader.readChar() -> 0xDDDD\n");
-                return 0xDDDD;
+                System.out.printf("Llamda IO.Bit.reader.readChar() -> 'A'\n");
+                return 0x41;
             }
 
             public int readInt() throws IOException {
-                System.out.printf("Llamda IO.Bit.reader.readInt() -> 0xBBBBBBBB\n");
-                return 0xBBBBBBBB;
+                System.out.printf("Llamda IO.Bit.reader.readInt() -> 0x02\n");
+                return 0x02;
             }
 
             public BitSetL readBitSet(final int length) throws IOException {

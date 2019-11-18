@@ -101,34 +101,34 @@ package Domini {
         {static}- serialVersionUID : long
         -_length_ : int
         +BitSetL()
-        +BitSetL(l)
-        +BitSetL(n,l)
-        +BitSetL(s)
-        +asInt()
+        +BitSetL(int l)
+        +BitSetL(int n, int l)
+        +BitSetL(String s)
+        +int asInt()
         +flip()
-        +set(pos)
-        +set(pos,val)
-        +clear(pos)
-        +length()
+        +set(int pos)
+        +set(int pos, boolean val)
+        +clear(int pos)
+        +int length()
     }
 
-    CDom "1" -- "1" LZ78
-    CDom "1" -- "1" LZW
-    CDom "1" -- "1" LZSS
-    CDom "1" -- "1" JPEG
-    CDom "1" -- "1" Statistics
+    CDom o-- "1" LZ78
+    CDom o-- "1" LZW
+    CDom o-- "1" LZSS
+    CDom o-- "1" JPEG
+    CDom o-- "1" Statistics
 
-    CPre "1" -- "1" CDom
+    CPre o-- CDom
 
-    IO "*" -- "1" LZ78
-    IO "*" -- "1" LZSS
-    IO "*" -- "1" LZW
-    IO "*" -- "1" JPEG
+    LZ78 ..> IO
+    LZSS ..> IO
+    LZW ..> IO
+    JPEG ..> IO
 
-    BitSetL "*" -- "1" IO
-    BitSetL "*" -- "1" LZ78
-    BitSetL "*" -- "1" LZSS
-    BitSetL "*" -- "1" JPEG
+    BitSetL ..> IO
+    BitSetL <.. LZ78
+    BitSetL <.. LZSS
+    BitSetL <.. JPEG
 }
 
 @enduml

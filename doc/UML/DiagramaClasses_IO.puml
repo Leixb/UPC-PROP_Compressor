@@ -26,42 +26,52 @@ package Domini {
         - in : BufferedInputStream
         - buffer : int
         - n : int
-        +reader(filename)
-        -fill()
-        +read()
-        -readMask(mask)
-        +readByte()
-        +readChar()
-        +readInt()
-        +readBitSet()
-        +close()
+        +reader(String filename)
+        -void fill()
+        +boolean read()
+        -int readMask(int mask)
+        +byte readByte()
+        +char readChar()
+        +int readInt()
+        +BitSetL readBitSet()
+        +void close()
     }
     class writerBit as "writer" {
         - out : BufferedOutputStream
         - buffer : int
         - n : int
-        +writer(filename)
+        +writer(String filename)
         +write(bit)
         +write(bs)
         +write(b)
         +write(c)
         +write(num)
-        -writeMask(num,mask)
+        -writeMask(int num, int mask)
         -clear()
         +flush()
         +close()
     }
 
+    class BufferedInputStream
+    class BufferedOutputStream
+    class FileInputStream
+    class FileOutputStream
 
-    IO <|-- Char
-    IO <|-- Byte
-    IO <|-- Bit
-    Char <|-- writerChar
-    Char <|-- readerChar
-    Byte <|-- writerByte
-    Byte <|-- readerByte
-    Bit <|-- readerBit
-    Bit <|-- writerBit
+    FileOutputStream <|-- writerChar
+    FileInputStream <|-- readerChar
+    BufferedOutputStream <|-- writerByte
+    BufferedInputStream <|-- readerByte
+
+
+    IO *-- Char
+    IO *-- Byte
+    IO *-- Bit
+    Char *-- writerChar
+    Char *-- readerChar
+    Byte *-- writerByte
+    Byte *-- readerByte
+    Bit *-- readerBit
+    Bit *-- writerBit
 }
 
 

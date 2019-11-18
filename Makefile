@@ -78,3 +78,5 @@ run_LZSS_driver:
 run_Statistics_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) StatisticsDriver
 
+run_IO_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) IODriver

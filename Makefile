@@ -28,9 +28,13 @@ DRIVER_FILES = $(shell find src/test/drivers -type f -name '*.java')
 .PHONY: all build run copy_java_resources copy_test_resources build_test run_test jar run_jar
 
 # all: build run
+#
 
 build: copy_java_resources $(JAVA_FILES)
 	$(JC) $(JFLAGS) -d $(CP) $(JAVA_FILES)
+
+clean:
+	rm -r $(TARGET)
 
 run:
 	@$(JAVA) -cp $(CP) $(MAIN)

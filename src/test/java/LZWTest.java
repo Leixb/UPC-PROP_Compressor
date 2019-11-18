@@ -11,7 +11,7 @@ class LZWTest {
     @Test
     void compressDecompressFile() {
         new File("generated/").mkdirs();
-        final String inputFile = "texts/Large.txt";
+        final String inputFile = "texts/DonQuijote.txt";
         final String outputFile = "generated/outLZW.txt";
         final String aux = "generated/compressedFileLZW.piz";
 

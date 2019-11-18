@@ -39,7 +39,21 @@ Como archivo comprimido resultante se obtiene un conjunto de sets compuestos por
 
 #### Estructuras de Datos
 
-Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al descomprimir se lee primero un numero, que indica una entrada del diccionario y a continuación se lee el caracter del que va acompañado dicho numero. Finalmente se escribe en el archivo de descompresión la concatenación del value correspondiente a la entrada del diccionario junto con el char leídos.
+Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al descomprimir se lee primero un numero, que indica una entrada del diccionario y a continuación se lee el carácter del que va acompañado dicho numero. Finalmente se escribe en el archivo de descompresión la concatenación del value correspondiente a la entrada del diccionario junto con el char leídos.
+
+## LZW
+
+### Compresión
+
+#### Estructuras de Datos
+
+Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key String y value Integer, actuando de diccionario y de manera que todos los caracteres que se leen del archivo input quedan guardados en este. El diccionario se ha de inicializar con los valores unitarios esperados en el archivo a comprimir y a medida que se vaya leyendo la entrada se irán añadiendo posibles combinaciones de éstos.
+
+### Descompresión
+
+#### Estructuras de Datos
+
+Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al igual que en la compresión el diccionario se ha de inicializar con los valores unitarios esperados en el archivo a descomprimir y a medida que se vaya leyendo la entrada se irán añadiendo posibles combinaciones de éstos.
 
 ## LZW
 

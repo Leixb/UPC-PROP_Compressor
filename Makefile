@@ -54,7 +54,7 @@ run_test: build_test
 jar: $(JAR_FILE)
 
 $(JAR_FILE): $(JAVA_FILES) $(JAVA_RESOURCES)
-	make build1
+	make build
 	$(JAR) -cfe $(JAR_FILE) $(MAIN) -C $(CP) .
 
 run_jar:

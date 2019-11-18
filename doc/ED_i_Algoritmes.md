@@ -1,12 +1,12 @@
 [toc]
 
-#Estructuras de Datos & Algoritmos
+# Estructuras de Datos & Algoritmos
 
 ## LZSS
 
-###Compresión
+### Compresión
 
-####Estructuras de Datos
+#### Estructuras de Datos
 
 Para la ventana deslizante que contiene los últimos $n$ caracteres leidos del fichero usamos un ArrayList ya que es modificable su tamaño y también permite recorrerlo para encontrar coincidencias.
 

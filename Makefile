@@ -61,7 +61,7 @@ $(JAR_FILE): $(JAVA_FILES) $(JAVA_RESOURCES)
 	make build
 	$(JAR) -cfe $(JAR_FILE) $(MAIN) -C $(CP) .
 
-run_jar:
+runjar:
 	@$(JAVA) -jar $(JAR_FILE)
 
 build_drivers: dirs

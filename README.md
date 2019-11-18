@@ -62,3 +62,15 @@ bash ./buildRunDriver.sh NombreDeClasseAProbar
 # Ejemplo para JPEGDriver:
 bash ./buildRunDriver.sh JPEG
 ```
+
+## Diagramas
+
+### Diagrama Casos d'Us
+
+![Diagrama Casos d'us](doc/UML/CasosUs.png)
+
+### Diagrames de Classes
+
+![Diagrama Classes](doc/UML/DiagramaClasses.png)
+![Diagrama Classes IO](doc/UML/DiagramaClasses_IO.png)
+![Diagrama Classes JPEG](doc/UML/DiagramaClasses_JPEG.png)

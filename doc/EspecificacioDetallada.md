@@ -1,6 +1,11 @@
-[toc]
+---
+geometry: margin=2cm
+lang: es
+---
 
-#Especificación Detallada
+\tableofcontents
+
+# Especificación Detallada
 
 ## Main
 
@@ -13,7 +18,7 @@
 * `private static Scanner scanner`
   * **Descripción**: Scanner utilizado para leer los *inputs* del usuario.
 
-###Métodos
+### Métodos
 
 * `public static int prompt(String[] options)`
   * **Descripción**: Dadas una opciones las imprime y da a escoger una de ellas.
@@ -34,7 +39,7 @@
 * `public enum Alg {LZ78d, LZSSd, LZWd, JPEGd}`
   * **Descripción**: *Enum* usado para identificar cada algoritmo.
 
-###Métodos
+### Métodos
 
 * `public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality)`
   * **Descripción**: Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente.
@@ -50,7 +55,7 @@
 
 **Descripción:** Presenta datos al usuario.
 
-###Métodos
+### Métodos
 
 * `public static void printStatsCompress(Statistics stats)`
   * **Descripción**: Imprime las estadisticas de compresión.
@@ -68,7 +73,7 @@
 
 **Descripción:** Compresión y decompresión de archivos de texto con LZSS
 
-###Atributos
+### Atributos
 
 * `final static int MAX_SIZE_SW`
   * **Descripción**: Tamaño máximo de la ventana corrediza.
@@ -81,14 +86,14 @@
 * `final static ArrayList<Character> actualCharacters = new ArrayList<Character>()`
   * **Descripción**: estructura de datos que contiene los carácteres que vamos leyendo y comprobamos si esta secuencia ocurre en la ventana corrediza.
 
-###Métodos
+### Métodos
 
 * `public static void compress(final String inputFilename, final String outputFilename)`
   * **Descripción**: Crea el objeto lector y escritor para la compresión y llama al compresor
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void compress(final IO.Char.reader input, final IO.Bit.writer output)`
   * **Descripción**: Usando el algoritmo LZSS esta función comprime un archivo de texto.
-  * **Parametros**: 
+  * **Parametros**:
     * input: objeto de lectura del archivo que se quiere comprimir.
     * output: objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
@@ -97,13 +102,13 @@
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress(final IO.Bit.reader input, final IO.Char.writer output)`
   * **Descripción**:  Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido con este algoritmo.
-  * **Parametros**: 
+  * **Parametros**:
     * input: objeto de lectura del archivo comprimido.
     * output: objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static void computeLPSArray(final int[] lps)`
   * **Descripción**:  Calcula el vector *lps*, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición.
-  * **Parametros**: 
+  * **Parametros**:
     * lps: es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static int kmp()`
@@ -126,14 +131,14 @@
 * `public final static byte MAGIC_BYTE`
   * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
 
-###Métodos
+### Métodos
 
 * `public static void compress(final String inputFilename, final String outputFilename)`
   * **Descripción**: Llama al metodo compress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename.
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void compress(final IO.Char.reader input, final IO.Bit.writer output)`
   * **Descripción**: Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output.
-  * **Parametros**: 
+  * **Parametros**:
     * input: objeto de lectura del archivo que se quiere comprimir.
     * output: objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
@@ -145,7 +150,7 @@
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress(final IO.Bit.reader input, final IO.Char.writer output)`
   * **Descripción**:  Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output.
-  * **Parametros**: 
+  * **Parametros**:
     * input: objeto de lectura del archivo comprimido.
     * output: objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
@@ -165,7 +170,7 @@
 * `private static HashMap<Integer, String> decompressionDictionary`
   * **Descripción**: Diccionario usado en la descompresión
 
-###Métodos
+### Métodos
 
 * `private static void createCompressionDictionary()`
   * **Descripción**: Crea el diccionario de compresión y lo inicializa.
@@ -178,7 +183,7 @@
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void compress (IO.Char.reader input, IO.Bit.writer output)`
   * **Descripción**: Comprime un archivo de texto implementando un algoritmo LZW.
-  * **Parametros**: 
+  * **Parametros**:
     * input: Objeto de lectura del archivo que se quiere comprimir.
     * output: Objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
@@ -187,7 +192,7 @@
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress (IO.Bit.reader input, IO.Char.writer output)`
   * **Descripción**: Comprime un archivo de texto implementando un algoritmo LZW.
-  * **Parametros**: 
+  * **Parametros**:
     * input: Objeto de lectura del archivo que se quiere descomprimir.
     * output: Objeto de ecritura del archivo desccomprimido.
   * **Return:** Es void por tanto no devuelve nada.
@@ -201,7 +206,7 @@
 * `public final static byte MAGIC_BYTE`
   * **Descripción**: magic byte del JPEG.
 
-###Métodos
+### Métodos
 
 * `public static void compress(final String inputFile, final String outputFile, final short quality)`
   * **Descripción**: Comprime una imagen PPM bloque a bloque.
@@ -241,7 +246,7 @@
 
 **Descripción:** Codifica y decodifica bloques 8x8 con JPEG.
 
-###Métodos
+### Métodos
 
 * `private static int bitLength(final short n)`
   * **Descripción**: Número de bits necesarios para representar el short n.
@@ -363,7 +368,7 @@
 
 **Descripción:** Lector/escritor byte a byte con buffer.
 
-####Subclase: reader
+#### Subclase: reader
 
 **Descripción**: Extiende la clase *BufferedInputStream* para poder construir un buffer de lectura byte a byte a partir del archivo que recibe.
 
@@ -375,7 +380,7 @@
 
 **Descripción:** Lector/escritor bit a bit con buffer.
 
-####Subclase: reader
+#### Subclase: reader
 
 **Descripción**: Permite leer bit a bit un fichero. Además incorpora la posibilidad de leer también bytes, chars, ints e incluso BitSetL.
 
@@ -450,6 +455,3 @@
 * Porcentaje de compresión/descompresión
 * Tamaño del fichero de entrada
 * Tamaño del fichero de salida
-
-
-

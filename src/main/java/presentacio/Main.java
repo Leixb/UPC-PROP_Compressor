@@ -23,41 +23,6 @@ public class Main {
 
         System.out.println("BENVINGUT A");
         System.out.println(banner);
-        System.out.println("[1] Test");
-        System.out.println("[2] Normal");
-        short opt = scanner.nextShort();
-
-        if(opt == 1) testMain();
-        else if(opt == 2) normalMain();
-        else quit();
-    }
-
-    private static void testMain() {
-        System.out.println("[1] LZ78");
-        System.out.println("[2] LZSS");
-        System.out.println("[3] LZW");
-        System.out.println("[4] JPEG");
-        short opt = scanner.nextShort();
-
-        switch (opt) {
-            case 1:
-                testLZ78();
-                break;
-            case 2:
-                testLZSS();
-                break;
-            case 3:
-                testLZW();
-                break;
-            case 4:
-                testJPEG();
-                break;
-            default:
-                quit();
-        }
-    }
-
-    private static void normalMain() {
         System.out.println("Seleccioneu l'opció desitjada:");
         System.out.println("[1] Comprimir");
         System.out.println("[2] Descomprimir");

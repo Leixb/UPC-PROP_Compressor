@@ -59,6 +59,7 @@ class JPEGBlockDriver {
                 for (int j = 0; j < 8; ++j) {
                     System.out.printf("%04x ", block[i][j]);
                 }
+                System.out.println();
             }
             System.out.println();
             System.out.println("DONE");

@@ -31,13 +31,13 @@ public class BitSetL {
         System.out.printf("Llamda BitSetL.set(int pos=%d)\n", pos);
     }
 
+    public void set(final int pos, final boolean val) {
+        System.out.printf("Llamda BitSetL.set(int pos=%d, boolean val)\n", pos, val);
+    }
+
     public boolean get(final int pos) {
         System.out.printf("Llamda BitSetL.get(int pos=%d) -> true\n", pos);
         return true;
-    }
-
-    public void set(final int pos, final boolean val) {
-        System.out.printf("Llamda BitSetL.set(int pos=%d, boolean val)\n", pos, val);
     }
 
     public void clear(final int pos) {

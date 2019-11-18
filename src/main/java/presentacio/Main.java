@@ -18,63 +18,80 @@ public class Main {
 
     private static Scanner scanner;
 
+    public static int prompt(String[] options) {
+        for (int i = 1; i <= options.length; ++i)
+            System.out.printf("- [%d] : %s\n", i, options[i-1]);
+        System.out.printf("Escull una opció (%d-%d): ", 1, options.length);
+        return scanner.nextInt();
+    }
+
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
         System.out.println("BENVINGUT A");
         System.out.println(banner);
-        System.out.println("Seleccioneu l'opció desitjada:");
-        System.out.println("[1] Comprimir");
-        System.out.println("[2] Descomprimir");
-        short opt = scanner.nextShort();
 
-        if(opt == 1) comprimir();
-        else if (opt == 2) descomprimir();
-        else quit();
+        System.out.println("Menú:");
+        String[] options = {"Comprimir", "Descomprimir", "Sortir"};
+
+        int action = prompt(options);
+
+        while (action != 3) {
+
+            if (action == 1) comprimir();
+            else if (action == 2) descomprimir();
+            else System.out.println("[ERROR] Opció no vàlida");
+
+            System.out.println("Menú:");
+            action = prompt(options);
+        }
+        System.out.println("Finalitzant execució");
+        scanner.close();
     }
 
     private static void comprimir() {
-        System.out.println("Tipus de compressió:");
-        System.out.println("[1] Automàtic");
-        System.out.println("[2] LZ78");
-        System.out.println("[3] LZSS");
-        System.out.println("[4] LZW");
-        System.out.println("[5] JPEG");
-        short opt = scanner.nextShort();
+        int action;
+        boolean invalid;
+        do {
+            System.out.println("Tipus de compressió:");
+            String[] options = {"Automàtic", "LZ78", "LZSS", "LZW", "JPEG", "Menú"};
 
-        if (opt<1 || opt>5) quit();
+            action = prompt(options);
+            invalid = (action < 1 || action > 6);
+            if (invalid) System.out.println("[ERROR] Opció no vàlida");
+        } while (invalid);
 
-        System.out.println("Fitxer a comprimir:");
-        scanner.nextLine();
-        String fileIn = scanner.nextLine();
+        if(action!=6) {
+            System.out.println("Fitxer a comprimir:");
+            scanner.nextLine();
+            String fileIn = scanner.nextLine();
 
-        System.out.println("Fitxer desti (*.piz):");
-        String fileOut = scanner.nextLine();
+            System.out.println("Fitxer desti (*.piz):");
+            String fileOut = scanner.nextLine();
 
-        short quality = 0;
+            short quality = 0;
 
-        CtrlDomini.Alg alg = null;
-        if (opt == 1) {
-            if(fileIn.endsWith(".ppm")){
-                quality = 80; // auto JPEG qualitat 80.
+            CtrlDomini.Alg alg = null;
+            if (action == 1) {
+                if(fileIn.endsWith(".ppm")){
+                    quality = 80; // auto JPEG qualitat 80.
+                    alg = CtrlDomini.Alg.JPEGd;
+                } else alg = CtrlDomini.Alg.LZ78d;
+            } else if(action==2) alg = CtrlDomini.Alg.LZ78d;
+            else if(action==3) alg = CtrlDomini.Alg.LZSSd;
+            else if(action==4) alg = CtrlDomini.Alg.LZWd;
+            else if(action==5) {
                 alg = CtrlDomini.Alg.JPEGd;
-            } else alg = CtrlDomini.Alg.LZ78d;
-        } else if(opt==2) alg = CtrlDomini.Alg.LZ78d;
-        else if(opt==3) alg = CtrlDomini.Alg.LZSSd;
-        else if(opt==4) alg = CtrlDomini.Alg.LZWd;
-        else if(opt==5) {
-            alg = CtrlDomini.Alg.JPEGd;
-            System.out.println("Qualitat [1-99]:");
-            quality = scanner.nextShort();
-        }
+                System.out.println("Qualitat [1-99]:");
+                quality = scanner.nextShort();
+            }
 
-
-
-        try{
-            Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
-            CtrlPresentacio.printStatsCompress(stats);
-        } catch (Exception e) {
-            System.out.println("Error en la compressió:" + e.getMessage());
+            try {
+                Statistics stats = CtrlDomini.compress(alg, fileIn, fileOut, quality);
+                CtrlPresentacio.printStatsCompress(stats);
+            } catch (Exception e) {
+                System.out.println("Error en la compressió:" + e.getMessage());
+            }
         }
     }
 
@@ -93,10 +110,5 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Error en la descompressió:" + e.getMessage());
         }
-    }
-
-    private static void quit() {
-        System.out.println("Opció invàlida. Finalitzant execució...");
-        System.exit(-1);
     }
 }

@@ -2,9 +2,25 @@ package domini;
 
 import java.io.EOFException;
 
+/**
+ * @author Albert Mercadé Plasencia / Aleix Boné
+ * @brief Controlador del domini
+ */
 public class CtrlDomini {
+    /**
+     * @brief Enum para identificar cada algoritmo
+     */
     public enum Alg {LZ78d, LZSSd, LZWd, JPEGd};
 
+    /**
+     * @brief Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente
+     * @param alg algoritmo con el que comprimir
+     * @param fileIn nombre del archivo a comprimir
+     * @param fileOut nombre del archivo comprimido
+     * @param quality calidad de compresión para el JPEG
+     * @return Devuelve las estadisrticas generadas para la compresión
+     * @throws Exception Lanza cualquier excepción generada al comprimir
+     */
     public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
         Statistics stats = new Statistics();
         stats.setIniFileSize(fileIn);
@@ -31,6 +47,13 @@ public class CtrlDomini {
         return stats;
     }
 
+    /**
+     * @brief Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió
+     * @param fileIn nombre del fichero comprimido
+     * @param fileOut nombre del fichero descomprimido
+     * @return Estadisticas generadas durante la descompresión
+     * @throws Exception Lanza cualquier excepción generada al descomprimir
+     */
     public static Statistics decompress(String fileIn, String fileOut) throws Exception {
         Statistics stats = new Statistics();
         stats.setIniFileSize(fileIn);

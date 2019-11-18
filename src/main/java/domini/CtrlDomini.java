@@ -4,7 +4,7 @@ import java.io.EOFException;
 
 /**
  * @author Albert Mercadé Plasencia / Aleix Boné
- * @brief Controlador del domini
+ * @brief Controlador del dominio
  */
 public class CtrlDomini {
     /**

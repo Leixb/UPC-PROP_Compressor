@@ -66,6 +66,9 @@ build_drivers: dirs
 run_JPEG_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) JPEGDriver
 
+run_LZ78_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) LZ78Driver
+
 run_LZW_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) LZWDriver
 

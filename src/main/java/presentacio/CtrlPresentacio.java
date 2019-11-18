@@ -5,28 +5,28 @@ import java.text.DecimalFormat;
 import domini.Statistics;
 
 public class CtrlPresentacio {
-    public static void printStatsCompress(Statistics stats) {
-        String iniFileSize = readableFileSize(stats.getIniFileSize());
-        String finFileSize = readableFileSize(stats.getFinFileSize());
-        String compSpeed = readableFileSize(stats.getSpeedCompressed());
+    public static void printStatsCompress(long iniFileS, long finFileS, double speed, double time, double percentage) {
+        String iniFileSize = readableFileSize(iniFileS);
+        String finFileSize = readableFileSize(finFileS);
+        String compSpeed = readableFileSize(speed);
 
         System.out.println("--- Compressió exitosa ---");
         System.out.println("--------- Stats ----------");
-        System.out.printf("- Temps:     %.2fs\n", stats.getTime());
-        System.out.printf("- Desinflat: %s -> %s (%.2f%%)\n", iniFileSize, finFileSize, stats.getPercentageCompressed());
+        System.out.printf("- Temps:     %.2fs\n", time);
+        System.out.printf("- Desinflat: %s -> %s (%.2f%%)\n", iniFileSize, finFileSize, percentage);
         System.out.printf("- Velocitat: %sps\n", compSpeed);
         System.out.println("--------------------------");
     }
 
-    public static void printStatsDecompress(Statistics stats) {
-        String iniFileSize = readableFileSize(stats.getIniFileSize());
-        String finFileSize = readableFileSize(stats.getFinFileSize());
-        String decompSpeed = readableFileSize(stats.getSpeedDecompressed());
+    public static void printStatsDecompress(long iniFileS, long finFileS, double speed, double time, double percentage) {
+        String iniFileSize = readableFileSize(iniFileS);
+        String finFileSize = readableFileSize(finFileS);
+        String decompSpeed = readableFileSize(speed);
 
         System.out.println("--- Decompressió exitosa ---");
         System.out.println("---------- Stats -----------");
-        System.out.printf("- Temps:     %.2fs\n", stats.getTime());
-        System.out.printf("- Inflat:    %s -> %s (%.2f%%)\n", iniFileSize, finFileSize, stats.getPercentageDecompressed());
+        System.out.printf("- Temps:     %.2fs\n", time);
+        System.out.printf("- Inflat:    %s -> %s (%.2f%%)\n", iniFileSize, finFileSize, percentage);
         System.out.printf("- Velocitat: %s/s\n", decompSpeed);
         System.out.println("----------------------------");
     }

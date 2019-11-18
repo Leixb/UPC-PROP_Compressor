@@ -55,6 +55,20 @@ Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key String y v
 
 Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al igual que en la compresión el diccionario se ha de inicializar con los valores unitarios esperados en el archivo a descomprimir y a medida que se vaya leyendo la entrada se irán añadiendo posibles combinaciones de éstos.
 
+## LZW
+
+### Compresión
+
+#### Estructuras de Datos
+
+Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key String y value Integer, actuando de diccionario y de manera que todos los caracteres que se leen del archivo input quedan guardados en este. El diccionario se ha de inicializar con los valores unitarios esperados en el archivo a comprimir y a medida que se vaya leyendo la entrada se irán añadiendo podibles combinaciones de éstos.
+
+### Descompresión
+
+#### Estructuras de Datos
+
+Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al igual que en la compresión el diccionario se ha de inicializar con los valores unitarios esperados en el archivo a descomprimir y a medida que se vaya leyendo la entrada se irán añadiendo podibles combinaciones de éstos.
+
 ## JPEG
 
 ### Compresión

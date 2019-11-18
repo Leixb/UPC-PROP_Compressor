@@ -80,3 +80,6 @@ run_Statistics_driver:
 
 run_IO_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) IODriver
+
+run_BitSetL_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) BitSetLDriver

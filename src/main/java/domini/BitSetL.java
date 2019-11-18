@@ -33,6 +33,7 @@ public class BitSetL extends BitSet {
 
     /** Constructora con entero y longitud, inicializa length a la longitud dada
      * y mete los l últimos bits del entero en el bitset.
+     * @param n entero a codificar
      * @param l longitud del bitset
      */
     public BitSetL(final int n, final int l) {

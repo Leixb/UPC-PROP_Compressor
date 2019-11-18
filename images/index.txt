@@ -1,13 +1,28 @@
-images					Imagenes PPM de prueba
-├── boat_frag32.ppm
-├── boat_frag.ppm
-├── boat.ppm
-├── church.ppm
-├── cliff.ppm
-├── gonza.ppm
-├── gradient_35.ppm
-├── gradient8.ppm
-├── gradients32.ppm
-└── lake.ppm
+Este directorio contiene imagenes PPM de prueba para compression JPEG.
+
+boat.ppm y cliff.ppm son imagenes estandard de ~3MB.
+Tardan ~10s en comprimir / descomprimir. (compression ~80% a calidad 90)
+
+church.ppm y lake.ppm son imagenes muy grandes de ~46MB.
+Tardan unos 140s en comprimir/descomprimir (compression ~80% a calidad 90)
+
+gonza.ppm es una imagen pequena ~1MB y muy mala calidad. Se consigue una
+compression del 94% con calidad 90.
+
+Las imagenes gradient son gradientes, que permiten ver facilmente los artefactos
+genrados en la compression. Hay de distintos tamanos para probar que funciona
+con imagenes no multiples de 8.
+
+images					Imagenes PPM de prueba para JPEG
+├── boat_frag32.ppm 	Imagen 32x32 (muy pequena y multiplo de 8)
+├── boat_frag.ppm       Fragmento 8x8 (un solo bloque)
+├── boat.ppm			Imagen tamano estandard
+├── church.ppm			Imagen enorme (46 MB) tarda ~150 segundos en comprimir/descomprimir (82% de compressión con calidad 90)
+├── cliff.ppm			Imagen tamano estandard (tarda mucho en comprimir)
+├── gonza.ppm 			Imagen pequena
+├── gradient_35.ppm		Imagen 35x35 (patron gradiente muy pequeno y no multiplo de 8)
+├── gradient8.ppm		Imagen 8x8 (un solo bloque con patron gradiente)
+├── gradients32.ppm		Imagen 35x35 (muy pequena pero no multiplo de 8)
+└── lake.ppm			Imagen enorme (46 MB) tarda ~150 segundos en comprimir/descomprimir
 
 0 directories, 10 files

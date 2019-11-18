@@ -1,4 +1,5 @@
 import domini.IO;
+import domini.BitSetL;
 
 import java.util.Scanner;
 import java.io.IOException;
@@ -80,18 +81,21 @@ class IODriver{
         System.out.print("Input file to read: ");
         String inputFilename = scanner.next();
 
-        String[] options = {"read", "readByte", "readChar", "readInt", "back"};
+        String[] options = {"read", "readByte", "readChar", "readInt", "readBitSet", "back"};
 
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename)) {
 
             int action = prompt(options);
 
-            while (action != 5) {
+            while (action != 6) {
                 if (action == 1) testBitReaderRead(input);
                 if (action == 2) testBitReaderReadByte(input);
                 if (action == 3) testBitReaderReadChar(input);
                 if (action == 4) testBitReaderReadInt(input);
+                if (action == 5) testBitReaderReadBitSet(input);
                 else System.out.println("Invalid option");
+
+                action = prompt(options);
             }
             System.out.println("DONE");
         } catch (Exception e) {
@@ -104,31 +108,43 @@ class IODriver{
         System.out.printf("read bool: %b\n", input.read());
     }
     public static void testBitReaderReadByte(IO.Bit.reader input) throws IOException {
-        System.out.printf("read bool: %x\n", input.readByte());
+        System.out.printf("read byte: %x\n", input.readByte());
     }
     public static void testBitReaderReadChar(IO.Bit.reader input) throws IOException {
-        System.out.printf("read bool: %c\n", input.readChar());
+        System.out.printf("read char: %c\n", input.readChar());
     }
     public static void testBitReaderReadInt(IO.Bit.reader input) throws IOException {
-        System.out.printf("read bool: %d\n", input.readInt());
+        System.out.printf("read int: %d\n", input.readInt());
+    }
+    public static void testBitReaderReadBitSet(IO.Bit.reader input) throws IOException {
+        System.out.print("Length: ");
+        int length = scanner.nextInt();
+
+        BitSetL bs = input.readBitSet(length);
+
+        System.out.printf("read BitSet: %s\n", bs.toString());
     }
 
     public static void testBitWriter() {
         System.out.print("Input file to write: ");
         String outputFilename = scanner.next();
 
-        String[] options = {"write(boolean)", "write(byte)", "write(char)", "write(int)", "back"};
+        String[] options = {"write(boolean)", "write(byte)", "write(char)",
+            "write(int)", "write(BitSetL)", "back"};
 
         try (IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
 
             int action = prompt(options);
 
-            while (action != 5) {
+            while (action != 6) {
                 if (action == 1) testBitWriterBool(output);
                 if (action == 2) testBitWriterByte(output);
                 if (action == 3) testBitWriterChar(output);
                 if (action == 4) testBitWriterInt(output);
+                if (action == 5) testBitWriterBitSetL(output);
                 else System.out.println("Invalid option");
+
+                action = prompt(options);
             }
             System.out.println("DONE");
         } catch (Exception e) {
@@ -152,6 +168,11 @@ class IODriver{
     public static void testBitWriterInt(IO.Bit.writer output) throws IOException {
         System.out.print("Int to write: ");
         output.write(scanner.nextInt());
+    }
+    public static void testBitWriterBitSetL(IO.Bit.writer output) throws IOException {
+        System.out.print("Bitset to write: ");
+        BitSetL bs = new BitSetL(scanner.next());
+        output.write(bs);
     }
 
     public static int prompt(String[] options) {

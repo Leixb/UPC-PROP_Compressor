@@ -1,128 +1,67 @@
 package domini;
 
-import java.io.File;
-
-/**
- * @author Alex Herrero Pons / Aleix Boné / Albert Mercadé Plasencia
- *
- * @brief Genera estadísticas de compresión/descompresión.
- */
-
 public class Statistics {
-    private long startingTime;
-    private long endingTime;
-    private long iniFileSize;
-    private long finFileSize;
-
-    /**
-     * @brief Constructora de la clase
-     */
     public Statistics () {
-        startingTime = 0;
-        endingTime = 0;
-        iniFileSize = 0;
-        finFileSize = 0;
+        System.out.printf("Llamada a Statistics()\n");
     }
 
-    /**
-     * @brief Setter de startingTime
-     */
     public void setStartingTime () {
-        startingTime = System.currentTimeMillis();
+        System.out.printf("Llamada a void()\n");
     }
-
-    /**
-     * @brief Setter de endingTime
-     */
     public void setEndingTime () {
-        endingTime = System.currentTimeMillis();
+        System.out.printf("Llamada a setEndingTime()\n");
     }
 
-    /**
-     * @brief Setter de iniFileSize
-     * @param filename nombre del archivo de entrada cuyo tamaño se quiere consultar
-     */
     public void setIniFileSize (final String filename) {
-        iniFileSize = new File(filename).length();
+        System.out.printf("Llamada a setIniFileSize(Strin filename=\"%s\")\n", filename);
     }
 
-    /**
-     * @brief Setter de finFileSize
-     * @param filename nombre del archivo de salida cuyo tamaño se quiere consultar
-     */
     public void setFinFileSize(final String filename) {
-        finFileSize = new File(filename).length();
+        System.out.printf("Llamada a setFinFileSize(Strin filename=\"%s\")\n", filename);
     }
 
-    /**
-     * @brief Getter de la duración de la compresión/descompresión
-     * @return Tiempo de ejecución de la compresión/descompresión en segundos
-     */
     public double getTime () {
-        return (double)(endingTime - startingTime)/1000.0;
+        System.out.printf("Llamada a getTime() -> 10.0\n");
+        return 10.0;
     }
 
-    /**
-     * @brief Getter del tamaño del fichero de entrada
-     * @return Tamaño del archivo de entrada en bytes
-     */
     public long getIniFileSize() {
-        return iniFileSize;
+        System.out.printf("Llamada a getIniFileSize() -> 500\n");
+        return 500;
     }
 
-    /**
-     * @brief Getter del tamaño del fichero de salida
-     * @return Tamaño del archivo de salida en bytes
-     */
     public long getFinFileSize() {
-        return finFileSize;
+        System.out.printf("Llamada a getFinFileSize() -> 250\n");
+        return 250;
     }
 
-    /**
-     * @brief Getter de los bytes comprimidos
-     * @return Cantidad de bytes comprimidos
-     */
     public long getBytesCompressed () {
-        return iniFileSize - finFileSize;
+        System.out.printf("Llamada a getBytesCompressed() -> 100\n");
+        return 100;
     }
 
-    /**
-     * @brief Getter de los bytes descomprimidos
-     * @return Cantidad de bytes descomprimidos
-     */
     public long getBytesDecompressed () {
-        return finFileSize - iniFileSize;
+        System.out.printf("Llamada a getBytesDecompressed() -> 100\n");
+        return 100;
     }
 
-    /**
-     * @brief Getter del porcentage de compresión
-     * @return Porcentage de compresión
-     */
     public double getPercentageCompressed () {
-        return (double) getBytesCompressed()*100.0 / iniFileSize;
+        System.out.printf("Llamada a getPercentageCompressed() -> 0.785\n");
+        return 78.5;
     }
 
-    /**
-     * @brief Getter del porcentage de descompresión
-     * @return Porcentage de descompresión
-     */
     public double getPercentageDecompressed () {
-        return (double) getBytesDecompressed()*100.0 / iniFileSize;
+        System.out.printf("Llamada a getPercentageDecompressed() -> 78.5\n");
+        return 78.5;
     }
 
-    /**
-     * @brief Getter de la velocidad de compresión
-     * @return Velocidad de compresión en bytes por segundo
-     */
     public double getSpeedCompressed () {
-        return (double)iniFileSize / getTime();
+        System.out.printf("Llamada a getSpeedCompressed() -> 505.34\n");
+        return 505.34;
     }
 
-    /**
-     * @brief Getter de la velocidad de descompresión
-     * @return Velocidad de descompresión en bytes por segundo
-     */
     public double getSpeedDecompressed () {
-        return (double)finFileSize / getTime();
+        System.out.printf("Llamada a getSpeedDecompressed() -> 505.34\n");
+        return 505.34;
     }
 }

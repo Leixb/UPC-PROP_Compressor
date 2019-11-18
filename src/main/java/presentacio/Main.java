@@ -41,7 +41,6 @@ public class Main {
             if (action == 1) comprimir();
             else if (action == 2) descomprimir();
             else System.out.println("[ERROR] Opció no vàlida");
-
             System.out.println("Menú:");
             action = prompt(options);
         }
@@ -106,7 +105,6 @@ public class Main {
         try{
             Statistics stats = CtrlDomini.decompress(fileIn,fileOut);
             CtrlPresentacio.printStatsDecompress(stats);
-
         } catch (Exception e) {
             System.out.println("Error en la descompressió:" + e.getMessage());
         }

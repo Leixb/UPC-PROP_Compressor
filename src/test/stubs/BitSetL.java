@@ -32,7 +32,7 @@ public class BitSetL {
     }
 
     public void set(final int pos, final boolean val) {
-        System.out.printf("Llamda BitSetL.set(int pos=%d, boolean val)\n", pos, val);
+        System.out.printf("Llamda BitSetL.set(int pos=%d, boolean val=%b)\n", pos, val);
     }
 
     public boolean get(final int pos) {

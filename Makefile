@@ -63,6 +63,9 @@ run_jar:
 build_drivers: dirs
 	$(JC) -d $(CP_DRIVERS) -cp $(CP) $(DRIVER_FILES)
 
+# Drivers SIN stubs
+# ( Para stubs usar ./buildRunDriver.sh <nombre-classe> )
+
 run_JPEG_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) JPEGDriver
 
@@ -78,5 +81,11 @@ run_LZSS_driver:
 run_Statistics_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) StatisticsDriver
 
+run_CtrlDomini_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) CtrlDominiDriver
+
 run_IO_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) IODriver
+
+run_BitSetL_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) BitSetLDriver

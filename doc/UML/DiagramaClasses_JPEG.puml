@@ -1,0 +1,126 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+title Diagrama de classes JPEG
+
+package Domini {
+    class JPEG {
+        {static}+MAGIC_BYTE : byte
+        - JPEG()
+        {static}+compress(inputFile,outputFile,quality)
+        {static}+decompress(inputFile,outputFile)
+        {static}+readBlock(huffAC,huffDC,file)
+        {static}-readHuffman(huff,file)
+        {static}+writeBlock(encoded,huffAC,huffDC,file)
+        {static}-write(value,file)
+        {static}-read(length,file)
+    }
+    class JPEGBlock as "JPEGBlock <? implements Codec<byte[][], short[]> >" {
+        -JPEGBlock()
+        {static}-bitLength(n)
+        {static}+encode(quality,isChrominance,data)
+        {static}+decode(quality,isChrominance,data)
+    }
+    class DCT {
+        {static}+encode(data)
+        {static}+decode(data)
+    }
+    class Quantization {
+        {static}-LuminanceTable : byte[][]
+        {static}-ChrominanceTable : byte[][]
+        {static}~QuantizationValue(quality,isChrominance,x,y)
+        {static}+encode(data)
+        {static}+encode(quality,isChrominance,block)
+        {static}+decode(data)
+        {static}+decode(quality,isChrominance,block)
+    }
+    class ZigZag {
+        {static}-table : byte[][]
+        {static}-calculateCorrespondenceTable()
+        {static}+encode(block)
+        {static}+decode(L)
+    }
+    class RLE {
+        {static}+encode(data)
+        {static}+decode(data)
+    }
+    class PpmImage {
+        -pixels : byte[][][]
+        -width : int
+        -height : int
+        +setDimensions(w,h)
+        +readFile(filename)
+        +writeFile(filename)
+        -readInt(file)
+        -doubleToByte(d)
+        +toRGB()
+        +toYCbCr()
+        +readBlock(channel,x,y)
+        +writeBlock(block,channel,x,y)
+        +width()
+        +height()
+        +columns()
+        +rows()
+    }
+    class InvalidFileFormatException {
+        {static}-serialVersionUID : long
+        +InvalidFileFormatException()
+        +InvalidFileFormatException(s)
+    }
+    class Huffman {
+        - root : Node
+        - table : HashMap<Short, BitSetL>
+        +Huffman(isAC,isChrominance)
+        -readTable(filename)
+        -addToTree(value,bs)
+        +encode(value)
+        +decode(b)
+        +decode(n,b)
+    }
+    class Node {
+        ~ value : Short
+        ~ leaf : boolean
+        ~ L : Node
+        ~ R : Node
+        +isLeaf()
+        +getValue()
+    }
+    class HuffmanLookupException {
+        {static} -serialVersionUID : long
+        ~ HuffmanLookupException()
+        ~ HuffmanLookupException(s)
+        ~ HuffmanLookupException(n)
+    }
+
+    class IO {
+    }
+    interface Codec<A,B> {
+        B encode(A)
+        A decode(B)
+    }
+
+    JPEG *-- JPEGBlock
+    JPEG o-- PpmImage
+    JPEG o-- Huffman
+
+    JPEG ..> IO
+    PpmImage ..> IO
+    Huffman ..> IO
+
+    JPEG ..> BitSetL
+    Huffman ..> BitSetL
+
+    JPEGBlock *-- DCT
+    JPEGBlock *-- Quantization
+    JPEGBlock *-- ZigZag
+    JPEGBlock *-- RLE
+    JPEGBlock --|> Codec
+
+    PpmImage *-- InvalidFileFormatException
+    Huffman *-- Node
+    Huffman *-- HuffmanLookupException
+
+}
+
+@enduml

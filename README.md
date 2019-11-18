@@ -22,7 +22,7 @@ Projecte PROP Quatrimestre tardor 2019/20
 - **Huffman**: Aleix Boné
 - **PpmImage**: Aleix Boné
 - **BitSetL**: Aleix Boné
-- **IO**: Aleix Boné / Alex González
+- **IO**: Aleix Boné / Alex González / Albert Mercadé
 - **Statistics**: Alex Herrero / Albert Mercadé / Aleix Boné
 - **CtrlDomini**: Albert Mercadé
 - **CtrlPresentacio**:  Albert Mercadé / Aleix Boné

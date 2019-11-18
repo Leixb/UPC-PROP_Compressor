@@ -22,11 +22,11 @@ Projecte PROP Quatrimestre tardor 2019/20
 - **Huffman**: ***REMOVED***
 - **PpmImage**: ***REMOVED***
 - **BitSetL**: ***REMOVED***
-- **IO**: ***REMOVED*** / ***REMOVED*** / ***REMOVED***
-- **Statistics**: ***REMOVED*** / ***REMOVED*** / ***REMOVED***
+- **IO**: ***REMOVED***
+- **Statistics**: ***REMOVED*** 
 - **CtrlDomini**: ***REMOVED***
-- **CtrlPresentacio**:  ***REMOVED*** / ***REMOVED***
-- **Main**: ***REMOVED*** / ***REMOVED***
+- **CtrlPresentacio**:  ***REMOVED***
+- **Main**: ***REMOVED***
 
 ## Uso de la aplicación
 

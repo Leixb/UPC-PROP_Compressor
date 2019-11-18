@@ -1,4 +1,9 @@
-[toc]
+---
+geometry: margin=2cm
+lang: es
+---
+
+\tableofcontents
 
 # Estructuras de Datos & Algoritmos
 

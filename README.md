@@ -1,6 +1,4 @@
-# El Compressor 
-![Build Status](https://github.com/Leixb/Compressor_PROP/workflows/Java%20CI/badge.svg)
-[![CodeFactor](https://www.codefactor.io/repository/github/leixb/compressor_prop/badge?s=f6f48f3e67e69da4aefc3048aba7e871deb081ed)](https://www.codefactor.io/repository/github/leixb/compressor_prop)
+# El Compressor
 
 Projecte PROP Quatrimestre tardor 2019/20
 
@@ -23,7 +21,7 @@ Projecte PROP Quatrimestre tardor 2019/20
 - **PpmImage**: ***REMOVED***
 - **BitSetL**: ***REMOVED***
 - **IO**: ***REMOVED***
-- **Statistics**: ***REMOVED*** 
+- **Statistics**: ***REMOVED***
 - **CtrlDomini**: ***REMOVED***
 - **CtrlPresentacio**:  ***REMOVED***
 - **Main**: ***REMOVED***

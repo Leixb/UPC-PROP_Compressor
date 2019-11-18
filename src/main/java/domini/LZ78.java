@@ -25,11 +25,13 @@ public final class LZ78{
      */
     public final static byte MAGIC_BYTE = 0x78;
 
-  /**
-     * @brief Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output
-     * @param input Archivo de entrada que se desea comprimir
-     * @param output  Archivo de salida comprimido
-     * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
+
+
+    /**
+     * @brief Llama al metodo compress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename
+     * @param inputFilename Path y nombre del archivo de entrada que se desea comprimir
+     * @param outputFilename Path y nombre del archivo de salida comprimido
+     * @throws IOException Excepcion en caso de pasar como parametro inputFilename un archivo inexistente
      */
     public static void compress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Char.reader input = new IO.Char.reader(inputFilename);
@@ -38,6 +40,12 @@ public final class LZ78{
         }
     }
 
+    /**
+     * @brief Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output
+     * @param input Archivo de entrada que se desea comprimir
+     * @param output Archivo de salida comprimido
+     * @throws IOException Excepcion en caso de intentar leer un dato inexistente
+     */
     private static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
@@ -98,10 +106,10 @@ public final class LZ78{
     }
 
     /**
-     * @brief Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output
-     * @param input  Archivo comprimido que se desea descomprimir
-     * @param output  Archivo de salida descomprimido
-     * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
+     * @brief Llama al metodo decompress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename
+     * @param inputFilename Path y nombre del archivo de entrada que se desea descomprimir
+     * @param outputFilename Path y nombre del archivo de salida descomprimido
+     * @throws IOException Excepcion en caso de pasar como parametro inputFilename un archivo inexistente
      */
     public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
@@ -110,6 +118,12 @@ public final class LZ78{
         }
     }
 
+    /**
+     * @brief Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output
+     * @param input  Archivo comprimido que se desea descomprimir
+     * @param output  Archivo de salida descomprimido
+     * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
+     */
     private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         input.readByte();
 

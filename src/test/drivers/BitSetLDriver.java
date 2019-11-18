@@ -59,19 +59,16 @@ class BitSetLDriver {
     }
 
     public static void testAsInt () {
-        bitSetL = new BitSetL();
         System.out.println("asInt: " + bitSetL.asInt());
         System.out.println("DONE");
     }
 
     public static void testFlip () {
-        bitSetL = new BitSetL();
         bitSetL.flip();
         System.out.println("DONE");
     }
 
     public static void testPositionSet () {
-        bitSetL = new BitSetL();
         System.out.print("Position: ");
         int pos = scanner.nextInt();
         bitSetL.set(pos);
@@ -79,7 +76,6 @@ class BitSetLDriver {
     }
 
     public static void testPositionValueSet () {
-        bitSetL = new BitSetL();
         System.out.print("Position: ");
         int pos = scanner.nextInt();
         System.out.print("Value (true-false): ");
@@ -106,7 +102,6 @@ class BitSetLDriver {
     }
 
     public static void testClear () {
-        bitSetL = new BitSetL();
         System.out.print("Position: ");
         int pos = scanner.nextInt();
         bitSetL.clear(pos);
@@ -114,7 +109,6 @@ class BitSetLDriver {
     }
 
     public static void testLength () {
-        bitSetL = new BitSetL();
         System.out.println("length" + bitSetL.length());
         System.out.println("DONE");
     }
@@ -128,6 +122,7 @@ class BitSetLDriver {
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
+        bitSetL = new BitSetL();
 
         String[] options = {
                 "constructor",

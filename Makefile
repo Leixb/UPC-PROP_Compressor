@@ -72,3 +72,5 @@ run_LZ78_driver:
 run_LZW_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) LZWDriver
 
+run_LZSS_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) LZSSDriver

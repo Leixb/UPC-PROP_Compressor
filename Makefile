@@ -2,7 +2,9 @@ TARGET = target
 
 CP = $(TARGET)/classes/
 CP_TESTS = $(TARGET)/test-classes/
-DIRS = $(CP) $(CP_TESTS)
+CP_DRIVERS = $(TARGET)/driver-classes/
+
+DIRS = $(CP) $(CP_TESTS) $(CP_DRIVERS)
 
 JFLAGS = -g
 JC = javac
@@ -15,11 +17,13 @@ JAR_FILE = $(TARGET)/ProjecteProp-$(VERSION).jar
 
 TEST_JARS = libs/junit-jupiter-5.4.2.jar:libs/junit-jupiter-api-5.4.0.jar:libs/apiguardian-api-1.1.0.jar:libs/hamcrest-core-1.3.jar
 
-JAVA_FILES = $(shell find src/main/ -type f -name '*.java')
+JAVA_FILES = $(shell find src/main/java -type f -name '*.java')
 JAVA_RESOURCES = $(wildcard src/main/resources/*)
 
-TEST_FILES = $(shell find src/test/ -type f -name '*.java')
+TEST_FILES = $(shell find src/test/java -type f -name '*.java')
 TEST_RESOURCES = $(wildcard src/test/resources/*)
+
+DRIVER_FILES = $(shell find src/test/drivers -type f -name '*.java')
 
 .PHONY: all build run copy_java_resources copy_test_resources build_test run_test jar run_jar
 
@@ -55,3 +59,9 @@ $(JAR_FILE): $(JAVA_FILES) $(JAVA_RESOURCES)
 
 run_jar:
 	@$(JAVA) -jar $(JAR_FILE)
+
+build_drivers: dirs
+	$(JC) -d $(CP_DRIVERS) -cp $(CP) $(DRIVER_FILES)
+
+run_JPEG_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) JPEGDriver

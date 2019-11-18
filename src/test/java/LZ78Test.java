@@ -11,7 +11,7 @@ class LZ78Test {
     @Test
     void CompressDecompressFile() throws IOException{
         new File("generated/").mkdirs();
-        final String inputFile = "texts/Gordo.txt";
+        final String inputFile = "texts/Large.txt";
         final String outputFile = "generated/out78.txt";
         final String aux = "generated/compressedFileLZ78.piz";
 

@@ -14,13 +14,11 @@ class StatisticsDriver {
     }
 
     public static void testSetStartingTime() {
-        stats = new Statistics();
         stats.setStartingTime();
         System.out.println("DONE");
     }
 
     public static void testSetEndingTime() {
-        stats = new Statistics();
         stats.setEndingTime();
         System.out.println("DONE");
     }
@@ -29,7 +27,6 @@ class StatisticsDriver {
         System.out.print("Filename of the file you want to consult its size): ");
         String filename = scanner.next();
 
-        stats = new Statistics();
         stats.setIniFileSize(filename);
         System.out.println("DONE");
     }
@@ -38,49 +35,41 @@ class StatisticsDriver {
         System.out.print("Filename (of the file you want to consult its size): ");
         String filename = scanner.next();
 
-        stats = new Statistics();
         stats.setFinFileSize(filename);
         System.out.println("DONE");
     }
 
     public static void testGetTime() {
-        stats = new Statistics();
         System.out.println("getTime: " + stats.getTime());
         System.out.println("DONE");
     }
 
     public static void testGetIniFileSize() {
-        stats = new Statistics();
         System.out.println("getIniFileSize: " + stats.getIniFileSize());
         System.out.println("DONE");
     }
 
     public static void testGetFinFileSize() {
-        stats = new Statistics();
         System.out.println("getFinFileSize: " + stats.getFinFileSize());
         System.out.println("DONE");
     }
 
     public static void testGetPercentageCompressed() {
-        stats = new Statistics();
         System.out.println("getPercentageCompressed: " + stats.getPercentageCompressed());
         System.out.println("DONE");
     }
 
     public static void testGetPercentageDecompressed() {
-        stats = new Statistics();
         System.out.println("getPercentageDecompressed: " + stats.getPercentageDecompressed());
         System.out.println("DONE");
     }
 
     public static void testGetSpeedCompressed() {
-        stats = new Statistics();
         System.out.println("getSpeedCompressed: " + stats.getSpeedCompressed());
         System.out.println("DONE");
     }
 
     public static void testGetSpeedDecompressed() {
-        stats = new Statistics();
         System.out.println("getSpeedDecompressed: " + stats.getSpeedDecompressed());
         System.out.println("DONE");
     }
@@ -95,6 +84,8 @@ class StatisticsDriver {
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
+
+        stats = new Statistics();
 
         String[] options = {"constructor",
                 "setStartingTime", "setEndingTime",

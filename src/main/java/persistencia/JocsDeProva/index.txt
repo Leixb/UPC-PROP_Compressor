@@ -1,0 +1,9 @@
+texts					Textos de prueba
+├── Blank.txt
+├── DonQuijote.txt
+├── Large.txt
+├── Prova.txt
+├── Repeticion.txt
+└── Diferentes.txt
+
+0 directories, 7 files

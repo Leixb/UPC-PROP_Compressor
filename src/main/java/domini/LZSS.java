@@ -21,10 +21,10 @@ public final class LZSS {
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
 
     /**
-     * @brief Usando el algoritmo LZSS esta función comprime un archivo txt
+     * @brief Crea el objeto lector y escritor para la compresión
      * @param inputFilename nombre del archivo que se quiere comprimir
      * @param outputFilename nombre del archivo comprimido
-     * @throws IOException se lanza cuando hay un error de lecturo o escritura
+     * @throws IOException se lanza cuando hay un error de lectura o escritura
      */
 
     public static void compress(final String inputFilename, final String outputFilename) throws IOException {
@@ -33,6 +33,13 @@ public final class LZSS {
             compress(input, output);
         }
     }
+
+    /**
+     * @brief Usando el algoritmo LZSS esta función comprime un archivo txt
+     * @param input objeto de lectura del archivo que se quiere comprimir
+     * @param output objeto de escritura del archivo comprimido
+     * @throws IOException se lanza cuando hay un error de lectura o escritura
+     */
 
     private static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
         // writing LZSS magic byte
@@ -132,12 +139,12 @@ public final class LZSS {
     }
 
     /**
-     *
-     * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor
-     * @param inputFilename nombre del archivo comprimido
-     * @param outputFilename nombre del archivo descomprimido
-     * @throws IOException se lanza cuando hay un error de lecturo o escritura
+     * @brief Crea el objeto lector y escritor para la descompresión
+     * @param inputFilename objeto de lectura del archivo comprimido
+     * @param outputFilename objeto de escritura del archivo comprimido
+     * @throws IOException se lanza cuando hay un error de lectura o escritura
      */
+
     public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
                 IO.Char.writer output = new IO.Char.writer(outputFilename)) {
@@ -145,6 +152,13 @@ public final class LZSS {
         }
     }
 
+    /**
+     *
+     * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor
+     * @param input nombre del archivo comprimido
+     * @param output nombre del archivo descomprimido
+     * @throws IOException se lanza cuando hay un error de lecturo o escritura
+     */
     private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         // ignoring magic byte
         input.readByte();

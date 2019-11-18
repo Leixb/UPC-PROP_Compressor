@@ -1,0 +1,304 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+title Diagrama de classes
+
+package Presentació {
+    class "CtrlPresentacio" as CPre {
+        {static}+printStatsCompress(iniFileS, finFileS, speed, time, percentage)
+        {static}+printStatsDecompress(iniFileS, finFileS, speed, time, percentage)
+        {static}+readableFileSize(d)
+    }
+}
+
+package Domini {
+    enum Alg {
+        LZ78d
+        LZSSd
+        LZWd
+        JPEGd
+    }
+    class "CtrlDomini" as CDom {
+        + Alg : Alg
+        {static}+compress(alg,fileIn,fileOut,quality)
+        {static}+decompress(fileIn,fileOut)
+    }
+
+    class JPEGBlock as "JPEGBlock <? implements Codec<byte[][], short[]> >" {
+        -JPEGBlock()
+        {static}-bitLength(n)
+        {static}+encode(quality,isChrominance,data)
+        {static}+decode(quality,isChrominance,data)
+    }
+    class DCT {
+        {static}+encode(data)
+        {static}+decode(data)
+    }
+    class Quantization {
+        {static}-LuminanceTable : byte[][]
+        {static}-ChrominanceTable : byte[][]
+        {static}~QuantizationValue(quality,isChrominance,x,y)
+        {static}+encode(data)
+        {static}+encode(quality,isChrominance,block)
+        {static}+decode(data)
+        {static}+decode(quality,isChrominance,block)
+    }
+    class ZigZag {
+        {static}-table : byte[][]
+        {static}-calculateCorrespondenceTable()
+        {static}+encode(block)
+        {static}+decode(L)
+    }
+    class RLE {
+        {static}+encode(data)
+        {static}+decode(data)
+    }
+    class PpmImage {
+        -pixels : byte[][][]
+        -width : int
+        -height : int
+        +setDimensions(w,h)
+        +readFile(filename)
+        +writeFile(filename)
+        -readInt(file)
+        -doubleToByte(d)
+        +toRGB()
+        +toYCbCr()
+        +readBlock(channel,x,y)
+        +writeBlock(block,channel,x,y)
+        +width()
+        +height()
+        +columns()
+        +rows()
+    }
+    class InvalidFileFormatException {
+        {static}-serialVersionUID : long
+        +InvalidFileFormatException()
+        +InvalidFileFormatException(s)
+    }
+    class Huffman {
+        - root : Node
+        - table : HashMap<Short, BitSetL>
+        +Huffman(isAC,isChrominance)
+        -readTable(filename)
+        -addToTree(value,bs)
+        +encode(value)
+        +decode(b)
+        +decode(n,b)
+    }
+    class Node {
+        ~ value : Short
+        ~ leaf : boolean
+        ~ L : Node
+        ~ R : Node
+        +isLeaf()
+        +getValue()
+    }
+    class HuffmanLookupException {
+        {static} -serialVersionUID : long
+        ~ HuffmanLookupException()
+        ~ HuffmanLookupException(s)
+        ~ HuffmanLookupException(n)
+    }
+
+    class IO {
+    }
+    class Char
+    class readerChar as "reader" {
+        +reader(filename)
+    }
+    class writerChar as "writer" {
+        +writer(filename)
+    }
+    class Byte
+    class readerByte as "reader" {
+        +reader(filename)
+    }
+    class writerByte as "writer" {
+        +writer(filename)
+    }
+    class Bit
+    class readerBit as "reader" {
+        - in : BufferedInputStream
+        - buffer : int
+        - n : int
+        +reader(String filename)
+        -void fill()
+        +boolean read()
+        -int readMask(int mask)
+        +byte readByte()
+        +char readChar()
+        +int readInt()
+        +BitSetL readBitSet()
+        +void close()
+    }
+    class writerBit as "writer" {
+        - out : BufferedOutputStream
+        - buffer : int
+        - n : int
+        +writer(String filename)
+        +write(bit)
+        +write(bs)
+        +write(b)
+        +write(c)
+        +write(num)
+        -writeMask(int num, int mask)
+        -clear()
+        +flush()
+        +close()
+    }
+
+    class BufferedInputStream
+    class BufferedOutputStream
+    class FileInputStream
+    class FileOutputStream
+
+    FileOutputStream <|-- writerChar
+    FileInputStream <|-- readerChar
+    BufferedOutputStream <|-- writerByte
+    BufferedInputStream <|-- readerByte
+
+
+    IO *-- Char
+    IO *-- Byte
+    IO *-- Bit
+    Char *-- writerChar
+    Char *-- readerChar
+    Byte *-- writerByte
+    Byte *-- readerByte
+    Bit *-- readerBit
+    Bit *-- writerBit
+    class IO {
+    }
+    interface Codec<A,B> {
+        B encode(A)
+        A decode(B)
+    }
+
+    JPEG *-- JPEGBlock
+    JPEG o-- PpmImage
+    JPEG o-- Huffman
+
+    JPEG ..> IO
+    PpmImage ..> IO
+    Huffman ..> IO
+
+    JPEG ..> BitSetL
+    Huffman ..> BitSetL
+
+    JPEGBlock *-- DCT
+    JPEGBlock *-- Quantization
+    JPEGBlock *-- ZigZag
+    JPEGBlock *-- RLE
+    JPEGBlock --|> Codec
+
+    PpmImage *-- InvalidFileFormatException
+    Huffman *-- Node
+    Huffman *-- HuffmanLookupException
+    class JPEG {
+        {static}+MAGIC_BYTE : byte
+        - JPEG()
+        {static}+compress(inputFile,outputFile,quality)
+        {static}+decompress(inputFile,outputFile)
+        {static}+readBlock(huffAC,huffDC,file)
+        {static}-readHuffman(huff,file)
+        {static}+writeBlock(encoded,huffAC,huffDC,file)
+        {static}-write(value,file)
+        {static}-read(length,file)
+    }
+    class LZ78 {
+        {static}- compress_dict : HashMap<String, Integer>
+        {static}- decompress_dict : HashMap<Integer, String>
+        {static}+ MAGIC_BYTE : byte
+        -LZ78()
+        {static}+ compress(inputFilename,outputFilename)
+        {static}- compress(input,output)
+        {static}+ decompress(inputFilename,outputFilename)
+        {static}- decompress(input,output)
+        {static}- bits_needed(n)
+
+    }
+    class LZW {
+        {static}+ MAGIC_BYTE : byte
+        {static}-DICTIONARY_SIZE : int
+        {static}-compressionDictionary : HashMap<String, Integer>
+        {static}-decompressionDictionary : HashMap<Integer, String>
+        -LZW()
+        {static}-createCompressionDictionary()
+        {static}-createDecompressionDictionary()
+        {static}+ compress(inputFilename,outputFilename)
+        {static}- compress(input,output)
+        {static}+ decompress(inputFilename,outputFilename)
+        {static}- decompress(input,output)
+    }
+    class LZSS {
+        {static}~ slidingWindow : ArrayList<Character>
+        {static}~ actualCharacters : ArrayList<Character>
+        {static}~ MAX_SIZE_SW : int
+        {static}~ MAX_LENGTH_COINCIDENCE : int
+        {static}+ MAGIC_BYTE : byte
+        -LZSS()
+        {static}+ compress(inputFilename,outputFilename)
+        {static}- compress(input,output)
+        {static}+ decompress(inputFilename,outputFilename)
+        {static}- decompress(input,output)
+        {static}- computeLPSArray(lps)
+        {static}- kmp()
+        {static}- log2(n)
+    }
+    class Statistics {
+        -startingTime : long
+        -endingTime : long
+        -iniFileSize : long
+        -finFileSize : long
+        +Statistics()
+        +setStartingTime()
+        +setEndingTime()
+        +setIniFileSize(filename)
+        +setFinFileSize(filename)
+        +getTime()
+        +getIniFileSize()
+        +getFinFileSize()
+        -getBytesCompressed()
+        -getBytedDecompressed()
+        +getPercentageCompressed()
+        +getPercentageDecompressed()
+        +getSpeedCompressed()
+        +getSpeedDecompressed()
+    }
+    class BitSetL {
+        {static}- serialVersionUID : long
+        -_length_ : int
+        +BitSetL()
+        +BitSetL(int l)
+        +BitSetL(int n, int l)
+        +BitSetL(String s)
+        +int asInt()
+        +flip()
+        +set(int pos)
+        +set(int pos, boolean val)
+        +clear(int pos)
+        +int length()
+    }
+
+    CDom o-- "1" LZ78
+    CDom o-- "1" LZW
+    CDom o-- "1" LZSS
+    CDom o-- "1" JPEG
+    CDom o-- "1" Statistics
+
+    CPre o-- CDom
+
+    LZ78 ..> IO
+    LZSS ..> IO
+    LZW ..> IO
+    JPEG ..> IO
+
+    BitSetL ..> IO
+    BitSetL <.. LZ78
+    BitSetL <.. LZSS
+    BitSetL <.. JPEG
+}
+
+@enduml

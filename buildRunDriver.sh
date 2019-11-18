@@ -10,7 +10,7 @@ DRIVER_CP=target/driver-classes-$DRIVER
 DRIVER_SR=target/driver-sources-$DRIVER
 
 echo -n "Borrando builds anteriores..."
-rm -r $DRIVER_SR $DRIVER_CP
+{ rm -r $DRIVER_SR $DRIVER_CP ; } || true
 echo -e "\rBorrando builds anteriores DONE"
 
 mkdir -p $DRIVER_CP $DRIVER_SR/domini

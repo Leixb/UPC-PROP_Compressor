@@ -7,6 +7,9 @@ import java.io.EOFException;
  * @brief Controlador del domini
  */
 public class CtrlDomini {
+    /**
+     * @brief Enum para identificar cada algoritmo
+     */
     public enum Alg {LZ78d, LZSSd, LZWd, JPEGd};
 
     /**

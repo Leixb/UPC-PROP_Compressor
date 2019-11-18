@@ -82,7 +82,7 @@ public class Statistics {
      * @brief Getter de los bytes comprimidos
      * @return Cantidad de bytes comprimidos
      */
-    public long getBytesCompressed () {
+    private long getBytesCompressed () {
         return iniFileSize - finFileSize;
     }
 
@@ -90,7 +90,7 @@ public class Statistics {
      * @brief Getter de los bytes descomprimidos
      * @return Cantidad de bytes descomprimidos
      */
-    public long getBytesDecompressed () {
+    private long getBytesDecompressed () {
         return finFileSize - iniFileSize;
     }
 

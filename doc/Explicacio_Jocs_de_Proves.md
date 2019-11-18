@@ -1,4 +1,9 @@
-[toc]
+---
+geometry: margin=2cm
+lang: es
+---
+
+\tableofcontents
 
 # Explicación de los juegos de pruebas
 
@@ -18,7 +23,7 @@ Para probar diferentes escenarios hemos creado diversos archivos de texto e imag
 
 - **Diferentes.txt:** Archivo con todos los caracteres diferentes. De manera que se comprueba que al intentar comprimir un archivo con repeticiones se obtiene una compresión nula, o incluso se obtiene un archivo de compresión mayor ya que en éste los caracteres ocupan 16 bits en lugar de 8.
 
-``` 
+```
 texts               Textos de prueba
 ├── Blank.txt		Archivo vacío
 |

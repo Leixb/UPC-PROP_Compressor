@@ -4,7 +4,7 @@ import java.io.EOFException;
 
 /**
  * @author ***REMOVED*** Plasencia / ***REMOVED***
- * @brief Controlador del domini
+ * @brief Controlador del dominio
  */
 public class CtrlDomini {
     /**

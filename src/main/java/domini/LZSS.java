@@ -156,7 +156,7 @@ public final class LZSS {
      *
      * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor
      * @param input objeto de lectura del archivo comprimido
-     * @param output objeto de escritura del archivo comprimido
+     * @param output objeto de escritura del archivo descomprimido
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
     private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {

@@ -42,6 +42,8 @@ public class Main {
         System.out.println("[5] JPEG");
         short opt = scanner.nextShort();
 
+        if (opt<1 || opt>5) quit();
+
         System.out.println("Fitxer a comprimir:");
         scanner.nextLine();
         String fileIn = scanner.nextLine();
@@ -64,7 +66,9 @@ public class Main {
             alg = CtrlDomini.Alg.JPEGd;
             System.out.println("Qualitat [1-99]:");
             quality = scanner.nextShort();
-        } else quit();
+        }
+
+
 
         try{
             Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
@@ -95,9 +99,4 @@ public class Main {
         System.out.println("Opció invàlida. Finalitzant execució...");
         System.exit(-1);
     }
-
-    private static void testLZ78() {}
-    private static void testLZSS() {}
-    private static void testLZW() {}
-    private static void testJPEG() {}
 }

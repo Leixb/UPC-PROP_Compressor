@@ -68,7 +68,7 @@ public class Main {
 
         try{
             Statistics stats = CtrlDomini.compress(alg,fileIn,fileOut,quality);
-            CtrlPresentacio.printStatsCompress(stats.getIniFileSize(),stats.getFinFileSize(),stats.getSpeedCompressed(),stats.getTime(),stats.getPercentageCompressed());
+            CtrlPresentacio.printStatsCompress(stats);
         } catch (Exception e) {
             System.out.println("Error en la compressió:" + e.getMessage());
         }
@@ -84,7 +84,7 @@ public class Main {
 
         try{
             Statistics stats = CtrlDomini.decompress(fileIn,fileOut);
-            CtrlPresentacio.printStatsDecompress(stats.getIniFileSize(),stats.getFinFileSize(),stats.getSpeedDecompressed(),stats.getTime(),stats.getPercentageDecompressed());
+            CtrlPresentacio.printStatsDecompress(stats);
         } catch (Exception e) {
             System.out.println("Error en la descompressió:" + e.getMessage());
         }

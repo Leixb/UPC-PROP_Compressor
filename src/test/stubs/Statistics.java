@@ -6,7 +6,7 @@ public class Statistics {
     }
 
     public void setStartingTime () {
-        System.out.printf("Llamada a void()\n");
+        System.out.printf("Llamada a setStartingTime()\n");
     }
     public void setEndingTime () {
         System.out.printf("Llamada a setEndingTime()\n");

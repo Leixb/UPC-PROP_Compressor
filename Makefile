@@ -81,3 +81,5 @@ run_Statistics_driver:
 run_CtrlDomini_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) CtrlDominiDriver
 
+run_IO_driver:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) IODriver

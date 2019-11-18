@@ -1,9 +1,9 @@
 texts					Textos de prueba
 ├── Blank.txt
-├── Celestina.txt
 ├── DonQuijote.txt
 ├── Large.txt
 ├── Prova.txt
-└── Repeticion.txt
+├── Repeticion.txt
+└── Diferentes.txt
 
-0 directories, 6 files
+0 directories, 7 files

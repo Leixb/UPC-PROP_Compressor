@@ -105,7 +105,7 @@ public class IO {
                 buffer = 0;
             }
 
-            public void flush() throws IOException {
+            private void flush() throws IOException {
                 clear();
                 out.flush();
             }

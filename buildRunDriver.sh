@@ -19,6 +19,7 @@ echo -n "Uniendo codigo de drivers y stubs..."
 cp src/test/stubs/*.java $DRIVER_SR/domini
 cp src/test/drivers/${DRIVER}Driver.java $DRIVER_SR
 cp src/main/java/domini/${DRIVER}.java $DRIVER_SR/domini
+cp src/test/resources/* ${DRIVER_CP}
 echo -e "\rUniendo codigo de drivers y stubs DONE"
 
 echo -n "Compilando classes..."

@@ -15,7 +15,7 @@ public class Huffman {
     private HashMap<Short, BitSetL> table; //< Tabla de Huffman
 
     /// Nodo del arbol huffman
-    public class Node {
+    public static class Node {
         Short value;
         // L -> 0; R -> 1
         boolean leaf;
@@ -91,7 +91,9 @@ public class Huffman {
             root = new Node();
         Node n = root;
 
-        for (int i = 0; i < bs.length(); ++i) {
+        final int length = bs.length();
+
+        for (int i = 0; i < length; ++i) {
             if (bs.get(i)) {
                 if (n.R == null)
                     n.R = new Node();

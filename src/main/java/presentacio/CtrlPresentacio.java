@@ -4,7 +4,16 @@ import java.text.DecimalFormat;
 
 import domini.Statistics;
 
+/**
+ * @author ***REMOVED*** Plasencia / ***REMOVED***
+ * @brief Imprime por pantalla
+ */
+
 public class CtrlPresentacio {
+    /**
+     * @brief Imprime las estadisticas de compresión
+     * @param stats Estadisticas generadas al comprimir
+     */
     public static void printStatsCompress(Statistics stats) {
         String iniFileSize = readableFileSize(stats.getIniFileSize());
         String finFileSize = readableFileSize(stats.getFinFileSize());
@@ -18,6 +27,10 @@ public class CtrlPresentacio {
         System.out.println("--------------------------");
     }
 
+    /**
+     * @brief Imprime las estadisticas de descompresión
+     * @param stats Estadisticas generadas al descomprimir
+     */
     public static void printStatsDecompress(Statistics stats) {
         String iniFileSize = readableFileSize(stats.getIniFileSize());
         String finFileSize = readableFileSize(stats.getFinFileSize());
@@ -31,6 +44,11 @@ public class CtrlPresentacio {
         System.out.println("----------------------------");
     }
 
+    /**
+     * @brief Da el formato correcto al tamaño de un fichero (B,kB,etc)
+     * @param d Tamaño de un fichero en bytes
+     * @return Tamaño del fichero en la magnitud que le corresponda
+     */
     public static String readableFileSize(double d) {
         if (d <= 0)
             return "0";

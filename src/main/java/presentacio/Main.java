@@ -5,6 +5,11 @@ import domini.Statistics;
 
 import java.util.Scanner;
 
+/**
+ * @author ***REMOVED*** Plasencia / ***REMOVED*** Pons / ***REMOVED***
+ * @brief Recibe todos los inputs necesarios del usuario para la compresión/descompresión
+ */
+
 public class Main {
 
     private static String banner =
@@ -18,12 +23,18 @@ public class Main {
 
     private static Scanner scanner;
 
+    /**
+     * @brief Dadas una opciones las imprime y da a escoger una de ellas
+     * @param options opciones a presentar al usuario
+     * @return Devuelve la opción elegida por el usuario
+     */
     public static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Escull una opció (%d-%d): ", 1, options.length);
         return scanner.nextInt();
     }
+
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
@@ -48,6 +59,10 @@ public class Main {
         scanner.close();
     }
 
+    /**
+     * @brief Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y
+     *        el nombre del archivo comprimido que luego pasa al CtrlDomini.
+     */
     private static void comprimir() {
         int action;
         boolean invalid;
@@ -94,6 +109,9 @@ public class Main {
         }
     }
 
+    /**
+     * @brief Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini.
+     */
     private static void descomprimir() {
         System.out.println("Fitxer a descomprimir (*.piz):");
         scanner.nextLine();

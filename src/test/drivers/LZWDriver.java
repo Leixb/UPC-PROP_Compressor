@@ -2,11 +2,10 @@ import domini.LZW;
 
 import java.util.Scanner;
 
-public class LZWDriver {
-
+class LZWDriver {
     private static Scanner scanner;
 
-    private static void testCompress () {
+    public static void testCompress () {
         System.out.print("Input file (file to compress): ");
         String inputFile = scanner.next();
         System.out.print("Output file: ");
@@ -21,7 +20,7 @@ public class LZWDriver {
         }
     }
 
-    private static void testDecompress  () {
+    public static void testDecompress  () {
         System.out.print("Input file (file to decompress): ");
         String inputFile = scanner.next();
         System.out.print("Output file: ");
@@ -36,28 +35,29 @@ public class LZWDriver {
         }
     }
 
+    public static int prompt(String[] options) {
+        for (int i = 1; i <= options.length; ++i)
+            System.out.printf("- [%d] : %s\n", i, options[i-1]);
+        System.out.printf("Chose one option (%d-%d): ", 1, options.length);
+        return scanner.nextInt();
+    }
+
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Driver de LZW.");
-            System.out.println("[1] Compress");
-            System.out.println("[2] Decompress");
-            System.out.println("[3] Exit");
-            short opt = scanner.nextShort();
 
-            if (opt == 1) testCompress();
-            else if (opt == 2) testDecompress();
-            else if (opt == 3) bye();
-            else invalidOpt();
+        String[] options = {"compress", "decompress", "exit"};
+
+        int action = prompt(options);
+
+        while (action != 3) {
+
+            if (action == 1) testCompress();
+            else if (action == 2) testDecompress();
+            else System.out.println("Invalid option");
+
+            action = prompt(options);
         }
-    }
 
-    private static void bye() {
-        System.out.println("Fins aviat! Finalitzant execució...");
-        System.exit(-1);
-    }
-
-    private static void invalidOpt() {
-        System.out.println("Invalid option. Choose an option from 1 to 3.");
+        scanner.close();
     }
 }

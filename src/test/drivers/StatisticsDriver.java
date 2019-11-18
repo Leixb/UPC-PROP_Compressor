@@ -9,138 +9,80 @@ class StatisticsDriver {
     private static Scanner scanner;
 
     public static void testConstructor() {
-        try {
-            stats = new Statistics();
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics constructor failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("DONE");
     }
 
     public static void testSetStartingTime() {
-        try {
-            stats = new Statistics();
-            stats.setStartingTime();
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics setStartingTime failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        stats.setStartingTime();
+        System.out.println("DONE");
     }
 
     public static void testSetEndingTime() {
-        try {
-            stats = new Statistics();
-            stats.setEndingTime();
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics setEndingTime failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        stats.setEndingTime();
+        System.out.println("DONE");
     }
 
     public static void testSetIniFileSize() {
         System.out.print("Filename of the file you want to consult its size): ");
         String filename = scanner.next();
-        try {
-            stats = new Statistics();
-            stats.setIniFileSize(filename);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics setIniFileSize failed!");
-            e.printStackTrace();
-        }
+
+        stats = new Statistics();
+        stats.setIniFileSize(filename);
+        System.out.println("DONE");
     }
 
     public static void testSetFinFileSize() {
         System.out.print("Filename (of the file you want to consult its size): ");
         String filename = scanner.next();
-        try {
-            stats = new Statistics();
-            stats.setFinFileSize(filename);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics setFinFileSize failed!");
-            e.printStackTrace();
-        }
+
+        stats = new Statistics();
+        stats.setFinFileSize(filename);
+        System.out.println("DONE");
     }
 
     public static void testGetTime() {
-        try {
-            stats = new Statistics();
-            System.out.println("getTime: " + stats.getTime());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getTime failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getTime: " + stats.getTime());
+        System.out.println("DONE");
     }
 
     public static void testGetIniFileSize() {
-        try {
-            stats = new Statistics();
-            System.out.println("getIniFileSize: " + stats.getIniFileSize());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getIniFileSize failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getIniFileSize: " + stats.getIniFileSize());
+        System.out.println("DONE");
     }
 
     public static void testGetFinFileSize() {
-        try {
-            stats = new Statistics();
-            System.out.println("getFinFileSize: " + stats.getFinFileSize());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getFinFileSize failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getFinFileSize: " + stats.getFinFileSize());
+        System.out.println("DONE");
     }
 
     public static void testGetPercentageCompressed() {
-        try {
-            stats = new Statistics();
-            System.out.println("getPercentageCompressed: " + stats.getPercentageCompressed());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getPercentageCompressed failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getPercentageCompressed: " + stats.getPercentageCompressed());
+        System.out.println("DONE");
     }
 
     public static void testGetPercentageDecompressed() {
-        try {
-            stats = new Statistics();
-            System.out.println("getPercentageDecompressed: " + stats.getPercentageDecompressed());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getPercentageDecompressed failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getPercentageDecompressed: " + stats.getPercentageDecompressed());
+        System.out.println("DONE");
     }
 
     public static void testGetSpeedCompressed() {
-        try {
-            stats = new Statistics();
-            System.out.println("getSpeedCompressed: " + stats.getSpeedCompressed());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getSpeedCompressed failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getSpeedCompressed: " + stats.getSpeedCompressed());
+        System.out.println("DONE");
     }
 
     public static void testGetSpeedDecompressed() {
-        try {
-            stats = new Statistics();
-            System.out.println("getSpeedDecompressed: " + stats.getSpeedDecompressed());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("Statistics getSpeedDecompressed failed!");
-            e.printStackTrace();
-        }
+        stats = new Statistics();
+        System.out.println("getSpeedDecompressed: " + stats.getSpeedDecompressed());
+        System.out.println("DONE");
     }
 
 

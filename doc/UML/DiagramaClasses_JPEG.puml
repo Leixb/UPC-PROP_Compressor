@@ -104,18 +104,18 @@ package Domini {
     JPEG o-- PpmImage
     JPEG o-- Huffman
 
-    IO "*" -- "1" JPEG
-    IO "*" -- "1" PpmImage
-    IO "*" -- "1" Huffman
+    JPEG ..> IO
+    PpmImage ..> IO
+    Huffman ..> IO
 
-    BitSetL "*" -- "1" JPEG
-    BitSetL "*" -- "1" Huffman
+    JPEG ..> BitSetL
+    Huffman ..> BitSetL
 
     JPEGBlock *-- DCT
     JPEGBlock *-- Quantization
     JPEGBlock *-- ZigZag
     JPEGBlock *-- RLE
-    JPEGBlock *-- Codec
+    JPEGBlock --|> Codec
 
     PpmImage *-- InvalidFileFormatException
     Huffman *-- Node

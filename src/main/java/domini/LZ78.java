@@ -11,9 +11,10 @@ import java.util.HashMap;
  * @brief Compresor y descompresor de archivos de texto con LZ78
  */
 
-public final class LZ78 extends LZ {
+public final class LZ78{
 
-    private LZ78 () {}
+    private LZ78() {}
+
     //Declaración de los HashMaps de Compression y Decompression
     private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>();
     private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
@@ -24,14 +25,20 @@ public final class LZ78 extends LZ {
      */
     public final static byte MAGIC_BYTE = 0x78;
 
-
-    /**
+  /**
      * @brief Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output
      * @param input Archivo de entrada que se desea comprimir
      * @param output  Archivo de salida comprimido
      * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
      */
-    public static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
+    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+            compress(input, output);
+        }
+    }
+
+    private static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         String chars = "";
@@ -90,15 +97,20 @@ public final class LZ78 extends LZ {
         return (int) (Math.log(n) / Math.log(2) + 1e-10) + 1;
     }
 
-
-
     /**
      * @brief Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output
      * @param input  Archivo comprimido que se desea descomprimir
      * @param output  Archivo de salida descomprimido
      * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
      */
-    public static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
+    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+            decompress(input, output);
+        }
+    }
+
+    private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
         input.readByte();
 
         int num = 1;//Numero que representa el value de la siguiente entrada en el HashMap
@@ -145,11 +157,10 @@ public final class LZ78 extends LZ {
                     ++nchar;
                     nbits = bits_needed(nchar);
                 }
-
             } catch (EOFException e) {
                 //EOF!
             }
-        }catch (EOFException e){
+        } catch (EOFException e){
             //EOF!
         }
     }

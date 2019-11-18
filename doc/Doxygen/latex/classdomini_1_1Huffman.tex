@@ -1,0 +1,119 @@
+\hypertarget{classdomini_1_1Huffman}{}\doxysection{Referencia de la Clase domini.\+Huffman}
+\label{classdomini_1_1Huffman}\index{domini.Huffman@{domini.Huffman}}
+
+
+codificación y decodificación \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} con tablas predefinidas  
+
+
+\doxysubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Huffman\+Lookup\+Exception}
+\item 
+class {\bfseries Node}
+\begin{DoxyCompactList}\small\item\em Nodo del arbol huffman. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1Huffman_a1dec11e27d7a163e8382d6b95da45b4d}{Huffman}} (final boolean is\+AC, final boolean is\+Chrominance)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Leer la tabla del disco en memoria y construye el árbol. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} \mbox{\hyperlink{classdomini_1_1Huffman_a1446aa841cf0ffe0a0eb792bfec5824d}{encode}} (final Short value)  throws Huffman\+Lookup\+Exception 
+\begin{DoxyCompactList}\small\item\em devuelve el código \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} asociado a un valor \end{DoxyCompactList}\item 
+Node \mbox{\hyperlink{classdomini_1_1Huffman_a2c0e950d4b230dd08b05fb3259797bd3}{decode}} (final boolean b)
+\item 
+Node \mbox{\hyperlink{classdomini_1_1Huffman_ab593dd7db8b8502b762a6ded52b0b102}{decode}} (final Node n, final boolean b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+codificación y decodificación \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} con tablas predefinidas 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED*** 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1Huffman_a1dec11e27d7a163e8382d6b95da45b4d}\label{classdomini_1_1Huffman_a1dec11e27d7a163e8382d6b95da45b4d}} 
+\index{domini.Huffman@{domini.Huffman}!Huffman@{Huffman}}
+\index{Huffman@{Huffman}!domini.Huffman@{domini.Huffman}}
+\doxysubsubsection{\texorpdfstring{Huffman()}{Huffman()}}
+{\footnotesize\ttfamily domini.\+Huffman.\+Huffman (\begin{DoxyParamCaption}\item[{final boolean}]{is\+AC,  }\item[{final boolean}]{is\+Chrominance }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Leer la tabla del disco en memoria y construye el árbol. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em is\+AC} & si cierto se lee la tabla AC, sino la DC. \\
+\hline
+{\em is\+Chrominance} & si cierto se lee la tabla de Chrominance, sino Luminance \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & si se produce un error en la lectura de las tablas. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1Huffman_a2c0e950d4b230dd08b05fb3259797bd3}\label{classdomini_1_1Huffman_a2c0e950d4b230dd08b05fb3259797bd3}} 
+\index{domini.Huffman@{domini.Huffman}!decode@{decode}}
+\index{decode@{decode}!domini.Huffman@{domini.Huffman}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Node domini.\+Huffman.\+decode (\begin{DoxyParamCaption}\item[{final boolean}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em b} & booleano \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Siguiente nodo del árbol des de la raíz 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1Huffman_ab593dd7db8b8502b762a6ded52b0b102}\label{classdomini_1_1Huffman_ab593dd7db8b8502b762a6ded52b0b102}} 
+\index{domini.Huffman@{domini.Huffman}!decode@{decode}}
+\index{decode@{decode}!domini.Huffman@{domini.Huffman}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Node domini.\+Huffman.\+decode (\begin{DoxyParamCaption}\item[{final Node}]{n,  }\item[{final boolean}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em n} & Nodo del árbol \\
+\hline
+{\em b} & booleano \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Siguiente nodo en el árbol 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1Huffman_a1446aa841cf0ffe0a0eb792bfec5824d}\label{classdomini_1_1Huffman_a1446aa841cf0ffe0a0eb792bfec5824d}} 
+\index{domini.Huffman@{domini.Huffman}!encode@{encode}}
+\index{encode@{encode}!domini.Huffman@{domini.Huffman}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} domini.\+Huffman.\+encode (\begin{DoxyParamCaption}\item[{final Short}]{value }\end{DoxyParamCaption}) throws Huffman\+Lookup\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+devuelve el código \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} asociado a un valor 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em value} & valor a buscar en la tabla \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+código \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em Huffman\+Lookup\+Exception} & si el valor no se encuentra en la tabla \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/Huffman.\+java\end{DoxyCompactItemize}

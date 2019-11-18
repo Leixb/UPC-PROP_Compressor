@@ -1,0 +1,89 @@
+\hypertarget{classdomini_1_1CtrlDomini}{}\doxysection{Referencia de la Clase domini.\+Ctrl\+Domini}
+\label{classdomini_1_1CtrlDomini}\index{domini.CtrlDomini@{domini.CtrlDomini}}
+
+
+Controlador del dominio.  
+
+
+\doxysubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{enumdomini_1_1CtrlDomini_1_1Alg}{Alg}}
+\begin{DoxyCompactList}\small\item\em Enum para identificar cada algoritmo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_abfdf98b615c4b5914b9e12be0e04ec63}{compress}} (\mbox{\hyperlink{enumdomini_1_1CtrlDomini_1_1Alg}{Alg}} alg, String file\+In, String file\+Out, Short quality)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_a3100be54008cb05050ed7e728337b64b}{decompress}} (String file\+In, String file\+Out)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Controlador del dominio. 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED*** Plasencia / ***REMOVED*** 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_abfdf98b615c4b5914b9e12be0e04ec63}\label{classdomini_1_1CtrlDomini_abfdf98b615c4b5914b9e12be0e04ec63}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!compress@{compress}}
+\index{compress@{compress}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} domini.\+Ctrl\+Domini.\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumdomini_1_1CtrlDomini_1_1Alg}{Alg}}}]{alg,  }\item[{String}]{file\+In,  }\item[{String}]{file\+Out,  }\item[{Short}]{quality }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em alg} & algoritmo con el que comprimir \\
+\hline
+{\em file\+In} & nombre del archivo a comprimir \\
+\hline
+{\em file\+Out} & nombre del archivo comprimido \\
+\hline
+{\em quality} & calidad de compresión para el \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devuelve las estadisrticas generadas para la compresión 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em Exception} & Lanza cualquier excepción generada al comprimir \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a3100be54008cb05050ed7e728337b64b}\label{classdomini_1_1CtrlDomini_a3100be54008cb05050ed7e728337b64b}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!decompress@{decompress}}
+\index{decompress@{decompress}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} domini.\+Ctrl\+Domini.\+decompress (\begin{DoxyParamCaption}\item[{String}]{file\+In,  }\item[{String}]{file\+Out }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em file\+In} & nombre del fichero comprimido \\
+\hline
+{\em file\+Out} & nombre del fichero descomprimido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Estadisticas generadas durante la descompresión 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em Exception} & Lanza cualquier excepción generada al descomprimir \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/Ctrl\+Domini.\+java\end{DoxyCompactItemize}

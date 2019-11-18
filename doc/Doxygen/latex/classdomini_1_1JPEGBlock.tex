@@ -1,0 +1,89 @@
+\hypertarget{classdomini_1_1JPEGBlock}{}\doxysection{Referencia de la Clase domini.\+J\+P\+E\+G\+Block}
+\label{classdomini_1_1JPEGBlock}\index{domini.JPEGBlock@{domini.JPEGBlock}}
+
+
+codifica y decodifica bloques 8x8 con \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}}  
+
+
+
+
+Herencias domini.\+Codec$<$ A, B $>$.
+
+\doxysubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries D\+CT}
+\begin{DoxyCompactList}\small\item\em D\+CT (Discrete Cosine Transform) \end{DoxyCompactList}\item 
+class {\bfseries Quantization}
+\begin{DoxyCompactList}\small\item\em Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada. \end{DoxyCompactList}\item 
+class {\bfseries R\+LE}
+\begin{DoxyCompactList}\small\item\em Codifica/\+Decodifica en R\+LE (Run Length Encoding) \end{DoxyCompactList}\item 
+class {\bfseries Zig\+Zag}
+\begin{DoxyCompactList}\small\item\em {\itshape Aplasta} un bloque 8x8 en zig\+Zag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_a73a8962ed7956ea5d4b86dcf0f47d8eb}{encode}} (final short quality, final boolean is\+Chrominance, final byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} data)
+\begin{DoxyCompactList}\small\item\em Comprime un bloque 8x8 aplicando D\+CT, cuantización, zig\+Zag y R\+LE. \end{DoxyCompactList}\item 
+static byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_aa80d1acbf18563a8e345601fde4f0425}{decode}} (final short quality, final boolean is\+Chrominance, final short\mbox{[}$\,$\mbox{]} data)
+\begin{DoxyCompactList}\small\item\em Deshace R\+LE, zig\+Zag, quantización y D\+CT para obtener el bloque 8x8 original. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+codifica y decodifica bloques 8x8 con \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED***
+\end{DoxyAuthor}
+Algoritmo de compresión \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} para bloques 8x8. Engloba todos los procesos de codificación y decodificación de \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} excepto \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. 
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_aa80d1acbf18563a8e345601fde4f0425}\label{classdomini_1_1JPEGBlock_aa80d1acbf18563a8e345601fde4f0425}} 
+\index{domini.JPEGBlock@{domini.JPEGBlock}!decode@{decode}}
+\index{decode@{decode}!domini.JPEGBlock@{domini.JPEGBlock}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily static byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+decode (\begin{DoxyParamCaption}\item[{final short}]{quality,  }\item[{final boolean}]{is\+Chrominance,  }\item[{final short\mbox{[}$\,$\mbox{]}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Deshace R\+LE, zig\+Zag, quantización y D\+CT para obtener el bloque 8x8 original. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em quality} & calidad de compresión (1-\/100) \\
+\hline
+{\em is\+Chrominance} & si es un bloque de Chrominance (si falso Luminance) \\
+\hline
+{\em data} & bloque 8x8 a codificado en R\+LE \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+bloque 8x8 decodificado 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_a73a8962ed7956ea5d4b86dcf0f47d8eb}\label{classdomini_1_1JPEGBlock_a73a8962ed7956ea5d4b86dcf0f47d8eb}} 
+\index{domini.JPEGBlock@{domini.JPEGBlock}!encode@{encode}}
+\index{encode@{encode}!domini.JPEGBlock@{domini.JPEGBlock}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+encode (\begin{DoxyParamCaption}\item[{final short}]{quality,  }\item[{final boolean}]{is\+Chrominance,  }\item[{final byte}]{data\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Comprime un bloque 8x8 aplicando D\+CT, cuantización, zig\+Zag y R\+LE. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em quality} & calidad de compresión (1-\/100) \\
+\hline
+{\em is\+Chrominance} & si es un bloque de Chrominance (si falso Luminance) \\
+\hline
+{\em data} & bloque 8x8 a codificar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+bloque 8x8 codificado en R\+LE 
+\end{DoxyReturn}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/J\+P\+E\+G\+Block.\+java\end{DoxyCompactItemize}

@@ -1,0 +1,143 @@
+\hypertarget{classdomini_1_1JPEG}{}\doxysection{Referencia de la Clase domini.\+J\+P\+EG}
+\label{classdomini_1_1JPEG}\index{domini.JPEG@{domini.JPEG}}
+
+
+compresión y descompresión de imágenes P\+PM con \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}}  
+
+
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classdomini_1_1JPEG_af7f9bed2f9b877004ecbc7ffc6ee5c99}{compress}} (final String input\+File, final String output\+File, final short quality)  throws Invalid\+File\+Format, I\+O\+Exception, Huffman\+Lookup\+Exception 
+\begin{DoxyCompactList}\small\item\em Comprime una imagen P\+PM bloque a bloque. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1JPEG_ab9de66231b23b6eefa213c0878f4d42b}{decompress}} (final String input\+File, final String output\+File)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Descomprime un fichero comprimido en \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} y lo guarda la imagen resultante en un fichero P\+PM raw. \end{DoxyCompactList}\item 
+static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}{read\+Block}} (final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+AC, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+DC, final I\+O.\+Bit.\+reader file)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Lee un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}{write\+Block}} (final short\mbox{[}$\,$\mbox{]} encoded, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+AC, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+DC, final I\+O.\+Bit.\+writer file)  throws I\+O\+Exception, Huffman\+Lookup\+Exception 
+\begin{DoxyCompactList}\small\item\em Escribe un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}\label{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}} 
+static final byte \mbox{\hyperlink{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}{M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE}} = (byte) 0x98
+\begin{DoxyCompactList}\small\item\em Magic Byte \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+compresión y descompresión de imágenes P\+PM con \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED*** 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEG_af7f9bed2f9b877004ecbc7ffc6ee5c99}\label{classdomini_1_1JPEG_af7f9bed2f9b877004ecbc7ffc6ee5c99}} 
+\index{domini.JPEG@{domini.JPEG}!compress@{compress}}
+\index{compress@{compress}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+compress (\begin{DoxyParamCaption}\item[{final String}]{input\+File,  }\item[{final String}]{output\+File,  }\item[{final short}]{quality }\end{DoxyParamCaption}) throws Invalid\+File\+Format, I\+O\+Exception, Huffman\+Lookup\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Comprime una imagen P\+PM bloque a bloque. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input\+File} & nombre del fichero de entrada (imagen ppm) \\
+\hline
+{\em output\+File} & nombre del fichero de salida (comprimido) \\
+\hline
+{\em quality} & calidad de compreso (1-\/100) donde 100 es la mejor calidad \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em Invalid\+File\+Format} & Si el fichero de entrada no es un P\+PM raw valido \\
+\hline
+{\em I\+O\+Exception} & Si se produce un error de lectura / escritura \\
+\hline
+{\em Huffman\+Lookup\+Exception} & Si no se puede codificar algún valor (Solo sucede si la tabla \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} no es correcta) \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classdomini_1_1JPEG_ab9de66231b23b6eefa213c0878f4d42b}\label{classdomini_1_1JPEG_ab9de66231b23b6eefa213c0878f4d42b}} 
+\index{domini.JPEG@{domini.JPEG}!decompress@{decompress}}
+\index{decompress@{decompress}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
+{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+decompress (\begin{DoxyParamCaption}\item[{final String}]{input\+File,  }\item[{final String}]{output\+File }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Descomprime un fichero comprimido en \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} y lo guarda la imagen resultante en un fichero P\+PM raw. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input\+File} & nombre del fichero de entrada (comprimido) \\
+\hline
+{\em output\+File} & nombre del fichero de salida (imagen P\+PM) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Si se produce un error de lectura / escritura \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}\label{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}} 
+\index{domini.JPEG@{domini.JPEG}!readBlock@{readBlock}}
+\index{readBlock@{readBlock}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{readBlock()}{readBlock()}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G.\+read\+Block (\begin{DoxyParamCaption}\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+AC,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+DC,  }\item[{final I\+O.\+Bit.\+reader}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Lee un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em huff\+AC} & tabla \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} de valores AC \\
+\hline
+{\em huff\+DC} & tabla \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} de valores DC \\
+\hline
+{\em file} & fichero comprimido del que leer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+bloque codificado sin \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & error en la lectura \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}\label{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}} 
+\index{domini.JPEG@{domini.JPEG}!writeBlock@{writeBlock}}
+\index{writeBlock@{writeBlock}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{writeBlock()}{writeBlock()}}
+{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+write\+Block (\begin{DoxyParamCaption}\item[{final short\mbox{[}$\,$\mbox{]}}]{encoded,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+AC,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+DC,  }\item[{final I\+O.\+Bit.\+writer}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception, Huffman\+Lookup\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Escribe un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em encoded} & codificado sin \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} \\
+\hline
+{\em huff\+AC} & tabla \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} de valores AC \\
+\hline
+{\em huff\+DC} & tabla \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} de valores DC \\
+\hline
+{\em file} & fichero comprimido al que escribir \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & error en la escritura \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/J\+P\+E\+G.\+java\end{DoxyCompactItemize}

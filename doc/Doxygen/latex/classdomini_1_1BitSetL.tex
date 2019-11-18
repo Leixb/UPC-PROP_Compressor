@@ -1,0 +1,173 @@
+\hypertarget{classdomini_1_1BitSetL}{}\doxysection{Referencia de la Clase domini.\+Bit\+SetL}
+\label{classdomini_1_1BitSetL}\index{domini.BitSetL@{domini.BitSetL}}
+
+
+Bit\+Set con \mbox{\hyperlink{classdomini_1_1BitSetL_ad1e391d27dc99ed80d23d77bb8d5ffa3}{length()}} especifica.  
+
+
+Diagrama de herencias de domini.\+Bit\+SetL\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1BitSetL}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1BitSetL_a72855cac4bdba9e03119bfca52626f4c}{Bit\+SetL}} ()
+\item 
+\mbox{\hyperlink{classdomini_1_1BitSetL_abf10573e9995e3dc305c7a0f1dc83b8b}{Bit\+SetL}} (final int l)
+\item 
+\mbox{\hyperlink{classdomini_1_1BitSetL_a9aa347fbedf32fa875ab7b55fdbaa12c}{Bit\+SetL}} (final int n, final int l)
+\item 
+\mbox{\hyperlink{classdomini_1_1BitSetL_a264ba1bb9a8ac41140ea050a5ddb61c1}{Bit\+SetL}} (final String s)
+\item 
+int \mbox{\hyperlink{classdomini_1_1BitSetL_a1c91afcb8c9178120afeca64abeae986}{as\+Int}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve el bitset como un entero (32 bits) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdomini_1_1BitSetL_ab5399b1c6931b56fcb39679181e86f22}\label{classdomini_1_1BitSetL_ab5399b1c6931b56fcb39679181e86f22}} 
+void \mbox{\hyperlink{classdomini_1_1BitSetL_ab5399b1c6931b56fcb39679181e86f22}{flip}} ()
+\begin{DoxyCompactList}\small\item\em Invierte los bits del bitset. (Solo hasta length) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1BitSetL_a117d4440c734d91f741a479317ddbc51}{set}} (final int pos)
+\begin{DoxyCompactList}\small\item\em mete a true el bit en la posición dada \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1BitSetL_aacecfe6c69a55dfc3ce772d444337910}{set}} (final int pos, final boolean val)
+\begin{DoxyCompactList}\small\item\em mete a true o false el bit en la posición dada en función del booleano val \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1BitSetL_a1557928b7d81bc1ed487d84f64ef7b1c}{clear}} (final int pos)
+\begin{DoxyCompactList}\small\item\em mete a false el bit en la posición dada \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classdomini_1_1BitSetL_ad1e391d27dc99ed80d23d77bb8d5ffa3}{length}} ()
+\begin{DoxyCompactList}\small\item\em devuelve la longitud del bitset \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Bit\+Set con \mbox{\hyperlink{classdomini_1_1BitSetL_ad1e391d27dc99ed80d23d77bb8d5ffa3}{length()}} especifica. 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED***
+\end{DoxyAuthor}
+Bit\+Set con length distinta al Bit\+Set estandard. El length de java.\+util.\+Bit\+Set devuelve el numero de bits hasta el último 1. \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} devuelve el numero de bits del último bit modificado o el especificado al construir-\/se el \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}}. 
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_a72855cac4bdba9e03119bfca52626f4c}\label{classdomini_1_1BitSetL_a72855cac4bdba9e03119bfca52626f4c}} 
+\index{domini.BitSetL@{domini.BitSetL}!BitSetL@{BitSetL}}
+\index{BitSetL@{BitSetL}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{BitSetL()}{BitSetL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily domini.\+Bit\+Set\+L.\+Bit\+SetL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructora vacía, inicializa length a -\/1 \mbox{\Hypertarget{classdomini_1_1BitSetL_abf10573e9995e3dc305c7a0f1dc83b8b}\label{classdomini_1_1BitSetL_abf10573e9995e3dc305c7a0f1dc83b8b}} 
+\index{domini.BitSetL@{domini.BitSetL}!BitSetL@{BitSetL}}
+\index{BitSetL@{BitSetL}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{BitSetL()}{BitSetL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily domini.\+Bit\+Set\+L.\+Bit\+SetL (\begin{DoxyParamCaption}\item[{final int}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructora con longitud, inicializa length a la longitud dada 
+\begin{DoxyParams}{Parámetros}
+{\em l} & longitud del bitset \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_a9aa347fbedf32fa875ab7b55fdbaa12c}\label{classdomini_1_1BitSetL_a9aa347fbedf32fa875ab7b55fdbaa12c}} 
+\index{domini.BitSetL@{domini.BitSetL}!BitSetL@{BitSetL}}
+\index{BitSetL@{BitSetL}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{BitSetL()}{BitSetL()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily domini.\+Bit\+Set\+L.\+Bit\+SetL (\begin{DoxyParamCaption}\item[{final int}]{n,  }\item[{final int}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructora con entero y longitud, inicializa length a la longitud dada y mete los l últimos bits del entero en el bitset. 
+\begin{DoxyParams}{Parámetros}
+{\em n} & entero a codificar \\
+\hline
+{\em l} & longitud del bitset \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_a264ba1bb9a8ac41140ea050a5ddb61c1}\label{classdomini_1_1BitSetL_a264ba1bb9a8ac41140ea050a5ddb61c1}} 
+\index{domini.BitSetL@{domini.BitSetL}!BitSetL@{BitSetL}}
+\index{BitSetL@{BitSetL}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{BitSetL()}{BitSetL()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily domini.\+Bit\+Set\+L.\+Bit\+SetL (\begin{DoxyParamCaption}\item[{final String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructora con String, inicializa length al tamaño del String y convierte la string en un bitset. 
+\begin{DoxyParams}{Parámetros}
+{\em s} & string de 0 y unos \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_a1c91afcb8c9178120afeca64abeae986}\label{classdomini_1_1BitSetL_a1c91afcb8c9178120afeca64abeae986}} 
+\index{domini.BitSetL@{domini.BitSetL}!asInt@{asInt}}
+\index{asInt@{asInt}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{asInt()}{asInt()}}
+{\footnotesize\ttfamily int domini.\+Bit\+Set\+L.\+as\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve el bitset como un entero (32 bits) 
+
+\begin{DoxyPrecond}{Precondición}
+el bitset no tiene mas de 32 bits 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Devuelve}
+bitset como entero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_a1557928b7d81bc1ed487d84f64ef7b1c}\label{classdomini_1_1BitSetL_a1557928b7d81bc1ed487d84f64ef7b1c}} 
+\index{domini.BitSetL@{domini.BitSetL}!clear@{clear}}
+\index{clear@{clear}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void domini.\+Bit\+Set\+L.\+clear (\begin{DoxyParamCaption}\item[{final int}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+mete a false el bit en la posición dada 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & posicion del bit a meter true \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_ad1e391d27dc99ed80d23d77bb8d5ffa3}\label{classdomini_1_1BitSetL_ad1e391d27dc99ed80d23d77bb8d5ffa3}} 
+\index{domini.BitSetL@{domini.BitSetL}!length@{length}}
+\index{length@{length}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{length()}{length()}}
+{\footnotesize\ttfamily int domini.\+Bit\+Set\+L.\+length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+devuelve la longitud del bitset 
+
+\begin{DoxyReturn}{Devuelve}
+longitud del bitset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_a117d4440c734d91f741a479317ddbc51}\label{classdomini_1_1BitSetL_a117d4440c734d91f741a479317ddbc51}} 
+\index{domini.BitSetL@{domini.BitSetL}!set@{set}}
+\index{set@{set}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void domini.\+Bit\+Set\+L.\+set (\begin{DoxyParamCaption}\item[{final int}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+mete a true el bit en la posición dada 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & posición del bit a meter true \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdomini_1_1BitSetL_aacecfe6c69a55dfc3ce772d444337910}\label{classdomini_1_1BitSetL_aacecfe6c69a55dfc3ce772d444337910}} 
+\index{domini.BitSetL@{domini.BitSetL}!set@{set}}
+\index{set@{set}!domini.BitSetL@{domini.BitSetL}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void domini.\+Bit\+Set\+L.\+set (\begin{DoxyParamCaption}\item[{final int}]{pos,  }\item[{final boolean}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+mete a true o false el bit en la posición dada en función del booleano val 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & posición del bit a modificar \\
+\hline
+{\em val} & valor booleano que se asignar al bit \\
+\hline
+\end{DoxyParams}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/Bit\+Set\+L.\+java\end{DoxyCompactItemize}

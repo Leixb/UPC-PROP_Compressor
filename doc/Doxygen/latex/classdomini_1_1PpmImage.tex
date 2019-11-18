@@ -1,0 +1,209 @@
+\hypertarget{classdomini_1_1PpmImage}{}\doxysection{Referencia de la Clase domini.\+Ppm\+Image}
+\label{classdomini_1_1PpmImage}\index{domini.PpmImage@{domini.PpmImage}}
+
+
+Imagen P\+PM.  
+
+
+\doxysubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Invalid\+File\+Format}
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdomini_1_1PpmImage_a3051cafcbac86a881aaf86331b553149}{set\+Dimensions}} (final int w, final int h)
+\begin{DoxyCompactList}\small\item\em Inicializa la imagen vacía con los valores de anchura y altura. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1PpmImage_af40a226ab58a669f620e157b1a5f3145}{read\+File}} (final String filename)  throws I\+O\+Exception, Invalid\+File\+Format 
+\begin{DoxyCompactList}\small\item\em Lee una fichero imagen y lo guarda en la memoria. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1PpmImage_ab4876a3c5f8288bdda4495d50189452a}{write\+File}} (final String filename)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Escribe la imagen en un fichero. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdomini_1_1PpmImage_a603a37dedba878c4b2aafaf37101e527}\label{classdomini_1_1PpmImage_a603a37dedba878c4b2aafaf37101e527}} 
+void \mbox{\hyperlink{classdomini_1_1PpmImage_a603a37dedba878c4b2aafaf37101e527}{to\+R\+GB}} ()
+\begin{DoxyCompactList}\small\item\em Convierte la imagen de espacio de color Y\+Cb\+Cr a espacio R\+GB. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdomini_1_1PpmImage_ac1c4761191113cebe68b9101f0128686}\label{classdomini_1_1PpmImage_ac1c4761191113cebe68b9101f0128686}} 
+void \mbox{\hyperlink{classdomini_1_1PpmImage_ac1c4761191113cebe68b9101f0128686}{to\+Y\+Cb\+Cr}} ()
+\begin{DoxyCompactList}\small\item\em Convierte la imagen de espacio de color R\+GB a espacio Y\+Cb\+Cr. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1PpmImage_aea28734b4d94ae4ac89d22ed07aef022}{read\+Block}} (final int channel, final int x, final int y)
+\begin{DoxyCompactList}\small\item\em Devuelve un bloque de la imagen de 8x8. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1PpmImage_a2df2e63bc094e7d890d8e3ca16ca4cc4}{write\+Block}} (final byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} block, final int channel, final int x, final int y)
+\begin{DoxyCompactList}\small\item\em Escribe un bloque de la imagen de 8x8. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classdomini_1_1PpmImage_a360407975a29364bcc20d2853068a05b}{width}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve la anchura de la imagen en pixels. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classdomini_1_1PpmImage_a255f87faf8cb3cb2607121bcb5007fc7}{height}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve la altura de la imagen en pixels. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classdomini_1_1PpmImage_ad4175afff7884a3cb1c7165678b6f2e6}{columns}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve la anchura de la imagen en bloques (8x8). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classdomini_1_1PpmImage_af237bde7eca56d01516c57a506167264}{rows}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve la altura de la imagen en bloques (8x8). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Imagen P\+PM. 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED*** 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_ad4175afff7884a3cb1c7165678b6f2e6}\label{classdomini_1_1PpmImage_ad4175afff7884a3cb1c7165678b6f2e6}} 
+\index{domini.PpmImage@{domini.PpmImage}!columns@{columns}}
+\index{columns@{columns}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{columns()}{columns()}}
+{\footnotesize\ttfamily int domini.\+Ppm\+Image.\+columns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la anchura de la imagen en bloques (8x8). 
+
+Es decir, el número de bloques 8x8 que caben horizontalmente en la imagen. \begin{DoxyReturn}{Devuelve}
+anchura de la imagen en bloques (8x8) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_a255f87faf8cb3cb2607121bcb5007fc7}\label{classdomini_1_1PpmImage_a255f87faf8cb3cb2607121bcb5007fc7}} 
+\index{domini.PpmImage@{domini.PpmImage}!height@{height}}
+\index{height@{height}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}}
+{\footnotesize\ttfamily int domini.\+Ppm\+Image.\+height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la altura de la imagen en pixels. 
+
+\begin{DoxyReturn}{Devuelve}
+altura de la imagen en pixels 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_aea28734b4d94ae4ac89d22ed07aef022}\label{classdomini_1_1PpmImage_aea28734b4d94ae4ac89d22ed07aef022}} 
+\index{domini.PpmImage@{domini.PpmImage}!readBlock@{readBlock}}
+\index{readBlock@{readBlock}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{readBlock()}{readBlock()}}
+{\footnotesize\ttfamily byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+Ppm\+Image.\+read\+Block (\begin{DoxyParamCaption}\item[{final int}]{channel,  }\item[{final int}]{x,  }\item[{final int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve un bloque de la imagen de 8x8. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em channel} & canal de color del bloque \\
+\hline
+{\em x} & posición del bloque en coordenada x \\
+\hline
+{\em y} & posición del bloque en coordenada y \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+bloque 8x8 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_af40a226ab58a669f620e157b1a5f3145}\label{classdomini_1_1PpmImage_af40a226ab58a669f620e157b1a5f3145}} 
+\index{domini.PpmImage@{domini.PpmImage}!readFile@{readFile}}
+\index{readFile@{readFile}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily void domini.\+Ppm\+Image.\+read\+File (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws I\+O\+Exception, Invalid\+File\+Format\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Lee una fichero imagen y lo guarda en la memoria. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em filename} & nombre del fichero a leer \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & error en la lectura \\
+\hline
+{\em Invalid\+File\+Format} & Formato de imagen invalido (No es P\+PM raw) \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_af237bde7eca56d01516c57a506167264}\label{classdomini_1_1PpmImage_af237bde7eca56d01516c57a506167264}} 
+\index{domini.PpmImage@{domini.PpmImage}!rows@{rows}}
+\index{rows@{rows}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily int domini.\+Ppm\+Image.\+rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la altura de la imagen en bloques (8x8). 
+
+Es decir, el número de bloques 8x8 que caben verticalmente en la imagen. \begin{DoxyReturn}{Devuelve}
+altura de la imagen en bloques (8x8) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_a3051cafcbac86a881aaf86331b553149}\label{classdomini_1_1PpmImage_a3051cafcbac86a881aaf86331b553149}} 
+\index{domini.PpmImage@{domini.PpmImage}!setDimensions@{setDimensions}}
+\index{setDimensions@{setDimensions}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{setDimensions()}{setDimensions()}}
+{\footnotesize\ttfamily void domini.\+Ppm\+Image.\+set\+Dimensions (\begin{DoxyParamCaption}\item[{final int}]{w,  }\item[{final int}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inicializa la imagen vacía con los valores de anchura y altura. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em w} & anchura (width) \\
+\hline
+{\em h} & altura (height) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_a360407975a29364bcc20d2853068a05b}\label{classdomini_1_1PpmImage_a360407975a29364bcc20d2853068a05b}} 
+\index{domini.PpmImage@{domini.PpmImage}!width@{width}}
+\index{width@{width}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{width()}{width()}}
+{\footnotesize\ttfamily int domini.\+Ppm\+Image.\+width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve la anchura de la imagen en pixels. 
+
+\begin{DoxyReturn}{Devuelve}
+anchura de la imagen en pixels 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_a2df2e63bc094e7d890d8e3ca16ca4cc4}\label{classdomini_1_1PpmImage_a2df2e63bc094e7d890d8e3ca16ca4cc4}} 
+\index{domini.PpmImage@{domini.PpmImage}!writeBlock@{writeBlock}}
+\index{writeBlock@{writeBlock}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{writeBlock()}{writeBlock()}}
+{\footnotesize\ttfamily void domini.\+Ppm\+Image.\+write\+Block (\begin{DoxyParamCaption}\item[{final byte}]{block\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]},  }\item[{final int}]{channel,  }\item[{final int}]{x,  }\item[{final int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Escribe un bloque de la imagen de 8x8. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em block} & bloque 8x8 a escribir \\
+\hline
+{\em channel} & canal de color del bloque \\
+\hline
+{\em x} & posición del bloque en coordenada x \\
+\hline
+{\em y} & posición del bloque en coordenada y \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classdomini_1_1PpmImage_ab4876a3c5f8288bdda4495d50189452a}\label{classdomini_1_1PpmImage_ab4876a3c5f8288bdda4495d50189452a}} 
+\index{domini.PpmImage@{domini.PpmImage}!writeFile@{writeFile}}
+\index{writeFile@{writeFile}!domini.PpmImage@{domini.PpmImage}}
+\doxysubsubsection{\texorpdfstring{writeFile()}{writeFile()}}
+{\footnotesize\ttfamily void domini.\+Ppm\+Image.\+write\+File (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Escribe la imagen en un fichero. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em filename} & nombre del fichero a escribir \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & error al escribir el fichero \\
+\hline
+\end{DoxyExceptions}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/Ppm\+Image.\+java\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+\hypertarget{classdomini_1_1LZ78}{}\doxysection{Referencia de la Clase domini.\+L\+Z78}
+\label{classdomini_1_1LZ78}\index{domini.LZ78@{domini.LZ78}}
+
+
+Compresor y descompresor de archivos de texto con \mbox{\hyperlink{classdomini_1_1LZ78}{L\+Z78}}.  
+
+
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classdomini_1_1LZ78_a91b980b2f5c8d90cf00a3e6b50db98c9}{compress}} (final String input\+Filename, final String output\+Filename)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Llama al metodo compress de la clase \mbox{\hyperlink{classdomini_1_1LZ78}{L\+Z78}} y le pasa como parametros input\+Filename y output\+Filename. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1LZ78_a48a014e1e2bd3c0a281151ca452f75dd}{decompress}} (final String input\+Filename, final String output\+Filename)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Llama al metodo decompress de la clase \mbox{\hyperlink{classdomini_1_1LZ78}{L\+Z78}} y le pasa como parametros input\+Filename y output\+Filename. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static final byte \mbox{\hyperlink{classdomini_1_1LZ78_a246de867500d4153b5e2149b95ae3d78}{M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE}} = 0x78
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Compresor y descompresor de archivos de texto con \mbox{\hyperlink{classdomini_1_1LZ78}{L\+Z78}}. 
+
+\begin{DoxyAuthor}{Autor}
+***REMOVED*** 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1LZ78_a91b980b2f5c8d90cf00a3e6b50db98c9}\label{classdomini_1_1LZ78_a91b980b2f5c8d90cf00a3e6b50db98c9}} 
+\index{domini.LZ78@{domini.LZ78}!compress@{compress}}
+\index{compress@{compress}!domini.LZ78@{domini.LZ78}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily static void domini.\+L\+Z78.\+compress (\begin{DoxyParamCaption}\item[{final String}]{input\+Filename,  }\item[{final String}]{output\+Filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Llama al metodo compress de la clase \mbox{\hyperlink{classdomini_1_1LZ78}{L\+Z78}} y le pasa como parametros input\+Filename y output\+Filename. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input\+Filename} & Path y nombre del archivo de entrada que se desea comprimir \\
+\hline
+{\em output\+Filename} & Path y nombre del archivo de salida comprimido \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Excepcion en caso de pasar como parametro input\+Filename un archivo inexistente \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classdomini_1_1LZ78_a48a014e1e2bd3c0a281151ca452f75dd}\label{classdomini_1_1LZ78_a48a014e1e2bd3c0a281151ca452f75dd}} 
+\index{domini.LZ78@{domini.LZ78}!decompress@{decompress}}
+\index{decompress@{decompress}!domini.LZ78@{domini.LZ78}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
+{\footnotesize\ttfamily static void domini.\+L\+Z78.\+decompress (\begin{DoxyParamCaption}\item[{final String}]{input\+Filename,  }\item[{final String}]{output\+Filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Llama al metodo decompress de la clase \mbox{\hyperlink{classdomini_1_1LZ78}{L\+Z78}} y le pasa como parametros input\+Filename y output\+Filename. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input\+Filename} & Path y nombre del archivo de entrada que se desea descomprimir \\
+\hline
+{\em output\+Filename} & Path y nombre del archivo de salida descomprimido \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Excepcion en caso de pasar como parametro input\+Filename un archivo inexistente \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1LZ78_a246de867500d4153b5e2149b95ae3d78}\label{classdomini_1_1LZ78_a246de867500d4153b5e2149b95ae3d78}} 
+\index{domini.LZ78@{domini.LZ78}!MAGIC\_BYTE@{MAGIC\_BYTE}}
+\index{MAGIC\_BYTE@{MAGIC\_BYTE}!domini.LZ78@{domini.LZ78}}
+\doxysubsubsection{\texorpdfstring{MAGIC\_BYTE}{MAGIC\_BYTE}}
+{\footnotesize\ttfamily final byte domini.\+L\+Z78.\+M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE = 0x78\hspace{0.3cm}{\ttfamily [static]}}
+
+Byte escrito al principio del archivo comprimido para saber con que algoritmo ha sido comprimido para poder asi descomprimirlo después con el mismo 
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/L\+Z78.\+java\end{DoxyCompactItemize}

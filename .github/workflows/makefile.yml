@@ -1,4 +1,4 @@
-name: make CI
+name: make (JDK 1.8.0)
 
 on:
   push:

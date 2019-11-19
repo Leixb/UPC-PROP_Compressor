@@ -1,4 +1,4 @@
-name: maven CI (java JDK 1.8.0)
+name: maven (JDK 1.8.0)
 
 on:
   pull_request:

@@ -6,7 +6,7 @@
 
     <groupId>PROP.UPC.FIB</groupId>
     <artifactId>ProjecteProp</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2</version>
 
     <packaging>jar</packaging>
 

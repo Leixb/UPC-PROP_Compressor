@@ -19,10 +19,8 @@ jobs:
         run: |
           curl -sfL https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.19.0/${PMD_RELEASE}.zip -o ${PMD_RELEASE}.zip
           unzip ${PMD_RELEASE}
-      - name: Install sed
-        run: sudo apt-get install sed
       - name: Run reviewdog
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./${PMD_RELEASE}/bin/run.sh pmd -shortnames -f text -d ${SRC_DIR} -R rulesets/java/quickstart.xml | sed "s#^#${SRC_DIR}#" | reviewdog -efm="%f:%l:	%m" -reporter=github-pr-check
+          ./${PMD_RELEASE}/bin/run.sh pmd -shortnames -f text -d ${SRC_DIR} -R rulesets/java/quickstart.xml | sed "s#^#${SRC_DIR}#" | reviewdog -efm="%f:%l:	%m" -reporter=github-pr-review

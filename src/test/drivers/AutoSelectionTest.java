@@ -16,7 +16,7 @@ class AutoSelectionTest {
             System.out.println("[" + (i+1) + "] Archivo: " + fileIn[i]);
             System.out.println("+-----------+--------+----------------+----------------+--------+----------+---------+");
             System.out.println("| Algoritmo | % comp |    vel comp    |   vel decomp   | t comp | t decomp | t total |");
-            double minPercent = Double.POSITIVE_INFINITY;
+            double maxPercent = 0;
             int bestPercent = 0;
             double maxSpeedComp = 0;
             int bestSpeedComp = 0;
@@ -46,8 +46,8 @@ class AutoSelectionTest {
 
                 System.out.printf(" %.2f%% |  %.2fps  |  %.2fps  |  %.2fs  |  %.2fs  |  %.2fs  |\n", percent, speedComp, speedDecomp, timeComp, timeDecomp, totalTime);
 
-                if (minPercent >= percent) {
-                    minPercent = percent;
+                if (maxPercent <= percent) {
+                    maxPercent = percent;
                     bestPercent = j;
                 }
                 if (maxSpeedComp <= speedComp) {
@@ -83,7 +83,6 @@ class AutoSelectionTest {
             System.out.println(" - t decomp: " + algName[bestTimeDecomp]);
             System.out.println(" - t total: " + algName[bestTotalTime]);
             System.out.println();
-
         }
     }
 
@@ -92,6 +91,7 @@ class AutoSelectionTest {
             return CtrlDomini.compress(alg, fileIn, fileOut, (short) 0);
         } catch (Exception e) {
             System.out.println("                        ERROR EN LA COMPRESIÓN                          |" + e.getMessage());
+            return new Statistics();
         }
     }
 
@@ -100,6 +100,7 @@ class AutoSelectionTest {
             return CtrlDomini.decompress(fileIn,fileOut);
         } catch (Exception e) {
             System.out.println("                       ERROR EN LA DESCOMPRESIÓN                        |" + e.getMessage());
+            return new Statistics();
         }
     }
 }

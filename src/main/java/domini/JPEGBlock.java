@@ -370,6 +370,8 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
         final double[][] quantDec = Quantization.decode(quality, isChrominance, zigDec);
         final byte[][] result = DCT.decode(quantDec);
 
+		short n;
+
         return result;
     }
 

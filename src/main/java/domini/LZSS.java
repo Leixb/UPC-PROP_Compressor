@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/domini/LZSS.java
+ * @author Albert Mercadé Plasencia
+*/
 package domini;
 
 import java.io.EOFException;
@@ -5,11 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @author Albert Mercadé Plasencia
- *
  * @brief Compresión y decompresión de archivos de texto con LZSS
  */
-
 public final class LZSS {
 
     private LZSS() {}

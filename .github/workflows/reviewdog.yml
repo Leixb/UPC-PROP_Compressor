@@ -3,7 +3,7 @@ on: [pull_request]
 
 env:
   PMD_RELEASE: pmd-bin-6.19.0
-  SRC_DIR: src/main/java 
+  SRC_DIR: src/main/java
 jobs:
   reviewdog:
     name: reviewdog

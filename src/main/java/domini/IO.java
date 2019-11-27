@@ -1,4 +1,6 @@
-package domini;
+package persistencia;
+
+import domini.BitSetL;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

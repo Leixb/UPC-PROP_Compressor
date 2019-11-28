@@ -5,6 +5,7 @@
 package domini;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class Huffman {
 
     private Node root; //< Raíz del árbol Huffman
-    private Hash<Short, BitSetL> table; //< Tabla de Huffman
+    private Map<Short, BitSetL> table; //< Tabla de Huffman
 
     /// Nodo del arbol huffman
     public static class Node {

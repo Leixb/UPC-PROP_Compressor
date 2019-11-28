@@ -7,6 +7,7 @@ package domini;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -17,8 +18,8 @@ public final class LZ78{
     private LZ78() {}
 
     //Declaración de los HashMaps de Compression y Decompression
-    private static Hash<String, Integer> compress_dict = new HashMap<String, Integer>();
-    private static Hash<Integer, String> decompress_dict = new HashMap<Integer, String>();
+    private static Map<String, Integer> compress_dict = new HashMap<String, Integer>();
+    private static Map<Integer, String> decompress_dict = new HashMap<Integer, String>();
 
     /**Byte escrito al principio del archivo comprimido para saber
      * con que algoritmo ha sido comprimido

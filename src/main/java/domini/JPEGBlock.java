@@ -1,10 +1,12 @@
+/**
+ * @file ./src/main/java/domini/JPEGBlock.java
+ * @author ***REMOVED***
+ */
 package domini;
 
 import java.util.ArrayList;
 
 /**
- * @author ***REMOVED***
- *
  * @brief codifica y decodifica bloques 8x8 con JPEG
  *
  * Algoritmo de compresión JPEG para bloques 8x8. Engloba todos los procesos

@@ -1,9 +1,12 @@
+/**
+ * @file ./src/main/java/domini/CtrlDomini.java
+ * @author ***REMOVED*** Plasencia / ***REMOVED***
+ */
 package domini;
 
 import java.io.EOFException;
 
 /**
- * @author ***REMOVED*** Plasencia / ***REMOVED***
  * @brief Controlador del dominio
  */
 public class CtrlDomini {

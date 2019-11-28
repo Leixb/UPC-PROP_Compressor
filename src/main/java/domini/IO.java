@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/domini/IO.java
+ * @author ***REMOVED***
+ */
 package domini;
 
 import java.io.BufferedInputStream;
@@ -13,8 +17,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /** 
- * @author ***REMOVED***
- * 
  * @brief classes IO para lectura y escritura de Char, Byte, y Bit con buffer.
  */
 public class IO {

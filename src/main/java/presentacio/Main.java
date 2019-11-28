@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/presentacio/Main.java
+ * @author ***REMOVED*** Plasencia / ***REMOVED*** Pons / ***REMOVED***
+*/
 package presentacio;
 
 import domini.CtrlDomini;
@@ -6,10 +10,8 @@ import domini.Statistics;
 import java.util.Scanner;
 
 /**
- * @author ***REMOVED*** Plasencia / ***REMOVED*** Pons / ***REMOVED***
  * @brief Recibe todos los inputs necesarios del usuario para la compresión/descompresión
  */
-
 public class Main {
 
     private static String banner =

@@ -1,13 +1,14 @@
+/**
+ * @file ./src/main/java/domini/Statistics.java
+ * @author ***REMOVED*** Pons / ***REMOVED*** / ***REMOVED*** Plasencia
+*/
 package domini;
 
 import java.io.File;
 
 /**
- * @author ***REMOVED*** Pons / ***REMOVED*** / ***REMOVED*** Plasencia
- *
  * @brief Genera estadísticas de compresión/descompresión.
  */
-
 public class Statistics {
     private long startingTime;
     private long endingTime;

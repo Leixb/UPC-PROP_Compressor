@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/domini/LZW.java
+ * @author ***REMOVED***
+*/
 package domini;
 
 import java.io.EOFException;
@@ -5,11 +9,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * @author ***REMOVED***
- *
  * @brief Compresión y descompresión de archivos de texto con LZW.
  */
-
 public final class LZW {
 
     private LZW() { }

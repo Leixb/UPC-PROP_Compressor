@@ -1,8 +1,10 @@
+/**
+ * @file ./src/main/java/domini/Codec.java
+ * @author ***REMOVED***
+ */
 package domini;
 
 /** 
- * @author ***REMOVED***
- * 
  * @brief codec (Code-Decode)
  */
 interface Codec<A, B> {

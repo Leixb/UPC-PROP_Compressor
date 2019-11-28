@@ -1,10 +1,12 @@
+/**
+ * @file ./src/main/java/domini/PpmImage.java
+ * @author ***REMOVED***
+*/
 package domini;
 
 import java.io.*;
 
 /**
- * @author ***REMOVED***
- *
  * @brief Imagen PPM
  */
 public class PpmImage {

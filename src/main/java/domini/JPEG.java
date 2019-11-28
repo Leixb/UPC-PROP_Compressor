@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/domini/JPEG.java
+ * @author ***REMOVED***
+ */
 package domini;
 
 import java.io.IOException;
@@ -7,8 +11,6 @@ import domini.Huffman.HuffmanLookupException;
 import domini.PpmImage.InvalidFileFormat;
 
 /**
- * @author ***REMOVED***
- *
  * @brief compresión y descompresión de imágenes PPM con JPEG
  */
 public final class JPEG {

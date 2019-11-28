@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/domini/LZ78.java
+ * @author ***REMOVED***
+*/
 package domini;
 
 import java.io.EOFException;
@@ -6,11 +10,8 @@ import java.util.HashMap;
 
 
 /**
- * @author ***REMOVED***
- *
  * @brief Compresor y descompresor de archivos de texto con LZ78
  */
-
 public final class LZ78{
 
     private LZ78() {}

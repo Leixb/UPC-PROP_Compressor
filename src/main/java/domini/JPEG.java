@@ -44,7 +44,7 @@ public final class JPEG {
 
         Huffman huffAc, huffDc;
 
-        try (final IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
+        try (IO.Bit.writer file = new IO.Bit.writer(outputFile)) {
 
             file.write(MAGIC_BYTE); // magic byte
             file.write((int) quality);

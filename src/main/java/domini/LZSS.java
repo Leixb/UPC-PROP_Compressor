@@ -7,6 +7,7 @@ package domini;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @brief Compresión y decompresión de archivos de texto con LZSS
@@ -15,8 +16,8 @@ public final class LZSS {
 
     private LZSS() {}
 
-    final static ArrayList<Character> slidingWindow = new ArrayList<Character>();
-    final static ArrayList<Character> actualCharacters = new ArrayList<Character>();
+    final static List<Character> slidingWindow = new ArrayList<Character>();
+    final static List<Character> actualCharacters = new ArrayList<Character>();
     final static int MAX_SIZE_SW = 8192; // maximum size of the sliding window
     final static int MAX_LENGTH_COINCIDENCE = 65; //
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
@@ -128,7 +129,7 @@ public final class LZSS {
         }
 
         // treating remaining characters in actualCharacters after reaching EOF
-        if (actualCharacters.size() > 0) {
+        if (!actualCharacters.isEmpty()) {
             if (length >= minLength) {
                 output.write(true);
                 output.write(new BitSetL(matchIndex - 1, nBitsOffset));

@@ -1,10 +1,12 @@
+/**
+ * @file ./src/main/java/domini/BitSetL.java
+ * @author Aleix Boné
+ */
 package domini;
 
 import java.util.BitSet;
 
 /**
- * @author Aleix Boné
- *
  * @brief BitSet con length() especifica
  *
  * BitSet con length distinta al BitSet estandard.

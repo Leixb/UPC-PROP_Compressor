@@ -1,10 +1,12 @@
+/**
+ * @file ./src/main/java/domini/PpmImage.java
+ * @author Aleix Boné
+*/
 package domini;
 
 import java.io.*;
 
 /**
- * @author Aleix Boné
- *
  * @brief Imagen PPM
  */
 public class PpmImage {

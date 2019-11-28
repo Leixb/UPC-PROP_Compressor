@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/domini/Huffman.java
+ * @author Aleix Boné
+ */
 package domini;
 
 import java.util.HashMap;
@@ -5,8 +9,6 @@ import java.util.HashMap;
 import java.io.IOException;
 
 /**
- * @author Aleix Boné
- *
  * @brief codificación y decodificación Huffman con tablas predefinidas
  */
 public class Huffman {

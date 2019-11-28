@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/presentacio/CtrlPresentacio.java
+ * @author Albert Mercadé Plasencia / Aleix Boné
+*/
 package presentacio;
 
 import java.text.DecimalFormat;
@@ -7,10 +11,8 @@ import domini.CtrlDomini;
 import domini.Statistics;
 
 /**
- * @author Albert Mercadé Plasencia / Aleix Boné
  * @brief Imprime por pantalla
  */
-
 public class CtrlPresentacio {
     private static String banner =
             "██████╗ ██╗███████╗     ██████╗ ██████╗ ███╗   ███╗██████╗ ██████╗ ███████╗███████╗███████╗ ██████╗ ██████╗ \n" +

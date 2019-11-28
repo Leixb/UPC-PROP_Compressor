@@ -1,9 +1,12 @@
+/**
+ * @file ./src/main/java/domini/CtrlDomini.java
+ * @author Albert Mercadé Plasencia / Aleix Boné
+ */
 package domini;
 
 import java.io.EOFException;
 
 /**
- * @author Albert Mercadé Plasencia / Aleix Boné
  * @brief Controlador del dominio
  */
 public class CtrlDomini {

@@ -1,13 +1,14 @@
+/**
+ * @file ./src/main/java/domini/Statistics.java
+ * @author Alex Herrero Pons / Aleix Boné / Albert Mercadé Plasencia
+*/
 package domini;
 
 import java.io.File;
 
 /**
- * @author Alex Herrero Pons / Aleix Boné / Albert Mercadé Plasencia
- *
  * @brief Genera estadísticas de compresión/descompresión.
  */
-
 public class Statistics {
     private long startingTime;
     private long endingTime;

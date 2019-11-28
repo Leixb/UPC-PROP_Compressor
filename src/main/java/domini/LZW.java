@@ -7,6 +7,7 @@ package domini;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @brief Compresión y descompresión de archivos de texto con LZW.
@@ -28,10 +29,10 @@ public final class LZW {
     private final static int EOF = 0;
 
     /// Diccionario de compresión
-    private static HashMap<String, Integer> compressionDictionary;
+    private static Map<String, Integer> compressionDictionary;
 
     /// Diccionario de descompresión
-    private static HashMap<Integer, String> decompressionDictionary;
+    private static Map<Integer, String> decompressionDictionary;
 
     /**
      * @brief Crea el diccionario de compresión y lo inicializa.

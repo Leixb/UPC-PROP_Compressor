@@ -27,6 +27,9 @@ public final class LZ78{
      */
     public final static byte MAGIC_BYTE = 0x78;
 
+    /// Pseudo EOF
+    private static char EOF = 0x7FFF;;
+
 
 
     /**
@@ -94,6 +97,13 @@ public final class LZ78{
             for (int i = 0; i < 16; ++i)
                 output.write(false);
         }
+        if (nchar>0) {
+            ++nchar;
+            final int nbits = bits_needed(nchar);
+            final BitSetL bs_num = new BitSetL(codnum, nbits);
+            output.write(bs_num);
+        }
+        output.write(EOF);
     }
 
     /**
@@ -138,47 +148,53 @@ public final class LZ78{
          * primero y por separado
          */
         try {
-            final int first_char = input.readBitSet(16).asInt();
+            final int first_char = input.readChar();
+            if (first_char != EOF) {
+                charac += (char) first_char;
+                output.write((char) first_char);
+                decompress_dict.put(num, charac);
+                ++num;
+                ++nchar;
+                int nbits = bits_needed(nchar);
+                /*
+                 * Tras descodificar el primer char se van leiedo bit a bit las keys y values del HashMap de descompresion
+                 * codificados en el archivo comprimido. Siempre que haya bits por codificar se continua leyendo.
+                 */
+                try {
 
-            charac += (char) first_char;
-            output.write((char) first_char);
-            decompress_dict.put(num, charac);
-            ++num;
-            ++nchar;
-            int nbits = bits_needed(nchar);
-            /*
-             * Tras descodificar el primer char se van leiedo bit a bit las keys y values del HashMap de descompresion
-             * codificados en el archivo comprimido. Siempre que haya bits por codificar se continua leyendo.
-             */
-            try {
-                while (true) {
                     number = input.readBitSet(nbits).asInt();
+                    int last_char = input.readChar();
 
-                    final int last_char = input.readBitSet(16).asInt();
-                    charac = "";
-                    //Si se referencie a alguna entrada del HashMap se concatena el value String con el char leido
-                    if (number > 0) {
-                        //Si el ultimo char que se ha leido son 16 bits a 0, indica el final del archivo
-                        if (last_char > 0)
-                            charac = decompress_dict.get(number) + (char) last_char;
-                        else
-                            charac = decompress_dict.get(number);
-                        output.write(charac);
-                    } else {
-                        charac += (char) last_char;
-                        output.write((char) last_char);
+                    while (last_char != EOF) {
+
+                        charac = "";
+                        //Si se referencie a alguna entrada del HashMap se concatena el value String con el char leido
+                        if (number > 0) {
+                            //Si el ultimo char que se ha leido son 16 bits a 0, indica el final del archivo
+                            if (last_char > 0)
+                                charac = decompress_dict.get(number) + (char) last_char;
+                            else
+                                charac = decompress_dict.get(number);
+                            output.write(charac);
+                        } else {
+                            charac += (char) last_char;
+                            output.write((char) last_char);
+                        }
+                        decompress_dict.put(num, charac);
+                        ++num;
+                        ++nchar;
+                        nbits = bits_needed(nchar);
+                        number = input.readBitSet(nbits).asInt();
+                        last_char = input.readChar();
                     }
-                    decompress_dict.put(num, charac);
-                    ++num;
-                    ++nchar;
-                    nbits = bits_needed(nchar);
+                } catch (EOFException e) {
+                    //EOF!
                 }
-            } catch (EOFException e) {
-                //EOF!
             }
         } catch (EOFException e){
             //EOF!
         }
+
     }
 
 }

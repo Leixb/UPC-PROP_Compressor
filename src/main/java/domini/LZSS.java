@@ -21,6 +21,7 @@ public final class LZSS {
     final static int MAX_SIZE_SW = 8192; // maximum size of the sliding window
     final static int MAX_LENGTH_COINCIDENCE = 65; //
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
+    private final static int EOF = 0; // Pseudo EOF
 
     /**
      * @brief Crea el objeto lector y escritor para la compresión y llama al compresor
@@ -138,6 +139,9 @@ public final class LZSS {
                 output.write(new BitSetL(actualCharacters.get(0), 16));
             }
         }
+
+        output.write(false);
+        output.write(EOF);
     }
 
     /**
@@ -172,9 +176,10 @@ public final class LZSS {
         final int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
 
         boolean c = input.read();
+        boolean eof = false;
         try {
             // while(true) as when EOF is reached IO.Bit.Reader will throw EOFException
-            while (true) {
+            while (!eof) {
                 // if c is 1, then read offset and length and write the characters in output
                 // otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed
                 if (c == true) {
@@ -188,20 +193,25 @@ public final class LZSS {
                     }
                 } else {
                     final char cAux = (char) input.readBitSet(16).asInt();
-                    output.write(cAux);
-                    slidingWindow.add(cAux);
-                }
-
-                // keep SW size within MAX_SIZE_SW
-                if (slidingWindow.size() > MAX_SIZE_SW) {
-                    final int auxSize = slidingWindow.size();
-                    for (int i = 0; i < auxSize - MAX_SIZE_SW; ++i) {
-                        slidingWindow.remove(0);
+                    if (cAux == EOF) eof = true;
+                    else {
+                        output.write(cAux);
+                        slidingWindow.add(cAux);
                     }
                 }
 
-                // read next bit
-                c = input.read();
+                if (!eof) {
+                    // keep SW size within MAX_SIZE_SW
+                    if (slidingWindow.size() > MAX_SIZE_SW) {
+                        final int auxSize = slidingWindow.size();
+                        for (int i = 0; i < auxSize - MAX_SIZE_SW; ++i) {
+                            slidingWindow.remove(0);
+                        }
+                    }
+
+                    // read next bit
+                    c = input.read();
+                }
             }
         } catch (final EOFException e) {
             // EOF

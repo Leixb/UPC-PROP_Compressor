@@ -3,10 +3,11 @@ name: make (JDK 1.8.0)
 on:
   push:
     paths-ignore:
-      - 'doc/**'
-      - '**.md'
-    tags-ignore:
-      - '*.*'
+    - 'doc/**'
+    - '**.md'
+  pull_request:
+    branches: 
+      - master
 
 jobs:
   build:

@@ -1,8 +1,10 @@
+/**
+ * @file ./src/main/java/domini/Codec.java
+ * @author Aleix Boné
+ */
 package domini;
 
 /** 
- * @author Aleix Boné
- * 
  * @brief codec (Code-Decode)
  */
 interface Codec<A, B> {

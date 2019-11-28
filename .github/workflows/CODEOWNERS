@@ -1,0 +1,28 @@
+# JPEG
+src/main/java/domini/JPEG.java @Leixb
+src/main/java/domini/JPEGBlock.java @Leixb
+src/main/java/domini/Codec.java @Leixb
+src/main/java/domini/Huffman.java @Leixb
+src/main/java/domini/PpmImage.java @Leixb
+
+# LZ
+src/main/java/domini/LZ78.java @gonzagod
+src/main/java/domini/LZW.java @LEXHERRE
+src/main/java/domini/LZSS.java @albertmercaplas
+
+# JPEG resources
+src/main/resources/*.table @Leixb
+src/test/resources/*.table @Leixb
+images/ @Leixb
+
+# Build config
+buildRunDriver.sh @Leixb
+libs/ @Leixb
+Makefile @Leixb
+Doxyfile @Leixb
+
+# github apps and ignore
+.gitignore @Leixb
+.github/ @Leixb
+
+descripcionGrupo12.2.txt @Leixb @albertmercaplas @LEXHERRE @gonzagod

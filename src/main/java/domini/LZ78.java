@@ -26,6 +26,9 @@ public final class LZ78{
      */
     public final static byte MAGIC_BYTE = 0x78;
 
+    /// Pseudo EOF
+    private static int EOF;
+
 
 
     /**
@@ -93,6 +96,9 @@ public final class LZ78{
             for (int i = 0; i < 16; ++i)
                 output.write(false);
         }
+
+        EOF = compress_dict.size();
+        output.write(EOF);
     }
 
     /**
@@ -150,27 +156,33 @@ public final class LZ78{
              * codificados en el archivo comprimido. Siempre que haya bits por codificar se continua leyendo.
              */
             try {
-                while (true) {
-                    number = input.readBitSet(nbits).asInt();
-
+                number = input.readBitSet(nbits).asInt();
+                while (number != EOF) {
                     final int last_char = input.readBitSet(16).asInt();
-                    charac = "";
-                    //Si se referencie a alguna entrada del HashMap se concatena el value String con el char leido
-                    if (number > 0) {
-                        //Si el ultimo char que se ha leido son 16 bits a 0, indica el final del archivo
-                        if (last_char > 0)
-                            charac = decompress_dict.get(number) + (char) last_char;
-                        else
-                            charac = decompress_dict.get(number);
-                        output.write(charac);
-                    } else {
-                        charac += (char) last_char;
-                        output.write((char) last_char);
+                    if (last_char!=EOF) {
+                        charac = "";
+                        //Si se referencie a alguna entrada del HashMap se concatena el value String con el char leido
+                        if (number > 0) {
+                            //Si el ultimo char que se ha leido son 16 bits a 0, indica el final del archivo
+                            if (last_char > 0)
+                                charac = decompress_dict.get(number) + (char) last_char;
+                            else
+                                charac = decompress_dict.get(number);
+                            output.write(charac);
+                        } else {
+                            charac += (char) last_char;
+                            output.write((char) last_char);
+                        }
+                        decompress_dict.put(num, charac);
+                        ++num;
+                        ++nchar;
+                        nbits = bits_needed(nchar);
+
+                        number = input.readBitSet(nbits).asInt();
                     }
-                    decompress_dict.put(num, charac);
-                    ++num;
-                    ++nchar;
-                    nbits = bits_needed(nchar);
+                    else {
+                        number = EOF;
+                    }
                 }
             } catch (EOFException e) {
                 //EOF!

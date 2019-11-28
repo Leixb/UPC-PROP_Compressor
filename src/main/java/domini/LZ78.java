@@ -17,8 +17,8 @@ public final class LZ78{
     private LZ78() {}
 
     //Declaración de los HashMaps de Compression y Decompression
-    private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>();
-    private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>();
+    private static Hash<String, Integer> compress_dict = new HashMap<String, Integer>();
+    private static Hash<Integer, String> decompress_dict = new HashMap<Integer, String>();
 
     /**Byte escrito al principio del archivo comprimido para saber
      * con que algoritmo ha sido comprimido

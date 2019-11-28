@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Huffman {
 
     private Node root; //< Raíz del árbol Huffman
-    private HashMap<Short, BitSetL> table; //< Tabla de Huffman
+    private Hash<Short, BitSetL> table; //< Tabla de Huffman
 
     /// Nodo del arbol huffman
     public static class Node {

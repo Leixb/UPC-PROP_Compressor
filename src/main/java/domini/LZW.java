@@ -22,10 +22,10 @@ public final class LZW {
     private final static int DICTIONARY_SIZE = 0xFFFF;
 
     /// Diccionario de compresión
-    private static HashMap<String, Integer> compressionDictionary;
+    private static Hash<String, Integer> compressionDictionary;
 
     /// Diccionario de descompresión
-    private static HashMap<Integer, String> decompressionDictionary;
+    private static Hash<Integer, String> decompressionDictionary;
 
     /**
      * @brief Crea el diccionario de compresión y lo inicializa.

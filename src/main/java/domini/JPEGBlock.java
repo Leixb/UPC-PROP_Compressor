@@ -80,7 +80,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
                     if (fxy <= -128)
                         fxy = -128;
                     final int v = ((int) fxy + 128) & 0xFF;
-                    f[x][y] = ((byte) v);
+                    f[x][y] = (byte) v;
 
                 }
             }

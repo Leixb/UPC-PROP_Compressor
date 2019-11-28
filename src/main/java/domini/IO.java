@@ -101,7 +101,7 @@ public class IO {
             private void clear() throws IOException {
                 if (n == 0)
                     return;
-                buffer <<= (8 - n);
+                buffer <<= 8 - n;
                 out.write(buffer);
                 n = 0;
                 buffer = 0;

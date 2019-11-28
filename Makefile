@@ -93,3 +93,6 @@ run_IO_driver:
 
 run_BitSetL_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) BitSetLDriver
+
+run_AutoSelection_Test:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) AutoSelectionTest

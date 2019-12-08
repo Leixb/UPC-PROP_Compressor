@@ -16,10 +16,10 @@ public final class LZSS {
 
     private LZSS() {}
 
-    final static List<Character> slidingWindow = new ArrayList<Character>();
-    final static List<Character> actualCharacters = new ArrayList<Character>();
-    final static int MAX_SIZE_SW = 8192; // maximum size of the sliding window
-    final static int MAX_LENGTH_COINCIDENCE = 65; //
+    final static int MAX_SIZE_SW = 4096; // maximum size of the sliding window
+    final static int MAX_LENGTH_COINCIDENCE = 33; //
+    final static int[] slidingWindow = new int[MAX_SIZE_SW];
+    final static int[] actualCharacters = new int[MAX_LENGTH_COINCIDENCE-1];
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
     private final static int EOF = 0; // Pseudo EOF
 
@@ -54,94 +54,70 @@ public final class LZSS {
         final int nBitsOffset = (int) log2(MAX_SIZE_SW);
         final int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
 
-        int index, matchIndex = -1, length = 0;
+        int currentSWIndex = 0, currentACIndex = 0;
+        boolean fullSW = false;
+
+        int index = 0, prevMatchingIndex = 0;
         boolean extraChar = false;
 
         int c = input.read();
-        while (c != -1) {
-            actualCharacters.add((char) c);
+        while(c != -1) {
+            actualCharacters[currentACIndex] = c;
+            ++currentACIndex;
 
-            // check for coincidence of actualCharacters in slidingWindow
-            index = kmp();
+            prevMatchingIndex = index;
+            index = kmp(currentACIndex, currentSWIndex, fullSW);
 
-            // if actualCharacter is found inside slidingWindow, increase length and update index of match
-            // otherwise, if the match is greater than minLength we compress it
-            // if not we simply write the characters directly
-            if (index == -1 || length == MAX_LENGTH_COINCIDENCE) {
-                if (matchIndex != -1)
-                    actualCharacters.remove(actualCharacters.size() - 1);
-                if (length >= minLength) {
+            if(index == -1 || currentACIndex > MAX_LENGTH_COINCIDENCE) {
+                int auxACIndex = currentACIndex;
+                if(auxACIndex >= 2) --auxACIndex;
+                if(auxACIndex >= minLength) {
                     output.write(true);
-                    output.write(new BitSetL(matchIndex - 1, nBitsOffset));
-                    output.write(new BitSetL(length - minLength, nBitsLength));
-                    for (int i = 0; i < length; ++i) {
-                        slidingWindow.add(actualCharacters.get(0));
-                        actualCharacters.remove(0);
-                    }
-                } else {
-                    final int lengthAux = actualCharacters.size();
-                    for (int i = 0; i < lengthAux; ++i) {
-                        output.write(false);
-                        output.write(new BitSetL(actualCharacters.get(0), 16));
-                        slidingWindow.add(actualCharacters.get(0));
-                        actualCharacters.remove(0);
+                    output.write(new BitSetL(prevMatchingIndex - 1, nBitsOffset));
+                    output.write(new BitSetL(auxACIndex - minLength, nBitsLength));
+                    for(int i = 0; i < auxACIndex; ++i) {
+                        slidingWindow[currentSWIndex] = actualCharacters[i];
+                        ++currentSWIndex;
+                        if(currentSWIndex >= MAX_SIZE_SW) {
+                            currentSWIndex = 0;
+                            fullSW = true;
+                        }
                     }
                 }
-
-                // treating last character that didn't match slidingWindow
-                if (matchIndex != -1) {
-                    actualCharacters.add((char) c);
-                    index = kmp();
-                    if (index == -1) {
+                else {
+                    for(int i = 0; i < auxACIndex; ++i) {
                         output.write(false);
-                        output.write(new BitSetL(actualCharacters.get(0), 16));
-                        slidingWindow.add(actualCharacters.get(0));
-                        actualCharacters.remove(0);
-                    } else
-                        extraChar = true;
+                        output.write(new BitSetL(actualCharacters[i], 16));
+                        slidingWindow[currentSWIndex] = actualCharacters[i];
+                        ++currentSWIndex;
+                        if(currentSWIndex >= MAX_SIZE_SW) {
+                            currentSWIndex = 0;
+                            fullSW = true;
+                        }
+                    }
                 }
 
-                // setting variables depending on whether there was a leftover character
-                if (!extraChar) {
-                    length = 0;
-                    matchIndex = -1;
-                } else {
-                    length = 1;
-                    matchIndex = index;
-                    extraChar = false;
-                }
-
-            } else {
-                ++length;
-                matchIndex = index;
+                if(currentACIndex >= 2) extraChar = true;
+                currentACIndex = 0;
             }
-
-            // keep SW size within MAX_SIZE_SW
-            if (slidingWindow.size() > MAX_SIZE_SW) {
-                final int auxSize = slidingWindow.size();
-                for (int i = 0; i < auxSize - MAX_SIZE_SW; ++i) {
-                    slidingWindow.remove(0);
-                }
-            }
-
-            // read next char
-            c = input.read();
+            if(!extraChar) c = input.read();
+            extraChar = false;
         }
 
-        // treating remaining characters in actualCharacters after reaching EOF
-        if (!actualCharacters.isEmpty()) {
-            if (length >= minLength) {
-                output.write(true);
-                output.write(new BitSetL(matchIndex - 1, nBitsOffset));
-                output.write(new BitSetL(length - minLength, nBitsLength));
-            } else {
+        if(currentACIndex >= minLength) {
+            output.write(true);
+            output.write(new BitSetL(prevMatchingIndex, nBitsOffset));
+            output.write(new BitSetL(currentACIndex - minLength, nBitsLength));
+        }
+        else if (currentACIndex > 0) {
+            for(int i = 0; i < currentACIndex; ++i) {
                 output.write(false);
-                output.write(new BitSetL(actualCharacters.get(0), 16));
+                output.write(new BitSetL(actualCharacters[i], 16));
             }
         }
 
         output.write(false);
-        output.write(EOF);
+        output.write(new BitSetL(EOF, 16));
     }
 
     /**
@@ -174,6 +150,7 @@ public final class LZSS {
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
         final int nBitsOffset = (int) log2(MAX_SIZE_SW);
         final int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        int currentSWIndex = 0;
 
         boolean c = input.read();
         boolean eof = false;
@@ -185,33 +162,31 @@ public final class LZSS {
                 if (c == true) {
                     final int index = input.readBitSet(nBitsOffset).asInt() + 1;
                     final int length = input.readBitSet(nBitsLength).asInt() + minLength;
-                    final int indexBase = slidingWindow.size() - index;
+                    int indexBase;
+
+                    if(currentSWIndex - index < 0) indexBase = MAX_SIZE_SW /*- 1*/ + currentSWIndex - index;
+                    else indexBase = currentSWIndex - index;
+
                     for (int i = 0; i < length; ++i) {
-                        final char cAux = slidingWindow.get(indexBase + i).charValue();
+                        int cAux = slidingWindow[indexBase + i];
                         output.write(cAux);
-                        slidingWindow.add(cAux);
+                        slidingWindow[currentSWIndex] = cAux;
+                        ++currentSWIndex;
+                        if(currentSWIndex >= MAX_SIZE_SW) currentSWIndex = 0;
                     }
                 } else {
-                    final char cAux = (char) input.readBitSet(16).asInt();
+                    int cAux = input.readBitSet(16).asInt();
                     if (cAux == EOF) eof = true;
                     else {
                         output.write(cAux);
-                        slidingWindow.add(cAux);
+                        slidingWindow[currentSWIndex] = cAux;
+                        ++currentSWIndex;
+                        if(currentSWIndex >= MAX_SIZE_SW) currentSWIndex = 0;
                     }
                 }
 
-                if (!eof) {
-                    // keep SW size within MAX_SIZE_SW
-                    if (slidingWindow.size() > MAX_SIZE_SW) {
-                        final int auxSize = slidingWindow.size();
-                        for (int i = 0; i < auxSize - MAX_SIZE_SW; ++i) {
-                            slidingWindow.remove(0);
-                        }
-                    }
-
-                    // read next bit
-                    c = input.read();
-                }
+                //read next bit
+                if (!eof) c = input.read();
             }
         } catch (final EOFException e) {
             // EOF
@@ -224,15 +199,14 @@ public final class LZSS {
      * @param lps es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud
      *        máxima del prefijo que también es sufijo desde el principio hasta esa posición
      */
-    private static void computeLPSArray(final int[] lps) {
-        final int patLength = actualCharacters.size();
+    private static void computeLPSArray(final int[] lps, int patLength) {
         int length = 0;
         int i = 1;
 
         lps[0] = 0;
 
         while (i < patLength) {
-            if (actualCharacters.get(i) == actualCharacters.get(length)) {
+            if (actualCharacters[i] == actualCharacters[length]) {
                 ++length;
                 lps[i] = length;
                 ++i;
@@ -250,27 +224,39 @@ public final class LZSS {
      * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de
      *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
      */
-    private static int kmp() {
-        final int patLength = actualCharacters.size();
-        final int txtLength = slidingWindow.size();
+    private static int kmp(int currentACIndex, int currentSWIndex, boolean fullSW) {
+        final int patLength = currentACIndex, txtLength = currentSWIndex;
 
         final int[] lps = new int[patLength];
-        computeLPSArray(lps);
+        computeLPSArray(lps, patLength);
 
-        int j = 0, i = 0;
+        int j = 0, i;
+        if(fullSW) i = currentSWIndex;
+        else i = 0;
+        boolean end;
+        if(currentSWIndex == i) end = true;
+        else end = false;
 
-        while (i < txtLength) {
-            if (slidingWindow.get(i) == actualCharacters.get(j)) {
+        while (!end) {
+            if (slidingWindow[i] == actualCharacters[j]) {
                 ++j;
                 ++i;
+                if(i == MAX_SIZE_SW) i = 0;
+                if(i == txtLength) end = true;
             }
-            if (j == patLength)
-                return txtLength - i + j;
-            else if (i < txtLength && slidingWindow.get(i) != actualCharacters.get(j)) {
+            if (j == patLength) {
+                int index = txtLength - i + j;
+                if(index < 0) return index + MAX_SIZE_SW;
+                else return index;
+            }
+            else if (!end && slidingWindow[i] != actualCharacters[j]) {
                 if (j != 0)
                     j = lps[j - 1];
-                else
+                else {
                     ++i;
+                    if(i == MAX_SIZE_SW) i = 0;
+                    if(i == txtLength) end = true;
+                }
             }
         }
 

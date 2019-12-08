@@ -66,6 +66,7 @@ public final class LZSS {
             prevMatchingIndex = index;
             index = kmp(currentACIndex, currentSWIndex, fullSW);
 
+            System.out.println(index);
             if(index == -1 || currentACIndex > MAX_LENGTH_COINCIDENCE) {
                 int auxACIndex = currentACIndex;
                 if(auxACIndex >= 2) --auxACIndex;

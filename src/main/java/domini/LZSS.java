@@ -15,9 +15,9 @@ public final class LZSS {
     private LZSS() {}
 
     final static int MAX_SIZE_SW = 1024; // maximum size of the sliding window
-    final static int MAX_LENGTH_COINCIDENCE = 9; //
-    final static int[] slidingWindow = new int[MAX_SIZE_SW];
-    final static int[] actualCharacters = new int[MAX_LENGTH_COINCIDENCE];
+    final static int MAX_LENGTH_COINCIDENCE = 17; //
+    final static byte[] slidingWindow = new byte[MAX_SIZE_SW];
+    final static byte[] actualCharacters = new byte[MAX_LENGTH_COINCIDENCE];
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
     private final static int EOF = 0; // Pseudo EOF
 
@@ -29,7 +29,7 @@ public final class LZSS {
      */
 
     public static void compress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
                 IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
             compress(input, output);
         }
@@ -42,7 +42,7 @@ public final class LZSS {
      * @throws IOException se lanza cuando hay un error de lectura o escritura
      */
 
-    private static void compress(final IO.Char.reader input, final IO.Bit.writer output) throws IOException {
+    private static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
         // writing LZSS magic byte
         output.write(MAGIC_BYTE);
 
@@ -50,7 +50,7 @@ public final class LZSS {
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
         final int nBitsOffset = (int) log2(MAX_SIZE_SW);
-        int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        int minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;
         if(minLength < 2) minLength = 2;
 
         int currentSWIndex = 0, currentACIndex = 0;
@@ -59,7 +59,7 @@ public final class LZSS {
         int index = 0, prevMatchingIndex = 0;
         boolean extraChar = false;
 
-        int c = input.read();
+        byte c = (byte)input.read();
         while(c != -1) {
             actualCharacters[currentACIndex] = c;
             ++currentACIndex;
@@ -86,7 +86,7 @@ public final class LZSS {
                 else {
                     for(int i = 0; i < auxACIndex; ++i) {
                         output.write(false);
-                        output.write(new BitSetL(actualCharacters[i], 16));
+                        output.write(new BitSetL(actualCharacters[i], 8));
                         slidingWindow[currentSWIndex] = actualCharacters[i];
                         ++currentSWIndex;
                         if(currentSWIndex >= MAX_SIZE_SW) {
@@ -99,7 +99,7 @@ public final class LZSS {
                 if(currentACIndex >= 2) extraChar = true;
                 currentACIndex = 0;
             }
-            if(!extraChar) c = input.read();
+            if(!extraChar) c = (byte) input.read();
             extraChar = false;
         }
 
@@ -111,12 +111,12 @@ public final class LZSS {
         else if (currentACIndex > 0) {
             for(int i = 0; i < currentACIndex; ++i) {
                 output.write(false);
-                output.write(new BitSetL(actualCharacters[i], 16));
+                output.write(new BitSetL(actualCharacters[i], 8));
             }
         }
 
         output.write(false);
-        output.write(new BitSetL(EOF, 16));
+        output.write(new BitSetL(EOF, 8));
     }
 
     /**
@@ -128,7 +128,7 @@ public final class LZSS {
 
     public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+                IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
             decompress(input, output);
         }
     }
@@ -140,7 +140,7 @@ public final class LZSS {
      * @param output objeto de escritura del archivo descomprimido
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
-    private static void decompress(final IO.Bit.reader input, final IO.Char.writer output) throws IOException {
+    private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
         // ignoring magic byte
         input.readByte();
 
@@ -148,7 +148,7 @@ public final class LZSS {
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
         final int nBitsOffset = (int) log2(MAX_SIZE_SW);
-        int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        int minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;
         if(minLength < 2) minLength = 2;
         int currentSWIndex = 0;
 
@@ -168,17 +168,17 @@ public final class LZSS {
                     else indexBase = currentSWIndex - index;
 
                     for (int i = 0; i < length; ++i) {
-                        int cAux = slidingWindow[indexBase];
+                        byte cAux = slidingWindow[indexBase];
                         ++indexBase;
                         if(indexBase >= MAX_SIZE_SW) indexBase = 0;
 
                         output.write(cAux);
-                        slidingWindow[currentSWIndex] = cAux;
+                        slidingWindow[currentSWIndex] = (byte)cAux;
                         ++currentSWIndex;
                         if(currentSWIndex >= MAX_SIZE_SW) currentSWIndex = 0;
                     }
                 } else {
-                    int cAux = input.readBitSet(16).asInt();
+                    byte cAux = (byte)input.readBitSet(8).asInt();
                     if (cAux == EOF) eof = true;
                     else {
                         output.write(cAux);

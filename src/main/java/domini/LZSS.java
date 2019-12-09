@@ -14,8 +14,8 @@ public final class LZSS {
 
     private LZSS() {}
 
-    final static int MAX_SIZE_SW = 2048; // maximum size of the sliding window
-    final static int MAX_LENGTH_COINCIDENCE = 17; //
+    final static int MAX_SIZE_SW = 1024; // maximum size of the sliding window
+    final static int MAX_LENGTH_COINCIDENCE = 9; //
     final static int[] slidingWindow = new int[MAX_SIZE_SW];
     final static int[] actualCharacters = new int[MAX_LENGTH_COINCIDENCE];
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS

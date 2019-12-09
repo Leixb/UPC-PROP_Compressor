@@ -14,8 +14,8 @@ public final class LZSS {
 
     private LZSS() {}
 
-    final static int MAX_SIZE_SW = 4096; // maximum size of the sliding window
-    final static int MAX_LENGTH_COINCIDENCE = 33; //
+    final static int MAX_SIZE_SW = 2048; // maximum size of the sliding window
+    final static int MAX_LENGTH_COINCIDENCE = 17; //
     final static int[] slidingWindow = new int[MAX_SIZE_SW];
     final static int[] actualCharacters = new int[MAX_LENGTH_COINCIDENCE];
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
@@ -50,7 +50,8 @@ public final class LZSS {
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
         final int nBitsOffset = (int) log2(MAX_SIZE_SW);
-        final int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        if(minLength < 2) minLength = 2;
 
         int currentSWIndex = 0, currentACIndex = 0;
         boolean fullSW = false;
@@ -66,7 +67,7 @@ public final class LZSS {
             prevMatchingIndex = index;
             index = kmp(currentACIndex, currentSWIndex, fullSW);
 
-            if(index == -1 || currentACIndex > MAX_LENGTH_COINCIDENCE) {
+            if(index == -1 || currentACIndex >= MAX_LENGTH_COINCIDENCE) {
                 int auxACIndex = currentACIndex;
                 if(auxACIndex >= 2) --auxACIndex;
                 if(auxACIndex >= minLength) {
@@ -104,7 +105,7 @@ public final class LZSS {
 
         if(currentACIndex >= minLength) {
             output.write(true);
-            output.write(new BitSetL(prevMatchingIndex, nBitsOffset));
+            output.write(new BitSetL(index - 1, nBitsOffset));
             output.write(new BitSetL(currentACIndex - minLength, nBitsLength));
         }
         else if (currentACIndex > 0) {
@@ -147,7 +148,8 @@ public final class LZSS {
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
         final int nBitsOffset = (int) log2(MAX_SIZE_SW);
-        final int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        int minLength = (1 + nBitsLength + nBitsOffset) / 17 + 1;
+        if(minLength < 2) minLength = 2;
         int currentSWIndex = 0;
 
         boolean c = input.read();
@@ -162,11 +164,14 @@ public final class LZSS {
                     final int length = input.readBitSet(nBitsLength).asInt() + minLength;
                     int indexBase;
 
-                    if(currentSWIndex - index < 0) indexBase = MAX_SIZE_SW /*- 1*/ + currentSWIndex - index;
+                    if(currentSWIndex - index < 0) indexBase = MAX_SIZE_SW + currentSWIndex - index;
                     else indexBase = currentSWIndex - index;
 
                     for (int i = 0; i < length; ++i) {
-                        int cAux = slidingWindow[indexBase + i];
+                        int cAux = slidingWindow[indexBase];
+                        ++indexBase;
+                        if(indexBase >= MAX_SIZE_SW) indexBase = 0;
+
                         output.write(cAux);
                         slidingWindow[currentSWIndex] = cAux;
                         ++currentSWIndex;
@@ -242,7 +247,7 @@ public final class LZSS {
             }
             if (j == patLength) {
                 int index = txtLength - i + j;
-                if(index < 0) return index + MAX_SIZE_SW;
+                if(index <= 0) return index + MAX_SIZE_SW;
                 else return index;
             }
             else if (!end && slidingWindow[i] != actualCharacters[j]) {

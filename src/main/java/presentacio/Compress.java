@@ -1,6 +1,8 @@
 package presentacio;
 
+import com.sun.codemodel.internal.JOp;
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import sun.lwawt.macosx.CSystemTray;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -13,18 +15,14 @@ import java.awt.event.*;
 public class Compress {
     private JPanel panelCompress;
     private JComboBox menuAlgs;
-    private JLabel labelName;
     private JPanel panelOpcions;
     private JSpinner qualityJPEG;
     private JLabel labelQJPEG;
     private JButton buttonCompress;
     private JButton buttonExit;
-    private JLabel labelToCompressFile;
-    private JLabel labelCompressedFile;
     private JPanel panelToCompress;
     private JPanel panelCompressed;
     private JPanel panelBottom;
-    private JLabel labelAlgSelect;
     private JPanel panelAlgLeft;
     private JPanel panelAlgRight;
     private JButton buttonSelectFileIn;
@@ -60,7 +58,15 @@ public class Compress {
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                if(algSelected == -1) {
+                    JOptionPane.showMessageDialog(f, "Selecciona un algoritme.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
+                }
+                else if (fileIn == "") {
+                    JOptionPane.showMessageDialog(f, "Selecciona un fitxer a comprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
+                }
+                else if (fileOut == "") {
+                    JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
 
@@ -90,13 +96,6 @@ public class Compress {
             }
         });
 
-        buttonExit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
         qualityJPEG.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -108,9 +107,17 @@ public class Compress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
-                if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                int result = fc.showOpenDialog(f);
+                if(result == JFileChooser.APPROVE_OPTION) {
                     fileIn = fc.getSelectedFile().getAbsolutePath();
-                    labelFileIn.setText(fileIn.substring(0,15) + "...");
+                    if(fileIn.length() < 18) labelFileIn.setText(fileIn);
+                    else labelFileIn.setText(fileIn.substring(0,18) + "...");
+                    labelFileIn.setForeground(new Color(0,190,0));
+                    labelFileIn.setVisible(true);
+                }
+                else if (result == JFileChooser.ERROR_OPTION) {
+                    labelFileIn.setText("Error pujant fitxer.");
+                    labelFileIn.setForeground(new Color(220,0,0));
                     labelFileIn.setVisible(true);
                 }
             }
@@ -130,6 +137,13 @@ public class Compress {
                 fileOut = textfieldSelectFileOut.getText();
             }
         });
+
+        buttonExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     public void showCompress() {
@@ -138,7 +152,12 @@ public class Compress {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setMinimumSize(new Dimension(450, 200));
         f.setPreferredSize(new Dimension(475,250));
+        f.setLocationRelativeTo(null);
         f.pack();
         f.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

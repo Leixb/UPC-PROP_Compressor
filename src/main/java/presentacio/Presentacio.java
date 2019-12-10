@@ -31,7 +31,9 @@ public class Presentacio {
         buttonDecompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                f.setVisible(false);
+                Decompress d = new Decompress();
+                d.showDecompress();
             }
         });
         buttonExit.addActionListener(new ActionListener() {
@@ -48,6 +50,7 @@ public class Presentacio {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setMinimumSize(new Dimension(330, 200));
         f.setPreferredSize(new Dimension(475,250));
+        f.setLocationRelativeTo(null);
         f.pack();
         f.setVisible(true);
     }

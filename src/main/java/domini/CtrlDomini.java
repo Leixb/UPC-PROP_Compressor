@@ -11,11 +11,6 @@ import java.io.EOFException;
  */
 public class CtrlDomini {
     /**
-     * @brief Enum para identificar cada algoritmo
-     */
-    public enum Alg {LZ78d, LZSSd, LZWd, JPEGd};
-
-    /**
      * @brief Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente
      * @param alg algoritmo con el que comprimir
      * @param fileIn nombre del archivo a comprimir
@@ -24,22 +19,31 @@ public class CtrlDomini {
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality) throws Exception {
+    public static Statistics compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
         Statistics stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
 
         switch(alg) {
-            case LZ78d:
+            case 0:
+                if(fileIn.endsWith(".ppm")){
+                    quality = 80; // auto JPEG qualitat 80.
+                    JPEG.compress(fileIn,fileOut,quality);
+                }
+                else {
+                    LZ78.compress(fileIn, fileOut);
+                }
+                break;
+            case 1:
                 LZ78.compress(fileIn, fileOut);
                 break;
-            case LZSSd:
+            case 2:
                 LZSS.compress(fileIn, fileOut);
                 break;
-            case LZWd:
+            case 3:
                 LZW.compress(fileIn, fileOut);
                 break;
-            case JPEGd:
+            case 4:
                 JPEG.compress(fileIn,fileOut,quality);
                 break;
             default:
@@ -61,7 +65,7 @@ public class CtrlDomini {
         Statistics stats = new Statistics();
         stats.setIniFileSize(fileIn);
 
-        Alg alg;
+        int alg;
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
             b = reader.read();
@@ -71,24 +75,24 @@ public class CtrlDomini {
 
         byte magicByte = (byte) b;
 
-        if(magicByte==LZ78.MAGIC_BYTE) alg = Alg.LZ78d;
-        else if(magicByte==LZSS.MAGIC_BYTE) alg = Alg.LZSSd;
-        else if(magicByte==LZW.MAGIC_BYTE) alg = Alg.LZWd;
-        else if(magicByte==JPEG.MAGIC_BYTE) alg = Alg.JPEGd;
+        if(magicByte==LZ78.MAGIC_BYTE) alg = 1;
+        else if(magicByte==LZSS.MAGIC_BYTE) alg = 2;
+        else if(magicByte==LZW.MAGIC_BYTE) alg = 3;
+        else if(magicByte==JPEG.MAGIC_BYTE) alg = 4;
         else throw new Exception("Fitxer invàlid.");
 
         stats.setStartingTime();
         switch(alg) {
-            case LZ78d:
+            case 1:
                 LZ78.decompress(fileIn, fileOut);
                 break;
-            case LZSSd:
+            case 2:
                 LZSS.decompress(fileIn, fileOut);
                 break;
-            case LZWd:
+            case 3:
                 LZW.decompress(fileIn, fileOut);
                 break;
-            case JPEGd:
+            case 4:
                 JPEG.decompress(fileIn, fileOut);
                 break;
             default:

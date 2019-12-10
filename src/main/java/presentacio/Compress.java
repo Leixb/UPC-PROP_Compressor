@@ -32,7 +32,7 @@ public class Compress {
     private static JFrame f;
 
     private int algSelected;
-    private int jpegQuality;
+    private short jpegQuality;
     private String fileIn;
     private String fileOut;
 
@@ -67,6 +67,9 @@ public class Compress {
                 else if (fileOut == "") {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
+                else {
+                    CtrlPresentacio.comprimir(algSelected, fileIn, fileOut, jpegQuality);
+                }
             }
         });
 
@@ -99,7 +102,7 @@ public class Compress {
         qualityJPEG.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                jpegQuality = (Integer) qualityJPEG.getValue();
+                jpegQuality = (Short) qualityJPEG.getValue();
             }
         });
 
@@ -150,8 +153,8 @@ public class Compress {
         f.setResizable(true);
         f.setContentPane(this.panelCompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setMinimumSize(new Dimension(450, 200));
-        f.setPreferredSize(new Dimension(475,250));
+        f.setMinimumSize(new Dimension(490, 200));
+        f.setPreferredSize(new Dimension(490,250));
         f.setLocationRelativeTo(null);
         f.pack();
         f.setVisible(true);

@@ -7,6 +7,7 @@ package domini;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @brief Compresión y descompresión de archivos de texto con LZW.
@@ -21,18 +22,24 @@ public final class LZW {
     /// Tamaño inicial del diccionario
     private final static int DICTIONARY_SIZE = 0xFFFF;
 
+    /// Overflow del diccionario
+    private final static int OVERFLOW = 0x7FFFFFFF;
+
+    /// Pseudo EOF
+    private final static int EOF = 0;
+
     /// Diccionario de compresión
-    private static HashMap<String, Integer> compressionDictionary;
+    private static Map<String, Integer> compressionDictionary;
 
     /// Diccionario de descompresión
-    private static HashMap<Integer, String> decompressionDictionary;
+    private static Map<Integer, String> decompressionDictionary;
 
     /**
      * @brief Crea el diccionario de compresión y lo inicializa.
      */
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
-        for (int i = 0; i <= DICTIONARY_SIZE; ++i){
+        for (int i = 1; i <= DICTIONARY_SIZE; ++i){
             char c = (char) i;
             compressionDictionary.put(Character.toString(c) ,i);
         }
@@ -43,7 +50,7 @@ public final class LZW {
      */
     private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
-        for (int i = 0; i <= DICTIONARY_SIZE; ++i){
+        for (int i = 1; i <= DICTIONARY_SIZE; ++i){
             char c = (char) i;
             decompressionDictionary.put(i,Character.toString(c));
         }
@@ -93,8 +100,8 @@ public final class LZW {
                 chars = "" + ch;
             }
 
-            if (i >= 0x7FFFFFFF) {  //[DICTIONARY OVERFLOW]
-                output.write(0x7FFFFFFF);
+            if (i >= OVERFLOW) {  //[DICTIONARY OVERFLOW]
+                output.write(OVERFLOW);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
@@ -105,6 +112,8 @@ public final class LZW {
             final int code = compressionDictionary.get(chars);
             output.write(code);
         }
+
+        output.write(EOF);
     }
 
     /**
@@ -141,8 +150,8 @@ public final class LZW {
 
             char ch = aux.charAt(0);
 
-            while (true) {
-                int code = input.readInt();
+            int code = input.readInt();
+            while (code != EOF) {
                 if (decompressionDictionary.containsKey(code)) {
                     aux = decompressionDictionary.get(code);
                 } else {
@@ -155,8 +164,9 @@ public final class LZW {
                 decompressionDictionary.put(i++, decompressionDictionary.get(old_code) + ch);
 
                 old_code = code;
+                code = input.readInt();
 
-                if (code == 0x7FFFFFFF) {   //[DICTIONARY OVERFLOW DETECTED]
+                if (code == OVERFLOW) {   //[DICTIONARY OVERFLOW DETECTED]
                     createDecompressionDictionary();
                     i = DICTIONARY_SIZE;
                     code = input.readInt();
@@ -165,6 +175,5 @@ public final class LZW {
         } catch (EOFException e){
             //End of file reached.
         }
-
     }
 }

@@ -1,9 +1,5 @@
 package presentacio;
 
-import com.sun.codemodel.internal.JOp;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import sun.lwawt.macosx.CSystemTray;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;

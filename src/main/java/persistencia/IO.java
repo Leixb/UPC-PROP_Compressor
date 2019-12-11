@@ -2,7 +2,9 @@
  * @file ./src/main/java/domini/IO.java
  * @author Aleix Boné
  */
-package domini;
+package persistencia;
+
+import domini.BitSetL;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

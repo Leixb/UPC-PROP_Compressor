@@ -4,6 +4,8 @@
  */
 package domini;
 
+import persistencia.IO;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -14,7 +14,7 @@ import domini.Statistics;
  * @brief Imprime por pantalla
  */
 public class CtrlPresentacio {
-    CtrlDomini cd = new CtrlDomini();
+    private CtrlDomini cd = new CtrlDomini();
 
     /**
      * @brief Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y
@@ -43,19 +43,19 @@ public class CtrlPresentacio {
         return cd.getTime();
     }
 
-    public String getDeflated() {
+    String getDeflated() {
         return cd.getDeflated();
     }
 
-    public String getSpeedCompress () {
+    String getSpeedCompress() {
         return cd.getSpeedCompress();
     }
 
-    public String getInflated() {
+    String getInflated() {
         return cd.getInflated();
     }
 
-    public String getSpeedDecompress() {
+    String getSpeedDecompress() {
         return cd.getSpeedDecompress();
     }
 

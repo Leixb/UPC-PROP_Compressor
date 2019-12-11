@@ -49,10 +49,10 @@ public class Compress {
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (fileIn.equals("")) {
+                if ("".equals(fileIn)) {
                     JOptionPane.showMessageDialog(f, "Selecciona un fitxer a comprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
-                else if (fileOut.equals("")) {
+                else if ("".equals(fileOut)) {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
                 else {
@@ -102,7 +102,7 @@ public class Compress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc;
-                if(fileIn.equals("")) fc = new JFileChooser();
+                if("".equals(fileIn)) fc = new JFileChooser();
                 else fc = new JFileChooser(fileIn);
 
                 int result = fc.showOpenDialog(f);

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Locale;
 
 public class StatsDecompress {
     private CtrlPresentacio cp;
@@ -35,23 +36,23 @@ public class StatsDecompress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fileOut = cp.getFileOut();
-                String OS = System.getProperty("os.name").toLowerCase();
+                String currentOS = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
 
-                if (OS.contains("win")) {
+                if (currentOS.contains("win")) {
                     try {
                         Runtime.getRuntime().exec(fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (OS.contains("mac")) {
+                else if (currentOS.contains("mac")) {
                     try {
                         Runtime.getRuntime().exec("open " + fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
+                else if (currentOS.contains("nix") || currentOS.contains("nux") || currentOS.contains("aix")) {
                     try {
                         Runtime.getRuntime().exec("xdg-open " + fileOut);
                     } catch (IOException ex) {

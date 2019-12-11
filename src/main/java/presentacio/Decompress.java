@@ -33,10 +33,10 @@ public class Decompress {
         buttonDecompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (fileIn.equals("")) {
+                if ("".equals(fileIn)) {
                     JOptionPane.showMessageDialog(f, "Selecciona un fitxer a descomprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
-                else if (fileOut.equals("")) {
+                else if ("".equals(fileOut)) {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
                 else {

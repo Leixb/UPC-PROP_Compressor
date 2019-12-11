@@ -11,14 +11,11 @@ public class Decompress {
     private CtrlPresentacio cp = new CtrlPresentacio();
 
     private JPanel panelDecompress;
-    private JPanel panelToDecompress;
-    private JPanel panelDecompressed;
     private JButton buttonExit;
     private JButton buttonDecompress;
     private JButton buttonSelectFileIn;
     private JTextField textfieldSelectFileOut;
     private JLabel labelFileIn;
-    private JPanel pannelBottom;
 
     private static JFrame f;
 
@@ -36,10 +33,10 @@ public class Decompress {
         buttonDecompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (fileIn == "") {
+                if (fileIn.equals("")) {
                     JOptionPane.showMessageDialog(f, "Selecciona un fitxer a descomprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
-                else if (fileOut == "") {
+                else if (fileOut.equals("")) {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
                 else {
@@ -93,7 +90,7 @@ public class Decompress {
         });
     }
 
-    public void showDecompress() {
+    void showDecompress() {
         f.setResizable(false);
         f.setContentPane(this.panelDecompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -11,20 +11,15 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class Compress {
     private JPanel panelCompress;
     private JComboBox menuAlgs;
-    private JPanel panelOpcions;
     private JSpinner qualityJPEG;
     private JLabel labelQJPEG;
     private JButton buttonCompress;
     private JButton buttonExit;
-    private JPanel panelToCompress;
-    private JPanel panelCompressed;
-    private JPanel panelBottom;
-    private JPanel panelAlgLeft;
-    private JPanel panelAlgRight;
     private JButton buttonSelectFileIn;
     private JTextField textfieldSelectFileOut;
     private JLabel labelFileIn;
@@ -58,10 +53,10 @@ public class Compress {
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (fileIn == "") {
+                if (fileIn.equals("")) {
                     JOptionPane.showMessageDialog(f, "Selecciona un fitxer a comprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
-                else if (fileOut == "") {
+                else if (fileOut.equals("")) {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
                 else {
@@ -77,23 +72,25 @@ public class Compress {
             public void actionPerformed(ActionEvent e) {
                 labelQJPEG.setVisible(false);
                 qualityJPEG.setVisible(false);
-                String alg = menuAlgs.getSelectedItem().toString();
-                if (alg == "Auto") {
-                    algSelected = 0;
-                }
-                else if (alg == "LZ78") {
-                    algSelected  = 1;
-                }
-                else if (alg == "LZSS") {
-                    algSelected = 2;
-                }
-                else if (alg == "LZW") {
-                    algSelected = 3;
-                }
-                else if (alg == "JPEG") {
-                    labelQJPEG.setVisible(true);
-                    qualityJPEG.setVisible(true);
-                    algSelected = 4;
+                String alg = Objects.requireNonNull(menuAlgs.getSelectedItem()).toString();
+                switch (alg) {
+                    case "Auto":
+                        algSelected = 0;
+                        break;
+                    case "LZ78":
+                        algSelected = 1;
+                        break;
+                    case "LZSS":
+                        algSelected = 2;
+                        break;
+                    case "LZW":
+                        algSelected = 3;
+                        break;
+                    case "JPEG":
+                        labelQJPEG.setVisible(true);
+                        qualityJPEG.setVisible(true);
+                        algSelected = 4;
+                        break;
                 }
             }
         });
@@ -109,7 +106,7 @@ public class Compress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc;
-                if(fileIn == "") fc = new JFileChooser();
+                if(fileIn.equals("")) fc = new JFileChooser();
                 else fc = new JFileChooser(fileIn);
 
                 int result = fc.showOpenDialog(f);
@@ -151,7 +148,7 @@ public class Compress {
         });
     }
 
-    public void showCompress() {
+    void showCompress() {
         f.setResizable(false);
         f.setContentPane(this.panelCompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -19,11 +19,8 @@ public class StatsCompress {
 
     private static JFrame f;
 
-    private String time;
-    private String deflate;
-    private String speed;
 
-    public StatsCompress(CtrlPresentacio ctrlPres) {
+    StatsCompress(CtrlPresentacio ctrlPres) {
         f = new JFrame("PIZ Compressor | Estadístiques");
         cp = ctrlPres;
 
@@ -31,8 +28,7 @@ public class StatsCompress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
-                Presentacio p = new Presentacio();
-                p.showPresentacio();
+                Presentacio.showPresentacio();
             }
         });
 
@@ -44,21 +40,21 @@ public class StatsCompress {
 
                 String OS = System.getProperty("os.name").toLowerCase();
 
-                if (OS.indexOf("win") >= 0) {
+                if (OS.contains("win")) {
                     try {
                         Runtime.getRuntime().exec("start " + fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (OS.indexOf("mac") >= 0) {
+                else if (OS.contains("mac")) {
                     try {
                         Runtime.getRuntime().exec("open " + fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0) {
+                else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
                     try {
                         Runtime.getRuntime().exec("xdg-open " + fileOut);
                     } catch (IOException ex) {
@@ -79,10 +75,10 @@ public class StatsCompress {
         });
     }
 
-    public void showStatsCompress() {
-        time = cp.getTime();
-        deflate = cp.getDeflated();
-        speed = cp.getSpeedCompress();
+    void showStatsCompress() {
+        String time = cp.getTime();
+        String deflate = cp.getDeflated();
+        String speed = cp.getSpeedCompress();
 
         labelTime.setText(time);
         labelDeflate.setText(deflate);

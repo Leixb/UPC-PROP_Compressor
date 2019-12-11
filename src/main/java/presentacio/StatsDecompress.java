@@ -19,11 +19,7 @@ public class StatsDecompress {
 
     private static JFrame f;
 
-    private String time;
-    private String inflate;
-    private String speed;
-
-    public StatsDecompress(CtrlPresentacio ctrlPres) {
+    StatsDecompress(CtrlPresentacio ctrlPres) {
         f = new JFrame("PIZ Compressor | Estadístiques");
         cp = ctrlPres;
 
@@ -31,8 +27,7 @@ public class StatsDecompress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
-                Presentacio p = new Presentacio();
-                p.showPresentacio();
+                Presentacio.showPresentacio();
             }
         });
 
@@ -42,21 +37,21 @@ public class StatsDecompress {
                 String fileOut = cp.getFileOut();
                 String OS = System.getProperty("os.name").toLowerCase();
 
-                if (OS.indexOf("win") >= 0) {
+                if (OS.contains("win")) {
                     try {
                         Runtime.getRuntime().exec(fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (OS.indexOf("mac") >= 0) {
+                else if (OS.contains("mac")) {
                     try {
                         Runtime.getRuntime().exec("open " + fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0) {
+                else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
                     try {
                         Runtime.getRuntime().exec("xdg-open " + fileOut);
                     } catch (IOException ex) {
@@ -77,10 +72,10 @@ public class StatsDecompress {
         });
     }
 
-    public void showStatsDecompress() {
-        time = cp.getTime();
-        inflate = cp.getInflated();
-        speed = cp.getSpeedDecompress();
+    void showStatsDecompress() {
+        String time = cp.getTime();
+        String inflate = cp.getInflated();
+        String speed = cp.getSpeedDecompress();
 
         labelTime.setText(time);
         labelInflate.setText(inflate);

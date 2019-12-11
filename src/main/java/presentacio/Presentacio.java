@@ -10,11 +10,7 @@ public class Presentacio {
     private JPanel panelMain;
     private JButton buttonDecompress;
     private JButton buttonCompress;
-    private JPanel panelName;
-    private JPanel panelOptions;
     private JButton buttonExit;
-    private JPanel panelSortir;
-    private JLabel labelAsk;
 
     private static JFrame f = new JFrame("PIZ Compressor | Welcome");
 
@@ -47,7 +43,7 @@ public class Presentacio {
         });
     }
 
-    public static void showPresentacio() {
+    static void showPresentacio() {
         f.setResizable(false);
         f.setContentPane(new Presentacio().panelMain);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

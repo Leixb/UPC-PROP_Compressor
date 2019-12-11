@@ -11,14 +11,14 @@ public class LoadingDecompress {
 
     private static JFrame f;
 
-    public LoadingDecompress() {
+    LoadingDecompress() {
         f = new JFrame("PIZ Compressor");
 
         ImageIcon icon = new ImageIcon("src/main/resources/loading.gif");
         labelGIF.setIcon(icon);
     }
 
-    public void showLoadingDecompress(String fileIn, String fileOut) {
+    void showLoadingDecompress(String fileIn, String fileOut) {
         f.setResizable(false);
         f.setContentPane(this.panelLD);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

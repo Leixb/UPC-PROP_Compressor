@@ -45,7 +45,7 @@ public class Presentacio {
 
     void showPresentacio() {
         f.setResizable(false);
-        f.setContentPane(new Presentacio().panelMain);
+        f.setContentPane(this.panelMain);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setPreferredSize(new Dimension(510,250));
         setWindowLocation();

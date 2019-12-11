@@ -28,7 +28,8 @@ public class StatsDecompress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
-                Presentacio.showPresentacio();
+                Presentacio p = new Presentacio();
+                p.showPresentacio();
             }
         });
 

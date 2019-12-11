@@ -43,7 +43,7 @@ public class Presentacio {
         });
     }
 
-    static void showPresentacio() {
+    void showPresentacio() {
         f.setResizable(false);
         f.setContentPane(new Presentacio().panelMain);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,16 +53,12 @@ public class Presentacio {
         f.setVisible(true);
     }
 
-    private static void setWindowLocation() {
+    private void setWindowLocation() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         int windowX = Math.max(0, (screenSize.width  - 510) / 2);
         int windowY = Math.max(0, (screenSize.height - 250) / 2 - 100);
 
         f.setLocation(windowX, windowY);
-    }
-
-    public static void main(String[] args) {
-        showPresentacio();
     }
 }

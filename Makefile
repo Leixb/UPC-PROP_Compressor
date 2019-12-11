@@ -11,7 +11,7 @@ JC = javac
 JAVA = java
 JAR = jar
 
-MAIN = presentacio.Main
+MAIN = presentacio.Presentacio
 VERSION = 1.0-SNAPSHOT
 JAR_FILE = $(TARGET)/ProjecteProp-$(VERSION).jar
 

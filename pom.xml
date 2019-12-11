@@ -46,7 +46,7 @@
                   <artifactId>exec-maven-plugin</artifactId>
                   <version>1.6.0</version>
                   <configuration>
-                    <mainClass>presentacio.Main</mainClass>
+                    <mainClass>presentacio.Presentacio</mainClass>
                   </configuration>
             </plugin>
         </plugins>

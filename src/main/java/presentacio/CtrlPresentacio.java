@@ -14,38 +14,15 @@ import domini.Statistics;
  * @brief Imprime por pantalla
  */
 public class CtrlPresentacio {
-    private static String banner =
-            "██████╗ ██╗███████╗     ██████╗ ██████╗ ███╗   ███╗██████╗ ██████╗ ███████╗███████╗███████╗ ██████╗ ██████╗ \n" +
-            "██╔══██╗██║╚══███╔╝    ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██╔═══██╗██╔══██╗\n" +
-            "██████╔╝██║  ███╔╝     ██║     ██║   ██║██╔████╔██║██████╔╝██████╔╝█████╗  ███████╗███████╗██║   ██║██████╔╝\n" +
-            "██╔═══╝ ██║ ███╔╝      ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██╔══██╗██╔══╝  ╚════██║╚════██║██║   ██║██╔══██╗\n" +
-            "██║     ██║███████╗    ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ██║  ██║███████╗███████║███████║╚██████╔╝██║  ██║\n" +
-            "╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝\n" +
-            "                                                                                                            \n";
-
-    private static Scanner scanner;
-
-    /**
-     * @brief Dadas una opciones las imprime y da a escoger una de ellas
-     * @param options opciones a presentar al usuario
-     * @return Devuelve la opción elegida por el usuario
-     */
-    private static int prompt(String[] options) {
-        for (int i = 1; i <= options.length; ++i)
-            System.out.printf("- [%d] : %s\n", i, options[i-1]);
-        System.out.printf("Escull una opció (%d-%d): ", 1, options.length);
-        System.out.println();
-        return scanner.nextInt();
-    }
+    CtrlDomini cd = new CtrlDomini();
 
     /**
      * @brief Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y
      *        el nombre del archivo comprimido que luego pasa al CtrlDomini.
      */
-    public static void comprimir(int alg, String fileIn, String fileOut, short qualityJPEG) {
+    public void compress(int alg, String fileIn, String fileOut, short qualityJPEG) {
         try {
-            Statistics stats = CtrlDomini.compress(alg, fileIn, fileOut, qualityJPEG);
-            printStatsCompress(stats);
+            cd.compress(alg, fileIn, fileOut, qualityJPEG);
         } catch (Exception e) {
             System.out.println("Error en la compressió:" + e.getMessage());
         }
@@ -54,17 +31,9 @@ public class CtrlPresentacio {
     /**
      * @brief Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini.
      */
-    private static void descomprimir() {
-        System.out.println("Fitxer a descomprimir (*.piz):");
-        scanner.nextLine();
-        String fileIn = scanner.nextLine();
-
-        System.out.println("Fitxer desti:");
-        String fileOut = scanner.nextLine();
-
+    public void decompress(String fileIn, String fileOut) {
         try{
-            Statistics stats = CtrlDomini.decompress(fileIn,fileOut);
-            CtrlPresentacio.printStatsDecompress(stats);
+            cd.decompress(fileIn,fileOut);
         } catch (Exception e) {
             System.out.println("Error en la descompressió:" + e.getMessage());
         }

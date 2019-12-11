@@ -29,7 +29,7 @@ public class Compress {
     private JTextField textfieldSelectFileOut;
     private JLabel labelFileIn;
 
-    private static JFrame f;
+    private JFrame f;
 
     private int algSelected;
     private short jpegQuality;
@@ -68,7 +68,9 @@ public class Compress {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
                 else {
-                    CtrlPresentacio.comprimir(algSelected, fileIn, fileOut, jpegQuality);
+                    f.setVisible(false);
+                    LoadingCompress lc = new LoadingCompress();
+                    lc.showLoadingCompress(algSelected,fileIn,fileOut,jpegQuality);
                 }
             }
         });

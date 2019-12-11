@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Decompress {
+    private CtrlPresentacio cp = new CtrlPresentacio();
+
     private JPanel panelDecompress;
     private JPanel panelToDecompress;
     private JPanel panelDecompressed;
@@ -39,6 +41,9 @@ public class Decompress {
                 }
                 else if (fileOut == "") {
                     JOptionPane.showMessageDialog(f, "Inserta un nom pel fitxer de destí.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
+                }
+                else {
+                    cp.decompress(fileIn, fileOut);
                 }
             }
         });

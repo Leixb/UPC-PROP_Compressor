@@ -10,6 +10,8 @@ import java.io.EOFException;
  * @brief Controlador del dominio
  */
 public class CtrlDomini {
+    private Statistics stats;
+
     /**
      * @brief Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente
      * @param alg algoritmo con el que comprimir
@@ -19,8 +21,8 @@ public class CtrlDomini {
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public static Statistics compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
-        Statistics stats = new Statistics();
+    public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
+        stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
 
@@ -51,7 +53,6 @@ public class CtrlDomini {
 
         stats.setEndingTime();
         stats.setFinFileSize(fileOut);
-        return stats;
     }
 
     /**
@@ -61,8 +62,8 @@ public class CtrlDomini {
      * @return Estadisticas generadas durante la descompresión
      * @throws Exception Lanza cualquier excepción generada al descomprimir
      */
-    public static Statistics decompress(String fileIn, String fileOut) throws Exception {
-        Statistics stats = new Statistics();
+    public void decompress(String fileIn, String fileOut) throws Exception {
+        stats = new Statistics();
         stats.setIniFileSize(fileIn);
 
         int alg;
@@ -82,6 +83,7 @@ public class CtrlDomini {
         else throw new Exception("Fitxer invàlid.");
 
         stats.setStartingTime();
+
         switch(alg) {
             case 1:
                 LZ78.decompress(fileIn, fileOut);
@@ -100,7 +102,6 @@ public class CtrlDomini {
 
         stats.setEndingTime();
         stats.setFinFileSize(fileOut);
-        return stats;
     }
 
 }

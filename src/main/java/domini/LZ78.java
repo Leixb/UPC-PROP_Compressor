@@ -4,6 +4,8 @@
 */
 package domini;
 
+import persistencia.IO;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,7 +42,7 @@ public final class LZ78{
      */
     public static void compress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Char.reader input = new IO.Char.reader(inputFilename);
-                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+             IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
             compress(input, output);
         }
     }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import domini.Huffman.HuffmanLookupException;
 import domini.PpmImage.InvalidFileFormat;
+import persistencia.IO;
 
 /**
  * @brief compresión y descompresión de imágenes PPM con JPEG

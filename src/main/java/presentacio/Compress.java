@@ -152,10 +152,9 @@ public class Compress {
     }
 
     public void showCompress() {
-        f.setResizable(true);
+        f.setResizable(false);
         f.setContentPane(this.panelCompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setMinimumSize(new Dimension(490, 200));
         f.setPreferredSize(new Dimension(490,250));
         f.setLocationRelativeTo(null);
         f.pack();

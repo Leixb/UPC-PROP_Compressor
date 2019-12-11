@@ -92,10 +92,9 @@ public class Decompress {
     }
 
     public void showDecompress() {
-        f.setResizable(true);
+        f.setResizable(false);
         f.setContentPane(this.panelDecompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setMinimumSize(new Dimension(490, 200));
         f.setPreferredSize(new Dimension(490,250));
         f.setLocationRelativeTo(null);
         f.pack();

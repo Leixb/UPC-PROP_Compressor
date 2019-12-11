@@ -8,7 +8,6 @@ public class LoadingCompress {
 
     private JPanel panelLC;
     private JLabel labelGIF;
-    private JButton cancelLarCompressióButton;
 
     private static JFrame f;
 
@@ -20,15 +19,35 @@ public class LoadingCompress {
     }
 
     public void showLoadingCompress(int alg, String fileIn, String fileOut, short qualityJPEG) {
-        f.setResizable(true);
+        f.setResizable(false);
         f.setContentPane(this.panelLC);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setMinimumSize(new Dimension(490, 200));
         f.setPreferredSize(new Dimension(490,250));
         f.setLocationRelativeTo(null);
         f.pack();
+
         f.setVisible(true);
 
-        //cp.compress(alg, fileIn, fileOut, qualityJPEG);
+        compress(alg, fileIn, fileOut, qualityJPEG);
+    }
+
+    private void compress(int alg, String fileIn, String fileOut, short qualityJPEG)
+    {
+        SwingWorker sw = new SwingWorker()
+        {
+            @Override
+            protected Object doInBackground() throws Exception {
+                cp.compress(alg, fileIn, fileOut, qualityJPEG);
+                return null;
+            }
+            @Override
+            protected void done() {
+                f.setVisible(false);
+                StatsCompress sc = new StatsCompress(cp);
+                sc.showStatsCompress();
+            }
+        };
+
+        sw.execute();
     }
 }

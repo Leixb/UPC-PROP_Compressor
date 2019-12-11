@@ -39,6 +39,18 @@ public class CtrlPresentacio {
         }
     }
 
+    public String getTime() {
+        return cd.getTime();
+    }
+
+    public String getInflated() {
+        return cd.getInflated();
+    }
+
+    public String getSpeedCompress () {
+        return cd.getSpeedCompress();
+    }
+
     /**
      * @brief Imprime las estadisticas de compresión
      * @param stats Estadisticas generadas al comprimir

@@ -5,6 +5,7 @@
 package domini;
 
 import java.io.EOFException;
+import java.text.DecimalFormat;
 
 /**
  * @brief Controlador del dominio
@@ -25,6 +26,8 @@ public class CtrlDomini {
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
+
+        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fileOut;
 
         switch(alg) {
             case 0:
@@ -104,4 +107,31 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
+    public String getTime() {
+        return String.format("%.2f s", stats.getTime());
+    }
+
+    public String getInflated() {
+        String iniFileSize = readableFileSize(stats.getIniFileSize());
+        String finFileSize = readableFileSize(stats.getFinFileSize());
+        return String.format("%s -> %s (%.2f%%)", iniFileSize, finFileSize, stats.getPercentageCompressed());
+    }
+
+    public String getSpeedCompress() {
+        String compSpeed = readableFileSize(stats.getSpeedCompressed());
+        return String.format("%sps", compSpeed);
+    }
+
+    /**
+     * @brief Da el formato correcto al tamaño de un fichero (B,kB,etc)
+     * @param d Tamaño de un fichero en bytes
+     * @return Tamaño del fichero en la magnitud que le corresponda
+     */
+    private static String readableFileSize(double d) {
+        if (d <= 0)
+            return "0";
+        final String[] units = new String[] { "B", "kB", "MB", "GB", "TB" };
+        int digitGroups = (int) (Math.log10(d) / Math.log10(1024));
+        return new DecimalFormat("#,##0.##").format(d / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    }
 }

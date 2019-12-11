@@ -1,5 +1,5 @@
 import domini.BitSetL;
-import domini.IO;
+import persistencia.IO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

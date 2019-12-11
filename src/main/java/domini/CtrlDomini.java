@@ -11,23 +11,26 @@ import java.text.DecimalFormat;
  * @brief Controlador del dominio
  */
 public class CtrlDomini {
+    private String fileIn;
+    private String fileOut;
     private Statistics stats;
 
     /**
      * @brief Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente
      * @param alg algoritmo con el que comprimir
-     * @param fileIn nombre del archivo a comprimir
-     * @param fileOut nombre del archivo comprimido
+     * @param fi nombre del archivo a comprimir
+     * @param fo nombre del archivo comprimido
      * @param quality calidad de compresión para el JPEG
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
+    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
+        fileIn = fi;
+        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo + ".piz";
+
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
-
-        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fileOut;
 
         switch(alg) {
             case 0:
@@ -60,16 +63,14 @@ public class CtrlDomini {
 
     /**
      * @brief Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió
-     * @param fileIn nombre del fichero comprimido
-     * @param fileOut nombre del fichero descomprimido
+     * @param fi nombre del fichero comprimido
+     * @param fo nombre del fichero descomprimido
      * @return Estadisticas generadas durante la descompresión
      * @throws Exception Lanza cualquier excepción generada al descomprimir
      */
-    public void decompress(String fileIn, String fileOut) throws Exception {
-        stats = new Statistics();
-        stats.setIniFileSize(fileIn);
+    public void decompress(String fi, String fo) throws Exception {
+        fileIn = fi;
 
-        int alg;
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
             b = reader.read();
@@ -79,12 +80,19 @@ public class CtrlDomini {
 
         byte magicByte = (byte) b;
 
+        int alg;
         if(magicByte==LZ78.MAGIC_BYTE) alg = 1;
         else if(magicByte==LZSS.MAGIC_BYTE) alg = 2;
         else if(magicByte==LZW.MAGIC_BYTE) alg = 3;
         else if(magicByte==JPEG.MAGIC_BYTE) alg = 4;
         else throw new Exception("Fitxer invàlid.");
 
+        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo;
+        if(alg == 4) fileOut += ".ppm";
+        else fileOut += ".txt";
+
+        stats = new Statistics();
+        stats.setIniFileSize(fileIn);
         stats.setStartingTime();
 
         switch(alg) {
@@ -111,7 +119,7 @@ public class CtrlDomini {
         return String.format("%.2f s", stats.getTime());
     }
 
-    public String getInflated() {
+    public String getDeflated() {
         String iniFileSize = readableFileSize(stats.getIniFileSize());
         String finFileSize = readableFileSize(stats.getFinFileSize());
         return String.format("%s -> %s (%.2f%%)", iniFileSize, finFileSize, stats.getPercentageCompressed());
@@ -119,7 +127,26 @@ public class CtrlDomini {
 
     public String getSpeedCompress() {
         String compSpeed = readableFileSize(stats.getSpeedCompressed());
-        return String.format("%sps", compSpeed);
+        return String.format("%s/s", compSpeed);
+    }
+
+    public String getInflated() {
+        String iniFileSize = readableFileSize(stats.getIniFileSize());
+        String finFileSize = readableFileSize(stats.getFinFileSize());
+        return String.format("%s -> %s (%.2f%%)", iniFileSize, finFileSize, stats.getPercentageDecompressed());
+    }
+
+    public String getSpeedDecompress() {
+        String decompSpeed = readableFileSize(stats.getSpeedDecompressed());
+        return String.format("%s/s", decompSpeed);
+    }
+
+    public String getFileIn() {
+        return fileIn;
+    }
+
+    public String getFileOut() {
+        return fileOut;
     }
 
     /**

@@ -6,24 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class StatsCompress {
+public class StatsDecompress {
     private CtrlPresentacio cp;
 
-    private JPanel panelStatsComp;
-    private JButton buttonExit;
+    private JPanel panelStatsDecomp;
     private JButton buttonHome;
+    private JButton buttonExit;
     private JLabel labelTime;
-    private JLabel labelDeflate;
+    private JLabel labelInflate;
     private JLabel labelSpeed;
-    private JButton buttonShowFile;
+    private JButton buttonOpenFile;
 
     private static JFrame f;
 
     private String time;
-    private String deflate;
+    private String inflate;
     private String speed;
 
-    public StatsCompress(CtrlPresentacio ctrlPres) {
+    public StatsDecompress(CtrlPresentacio ctrlPres) {
         f = new JFrame("PIZ Compressor | Estadístiques");
         cp = ctrlPres;
 
@@ -36,17 +36,15 @@ public class StatsCompress {
             }
         });
 
-        buttonShowFile.addActionListener(new ActionListener() {
+        buttonOpenFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fileOut = cp.getFileOut();
-                fileOut = fileOut.substring(0, fileOut.lastIndexOf('/')+1);
-
                 String OS = System.getProperty("os.name").toLowerCase();
 
                 if (OS.indexOf("win") >= 0) {
                     try {
-                        Runtime.getRuntime().exec("start " + fileOut);
+                        Runtime.getRuntime().exec(fileOut);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     }
@@ -79,23 +77,24 @@ public class StatsCompress {
         });
     }
 
-    public void showStatsCompress() {
+    public void showStatsDecompress() {
         time = cp.getTime();
-        deflate = cp.getDeflated();
-        speed = cp.getSpeedCompress();
+        inflate = cp.getInflated();
+        speed = cp.getSpeedDecompress();
 
         labelTime.setText(time);
-        labelDeflate.setText(deflate);
+        labelInflate.setText(inflate);
         labelSpeed.setText(speed);
 
+
         f.setResizable(false);
-        f.setContentPane(this.panelStatsComp);
+        f.setContentPane(this.panelStatsDecomp);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setPreferredSize(new Dimension(510,250));
+        f.setPreferredSize(new Dimension(490,250));
         setWindowLocation();
         f.pack();
         f.setVisible(true);
-        JOptionPane.showMessageDialog(f, "Compressió exitosa!", "PIZ Compressor", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(f, "Descompressió exitosa!", "PIZ Compressor", JOptionPane.PLAIN_MESSAGE);
     }
 
     private void setWindowLocation() {

@@ -45,7 +45,7 @@ public class Compress {
 
         qualityJPEG.setModel(new SpinnerNumberModel(50,0,99,1));
 
-        algSelected = -1;
+        algSelected = 0;
         jpegQuality = 50;
         fileIn = fileOut = "";
 
@@ -58,10 +58,7 @@ public class Compress {
         buttonCompress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(algSelected == -1) {
-                    JOptionPane.showMessageDialog(f, "Selecciona un algoritme.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
-                }
-                else if (fileIn == "") {
+                if (fileIn == "") {
                     JOptionPane.showMessageDialog(f, "Selecciona un fitxer a comprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 }
                 else if (fileOut == "") {
@@ -111,12 +108,15 @@ public class Compress {
         buttonSelectFileIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fc = new JFileChooser();
+                JFileChooser fc;
+                if(fileIn == "") fc = new JFileChooser();
+                else fc = new JFileChooser(fileIn);
+
                 int result = fc.showOpenDialog(f);
                 if(result == JFileChooser.APPROVE_OPTION) {
                     fileIn = fc.getSelectedFile().getAbsolutePath();
-                    if(fileIn.length() < 18) labelFileIn.setText(fileIn);
-                    else labelFileIn.setText(fileIn.substring(0,18) + "...");
+                    if(fileIn.length() < 19) labelFileIn.setText(fileIn);
+                    else labelFileIn.setText(fileIn.substring(0,19) + "...");
                     labelFileIn.setForeground(new Color(0,190,0));
                     labelFileIn.setVisible(true);
                 }
@@ -155,13 +155,18 @@ public class Compress {
         f.setResizable(false);
         f.setContentPane(this.panelCompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setPreferredSize(new Dimension(490,250));
-        f.setLocationRelativeTo(null);
+        f.setPreferredSize(new Dimension(510,250));
+        setWindowLocation();
         f.pack();
         f.setVisible(true);
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+    private void setWindowLocation() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int windowX = Math.max(0, (screenSize.width  - 510) / 2);
+        int windowY = Math.max(0, (screenSize.height - 250) / 2 - 100);
+
+        f.setLocation(windowX, windowY);
     }
 }

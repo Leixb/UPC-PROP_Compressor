@@ -127,4 +127,5 @@ public class Presentacio {
     public JComponent $$$getRootComponent$$$() {
         return panelMain;
     }
+
 }

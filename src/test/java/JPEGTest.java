@@ -1,5 +1,5 @@
 import domini.Huffman;
-import domini.IO;
+import persistencia.IO;
 import domini.JPEG;
 import domini.JPEGBlock;
 

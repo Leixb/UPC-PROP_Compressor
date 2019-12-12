@@ -28,7 +28,7 @@ public class CtrlDomini {
      */
     public void compress(int alg, String fi, String fo, Short quality) throws Exception {
         fileIn = fi;
-        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo;
+        fileOut = fo;
 
         if(!fileOut.endsWith(".piz")) fileOut += ".piz";
 
@@ -74,6 +74,7 @@ public class CtrlDomini {
      */
     public void decompress(String fi, String fo) throws Exception {
         fileIn = fi;
+        fileOut = fo;
 
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
@@ -91,7 +92,6 @@ public class CtrlDomini {
         else if(magicByte==JPEG.MAGIC_BYTE) alg = 4;
         else throw new Exception("Fitxer invàlid.");
 
-        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo;
         if(!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
 
         stats = new Statistics();

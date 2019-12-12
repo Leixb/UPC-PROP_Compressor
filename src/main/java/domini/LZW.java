@@ -45,8 +45,6 @@ public final class LZW {
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
             ArrayList<Byte> c = new ArrayList<>();
             c.add((byte) i);
-
-            ////System.out.println(i + ": " + (char) i);
             compressionDictionary.put(c ,i);
         }
     }
@@ -59,8 +57,6 @@ public final class LZW {
         for (int i = 0; i <= DICTIONARY_SIZE; ++i){
             ArrayList<Byte> c = new ArrayList<>();
             c.add((byte) i);
-
-            ////System.out.println(i + ": " + (char) i);
             decompressionDictionary.put(i,c);
         }
     }
@@ -88,75 +84,27 @@ public final class LZW {
      * @throws IOException se produce un error en la lectura / escritura.
      */
     private static void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
-        //System.out.println("----------------------------------------");
         output.write(MAGIC_BYTE);
-        //System.out.println("Magic Byte: " + MAGIC_BYTE);
 
         createCompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 
         ArrayList<Byte> bytes = new ArrayList<>();
-        //System.out.print("Bytes ");
-        for(int j=0; j<bytes.size(); ++j){
-            byte auxByte = bytes.get(j);
-            //System.out.print((char) auxByte);
-        }
-        //System.out.println();
         int auxInt = input.read();
-        //System.out.println("AuxInt: " + auxInt);
-
         while (auxInt != -1) {
             final byte b = (byte) auxInt;
-
-            //System.out.println("b: " + (char) b);
             ArrayList<Byte> aux = new ArrayList<>(bytes);
             aux.add(b);
-            //System.out.print("aux: ");
-            for(int j=0; j<aux.size(); ++j){
-                byte auxByte = aux.get(j);
-                //System.out.print((char) auxByte);
-            }
-            //System.out.println();
-
             if (compressionDictionary.containsKey(aux)) {
-                //System.out.println("--------------------");
-                //System.out.println("Contains Aux");
                 bytes = aux;
-                //System.out.print("Bytes: ");
-                for(int j=0; j<bytes.size(); ++j){
-                    byte auxByte = bytes.get(j);
-                    //System.out.print((char) auxByte);
-                }
-                //System.out.println();
-                //System.out.println("-----");
-
             } else {
-                //System.out.println("--------------------");
-
-                //System.out.println("Doesn't contain Aux");
-                //System.out.print("Bytes: ");
-                for(int j=0; j<bytes.size(); ++j){
-                    byte auxByte = bytes.get(j);
-                    //System.out.print((char) auxByte);
-                }
-                //System.out.println();
                 final int code = compressionDictionary.get(bytes);
                 output.write(code);
-
-                //System.out.println("code: " + code);
-                //System.out.print("aux: ");
-                for(int j=0; j<aux.size(); ++j){
-                    byte auxByte = aux.get(j);
-                    //System.out.print((char) auxByte);
-                }
-                //System.out.println();
 
                 compressionDictionary.put(aux,i++);
 
                 bytes = new ArrayList<>();
                 bytes.add(b);
-
-                //System.out.println("-----");
             }
 
             if (i >= OVERFLOW) {  //[DICTIONARY OVERFLOW]
@@ -165,22 +113,13 @@ public final class LZW {
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
-
             auxInt = input.read();
         }
         if (compressionDictionary.containsKey(bytes)) {
-            for(int j=0; j<bytes.size(); ++j){
-                byte auxByte = bytes.get(j);
-                //System.out.print((char) auxByte);
-            }
-            //System.out.println();
-            final int code = compressionDictionary.get(bytes);
+           final int code = compressionDictionary.get(bytes);
             output.write(code);
-
-            //System.out.println("code: " + code);
         }
         output.write(EOF);
-        //System.out.println("EOF: " + EOF);
     }
 
     /**
@@ -205,27 +144,21 @@ public final class LZW {
      * @throws IOException se produce un error en la lectura / escritura.
      */
     private static void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
-        byte mb = (byte) input.readByte();
-        //System.out.println(mb);
+        input.readByte();
         createDecompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 
         try {
             int old_code = input.readInt();
-            //System.out.println("old_code: "+ old_code);
-
             if (old_code != EOF) {
                 ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(old_code));
 
                 for (int j = 0; j < aux.size(); ++j) {
                     output.write(aux.get(j));
-                    //System.out.println(aux.get(j));
                 }
 
                 byte ch = aux.get(0);
-
                 int code = input.readInt();
-                //System.out.println("code: "+ code);
                 while (code != EOF) {
                     if (decompressionDictionary.containsKey(code)) {
                         aux = new ArrayList<>(decompressionDictionary.get(code));
@@ -236,18 +169,15 @@ public final class LZW {
 
                     for (int j = 0; j < aux.size(); ++j) {
                         output.write(aux.get(j));
-                        //System.out.println(aux.get(j));
                     }
 
                     ch = aux.get(0);
-
                     aux = new ArrayList<>(decompressionDictionary.get(old_code));
                     aux.add(ch);
                     decompressionDictionary.put(i++, aux);
 
                     old_code = code;
                     code = input.readInt();
-                    //System.out.println("code: "+ code);
 
                     if (code == OVERFLOW) {   //[DICTIONARY OVERFLOW DETECTED]
                         System.out.println("[DICTIONARY OVERFLOW DETECTED]");

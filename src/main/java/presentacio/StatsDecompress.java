@@ -83,7 +83,7 @@ public class StatsDecompress {
         f.setResizable(false);
         f.setContentPane(this.panelStatsDecomp);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setPreferredSize(new Dimension(490, 250));
+        f.setPreferredSize(new Dimension(530, 250));
         setWindowLocation();
         f.pack();
         f.setVisible(true);
@@ -93,7 +93,7 @@ public class StatsDecompress {
     private void setWindowLocation() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        int windowX = Math.max(0, (screenSize.width - 510) / 2);
+        int windowX = Math.max(0, (screenSize.width - 530) / 2);
         int windowY = Math.max(0, (screenSize.height - 250) / 2 - 100);
 
         f.setLocation(windowX, windowY);

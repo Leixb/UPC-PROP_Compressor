@@ -4,6 +4,8 @@
 */
 package domini;
 
+import persistencia.IO;
+
 import java.io.EOFException;
 import java.io.IOException;
 
@@ -49,7 +51,7 @@ public final class LZSS {
         // calculating num of bits needed for offset and length according
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
-        final int nBitsOffset = (int) log2(MAX_SIZE_SW+1);
+        final int nBitsOffset = (int) log2(MAX_SIZE_SW + 1);
         int minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;
         if(minLength < 2) minLength = 2;
 

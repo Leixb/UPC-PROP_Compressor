@@ -23,7 +23,7 @@ public class Compress {
     private JFrame f;
 
     private int algSelected;
-    private short jpegQuality;
+    private int jpegQuality;
     private String fileIn;
     private String fileOut;
 
@@ -34,10 +34,10 @@ public class Compress {
         qualityJPEG.setVisible(false);
         labelFileIn.setVisible(false);
 
-        qualityJPEG.setModel(new SpinnerNumberModel(50, 0, 99, 1));
+        qualityJPEG.setModel(new SpinnerNumberModel(80, 0, 99, 1));
 
         algSelected = 0;
-        jpegQuality = 50;
+        jpegQuality = 80;
         fileIn = fileOut = "";
 
         menuAlgs.addItem("Auto");
@@ -56,7 +56,7 @@ public class Compress {
                 } else {
                     f.setVisible(false);
                     LoadingCompress lc = new LoadingCompress();
-                    lc.showLoadingCompress(algSelected, fileIn, fileOut, jpegQuality);
+                    lc.showLoadingCompress(algSelected, fileIn, fileOut, (short) jpegQuality);
                 }
             }
         });
@@ -92,7 +92,7 @@ public class Compress {
         qualityJPEG.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                jpegQuality = (Short) qualityJPEG.getValue();
+                jpegQuality = (Integer) qualityJPEG.getValue();
             }
         });
 

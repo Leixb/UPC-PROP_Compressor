@@ -28,7 +28,9 @@ public class CtrlDomini {
      */
     public void compress(int alg, String fi, String fo, Short quality) throws Exception {
         fileIn = fi;
-        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo + ".piz";
+        fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo;
+
+        if(!fileOut.endsWith(".piz")) fileOut += ".piz";
 
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
@@ -90,8 +92,7 @@ public class CtrlDomini {
         else throw new Exception("Fitxer invàlid.");
 
         fileOut = fileIn.substring(0, fileIn.lastIndexOf('/')+1) + fo;
-        if(alg == 4) fileOut += ".ppm";
-        else fileOut += ".txt";
+        if(!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
 
         stats = new Statistics();
         stats.setIniFileSize(fileIn);

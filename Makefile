@@ -11,11 +11,13 @@ JC = javac
 JAVA = java
 JAR = jar
 
-MAIN = presentacio.Main
+MAIN = presentacio.Presentacio
 VERSION = 1.0-SNAPSHOT
 JAR_FILE = $(TARGET)/ProjecteProp-$(VERSION).jar
 
 TEST_JARS = libs/junit-jupiter-5.4.2.jar:libs/junit-jupiter-api-5.4.0.jar:libs/apiguardian-api-1.1.0.jar:libs/hamcrest-core-1.3.jar
+
+UI_JARS = libs/forms_rt-7.0.3.jar
 
 JAVA_FILES = $(shell find src/main/java -type f -name '*.java')
 JAVA_RESOURCES = $(wildcard src/main/resources/*)
@@ -31,13 +33,13 @@ DRIVER_FILES = $(shell find src/test/drivers -type f -name '*.java')
 #
 
 build: copy_java_resources $(JAVA_FILES)
-	$(JC) $(JFLAGS) -d $(CP) $(JAVA_FILES)
+	$(JC) $(JFLAGS) -d $(CP) -cp $(UI_JARS) $(JAVA_FILES)
 
 clean:
 	rm -r $(TARGET)
 
 run:
-	@$(JAVA) -cp $(CP) $(MAIN)
+	@$(JAVA) -cp $(CP):$(UI_JARS) $(MAIN)
 
 dirs:
 	@mkdir -p $(DIRS)

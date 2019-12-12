@@ -14,7 +14,7 @@ public final class LZSS {
 
     private LZSS() {}
 
-    final static int MAX_SIZE_SW = 1024; // maximum size of the sliding window
+    final static int MAX_SIZE_SW = 1023; // maximum size of the sliding window
     final static int MAX_LENGTH_COINCIDENCE = 17; //
     final static byte[] slidingWindow = new byte[MAX_SIZE_SW];
     final static byte[] actualCharacters = new byte[MAX_LENGTH_COINCIDENCE];
@@ -49,7 +49,7 @@ public final class LZSS {
         // calculating num of bits needed for offset and length according
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
-        final int nBitsOffset = (int) log2(MAX_SIZE_SW);
+        final int nBitsOffset = (int) log2(MAX_SIZE_SW+1);
         int minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;
         if(minLength < 2) minLength = 2;
 
@@ -59,8 +59,11 @@ public final class LZSS {
         int index = 0, prevMatchingIndex = 0;
         boolean extraChar = false;
 
-        byte c = (byte)input.read();
-        while(c != -1) {
+        byte c;
+        int iAux = input.read();
+
+        while(iAux != -1) {
+            c = (byte)iAux;
             actualCharacters[currentACIndex] = c;
             ++currentACIndex;
 
@@ -72,7 +75,7 @@ public final class LZSS {
                 if(auxACIndex >= 2) --auxACIndex;
                 if(auxACIndex >= minLength) {
                     output.write(true);
-                    output.write(new BitSetL(prevMatchingIndex - 1, nBitsOffset));
+                    output.write(new BitSetL(prevMatchingIndex, nBitsOffset));
                     output.write(new BitSetL(auxACIndex - minLength, nBitsLength));
                     for(int i = 0; i < auxACIndex; ++i) {
                         slidingWindow[currentSWIndex] = actualCharacters[i];
@@ -99,7 +102,7 @@ public final class LZSS {
                 if(currentACIndex >= 2) extraChar = true;
                 currentACIndex = 0;
             }
-            if(!extraChar) c = (byte) input.read();
+            if(!extraChar) iAux = input.read();
             extraChar = false;
         }
 
@@ -115,8 +118,8 @@ public final class LZSS {
             }
         }
 
-        output.write(false);
-        output.write(new BitSetL(EOF, 8));
+        output.write(true);
+        output.write(new BitSetL(EOF, nBitsLength + nBitsOffset));
     }
 
     /**
@@ -147,20 +150,22 @@ public final class LZSS {
         // calculating num of bits needed for offset and length according
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
-        final int nBitsOffset = (int) log2(MAX_SIZE_SW);
+        final int nBitsOffset = (int) log2(MAX_SIZE_SW + 1);
         int minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;
         if(minLength < 2) minLength = 2;
         int currentSWIndex = 0;
 
         boolean c = input.read();
         boolean eof = false;
-        try {
-            // while(true) as when EOF is reached IO.Bit.Reader will throw EOFException
-            while (!eof) {
-                // if c is 1, then read offset and length and write the characters in output
-                // otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed
-                if (c == true) {
-                    final int index = input.readBitSet(nBitsOffset).asInt() + 1;
+
+        while (!eof) {
+            // if c is 1, then read offset and length and write the characters in output
+            // otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed
+            if (c == true) {
+                final int index = input.readBitSet(nBitsOffset).asInt();
+
+                if(index == 0) eof = true;
+                else {
                     final int length = input.readBitSet(nBitsLength).asInt() + minLength;
                     int indexBase;
 
@@ -177,22 +182,17 @@ public final class LZSS {
                         ++currentSWIndex;
                         if(currentSWIndex >= MAX_SIZE_SW) currentSWIndex = 0;
                     }
-                } else {
-                    byte cAux = (byte)input.readBitSet(8).asInt();
-                    if (cAux == EOF) eof = true;
-                    else {
-                        output.write(cAux);
-                        slidingWindow[currentSWIndex] = cAux;
-                        ++currentSWIndex;
-                        if(currentSWIndex >= MAX_SIZE_SW) currentSWIndex = 0;
-                    }
                 }
-
-                //read next bit
-                if (!eof) c = input.read();
+            } else {
+                byte cAux = (byte)input.readBitSet(8).asInt();
+                output.write(cAux);
+                slidingWindow[currentSWIndex] = cAux;
+                ++currentSWIndex;
+                if(currentSWIndex >= MAX_SIZE_SW) currentSWIndex = 0;
             }
-        } catch (final EOFException e) {
-            // EOF
+
+            //read next bit
+            if (!eof) c = input.read();
         }
     }
 

@@ -44,8 +44,6 @@ public class LoadingCompress {
     }
 
     private void compress(int alg, String fileIn, String fileOut, short qualityJPEG) {
-        boolean exception = false;
-
         SwingWorker sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {

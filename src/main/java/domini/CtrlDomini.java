@@ -90,7 +90,7 @@ public class CtrlDomini {
         else if(magicByte==LZSS.MAGIC_BYTE) alg = 2;
         else if(magicByte==LZW.MAGIC_BYTE) alg = 3;
         else if(magicByte==JPEG.MAGIC_BYTE) alg = 4;
-        else throw new Exception("Fitxer invàlid.");
+        else throw new Exception("Fitxer a descomprimir invàlid.");
 
         if(!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
 

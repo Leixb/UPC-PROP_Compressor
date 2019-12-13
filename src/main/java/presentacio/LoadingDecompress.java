@@ -53,9 +53,16 @@ public class LoadingDecompress {
 
             @Override
             protected void done() {
-                f.setVisible(false);
-                StatsDecompress sd = new StatsDecompress(cp);
-                sd.showStatsDecompress();
+                try {
+                    get();
+                    f.setVisible(false);
+                    StatsDecompress sd = new StatsDecompress(cp);
+                    sd.showStatsDecompress();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(f, "Error al descomprimir: " + e.getCause().getMessage(), "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                    f.setVisible(false);
+                    Presentacio.showPresentacio();
+                }
             }
         };
 

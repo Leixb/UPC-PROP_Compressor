@@ -37,7 +37,7 @@
           <component id="4dd1" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="145" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -56,9 +56,7 @@
           </component>
           <component id="8fedd" class="javax.swing.JLabel" binding="labelFileIn">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <maximum-size width="155" height="-1"/>
-              </grid>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font style="1"/>
@@ -78,7 +76,7 @@
           <component id="56375" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="145" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -87,7 +85,7 @@
           </component>
           <component id="31f0d" class="javax.swing.JLabel" binding="labelFileOut">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font style="1"/>
@@ -119,12 +117,12 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="3f07d" class="javax.swing.JButton" binding="buttonExit">
+          <component id="3f07d" class="javax.swing.JButton" binding="buttonBack">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Sortir"/>
+              <text value="Enrere"/>
             </properties>
           </component>
           <hspacer id="326bd">

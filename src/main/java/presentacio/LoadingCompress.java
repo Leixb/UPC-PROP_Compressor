@@ -53,9 +53,17 @@ public class LoadingCompress {
 
             @Override
             protected void done() {
-                f.setVisible(false);
-                StatsCompress sc = new StatsCompress(cp);
-                sc.showStatsCompress();
+                try {
+                    get();
+                    f.setVisible(false);
+                    StatsCompress sc = new StatsCompress(cp);
+                    sc.showStatsCompress();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(f, "Error al comprimir: " + e.getCause().getMessage(), "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                    f.setVisible(false);
+                    Presentacio.showPresentacio();
+                }
+
             }
         };
 

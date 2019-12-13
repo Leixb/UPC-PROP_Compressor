@@ -153,8 +153,8 @@ public final class LZW {
             if (old_code != EOF) {
                 ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(old_code));
 
-                for (int j = 0; j < aux.size(); ++j) {
-                    output.write(aux.get(j));
+                for (byte b : aux) {
+                    output.write(b);
                 }
 
                 byte ch = aux.get(0);
@@ -167,8 +167,8 @@ public final class LZW {
                         aux.add(ch);
                     }
 
-                    for (int j = 0; j < aux.size(); ++j) {
-                        output.write(aux.get(j));
+                    for (byte b : aux) {
+                        output.write(b);
                     }
 
                     ch = aux.get(0);

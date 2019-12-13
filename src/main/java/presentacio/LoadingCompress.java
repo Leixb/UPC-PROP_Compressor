@@ -6,20 +6,32 @@ import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class LoadingCompress {
     private CtrlPresentacio cp = new CtrlPresentacio();
 
     private JPanel panelLC;
     private JLabel labelGIF;
+    private JButton buttonCancelComp;
 
     private static JFrame f;
+
+    SwingWorker sw;
 
     LoadingCompress() {
         f = new JFrame("PIZ Compressor");
 
         ImageIcon icon = new ImageIcon("src/main/resources/loading.gif");
         labelGIF.setIcon(icon);
+        buttonCancelComp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sw.cancel(true);
+            }
+        });
     }
 
     void showLoadingCompress(int alg, String fileIn, String fileOut, short qualityJPEG) {
@@ -44,7 +56,7 @@ public class LoadingCompress {
     }
 
     private void compress(int alg, String fileIn, String fileOut, short qualityJPEG) {
-        SwingWorker sw = new SwingWorker() {
+        sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {
                 cp.compress(alg, fileIn, fileOut, qualityJPEG);
@@ -54,10 +66,17 @@ public class LoadingCompress {
             @Override
             protected void done() {
                 try {
-                    get();
-                    f.setVisible(false);
-                    StatsCompress sc = new StatsCompress(cp);
-                    sc.showStatsCompress();
+                    if (this.isCancelled()) {
+                        File file = new File(cp.getFileOut());
+                        file.delete();
+                        f.setVisible(false);
+                        Presentacio.showPresentacio();
+                    } else {
+                        get();
+                        f.setVisible(false);
+                        StatsCompress sc = new StatsCompress(cp);
+                        sc.showStatsCompress();
+                    }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(f, "Error al comprimir: " + e.getCause().getMessage(), "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     f.setVisible(false);
@@ -86,7 +105,7 @@ public class LoadingCompress {
      */
     private void $$$setupUI$$$() {
         panelLC = new JPanel();
-        panelLC.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panelLC.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         final Spacer spacer1 = new Spacer();
         panelLC.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
@@ -103,6 +122,12 @@ public class LoadingCompress {
         final JLabel label1 = new JLabel();
         label1.setText("Comprimint fitxer...");
         panel2.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel3 = new JPanel();
+        panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 5, 0), -1, -1));
+        panelLC.add(panel3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        buttonCancelComp = new JButton();
+        buttonCancelComp.setText("Cancel·lar compressió");
+        panel3.add(buttonCancelComp, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

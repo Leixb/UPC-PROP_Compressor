@@ -1,13 +1,14 @@
 /**
  * @file ./src/main/java/domini/LZW.java
  * @author Alex Herrero
-*/
+ */
 package domini;
 
 import persistencia.IO;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,28 +23,29 @@ public final class LZW {
     public final static byte MAGIC_BYTE = (byte) 0x11;
 
     /// Tamaño inicial del diccionario
-    private final static int DICTIONARY_SIZE = 0xFFFF;
+    private final static int DICTIONARY_SIZE = 0x7FFF;
 
     /// Overflow del diccionario
-    private final static int OVERFLOW = 0x7FFFFFFF;
+    private final static int OVERFLOW = 0x7FFFFFFE;
 
     /// Pseudo EOF
-    private final static int EOF = 0;
+    private final static int EOF = 0x7FFFFFFF;
 
     /// Diccionario de compresión
-    private static Map<String, Integer> compressionDictionary;
+    private static Map<ArrayList<Byte>, Integer> compressionDictionary;
 
     /// Diccionario de descompresión
-    private static Map<Integer, String> decompressionDictionary;
+    private static Map<Integer, ArrayList<Byte> > decompressionDictionary;
 
     /**
      * @brief Crea el diccionario de compresión y lo inicializa.
      */
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
-        for (int i = 1; i <= DICTIONARY_SIZE; ++i){
-            char c = (char) i;
-            compressionDictionary.put(Character.toString(c) ,i);
+        for (int i = 0; i <= DICTIONARY_SIZE; ++i){
+            ArrayList<Byte> c = new ArrayList<>();
+            c.add((byte) i);
+            compressionDictionary.put(c ,i);
         }
     }
 
@@ -52,9 +54,10 @@ public final class LZW {
      */
     private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
-        for (int i = 1; i <= DICTIONARY_SIZE; ++i){
-            char c = (char) i;
-            decompressionDictionary.put(i,Character.toString(c));
+        for (int i = 0; i <= DICTIONARY_SIZE; ++i){
+            ArrayList<Byte> c = new ArrayList<>();
+            c.add((byte) i);
+            decompressionDictionary.put(i,c);
         }
     }
 
@@ -66,7 +69,7 @@ public final class LZW {
      * @throws IOException se produce un error en la lectura / escritura.
      */
     public static void compress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Char.reader input = new IO.Char.reader(inputFilename);
+        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
              IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
             compress(input, output);
         }
@@ -80,42 +83,45 @@ public final class LZW {
      * @param output objeto de ecritura del archivo comprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    private static void compress (IO.Char.reader input, IO.Bit.writer output) throws IOException {
+    private static void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 
-        String chars = "";
-        int c = input.read();
-        while (c != -1) {
-            final char ch = (char) c;
-            final String aux = chars + ch;
-
+        ArrayList<Byte> bytes = new ArrayList<>();
+        int auxInt = input.read();
+        while (auxInt != -1) {
+            final byte b = (byte) auxInt;
+            ArrayList<Byte> aux = new ArrayList<>(bytes);
+            aux.add(b);
             if (compressionDictionary.containsKey(aux)) {
-                chars = aux;
+                bytes = aux;
             } else {
-                final int code = compressionDictionary.get(chars);
+                final int code = compressionDictionary.get(bytes);
                 output.write(code);
 
                 compressionDictionary.put(aux,i++);
-                chars = "" + ch;
+
+                bytes = new ArrayList<>();
+                bytes.add(b);
             }
 
             if (i >= OVERFLOW) {  //[DICTIONARY OVERFLOW]
                 output.write(OVERFLOW);
+                System.out.println("[DICTIONARY OVERFLOW]");
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
-
-            c = input.read();
+            auxInt = input.read();
         }
-        if (compressionDictionary.containsKey(chars)) {
-            final int code = compressionDictionary.get(chars);
+        if (compressionDictionary.containsKey(bytes)) {
+           final int code = compressionDictionary.get(bytes);
             output.write(code);
         }
-
         output.write(EOF);
+
+        compressionDictionary = new HashMap<>();
     }
 
     /**
@@ -127,7 +133,7 @@ public final class LZW {
      */
     public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-                IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+             IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
             decompress(input, output);
         }
     }
@@ -139,43 +145,54 @@ public final class LZW {
      * @param output es el objeto de ecritura del archivo desccomprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    private static void decompress (IO.Bit.reader input, IO.Char.writer output) throws IOException {
+    private static void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
         input.readByte();
-
         createDecompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 
         try {
             int old_code = input.readInt();
-            String aux = decompressionDictionary.get(old_code);
-            output.write(aux);
+            if (old_code != EOF) {
+                ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(old_code));
 
-            char ch = aux.charAt(0);
-
-            int code = input.readInt();
-            while (code != EOF) {
-                if (decompressionDictionary.containsKey(code)) {
-                    aux = decompressionDictionary.get(code);
-                } else {
-                    aux = decompressionDictionary.get(old_code) + ch;
+                for (byte b : aux) {
+                    output.write(b);
                 }
-                output.write(aux);
 
-                ch = aux.charAt(0);
+                byte ch = aux.get(0);
+                int code = input.readInt();
+                while (code != EOF) {
+                    if (decompressionDictionary.containsKey(code)) {
+                        aux = new ArrayList<>(decompressionDictionary.get(code));
+                    } else {
+                        aux = new ArrayList<>(decompressionDictionary.get(old_code));
+                        aux.add(ch);
+                    }
 
-                decompressionDictionary.put(i++, decompressionDictionary.get(old_code) + ch);
+                    for (byte b : aux) {
+                        output.write(b);
+                    }
 
-                old_code = code;
-                code = input.readInt();
+                    ch = aux.get(0);
+                    aux = new ArrayList<>(decompressionDictionary.get(old_code));
+                    aux.add(ch);
+                    decompressionDictionary.put(i++, aux);
 
-                if (code == OVERFLOW) {   //[DICTIONARY OVERFLOW DETECTED]
-                    createDecompressionDictionary();
-                    i = DICTIONARY_SIZE;
+                    old_code = code;
                     code = input.readInt();
+
+                    if (code == OVERFLOW) {   //[DICTIONARY OVERFLOW DETECTED]
+                        System.out.println("[DICTIONARY OVERFLOW DETECTED]");
+                        createDecompressionDictionary();
+                        i = DICTIONARY_SIZE;
+                        code = input.readInt();
+                    }
                 }
             }
         } catch (EOFException e){
             //End of file reached.
         }
+
+        decompressionDictionary = new HashMap<>();
     }
 }

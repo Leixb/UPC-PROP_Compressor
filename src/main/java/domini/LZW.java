@@ -120,6 +120,8 @@ public final class LZW {
             output.write(code);
         }
         output.write(EOF);
+
+        compressionDictionary = new HashMap<>();
     }
 
     /**
@@ -190,5 +192,7 @@ public final class LZW {
         } catch (EOFException e){
             //End of file reached.
         }
+
+        decompressionDictionary = new HashMap<>();
     }
 }

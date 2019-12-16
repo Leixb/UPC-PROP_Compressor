@@ -20,7 +20,7 @@ public final class LZ78{
     private LZ78() {}
 
     //Declaración del HashMap de Decompression
-    private static HashMap<Integer, ArrayList<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
+    private static Map<Integer, List<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
 
     /**Byte escrito al principio del archivo comprimido para saber
      * con que algoritmo ha sido comprimido
@@ -64,7 +64,7 @@ public final class LZ78{
         int codnum = 0;
         boolean last=false;
         int padre = 0;
-        ArrayList<Pair<Integer, Byte>> arrayList;
+        List<Pair<Integer, Byte>> arrayList;
 
         /**
          * @brief Metodo tipo boolean para crearlo mientras se lee el archivo a comprimir
@@ -72,14 +72,14 @@ public final class LZ78{
          * @return Devuelve true en caso de overflow, se tenga que seguir leyendo y crear otro arbol
          * @throws IOException Excepcion en caso de intentar leer un dato inexistente
          */
-        boolean CrearTree(final IO.Byte.reader input) throws IOException{
+        boolean crearTree(final IO.Byte.reader input) throws IOException{
             Nodo actual = arrel;
             arrayList = new ArrayList<>();
-            int chin_aux = input.read();
+            int chinAux = input.read();
             byte pre=0;
             byte chin;
-            while (chin_aux!=-1 && codnum<1400000) { //Cuando codnum llega a 1.400.000 se produce overflow
-                chin = (byte) chin_aux;
+            while (chinAux!=-1 && codnum<1400000) { //Cuando codnum llega a 1.400.000 se produce overflow
+                chin = (byte) chinAux;
                 if (actual.hijos[chin+128]!= null){
                     padre = actual.index;
                     actual = actual.hijos[chin+128];
@@ -93,13 +93,14 @@ public final class LZ78{
                     last=false;
                 }
                 pre = chin;
-                if (codnum <1400000) chin_aux = input.read();
+                if (codnum <1400000){
+                    chinAux = input.read();
+                }
             }
             if (last){
                 arrayList.add(new Pair<Integer, Byte>(padre,pre));
             }
-            if (codnum>=1400000) return true;
-            else  return false;
+            return codnum>=1400000;
         }
     }
 
@@ -122,15 +123,15 @@ public final class LZ78{
      * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
      * @throws IOException
      */
-    private static void print_array (ArrayList<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output) throws IOException{
+    private static void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output) throws IOException{
         int nbyte = 0;//Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
         for (Pair<Integer, Byte> i : arrayList){
             output.write(false); //Señaliza que después hay un byte, no un overflow ni un end of file
             final int nbits = bits_needed(nbyte); // Numero de bits en que hay que codificar el byte
-            final BitSetL bs_num = new BitSetL(i.first, nbits);
-            output.write(bs_num);
-            final BitSetL bs_byte = new BitSetL(i.second, 8);
-            output.write(bs_byte);
+            final BitSetL bsNum = new BitSetL(i.first, nbits);
+            output.write(bsNum);
+            final BitSetL bsByte = new BitSetL(i.second, 8);
+            output.write(bsByte);
             ++nbyte;
         }
     }
@@ -145,14 +146,14 @@ public final class LZ78{
         output.write(MAGIC_BYTE);
         boolean loop = true;
         Tree arbre = new Tree();
-        loop = arbre.CrearTree(input);
-        print_array(arbre.arrayList, output);
+        loop = arbre.crearTree(input);
+        printArray(arbre.arrayList, output);
         while (loop){
             output.write(true); //Señaliza que hay un overflow o un end of file
             output.write(false); //Señaliza el overflow en el archivo comprimido
             arbre = new Tree();
-            loop = arbre.CrearTree(input);
-            print_array(arbre.arrayList, output);
+            loop = arbre.crearTree(input);
+            printArray(arbre.arrayList, output);
         }
 
         output.write(true); //Señaliza que hay un overflow o un end of file
@@ -196,19 +197,18 @@ public final class LZ78{
         int nbyte = 0;//Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
         int number=0;//Key del HashMap codificada antes de cada byte en el archivo comprimido
         ArrayList<Byte> array = new ArrayList<>();
-        boolean of_eof=false;
+        boolean ofeof=false;
         boolean eof = false;
-        boolean of = false;
         /*
          * El primer byte codificado no tiene ninguna key codifiacada delante por lo que se trata
          * primero y por separado
          */
         try {
-            of_eof = input.read();
-            byte first_byte = (byte) input.readByte();
-            if (!of_eof) {
-                output.write(first_byte);
-                array.add(first_byte);
+            ofeof = input.read();
+            byte firstByte = (byte) input.readByte();
+            if (!ofeof) {
+                output.write(firstByte);
+                array.add(firstByte);
                 decompress_dict.put(num, array);
                 ++num;
                 ++nbyte;
@@ -218,24 +218,26 @@ public final class LZ78{
                  * codificados en el archivo comprimido. Siempre que haya bits por codificar se continua leyendo.
                  */
                 try {
-                    of_eof = input.read();
-                    if (!of_eof) {
+                    ofeof = input.read();
+                    if (!ofeof) {
                         number = input.readBitSet(nbits).asInt();
                     }
-                    else eof = input.read();
+                    else {
+                        eof = input.read();
+                    }
                     while (!eof) {
-                        if (of_eof){
+                        if (ofeof){
                             decompress_dict.clear();
                             array = new ArrayList<>();
                             num = 1;
                             nbyte = 0;
-                            of_eof = input.read();
-                            first_byte = (byte)input.readByte();
-                            output.write(first_byte);
-                            array.add(first_byte);
+                            ofeof = input.read();
+                            firstByte = (byte)input.readByte();
+                            output.write(firstByte);
+                            array.add(firstByte);
                             decompress_dict.put(num, array);
                         }else{
-                            byte last_byte = (byte)input.readByte();
+                            byte lastByte = (byte)input.readByte();
                             /*
                              * Si se referencie a alguna entrada del HashMap se concatena el value de la entrada
                              * con el nuevo byte leído .
@@ -246,16 +248,22 @@ public final class LZ78{
                             } else {
                                 array = new ArrayList<>();
                             }
-                            array.add(last_byte);
-                            for (Byte i : array) output.write(i);
+                            array.add(lastByte);
+                            for (Byte i : array) {
+                                output.write(i);
+                            }
                             decompress_dict.put(num, array);
                         }
                         ++num;
                         ++nbyte;
                         nbits = bits_needed(nbyte);
-                        of_eof = input.read();
-                        if (!of_eof) number = input.readBitSet(nbits).asInt();
-                        else eof = input.read();
+                        ofeof = input.read();
+                        if (!ofeof) {
+                            number = input.readBitSet(nbits).asInt();
+                        }
+                        else {
+                            eof = input.read();
+                        }
                     }
                 } catch (EOFException e) {
                     //EOF!

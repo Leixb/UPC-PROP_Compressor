@@ -20,23 +20,15 @@ public class CtrlPresentacio {
      * @brief Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y
      *        el nombre del archivo comprimido que luego pasa al CtrlDomini.
      */
-    public void compress(int alg, String fileIn, String fileOut, short qualityJPEG) {
-        try {
-            cd.compress(alg, fileIn, fileOut, qualityJPEG);
-        } catch (Exception e) {
-            System.out.println("Error en la compressió:" + e.getMessage());
-        }
+    public void compress(int alg, String fileIn, String fileOut, short qualityJPEG) throws Exception {
+        cd.compress(alg, fileIn, fileOut, qualityJPEG);
     }
 
     /**
      * @brief Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini.
      */
-    public void decompress(String fileIn, String fileOut) {
-        try{
+    public void decompress(String fileIn, String fileOut) throws Exception {
             cd.decompress(fileIn,fileOut);
-        } catch (Exception e) {
-            System.out.println("Error en la descompressió:" + e.getMessage());
-        }
     }
 
     public String getTime() {

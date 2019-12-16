@@ -6,20 +6,33 @@ import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class LoadingDecompress {
     private CtrlPresentacio cp = new CtrlPresentacio();
 
     private JLabel labelGIF;
     private JPanel panelLD;
+    private JButton buttonCancelDescomp;
 
     private static JFrame f;
+
+    SwingWorker sw;
 
     LoadingDecompress() {
         f = new JFrame("PIZ Compressor");
 
         ImageIcon icon = new ImageIcon("src/main/resources/loading.gif");
         labelGIF.setIcon(icon);
+
+        buttonCancelDescomp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sw.cancel(true);
+            }
+        });
     }
 
     void showLoadingDecompress(String fileIn, String fileOut) {
@@ -53,9 +66,23 @@ public class LoadingDecompress {
 
             @Override
             protected void done() {
-                f.setVisible(false);
-                StatsDecompress sd = new StatsDecompress(cp);
-                sd.showStatsDecompress();
+                try {
+                    if (this.isCancelled()) {
+                        File file = new File(cp.getFileOut());
+                        file.delete();
+                        f.setVisible(false);
+                        Presentacio.showPresentacio();
+                    } else {
+                        get();
+                        f.setVisible(false);
+                        StatsDecompress sd = new StatsDecompress(cp);
+                        sd.showStatsDecompress();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(f, "Error al descomprimir: " + e.getCause().getMessage(), "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                    f.setVisible(false);
+                    Presentacio.showPresentacio();
+                }
             }
         };
 
@@ -78,7 +105,7 @@ public class LoadingDecompress {
      */
     private void $$$setupUI$$$() {
         panelLD = new JPanel();
-        panelLD.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panelLD.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelLD.add(panel1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -95,6 +122,12 @@ public class LoadingDecompress {
         panelLD.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panelLD.add(spacer2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final JPanel panel3 = new JPanel();
+        panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 5, 0), -1, -1));
+        panelLD.add(panel3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        buttonCancelDescomp = new JButton();
+        buttonCancelDescomp.setText("Cancel·lar descompressió");
+        panel3.add(buttonCancelDescomp, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

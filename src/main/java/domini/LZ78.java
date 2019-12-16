@@ -10,6 +10,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 
 /**
@@ -20,7 +22,7 @@ public final class LZ78{
     private LZ78() {}
 
     //Declaración del HashMap de Decompression
-    private static Map<Integer, List<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
+    private static Map<Integer, ArrayList<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
 
     /**Byte escrito al principio del archivo comprimido para saber
      * con que algoritmo ha sido comprimido

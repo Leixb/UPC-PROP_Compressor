@@ -114,19 +114,6 @@ public final class LZ78{
     }
 
     /**
-     * @brief Llama al metodo compress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename
-     * @param inputFilename Path y nombre del archivo de entrada que se desea comprimir
-     * @param outputFilename Path y nombre del archivo de salida comprimido
-     * @throws IOException Excepcion en caso de pasar como parametro inputFilename un archivo inexistente
-     */
-    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
-             IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
-            compress(input, output);
-        }
-    }
-
-    /**
      * @brief Llamada para escribir en el archivo comprimido el array pasado como parametro
      * @param arrayList Array que contiene la codificacion del archivo original
      * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
@@ -151,7 +138,7 @@ public final class LZ78{
      * @param output Archivo de salida comprimido
      * @throws IOException Excepcion en caso de intentar leer un dato inexistente
      */
-    private static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
+    public static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
         boolean loop = true;
         Tree arbre = new Tree();
@@ -181,25 +168,12 @@ public final class LZ78{
     }
 
     /**
-     * @brief Llama al metodo decompress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename
-     * @param inputFilename Path y nombre del archivo de entrada que se desea descomprimir
-     * @param outputFilename Path y nombre del archivo de salida descomprimido
-     * @throws IOException Excepcion en caso de pasar como parametro inputFilename un archivo inexistente
-     */
-    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-             IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
-            decompress(input, output);
-        }
-    }
-
-    /**
      * @brief Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output
      * @param input  Archivo comprimido que se desea descomprimir
      * @param output  Archivo de salida descomprimido
      * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
      */
-    private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
+    public static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
         input.readByte();
 
         int num = 1;//Numero que representa el value de la siguiente entrada en el HashMap

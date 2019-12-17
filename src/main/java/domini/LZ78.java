@@ -62,10 +62,11 @@ public final class LZ78{
      */
     private static class Tree{
         Nodo arrel = new Nodo();
-        Nodo actual = arrel;
+
         int codnum = 0;
         boolean last=false;
         int padre = 0;
+
         List<Pair<Integer, Byte>> arrayList;
 
         /**
@@ -80,13 +81,15 @@ public final class LZ78{
             int chinAux = input.read();
             byte pre=0;
             byte chin;
+
             while (chinAux!=-1 && codnum<1400000) { //Cuando codnum llega a 1.400.000 se produce overflow
                 chin = (byte) chinAux;
+
                 if (actual.hijos[chin+128]!= null){
                     padre = actual.index;
                     actual = actual.hijos[chin+128];
                     last=true;
-                }else {
+                } else {
                     actual.hijos[chin+128] = new Nodo();
                     arrayList.add(new Pair<Integer, Byte>(actual.index,chin));
                     ++codnum;
@@ -94,14 +97,18 @@ public final class LZ78{
                     actual = arrel;
                     last=false;
                 }
+
                 pre = chin;
+
                 if (codnum <1400000){
                     chinAux = input.read();
                 }
             }
-            if (last){
+
+            if (last) {
                 arrayList.add(new Pair<Integer, Byte>(padre,pre));
             }
+
             return codnum>=1400000;
         }
     }
@@ -238,7 +245,7 @@ public final class LZ78{
                             output.write(firstByte);
                             array.add(firstByte);
                             decompress_dict.put(num, array);
-                        }else{
+                        } else {
                             byte lastByte = (byte)input.readByte();
                             /*
                              * Si se referencie a alguna entrada del HashMap se concatena el value de la entrada

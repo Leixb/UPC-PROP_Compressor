@@ -26,7 +26,7 @@ public class CtrlDomini {
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
+    public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
@@ -71,7 +71,7 @@ public class CtrlDomini {
      * @return Estadisticas generadas durante la descompresión
      * @throws Exception Lanza cualquier excepción generada al descomprimir
      */
-    public void decompress(String fi, String fo) throws Exception {
+    public void decompress(String fileIn, String fileOut) throws Exception {
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
             b = reader.read();

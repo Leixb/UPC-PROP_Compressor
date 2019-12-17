@@ -28,51 +28,45 @@ public class PpmImage {
 
     /**
      * @brief Lee una fichero imagen y lo guarda en la memoria
-     * @param filename nombre del fichero a leer
+     * @param file reader del fichero a leer
      * @throws IOException error en la lectura
      * @throws InvalidFileFormat Formato de imagen invalido (No es PPM raw)
      */
-    public void readFile(final String filename) throws IOException, InvalidFileFormat {
-        try (IO.Byte.reader file = new IO.Byte.reader(filename)) {
+    public void readFile(final IO.Byte.reader file) throws IOException, InvalidFileFormat {
+        final byte[] magic = new byte[2];
+        if (2 != file.read(magic))
+            throw new EOFException();
 
-            final byte[] magic = new byte[2];
-            if (2 != file.read(magic))
-                throw new EOFException();
+        if (magic[0] != 'P' || magic[1] != '6')
+            throw new InvalidFileFormat();
 
-            if (magic[0] != 'P' || magic[1] != '6')
-                throw new InvalidFileFormat();
+        this.width = readInt(file);
+        this.height = readInt(file);
+        final int maxVal = readInt(file);
 
-            this.width = readInt(file);
-            this.height = readInt(file);
-            final int maxVal = readInt(file);
+        if (maxVal >= 256)
+            throw new InvalidFileFormat();
 
-            if (maxVal >= 256)
-                throw new InvalidFileFormat();
+        this.pixels = new byte[this.width][this.height][3];
 
-            this.pixels = new byte[this.width][this.height][3];
-
-            for (int i = 0; i < this.width; ++i)
-                for (int j = 0; j < this.height; ++j)
-                    if (file.read(this.pixels[i][j]) != 3)
-                        throw new EOFException();
-        }
+        for (int i = 0; i < this.width; ++i)
+            for (int j = 0; j < this.height; ++j)
+                if (file.read(this.pixels[i][j]) != 3)
+                    throw new EOFException();
     }
 
     /**
      * @brief Escribe la imagen en un fichero
-     * @param filename nombre del fichero a escribir
+     * @param file escritor del fichero a guardar
      * @throws IOException error al escribir el fichero
      */
-    public void writeFile(final String filename) throws IOException {
-        try (IO.Byte.writer fout = new IO.Byte.writer(filename)) {
+    public void writeFile(final IO.Byte.writer file) throws IOException {
+        final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
+        file.write(header);
 
-            final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
-            fout.write(header);
-
-            for (int i = 0; i < this.width; ++i)
-                for (int j = 0; j < this.height; ++j)
-                    fout.write(pixels[i][j]);
-        }
+        for (int i = 0; i < this.width; ++i)
+            for (int j = 0; j < this.height; ++j)
+                file.write(pixels[i][j]);
     }
 
     /** El formato del fichero no es un PPM valido */

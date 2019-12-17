@@ -6,7 +6,6 @@ package domini;
 
 import persistencia.IO;
 
-import java.io.EOFException;
 import java.io.IOException;
 
 /**
@@ -24,27 +23,12 @@ public final class LZSS {
     private final static int EOF = 0; // Pseudo EOF
 
     /**
-     * @brief Crea el objeto lector y escritor para la compresión y llama al compresor
-     * @param inputFilename nombre del archivo que se quiere comprimir
-     * @param outputFilename nombre del archivo comprimido
-     * @throws IOException se lanza cuando hay un error de lectura o escritura
-     */
-
-    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
-                IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
-            compress(input, output);
-        }
-    }
-
-    /**
      * @brief Usando el algoritmo LZSS esta función comprime un archivo txt
      * @param input objeto de lectura del archivo que se quiere comprimir
      * @param output objeto de escritura del archivo comprimido
      * @throws IOException se lanza cuando hay un error de lectura o escritura
      */
-
-    private static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
+    public static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
         // writing LZSS magic byte
         output.write(MAGIC_BYTE);
 
@@ -125,27 +109,13 @@ public final class LZSS {
     }
 
     /**
-     * @brief Crea el objeto lector y escritor para la descompresión y llama al descompresor
-     * @param inputFilename nombre del archivo comprimido
-     * @param outputFilename nombre del archivo descomprimido
-     * @throws IOException se lanza cuando hay un error de lectura o escritura
-     */
-
-    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-                IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
-            decompress(input, output);
-        }
-    }
-
-    /**
      *
      * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor
      * @param input objeto de lectura del archivo comprimido
      * @param output objeto de escritura del archivo descomprimido
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
-    private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
+    public static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
         // ignoring magic byte
         input.readByte();
 

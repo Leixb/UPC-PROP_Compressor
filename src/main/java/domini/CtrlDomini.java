@@ -30,8 +30,6 @@ public class CtrlDomini {
         fileIn = fi;
         fileOut = fo;
 
-        if(!fileOut.endsWith(".piz")) fileOut += ".piz";
-
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();

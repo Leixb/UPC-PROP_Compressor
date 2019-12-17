@@ -57,13 +57,13 @@ Para descomprimir hemos utilizado en este caso un HashMap con key Integer y valu
 
 #### Estructuras de Datos
 
-Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key String y value Integer, actuando de diccionario y de manera que todos los caracteres que se leen del archivo input quedan guardados en este. El diccionario se ha de inicializar con los valores unitarios esperados en el archivo a comprimir y a medida que se vaya leyendo la entrada se irán añadiendo podibles combinaciones de éstos.
+Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key ArrayList<Byte> y value Integer, actuando de diccionario y de manera que todos los bytes que se leen del archivo input quedan guardados en este. El diccionario se ha de inicializar con los valores unitarios esperados en el archivo a comprimir y a medida que se vaya leyendo la entrada se irán añadiendo podibles combinaciones de éstos. En caso preveer overflow del diccionario se escribe en el archivo comprimido un int indicativo, de manera que al descomprimir se pueda saber en que momento se ha reiniciado el diccionario. Al acabar la descompresión se vacía HashMap para evitar problemas de exceso de memoria con siguientes compresiones.
 
 ### Descompresión
 
 #### Estructuras de Datos
 
-Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al igual que en la compresión el diccionario se ha de inicializar con los valores unitarios esperados en el archivo a descomprimir y a medida que se vaya leyendo la entrada se irán añadiendo podibles combinaciones de éstos.
+Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value ArrayList<Byte>, actuando también como diccionario. Al igual que en la compresión el diccionario se ha de inicializar con los valores unitarios esperados en el archivo a descomprimir y a medida que se vaya leyendo la entrada se irán añadiendo podibles combinaciones de éstos. En caso de lectura del integer que indica overflow se reinicia el diccionario. Al acabar la descompresión se vacía el HashMap para evitar problemas de exceso de memoria en siguientes compresiones.
 
 ## JPEG
 

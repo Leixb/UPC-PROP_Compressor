@@ -17,13 +17,13 @@ class LZWTest {
         final String aux = "generated/compressedFileLZW.piz";
 
         try {
-			try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Bit.writer output = new IO.Bit.writer(aux)) {
-				LZW.compress(input, output);
-			}
-			try (IO.Bit.reader input = new IO.Bit.reader(aux); IO.Byte.writer output = new IO.Byte.writer(outputFile)) {
-				LZW.decompress(input, output);
-			}
-			CheckCompDecomp.assertFileEquals(inputFile, outputFile);
+            try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Bit.writer output = new IO.Bit.writer(aux)) {
+                LZW.compress(input, output);
+            }
+            try (IO.Bit.reader input = new IO.Bit.reader(aux); IO.Byte.writer output = new IO.Byte.writer(outputFile)) {
+                LZW.decompress(input, output);
+            }
+            CheckCompDecomp.assertFileEquals(inputFile, outputFile);
         } catch (Exception e) {
             e.printStackTrace();
             fail();

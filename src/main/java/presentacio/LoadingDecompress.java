@@ -19,7 +19,7 @@ public class LoadingDecompress {
 
     private static JFrame f;
 
-    SwingWorker sw;
+    private SwingWorker sw;
 
     LoadingDecompress() {
         f = new JFrame("PIZ Compressor");
@@ -36,15 +36,27 @@ public class LoadingDecompress {
     }
 
     void showLoadingDecompress(String fileIn, String fileOut) {
-        f.setResizable(false);
+        f.setResizable(true);
         f.setContentPane(this.panelLD);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setPreferredSize(new Dimension(530, 250));
-        setWindowLocation();
+        setWindowLocationAndDimension();
         f.pack();
         f.setVisible(true);
 
         decompress(fileIn, fileOut);
+    }
+
+    private static void setWindowLocationAndDimension() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = screenSize.width / 3;
+        int height = screenSize.height / 4;
+
+        int windowX = Math.max(0, (screenSize.width - width) / 2);
+        int windowY = Math.max(0, (screenSize.height - height) / 2 - 100);
+
+        f.setLocation(windowX, windowY);
+        f.setPreferredSize(new Dimension(width, height));
+        f.setMinimumSize(new Dimension(width, height));
     }
 
     private void setWindowLocation() {
@@ -57,7 +69,7 @@ public class LoadingDecompress {
     }
 
     private void decompress(String fileIn, String fileOut) {
-        SwingWorker sw = new SwingWorker() {
+        sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {
                 cp.decompress(fileIn, fileOut);

@@ -33,29 +33,33 @@ public class CtrlDomini {
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
 
-        switch(alg) {
-            case 0:
-                if(fileIn.endsWith(".ppm")){
-                    quality = 80; // auto JPEG qualitat 80.
-                    JPEG.compress(fileIn,fileOut,quality);
-                }
-                else {
-                    LZ78.compress(fileIn, fileOut);
-                }
-                break;
-            case 1:
-                LZ78.compress(fileIn, fileOut);
-                break;
-            case 2:
-                LZSS.compress(fileIn, fileOut);
-                break;
-            case 3:
-                LZW.compress(fileIn, fileOut);
-                break;
-            case 4:
-                JPEG.compress(fileIn,fileOut,quality);
-                break;
-            default:
+        try (IO.Byte.reader input = new IO.Byte.reader(fileIn);
+             IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
+
+			switch(alg) {
+				case 0:
+					if(fileIn.endsWith(".ppm")){
+						quality = 80; // auto JPEG qualitat 80.
+						JPEG.compress(input, output, quality);
+					}
+					else {
+						LZ78.compress(input, output);
+					}
+					break;
+				case 1:
+					LZ78.compress(input, output);
+					break;
+				case 2:
+					LZSS.compress(input, output);
+					break;
+				case 3:
+					LZW.compress(input, output);
+					break;
+				case 4:
+					JPEG.compress(input, output, quality);
+					break;
+				default:
+			}
         }
 
         stats.setEndingTime();
@@ -95,20 +99,24 @@ public class CtrlDomini {
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
 
-        switch(alg) {
-            case 1:
-                LZ78.decompress(fileIn, fileOut);
-                break;
-            case 2:
-                LZSS.decompress(fileIn, fileOut);
-                break;
-            case 3:
-                LZW.decompress(fileIn, fileOut);
-                break;
-            case 4:
-                JPEG.decompress(fileIn, fileOut);
-                break;
-            default:
+        try (IO.Bit.reader input = new IO.Bit.reader(fileIn);
+             IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
+
+			switch(alg) {
+				case 1:
+					LZ78.decompress(input, output);
+					break;
+				case 2:
+					LZSS.decompress(input, output);
+					break;
+				case 3:
+					LZW.decompress(input, output);
+					break;
+				case 4:
+					JPEG.decompress(input, output);
+					break;
+				default:
+			}
         }
 
         stats.setEndingTime();

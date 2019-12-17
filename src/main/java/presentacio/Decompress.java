@@ -84,7 +84,6 @@ public class Decompress {
                     int result = fc.showSaveDialog(f);
                     if (result == JFileChooser.APPROVE_OPTION) {
                         fileOut = fc.getSelectedFile().getAbsolutePath();
-                        if (!fileOut.endsWith(".piz")) fileOut += ".piz";
                         labelFileOut.setText(fittingLabel(fileOut, labelFileOut));
                         labelFileOut.setToolTipText(fileOut);
                         labelFileOut.setForeground(new Color(0, 190, 0));

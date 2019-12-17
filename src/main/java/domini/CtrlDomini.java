@@ -43,7 +43,7 @@ public class CtrlDomini {
 				case 0:
 					if(fileIn.endsWith(".ppm")){
 						quality = 80; // auto JPEG qualitat 80.
-						JPEG.compress(fileIn, fileOut, quality);
+						JPEG.compress(input, output, quality);
 					}
 					else {
 						LZ78.compress(input, output);
@@ -59,7 +59,7 @@ public class CtrlDomini {
 					LZW.compress(input, output);
 					break;
 				case 4:
-					JPEG.compress(fileIn, fileOut, quality);
+					JPEG.compress(input, output, quality);
 					break;
 				default:
 			}
@@ -116,7 +116,7 @@ public class CtrlDomini {
 					LZW.decompress(input, output);
 					break;
 				case 4:
-					JPEG.decompress(fileIn, fileOut);
+					JPEG.decompress(input, output);
 					break;
 				default:
 			}

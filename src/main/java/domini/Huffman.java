@@ -6,6 +6,9 @@ package domini;
 
 import persistencia.IO;
 
+import java.net.URL;
+import java.net.URLDecoder;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,9 +59,9 @@ public class Huffman {
 
         filename += ".table";
 
-        filename = this.getClass().getClassLoader().getResource(filename).getPath();
+        final URL resource = this.getClass().getClassLoader().getResource(filename);
 
-        readTable(filename);
+        readTable(URLDecoder.decode(resource.getFile(), "UTF-8"));
     }
 
     private void readTable(final String filename) throws IOException {

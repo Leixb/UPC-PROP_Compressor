@@ -62,28 +62,13 @@ public final class LZW {
     }
 
     /**
-     * @brief LLama a una función que comprime un archivo de texto.
-     *
-     * @param inputFilename path y nombre del archivo que se quiere comprimir.
-     * @param outputFilename path y nombre del archivo comprimido.
-     * @throws IOException se produce un error en la lectura / escritura.
-     */
-    public static void compress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
-             IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
-            compress(input, output);
-        }
-    }
-
-
-    /**
      * @brief Comprime un archivo de texto implementando un algoritmo LZW.
      *
      * @param input objeto de lectura del archivo que se quiere comprimir.
      * @param output objeto de ecritura del archivo comprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    private static void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
+    public static void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE);
 
         createCompressionDictionary();
@@ -125,27 +110,13 @@ public final class LZW {
     }
 
     /**
-     * @brief LLama a una función que descomprime un archivo de texto.
-     *
-     * @param inputFilename path y nombre del archivo que se quiere descomprimir.
-     * @param outputFilename path y nombre del archivo descomprimido.
-     * @throws IOException se produce un error en la lectura / escritura.
-     */
-    public static void decompress(final String inputFilename, final String outputFilename) throws IOException {
-        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-             IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
-            decompress(input, output);
-        }
-    }
-
-    /**
      * @brief Descomprime un archivo de texto implementando un algoritmo LZW.
      *
      * @param input es el objeto de lectura del archivo que se quiere descomprimir.
      * @param output es el objeto de ecritura del archivo desccomprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    private static void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
+    public static void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
         input.readByte();
         createDecompressionDictionary();
         int i = DICTIONARY_SIZE + 1;

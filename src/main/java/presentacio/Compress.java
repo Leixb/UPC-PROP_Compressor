@@ -106,6 +106,7 @@ public class Compress {
                 JFileChooser fc;
                 if ("".equals(fileIn)) fc = new JFileChooser();
                 else fc = new JFileChooser(fileIn);
+                fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
                 int result = fc.showOpenDialog(f);
                 if (result == JFileChooser.APPROVE_OPTION) {

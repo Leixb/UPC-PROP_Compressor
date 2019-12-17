@@ -80,6 +80,7 @@ public class Decompress {
                     JFileChooser fc;
                     if ("".equals(fileOut)) fc = new JFileChooser(fileIn);
                     else fc = new JFileChooser(fileOut.substring(0, fileOut.lastIndexOf('/') + 1));
+                    fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
                     int result = fc.showSaveDialog(f);
                     if (result == JFileChooser.APPROVE_OPTION) {

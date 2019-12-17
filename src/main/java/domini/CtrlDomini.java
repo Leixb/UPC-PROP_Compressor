@@ -26,10 +26,7 @@ public class CtrlDomini {
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
-        fileIn = fi;
-        fileOut = fo;
-
+    public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
         if(!fileOut.endsWith(".piz")) fileOut += ".piz";
 
         stats = new Statistics();
@@ -39,30 +36,30 @@ public class CtrlDomini {
         try (IO.Byte.reader input = new IO.Byte.reader(fileIn);
              IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
 
-			switch(alg) {
-				case 0:
-					if(fileIn.endsWith(".ppm")){
-						quality = 80; // auto JPEG qualitat 80.
-						JPEG.compress(input, output, quality);
-					}
-					else {
-						LZ78.compress(input, output);
-					}
-					break;
-				case 1:
-					LZ78.compress(input, output);
-					break;
-				case 2:
-					LZSS.compress(input, output);
-					break;
-				case 3:
-					LZW.compress(input, output);
-					break;
-				case 4:
-					JPEG.compress(input, output, quality);
-					break;
-				default:
-			}
+            switch(alg) {
+                case 0:
+                    if(fileIn.endsWith(".ppm")){
+                        quality = 80; // auto JPEG qualitat 80.
+                        JPEG.compress(input, output, quality);
+                    }
+                    else {
+                        LZ78.compress(input, output);
+                    }
+                    break;
+                case 1:
+                    LZ78.compress(input, output);
+                    break;
+                case 2:
+                    LZSS.compress(input, output);
+                    break;
+                case 3:
+                    LZW.compress(input, output);
+                    break;
+                case 4:
+                    JPEG.compress(input, output, quality);
+                    break;
+                default:
+            }
         }
 
         stats.setEndingTime();
@@ -105,21 +102,21 @@ public class CtrlDomini {
         try (IO.Bit.reader input = new IO.Bit.reader(fileIn);
              IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
 
-			switch(alg) {
-				case 1:
-					LZ78.decompress(input, output);
-					break;
-				case 2:
-					LZSS.decompress(input, output);
-					break;
-				case 3:
-					LZW.decompress(input, output);
-					break;
-				case 4:
-					JPEG.decompress(input, output);
-					break;
-				default:
-			}
+            switch(alg) {
+                case 1:
+                    LZ78.decompress(input, output);
+                    break;
+                case 2:
+                    LZSS.decompress(input, output);
+                    break;
+                case 3:
+                    LZW.decompress(input, output);
+                    break;
+                case 4:
+                    JPEG.decompress(input, output);
+                    break;
+                default:
+            }
         }
 
         stats.setEndingTime();

@@ -27,8 +27,6 @@ public class CtrlDomini {
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
     public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
-        if(!fileOut.endsWith(".piz")) fileOut += ".piz";
-
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
@@ -73,10 +71,7 @@ public class CtrlDomini {
      * @return Estadisticas generadas durante la descompresión
      * @throws Exception Lanza cualquier excepción generada al descomprimir
      */
-    public void decompress(String fi, String fo) throws Exception {
-        fileIn = fi;
-        fileOut = fo;
-
+    public void decompress(String fileIn, String fileOut) throws Exception {
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
             b = reader.read();

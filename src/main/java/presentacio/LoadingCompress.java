@@ -19,7 +19,7 @@ public class LoadingCompress {
 
     private static JFrame f;
 
-    SwingWorker sw;
+    private SwingWorker sw;
 
     LoadingCompress() {
         f = new JFrame("PIZ Compressor");
@@ -35,24 +35,27 @@ public class LoadingCompress {
     }
 
     void showLoadingCompress(int alg, String fileIn, String fileOut, short qualityJPEG) {
-        f.setResizable(false);
+        f.setResizable(true);
         f.setContentPane(this.panelLC);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setPreferredSize(new Dimension(530, 250));
-        setWindowLocation();
+        setWindowLocationAndDimension();
         f.pack();
         f.setVisible(true);
 
         compress(alg, fileIn, fileOut, qualityJPEG);
     }
 
-    private void setWindowLocation() {
+    private static void setWindowLocationAndDimension() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = screenSize.width / 3;
+        int height = screenSize.height / 4;
 
-        int windowX = Math.max(0, (screenSize.width - 530) / 2);
-        int windowY = Math.max(0, (screenSize.height - 250) / 2 - 100);
+        int windowX = Math.max(0, (screenSize.width - width) / 2);
+        int windowY = Math.max(0, (screenSize.height - height) / 2 - 100);
 
         f.setLocation(windowX, windowY);
+        f.setPreferredSize(new Dimension(width, height));
+        f.setMinimumSize(new Dimension(width, height));
     }
 
     private void compress(int alg, String fileIn, String fileOut, short qualityJPEG) {

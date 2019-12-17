@@ -19,7 +19,7 @@ public class LoadingCompress {
 
     private static JFrame f;
 
-    SwingWorker sw;
+    private SwingWorker sw;
 
     LoadingCompress() {
         f = new JFrame("PIZ Compressor");

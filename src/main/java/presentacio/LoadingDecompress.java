@@ -19,7 +19,7 @@ public class LoadingDecompress {
 
     private static JFrame f;
 
-    SwingWorker sw;
+    private SwingWorker sw;
 
     LoadingDecompress() {
         f = new JFrame("PIZ Compressor");
@@ -57,7 +57,7 @@ public class LoadingDecompress {
     }
 
     private void decompress(String fileIn, String fileOut) {
-        SwingWorker sw = new SwingWorker() {
+        sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {
                 cp.decompress(fileIn, fileOut);

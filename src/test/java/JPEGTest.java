@@ -24,18 +24,20 @@ class JPEGTest {
 
     @Test
     void RW() throws Exception {
-        new File("generated/").mkdirs();
+        File tmpFile = File.createTempFile("JPEG_RW_test", ".block");
+        tmpFile.deleteOnExit();
+
         Huffman huffAC = new Huffman(true, true);
         Huffman huffDC = new Huffman(false, true);
         short[] code = JPEGBlock.encode((short) 70, true, sampleBlock);
-        try (IO.Bit.writer file = new IO.Bit.writer("generated/testFile")) {
+        try (IO.Bit.writer file = new IO.Bit.writer(tmpFile.getPath())) {
             JPEG.writeBlock(code, huffAC, huffDC, file);
             JPEG.writeBlock(code, huffAC, huffDC, file);
         }
 
         short[] result, resultB;
 
-        try (IO.Bit.reader file = new IO.Bit.reader("generated/testFile")) {
+        try (IO.Bit.reader file = new IO.Bit.reader(tmpFile.getPath())) {
             result = JPEG.readBlock(huffAC, huffDC, file);
             resultB = JPEG.readBlock(huffAC, huffDC, file);
         }
@@ -48,15 +50,18 @@ class JPEGTest {
     @Test
     void test() {
         String inputFile = "images/boat.ppm";
-        String aux = "generated/boat.jpeg.piz";
-        String outputFile = "generated/boat.ppm";
+
         try {
+            File tmpOut = File.createTempFile("JPEG_test", ".ppm");
+            tmpOut.deleteOnExit();
+            File tmpAux = File.createTempFile("JPEG_test", ".piz.jpeg");
+            tmpAux.deleteOnExit();
             try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
-                IO.Bit.writer output = new IO.Bit.writer(aux)) {
+                IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
                     JPEG.compress(input, output, (short) 50);
             }
-            try(IO.Bit.reader input = new IO.Bit.reader(aux);
-                IO.Byte.writer output = new IO.Byte.writer(outputFile)) {
+            try(IO.Bit.reader input = new IO.Bit.reader(tmpAux.getPath());
+                IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {
                     JPEG.decompress(input, output);
             }
         } catch (Exception e) {

@@ -6,7 +6,6 @@ package domini;
 
 import persistencia.IO;
 
-import java.io.EOFException;
 import java.io.IOException;
 
 /**

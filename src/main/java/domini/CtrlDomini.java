@@ -26,10 +26,7 @@ public class CtrlDomini {
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
-        fileIn = fi;
-        fileOut = fo;
-
+    public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
         if(!fileOut.endsWith(".piz")) fileOut += ".piz";
 
         stats = new Statistics();

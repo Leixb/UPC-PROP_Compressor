@@ -4,11 +4,7 @@
 */
 package presentacio;
 
-import java.text.DecimalFormat;
-import java.util.Scanner;
-
 import domini.CtrlDomini;
-import domini.Statistics;
 
 /**
  * @brief Imprime por pantalla

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @brief Compresión y descompresión de archivos de texto con LZW.
+ * @brief Compresión y descompresión de archivos con LZW.
  */
 public final class LZW {
 
@@ -62,7 +62,7 @@ public final class LZW {
     }
 
     /**
-     * @brief Comprime un archivo de texto implementando un algoritmo LZW.
+     * @brief Comprime un archivo implementando un algoritmo LZW.
      *
      * @param input objeto de lectura del archivo que se quiere comprimir.
      * @param output objeto de ecritura del archivo comprimido.
@@ -110,7 +110,7 @@ public final class LZW {
     }
 
     /**
-     * @brief Descomprime un archivo de texto implementando un algoritmo LZW.
+     * @brief Descomprime un archivo implementando un algoritmo LZW.
      *
      * @param input es el objeto de lectura del archivo que se quiere descomprimir.
      * @param output es el objeto de ecritura del archivo desccomprimido.

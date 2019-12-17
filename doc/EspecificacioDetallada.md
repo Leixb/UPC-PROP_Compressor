@@ -71,7 +71,7 @@ lang: es
 
 ## LZSS
 
-**Descripción:** Compresión y decompresión de archivos de texto con LZSS
+**Descripción:** Compresión y decompresión de archivos con LZSS
 
 ### Atributos
 
@@ -81,38 +81,45 @@ lang: es
   * **Descripción**: Longitud máxima de una coincidencia.
 * `public final static byte MAGIC_BYTE`
   * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
-* `final static ArrayList<Character> slidingWindow = new ArrayList<Character>();`
+* `private final static int EOF`
+  * **Descripción**: Int que indica el final del archivo.
+* `final static byte[] slidingWindow = new byte[MAX_SIZE_SW]`
   * **Descripción**: Contiene como mucho los últimos MAX_SIZE_SW carácteres leidos del fichero y és donde buscamos coincidencias.
-* `final static ArrayList<Character> actualCharacters = new ArrayList<Character>()`
+* `final static byte[] actualCharacters = new byte[MAX_LENGTH_COINCIDENCE]`
   * **Descripción**: estructura de datos que contiene los carácteres que vamos leyendo y comprobamos si esta secuencia ocurre en la ventana corrediza.
 
 ### Métodos
 
 * `public static void compress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Crea el objeto lector y escritor para la compresión y llama al compresor
+  * **Descripción**: Crea el objeto lector y escritor para la compresión y llama al compresor.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void compress(final IO.Char.reader input, final IO.Bit.writer output)`
-  * **Descripción**: Usando el algoritmo LZSS esta función comprime un archivo de texto.
+* `private static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
+  * **Descripción**: Usando el algoritmo LZSS esta función comprime un archivo.
   * **Parametros**:
     * input: objeto de lectura del archivo que se quiere comprimir.
     * output: objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `public static void decompress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Crea el objeto lector y escritor para la descompresión y llama al descompresor
+  * **Descripción**: Crea el objeto lector y escritor para la descompresión y llama al descompresor.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void decompress(final IO.Bit.reader input, final IO.Char.writer output)`
+* `private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
   * **Descripción**:  Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido con este algoritmo.
   * **Parametros**:
     * input: objeto de lectura del archivo comprimido.
     * output: objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
-* `private static void computeLPSArray(final int[] lps)`
+* `private static void computeLPSArray(final int[] lps, int patLength)`
   * **Descripción**:  Calcula el vector *lps*, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición.
   * **Parametros**:
     * lps: es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición.
+    * pathLength: length del pattern para el que se quiere computar el array lps,
   * **Return:** Es void por tanto no devuelve nada.
-* `private static int kmp()`
+* `private static int kmp(int currentACIndex, int currentSWIndex, boolean fullSW)`
   * **Descripción**: Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patrón.
+  * **Parametros**:
+    * currentACIndex: la length del pattern,
+    * currentSWIndex el indice donde empieza el slidingWindow, ya que es circular.
+    * fullSW indica el estado de la slidingWindow, true si lo está, false en caso contrario.
   * **Return:** Devuelve el indice, empezando por el final, de la primera ocurrencia de actualCharacters dentro de slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow.
 * `private static double log2(final double n)`
   * **Descripción**: Calcula el logaritmo en base 2 de un real.
@@ -124,23 +131,26 @@ lang: es
 
 ### Atributos
 
-* `private static HashMap<String, Integer> compress_dict = new HashMap<String, Integer>()`
-  * **Descripción**: Diccionario usado para la compresión.
-* `private static HashMap<Integer, String> decompress_dict = new HashMap<Integer, String>()`
+* `private static Map<Integer, ArrayList<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();`
   * **Descripción**:  Diccionario usando en la descompresión.
 * `public final static byte MAGIC_BYTE`
   * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
-
+  
 ### Métodos
 
 * `public static void compress(final String inputFilename, final String outputFilename)`
   * **Descripción**: Llama al metodo compress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void compress(final IO.Char.reader input, final IO.Bit.writer output)`
+* `private static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
   * **Descripción**: Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output.
   * **Parametros**:
     * input: objeto de lectura del archivo que se quiere comprimir.
     * output: objeto de escritura al archivo comprimido.
+  * **Return:** Es void por tanto no devuelve nada.
+* `private static void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output)`
+  * **Descripción**: Llamada para escribir en el archivo comprimido el array pasado como parametro.
+    * arraylist: ArrayList que contiene la codificacion del archivo original.
+    * output: Salida de tipo IO.Bit.writer para escribir en el archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static int bits_needed(final int n)`
   * **Descripción**: Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.
@@ -148,16 +158,25 @@ lang: es
 * `public static void decompress(final String inputFilename, final String outputFilename)`
   * **Descripción**: Llama al metodo decompress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void decompress(final IO.Bit.reader input, final IO.Char.writer output)`
+* `private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
   * **Descripción**:  Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output.
   * **Parametros**:
     * input: objeto de lectura del archivo comprimido.
     * output: objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 
+###Subclase Pair
+**Descripción**: Clase Pair para poder crear, en este caso, pairs de Integers y bytes.
+
+###Subclase Nodo
+**Descripción**: Clase para crear un Nodo del arbol, el cual tien un indice de tipo int y 256 hijos.
+
+###Subclase Tree
+**Descripción**: Clase para inicializar un arbol con un método bool para llenarlo con Nodos codificando el archivo que se desea comprimir y devuelve true en caso de overflow.
+
 ## LZW
 
-**Descripción:** Compresión y descompresión de archivos de texto con LZW.
+**Descripción:** Compresión y descompresión de archivos con LZW.
 
 ### Atributos
 
@@ -165,10 +184,14 @@ lang: es
   * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
 * `private final static int DICTIONARY_SIZE`
   * **Descripción**: Tamaño inicial del diccionario.
-* `private static HashMap<String, Integer> compressionDictionary`
+* `private static Map<ArrayList<Byte>, Integer> compressionDictionary`
   * **Descripción**: Diccionario de compresión.
-* `private static HashMap<Integer, String> decompressionDictionary`
+* `private static Map<Integer, ArrayList<Byte> > decompressionDictionary`
   * **Descripción**: Diccionario usado en la descompresión
+* `private final static int EOF`
+  * **Descripción**: Pseudo EOF
+* `private final static int OVERFLOW`
+  * **Descripción**: Overflow del diccionario
 
 ### Métodos
 
@@ -179,19 +202,19 @@ lang: es
   * **Descripción**: Crea el diccionario de descompresión y lo inicializa.
   * **Return**: Es void por tanto no devuelve nada.
 * `public static void compress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Llama a una función que comprime un archivo de texto.
+  * **Descripción**: Llama a una función que comprime un archivo.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void compress (IO.Char.reader input, IO.Bit.writer output)`
-  * **Descripción**: Comprime un archivo de texto implementando un algoritmo LZW.
+* `private static void compress (IO.Byte.reader input, IO.Bit.writer output)`
+  * **Descripción**: Comprime un archivo implementando un algoritmo LZW.
   * **Parametros**:
     * input: Objeto de lectura del archivo que se quiere comprimir.
     * output: Objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `public static void decompress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: LLama a una función que descomprime un archivo de texto.
+  * **Descripción**: LLama a una función que descomprime un archivo.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void decompress (IO.Bit.reader input, IO.Char.writer output)`
-  * **Descripción**: Comprime un archivo de texto implementando un algoritmo LZW.
+* `private static void decompress (IO.Bit.reader input, IO.Byte.writer output)`
+  * **Descripción**: Comprime un archivo implementando un algoritmo LZW.
   * **Parametros**:
     * input: Objeto de lectura del archivo que se quiere descomprimir.
     * output: Objeto de ecritura del archivo desccomprimido.

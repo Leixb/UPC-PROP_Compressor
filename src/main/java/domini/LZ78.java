@@ -114,9 +114,9 @@ public final class LZ78{
     }
 
     /**
-     * @brief Llamada para escribir en el archivo comprimido el array pasado como parametro
-     * @param arrayList Array que contiene la codificacion del archivo original
-     * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
+     * @brief Llamada para escribir en el archivo comprimido el array pasado como parametro.
+     * @param arrayList Array que contiene la codificacion del archivo original.
+     * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido.
      * @throws IOException
      */
     private static void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output) throws IOException{

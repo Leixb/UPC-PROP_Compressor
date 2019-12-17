@@ -37,28 +37,19 @@ Para la implementación de la descompresión no usamos ningún algoritmo auxilia
 
 #### Estructuras de Datos
 
-Para comprimir en el algoritmo LZ78 hemos utilizado un HashMap con key String y value Integer, actuando de diccionario y de manera que todos los caracteres que se leen del archivo input quedan guardados en este. En caso que ya se hayan guardado se guarda un string concatenando la entrada del diccionario con el siguiente carácter leído.
-Como archivo comprimido resultante se obtiene un conjunto de sets compuestos por un numero y en carácter.
+Para poder comprimir todo tipo de archivos de manera óptima con el algoritmo LZ78, hemos utilizado lectura de bytes y un Tree compuesto por Nodos. Cada Nodo tiene un índice int, que indica el orden de inclusión en el arbol y por lo tanto el orden de aparición en el archivo que se desea comprimir, y 256 hijos ya que al realizar un lectura de tipo byte hay 256 posibles valores.
+Para controlar el Overflow así como la detección del final del archivo nos hemos decantado por añadir un bit delante de cada array de bytes codificado, de manera que la composición de la codificación de un byte consta de: 
+- Un bit. 0 indica que se continua sin problemas, 1 que a continuación hay un overflow o fin del archivo.
+- Si el bit anterior era 0, el indice del padre del byte codificado. Si era 1, en caso de oveflow un 0 y en caso de fin del archivo un 1.
+- El byte codificado.
 
+Cada codificación se guarda en un ArrayList hasta que éste se llena o se acaba el archivo, entonces se recorre y se escribe en el fichero comprimido. En caso de overflow se crea un nuevo Tree y un nuevo ArrayList.
+ 
 ### Descompresión
 
 #### Estructuras de Datos
 
-Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al descomprimir se lee primero un numero, que indica una entrada del diccionario y a continuación se lee el carácter del que va acompañado dicho numero. Finalmente se escribe en el archivo de descompresión la concatenación del value correspondiente a la entrada del diccionario junto con el char leídos.
-
-## LZW
-
-### Compresión
-
-#### Estructuras de Datos
-
-Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key String y value Integer, actuando de diccionario y de manera que todos los caracteres que se leen del archivo input quedan guardados en este. El diccionario se ha de inicializar con los valores unitarios esperados en el archivo a comprimir y a medida que se vaya leyendo la entrada se irán añadiendo posibles combinaciones de éstos.
-
-### Descompresión
-
-#### Estructuras de Datos
-
-Para descomprimir hemos utilizado en este caso un HashMap inverso al de compresión, con key Integer y value String, actuando también como diccionario. Al igual que en la compresión el diccionario se ha de inicializar con los valores unitarios esperados en el archivo a descomprimir y a medida que se vaya leyendo la entrada se irán añadiendo posibles combinaciones de éstos.
+Para descomprimir hemos utilizado en este caso un HashMap con key Integer y value ArrayList <Byte> actuando como diccionario. Al descomprimir se lee primero un bit, que indica si hay overflow o fin de archivo, un numero, que indica una entrada del diccionario y a continuación se lee el byte del que va acompañado dicho numero. Finalmente se escribe en el archivo de descompresión la concatenación del value correspondiente a la entrada del diccionario junto con el byte leído.
 
 ## LZW
 

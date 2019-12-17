@@ -47,18 +47,18 @@ class JPEGTest {
 
     @Test
     void test() {
-		String inputFile = "images/boat.ppm";
-		String aux = "generated/boat.jpeg.piz";
-		String outputFile = "generated/boat.ppm";
+        String inputFile = "images/boat.ppm";
+        String aux = "generated/boat.jpeg.piz";
+        String outputFile = "generated/boat.ppm";
         try {
-			try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
-				IO.Bit.writer output = new IO.Bit.writer(aux)) {
-					JPEG.compress(input, output, (short) 50);
-			}
-			try(IO.Bit.reader input = new IO.Bit.reader(aux);
-				IO.Byte.writer output = new IO.Byte.writer(outputFile)) {
-					JPEG.decompress(input, output);
-			}
+            try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
+                IO.Bit.writer output = new IO.Bit.writer(aux)) {
+                    JPEG.compress(input, output, (short) 50);
+            }
+            try(IO.Bit.reader input = new IO.Bit.reader(aux);
+                IO.Byte.writer output = new IO.Byte.writer(outputFile)) {
+                    JPEG.decompress(input, output);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             fail();

@@ -46,36 +46,36 @@ public final class JPEG {
 
         Huffman huffAc, huffDc;
 
-		output.write(MAGIC_BYTE); // magic byte
-		output.write((int) quality);
-		output.write(img.width());
-		output.write(img.height());
+        output.write(MAGIC_BYTE); // magic byte
+        output.write((int) quality);
+        output.write(img.width());
+        output.write(img.height());
 
-		final int cols = img.columns();
-		final int rows = img.rows();
+        final int cols = img.columns();
+        final int rows = img.rows();
 
-		for (int channel = 0; channel < 3; ++channel) {
-			if (channel == 0) {
-				// Luminance
-				huffAc = huffAcLum;
-				huffDc = huffDcLum;
-			} else {
-				// Chrominance
-				huffAc = huffAcChrom;
-				huffDc = huffDcChrom;
-			}
+        for (int channel = 0; channel < 3; ++channel) {
+            if (channel == 0) {
+                // Luminance
+                huffAc = huffAcLum;
+                huffDc = huffDcLum;
+            } else {
+                // Chrominance
+                huffAc = huffAcChrom;
+                huffDc = huffDcChrom;
+            }
 
-			for (int i = 0; i < cols; ++i) {
-				for (int j = 0; j < rows; ++j) {
-					final byte[][] block = img.readBlock(channel, i, j);
+            for (int i = 0; i < cols; ++i) {
+                for (int j = 0; j < rows; ++j) {
+                    final byte[][] block = img.readBlock(channel, i, j);
 
-					final short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
+                    final short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
 
-					writeBlock(encoded, huffAc, huffDc, output);
+                    writeBlock(encoded, huffAc, huffDc, output);
 
-				}
-			}
-		}
+                }
+            }
+        }
     }
 
     /**
@@ -95,34 +95,34 @@ public final class JPEG {
 
         Huffman huffAc, huffDc;
 
-		input.readByte(); // Discard magic byte
-		final short quality = (short) input.readInt();
-		int w = input.readInt();
-		int h = input.readInt();
+        input.readByte(); // Discard magic byte
+        final short quality = (short) input.readInt();
+        int w = input.readInt();
+        int h = input.readInt();
 
-		img.setDimensions(w, h);
+        img.setDimensions(w, h);
 
-		int channel = 0, i = 0, j = 0;
+        int channel = 0, i = 0, j = 0;
 
-		for (channel = 0; channel < 3; ++channel) {
-			if (channel == 0) {
-				huffAc = huffAcLum;
-				huffDc = huffDcLum;
-			} else {
-				huffAc = huffAcChrom;
-				huffDc = huffDcChrom;
-			}
-			for (i = 0; i < img.columns(); ++i) {
-				for (j = 0; j < img.rows(); ++j) {
-					final short[] encoded = readBlock(huffAc, huffDc, input);
+        for (channel = 0; channel < 3; ++channel) {
+            if (channel == 0) {
+                huffAc = huffAcLum;
+                huffDc = huffDcLum;
+            } else {
+                huffAc = huffAcChrom;
+                huffDc = huffDcChrom;
+            }
+            for (i = 0; i < img.columns(); ++i) {
+                for (j = 0; j < img.rows(); ++j) {
+                    final short[] encoded = readBlock(huffAc, huffDc, input);
 
-					final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
+                    final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
 
-					img.writeBlock(data, channel, i, j);
+                    img.writeBlock(data, channel, i, j);
 
-				}
-			}
-		}
+                }
+            }
+        }
 
         img.toRGB();
         img.writeFile(output);

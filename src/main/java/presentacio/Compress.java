@@ -110,8 +110,8 @@ public class Compress {
                 int result = fc.showOpenDialog(f);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     fileIn = fc.getSelectedFile().getAbsolutePath();
-                    if (fileIn.length() < 21) labelFileIn.setText(fileIn);
-                    else labelFileIn.setText(fileIn.substring(0, 21) + "...");
+                    labelFileIn.setText(fittingLabel(fileIn, labelFileIn));
+                    labelFileIn.setToolTipText(fileIn);
                     labelFileIn.setForeground(new Color(0, 190, 0));
                     labelFileIn.setVisible(true);
                 } else if (result == JFileChooser.ERROR_OPTION) {
@@ -135,8 +135,9 @@ public class Compress {
                     int result = fc.showSaveDialog(f);
                     if (result == JFileChooser.APPROVE_OPTION) {
                         fileOut = fc.getSelectedFile().getAbsolutePath();
-                        if (fileOut.length() < 21) labelFileOut.setText(fileOut);
-                        else labelFileOut.setText(fileOut.substring(0, 21) + "...");
+                        if (!fileOut.endsWith(".piz")) fileOut += ".piz";
+                        labelFileOut.setText(fittingLabel(fileOut, labelFileOut));
+                        labelFileOut.setToolTipText(fileOut);
                         labelFileOut.setForeground(new Color(0, 190, 0));
                         labelFileOut.setVisible(true);
                     } else if (result == JFileChooser.ERROR_OPTION) {
@@ -145,6 +146,16 @@ public class Compress {
                         labelFileOut.setVisible(true);
                     }
                 }
+            }
+        });
+
+        panelCompress.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+
+                labelFileIn.setText(fittingLabel(fileIn, labelFileIn));
+                labelFileOut.setText(fittingLabel(fileOut, labelFileOut));
             }
         });
 
@@ -157,23 +168,40 @@ public class Compress {
         });
     }
 
+    private String fittingLabel(String file, JLabel label) {
+        int maxWidth = f.getWidth() - 380;
+        FontMetrics fm = label.getFontMetrics(label.getFont());
+
+        String fittingText = "";
+        for (int i = file.length() - 1; i >= 0; --i) {
+            if (fm.stringWidth(fittingText + "...") < maxWidth) {
+                fittingText = file.charAt(i) + fittingText;
+            }
+        }
+        if (file.equals(fittingText)) return file;
+        else return "..." + fittingText;
+    }
+
     void showCompress() {
-        f.setResizable(false);
+        f.setResizable(true);
         f.setContentPane(this.panelCompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setPreferredSize(new Dimension(530, 250));
-        setWindowLocation();
+        setWindowLocationAndDimension();
         f.pack();
         f.setVisible(true);
     }
 
-    private void setWindowLocation() {
+    private void setWindowLocationAndDimension() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = screenSize.width / 3;
+        int height = screenSize.height / 4;
 
-        int windowX = Math.max(0, (screenSize.width - 530) / 2);
-        int windowY = Math.max(0, (screenSize.height - 250) / 2 - 100);
+        int windowX = (screenSize.width - width) / 2;
+        int windowY = (screenSize.height - height) / 2 - 100;
 
         f.setLocation(windowX, windowY);
+        f.setPreferredSize(new Dimension(width, height));
+        f.setMinimumSize(new Dimension(width, height));
     }
 
     {
@@ -192,11 +220,11 @@ public class Compress {
      */
     private void $$$setupUI$$$() {
         panelCompress = new JPanel();
-        panelCompress.setLayout(new GridLayoutManager(8, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panelCompress.setLayout(new GridLayoutManager(7, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelCompress.setForeground(new Color(-14869219));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 4, new Insets(10, 20, 10, 20), -1, -1));
-        panelCompress.add(panel1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panelCompress.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -218,54 +246,63 @@ public class Compress {
         final Spacer spacer2 = new Spacer();
         panel1.add(spacer2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panelCompress.add(spacer3, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panelCompress.add(spacer3, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panelCompress.add(spacer4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JLabel label2 = new JLabel();
-        label2.setText("COMPRIMIR");
-        panelCompress.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer5 = new Spacer();
-        panelCompress.add(spacer5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panelCompress.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 5, 5, 5), -1, -1));
-        panelCompress.add(panel4, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panelCompress.add(panel4, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttonCompress = new JButton();
         buttonCompress.setText("Comprimir");
         panel4.add(buttonCompress, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer6 = new Spacer();
-        panel4.add(spacer6, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer5 = new Spacer();
+        panel4.add(spacer5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         buttonBack = new JButton();
         buttonBack.setText("Enrere");
         panel4.add(buttonBack, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel5 = new JPanel();
-        panel5.setLayout(new GridLayoutManager(1, 3, new Insets(0, 20, 0, 20), -1, -1));
-        panelCompress.add(panel5, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JLabel label3 = new JLabel();
-        label3.setText("Fitxer a comprimir:");
-        panel5.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel5.setLayout(new GridLayoutManager(1, 5, new Insets(0, 20, 0, 20), -1, -1));
+        panelCompress.add(panel5, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setText("Fitxer a comprimir:");
+        panel5.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
         buttonSelectFileIn = new JButton();
         buttonSelectFileIn.setText("Seleccionar fitxer");
-        panel5.add(buttonSelectFileIn, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(140, -1), null, 0, false));
+        panel5.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        final Spacer spacer6 = new Spacer();
+        panel5.add(spacer6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer7 = new Spacer();
+        panel5.add(spacer7, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         labelFileIn = new JLabel();
         Font labelFileInFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileIn.getFont());
         if (labelFileInFont != null) labelFileIn.setFont(labelFileInFont);
         labelFileIn.setForeground(new Color(-16777216));
         labelFileIn.setText("");
-        panel5.add(labelFileIn, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel5.add(labelFileIn, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel6 = new JPanel();
-        panel6.setLayout(new GridLayoutManager(1, 3, new Insets(0, 20, 0, 20), -1, -1));
-        panelCompress.add(panel6, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JLabel label4 = new JLabel();
-        label4.setText("Nom fitxer destí (*.piz):");
-        panel6.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel6.setLayout(new GridLayoutManager(1, 5, new Insets(0, 20, 0, 20), -1, -1));
+        panelCompress.add(panel6, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label3 = new JLabel();
+        label3.setText("Nom fitxer destí (*.piz):");
+        panel6.add(label3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
         labelFileOut = new JLabel();
         Font labelFileOutFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileOut.getFont());
         if (labelFileOutFont != null) labelFileOut.setFont(labelFileOutFont);
         labelFileOut.setText("");
-        panel6.add(labelFileOut, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel6.add(labelFileOut, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonSelectFileOut = new JButton();
         buttonSelectFileOut.setText("Selecciona destí");
-        panel6.add(buttonSelectFileOut, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(140, -1), null, 0, false));
+        panel6.add(buttonSelectFileOut, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        final Spacer spacer8 = new Spacer();
+        panel6.add(spacer8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer9 = new Spacer();
+        panel6.add(spacer9, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final JPanel panel7 = new JPanel();
+        panel7.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 20, 0), -1, -1));
+        panelCompress.add(panel7, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label4 = new JLabel();
+        label4.setText("COMPRIMIR");
+        panel7.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

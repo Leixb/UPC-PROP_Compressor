@@ -66,7 +66,7 @@ public final class LZW {
      * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
      * @return
      */
-    private static int bits_needed(final int n) {
+    private static int bitsNeeded(final int n) {
         if (n <= 0)
             return 1;
         return (int) (Math.log(n) / Math.log(2) + 1e-10) + 1;
@@ -79,7 +79,7 @@ public final class LZW {
      * @return
      */
     private static void writeCode (int code, final IO.Bit.writer output) throws IOException{
-        int nbits = bits_needed(code);
+        int nbits = bitsNeeded(code);
         final BitSetL n = new BitSetL(nbits-1,5);
         output.write(n);
         final BitSetL bsNum = new BitSetL(code, nbits);

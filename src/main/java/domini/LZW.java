@@ -23,13 +23,13 @@ public final class LZW {
     public final static byte MAGIC_BYTE = (byte) 0x11;
 
     /// Tamaño inicial del diccionario
-    private final static int DICTIONARY_SIZE = 0x7FFF;
+    private final static int DICTIONARY_SIZE = 0x0FF;
 
     /// Overflow del diccionario
-    private final static int OVERFLOW = 0x7FFFFFFE;
+    private final static int OVERFLOW = 0x7FFFFFFD;
 
     /// Pseudo EOF
-    private final static int EOF = 0x7FFFFFFF;
+    private final static int EOF = 0x7FFFFFFE;
 
     /// Diccionario de compresión
     private static Map<ArrayList<Byte>, Integer> compressionDictionary;
@@ -62,6 +62,30 @@ public final class LZW {
     }
 
     /**
+     * @brief  Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro
+     * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
+     * @return
+     */
+    private static int bitsNeeded(final int n) {
+        if (n <= 0)
+            return 1;
+        return (int) (Math.log(n) / Math.log(2) + 1e-10) + 1;
+    }
+
+    /**
+     * @brief  Escribe en output n en 5 bits seguido del entero b representado en n bits
+     * @param code Numero integer que se quiere escribir
+     * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
+     * @return
+     */
+    private static void writeCode (int code, final IO.Bit.writer output) throws IOException{
+        int nbits = bitsNeeded(code);
+        final BitSetL n = new BitSetL(nbits-1,5);
+        output.write(n);
+        final BitSetL bsNum = new BitSetL(code, nbits);
+        output.write(bsNum);    }
+
+    /**
      * @brief Comprime un archivo de texto implementando un algoritmo LZW.
      *
      * @param input objeto de lectura del archivo que se quiere comprimir.
@@ -84,7 +108,7 @@ public final class LZW {
                 bytes = aux;
             } else {
                 final int code = compressionDictionary.get(bytes);
-                output.write(code);
+                writeCode(code,output);
 
                 compressionDictionary.put(aux,i++);
 
@@ -93,8 +117,7 @@ public final class LZW {
             }
 
             if (i >= OVERFLOW) {  //[DICTIONARY OVERFLOW]
-                output.write(OVERFLOW);
-                System.out.println("[DICTIONARY OVERFLOW]");
+                writeCode(OVERFLOW,output);
                 createCompressionDictionary();
                 i = DICTIONARY_SIZE;
             }
@@ -102,9 +125,9 @@ public final class LZW {
         }
         if (compressionDictionary.containsKey(bytes)) {
            final int code = compressionDictionary.get(bytes);
-            output.write(code);
+            writeCode(code,output);
         }
-        output.write(EOF);
+        writeCode(EOF,output);
 
         compressionDictionary = new HashMap<>();
     }
@@ -122,21 +145,23 @@ public final class LZW {
         int i = DICTIONARY_SIZE + 1;
 
         try {
-            int old_code = input.readInt();
-            if (old_code != EOF) {
-                ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(old_code));
+            int n = input.readBitSet(5).asInt();
+            int oldCode = input.readBitSet(n+1).asInt();
+            if (oldCode != EOF) {
+                ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(oldCode));
 
                 for (byte b : aux) {
                     output.write(b);
                 }
 
                 byte ch = aux.get(0);
-                int code = input.readInt();
+                n = input.readBitSet(5).asInt();
+                int code = input.readBitSet(n+1).asInt();
                 while (code != EOF) {
                     if (decompressionDictionary.containsKey(code)) {
                         aux = new ArrayList<>(decompressionDictionary.get(code));
                     } else {
-                        aux = new ArrayList<>(decompressionDictionary.get(old_code));
+                        aux = new ArrayList<>(decompressionDictionary.get(oldCode));
                         aux.add(ch);
                     }
 
@@ -145,18 +170,19 @@ public final class LZW {
                     }
 
                     ch = aux.get(0);
-                    aux = new ArrayList<>(decompressionDictionary.get(old_code));
+                    aux = new ArrayList<>(decompressionDictionary.get(oldCode));
                     aux.add(ch);
                     decompressionDictionary.put(i++, aux);
 
-                    old_code = code;
-                    code = input.readInt();
+                    oldCode = code;
+                    n = input.readBitSet(5).asInt();
+                    code = input.readBitSet(n+1).asInt();
 
                     if (code == OVERFLOW) {   //[DICTIONARY OVERFLOW DETECTED]
-                        System.out.println("[DICTIONARY OVERFLOW DETECTED]");
                         createDecompressionDictionary();
                         i = DICTIONARY_SIZE;
-                        code = input.readInt();
+                        n = input.readBitSet(5).asInt();
+                        code = input.readBitSet(n+1).asInt();
                     }
                 }
             }

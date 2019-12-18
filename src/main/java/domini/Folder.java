@@ -24,10 +24,11 @@ public final class Folder {
 
     public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
         output.write(MAGIC_BYTE); // magic byte
-        try(Stream<Path> file = Files.walk(Paths.get(folderPath)).filter(Files::isRegularFile)) {
-            file.forEach((p) -> {
+        Path basePath = Paths.get(folderPath);
+        try(Stream<Path> files = Files.walk(basePath).filter(Files::isRegularFile)) {
+            files.forEach(f -> {
                 try {
-                    appendFile(p.toString(), output);
+                    appendFile(basePath, f, output);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -35,13 +36,13 @@ public final class Folder {
         }
     }
 
-    private static void appendFile(String filename, IO.Bit.writer output) throws IOException {
+    private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws IOException {
         // Write filename + Marker then call compression algorithm
-        for (char c : filename.toCharArray()) {
+        for (char c : (basePath.relativize(file)).toString().toCharArray()) {
             output.write(c);
         }
         output.write(MARKER);
-        try (IO.Byte.reader input = new IO.Byte.reader(filename)) {
+        try (IO.Byte.reader input = new IO.Byte.reader(file.toString())) {
             LZW.compress(input, output);
         }
     }

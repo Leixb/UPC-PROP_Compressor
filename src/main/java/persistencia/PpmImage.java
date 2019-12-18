@@ -2,9 +2,7 @@
  * @file ./src/main/java/domini/PpmImage.java
  * @author Aleix Boné
 */
-package domini;
-
-import persistencia.IO;
+package persistencia;
 
 import java.io.*;
 

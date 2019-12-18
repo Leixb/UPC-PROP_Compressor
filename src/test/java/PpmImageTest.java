@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import domini.PpmImage;
+import persistencia.PpmImage;
 import persistencia.IO;
 
 import java.io.*;

@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import domini.Huffman.HuffmanLookupException;
+
 import persistencia.IO;
+import persistencia.PpmImage;
 
 /**
  * @brief compresión y descompresión de imágenes PPM con JPEG

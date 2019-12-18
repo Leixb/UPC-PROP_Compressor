@@ -20,7 +20,10 @@ public final class Folder {
 
     private static char MARKER = 0xFFFF;
 
+    public final static byte MAGIC_BYTE = (byte)0xf0;
+
     public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
+        output.write(MAGIC_BYTE); // magic byte
         try(Stream<Path> file = Files.walk(Paths.get(folderPath)).filter(Files::isRegularFile)) {
             file.forEach((p) -> {
                 try {
@@ -45,6 +48,7 @@ public final class Folder {
 
     public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
+        input.readByte(); // Magic Byte
         for(;;) {
             String filename = "";
             for (;;) {

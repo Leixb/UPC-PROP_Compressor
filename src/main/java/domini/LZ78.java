@@ -82,7 +82,7 @@ public final class LZ78{
             byte pre=0;
             byte chin;
 
-            while (chinAux!=-1 && codnum<1400000) { //Cuando codnum llega a 1.400.000 se produce overflow
+            while (chinAux!=-1 && codnum<1000000) { //Cuando codnum llega a 1.000.000 se produce overflow
                 chin = (byte) chinAux;
 
                 if (actual.hijos[chin+128]!= null){
@@ -100,7 +100,7 @@ public final class LZ78{
 
                 pre = chin;
 
-                if (codnum <1400000){
+                if (codnum <1000000){
                     chinAux = input.read();
                 }
             }
@@ -109,7 +109,7 @@ public final class LZ78{
                 arrayList.add(new Pair<Integer, Byte>(padre,pre));
             }
 
-            return codnum>=1400000;
+            return codnum>=1000000;
         }
     }
 

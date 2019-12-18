@@ -58,20 +58,20 @@ lang: es
 ### Métodos
 
 * `public static void printStatsCompress(Statistics stats)`
-  * **Descripción**: Imprime las estadisticas de compresión.
+  * **Descripción**: Imprime las estadísticas de compresión.
   * **Return**: Es void por tanto no devuelve nada.
 * `public static void printStatsDecompress(Statistics stats)`
-  * **Descripción**: Imprime las estadisticas de descompresión.
+  * **Descripción**: Imprime las estadísticas de descompresión.
   * **Return**: Es void por tanto no devuelve nada.
 * `public static String readableFileSize(double d)`
   * **Descripción**:  Da el formato correcto al tamaño de un fichero (B,kB,etc)
-  * **Parametros**:
+  * **Parámetros**:
     * d: Tamaño de un fichero en bytes.
   * **Return**: Devuelve el tamaño del fichero en una magnitud más legible.
 
 ## LZSS
 
-**Descripción:** Compresión y decompresión de archivos con LZSS
+**Descripción:** Compresión y descompresión de archivos con LZSS
 
 ### Atributos
 
@@ -80,13 +80,13 @@ lang: es
 * `final static int MAX_LENGTH_COINCIDENCE`
   * **Descripción**: Longitud máxima de una coincidencia.
 * `public final static byte MAGIC_BYTE`
-  * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
+  * **Descripción**: Magic byte que identifica al compresor para saber con que algoritmo debemos descomprimir.
 * `private final static int EOF`
   * **Descripción**: Int que indica el final del archivo.
 * `final static byte[] slidingWindow = new byte[MAX_SIZE_SW]`
-  * **Descripción**: Contiene como mucho los últimos MAX_SIZE_SW carácteres leidos del fichero y és donde buscamos coincidencias.
+  * **Descripción**: Contiene como mucho los últimos MAX_SIZE_SW caracteres leídos del fichero y es donde buscamos coincidencias.
 * `final static byte[] actualCharacters = new byte[MAX_LENGTH_COINCIDENCE]`
-  * **Descripción**: estructura de datos que contiene los carácteres que vamos leyendo y comprobamos si esta secuencia ocurre en la ventana corrediza.
+  * **Descripción**: estructura de datos que contiene los caracteres que vamos leyendo y comprobamos si esta secuencia ocurre en la ventana corrediza.
 
 ### Métodos
 
@@ -95,7 +95,7 @@ lang: es
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
   * **Descripción**: Usando el algoritmo LZSS esta función comprime un archivo.
-  * **Parametros**:
+  * **Parámetros**:
     * input: objeto de lectura del archivo que se quiere comprimir.
     * output: objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
@@ -104,14 +104,14 @@ lang: es
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
   * **Descripción**:  Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido con este algoritmo.
-  * **Parametros**:
+  * **Parámetros**:
     * input: objeto de lectura del archivo comprimido.
     * output: objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static void computeLPSArray(final int[] lps, int patLength)`
   * **Descripción**:  Calcula el vector *lps*, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición.
-  * **Parametros**:
-    * lps: es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición.
+  * **Parámetros**:
+    * lps: es un vector vacío que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición.
     * pathLength: length del pattern para el que se quiere computar el array lps,
   * **Return:** Es void por tanto no devuelve nada.
 * `private static int kmp(int currentACIndex, int currentSWIndex, boolean fullSW)`
@@ -127,39 +127,39 @@ lang: es
 
 ## LZ78
 
-**Descripción:** Interficie con la que el usuario interactua para elegir el algoritmo y denotar el fichero que se quiere comprimir/descomprimir y el archivo de destino.
+**Descripción:** Interfície con la que el usuario interactúa para elegir el algoritmo y denotar el fichero que se quiere comprimir/descomprimir y el archivo de destino.
 
 ### Atributos
 
 * `private static Map<Integer, ArrayList<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();`
   * **Descripción**:  Diccionario usando en la descompresión.
 * `public final static byte MAGIC_BYTE`
-  * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
+  * **Descripción**: Magic byte que identifica al compresor para saber con que algoritmo debemos descomprimir.
   
 ### Métodos
 
 * `public static void compress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Llama al metodo compress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename.
+  * **Descripción**: Llama al método compress de la clase LZ78 y le pasa como parámetros inputFilename y outputFilename.
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
-  * **Descripción**: Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output.
+  * **Descripción**: Comprime el archivo pasado por parámetro input y escribe la compresión en el parámetro output.
   * **Parametros**:
     * input: objeto de lectura del archivo que se quiere comprimir.
     * output: objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output)`
-  * **Descripción**: Llamada para escribir en el archivo comprimido el array pasado como parametro.
-    * arraylist: ArrayList que contiene la codificacion del archivo original.
+  * **Descripción**: Llamada para escribir en el archivo comprimido el array pasado como parámetro.
+    * arraylist: ArrayList que contiene la codificación del archivo original.
     * output: Salida de tipo IO.Bit.writer para escribir en el archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static int bits_needed(final int n)`
-  * **Descripción**: Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.
-  * **Return**: Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro.
+  * **Descripción**: Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
+  * **Return**: Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
 * `public static void decompress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Llama al metodo decompress de la clase LZ78 y le pasa como parametros inputFilename y outputFilename.
+  * **Descripción**: Llama al método decompress de la clase LZ78 y le pasa como parámetros inputFilename y outputFilename.
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
-  * **Descripción**:  Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output.
+  * **Descripción**:  Descomprime el archivo comprimido pasado por input y escribe la descompresión por el parámetro output.
   * **Parametros**:
     * input: objeto de lectura del archivo comprimido.
     * output: objeto de escritura al archivo descomprimido.
@@ -169,10 +169,10 @@ lang: es
 **Descripción**: Clase Pair para poder crear, en este caso, pairs de Integers y bytes.
 
 ###Subclase Nodo
-**Descripción**: Clase para crear un Nodo del arbol, el cual tien un indice de tipo int y 256 hijos.
+**Descripción**: Clase para crear un Nodo del árbol, el cual tiene un indice de tipo int y 256 hijos.
 
 ###Subclase Tree
-**Descripción**: Clase para inicializar un arbol con un método bool para llenarlo con Nodos codificando el archivo que se desea comprimir y devuelve true en caso de overflow.
+**Descripción**: Clase para inicializar un árbol con un método bool para llenarlo con Nodos codificando el archivo que se desea comprimir y devuelve true en caso de overflow.
 
 ## LZW
 
@@ -181,7 +181,7 @@ lang: es
 ### Atributos
 
 * `public final static byte MAGIC_BYTE`
-  * **Descripción**: Magic byte que identifica al compressor para saber con que algoritmo debemos descomprimir.
+  * **Descripción**: Magic byte que identifica al compresor para saber con que algoritmo debemos descomprimir.
 * `private final static int DICTIONARY_SIZE`
   * **Descripción**: Tamaño inicial del diccionario.
 * `private static Map<ArrayList<Byte>, Integer> compressionDictionary`
@@ -206,18 +206,18 @@ lang: es
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void compress (IO.Byte.reader input, IO.Bit.writer output)`
   * **Descripción**: Comprime un archivo implementando un algoritmo LZW.
-  * **Parametros**:
+  * **Parámetros**:
     * input: Objeto de lectura del archivo que se quiere comprimir.
     * output: Objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `public static void decompress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: LLama a una función que descomprime un archivo.
+  * **Descripción**: Llama a una función que descomprime un archivo.
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress (IO.Bit.reader input, IO.Byte.writer output)`
   * **Descripción**: Comprime un archivo implementando un algoritmo LZW.
-  * **Parametros**:
+  * **Parámetros**:
     * input: Objeto de lectura del archivo que se quiere descomprimir.
-    * output: Objeto de ecritura del archivo desccomprimido.
+    * output: Objeto de escritura del archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 
 ## JPEG
@@ -233,7 +233,7 @@ lang: es
 
 * `public static void compress(final String inputFile, final String outputFile, final short quality)`
   * **Descripción**: Comprime una imagen PPM bloque a bloque.
-  * **Parametros**:
+  * **Parámetros**:
     * quality: Calidad de compresión (1-100) donde 100 es la mejor calidad.
   * **Return**: Es void por tanto no devuelve nada.
 * `public static void decompress(final String inputFile, final String outputFile)`
@@ -241,26 +241,26 @@ lang: es
   * **Return**: Es void por tanto no devuelve nada.
 * `public static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file)`
   * **Descripción**: Lee un bloque codificado con las tablas Huffman.
-  * **Parametros**:
+  * **Parámetros**:
     * huffAC: Tabla Huffman de valores AC.
     * huffDC: Tabla Huffman de valores DC.
     * file: Fichero comprimido del que leer.
   * **Return**: Devuelve un bloque codificado sin Huffman.
 * `private static short readHuffman(Huffman huff, IO.Bit.reader file)`
   * **Descripción**: Lee un código Huffman del fichero y lo decodifica.
-  * **Parametros**:
+  * **Parámetros**:
     * huff: Tabla Huffman.
   * **Return**: Devuelve el código Huffman decodificado.
 * `private static void write(int value, int l, IO.Bit.writer file)`
   * **Descripción**: Escribe en un fichero un valor en binario, si value es positivo escribe value y si es negativo escribe ~(-value).
-  * **Parametros**:
+  * **Parámetros**:
     * value: valor a escribir
     * l: número de bits con los que codificar value.
     * file: fichero donde escribir value.
   * **Return**: Es void por tanto no devuelve nada.
 * `private static short read(int length, IO.Bit.reader file)`
   * **Descripción**: Lee de un fichero un valor en binario de longitud l, si es un valor positivo lo lee tal cual y si es negativo lo lee como -(valor).
-  * **Parametros**:
+  * **Parámetros**:
     * l: número de bits con los que codificar value.
     * file: fichero donde escribir value.
   * **Return**: Es void por tanto no devuelve nada.
@@ -276,7 +276,7 @@ lang: es
   * **Return**: Devuelve el número de bits necesarios para representar n.
 * `public static short[] encode(final short quality, final boolean isChrominance, final byte[][] data)`
   * **Descripción**: Comprime un bloque 8x8 aplicando DCT, cuantización, zigZag y RLE.
-  * **Parametros**:
+  * **Parámetros**:
     * quality: Calidad de compresión (1-100).
     * isChrominance: Si es un bloque de Chrominance (si falso Luminance).
     * data: Bloque 8x8 a codificar.
@@ -343,13 +343,13 @@ lang: es
   * **Return**: Es void por tanto no devuelve nada.
 * `public byte[][] readBlock(final int channel, final int x, final int y)`
   * **Descripción**: Devuelve un bloque de la imagen de 8x8.
-  * **Parametros**
+  * **Parámetros**
     * channel: Canal de color del bloque.
     * x,y: Posición del bloque.
   * **Return**: Devuelve el bloque 8x8 bytes.
 * `public void writeBlock(final byte[][] block, final int channel, final int x, final int y)`
   * **Descripción**: Escribe un bloque de la imagen de 8x8.
-  * **Parametros**
+  * **Parámetros**
     * block: Bloque de 8x8 bytes a escribir.
     * channel: Canal de color del bloque.
     * x,y: Posición del bloque.
@@ -425,11 +425,11 @@ lang: es
   * **Descripción**: Lee un byte del fichero, unidad mínima que se puede leer, y lo almacena en el buffer para que pueda ser leido bit a bit. También actualiza el valor de n a 8.
 * `public boolean read()`
   * **Descripción**: Si quedan bits en el buffer retorna el siguient bit, sinó rellena el buffer leyendo un byte del fichero y retorna el bit de mayor peso.
-  * **Return**: Retorna el siguiente bit leido del fichero.
-* Existen varios *read\[Byte/Char/Int/BitSetL\]()* que leen del archivo un byte, char, int y BitSetL y devuelven el byte, char, int y BitSetL respectivamente. Además en el caso del BitSetL recibe como parametro cuantos bits se quieren leer.
+  * **Return**: Retorna el siguiente bit leído del fichero.
+* Existen varios *read\[Byte/Char/Int/BitSetL\]()* que leen del archivo un byte, char, int y BitSetL y devuelven el byte, char, int y BitSetL respectivamente. Además en el caso del BitSetL recibe como parámetro cuantos bits se quieren leer.
 * `private int readMask(int mask)`
   * **Descripción**: Lee *mask* bits del fichero.
-  * **Return**: Retorna los *mask* bits leidos del archivo interpretados como entero.
+  * **Return**: Retorna los *mask* bits leídos del archivo interpretados como entero.
 * `public void close()`
   * **Descripción**: Invocado al finalizar la lectura para cerrar el *BufferedInputStream*.
   * **Return**: Es void por tanto no devuelve nada

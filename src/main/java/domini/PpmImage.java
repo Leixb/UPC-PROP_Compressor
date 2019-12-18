@@ -12,229 +12,170 @@ import java.io.*;
  * @brief Imagen PPM
  */
 public class PpmImage {
-    private byte[][][] pixels; // width * height * channel
-    private int width, height;
+    static public class Reader implements AutoCloseable {
+        private IO.Byte.reader file;
+        private int width, height;
 
-    /**
-     * @brief Inicializa la imagen vacía con los valores de anchura y altura
-     * @param w anchura (width)
-     * @param h altura (height)
-     */
-    public void setDimensions(final int w, final int h) {
-        pixels = new byte[w][h][3];
-        width = w;
-        height = h;
-    }
+        private int buffPos; // Bloque actual en el buffer
+        private byte[][][] buffer;
 
-    /**
-     * @brief Lee una fichero imagen y lo guarda en la memoria
-     * @param file reader del fichero a leer
-     * @throws IOException error en la lectura
-     * @throws InvalidFileFormat Formato de imagen invalido (No es PPM raw)
-     */
-    public void readFile(final IO.Byte.reader file) throws IOException, InvalidFileFormat {
-        final byte[] magic = new byte[2];
-        if (2 != file.read(magic))
-            throw new EOFException();
+        public Reader(IO.Byte.reader file) throws EOFException, IOException {
+            this.file = file;
 
-        if (magic[0] != 'P' || magic[1] != '6')
-            throw new InvalidFileFormat();
+            final byte[] magic = new byte[2];
+            if (2 != file.read(magic))
+                throw new EOFException();
 
-        this.width = readInt(file);
-        this.height = readInt(file);
-        final int maxVal = readInt(file);
+            if (magic[0] != 'P' || magic[1] != '6')
+                throw new IOException("Unsupported File format (not a P6 image)");
 
-        if (maxVal >= 256)
-            throw new InvalidFileFormat();
+            this.width = readInt();
+            this.height = readInt();
 
-        this.pixels = new byte[this.width][this.height][3];
+            final int maxVal = readInt();
 
-        for (int i = 0; i < this.width; ++i)
-            for (int j = 0; j < this.height; ++j)
-                if (file.read(this.pixels[i][j]) != 3)
-                    throw new EOFException();
-    }
+            if (maxVal >= 256)
+                throw new IOException("Unsupported File Format (bit depth > 255)");
 
-    /**
-     * @brief Escribe la imagen en un fichero
-     * @param file escritor del fichero a guardar
-     * @throws IOException error al escribir el fichero
-     */
-    public void writeFile(final IO.Byte.writer file) throws IOException {
-        final byte[] header = String.format("P6\n%d %d\n255\n", this.width, this.height).getBytes();
-        file.write(header);
-
-        for (int i = 0; i < this.width; ++i)
-            for (int j = 0; j < this.height; ++j)
-                file.write(pixels[i][j]);
-    }
-
-    /** El formato del fichero no es un PPM valido */
-    public static class InvalidFileFormat extends Exception {
-        private static final long serialVersionUID = -7627960741299880112L;
-
-        public InvalidFileFormat() {
-            super();
+            buffer = new byte[width][8][3];
         }
-        public InvalidFileFormat(String s) {
-            super(s);
-        }
-    }
 
-    /**
-     * @brief Lee el siguiente entero codificado en ASCII que encuentra en el fichero
-     * @param file fichero donde buscar el entero
-     * @return entero leído
-     * @throws IOException error en la lectura del fichero
-     */
-    private int readInt(final IO.Byte.reader file) throws IOException {
+        public byte[][][] readBlock() throws IOException {
+            byte[][][] block = new byte[8][8][3];
 
-        // Read till we find ascii integers
-        char c;
-        do {
-            c = (char) file.read();
-            if (c == '#') { // Comment, discard till newline
-                while (c != '\n')
-                    c = (char) file.read();
+            if (buffPos*8 > width) fillBuffer();
+
+            for (int i = 0; i < 8; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    int x = Math.min(buffPos*8 + i, width - 1); // padding
+                    block[i][j] = buffer[x][j];
+                }
             }
-        } while (c < '0' || c > '9');
 
-        // Read till not ascii integer
-        int n = 0;
-        do {
-            n = n * 10 + c - '0';
-            c = (char) file.read();
-        } while (c >= '0' && c <= '9');
+            ++buffPos; // Advance bufferPos
 
-        return n;
-    }
+            return block;
+        }
 
-    private byte doubleToByte(final double d) {
-        int n = (int) d;
-
-        if (n < 0)
-            n = 0;
-        else if (n > 255)
-            n = 255;
-
-        return (byte) n;
-    }
-
-    /** @brief Convierte la imagen de espacio de color YCbCr a espacio RGB */
-    public void toRGB() {
-        byte R, G, B;
-        for (int i = 0; i < this.width; ++i) {
-            for (int j = 0; j < this.height; ++j) {
-                final double Y = Byte.toUnsignedInt(this.pixels[i][j][0]);
-                final double Cb = Byte.toUnsignedInt(this.pixels[i][j][1]);
-                final double Cr = Byte.toUnsignedInt(this.pixels[i][j][2]);
-
-                R = doubleToByte(Y + 1.402 * (Cr - 128));
-                G = doubleToByte(Y - 0.34414 * (Cb - 128) - 0.71414 * (Cr - 128));
-                B = doubleToByte(Y + 1.772 * (Cb - 128));
-
-                this.pixels[i][j][0] = R;
-                this.pixels[i][j][1] = G;
-                this.pixels[i][j][2] = B;
+        private void fillBuffer() throws IOException {
+            buffPos = 0;
+            for (int i = 0; i < width; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    if(file.read(buffer[i][j]) != 3) {
+                        // EOF, fill the rest of buffer with previous rows and end
+                        for (int k = j; k < 8; ++k) {
+                            buffer[i][k] = buffer[i][j-1];
+                        }
+                        return;
+                    }
+                }
             }
         }
 
-    }
+        public int getWidth() {
+            return width;
+        }
+        public int getHeight() {
+            return height;
+        }
 
-    /** @brief Convierte la imagen de espacio de color RGB a espacio YCbCr */
-    public void toYCbCr() {
-        byte Y, Cb, Cr;
-        for (int i = 0; i < this.width; ++i) {
-            for (int j = 0; j < this.height; ++j) {
-                final double R = Byte.toUnsignedInt(this.pixels[i][j][0]);
-                final double G = Byte.toUnsignedInt(this.pixels[i][j][1]);
-                final double B = Byte.toUnsignedInt(this.pixels[i][j][2]);
+        public int widthBlocks() {
+            return width/8 + ((width%8 == 0)? 0 : 1);
+        }
+        public int heightBlocks() {
+            return height/8 + ((height%8 == 0)? 0 : 1);
+        }
 
-                Y = doubleToByte(0 + 0.299 * R + 0.587 * G + 0.114 * B);
-                Cb = doubleToByte(128 - 0.1687 * R - 0.3313 * G + 0.5 * B);
-                Cr = doubleToByte(128 + 0.5 * R - 0.4187 * G - 0.0813 * B);
+        public void close() throws IOException {
+            file.close();
+        }
 
-                this.pixels[i][j][0] = Y;
-                this.pixels[i][j][1] = Cb;
-                this.pixels[i][j][2] = Cr;
-            }
+        private int readInt() throws IOException {
+            char c;
+            do {
+                c = (char) file.read();
+                if (c == '#') { // Comment, discard till newline
+                    while (c != '\n')
+                        c = (char) file.read();
+                }
+            } while (c < '0' || c > '9');
+
+            // Read till not ascii integer
+            int n = 0;
+            do {
+                n = n * 10 + c - '0';
+                c = (char) file.read();
+            } while (c >= '0' && c <= '9');
+
+            return n;
         }
     }
 
-    /**
-     * @brief Devuelve un bloque de la imagen de 8x8
-     * @param channel canal de color del bloque
-     * @param x posición del bloque en coordenada x
-     * @param y posición del bloque en coordenada y
-     * @return bloque 8x8
-     */
-    public byte[][] readBlock(final int channel, final int x, final int y) {
-        final byte[][] block = new byte[8][8];
+    static public class Writer implements AutoCloseable {
+        private IO.Byte.writer file;
 
-        for (int i = 0; i < 8; ++i) {
-            final int posX = Math.min(8 * x + i, width - 1);
-            for (int j = 0; j < 8; ++j) {
-                final int posY = Math.min(8 * y + j, height - 1);
-                block[i][j] = pixels[posX][posY][channel];
-            }
+        private int width, height;
+
+        private final String HEADER_FORMAT = "P6\n%d %d\n255\n";
+
+        private byte[][][] buffer;
+        private int buffPos;
+        private int writtenBuffers;
+
+        boolean EOF = false;
+
+        public Writer(IO.Byte.writer file, int width, int height) throws IOException {
+            this.file = file;
+            this.width = width;
+            this.height = height;
+
+            buffer = new byte[width][8][3];
+
+            writeHeader();
         }
 
-        return block;
-    }
-
-    /**
-     * @brief Escribe un bloque de la imagen de 8x8
-     * @param block bloque 8x8 a escribir
-     * @param channel canal de color del bloque
-     * @param x posición del bloque en coordenada x
-     * @param y posición del bloque en coordenada y
-     */
-    public void writeBlock(final byte[][] block, final int channel, final int x, final int y) {
-        for (int i = 0; i < 8; ++i) {
-            final int posX = 8 * x + i;
-            if (posX >= width)
-                break;
-            for (int j = 0; j < 8; ++j) {
-                final int posY = 8 * y + j;
-                if (posY >= height) break;
-                pixels[posX][posY][channel] = block[i][j];
-            }
+        private void writeHeader() throws IOException {
+            file.write(String.format(HEADER_FORMAT, this.width, this.height).getBytes());
         }
-    }
 
-    /**
-     * @brief Devuelve la anchura de la imagen en pixels
-     * @return anchura de la imagen en pixels
-     */
-    public int width() {
-        return width;
-    }
+        public void writeBlock(byte[][][] block) throws IOException {
+            if (buffPos*8 > width) writeBuffer();
 
-    /**
-     * @brief Devuelve la altura de la imagen en pixels
-     * @return altura de la imagen en pixels
-     */
-    public int height() {
-        return height;
-    }
+            if (EOF) throw new EOFException();
 
-    /**
-     * @brief Devuelve la anchura de la imagen en bloques (8x8).
-     *
-     * Es decir, el número de bloques 8x8 que caben horizontalmente en la imagen.
-     * @return anchura de la imagen en bloques (8x8)
-     */
-    public int columns() {
-        return width/8 + ((width%8 == 0)? 0 : 1);
-    }
+            for (int i = 0; i < 8; ++i) {
+                if (buffPos*8 + i >= width) break;
+                for (int j = 0; j < 8; ++j) {
+                    buffer[buffPos*8 + i][j] = block[i][j];
+                }
+            }
 
-    /**
-     * @brief Devuelve la altura de la imagen en bloques (8x8).
-     *
-     * Es decir, el número de bloques 8x8 que caben verticalmente en la imagen.
-     * @return altura de la imagen en bloques (8x8)
-     */
-    public int rows() {
-        return height/8 + ((height%8 == 0)? 0 : 1);
+            ++buffPos;
+        }
+
+        private void writeBuffer() throws IOException {
+            for (int i = 0; i < width; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    if (writtenBuffers*8 + j >= height) {
+                        EOF = true;
+                        return; // EOF (solo queda padding)
+                    }
+                    file.write(buffer[i][j]);
+                }
+            }
+            writtenBuffers++;
+        }
+
+        public int widthBlocks() {
+            return width/8 + ((width%8 == 0)? 0 : 1);
+        }
+        public int heightBlocks() {
+            return height/8 + ((height%8 == 0)? 0 : 1);
+        }
+
+        public void close() throws IOException {
+            file.close();
+        }
+        
     }
 }

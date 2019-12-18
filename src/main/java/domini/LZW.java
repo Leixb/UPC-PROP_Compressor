@@ -146,9 +146,9 @@ public final class LZW {
 
         try {
             int n = input.readBitSet(5).asInt();
-            int old_code = input.readBitSet(n+1).asInt();
-            if (old_code != EOF) {
-                ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(old_code));
+            int oldCode = input.readBitSet(n+1).asInt();
+            if (oldCode != EOF) {
+                ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(oldCode));
 
                 for (byte b : aux) {
                     output.write(b);
@@ -161,7 +161,7 @@ public final class LZW {
                     if (decompressionDictionary.containsKey(code)) {
                         aux = new ArrayList<>(decompressionDictionary.get(code));
                     } else {
-                        aux = new ArrayList<>(decompressionDictionary.get(old_code));
+                        aux = new ArrayList<>(decompressionDictionary.get(oldCode));
                         aux.add(ch);
                     }
 
@@ -170,11 +170,11 @@ public final class LZW {
                     }
 
                     ch = aux.get(0);
-                    aux = new ArrayList<>(decompressionDictionary.get(old_code));
+                    aux = new ArrayList<>(decompressionDictionary.get(oldCode));
                     aux.add(ch);
                     decompressionDictionary.put(i++, aux);
 
-                    old_code = code;
+                    oldCode = code;
                     n = input.readBitSet(5).asInt();
                     code = input.readBitSet(n+1).asInt();
 

@@ -43,7 +43,7 @@ public final class Folder {
         }
         output.write(MARKER);
         try (IO.Byte.reader input = new IO.Byte.reader(file.toString())) {
-            LZW.compress(input, output);
+            LZ78.compress(input, output);
         }
     }
 
@@ -64,7 +64,7 @@ public final class Folder {
             new File(filePath).getParentFile().mkdirs(); // Create dirs if not exist
 
             try (IO.Byte.writer output = new IO.Byte.writer(filePath)) {
-                LZW.decompress(input, output);
+                LZ78.decompress(input, output);
             }
         }
     }

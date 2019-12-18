@@ -17,7 +17,7 @@ public class PpmImage {
         private int width, height;
 
         private int buffPos; // Bloque actual en el buffer
-        private byte[][][] buffer;
+        public byte[][][] buffer; // TODO: make private
 
         public Reader(IO.Byte.reader file) throws EOFException, IOException {
             this.file = file;
@@ -38,12 +38,13 @@ public class PpmImage {
                 throw new IOException("Unsupported File Format (bit depth > 255)");
 
             buffer = new byte[width][8][3];
+            buffPos = width/8+1;
         }
 
         public byte[][][] readBlock() throws IOException {
             byte[][][] block = new byte[8][8][3];
 
-            if (buffPos*8 > width) fillBuffer();
+            if (buffPos*8 >= width) fillBuffer();
 
             for (int i = 0; i < 8; ++i) {
                 for (int j = 0; j < 8; ++j) {
@@ -59,9 +60,10 @@ public class PpmImage {
 
         private void fillBuffer() throws IOException {
             buffPos = 0;
-            for (int i = 0; i < width; ++i) {
-                for (int j = 0; j < 8; ++j) {
+            for (int j = 0; j < 8; ++j) {
+                for (int i = 0; i < width; ++i) {
                     if(file.read(buffer[i][j]) != 3) {
+                        if (j == 0) throw new EOFException();
                         // EOF, fill the rest of buffer with previous rows and end
                         for (int k = j; k < 8; ++k) {
                             buffer[i][k] = buffer[i][j-1];
@@ -118,7 +120,7 @@ public class PpmImage {
 
         private final String HEADER_FORMAT = "P6\n%d %d\n255\n";
 
-        private byte[][][] buffer;
+        public byte[][][] buffer; // TODO: make private
         private int buffPos;
         private int writtenBuffers;
 
@@ -131,6 +133,9 @@ public class PpmImage {
 
             buffer = new byte[width][8][3];
 
+            writtenBuffers = 0;
+            buffPos = 0;
+
             writeHeader();
         }
 
@@ -139,7 +144,6 @@ public class PpmImage {
         }
 
         public void writeBlock(byte[][][] block) throws IOException {
-            if (buffPos*8 > width) writeBuffer();
 
             if (EOF) throw new EOFException();
 
@@ -151,18 +155,20 @@ public class PpmImage {
             }
 
             ++buffPos;
+            if (buffPos*8 >= width) writeBuffer();
         }
 
         private void writeBuffer() throws IOException {
-            for (int i = 0; i < width; ++i) {
-                for (int j = 0; j < 8; ++j) {
-                    if (writtenBuffers*8 + j >= height) {
-                        EOF = true;
-                        return; // EOF (solo queda padding)
-                    }
+            for (int j = 0; j < 8; ++j) {
+                if (writtenBuffers*8 + j >= height) {
+                    break;
+                }
+                for (int i = 0; i < width; ++i) {
                     file.write(buffer[i][j]);
                 }
             }
+
+            buffPos = 0;
             writtenBuffers++;
         }
 
@@ -174,6 +180,8 @@ public class PpmImage {
         }
 
         public void close() throws IOException {
+            if (buffPos*8 >= width) writeBuffer(); // We have one row to print
+            //file.flush();
             file.close();
         }
         

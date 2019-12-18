@@ -40,7 +40,6 @@ public final class JPEG {
 
         try (PpmImage.Reader img = new PpmImage.Reader(input)) {
 
-
             output.write(MAGIC_BYTE); // magic byte
             output.write((int) quality);
             output.write(img.getWidth());
@@ -49,12 +48,13 @@ public final class JPEG {
             final int cols = img.widthBlocks();
             final int rows = img.heightBlocks();
 
-            for (int i = 0; i < cols; ++i) {
-                for (int j = 0; j < rows; ++j) {
+            for (int j = 0; j < rows; ++j) {
+                for (int i = 0; i < cols; ++i) {
                     final byte[][][] channelBlocks = toYCbCr(img.readBlock());
 
                     for (int chan = 0; chan < 3; ++chan) {
                         final short[] encoded = JPEGBlock.encode(quality, chan != 0, channelBlocks[chan]);
+
                         if (chan == 0)  writeBlock(encoded, huffAcLum,   huffDcLum,   output);
                         else            writeBlock(encoded, huffAcChrom, huffDcChrom, output);
                     }
@@ -65,62 +65,6 @@ public final class JPEG {
 
     }
 
-    private static byte[][][] toYCbCr(byte[][][] channelBlocks) {
-        byte Y, Cb, Cr;
-
-        byte[][][] reorderedBlocks = new byte[3][8][8];
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                final double R = Byte.toUnsignedInt(channelBlocks[i][j][0]);
-                final double G = Byte.toUnsignedInt(channelBlocks[i][j][1]);
-                final double B = Byte.toUnsignedInt(channelBlocks[i][j][2]);
-
-                Y = doubleToByte(0 + 0.299 * R + 0.587 * G + 0.114 * B);
-                Cb = doubleToByte(128 - 0.1687 * R - 0.3313 * G + 0.5 * B);
-                Cr = doubleToByte(128 + 0.5 * R - 0.4187 * G - 0.0813 * B);
-
-                reorderedBlocks[0][i][j] = Y;
-                reorderedBlocks[1][i][j] = Cb;
-                reorderedBlocks[2][i][j] = Cr;
-            }
-        }
-
-        return reorderedBlocks;
-    }
-
-    private static byte[][][] toRGB(byte[][][] channelBlocks) {
-        byte R, G, B;
-
-        byte[][][] reorderedBlocks = new byte[8][8][3];
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                final double Y = Byte.toUnsignedInt(channelBlocks [0][i][j]);
-                final double Cb = Byte.toUnsignedInt(channelBlocks[1][i][j]);
-                final double Cr = Byte.toUnsignedInt(channelBlocks[2][i][j]);
-
-                R = doubleToByte(Y + 1.402 * (Cr - 128));
-                G = doubleToByte(Y - 0.34414 * (Cb - 128) - 0.71414 * (Cr - 128));
-                B = doubleToByte(Y + 1.772 * (Cb - 128));
-
-                reorderedBlocks[i][j][0] = R;
-                reorderedBlocks[i][j][1] = G;
-                reorderedBlocks[i][j][2] = B;
-            }
-        }
-
-        return reorderedBlocks;
-    }
-
-    private static byte doubleToByte(final double d) {
-        int n = (int) d;
-
-        if (n < 0)
-            n = 0;
-        else if (n > 255)
-            n = 255;
-
-        return (byte) n;
-    }
 
     /**
      * @brief Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw
@@ -142,11 +86,11 @@ public final class JPEG {
 
         try (PpmImage.Writer img = new PpmImage.Writer(output, w, h)) {
 
-        final int cols = img.widthBlocks();
-        final int rows = img.heightBlocks();
+            final int cols = img.widthBlocks();
+            final int rows = img.heightBlocks();
 
-            for (int i = 0; i < cols; ++i) {
-                for (int j = 0; j < rows; ++j) {
+            for (int j = 0; j < rows; ++j) {
+                for (int i = 0; i < cols; ++i) {
                     final byte[][][] channelBlocks = new byte[3][8][8];
 
                     for (int chan = 0; chan < 3; ++chan) {
@@ -275,4 +219,62 @@ public final class JPEG {
         }
         return num;
     }
+
+    private static byte[][][] toYCbCr(byte[][][] channelBlocks) {
+        byte Y, Cb, Cr;
+
+        byte[][][] reorderedBlocks = new byte[3][8][8];
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                final double R = Byte.toUnsignedInt(channelBlocks[i][j][0]);
+                final double G = Byte.toUnsignedInt(channelBlocks[i][j][1]);
+                final double B = Byte.toUnsignedInt(channelBlocks[i][j][2]);
+
+                Y = doubleToByte(0 + 0.299 * R + 0.587 * G + 0.114 * B);
+                Cb = doubleToByte(128 - 0.1687 * R - 0.3313 * G + 0.5 * B);
+                Cr = doubleToByte(128 + 0.5 * R - 0.4187 * G - 0.0813 * B);
+
+                reorderedBlocks[0][i][j] = Y;
+                reorderedBlocks[1][i][j] = Cb;
+                reorderedBlocks[2][i][j] = Cr;
+            }
+        }
+
+        return reorderedBlocks;
+    }
+
+    private static byte[][][] toRGB(byte[][][] channelBlocks) {
+        byte R, G, B;
+
+        byte[][][] reorderedBlocks = new byte[8][8][3];
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                final double Y = Byte.toUnsignedInt(channelBlocks [0][i][j]);
+                final double Cb = Byte.toUnsignedInt(channelBlocks[1][i][j]);
+                final double Cr = Byte.toUnsignedInt(channelBlocks[2][i][j]);
+
+                R = doubleToByte(Y + 1.402 * (Cr - 128));
+                G = doubleToByte(Y - 0.34414 * (Cb - 128) - 0.71414 * (Cr - 128));
+                B = doubleToByte(Y + 1.772 * (Cb - 128));
+
+                reorderedBlocks[i][j][0] = R;
+                reorderedBlocks[i][j][1] = G;
+                reorderedBlocks[i][j][2] = B;
+            }
+        }
+
+        return reorderedBlocks;
+    }
+
+    private static byte doubleToByte(final double d) {
+        int n = (int) d;
+
+        if (n < 0)
+            n = 0;
+        else if (n > 255)
+            n = 255;
+
+        return (byte) n;
+    }
+
 }

@@ -54,8 +54,11 @@ class JPEGTest {
         try {
             File tmpOut = File.createTempFile("JPEG_test", ".ppm");
             tmpOut.deleteOnExit();
-            File tmpAux = File.createTempFile("JPEG_test", ".piz.jpeg");
-            tmpAux.deleteOnExit();
+            // File tmpAux = File.createTempFile("JPEG_test", ".piz.jpeg");
+            // tmpAux.deleteOnExit();
+
+            File tmpAux = new File("generated/boat.jpeg.ppm");
+
             try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
                 IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
                     JPEG.compress(input, output, (short) 50);

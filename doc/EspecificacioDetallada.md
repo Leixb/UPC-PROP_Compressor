@@ -7,26 +7,16 @@ lang: es
 
 # Especificación Detallada
 
-## Main
+## CtrlPresentacio
 
-**Descripción:** Interficie con la que el usuario interactua para elegir el algoritmo y denotar el fichero que se quiere comprimir/descomprimir y el archivo de destino.
-
-### Atributos
-
-* `private static String banner`
-  * **Descripción**: String que contiene el *banner* que se presenta al ejecutar el Main.
-* `private static Scanner scanner`
-  * **Descripción**: Scanner utilizado para leer los *inputs* del usuario.
+**Descripción:** Interficie grafica con la que el usuario interactua para elegir el algoritmo y denotar el fichero que se quiere comprimir/descomprimir y el archivo de destino.
 
 ### Métodos
 
-* `public static int prompt(String[] options)`
-  * **Descripción**: Dadas una opciones las imprime y da a escoger una de ellas.
-  * **Return**: Devuelve la opción elegida por el usuario.
-* `private static void comprimir()`
+* `public void compress(int alg, String fileIn, String fileOut, short qualityJPEG)`
   * **Descripción**: Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y el nombre del archivo comprimido que luego pasa al CtrlDomini.
   * **Return**: Es void por tanto no devuelve nada.
-* `private static void descomprimir()`
+* `public void decompress(String fileIn, String fileOut)`
   * **Descripción**: Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini.
   * **Return**: Es void por tanto no devuelve nada.
 
@@ -36,38 +26,34 @@ lang: es
 
 ### Atributos
 
-* `public enum Alg {LZ78d, LZSSd, LZWd, JPEGd}`
-  * **Descripción**: *Enum* usado para identificar cada algoritmo.
+* `private String fileIn`
+  * **Descripción**: Directorio del archivo que se desea comprimir.
+* `private String fileOut`
+  * **Descripción**: Directorio del archivo en el que se desea guardar la compresión.
+* `private Statistics stats`
+  * **Descripción**: Objeto para crear y guardar la estadísticas generadas por la compresión.
 
 ### Métodos
 
-* `public static Statistics compress(Alg alg, String fileIn, String fileOut, Short quality)`
+* `public void compress(int alg, String fileIn, String fileOut, Short quality)`
   * **Descripción**: Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente.
-  * **Parametros**:
-    * alg: instancia de Alg que indica el algoritmo elegido para comprimir.
-    * quality: calidad de compresión para el JPEG (entre 1 y 100).
+  * **Párametros**:
+    * alg: Algoritmo con el que comprimir.
+    * fileIn: Nombre del archivo a comprimir.
+    * fileOut: Nombre del archivo comprimido.
+    * quality: Calidad de compresión para el JPEG (entre 1 y 100).
   * **Return**: Devuelve las estadísticas generadas para la compresión.
-* `public static Statistics decompress(String fileIn, String fileOut)`
+* `public void decompress(String fileIn, String fileOut)`
   * **Descripción**: Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió.
+  * **Párametros**:
+    * fileIn: Nombre del fichero comprimido.
+    * fileOut: Nombre del fichero descomprimido.
   * **Return**: Devuelve las estadísticas de la descompresión.
-
-## CtrlPresentacio
-
-**Descripción:** Presenta datos al usuario.
-
-### Métodos
-
-* `public static void printStatsCompress(Statistics stats)`
-  * **Descripción**: Imprime las estadísticas de compresión.
-  * **Return**: Es void por tanto no devuelve nada.
-* `public static void printStatsDecompress(Statistics stats)`
-  * **Descripción**: Imprime las estadísticas de descompresión.
-  * **Return**: Es void por tanto no devuelve nada.
-* `public static String readableFileSize(double d)`
-  * **Descripción**:  Da el formato correcto al tamaño de un fichero (B,kB,etc)
-  * **Parámetros**:
+* `private static String readableFileSize(double d)`
+  * **Descripción**:Da el formato correcto al tamaño de un fichero (B,kB,etc).
+  * **Párametros**:
     * d: Tamaño de un fichero en bytes.
-  * **Return**: Devuelve el tamaño del fichero en una magnitud más legible.
+  * **Return**: Tamaño del fichero en la magnitud que le corresponda.
 
 ## LZSS
 
@@ -90,36 +76,30 @@ lang: es
 
 ### Métodos
 
-* `public static void compress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Crea el objeto lector y escritor para la compresión y llama al compresor.
-  * **Return**: Es void por tanto no devuelve nada.
-* `private static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
+* `public static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
   * **Descripción**: Usando el algoritmo LZSS esta función comprime un archivo.
   * **Parámetros**:
-    * input: objeto de lectura del archivo que se quiere comprimir.
-    * output: objeto de escritura al archivo comprimido.
+    * input: Objeto de lectura del archivo que se quiere comprimir.
+    * output: Objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
-* `public static void decompress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Crea el objeto lector y escritor para la descompresión y llama al descompresor.
-  * **Return**: Es void por tanto no devuelve nada.
-* `private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
+* `public static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
   * **Descripción**:  Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido con este algoritmo.
   * **Parámetros**:
-    * input: objeto de lectura del archivo comprimido.
-    * output: objeto de escritura al archivo descomprimido.
+    * input: Objeto de lectura del archivo comprimido.
+    * output: Objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static void computeLPSArray(final int[] lps, int patLength)`
   * **Descripción**:  Calcula el vector *lps*, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición.
   * **Parámetros**:
-    * lps: es un vector vacío que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición.
-    * pathLength: length del pattern para el que se quiere computar el array lps,
+    * lps: Es un vector vacío que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición.
+    * pathLength: Length del pattern para el que se quiere computar el array lps,
   * **Return:** Es void por tanto no devuelve nada.
 * `private static int kmp(int currentACIndex, int currentSWIndex, boolean fullSW)`
   * **Descripción**: Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patrón.
-  * **Parametros**:
-    * currentACIndex: la length del pattern,
-    * currentSWIndex el indice donde empieza el slidingWindow, ya que es circular.
-    * fullSW indica el estado de la slidingWindow, true si lo está, false en caso contrario.
+  * **Párametros**:
+    * currentACIndex: La length del pattern,
+    * currentSWIndex: El indice donde empieza el slidingWindow, ya que es circular.
+    * fullSW: Indica el estado de la slidingWindow, true si lo está, false en caso contrario.
   * **Return:** Devuelve el indice, empezando por el final, de la primera ocurrencia de actualCharacters dentro de slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow.
 * `private static double log2(final double n)`
   * **Descripción**: Calcula el logaritmo en base 2 de un real.
@@ -138,14 +118,11 @@ lang: es
   
 ### Métodos
 
-* `public static void compress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Llama al método compress de la clase LZ78 y le pasa como parámetros inputFilename y outputFilename.
-  * **Return**: Es void por tanto no devuelve nada.
-* `private static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
+* `public static void compress(final IO.Byte.reader input, final IO.Bit.writer output)`
   * **Descripción**: Comprime el archivo pasado por parámetro input y escribe la compresión en el parámetro output.
-  * **Parametros**:
-    * input: objeto de lectura del archivo que se quiere comprimir.
-    * output: objeto de escritura al archivo comprimido.
+  * **Párametros**:
+    * input: Objeto de lectura del archivo que se quiere comprimir.
+    * output: Objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
 * `private static void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output)`
   * **Descripción**: Llamada para escribir en el archivo comprimido el array pasado como parámetro.
@@ -160,18 +137,21 @@ lang: es
   * **Return**: Es void por tanto no devuelve nada.
 * `private static void decompress(final IO.Bit.reader input, final IO.Byte.writer output)`
   * **Descripción**:  Descomprime el archivo comprimido pasado por input y escribe la descompresión por el parámetro output.
-  * **Parametros**:
-    * input: objeto de lectura del archivo comprimido.
-    * output: objeto de escritura al archivo descomprimido.
+  * **Párametros**:
+    * input: Objeto de lectura del archivo comprimido.
+    * output: Objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 
 ###Subclase Pair
+
 **Descripción**: Clase Pair para poder crear, en este caso, pairs de Integers y bytes.
 
 ###Subclase Nodo
+
 **Descripción**: Clase para crear un Nodo del árbol, el cual tiene un indice de tipo int y 256 hijos.
 
 ###Subclase Tree
+
 **Descripción**: Clase para inicializar un árbol con un método bool para llenarlo con Nodos codificando el archivo que se desea comprimir y devuelve true en caso de overflow.
 
 ## LZW
@@ -201,19 +181,13 @@ lang: es
 * `private static void createDecompressionDictionary()`
   * **Descripción**: Crea el diccionario de descompresión y lo inicializa.
   * **Return**: Es void por tanto no devuelve nada.
-* `public static void compress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Llama a una función que comprime un archivo.
-  * **Return**: Es void por tanto no devuelve nada.
-* `private static void compress (IO.Byte.reader input, IO.Bit.writer output)`
+* `public static void compress (IO.Byte.reader input, IO.Bit.writer output)`
   * **Descripción**: Comprime un archivo implementando un algoritmo LZW.
   * **Parámetros**:
     * input: Objeto de lectura del archivo que se quiere comprimir.
     * output: Objeto de escritura al archivo comprimido.
   * **Return:** Es void por tanto no devuelve nada.
-* `public static void decompress(final String inputFilename, final String outputFilename)`
-  * **Descripción**: Llama a una función que descomprime un archivo.
-  * **Return**: Es void por tanto no devuelve nada.
-* `private static void decompress (IO.Bit.reader input, IO.Byte.writer output)`
+* `public static void decompress (IO.Bit.reader input, IO.Byte.writer output)`
   * **Descripción**: Comprime un archivo implementando un algoritmo LZW.
   * **Parámetros**:
     * input: Objeto de lectura del archivo que se quiere descomprimir.
@@ -227,17 +201,22 @@ lang: es
 ### Atributos
 
 * `public final static byte MAGIC_BYTE`
-  * **Descripción**: magic byte del JPEG.
+  * **Descripción**: Magic byte del JPEG.
 
 ### Métodos
 
-* `public static void compress(final String inputFile, final String outputFile, final short quality)`
+* `public static void compress(final IO.Byte.reader input, final IO.Bit.writer output, final short quality)`
   * **Descripción**: Comprime una imagen PPM bloque a bloque.
   * **Parámetros**:
+    * inputFile: Nombre del fichero de entrada (imagen ppm).
+    * outputFile: Nombre del fichero de salida (comprimido).
     * quality: Calidad de compresión (1-100) donde 100 es la mejor calidad.
   * **Return**: Es void por tanto no devuelve nada.
-* `public static void decompress(final String inputFile, final String outputFile)`
+* `public static void decompress(IO.Bit.reader input, IO.Byte.writer output)`
   * **Descripción**: Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw.
+  * **Parámetros**:
+    * inputFile: Nombre del fichero de entrada (comprimido).
+    * outputFile: Nombre del fichero de salida (imagen PPM).
   * **Return**: Es void por tanto no devuelve nada.
 * `public static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file)`
   * **Descripción**: Lee un bloque codificado con las tablas Huffman.
@@ -251,6 +230,14 @@ lang: es
   * **Parámetros**:
     * huff: Tabla Huffman.
   * **Return**: Devuelve el código Huffman decodificado.
+* `public static void writeBlock(final short[] encoded, final Huffman huffAC, final Huffman huffDC, final IO.Bit.writer file)`
+  * **Descripción**: Escribe un bloque codificado con las tablas Huffman.
+  * **Parámetros**: 
+    * encoded: Codificado sin Huffman.
+    * huffAC: Tabla Huffman de valores AC.
+    * huffDC: Tabla Huffman de valores DC.
+    * file: Fichero comprimido al que escribir
+  * **Return**: Es void por lo tanto no devuelve nada.
 * `private static void write(int value, int l, IO.Bit.writer file)`
   * **Descripción**: Escribe en un fichero un valor en binario, si value es positivo escribe value y si es negativo escribe ~(-value).
   * **Parámetros**:
@@ -283,7 +270,7 @@ lang: es
   * **Return**: Devuelve el bloque 8x8 codificado en RLE.
 * `public static byte[][] decode(final short quality, final boolean isChrominance, final short[] data)`
   * **Descripción**: Deshace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original.
-  * **Parametros**:
+  * **Párametros**:
     * quality: Calidad de compresión (1-100).
     * isChrominance: Si es un bloque de Chrominance (si falso Luminance).
     * data: Bloque 8x8 a codificado en RLE.
@@ -293,7 +280,7 @@ lang: es
 
 **Descripción:** Codificación y decodificación  del paso *Discrete Cosine Transform* de la compresión/descompresión JPEG para un bloque de 8x8.
 
-### Subclase: Quantizacion
+### Subclase: Quantization
 
 **Descripción:** Codificación y decodificación  del paso de cuantización con tablas predefinidas, ajustadas según la calidad de compresión especificada, para la compresión/descompresión JPEG de un bloque de 8x8.
 
@@ -427,9 +414,6 @@ lang: es
   * **Descripción**: Si quedan bits en el buffer retorna el siguient bit, sinó rellena el buffer leyendo un byte del fichero y retorna el bit de mayor peso.
   * **Return**: Retorna el siguiente bit leído del fichero.
 * Existen varios *read\[Byte/Char/Int/BitSetL\]()* que leen del archivo un byte, char, int y BitSetL y devuelven el byte, char, int y BitSetL respectivamente. Además en el caso del BitSetL recibe como parámetro cuantos bits se quieren leer.
-* `private int readMask(int mask)`
-  * **Descripción**: Lee *mask* bits del fichero.
-  * **Return**: Retorna los *mask* bits leídos del archivo interpretados como entero.
 * `public void close()`
   * **Descripción**: Invocado al finalizar la lectura para cerrar el *BufferedInputStream*.
   * **Return**: Es void por tanto no devuelve nada

@@ -74,7 +74,7 @@ public final class LZW {
 
     private static void writeCode (int code, final IO.Bit.writer output) throws IOException{
         int nbits = bits_needed(code);
-        final BitSetL n = new BitSetL(nbits-1,5);
+        final BitSetL n = new BitSetL(nbits-1,4);
         output.write(n);
         final BitSetL bsNum = new BitSetL(code, nbits);
         output.write(bsNum);
@@ -141,8 +141,8 @@ public final class LZW {
         int i = DICTIONARY_SIZE + 1;
 
         try {
-            int n = input.readBitSet(5).asInt();
-            int old_code = input.readBitSet(n).asInt();
+            int n = input.readBitSet(4).asInt();
+            int old_code = input.readBitSet(n+1).asInt();
             if (old_code != EOF) {
                 ArrayList<Byte> aux = new ArrayList<>(decompressionDictionary.get(old_code));
 
@@ -151,8 +151,8 @@ public final class LZW {
                 }
 
                 byte ch = aux.get(0);
-                n = input.readBitSet(5).asInt();
-                int code = input.readBitSet(n).asInt();
+                n = input.readBitSet(4).asInt();
+                int code = input.readBitSet(n+1).asInt();
                 while (code != EOF) {
                     if (decompressionDictionary.containsKey(code)) {
                         aux = new ArrayList<>(decompressionDictionary.get(code));
@@ -171,15 +171,15 @@ public final class LZW {
                     decompressionDictionary.put(i++, aux);
 
                     old_code = code;
-                    n = input.readBitSet(5).asInt();
-                    code = input.readBitSet(n).asInt();
+                    n = input.readBitSet(4).asInt();
+                    code = input.readBitSet(n+1).asInt();
 
                     if (code == OVERFLOW) {   //[DICTIONARY OVERFLOW DETECTED]
                         System.out.println("[DICTIONARY OVERFLOW DETECTED]");
                         createDecompressionDictionary();
                         i = DICTIONARY_SIZE;
-                        n = input.readBitSet(5).asInt();
-                        code = input.readBitSet(n).asInt();
+                        n = input.readBitSet(4).asInt();
+                        code = input.readBitSet(n+1).asInt();
                     }
                 }
             }

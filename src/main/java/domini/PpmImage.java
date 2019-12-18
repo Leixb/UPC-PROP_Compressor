@@ -17,7 +17,7 @@ public class PpmImage {
         private int width, height;
 
         private int buffPos; // Bloque actual en el buffer
-        public byte[][][] buffer; // TODO: make private
+        private byte[][][] buffer;
 
         public Reader(IO.Byte.reader file) throws EOFException, IOException {
             this.file = file;
@@ -120,7 +120,7 @@ public class PpmImage {
 
         private final String HEADER_FORMAT = "P6\n%d %d\n255\n";
 
-        public byte[][][] buffer; // TODO: make private
+        private byte[][][] buffer;
         private int buffPos;
         private int writtenBuffers;
 
@@ -181,7 +181,7 @@ public class PpmImage {
 
         public void close() throws IOException {
             if (buffPos*8 >= width) writeBuffer(); // We have one row to print
-            //file.flush();
+            file.flush();
             file.close();
         }
         

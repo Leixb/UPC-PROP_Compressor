@@ -12,14 +12,11 @@ class PpmImageTest {
 
     @Test
     void moveFile() {
-        //final String file = "gradient_35";
-        final String file = "boat";
-        final String inputFile = String.format("images/%s.ppm", file);
+        final String inputFile = String.format("images/boat.ppm", file);
 
         try {
-            // File tmpOut = File.createTempFile("PpmTest", ".ppm");
-            // tmpOut.deleteOnExit();
-            File tmpOut = new File( String.format("generated/%s.ppm", file));
+            File tmpOut = File.createTempFile("PpmTest", ".ppm");
+            tmpOut.deleteOnExit();
 
             try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {
                 try(PpmImage.Reader imgIn = new PpmImage.Reader(input)) {
@@ -29,18 +26,9 @@ class PpmImageTest {
 
                     try(PpmImage.Writer imgOut = new PpmImage.Writer(output, imgIn.getWidth(), imgIn.getHeight())) {
                         for (int j = 0; j < rows; ++j) {
-                            System.out.println(j);
                             for (int i = 0; i < cols; ++i) {
                                 imgOut.writeBlock(imgIn.readBlock());
                             }
-                            //assertArrayEquals(imgOut.buffer, imgIn.buffer);
-
-                            // for (int i = 0; i < imgOut.buffer.length; ++i) {
-                            //     for (int k = 0; k < imgOut.buffer[i].length; ++k) {
-                            //         System.out.printf("%02x ", imgOut.buffer[i][k][0]);
-                            //     }
-                            //     System.out.println();
-                            // }
                         }
                     }
                 }

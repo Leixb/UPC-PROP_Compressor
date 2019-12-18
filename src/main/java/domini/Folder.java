@@ -7,6 +7,7 @@ package domini;
 import persistencia.IO;
 
 import java.io.IOException;
+import java.io.EOFException;
 import java.io.File;
 import java.nio.file.*;
 import java.util.stream.Stream;
@@ -20,11 +21,16 @@ public final class Folder {
 
     private static char MARKER = 0xFFFF;
 
+    public final static byte MAGIC_BYTE = (byte)0xf0;
+
     public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
-        try(Stream<Path> file = Files.walk(Paths.get(folderPath)).filter(Files::isRegularFile)) {
-            file.forEach((p) -> {
+        output.write(MAGIC_BYTE); // magic byte
+        Path basePath = Paths.get(folderPath);
+        try(Stream<Path> files = Files.walk(basePath).filter(Files::isRegularFile)) {
+            files.forEach(f -> {
                 try {
-                    appendFile(p.toString(), output);
+                    appendFile(basePath, f, output);
+                    //output.flush();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -32,35 +38,39 @@ public final class Folder {
         }
     }
 
-    private static void appendFile(String filename, IO.Bit.writer output) throws IOException {
+    private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws IOException {
         // Write filename + Marker then call compression algorithm
-        for (char c : filename.toCharArray()) {
+        for (char c : (basePath.relativize(file)).toString().toCharArray()) {
             output.write(c);
         }
         output.write(MARKER);
-        try (IO.Byte.reader input = new IO.Byte.reader(filename)) {
-            LZW.compress(input, output);
+        try (IO.Byte.reader input = new IO.Byte.reader(file.toString())) {
+            LZ78.compress(input, output);
         }
     }
 
     public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
+        input.readByte(); // Magic Byte
         for(;;) {
             String filename = "";
-            for (;;) {
-                int read = input.readChar();
-                if (read == -1) return; // EOF
-                char c = (char) read;
-                if (c == MARKER) break; // got filename
-                filename += c;
+            try {
+                for (;;) {
+                    char c = (char)input.readChar();
+                    if (c == MARKER) break; // got filename
+                    filename += c;
+                }
+            } catch (EOFException e) {
+                // EOF
+                return;
             }
 
             final String filePath = Paths.get(folderPath, filename).toString();
             new File(filePath).getParentFile().mkdirs(); // Create dirs if not exist
 
             try (IO.Byte.writer output = new IO.Byte.writer(filePath)) {
-                LZW.decompress(input, output);
-            }
+                LZ78.decompress(input, output);
+            } 
         }
     }
 

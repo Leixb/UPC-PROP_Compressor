@@ -10,7 +10,7 @@ import java.io.*;
  * @brief Imagen PPM
  */
 public class PpmImage {
-    static public class Reader implements AutoCloseable {
+    static public class Reader {
         private IO.Byte.reader file;
         private int width, height;
 
@@ -86,10 +86,6 @@ public class PpmImage {
             return height/8 + ((height%8 == 0)? 0 : 1);
         }
 
-        public void close() throws IOException {
-            file.close();
-        }
-
         private int readInt() throws IOException {
             char c;
             do {
@@ -111,12 +107,12 @@ public class PpmImage {
         }
     }
 
-    static public class Writer implements AutoCloseable {
+    static public class Writer {
         private IO.Byte.writer file;
 
         private int width, height;
 
-        private final String HEADER_FORMAT = "P6\n%d %d\n255\n";
+        private static final String HEADER_FORMAT = "P6\n%d %d\n255\n";
 
         private byte[][][] buffer;
         private int buffPos;
@@ -176,12 +172,5 @@ public class PpmImage {
         public int heightBlocks() {
             return height/8 + ((height%8 == 0)? 0 : 1);
         }
-
-        public void close() throws IOException {
-            if (buffPos*8 >= width) writeBuffer(); // We have one row to print
-            file.flush();
-            file.close();
-        }
-        
     }
 }

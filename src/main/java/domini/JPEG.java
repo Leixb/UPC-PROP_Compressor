@@ -40,32 +40,29 @@ public final class JPEG {
         final Huffman huffDcChrom = new Huffman(false, true);
         final Huffman huffDcLum = new Huffman(false, false);
 
-        try (PpmImage.Reader img = new PpmImage.Reader(input)) {
+        PpmImage.Reader img = new PpmImage.Reader(input);
 
-            output.write(MAGIC_BYTE); // magic byte
-            output.write((int) quality);
-            output.write(img.getWidth());
-            output.write(img.getHeight());
+        output.write(MAGIC_BYTE); // magic byte
+        output.write((int) quality);
+        output.write(img.getWidth());
+        output.write(img.getHeight());
 
-            final int cols = img.widthBlocks();
-            final int rows = img.heightBlocks();
+        final int cols = img.widthBlocks();
+        final int rows = img.heightBlocks();
 
-            for (int j = 0; j < rows; ++j) {
-                for (int i = 0; i < cols; ++i) {
-                    final byte[][][] channelBlocks = toYCbCr(img.readBlock());
+        for (int j = 0; j < rows; ++j) {
+            for (int i = 0; i < cols; ++i) {
+                final byte[][][] channelBlocks = toYCbCr(img.readBlock());
 
 
-                    for (int chan = 0; chan < 3; ++chan) {
-                        final short[] encoded = JPEGBlock.encode(quality, chan != 0, channelBlocks[chan]);
+                for (int chan = 0; chan < 3; ++chan) {
+                    final short[] encoded = JPEGBlock.encode(quality, chan != 0, channelBlocks[chan]);
 
-                        if (chan == 0)  writeBlock(encoded, huffAcLum,   huffDcLum,   output);
-                        else            writeBlock(encoded, huffAcChrom, huffDcChrom, output);
-                    }
+                    if (chan == 0)  writeBlock(encoded, huffAcLum,   huffDcLum,   output);
+                    else            writeBlock(encoded, huffAcChrom, huffDcChrom, output);
                 }
             }
-
         }
-
     }
 
 
@@ -87,27 +84,26 @@ public final class JPEG {
         final int w = input.readInt();
         final int h = input.readInt();
 
-        try (PpmImage.Writer img = new PpmImage.Writer(output, w, h)) {
+        PpmImage.Writer img = new PpmImage.Writer(output, w, h);
 
-            final int cols = img.widthBlocks();
-            final int rows = img.heightBlocks();
+        final int cols = img.widthBlocks();
+        final int rows = img.heightBlocks();
 
-            for (int j = 0; j < rows; ++j) {
-                for (int i = 0; i < cols; ++i) {
-                    final byte[][][] channelBlocks = new byte[3][8][8];
+        for (int j = 0; j < rows; ++j) {
+            for (int i = 0; i < cols; ++i) {
+                final byte[][][] channelBlocks = new byte[3][8][8];
 
-                    for (int chan = 0; chan < 3; ++chan) {
-                        short[] encoded;
-                        
-                        if (chan == 0)  encoded = readBlock(huffAcLum,   huffDcLum,   input);
-                        else            encoded = readBlock(huffAcChrom, huffDcChrom, input);
+                for (int chan = 0; chan < 3; ++chan) {
+                    short[] encoded;
+                    
+                    if (chan == 0)  encoded = readBlock(huffAcLum,   huffDcLum,   input);
+                    else            encoded = readBlock(huffAcChrom, huffDcChrom, input);
 
-                        channelBlocks[chan] = JPEGBlock.decode(quality, chan != 0, encoded);
+                    channelBlocks[chan] = JPEGBlock.decode(quality, chan != 0, encoded);
 
-                    }
-
-                    img.writeBlock(toRGB(channelBlocks));
                 }
+
+                img.writeBlock(toRGB(channelBlocks));
             }
         }
 

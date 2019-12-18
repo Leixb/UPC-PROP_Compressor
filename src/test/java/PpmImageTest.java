@@ -19,17 +19,16 @@ class PpmImageTest {
             tmpOut.deleteOnExit();
 
             try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {
-                try(PpmImage.Reader imgIn = new PpmImage.Reader(input)) {
 
-                    final int cols = imgIn.widthBlocks();
-                    final int rows = imgIn.heightBlocks();
+                PpmImage.Reader imgIn = new PpmImage.Reader(input);
 
-                    try(PpmImage.Writer imgOut = new PpmImage.Writer(output, imgIn.getWidth(), imgIn.getHeight())) {
-                        for (int j = 0; j < rows; ++j) {
-                            for (int i = 0; i < cols; ++i) {
-                                imgOut.writeBlock(imgIn.readBlock());
-                            }
-                        }
+                final int cols = imgIn.widthBlocks();
+                final int rows = imgIn.heightBlocks();
+                PpmImage.Writer imgOut = new PpmImage.Writer(output, imgIn.getWidth(), imgIn.getHeight());
+
+                for (int j = 0; j < rows; ++j) {
+                    for (int i = 0; i < cols; ++i) {
+                        imgOut.writeBlock(imgIn.readBlock());
                     }
                 }
             }

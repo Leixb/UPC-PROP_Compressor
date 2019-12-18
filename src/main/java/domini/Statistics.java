@@ -5,6 +5,9 @@
 package domini;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * @brief Genera estadísticas de compresión/descompresión.
@@ -43,16 +46,32 @@ public class Statistics {
      * @brief Setter de iniFileSize
      * @param filename nombre del archivo de entrada cuyo tamaño se quiere consultar
      */
-    public void setIniFileSize (final String filename) {
-        iniFileSize = new File(filename).length();
+    public void setIniFileSize (final String filename) throws IOException {
+        File file = new File(filename);
+        if (file.isFile()) iniFileSize = file.length();
+        else if (file.isDirectory()){
+            // carpeta
+            iniFileSize = Files.walk(Paths.get(filename))
+              .filter(p -> p.toFile().isFile())
+              .mapToLong(p -> p.toFile().length())
+              .sum();
+        }
     }
 
     /**
      * @brief Setter de finFileSize
      * @param filename nombre del archivo de salida cuyo tamaño se quiere consultar
      */
-    public void setFinFileSize(final String filename) {
-        finFileSize = new File(filename).length();
+    public void setFinFileSize(final String filename) throws IOException {
+        File file = new File(filename);
+        if (file.isFile()) finFileSize = file.length();
+        else if (file.isDirectory()){
+            // carpeta
+            finFileSize = Files.walk(Paths.get(filename))
+              .filter(p -> p.toFile().isFile())
+              .mapToLong(p -> p.toFile().length())
+              .sum();
+        }
     }
 
     /**

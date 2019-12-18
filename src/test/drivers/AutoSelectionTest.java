@@ -1,5 +1,7 @@
 import domini.*;
 
+import java.io.File;
+
 class AutoSelectionTest {
     public static void main(String[] args) {
         new File("generated/").mkdirs();
@@ -16,11 +18,15 @@ class AutoSelectionTest {
 
         for (int i=0; i<fileIn.length; ++i) {
             System.out.println("[" + (i+1) + "] Archivo: " + fileIn[i]);
-            for (int j = 1; j <= algName.length; ++j) {
-                CtrlDomini ctrlDom = new CtrlDomini();
-                ctrlDom.compress(j, fileIn[i], fileComp, (short) 0);
+            for (int j = 0; j < algName.length; ++j) {
+                try {
+                    CtrlDomini ctrlDom = new CtrlDomini();
+                    ctrlDom.compress(j+1, fileIn[i], fileComp, (short) 0);
 
-                System.out.println(" - " + algName[j] + ": " + ctrlDom.getDeflated());
+                    System.out.println(" - " + algName[j] + ": " + ctrlDom.getDeflated());
+                } catch (Exception e){
+
+                }
             }
             System.out.println();
         }

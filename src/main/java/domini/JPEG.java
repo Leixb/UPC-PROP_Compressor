@@ -52,6 +52,7 @@ public final class JPEG {
                 for (int i = 0; i < cols; ++i) {
                     final byte[][][] channelBlocks = toYCbCr(img.readBlock());
 
+
                     for (int chan = 0; chan < 3; ++chan) {
                         final short[] encoded = JPEGBlock.encode(quality, chan != 0, channelBlocks[chan]);
 
@@ -106,9 +107,7 @@ public final class JPEG {
                     img.writeBlock(toRGB(channelBlocks));
                 }
             }
-
         }
-
 
     }
 

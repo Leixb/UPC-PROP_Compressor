@@ -5,8 +5,9 @@ import java.io.File;
 class AutoSelectionTest {
     public static void main(String[] args) {
         new File("generated/").mkdirs();
-        final String[] fileIn = {"texts/Blank.txt","texts/DonQuijote.txt","texts/Large.txt",
-                "images/gonza.ppm","images/lake.ppm",
+        final String[] fileIn = {"texts/Blank.txt","texts/Prova.txt","texts/DonQuijote.txt","texts/Large.txt",
+                "texts/HolyBible.pdf",
+                "images/gradient8.ppm","images/gonza.ppm","images/lake.ppm",
                 "images/cat.jpg","images/lizard.jpg",
                 "images/chickenJoe.png",
                 "audio/APM_Parlant_clar_i_catala.mp3","audio/marenostrum.mp3",

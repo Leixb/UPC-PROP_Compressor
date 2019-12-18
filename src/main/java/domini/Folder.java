@@ -7,6 +7,7 @@ package domini;
 import persistencia.IO;
 
 import java.io.IOException;
+import java.io.EOFException;
 import java.io.File;
 import java.nio.file.*;
 import java.util.stream.Stream;
@@ -29,6 +30,7 @@ public final class Folder {
             files.forEach(f -> {
                 try {
                     appendFile(basePath, f, output);
+                    //output.flush();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -52,12 +54,15 @@ public final class Folder {
         input.readByte(); // Magic Byte
         for(;;) {
             String filename = "";
-            for (;;) {
-                int read = input.readChar();
-                if (read == -1) return; // EOF
-                char c = (char) read;
-                if (c == MARKER) break; // got filename
-                filename += c;
+            try {
+                for (;;) {
+                    char c = (char)input.readChar();
+                    if (c == MARKER) break; // got filename
+                    filename += c;
+                }
+            } catch (EOFException e) {
+                // EOF
+                return;
             }
 
             final String filePath = Paths.get(folderPath, filename).toString();
@@ -65,7 +70,7 @@ public final class Folder {
 
             try (IO.Byte.writer output = new IO.Byte.writer(filePath)) {
                 LZ78.decompress(input, output);
-            }
+            } 
         }
     }
 

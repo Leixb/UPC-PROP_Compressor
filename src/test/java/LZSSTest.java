@@ -11,7 +11,7 @@ class LZSSTest {
 
     @Test
     void compressDecompressFile() {
-        final String inputFile = "texts/DonQuijote.txt";
+        final String inputFile = "JocsProva/texts/DonQuijote.txt";
 
         try {
             File tmpAux = File.createTempFile("LZSSTest", ".lzss.piz");

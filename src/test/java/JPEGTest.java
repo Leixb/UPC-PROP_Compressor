@@ -49,7 +49,7 @@ class JPEGTest {
 
     @Test
     void test() {
-        String inputFile = "images/boat.ppm";
+        String inputFile = "JocsProva/images/boat.ppm";
 
         try {
             File tmpOut = File.createTempFile("JPEG_test", ".ppm");

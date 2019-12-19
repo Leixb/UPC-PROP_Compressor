@@ -98,3 +98,9 @@ run_BitSetL_driver:
 
 run_AutoSelection_Test:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) AutoSelectionTest
+
+build_AutoSelectionTest: dirs
+	$(JC) -d $(CP_DRIVERS) -cp $(CP) src/test/drivers/AutoSelectionTest.java
+
+run_AutoSelection_Test:
+	$(JAVA) -cp $(CP):$(CP_DRIVERS) AutoSelectionTest

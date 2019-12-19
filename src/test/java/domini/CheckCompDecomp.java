@@ -1,8 +1,10 @@
+package domini;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.*;
 
-class CheckCompDecomp {
+public class CheckCompDecomp {
     static public void assertFileEquals (String original, String decompressed) throws IOException {
         try(BufferedReader origin = new BufferedReader(new FileReader(original));
             BufferedReader decomp = new BufferedReader(new FileReader(decompressed))) {

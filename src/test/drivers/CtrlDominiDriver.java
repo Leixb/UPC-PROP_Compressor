@@ -13,7 +13,7 @@ class CtrlDominiDriver {
         System.out.println("DONE");
     }
 
-    public static void testCompress () {
+    private static void testCompress () {
         System.out.println("Compression algorithm: ");
         String[] options = {"LZ78", "LZSS", "LZW", "JPEG"};
         int num = prompt(options);
@@ -39,7 +39,7 @@ class CtrlDominiDriver {
         }
     }
 
-    public static void testDecompress  () {
+    private static void testDecompress  () {
         System.out.println("Input file (file to decompress): ");
         String inputFile = scanner.next();
         System.out.println("Output file: ");
@@ -53,42 +53,42 @@ class CtrlDominiDriver {
         }
     }
 
-    public static void testGetTime(){
+    private static void testGetTime(){
         System.out.println("getTime: " + ctdom.getTime());
         System.out.println("DONE");
     }
 
-    public static void testGetDeflated(){
+    private static void testGetDeflated(){
         System.out.println("getDeflated: " + ctdom.getDeflated());
         System.out.println("DONE");
     }
 
-    public static void testGetSpeedCompress(){
+    private static void testGetSpeedCompress(){
         System.out.println("getSpeedCompress: " + ctdom.getSpeedCompress());
         System.out.println("DONE");
     }
 
-    public static void testGetInflated(){
+    private static void testGetInflated(){
         System.out.println("getInflated: " + ctdom.getInflated());
         System.out.println("DONE");
     }
 
-    public static void testGetSpeedDecompress(){
+    private static void testGetSpeedDecompress(){
         System.out.println("getSpeedDecompress: " + ctdom.getSpeedDecompress());
         System.out.println("DONE");
     }
 
-    public static void testGetFileIn(){
+    private static void testGetFileIn(){
         System.out.println("getFileIn: " + ctdom.getFileIn());
         System.out.println("DONE");
     }
 
-    public static void testGetFileOut(){
+    private static void testGetFileOut(){
         System.out.println("getFileOut: " + ctdom.getFileOut());
         System.out.println("DONE");
     }
 
-    public static int prompt(String[] options) {
+    private static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);

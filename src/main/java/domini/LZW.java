@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @brief Compresión y descompresión de archivos de texto con LZW.
+ * @brief Compresión y descompresión de archivos con LZW.
  */
 public final class LZW {
 
@@ -62,6 +62,7 @@ public final class LZW {
     }
 
     /**
+
      * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro
      * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
      * @return Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro
@@ -133,7 +134,7 @@ public final class LZW {
     }
 
     /**
-     * @brief Descomprime un archivo de texto implementando un algoritmo LZW.
+     * @brief Descomprime un archivo implementando un algoritmo LZW.
      *
      * @param input es el objeto de lectura del archivo que se quiere descomprimir.
      * @param output es el objeto de ecritura del archivo desccomprimido.

@@ -27,7 +27,7 @@ public class Presentacio {
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
                 Compress c = new Compress();
-                c.showCompress();
+                c.showCompress(f.getLocation(), f.getSize());
             }
         });
 
@@ -36,7 +36,7 @@ public class Presentacio {
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
                 Decompress d = new Decompress();
-                d.showDecompress();
+                d.showDecompress(f.getLocation(), f.getSize());
             }
         });
         buttonExit.addActionListener(new ActionListener() {
@@ -47,30 +47,27 @@ public class Presentacio {
         });
     }
 
-    static void showPresentacio() {
+    static void showPresentacio(Point p, Dimension d) {
         f.setResizable(true);
         f.setContentPane(new Presentacio().panelMain);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setWindowLocationAndDimension();
+        setWindowLocationAndDimension(p, d);
         f.pack();
         f.setVisible(true);
     }
 
-    private static void setWindowLocationAndDimension() {
+    private static void setWindowLocationAndDimension(Point p, Dimension d) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 3;
-        int height = screenSize.height / 4;
 
-        int windowX = Math.max(0, (screenSize.width - width) / 2);
-        int windowY = Math.max(0, (screenSize.height - height) / 2 - 100);
-
-        f.setLocation(windowX, windowY);
-        f.setPreferredSize(new Dimension(width, height));
-        f.setMinimumSize(new Dimension(width, height));
+        f.setLocation(p);
+        f.setPreferredSize(d);
+        f.setMinimumSize(new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     public static void main(String[] args) {
-        showPresentacio();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        showPresentacio(new Point(screenSize.width / 3, screenSize.height * 3 / 8 - 100),
+                new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     {

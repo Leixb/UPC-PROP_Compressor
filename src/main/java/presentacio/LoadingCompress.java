@@ -34,28 +34,23 @@ public class LoadingCompress {
         });
     }
 
-    void showLoadingCompress(int alg, String fileIn, String fileOut, short qualityJPEG) {
+    void showLoadingCompress(int alg, String fileIn, String fileOut, short qualityJPEG, Point p, Dimension d) {
         f.setResizable(true);
         f.setContentPane(this.panelLC);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setWindowLocationAndDimension();
+        setWindowLocationAndDimension(p, d);
         f.pack();
         f.setVisible(true);
 
         compress(alg, fileIn, fileOut, qualityJPEG);
     }
 
-    private static void setWindowLocationAndDimension() {
+    private void setWindowLocationAndDimension(Point p, Dimension d) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 3;
-        int height = screenSize.height / 4;
 
-        int windowX = Math.max(0, (screenSize.width - width) / 2);
-        int windowY = Math.max(0, (screenSize.height - height) / 2 - 100);
-
-        f.setLocation(windowX, windowY);
-        f.setPreferredSize(new Dimension(width, height));
-        f.setMinimumSize(new Dimension(width, height));
+        f.setLocation(p);
+        f.setPreferredSize(d);
+        f.setMinimumSize(new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     private void compress(int alg, String fileIn, String fileOut, short qualityJPEG) {
@@ -73,17 +68,17 @@ public class LoadingCompress {
                         File file = new File(cp.getFileOut());
                         file.delete();
                         f.setVisible(false);
-                        Presentacio.showPresentacio();
+                        Presentacio.showPresentacio(f.getLocation(), f.getSize());
                     } else {
                         get();
                         f.setVisible(false);
                         StatsCompress sc = new StatsCompress(cp);
-                        sc.showStatsCompress();
+                        sc.showStatsCompress(f.getLocation(), f.getSize());
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(f, "Error al comprimir: " + e.getCause().getMessage(), "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     f.setVisible(false);
-                    Presentacio.showPresentacio();
+                    Presentacio.showPresentacio(f.getLocation(), f.getSize());
                 }
 
             }

@@ -11,10 +11,8 @@ class LZSSDriver {
         System.out.print("Output file compressed: ");
         String outputFilename = scanner.next();
 
-        IO.Byte.reader input = new IO.Byte.reader(inputFilename);
-        IO.Bit.writer output = new IO.Bit.writer(outputFilename);
-
-        try {
+        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
+             IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
             LZSS.compress(input, output);
             System.out.println("Successful compression!");
         } catch (Exception e) {
@@ -29,11 +27,9 @@ class LZSSDriver {
         System.out.print("Output file decompressed: ");
         String outputFilename = scanner.next();
 
-        IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-        IO.Byte.writer output = new IO.Byte.writer(outputFilename);
-
-        try {
-            LZSS.decompress(inputFilename, outputFilename);
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+             IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
+            LZSS.decompress(input, output);
             System.out.println("Successful decompression");
         } catch (Exception e) {
             System.out.println("LZSS decompress failed!");

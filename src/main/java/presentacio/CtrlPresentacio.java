@@ -10,7 +10,11 @@ import domini.CtrlDomini;
  * @brief Imprime por pantalla
  */
 public class CtrlPresentacio {
-    private CtrlDomini cd = new CtrlDomini();
+    private CtrlDomini cd;
+
+    public CtrlPresentacio() {
+        cd = CtrlDomini.getInstance();
+    }
 
     /**
      * @brief Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y

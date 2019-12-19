@@ -40,8 +40,13 @@ public class IO {
     /** Lector / Escritor byte a byte con buffer */
     public static class Byte {
         public static class reader extends BufferedInputStream {
+            private String filename;
             public reader(final String filename) throws FileNotFoundException {
                 super(new FileInputStream(filename));
+                this.filename = filename;
+            }
+            public String getFilename() {
+                return filename;
             }
         }
 

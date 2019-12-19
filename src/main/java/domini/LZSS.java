@@ -11,16 +11,23 @@ import java.io.IOException;
 /**
  * @brief Compresión y decompresión de archivos con LZSS
  */
-public final class LZSS {
+public final class LZSS implements CompressionAlg{
 
-    private LZSS() {}
+    public LZSS() {
+        slidingWindow = new byte[MAX_SIZE_SW];
+        actualCharacters = new byte[MAX_LENGTH_COINCIDENCE];
+    }
 
     final static int MAX_SIZE_SW = 1023; // maximum size of the sliding window
     final static int MAX_LENGTH_COINCIDENCE = 17; //
-    final static byte[] slidingWindow = new byte[MAX_SIZE_SW];
-    final static byte[] actualCharacters = new byte[MAX_LENGTH_COINCIDENCE];
+    final byte[] slidingWindow;
+    final byte[] actualCharacters;
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
     private final static int EOF = 0; // Pseudo EOF
+
+    public byte getMagicByte() {
+        return MAGIC_BYTE;
+    }
 
     /**
      * @brief Usando el algoritmo LZSS esta función comprime un archivo
@@ -28,10 +35,7 @@ public final class LZSS {
      * @param output objeto de escritura del archivo comprimido
      * @throws IOException se lanza cuando hay un error de lectura o escritura
      */
-    public static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
-        // writing LZSS magic byte
-        output.write(MAGIC_BYTE);
-
+    public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
         // calculating num of bits needed for offset and length according
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
@@ -115,10 +119,7 @@ public final class LZSS {
      * @param output objeto de escritura del archivo descomprimido
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
      */
-    public static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
-        // ignoring magic byte
-        input.readByte();
-
+    public void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
         // calculating num of bits needed for offset and length according
         // to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE
         final int nBitsLength = (int) log2(MAX_LENGTH_COINCIDENCE - 1);
@@ -175,7 +176,7 @@ public final class LZSS {
      *        máxima del prefijo que también es sufijo desde el principio hasta esa posición
      * @param pathLength Length del pattern para el que se quiere computar el array lps
      */
-    private static void computeLPSArray(final int[] lps, int patLength) {
+    private void computeLPSArray(final int[] lps, int patLength) {
         int length = 0;
         int i = 1;
 
@@ -203,7 +204,7 @@ public final class LZSS {
      * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de
      *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
      */
-    private static int kmp(int currentACIndex, int currentSWIndex, boolean fullSW) {
+    private int kmp(int currentACIndex, int currentSWIndex, boolean fullSW) {
         final int patLength = currentACIndex, txtLength = currentSWIndex;
 
         final int[] lps = new int[patLength];

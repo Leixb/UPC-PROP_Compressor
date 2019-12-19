@@ -24,7 +24,7 @@ class StatisticsDriver {
     }
 
     private static void testSetIniFileSize() {
-        System.out.print("Filename of the file you want to consult its size): ");
+        System.out.print("Filename: ");
         String filename = scanner.next();
 
         try {
@@ -37,7 +37,7 @@ class StatisticsDriver {
     }
 
     private static void testSetFinFileSize() {
-        System.out.print("Filename (of the file you want to consult its size): ");
+        System.out.print("Filename: ");
         String filename = scanner.next();
 
         try {

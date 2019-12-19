@@ -47,7 +47,7 @@ public class Decompress {
                 } else {
                     f.setVisible(false);
                     LoadingDecompress ld = new LoadingDecompress();
-                    ld.showLoadingDecompress(fileIn, fileOut);
+                    ld.showLoadingDecompress(fileIn, fileOut, f.getLocation(), f.getSize());
                 }
             }
         });
@@ -102,7 +102,7 @@ public class Decompress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
-                Presentacio.showPresentacio();
+                Presentacio.showPresentacio(f.getLocation(), f.getSize());
             }
         });
         panelDecompress.addComponentListener(new ComponentAdapter() {
@@ -117,7 +117,7 @@ public class Decompress {
     }
 
     private String fittingLabel(String file, JLabel label) {
-        int maxWidth = f.getWidth() - 375;
+        int maxWidth = f.getWidth() - 400;
         FontMetrics fm = label.getFontMetrics(label.getFont());
 
         String fittingText = "";
@@ -130,26 +130,21 @@ public class Decompress {
         else return "..." + fittingText;
     }
 
-    void showDecompress() {
+    void showDecompress(Point p, Dimension d) {
         f.setResizable(true);
         f.setContentPane(this.panelDecompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setWindowLocationAndDimension();
+        setWindowLocationAndDimension(p, d);
         f.pack();
         f.setVisible(true);
     }
 
-    private void setWindowLocationAndDimension() {
+    private void setWindowLocationAndDimension(Point p, Dimension d) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 3;
-        int height = screenSize.height / 4;
 
-        int windowX = (screenSize.width - width) / 2;
-        int windowY = (screenSize.height - height) / 2 - 100;
-
-        f.setLocation(windowX, windowY);
-        f.setPreferredSize(new Dimension(width, height));
-        f.setMinimumSize(new Dimension(width, height));
+        f.setLocation(p);
+        f.setPreferredSize(d);
+        f.setMinimumSize(new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     {
@@ -176,10 +171,10 @@ public class Decompress {
         panelDecompress.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Fitxer a descomprimir:");
-        panel1.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(145, -1), new Dimension(145, -1), null, 0, false));
+        panel1.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         buttonSelectFileIn = new JButton();
         buttonSelectFileIn.setText("Seleccionar fitxer");
-        panel1.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        panel1.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         labelFileIn = new JLabel();
         Font labelFileInFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileIn.getFont());
         if (labelFileInFont != null) labelFileIn.setFont(labelFileInFont);
@@ -194,7 +189,7 @@ public class Decompress {
         panelDecompress.add(panel2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Nom fitxer destí:");
-        panel2.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(145, -1), new Dimension(145, -1), null, 0, false));
+        panel2.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         labelFileOut = new JLabel();
         Font labelFileOutFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileOut.getFont());
         if (labelFileOutFont != null) labelFileOut.setFont(labelFileOutFont);
@@ -202,7 +197,7 @@ public class Decompress {
         panel2.add(labelFileOut, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonSelectFileOut = new JButton();
         buttonSelectFileOut.setText("Seleccionar destí");
-        panel2.add(buttonSelectFileOut, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        panel2.add(buttonSelectFileOut, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel2.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();

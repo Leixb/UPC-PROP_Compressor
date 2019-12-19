@@ -33,7 +33,7 @@ public class StatsCompress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
-                Presentacio.showPresentacio();
+                Presentacio.showPresentacio(f.getLocation(), f.getSize());
             }
         });
 
@@ -76,7 +76,7 @@ public class StatsCompress {
         });
     }
 
-    void showStatsCompress() {
+    void showStatsCompress(Point p, Dimension d) {
         String time = cp.getTime();
         String deflate = cp.getDeflated();
         String speed = cp.getSpeedCompress();
@@ -88,23 +88,18 @@ public class StatsCompress {
         f.setResizable(true);
         f.setContentPane(this.panelStatsComp);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setWindowLocationAndDimension();
+        setWindowLocationAndDimension(p, d);
         f.pack();
         f.setVisible(true);
         JOptionPane.showMessageDialog(f, "Compressió exitosa!", "PIZ Compressor", JOptionPane.PLAIN_MESSAGE);
     }
 
-    private static void setWindowLocationAndDimension() {
+    private void setWindowLocationAndDimension(Point p, Dimension d) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 3;
-        int height = screenSize.height / 4;
 
-        int windowX = Math.max(0, (screenSize.width - width) / 2);
-        int windowY = Math.max(0, (screenSize.height - height) / 2 - 100);
-
-        f.setLocation(windowX, windowY);
-        f.setPreferredSize(new Dimension(width, height));
-        f.setMinimumSize(new Dimension(width, height));
+        f.setLocation(p);
+        f.setPreferredSize(d);
+        f.setMinimumSize(new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     {

@@ -14,24 +14,30 @@ import persistencia.IO;
 /**
  * @brief compresión y descompresión de imágenes PPM con JPEG
  */
-public final class JPEG {
+public final class JPEG implements CompressionAlg{
+    private short quality;
 
-    private JPEG() { }
+    public JPEG(final short quality) {
+        this.quality = quality;
+    }
 
     /// Magic Byte JPEG
     public final static byte MAGIC_BYTE = (byte) 0x98;
 
+    public byte getMagicByte() {
+        return MAGIC_BYTE;
+    }
+
     /**
      * @brief Comprime una imagen PPM bloque a bloque
      *
-     * @param inputFile  nombre del fichero de entrada (imagen ppm)
-     * @param outputFile nombre del fichero de salida (comprimido)
-     * @param quality    calidad de compreso (1-100) donde 100 es la mejor calidad
+     * @param input  objeto lector del fichero de entrada
+     * @param output objeto escritor fichero comprimido
      * @throws InvalidFileFormat      Si el fichero de entrada no es un PPM raw valido
      * @throws IOException            Si se produce un error de lectura / escritura
      * @throws HuffmanLookupException Si no se puede codificar algún valor (Solo sucede si la tabla Huffman no es correcta)
      */
-    public static void compress(final IO.Byte.reader input, final IO.Bit.writer output, final short quality)
+    public void compress(final IO.Byte.reader input, final IO.Bit.writer output)
             throws InvalidFileFormat, IOException, HuffmanLookupException {
 
         final PpmImage img = new PpmImage();
@@ -46,7 +52,6 @@ public final class JPEG {
 
         Huffman huffAc, huffDc;
 
-        output.write(MAGIC_BYTE); // magic byte
         output.write((int) quality);
         output.write(img.width());
         output.write(img.height());
@@ -81,11 +86,11 @@ public final class JPEG {
     /**
      * @brief Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw
      *
-     * @param inputFile  nombre del fichero de entrada (comprimido)
-     * @param outputFile nombre del fichero de salida (imagen PPM)
+     * @param input  objeto lector del fichero comprimido
+     * @param output objeto escritor fichero descomprimido
      * @throws IOException Si se produce un error de lectura / escritura
      */
-    public static void decompress(IO.Bit.reader input, IO.Byte.writer output) throws IOException {
+    public void decompress(IO.Bit.reader input, IO.Byte.writer output) throws IOException {
         final PpmImage img = new PpmImage();
 
         final Huffman huffAcChrom = new Huffman(true, true);
@@ -95,7 +100,6 @@ public final class JPEG {
 
         Huffman huffAc, huffDc;
 
-        input.readByte(); // Discard magic byte
         final short quality = (short) input.readInt();
         int w = input.readInt();
         int h = input.readInt();

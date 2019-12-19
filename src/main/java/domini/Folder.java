@@ -24,7 +24,6 @@ public final class Folder {
     public final static byte MAGIC_BYTE = (byte)0xf0;
 
     public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
-        output.write(MAGIC_BYTE); // magic byte
         Path basePath = Paths.get(folderPath);
         try(Stream<Path> files = Files.walk(basePath).filter(Files::isRegularFile)) {
             files.forEach(f -> {
@@ -51,7 +50,6 @@ public final class Folder {
 
     public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
-        input.readByte(); // Magic Byte
         for(;;) {
             String filename = "";
             try {

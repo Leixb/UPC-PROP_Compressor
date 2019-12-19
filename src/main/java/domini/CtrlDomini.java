@@ -37,49 +37,56 @@ public class CtrlDomini {
 
         if (new File(fileIn).isDirectory()) {
             try(IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
+                output.write(Folder.MAGIC_BYTE);
                 Folder.compress(fileIn, output);
             }
         } else {
             try (IO.Byte.reader input = new IO.Byte.reader(fileIn);
                  IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
-
-                switch(alg) {
-                    case 0:
-                        if(fileIn.endsWith(".ppm")){
-                            quality = 80; // auto JPEG qualitat 80.
-                            JPEG.compress(input, output, quality);
-                        }
-                        else if(fileIn.endsWith(".txt")){
-                            if(fileIn.length()<1000000){ //1MB
-                                LZ78.compress(input, output);
-                            }
-                            else {
-                                LZW.compress(input, output);
-                            }
-                        }
-                        else {
-                            LZSS.compress(input, output);
-                        }
-                        break;
-                    case 1:
-                        LZ78.compress(input, output);
-                        break;
-                    case 2:
-                        LZSS.compress(input, output);
-                        break;
-                    case 3:
-                        LZW.compress(input, output);
-                        break;
-                    case 4:
-                        JPEG.compress(input, output, quality);
-                        break;
-                    default:
-                }
+                compress(alg, input, output, quality);
             }
         }
 
         stats.setEndingTime();
         stats.setFinFileSize(fileOut);
+    }
+
+    void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality) throws Exception {
+        CompressionAlg comp;
+        switch(alg) {
+            case 0:
+                if(fileIn.endsWith(".ppm")){
+                    comp = new JPEG((short) 80);
+                }
+                else if(fileIn.endsWith(".txt")){
+                    if(fileIn.length()<1000000){ //1MB
+                        comp = new LZ78();
+                    }
+                    else {
+                        comp = new LZW();
+                    }
+                }
+                else {
+                    comp = new LZSS();
+                }
+                break;
+            case 1:
+                comp = new LZ78();
+                break;
+            case 2:
+                comp = new LZSS();
+                break;
+            case 3:
+                comp = new LZW();
+                break;
+            case 4:
+                comp = new JPEG(quality);
+                break;
+            default:
+                throw new Exception("No hauries de veure aixó.");
+        }
+        output.write(comp.getMagicByte());
+        comp.compress(input, output);
     }
 
     /**
@@ -93,51 +100,48 @@ public class CtrlDomini {
         fileIn = fi;
         fileOut = fo;
 
-        int b;
-        try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
-            b = reader.read();
-        }
+        CompressionAlg decomp;
 
-        if(b == -1) throw new EOFException();
+        try (IO.Bit.reader input = new IO.Bit.reader(fileIn)) {
 
-        byte magicByte = (byte) b;
+            byte magicByte = (byte) input.readByte();
 
-        int alg;
-        if(magicByte==LZ78.MAGIC_BYTE) alg = 1;
-        else if(magicByte==LZSS.MAGIC_BYTE) alg = 2;
-        else if(magicByte==LZW.MAGIC_BYTE) alg = 3;
-        else if(magicByte==JPEG.MAGIC_BYTE) alg = 4;
-        else if(magicByte==Folder.MAGIC_BYTE) alg = 5;
-        else throw new Exception("Fitxer a descomprimir invàlid.");
+            int alg;
+            if (magicByte == LZ78.MAGIC_BYTE) alg = 1;
+            else if (magicByte == LZSS.MAGIC_BYTE) alg = 2;
+            else if (magicByte == LZW.MAGIC_BYTE) alg = 3;
+            else if (magicByte == JPEG.MAGIC_BYTE) alg = 4;
+            else if (magicByte == Folder.MAGIC_BYTE) alg = 5;
+            else throw new Exception("Fitxer a descomprimir invàlid.");
 
-        if(!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
+            if (!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
 
-        stats = new Statistics();
-        stats.setIniFileSize(fileIn);
-        stats.setStartingTime();
+            stats = new Statistics();
+            stats.setIniFileSize(fileIn);
+            stats.setStartingTime();
 
-        if (alg == 5) {
-            try(IO.Bit.reader input = new IO.Bit.reader(fileIn)) {
+            if (alg == 5) {
                 Folder.decompress(fileOut, input);
-            }
-        } else {
-            try (IO.Bit.reader input = new IO.Bit.reader(fileIn);
-                 IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
+            } else {
+                try (IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
 
-                switch(alg) {
-                    case 1:
-                        LZ78.decompress(input, output);
-                        break;
-                    case 2:
-                        LZSS.decompress(input, output);
-                        break;
-                    case 3:
-                        LZW.decompress(input, output);
-                        break;
-                    case 4:
-                        JPEG.decompress(input, output);
-                        break;
-                    default:
+                    switch (alg) {
+                        case 1:
+                            decomp = new LZ78();
+                            break;
+                        case 2:
+                            decomp = new LZSS();
+                            break;
+                        case 3:
+                            decomp = new LZW();
+                            break;
+                        case 4:
+                            decomp = new JPEG((short)0);
+                            break;
+                        default:
+                            throw new Exception("Fitxer a descomprimir invàlid.");
+                    }
+                    decomp.decompress(input, output);
                 }
             }
         }

@@ -134,11 +134,11 @@ class IODriver{
     private static void bitReader(){
         String[] options = {
                 "creadora",
-                "readBit"
-                "readByte"
-                "readChar"
-                "readInt"
-                "readBitSet"
+                "readBit",
+                "readByte",
+                "readChar",
+                "readInt",
+                "readBitSet",
                 "close"
         };
 
@@ -233,11 +233,11 @@ class IODriver{
     private static void bitWriter(){
         String[] options = {
                 "creadora",
-                "writeBit"
-                "writeByte"
-                "writeChar"
-                "writeInt"
-                "writeBitSet"
+                "writeBit",
+                "writeByte",
+                "writeChar",
+                "writeInt",
+                "writeBitSet",
                 "close"
         };
 
@@ -289,13 +289,13 @@ class IODriver{
 
             if (action == 1){
                 if (action2 == 1) testCharReader();
-                else (action2 == 2) testCharWriter();
+                else if (action2 == 2) testCharWriter();
             } else if (action == 2){
                 if (action2 == 1) testByteReader();
-                else (action2 == 2) testByteWriter();
+                else if (action2 == 2) testByteWriter();
             } else if (action==3){
                 if (action2 == 1) bitReader();
-                else (action2 == 2) bitWriter();
+                else if (action2 == 2) bitWriter();
             } else System.out.println("Invalid option");
             action = prompt(options1);
         }

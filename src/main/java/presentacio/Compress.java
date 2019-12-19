@@ -9,6 +9,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Compress {
@@ -22,6 +24,7 @@ public class Compress {
     private JLabel labelFileIn;
     private JButton buttonSelectFileOut;
     private JLabel labelFileOut;
+    private JButton buttonViewFile;
 
     private JFrame f;
 
@@ -60,7 +63,7 @@ public class Compress {
                 } else {
                     f.setVisible(false);
                     LoadingCompress lc = new LoadingCompress();
-                    lc.showLoadingCompress(algSelected, fileIn, fileOut, (short) jpegQuality);
+                    lc.showLoadingCompress(algSelected, fileIn, fileOut, (short) jpegQuality, f.getLocation(), f.getSize());
                 }
             }
         });
@@ -160,17 +163,50 @@ public class Compress {
             }
         });
 
+        buttonViewFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if ("".equals(fileIn)) {
+                    JOptionPane.showMessageDialog(f, "Selecciona un fitxer a comprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    String currentOS = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
+
+                    if (currentOS.contains("win")) {
+                        try {
+                            Runtime.getRuntime().exec(fileIn);
+                        } catch (IOException ex) {
+                            JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else if (currentOS.contains("mac")) {
+                        try {
+                            Runtime.getRuntime().exec("open " + fileIn);
+                        } catch (IOException ex) {
+                            JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else if (currentOS.contains("nix") || currentOS.contains("nux") || currentOS.contains("aix")) {
+                        try {
+                            Runtime.getRuntime().exec("xdg-open " + fileIn);
+                        } catch (IOException ex) {
+                            JOptionPane.showMessageDialog(f, "Error al intentar obrir el fitxer.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(f, "SO no suportat.", "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+
         buttonBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
-                Presentacio.showPresentacio();
+                Presentacio.showPresentacio(f.getLocation(), f.getSize());
             }
         });
     }
 
     private String fittingLabel(String file, JLabel label) {
-        int maxWidth = f.getWidth() - 380;
+        int maxWidth = f.getWidth() - 405;
         FontMetrics fm = label.getFontMetrics(label.getFont());
 
         String fittingText = "";
@@ -183,26 +219,21 @@ public class Compress {
         else return "..." + fittingText;
     }
 
-    void showCompress() {
+    void showCompress(Point p, Dimension d) {
         f.setResizable(true);
         f.setContentPane(this.panelCompress);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setWindowLocationAndDimension();
+        setWindowLocationAndDimension(p, d);
         f.pack();
         f.setVisible(true);
     }
 
-    private void setWindowLocationAndDimension() {
+    private void setWindowLocationAndDimension(Point p, Dimension d) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 3;
-        int height = screenSize.height / 4;
 
-        int windowX = (screenSize.width - width) / 2;
-        int windowY = (screenSize.height - height) / 2 - 100;
-
-        f.setLocation(windowX, windowY);
-        f.setPreferredSize(new Dimension(width, height));
-        f.setMinimumSize(new Dimension(width, height));
+        f.setLocation(p);
+        f.setPreferredSize(d);
+        f.setMinimumSize(new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     {
@@ -221,7 +252,7 @@ public class Compress {
      */
     private void $$$setupUI$$$() {
         panelCompress = new JPanel();
-        panelCompress.setLayout(new GridLayoutManager(7, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panelCompress.setLayout(new GridLayoutManager(8, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelCompress.setForeground(new Color(-14869219));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 4, new Insets(10, 20, 10, 20), -1, -1));
@@ -247,12 +278,12 @@ public class Compress {
         final Spacer spacer2 = new Spacer();
         panel1.add(spacer2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panelCompress.add(spacer3, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panelCompress.add(spacer3, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panelCompress.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 3, new Insets(0, 5, 5, 5), -1, -1));
-        panelCompress.add(panel4, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panelCompress.add(panel4, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttonCompress = new JButton();
         buttonCompress.setText("Comprimir");
         panel4.add(buttonCompress, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -265,11 +296,13 @@ public class Compress {
         panel5.setLayout(new GridLayoutManager(1, 5, new Insets(0, 20, 0, 20), -1, -1));
         panelCompress.add(panel5, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
+        Font label2Font = this.$$$getFont$$$(null, -1, -1, label2.getFont());
+        if (label2Font != null) label2.setFont(label2Font);
         label2.setText("Fitxer a comprimir:");
-        panel5.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        panel5.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(165, -1), null, null, 0, false));
         buttonSelectFileIn = new JButton();
         buttonSelectFileIn.setText("Seleccionar fitxer");
-        panel5.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        panel5.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         final Spacer spacer6 = new Spacer();
         panel5.add(spacer6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer7 = new Spacer();
@@ -284,8 +317,10 @@ public class Compress {
         panel6.setLayout(new GridLayoutManager(1, 5, new Insets(0, 20, 0, 20), -1, -1));
         panelCompress.add(panel6, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
+        Font label3Font = this.$$$getFont$$$(null, -1, -1, label3.getFont());
+        if (label3Font != null) label3.setFont(label3Font);
         label3.setText("Nom fitxer destí (*.piz):");
-        panel6.add(label3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        panel6.add(label3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(165, -1), null, null, 0, false));
         labelFileOut = new JLabel();
         Font labelFileOutFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileOut.getFont());
         if (labelFileOutFont != null) labelFileOut.setFont(labelFileOutFont);
@@ -293,7 +328,7 @@ public class Compress {
         panel6.add(labelFileOut, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonSelectFileOut = new JButton();
         buttonSelectFileOut.setText("Selecciona destí");
-        panel6.add(buttonSelectFileOut, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(150, -1), new Dimension(150, -1), null, 0, false));
+        panel6.add(buttonSelectFileOut, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         final Spacer spacer8 = new Spacer();
         panel6.add(spacer8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer9 = new Spacer();
@@ -304,6 +339,9 @@ public class Compress {
         final JLabel label4 = new JLabel();
         label4.setText("COMPRIMIR");
         panel7.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        buttonViewFile = new JButton();
+        buttonViewFile.setText("Visualitzar fitxer");
+        panelCompress.add(buttonViewFile, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

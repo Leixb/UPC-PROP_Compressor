@@ -27,7 +27,10 @@ public class CtrlDomini {
      * @return Devuelve las estadisrticas generadas para la compresión
      * @throws Exception Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fileIn, String fileOut, Short quality) throws Exception {
+    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
+        fileIn = fi;
+        fileOut = fo;
+
         stats = new Statistics();
         stats.setIniFileSize(fileIn);
         stats.setStartingTime();
@@ -46,8 +49,16 @@ public class CtrlDomini {
                             quality = 80; // auto JPEG qualitat 80.
                             JPEG.compress(input, output, quality);
                         }
+                        else if(fileIn.endsWith(".txt")){
+                            if(fileIn.length()<1000000){ //1MB
+                                LZ78.compress(input, output);
+                            }
+                            else {
+                                LZW.compress(input, output);
+                            }
+                        }
                         else {
-                            LZ78.compress(input, output);
+                            LZSS.compress(input, output);
                         }
                         break;
                     case 1:
@@ -78,7 +89,10 @@ public class CtrlDomini {
      * @return Estadisticas generadas durante la descompresión
      * @throws Exception Lanza cualquier excepción generada al descomprimir
      */
-    public void decompress(String fileIn, String fileOut) throws Exception {
+    public void decompress(String fi, String fo) throws Exception {
+        fileIn = fi;
+        fileOut = fo;
+
         int b;
         try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
             b = reader.read();

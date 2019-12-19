@@ -35,37 +35,23 @@ public class LoadingDecompress {
         });
     }
 
-    void showLoadingDecompress(String fileIn, String fileOut) {
+    void showLoadingDecompress(String fileIn, String fileOut, Point p, Dimension d) {
         f.setResizable(true);
         f.setContentPane(this.panelLD);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setWindowLocationAndDimension();
+        setWindowLocationAndDimension(p, d);
         f.pack();
         f.setVisible(true);
 
         decompress(fileIn, fileOut);
     }
 
-    private static void setWindowLocationAndDimension() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 3;
-        int height = screenSize.height / 4;
-
-        int windowX = Math.max(0, (screenSize.width - width) / 2);
-        int windowY = Math.max(0, (screenSize.height - height) / 2 - 100);
-
-        f.setLocation(windowX, windowY);
-        f.setPreferredSize(new Dimension(width, height));
-        f.setMinimumSize(new Dimension(width, height));
-    }
-
-    private void setWindowLocation() {
+    private void setWindowLocationAndDimension(Point p, Dimension d) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        int windowX = Math.max(0, (screenSize.width - 530) / 2);
-        int windowY = Math.max(0, (screenSize.height - 250) / 2 - 100);
-
-        f.setLocation(windowX, windowY);
+        f.setLocation(p);
+        f.setPreferredSize(d);
+        f.setMinimumSize(new Dimension(screenSize.width / 3, screenSize.height / 4));
     }
 
     private void decompress(String fileIn, String fileOut) {
@@ -83,17 +69,17 @@ public class LoadingDecompress {
                         File file = new File(cp.getFileOut());
                         file.delete();
                         f.setVisible(false);
-                        Presentacio.showPresentacio();
+                        Presentacio.showPresentacio(f.getLocation(), f.getSize());
                     } else {
                         get();
                         f.setVisible(false);
                         StatsDecompress sd = new StatsDecompress(cp);
-                        sd.showStatsDecompress();
+                        sd.showStatsDecompress(f.getLocation(), f.getSize());
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(f, "Error al descomprimir: " + e.getCause().getMessage(), "PIZ Compressor", JOptionPane.ERROR_MESSAGE);
                     f.setVisible(false);
-                    Presentacio.showPresentacio();
+                    Presentacio.showPresentacio(f.getLocation(), f.getSize());
                 }
             }
         };

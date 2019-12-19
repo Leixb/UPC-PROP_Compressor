@@ -8,19 +8,19 @@ class BitSetLDriver {
 
     private static Scanner scanner;
 
-    public static void testEmptyConstructor () {
+    private static void testEmptyConstructor () {
         bitSetL = new BitSetL();
         System.out.println("DONE");
     }
 
-    public static void testLengthConstructor () {
+    private static void testLengthConstructor () {
         System.out.print("Length: ");
         int length = scanner.nextInt();
         bitSetL = new BitSetL(length);
         System.out.println("DONE");
     }
 
-    public static void testIntLengthConstructor () {
+    private static void testIntLengthConstructor () {
         System.out.print("Int: ");
         int num = scanner.nextInt();
         System.out.print("Length: ");
@@ -29,14 +29,14 @@ class BitSetLDriver {
         System.out.println("DONE");
     }
 
-    public static void testStringConstructor () {
+    private static void testStringConstructor () {
         System.out.print("String: ");
         String string = scanner.next();
         bitSetL = new BitSetL(string);
         System.out.println("DONE");
     }
 
-    public static void constructor () {
+    private static void constructor () {
         System.out.println("Constructor type:");
         String [] options = {
                 "empty",
@@ -58,24 +58,24 @@ class BitSetLDriver {
 
     }
 
-    public static void testAsInt () {
+    private static void testAsInt () {
         System.out.println("asInt: " + bitSetL.asInt());
         System.out.println("DONE");
     }
 
-    public static void testFlip () {
+    private static void testFlip () {
         bitSetL.flip();
         System.out.println("DONE");
     }
 
-    public static void testPositionSet () {
+    private static void testPositionSet () {
         System.out.print("Position: ");
         int pos = scanner.nextInt();
         bitSetL.set(pos);
         System.out.println("DONE");
     }
 
-    public static void testPositionValueSet () {
+    private static void testPositionValueSet () {
         System.out.print("Position: ");
         int pos = scanner.nextInt();
         System.out.print("Value (true-false): ");
@@ -84,7 +84,7 @@ class BitSetLDriver {
         System.out.println("DONE");
     }
 
-    public static void set () {
+    private static void set () {
         System.out.println("Set type:");
         String [] options = {
                 "position",
@@ -101,19 +101,19 @@ class BitSetLDriver {
         else if (action == 2) testPositionValueSet();
     }
 
-    public static void testClear () {
+    private static void testClear () {
         System.out.print("Position: ");
         int pos = scanner.nextInt();
         bitSetL.clear(pos);
         System.out.println("DONE");
     }
 
-    public static void testLength () {
+    private static void testLength () {
         System.out.println("length" + bitSetL.length());
         System.out.println("DONE");
     }
 
-    public static int prompt(String[] options) {
+    private static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);

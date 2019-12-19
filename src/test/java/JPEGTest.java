@@ -58,11 +58,13 @@ class JPEGTest {
             tmpAux.deleteOnExit();
             try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
                 IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
-                    JPEG.compress(input, output, (short) 50);
+                    JPEG alg = new JPEG((short)50);
+                    alg.compress(input, output);
             }
             try(IO.Bit.reader input = new IO.Bit.reader(tmpAux.getPath());
                 IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {
-                    JPEG.decompress(input, output);
+                JPEG alg = new JPEG((short)0);
+                alg.decompress(input, output);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -69,7 +69,7 @@ class JPEGBlockDriver {
         }
     }
 
-    private static int prompt(String[] options) {
+    public static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);

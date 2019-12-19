@@ -2,6 +2,9 @@ name: maven (JDK 1.8.0)
 
 on:
   pull_request:
+    paths-ignore:
+    - 'doc/**'
+    - '**.md'
     branches:
       - master
     paths-ignore:

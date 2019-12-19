@@ -11,7 +11,7 @@ class LZ78Test {
 
     @Test
     void compressDecompressFile() {
-        final String inputFile = "texts/DonQuijote.txt";
+        final String inputFile = "JocsProva/texts/DonQuijote.txt";
 
         try {
             File tmpAux = File.createTempFile("LZ78Test", ".lz78.piz");
@@ -20,10 +20,12 @@ class LZ78Test {
             tmpOut.deleteOnExit();
 
             try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
-                LZ78.compress(input, output);
+                LZ78 alg = new LZ78();
+                alg.compress(input, output);
             }
             try (IO.Bit.reader input = new IO.Bit.reader(tmpAux.getPath()); IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {
-                LZ78.decompress(input, output);
+                LZ78 alg = new LZ78();
+                alg.decompress(input, output);
             }
             CheckCompDecomp.assertFileEquals(inputFile, tmpOut.getPath());
         } catch (Exception e) {

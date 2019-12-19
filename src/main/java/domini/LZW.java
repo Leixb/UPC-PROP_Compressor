@@ -15,9 +15,9 @@ import java.util.Map;
 /**
  * @brief Compresión y descompresión de archivos con LZW.
  */
-public final class LZW {
+public final class LZW implements CompressionAlg{
 
-    private LZW() { }
+    public LZW() { }
 
     /// Magic Byte LZW
     public final static byte MAGIC_BYTE = (byte) 0x11;
@@ -61,6 +61,10 @@ public final class LZW {
         }
     }
 
+    public byte getMagicByte() {
+        return MAGIC_BYTE;
+    }
+
     /**
 
      * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro
@@ -93,9 +97,7 @@ public final class LZW {
      * @param output objeto de ecritura del archivo comprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    public static void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
-        output.write(MAGIC_BYTE);
-
+    public void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
         createCompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 
@@ -140,8 +142,7 @@ public final class LZW {
      * @param output es el objeto de ecritura del archivo desccomprimido.
      * @throws IOException se produce un error en la lectura / escritura.
      */
-    public static void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
-        input.readByte();
+    public void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
         createDecompressionDictionary();
         int i = DICTIONARY_SIZE + 1;
 

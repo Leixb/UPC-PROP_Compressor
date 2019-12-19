@@ -41,7 +41,7 @@ public class Compress {
         labelFileIn.setVisible(false);
         labelFileOut.setVisible(false);
 
-        qualityJPEG.setModel(new SpinnerNumberModel(80, 0, 99, 1));
+        qualityJPEG.setModel(new SpinnerNumberModel(90, 0, 99, 1));
 
         algSelected = 0;
         jpegQuality = 80;

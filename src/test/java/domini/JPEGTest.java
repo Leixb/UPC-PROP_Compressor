@@ -1,7 +1,6 @@
-import domini.Huffman;
+package domini;
+
 import persistencia.IO;
-import domini.JPEG;
-import domini.JPEGBlock;
 
 import org.junit.jupiter.api.Test;
 

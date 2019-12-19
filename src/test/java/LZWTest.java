@@ -11,19 +11,21 @@ class LZWTest {
 
     @Test
     void compressDecompressFile() {
-        new File("generated/").mkdirs();
         final String inputFile = "texts/DonQuijote.txt";
-        final String outputFile = "generated/outLZW.txt";
-        final String aux = "generated/compressedFileLZW.piz";
 
         try {
-            try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Bit.writer output = new IO.Bit.writer(aux)) {
+            File tmpAux = File.createTempFile("LZWTest", ".lzw.piz");
+            tmpAux.deleteOnExit();
+            File tmpOut = File.createTempFile("LZWTest", ".txt");
+            tmpOut.deleteOnExit();
+
+            try (IO.Byte.reader input = new IO.Byte.reader(inputFile); IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
                 LZW.compress(input, output);
             }
-            try (IO.Bit.reader input = new IO.Bit.reader(aux); IO.Byte.writer output = new IO.Byte.writer(outputFile)) {
+            try (IO.Bit.reader input = new IO.Bit.reader(tmpAux.getPath()); IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {
                 LZW.decompress(input, output);
             }
-            CheckCompDecomp.assertFileEquals(inputFile, outputFile);
+            CheckCompDecomp.assertFileEquals(inputFile, tmpOut.getPath());
         } catch (Exception e) {
             e.printStackTrace();
             fail();

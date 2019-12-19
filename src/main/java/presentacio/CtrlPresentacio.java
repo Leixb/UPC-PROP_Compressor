@@ -11,9 +11,14 @@ import domini.CtrlDomini;
  */
 public class CtrlPresentacio {
     private CtrlDomini cd;
+    private static CtrlPresentacio instance = new CtrlPresentacio();
 
-    public CtrlPresentacio() {
+    private CtrlPresentacio() {
         cd = CtrlDomini.getInstance();
+    }
+
+    public static CtrlPresentacio getInstance() {
+        return instance;
     }
 
     /**

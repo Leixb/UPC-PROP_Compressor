@@ -8,74 +8,84 @@ class StatisticsDriver {
 
     private static Scanner scanner;
 
-    public static void testConstructor() {
+    private static void testConstructor() {
         stats = new Statistics();
         System.out.println("DONE");
     }
 
-    public static void testSetStartingTime() {
+    private static void testSetStartingTime() {
         stats.setStartingTime();
         System.out.println("DONE");
     }
 
-    public static void testSetEndingTime() {
+    private static void testSetEndingTime() {
         stats.setEndingTime();
         System.out.println("DONE");
     }
 
-    public static void testSetIniFileSize() {
+    private static void testSetIniFileSize() {
         System.out.print("Filename of the file you want to consult its size): ");
         String filename = scanner.next();
 
-        stats.setIniFileSize(filename);
-        System.out.println("DONE");
+        try {
+            stats.setIniFileSize(filename);
+            System.out.println("DONE");
+        } catch (Exception e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        }
     }
 
-    public static void testSetFinFileSize() {
+    private static void testSetFinFileSize() {
         System.out.print("Filename (of the file you want to consult its size): ");
         String filename = scanner.next();
 
-        stats.setFinFileSize(filename);
-        System.out.println("DONE");
+        try {
+            stats.setFinFileSize(filename);
+            System.out.println("DONE");
+        } catch (Exception e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        }
     }
 
-    public static void testGetTime() {
+    private static void testGetTime() {
         System.out.println("getTime: " + stats.getTime());
         System.out.println("DONE");
     }
 
-    public static void testGetIniFileSize() {
+    private static void testGetIniFileSize() {
         System.out.println("getIniFileSize: " + stats.getIniFileSize());
         System.out.println("DONE");
     }
 
-    public static void testGetFinFileSize() {
+    private static void testGetFinFileSize() {
         System.out.println("getFinFileSize: " + stats.getFinFileSize());
         System.out.println("DONE");
     }
 
-    public static void testGetPercentageCompressed() {
+    private static void testGetPercentageCompressed() {
         System.out.println("getPercentageCompressed: " + stats.getPercentageCompressed());
         System.out.println("DONE");
     }
 
-    public static void testGetPercentageDecompressed() {
+    private static void testGetPercentageDecompressed() {
         System.out.println("getPercentageDecompressed: " + stats.getPercentageDecompressed());
         System.out.println("DONE");
     }
 
-    public static void testGetSpeedCompressed() {
+    private static void testGetSpeedCompressed() {
         System.out.println("getSpeedCompressed: " + stats.getSpeedCompressed());
         System.out.println("DONE");
     }
 
-    public static void testGetSpeedDecompressed() {
+    private static void testGetSpeedDecompressed() {
         System.out.println("getSpeedDecompressed: " + stats.getSpeedDecompressed());
         System.out.println("DONE");
     }
 
 
-    public static int prompt(String[] options) {
+    private static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);

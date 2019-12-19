@@ -56,9 +56,10 @@ class JPEGTest {
             tmpOut.deleteOnExit();
             File tmpAux = File.createTempFile("JPEG_test", ".piz.jpeg");
             tmpAux.deleteOnExit();
+
             try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
                 IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
-                    JPEG.compress(input, output, (short) 50);
+                    JPEG.compress(input, output, (short) 90);
             }
             try(IO.Bit.reader input = new IO.Bit.reader(tmpAux.getPath());
                 IO.Byte.writer output = new IO.Byte.writer(tmpOut.getPath())) {

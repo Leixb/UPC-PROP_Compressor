@@ -1,4 +1,5 @@
 import persistencia.PpmImage;
+import persistencia.IO;
 
 import java.io.File;
 import java.util.Scanner;
@@ -11,9 +12,8 @@ class PpmImageDriver {
     private static void testReaderConstructor() {
         System.out.print("Filename: ");
         String filename = scanner.next();
-        IO.Byte.reader file = IO.Byte.reader(filename);
 
-        try {
+        try (IO.Byte.reader file = IO.Byte.reader.reader(filename)) {
             image.Reader = new PpmImage.Reader(file);
             System.out.println("DONE");
         } catch (Exception e) {
@@ -80,13 +80,12 @@ class PpmImageDriver {
     private static void testWriterConstructor() {
         System.out.print("Filename: ");
         String filename = scanner.next();
-        IO.Byte.writer file = new IO.Byte.writer(filename);
         System.out.print("Height: ");
         int height = scanner.next();
         System.out.print("Width: ");
         int width = scanner.next();
 
-        try {
+        try (IO.Byte.writer file = new IO.Byte.writer.writer(filename)) {
             image.Writer = new PpmImage.Writer(file,height,width);
             System.out.println("DONE");
         } catch (Exception e) {
@@ -125,7 +124,7 @@ class PpmImageDriver {
                 "heightBlocks"
         };
 
-        int action = propmt(options);
+        int action = prompt(options);
         while (action<1 || action>4){
             System.out.println("Invalid option");
             action = prompt(options);

@@ -1,4 +1,5 @@
 import domini.LZSS;
+import persistencia.IO;
 
 import java.util.Scanner;
 

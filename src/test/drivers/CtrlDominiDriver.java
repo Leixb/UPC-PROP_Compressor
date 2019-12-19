@@ -47,7 +47,7 @@ class CtrlDominiDriver {
         try {
             ctdom.decompress(inputFile, outputFile);
             System.out.println("DONE");
-        } catch (Esception e) {
+        } catch (Exception e) {
             System.out.println("CtrlDomini decompress failed!");
             e.printStackTrace();
         }

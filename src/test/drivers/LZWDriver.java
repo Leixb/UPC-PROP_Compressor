@@ -1,4 +1,5 @@
 import domini.LZW;
+import persistencia.IO;
 
 import java.util.Scanner;
 
@@ -17,8 +18,8 @@ class LZWDriver {
         System.out.print("Output file compressed: ");
         String outputFilename = scanner.next();
 
-        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
-             IO.Bit.writer output = new IO.Bit.writer(outputFilename)){
+        try (IO.Byte.reader input = new IO.Byte.reader.reader(inputFilename);
+             IO.Bit.writer output = new IO.Bit.writer.writer(outputFilename)){
             lzw.compress(input, output);
             System.out.println("Successful compression!");
         } catch (Exception e) {
@@ -33,8 +34,8 @@ class LZWDriver {
         System.out.print("Output file decompressed: ");
         String outputFilename = scanner.next();
 
-        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
-             IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
+        try (IO.Bit.reader input = new IO.Bit.reader.reader(inputFilename);
+             IO.Byte.writer output = new IO.Byte.writer.writer(outputFilename)) {
             lzw.decompress(input, output);
             System.out.println("Successful decompression");
         } catch (Exception e) {

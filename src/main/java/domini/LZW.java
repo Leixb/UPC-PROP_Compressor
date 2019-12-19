@@ -62,9 +62,9 @@ public final class LZW {
     }
 
     /**
-     * @brief  Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro
+     * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro
      * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
-     * @return
+     * @return Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro
      */
     private static int bitsNeeded(final int n) {
         if (n <= 0)

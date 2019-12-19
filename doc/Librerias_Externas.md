@@ -13,4 +13,4 @@ especificado en el *designer*.
 
 Todas estas librerías las usamos para hacer los test con JUnit, muy necesarios
 para poder probar todos los componentes de nuestro código por separado mientras
-los desarrollábamos o mejorábamos .
+los desarrollábamos o mejorábamos.

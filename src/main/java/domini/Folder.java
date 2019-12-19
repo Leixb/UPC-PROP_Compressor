@@ -45,7 +45,7 @@ public final class Folder {
 		@Override
 		public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
             if (emptyDir) {
-                for (char c : (root.relativize(dir)).toString().toCharArray()) {
+                for (char c : root.relativize(dir).toString().toCharArray()) {
                     output.write(c);
                 }
                 output.write(EMPTY_FOLDER);
@@ -62,7 +62,7 @@ public final class Folder {
 		@Override
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
             emptyDir = false;
-            for (char c : (root.relativize(file)).toString().toCharArray()) {
+            for (char c : root.relativize(file).toString().toCharArray()) {
                 output.write(c);
             }
             output.write(FILE);

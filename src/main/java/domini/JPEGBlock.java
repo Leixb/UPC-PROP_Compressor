@@ -17,7 +17,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     private JPEGBlock () {}
 
     /** @brief DCT (Discrete Cosine Transform) */
-    public static class DCT implements Codec<byte[][], double[][]> {
+    static class DCT implements Codec<byte[][], double[][]> {
         public static double[][] encode(final byte[][] data) {
             final double[][] G = new double[8][8];
 
@@ -89,7 +89,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /** @brief Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada */
-    public static class Quantization implements Codec<double[][], short[][]> {
+    static class Quantization implements Codec<double[][], short[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
             {  12 ,  12 ,  14 ,  19 ,  26 ,  58 ,  60 ,  55 },
@@ -157,7 +157,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /** @brief _Aplasta_ un bloque 8x8 en zigZag. */
-    public static class ZigZag implements Codec<short[][], short[]> {
+    static class ZigZag implements Codec<short[][], short[]> {
 
         // Correspondencia coordenades taula amb ZigZag
         private static byte[][] table;
@@ -251,7 +251,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
      *  - F0 -> ZRL (Zero Run Lenght) 16 ceros seguidos
      *
      */
-    public static class RLE implements Codec<short[], short[]> {
+    static class RLE implements Codec<short[], short[]> {
         public static short[] encode(final short[] data) {
 
             final ArrayList<Short> buff = new ArrayList<Short>();

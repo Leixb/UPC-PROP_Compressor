@@ -1,10 +1,10 @@
+package persistencia;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import persistencia.PpmImage;
-import persistencia.IO;
+import domini.CheckCompDecomp;
 
 import java.io.*;
 

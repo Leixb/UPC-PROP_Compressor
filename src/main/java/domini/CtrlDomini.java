@@ -112,19 +112,14 @@ public class CtrlDomini {
         try (IO.Bit.reader input = new IO.Bit.reader(fileIn)) {
             byte magicByte = (byte) input.readByte();
 
-            int alg;
-            if (magicByte == Folder.MAGIC_BYTE) alg = 5;
-            else throw new Exception("Fitxer a descomprimir invàlid.");
-
-            if (!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
-
             stats = new Statistics();
             stats.setIniFileSize(fileIn);
             stats.setStartingTime();
 
-            if (alg == 5) {
+            if (magicByte == Folder.MAGIC_BYTE) {
                 Folder.decompress(fileOut, input);
             } else {
+                if (!fileOut.endsWith(".ppm") && magicByte == JPEG.MAGIC_BYTE) fileOut += ".ppm";
                 try (IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
                     decompress(input, output, magicByte);
                 }

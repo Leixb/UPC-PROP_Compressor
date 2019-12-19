@@ -112,14 +112,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 }
         };
 
-        static double QuantizationValue(final short quality, final boolean isChrominance, final short x, final short y)
-                throws IllegalArgumentException {
-            if (quality < 1 || quality > 100)
-                throw new IllegalArgumentException("Quality must be between 1 and 100");
-            if (x < 0 || x >= 8)
-                throw new IllegalArgumentException("0 < x < 8");
-            if (y < 0 || y >= 8)
-                throw new IllegalArgumentException("0 < y < 8");
+        static double QuantizationValue(final short quality, final boolean isChrominance, final short x, final short y) {
 
             byte[][] QTable = LuminanceTable;
             if (isChrominance)

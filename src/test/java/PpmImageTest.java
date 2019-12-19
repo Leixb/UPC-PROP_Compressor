@@ -12,7 +12,7 @@ class PpmImageTest {
 
     @Test
     void moveFile() {
-        final String inputFile = "images/boat.ppm";
+        final String inputFile = "JocsProva/images/boat.ppm";
 
         try {
             File tmpOut = File.createTempFile("PpmTest", ".ppm");

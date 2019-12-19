@@ -23,32 +23,32 @@ public final class Folder {
 
     public final static byte MAGIC_BYTE = (byte)0xf0;
 
-    public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
+    public static void compress(String folderPath, IO.Bit.writer output) throws Exception {
         Path basePath = Paths.get(folderPath);
         try(Stream<Path> files = Files.walk(basePath).filter(Files::isRegularFile)) {
             files.forEach(f -> {
                 try {
                     appendFile(basePath, f, output);
                     //output.flush();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             });
         }
     }
 
-    private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws IOException {
+    private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws Exception {
         // Write filename + Marker then call compression algorithm
         for (char c : (basePath.relativize(file)).toString().toCharArray()) {
             output.write(c);
         }
         output.write(MARKER);
         try (IO.Byte.reader input = new IO.Byte.reader(file.toString())) {
-            LZ78.compress(input, output);
+            CtrlDomini.getInstance().compress(0, input, output, (short) 0);
         }
     }
 
-    public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
+    public static void decompress(String folderPath, IO.Bit.reader input) throws Exception {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
         for(;;) {
             String filename = "";
@@ -67,7 +67,7 @@ public final class Folder {
             new File(filePath).getParentFile().mkdirs(); // Create dirs if not exist
 
             try (IO.Byte.writer output = new IO.Byte.writer(filePath)) {
-                LZ78.decompress(input, output);
+                CtrlDomini.getInstance().decompress(input, output, (byte)0);
             } 
         }
     }

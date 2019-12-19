@@ -112,7 +112,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 }
         };
 
-        static double QuantizationValue(final short quality, final boolean isChrominance, final short x, final short y) {
+        static double quantizationValue(final short quality, final boolean isChrominance, final short x, final short y) {
 
             byte[][] QTable = LuminanceTable;
             if (isChrominance)
@@ -133,7 +133,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             final short[][] data = new short[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
-                    final double quantVal = block[i][j] / QuantizationValue(quality, isChrominance, i, j);
+                    final double quantVal = block[i][j] / quantizationValue(quality, isChrominance, i, j);
 
                     data[i][j] = (short) quantVal;
                 }
@@ -149,7 +149,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             final double[][] data = new double[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
-                    data[i][j] = block[i][j] * QuantizationValue(quality, isChrominance, i, j);
+                    data[i][j] = block[i][j] * quantizationValue(quality, isChrominance, i, j);
                 }
             }
             return data;

@@ -46,8 +46,16 @@ public class CtrlDomini {
                             quality = 80; // auto JPEG qualitat 80.
                             JPEG.compress(input, output, quality);
                         }
+                        else if(fileIn.endsWith(".txt")){
+                            if(fileIn.length()<1000000){ //1MB
+                                LZ78.compress(input, output);
+                            }
+                            else {
+                                LZW.compress(input, output);
+                            }
+                        }
                         else {
-                            LZ78.compress(input, output);
+                            LZSS.compress(input, output);
                         }
                         break;
                     case 1:

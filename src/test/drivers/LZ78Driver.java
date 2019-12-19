@@ -5,6 +5,13 @@ import java.util.Scanner;
 class LZ78Driver {
     private static Scanner scanner;
 
+    private LZ78 lz78;
+
+    private static void testConstructor(){
+        lz78 = new LZ78();
+        System.out.println("DONE");
+    }
+
     private static void testCompress() {
         System.out.print("Input file to compress: ");
         String inputFilename = scanner.next();
@@ -13,7 +20,7 @@ class LZ78Driver {
 
         try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
              IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
-            LZ78.compress(input, output);
+            lz78.compress(input, output);
             System.out.println("Successful compression!");
         } catch (Exception e) {
             System.out.println("LZ78 compress failed!");
@@ -29,7 +36,7 @@ class LZ78Driver {
 
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
              IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
-            LZ78.decompress(input, output);
+            lz78.decompress(input, output);
             System.out.println("Successful decompression");
         } catch (Exception e) {
             System.out.println("LZ78 decompress failed!");
@@ -38,7 +45,7 @@ class LZ78Driver {
     }
 
     private static void testGetMagicByte() {
-        System.out.print("getMagicByte: " + LZW.getMagicByte());
+        System.out.print("getMagicByte: " + lz78.getMagicByte());
     }
 
     private static int prompt(String[] options) {
@@ -51,15 +58,16 @@ class LZ78Driver {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
-        String[] options = {"compress", "decompress", "getMagicByte", "exit"};
+        String[] options = {"constructor", "compress", "decompress", "getMagicByte", "exit"};
 
         int action = prompt(options);
 
-        while (action != 4) {
+        while (action != 5) {
 
-            if (action == 1) testCompress();
-            else if (action == 2) testDecompress();
-            else if (action == 3) testGetMagicByte();
+            if (action == 1) testConstructor();
+            else if (action == 2) testCompress();
+            else if (action == 3) testDecompress();
+            else if (action == 4) testGetMagicByte();
             else System.out.println("Invalid option");
 
             action = prompt(options);

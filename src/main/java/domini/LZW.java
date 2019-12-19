@@ -73,7 +73,7 @@ public final class LZW {
     }
 
     /**
-     * @brief  Escribe en output n en 5 bits seguido del entero b representado en n bits
+     * @brief  Escribe en output el entero n en 5 bits seguido del entero code representado en n bits
      * @param code Numero integer que se quiere escribir
      * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
      * @return

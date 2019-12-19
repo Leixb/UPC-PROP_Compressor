@@ -5,7 +5,7 @@ import java.util.Scanner;
 class JPEGBlockDriver {
     private static Scanner scanner;
 
-    public static void testEncode() {
+    private static void testEncode() {
         System.out.print("Quality: ");
         short quality = scanner.nextShort();
 
@@ -36,7 +36,7 @@ class JPEGBlockDriver {
         }
     }
 
-    public static void testDecode() {
+    private static void testDecode() {
         System.out.print("Quality: ");
         short quality = scanner.nextShort();
 
@@ -69,7 +69,7 @@ class JPEGBlockDriver {
         }
     }
 
-    public static int prompt(String[] options) {
+    private static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);

@@ -131,6 +131,8 @@ lang: es
   * **Return:** Es void por tanto no devuelve nada.
 * `private static int bits_needed(final int n)`
   * **Descripción**: Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
+  * **Parámetro**:
+    * n : Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
   * **Return**: Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
 * `public static void decompress(final String inputFilename, final String outputFilename)`
   * **Descripción**: Llama al método decompress de la clase LZ78 y le pasa como parámetros inputFilename y outputFilename.
@@ -193,7 +195,17 @@ lang: es
     * input: Objeto de lectura del archivo que se quiere descomprimir.
     * output: Objeto de escritura del archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
-
+* `private static int bitsNeeded(final int n)`
+  * **Descripción**: Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.
+  * **Parámetros**:
+    * n: Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2.
+  * **Return**: Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
+* `private static void writeCode (int code, final IO.Bit.writer output)`
+  * **Descripción**: Escribe en output el entero n en 5 bits seguido del entero code representado en n bits.
+  * **Parámetros**:
+    * code: Numero integer que se quiere escribir
+    * output: Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
+  * **Return**: Es void por tanto no devuelve nada.
 ## JPEG
 
 **Descripción**: Compresión y descompresión de imágenes PPM con JPEG.

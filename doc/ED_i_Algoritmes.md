@@ -87,11 +87,11 @@ ArrayList<Byte> y value Integer, actuando de diccionario y de manera que todos
 los bytes que se leen del archivo input quedan guardados en este. El
 diccionario se ha de inicializar con los valores unitarios esperados en el
 archivo a comprimir y a medida que se vaya leyendo la entrada se irán añadiendo
-posibles combinaciones de éstos. En caso de overflow del diccionario se escribe
+posibles combinaciones de éstos. En caso de overflow del diccionario, se codifica
 en el archivo comprimido un int indicativo, de manera que al descomprimir se
-pueda saber en que momento se ha reiniciado el diccionario. Al acabar la
-descompresión se vacía HashMap para evitar problemas de exceso de memoria con
-siguientes compresiones.
+pueda saber en que momento se ha reiniciado el diccionario. En este algoritmo cada vez
+que se codifica un int se escriben los n bits representativos precedidos por este entero
+n representado en 5 bits.
 
 ### Descompresión
 
@@ -102,9 +102,9 @@ compresión, con key Integer y value ArrayList<Byte>, actuando también como
 diccionario. Al igual que en la compresión el diccionario se ha de inicializar
 con los valores unitarios esperados en el archivo a descomprimir y a medida que
 se vaya leyendo la entrada se irán añadiendo posibles combinaciones de éstos.
+Al descomprimir un integer comprimido se leen previamente 5 bits que 
+indican la longitud del integer codificado.
 En caso de lectura del integer que indica overflow se reinicia el diccionario.
-Al acabar la descompresión se vacía el HashMap para evitar problemas de exceso
-de memoria en siguientes compresiones.
 
 ## JPEG
 

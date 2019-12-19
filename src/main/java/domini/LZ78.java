@@ -157,9 +157,9 @@ public final class LZ78{
     }
 
     /**
-     * @brief  Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro
-     * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
-     * @return
+     * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.
+     * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2.
+     * @return Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
      */
     private static int bits_needed(final int n) {
         if (n <= 0)

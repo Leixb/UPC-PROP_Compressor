@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class LoadingDecompress {
-    private CtrlPresentacio cp = new CtrlPresentacio();
+    private CtrlPresentacio cp;
 
     private JLabel labelGIF;
     private JPanel panelLD;
@@ -22,6 +22,7 @@ public class LoadingDecompress {
     private SwingWorker sw;
 
     LoadingDecompress() {
+        cp = CtrlPresentacio.getInstance();
         f = new JFrame("PIZ Compressor");
 
         ImageIcon icon = new ImageIcon("src/main/resources/loading.gif");

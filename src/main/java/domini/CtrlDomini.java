@@ -6,7 +6,7 @@ package domini;
 
 import persistencia.IO;
 
-import java.io.EOFException;
+import java.io.IOException;
 import java.io.File;
 import java.text.DecimalFormat;
 
@@ -33,9 +33,9 @@ public class CtrlDomini {
      * @param fo nombre del archivo comprimido
      * @param quality calidad de compresión para el JPEG
      * @return Devuelve las estadisrticas generadas para la compresión
-     * @throws Exception Lanza cualquier excepción generada al comprimir
+     * @throws IOException Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
+    public void compress(int alg, String fi, String fo, Short quality) throws IOException {
         fileIn = fi;
         fileOut = fo;
 
@@ -59,7 +59,7 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
-    void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality) throws Exception {
+    void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality) throws IOException {
         CompressionAlg comp;
         switch(alg) {
             case 0:
@@ -92,7 +92,7 @@ public class CtrlDomini {
                 comp = new JPEG(quality);
                 break;
             default:
-                throw new Exception("No hauries de veure aixó.");
+                throw new RuntimeException("No s'hauria de poder arribar aqui.");
         }
         output.write(comp.getMagicByte());
         comp.compress(input, output);
@@ -103,28 +103,23 @@ public class CtrlDomini {
      * @param fi nombre del fichero comprimido
      * @param fo nombre del fichero descomprimido
      * @return Estadisticas generadas durante la descompresión
-     * @throws Exception Lanza cualquier excepción generada al descomprimir
+     * @throws IOException Lanza cualquier excepción generada al descomprimir
      */
-    public void decompress(String fi, String fo) throws Exception {
+    public void decompress(String fi, String fo) throws IOException {
         fileIn = fi;
         fileOut = fo;
 
         try (IO.Bit.reader input = new IO.Bit.reader(fileIn)) {
             byte magicByte = (byte) input.readByte();
 
-            int alg;
-            if (magicByte == Folder.MAGIC_BYTE) alg = 5;
-            else throw new Exception("Fitxer a descomprimir invàlid.");
-
-            if (!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
-
             stats = new Statistics();
             stats.setIniFileSize(fileIn);
             stats.setStartingTime();
 
-            if (alg == 5) {
+            if (magicByte == Folder.MAGIC_BYTE) {
                 Folder.decompress(fileOut, input);
             } else {
+                if (!fileOut.endsWith(".ppm") && magicByte == JPEG.MAGIC_BYTE) fileOut += ".ppm";
                 try (IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
                     decompress(input, output, magicByte);
                 }
@@ -135,7 +130,7 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
-    public void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws Exception {
+    public void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
         CompressionAlg decomp;
 
         if(magicByte == 0) magicByte = (byte)input.readByte();
@@ -144,7 +139,7 @@ public class CtrlDomini {
         else if (magicByte == LZSS.MAGIC_BYTE) decomp = new LZSS();
         else if (magicByte == LZW.MAGIC_BYTE) decomp = new LZW();
         else if (magicByte == JPEG.MAGIC_BYTE) decomp = new JPEG((short)0);
-        else throw new Exception("Fitxer a descomprimir invàlid.");
+        else throw new MagicByteException(magicByte);
 
         decomp.decompress(input, output);
     }
@@ -194,5 +189,13 @@ public class CtrlDomini {
         final String[] units = new String[] { "B", "kB", "MB", "GB", "TB" };
         int digitGroups = (int) (Math.log10(d) / Math.log10(1024));
         return new DecimalFormat("#,##0.##").format(d / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    }
+
+    public static class MagicByteException extends IOException {
+		private static final long serialVersionUID = 89896782363268431L;
+
+        public MagicByteException(byte b) {
+            super(String.format("Unknown magic byte: 0x%02x", b));
+        }
     }
 }

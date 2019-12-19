@@ -118,7 +118,7 @@ public final class JPEG implements CompressionAlg{
      * @return bloque codificado sin Huffman
      * @throws IOException error en la lectura
      */
-    public static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file)
+    static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file)
             throws IOException {
         final ArrayList<Short> block = new ArrayList<>();
 
@@ -164,7 +164,7 @@ public final class JPEG implements CompressionAlg{
      * @param file fichero comprimido al que escribir
      * @throws IOException error en la escritura
      */
-    public static void writeBlock(final short[] encoded, final Huffman huffAC, final Huffman huffDC,
+    static void writeBlock(final short[] encoded, final Huffman huffAC, final Huffman huffDC,
             final IO.Bit.writer file) throws IOException {
         // write DC coefficient
         file.write(huffDC.encode(encoded[0]));

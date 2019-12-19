@@ -1,8 +1,9 @@
+package domini;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import domini.LZW;
 import persistencia.IO;
 
 import java.io.*;

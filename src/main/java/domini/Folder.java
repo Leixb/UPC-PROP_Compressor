@@ -23,21 +23,20 @@ public final class Folder {
 
     public final static byte MAGIC_BYTE = (byte)0xf0;
 
-    public static void compress(String folderPath, IO.Bit.writer output) throws Exception {
+    public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
         Path basePath = Paths.get(folderPath);
         try(Stream<Path> files = Files.walk(basePath).filter(Files::isRegularFile)) {
             files.forEach(f -> {
                 try {
                     appendFile(basePath, f, output);
-                    //output.flush();
-                } catch (Exception e) {
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             });
         }
     }
 
-    private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws Exception {
+    private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws IOException {
         // Write filename + Marker then call compression algorithm
         for (char c : (basePath.relativize(file)).toString().toCharArray()) {
             output.write(c);
@@ -48,7 +47,7 @@ public final class Folder {
         }
     }
 
-    public static void decompress(String folderPath, IO.Bit.reader input) throws Exception {
+    public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
         for(;;) {
             String filename = "";

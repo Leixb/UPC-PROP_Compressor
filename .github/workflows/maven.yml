@@ -7,9 +7,6 @@ on:
     - '**.md'
     branches:
       - master
-    paths-ignore:
-      - 'doc/**'
-      - '**.md'
 
 jobs:
   build:

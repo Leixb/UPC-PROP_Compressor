@@ -5,39 +5,49 @@ import java.util.Scanner;
 class LZWDriver {
     private static Scanner scanner;
 
-    public static void testCompress () {
-        System.out.print("Input file (file to compress): ");
-        String inputFile = scanner.next();
-        System.out.print("Output file: ");
-        String outputFile = scanner.next();
+    private static void testCompress() {
+        System.out.print("Input file to compress: ");
+        String inputFilename = scanner.next();
+        System.out.print("Output file compressed: ");
+        String outputFilename = scanner.next();
+
+        IO.Byte.reader input = new IO.Byte.reader(inputFilename);
+        IO.Bit.writer output = new IO.Bit.writer(outputFilename);
 
         try {
-            LZW.compress(inputFile,outputFile);
-            System.out.println("DONE");
+            LZW.compress(input, output);
+            System.out.println("Successful compression!");
         } catch (Exception e) {
             System.out.println("LZW compress failed!");
             e.printStackTrace();
         }
     }
 
-    public static void testDecompress  () {
-        System.out.print("Input file (file to decompress): ");
-        String inputFile = scanner.next();
-        System.out.print("Output file: ");
-        String outputFile = scanner.next();
+    private static void testDecompress() {
+        System.out.print("Input file to decompress: ");
+        String inputFilename = scanner.next();
+        System.out.print("Output file decompressed: ");
+        String outputFilename = scanner.next();
+
+        IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+        IO.Byte.writer output = new IO.Byte.writer(outputFilename);
 
         try {
-            LZW.decompress(inputFile,outputFile);
-            System.out.println("DONE");
+            LZW.decompress(input, output);
+            System.out.println("Successful decompression");
         } catch (Exception e) {
             System.out.println("LZW decompress failed!");
             e.printStackTrace();
         }
     }
 
-    public static int prompt(String[] options) {
+    private static void testGetMagicByte() {
+        System.out.print("getMagicByte: " + LZW.getMagicByte());
+    }
+
+    private static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
-            System.out.printf("- [%d] : %s\n", i, options[i-1]);
+            System.out.printf("- [%d] : %s\n", i, options[i - 1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);
         return scanner.nextInt();
     }
@@ -45,14 +55,15 @@ class LZWDriver {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
-        String[] options = {"compress", "decompress", "exit"};
+        String[] options = {"compress", "decompress", "getMagicByte", "exit"};
 
         int action = prompt(options);
 
-        while (action != 3) {
+        while (action != 4) {
 
             if (action == 1) testCompress();
             else if (action == 2) testDecompress();
+            else if (action == 3) testGetMagicByte();
             else System.out.println("Invalid option");
 
             action = prompt(options);

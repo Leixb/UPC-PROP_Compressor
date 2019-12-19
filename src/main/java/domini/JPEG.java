@@ -7,8 +7,6 @@ package domini;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import domini.Huffman.HuffmanLookupException;
-
 import persistencia.IO;
 import persistencia.PpmImage;
 
@@ -36,9 +34,8 @@ public final class JPEG implements CompressionAlg{
      * @param output objeto escritor fichero comprimido
      * @throws InvalidFileFormat      Si el fichero de entrada no es un PPM raw valido
      * @throws IOException            Si se produce un error de lectura / escritura
-     * @throws HuffmanLookupException Si no se puede codificar algún valor (Solo sucede si la tabla Huffman no es correcta)
      */
-    public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException, HuffmanLookupException {
+    public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
 
         final Huffman huffAcChrom = new Huffman(true, true);
         final Huffman huffAcLum = new Huffman(true, false);
@@ -168,7 +165,7 @@ public final class JPEG implements CompressionAlg{
      * @throws IOException error en la escritura
      */
     public static void writeBlock(final short[] encoded, final Huffman huffAC, final Huffman huffDC,
-            final IO.Bit.writer file) throws IOException, HuffmanLookupException {
+            final IO.Bit.writer file) throws IOException {
         // write DC coefficient
         file.write(huffDC.encode(encoded[0]));
 

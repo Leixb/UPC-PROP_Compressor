@@ -10,7 +10,7 @@ class IODriver{
     private static IO io;
 
     //Char
-    public static void testCharReader() {
+    private static void testCharReader() {
         System.out.print("Filename: ");
         String filename = scanner.next();
 
@@ -23,7 +23,7 @@ class IODriver{
         }
     }
 
-    public static void testCharWriter() {
+    private static void testCharWriter() {
         System.out.print("Filename: ");
         String filename = scanner.next();
 
@@ -37,7 +37,7 @@ class IODriver{
     }
 
     //Byte
-    public static void testByteReader() {
+    private static void testByteReader() {
         System.out.print("Filename: ");
         String filename = scanner.next();
 

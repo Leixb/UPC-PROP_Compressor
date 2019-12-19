@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import domini.Huffman.HuffmanLookupException;
-import domini.PpmImage.InvalidFileFormat;
+
 import persistencia.IO;
+import persistencia.PpmImage;
 
 /**
  * @brief compresión y descompresión de imágenes PPM con JPEG
@@ -37,51 +38,37 @@ public final class JPEG implements CompressionAlg{
      * @throws IOException            Si se produce un error de lectura / escritura
      * @throws HuffmanLookupException Si no se puede codificar algún valor (Solo sucede si la tabla Huffman no es correcta)
      */
-    public void compress(final IO.Byte.reader input, final IO.Bit.writer output)
-            throws InvalidFileFormat, IOException, HuffmanLookupException {
-
-        final PpmImage img = new PpmImage();
-        img.readFile(input);
-
-        img.toYCbCr();
+    public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException, HuffmanLookupException {
 
         final Huffman huffAcChrom = new Huffman(true, true);
         final Huffman huffAcLum = new Huffman(true, false);
         final Huffman huffDcChrom = new Huffman(false, true);
         final Huffman huffDcLum = new Huffman(false, false);
 
-        Huffman huffAc, huffDc;
+        PpmImage.Reader img = new PpmImage.Reader(input);
 
         output.write((int) quality);
-        output.write(img.width());
-        output.write(img.height());
+        output.write(img.getWidth());
+        output.write(img.getHeight());
 
-        final int cols = img.columns();
-        final int rows = img.rows();
+        final int cols = img.widthBlocks();
+        final int rows = img.heightBlocks();
 
-        for (int channel = 0; channel < 3; ++channel) {
-            if (channel == 0) {
-                // Luminance
-                huffAc = huffAcLum;
-                huffDc = huffDcLum;
-            } else {
-                // Chrominance
-                huffAc = huffAcChrom;
-                huffDc = huffDcChrom;
-            }
-
+        for (int j = 0; j < rows; ++j) {
             for (int i = 0; i < cols; ++i) {
-                for (int j = 0; j < rows; ++j) {
-                    final byte[][] block = img.readBlock(channel, i, j);
+                final byte[][][] channelBlocks = toYCbCr(img.readBlock());
 
-                    final short[] encoded = JPEGBlock.encode(quality, channel != 0, block);
 
-                    writeBlock(encoded, huffAc, huffDc, output);
+                for (int chan = 0; chan < 3; ++chan) {
+                    final short[] encoded = JPEGBlock.encode(quality, chan != 0, channelBlocks[chan]);
 
+                    if (chan == 0)  writeBlock(encoded, huffAcLum,   huffDcLum,   output);
+                    else            writeBlock(encoded, huffAcChrom, huffDcChrom, output);
                 }
             }
         }
     }
+
 
     /**
      * @brief Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw
@@ -91,45 +78,39 @@ public final class JPEG implements CompressionAlg{
      * @throws IOException Si se produce un error de lectura / escritura
      */
     public void decompress(IO.Bit.reader input, IO.Byte.writer output) throws IOException {
-        final PpmImage img = new PpmImage();
 
         final Huffman huffAcChrom = new Huffman(true, true);
         final Huffman huffAcLum = new Huffman(true, false);
         final Huffman huffDcChrom = new Huffman(false, true);
         final Huffman huffDcLum = new Huffman(false, false);
 
-        Huffman huffAc, huffDc;
-
         final short quality = (short) input.readInt();
-        int w = input.readInt();
-        int h = input.readInt();
+        final int w = input.readInt();
+        final int h = input.readInt();
 
-        img.setDimensions(w, h);
+        PpmImage.Writer img = new PpmImage.Writer(output, w, h);
 
-        int channel = 0, i = 0, j = 0;
+        final int cols = img.widthBlocks();
+        final int rows = img.heightBlocks();
 
-        for (channel = 0; channel < 3; ++channel) {
-            if (channel == 0) {
-                huffAc = huffAcLum;
-                huffDc = huffDcLum;
-            } else {
-                huffAc = huffAcChrom;
-                huffDc = huffDcChrom;
-            }
-            for (i = 0; i < img.columns(); ++i) {
-                for (j = 0; j < img.rows(); ++j) {
-                    final short[] encoded = readBlock(huffAc, huffDc, input);
+        for (int j = 0; j < rows; ++j) {
+            for (int i = 0; i < cols; ++i) {
+                final byte[][][] channelBlocks = new byte[3][8][8];
 
-                    final byte[][] data = JPEGBlock.decode(quality, channel != 0, encoded);
+                for (int chan = 0; chan < 3; ++chan) {
+                    short[] encoded;
+                    
+                    if (chan == 0)  encoded = readBlock(huffAcLum,   huffDcLum,   input);
+                    else            encoded = readBlock(huffAcChrom, huffDcChrom, input);
 
-                    img.writeBlock(data, channel, i, j);
+                    channelBlocks[chan] = JPEGBlock.decode(quality, chan != 0, encoded);
 
                 }
+
+                img.writeBlock(toRGB(channelBlocks));
             }
         }
 
-        img.toRGB();
-        img.writeFile(output);
     }
 
     /**
@@ -239,4 +220,62 @@ public final class JPEG implements CompressionAlg{
         }
         return num;
     }
+
+    private static byte[][][] toYCbCr(byte[][][] channelBlocks) {
+        byte Y, Cb, Cr;
+
+        byte[][][] reorderedBlocks = new byte[3][8][8];
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                final double R = Byte.toUnsignedInt(channelBlocks[i][j][0]);
+                final double G = Byte.toUnsignedInt(channelBlocks[i][j][1]);
+                final double B = Byte.toUnsignedInt(channelBlocks[i][j][2]);
+
+                Y = doubleToByte(0 + 0.299 * R + 0.587 * G + 0.114 * B);
+                Cb = doubleToByte(128 - 0.1687 * R - 0.3313 * G + 0.5 * B);
+                Cr = doubleToByte(128 + 0.5 * R - 0.4187 * G - 0.0813 * B);
+
+                reorderedBlocks[0][i][j] = Y;
+                reorderedBlocks[1][i][j] = Cb;
+                reorderedBlocks[2][i][j] = Cr;
+            }
+        }
+
+        return reorderedBlocks;
+    }
+
+    private static byte[][][] toRGB(byte[][][] channelBlocks) {
+        byte R, G, B;
+
+        byte[][][] reorderedBlocks = new byte[8][8][3];
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                final double Y = Byte.toUnsignedInt(channelBlocks [0][i][j]);
+                final double Cb = Byte.toUnsignedInt(channelBlocks[1][i][j]);
+                final double Cr = Byte.toUnsignedInt(channelBlocks[2][i][j]);
+
+                R = doubleToByte(Y + 1.402 * (Cr - 128));
+                G = doubleToByte(Y - 0.34414 * (Cb - 128) - 0.71414 * (Cr - 128));
+                B = doubleToByte(Y + 1.772 * (Cb - 128));
+
+                reorderedBlocks[i][j][0] = R;
+                reorderedBlocks[i][j][1] = G;
+                reorderedBlocks[i][j][2] = B;
+            }
+        }
+
+        return reorderedBlocks;
+    }
+
+    private static byte doubleToByte(final double d) {
+        int n = (int) d;
+
+        if (n < 0)
+            n = 0;
+        else if (n > 255)
+            n = 255;
+
+        return (byte) n;
+    }
+
 }

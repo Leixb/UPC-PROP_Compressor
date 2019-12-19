@@ -9,7 +9,7 @@ import persistencia.IO;
 import java.io.IOException;
 
 /**
- * @brief Compresión y decompresión de archivos de texto con LZSS
+ * @brief Compresión y decompresión de archivos con LZSS
  */
 public final class LZSS implements CompressionAlg{
 
@@ -30,7 +30,7 @@ public final class LZSS implements CompressionAlg{
     }
 
     /**
-     * @brief Usando el algoritmo LZSS esta función comprime un archivo txt
+     * @brief Usando el algoritmo LZSS esta función comprime un archivo
      * @param input objeto de lectura del archivo que se quiere comprimir
      * @param output objeto de escritura del archivo comprimido
      * @throws IOException se lanza cuando hay un error de lectura o escritura
@@ -174,6 +174,7 @@ public final class LZSS implements CompressionAlg{
      *        también es sufijo hasta esa posición
      * @param lps es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud
      *        máxima del prefijo que también es sufijo desde el principio hasta esa posición
+     * @param pathLength Length del pattern para el que se quiere computar el array lps
      */
     private void computeLPSArray(final int[] lps, int patLength) {
         int length = 0;
@@ -197,6 +198,9 @@ public final class LZSS implements CompressionAlg{
 
     /**
      * @brief Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron
+     * @param currentACIndex la length del pattern
+     * @param currentSWIndex el indice donde empieza el slidingWindow, ya que es circular
+     * @param fullSW indica el estado de la slidingWindow, true si lo está, false en caso contrario
      * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de
      *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
      */

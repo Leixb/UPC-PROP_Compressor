@@ -56,6 +56,7 @@ class JPEGTest {
             tmpOut.deleteOnExit();
             File tmpAux = File.createTempFile("JPEG_test", ".piz.jpeg");
             tmpAux.deleteOnExit();
+
             try(IO.Byte.reader input = new IO.Byte.reader(inputFile);
                 IO.Bit.writer output = new IO.Bit.writer(tmpAux.getPath())) {
                     JPEG alg = new JPEG((short)50);

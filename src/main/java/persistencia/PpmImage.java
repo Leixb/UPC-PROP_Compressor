@@ -1,5 +1,5 @@
 /**
- * @file ./src/main/java/domini/PpmImage.java
+ * @file ./src/main/java/persistencia/PpmImage.java
  * @author ***REMOVED***
 */
 package persistencia;
@@ -10,6 +10,8 @@ import java.io.*;
  * @brief Imagen PPM
  */
 public class PpmImage {
+
+    /** Lector de PpmImage */
     static public class Reader {
         private IO.Byte.reader file;
         private int width, height;
@@ -107,6 +109,7 @@ public class PpmImage {
         }
     }
 
+    /** Escritor de PpmImage */
     static public class Writer {
         private IO.Byte.writer file;
 
@@ -174,6 +177,7 @@ public class PpmImage {
         }
     }
 
+    /** Excepción del formato de archivo  */
     public static class FileFormatException extends IOException {
         private static final long serialVersionUID = 483426725025690872L;
 

@@ -17,19 +17,32 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public final class Folder {
 
+    /** Constructora vacía Folder */
     private Folder() {}
 
+    /// Indicador de carpeta vacía
     private static char EMPTY_FOLDER = 0xFFEF;
+
+    /// Indicador de archivo
     private static char FILE = 0xFFF1;
 
+    /// MagicByte Folder
     public final static byte MAGIC_BYTE = (byte)0xf0;
 
+    /**
+     * @brief Dada la dirección de la carpeta a comprimir y un objeto de escritura del archivo comprimido, ejecuta la compresión con el algoritmo pertienente
+     *
+     * @param folderPath dirección de la carpeta a comprimir
+     * @param output objeto de escritura del archivo comprimido
+     * @throws IOException Lanza cualquier excepción generada al comprimir
+     */
     public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
         Path root = Paths.get(folderPath);
 
         Files.walkFileTree(root, new CompressFiles(root, output));
     }
 
+    /** File visitor que comprime los archivos */
     private static class CompressFiles implements FileVisitor<Path> {
         private IO.Bit.writer output;
         private Path root; 
@@ -78,6 +91,13 @@ public final class Folder {
         }
     }
 
+    /**
+     * @brief Dada la dirección de la carpeta a descomprimir y un objeto de lectura del archivo comprimido, ejecuta la descompresión con el algoritmo pertienente
+     *
+     * @param folderPath dirección de la carpeta a descomprimir
+     * @param input objeto de lectura del archivo comprimido
+     * @throws IOException Lanza cualquier excepción generada al descomprimir
+     */
     public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
         for(;;) {
@@ -109,6 +129,7 @@ public final class Folder {
         }
     }
 
+    /** Excepcion de formato de carpeta */
     public static class FolderFormatException extends IOException {
         private static final long serialVersionUID = 89267786123678912L;
 

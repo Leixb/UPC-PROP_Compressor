@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/presentacio/CtrlPresentacio.java
- * @author ***REMOVED*** Plasencia / ***REMOVED***
+ * @author ***REMOVED***
 */
 package presentacio;
 

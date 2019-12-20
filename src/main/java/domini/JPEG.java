@@ -14,8 +14,13 @@ import persistencia.PpmImage;
  * @brief compresión y descompresión de imágenes PPM con JPEG
  */
 public final class JPEG implements CompressionAlg{
+    /// Calidad de compresión
     private short quality;
 
+    /**
+     * Constructora JPEG con calidad, inicializa quality con la calidad dada
+     * @param quality calidad de compresión
+     */
     public JPEG(final short quality) {
         this.quality = quality;
     }
@@ -31,9 +36,8 @@ public final class JPEG implements CompressionAlg{
      * @brief Comprime una imagen PPM bloque a bloque
      *
      * @param input  objeto lector del fichero de entrada
-     * @param output objeto escritor fichero comprimido
-     * @throws InvalidFileFormat      Si el fichero de entrada no es un PPM raw valido
-     * @throws IOException            Si se produce un error de lectura / escritura
+     * @param output objeto escritor del fichero comprimido
+     * @throws IOException Si se produce un error de lectura / escritura
      */
     public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
 
@@ -71,7 +75,7 @@ public final class JPEG implements CompressionAlg{
      * @brief Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw
      *
      * @param input  objeto lector del fichero comprimido
-     * @param output objeto escritor fichero descomprimido
+     * @param output objeto escritor del fichero descomprimido
      * @throws IOException Si se produce un error de lectura / escritura
      */
     public void decompress(IO.Bit.reader input, IO.Byte.writer output) throws IOException {
@@ -112,6 +116,7 @@ public final class JPEG implements CompressionAlg{
 
     /**
      * @brief Lee un bloque codificado con las tablas Huffman.
+     *
      * @param huffAC tabla Huffman de valores AC
      * @param huffDC tabla Huffman de valores DC
      * @param file fichero comprimido del que leer
@@ -148,6 +153,14 @@ public final class JPEG implements CompressionAlg{
         return r;
     }
 
+    /**
+     * @brief Lee un código Huffman del fichero y lo decodifica
+     *
+     * @param huff objeto tipo Huffman
+     * @param file objeto escritor del fichero comprimido
+     * @return devuelve el valor asociado al código Huffman leído
+     * @throws IOException error en la lectura
+     */
     private static short readHuffman(Huffman huff, IO.Bit.reader file) throws IOException {
         Huffman.Node n = huff.decode(file.read());
         while (!n.isLeaf()) {
@@ -193,6 +206,14 @@ public final class JPEG implements CompressionAlg{
     }
 
     // Si es negatiu escriu el valor negat en binari.
+    /**
+     * @brief Dado un valor, una longitud y un objeto de escritura, escribe el valor representado con la longitud dada en el objeto de escritura.
+     *
+     * @param value valor que se ecribe
+     * @param l longitud de valor que se escribe
+     * @param file objeto de escritura del archivo al que se escribe
+     * @throws IOException Lanza cualquier excepción generada al escribir
+     */
     private static void write(int value, int l, IO.Bit.writer file) throws IOException {
         BitSetL bs;
         if (value < 0) {
@@ -205,6 +226,14 @@ public final class JPEG implements CompressionAlg{
     }
 
     // Si era negatiu llegeix el valor negat en binari.
+    /**
+     * @brief Dada una longitud y un objeto de lectura, se leen los bits correspondientes a la longitud dada del objeto de lectura
+     *
+     * @param length longitud que se lee
+     * @param file objeto de lectura del archivo del cual se lee
+     * @return short leído
+     * @throws IOException Lanza cualquier excepción generada al leer
+     */
     private static short read(int length, IO.Bit.reader file) throws IOException {
         BitSetL bs = file.readBitSet(length);
 
@@ -218,6 +247,12 @@ public final class JPEG implements CompressionAlg{
         return num;
     }
 
+    /**
+     * @brief Convierte el bloque dado en espacio de color RGB a YCbCr
+     *
+     * @param channelBlocks bloque en espacio de color RGB
+     * @return bloque en espacio de color YCbCr
+     */
     private static byte[][][] toYCbCr(byte[][][] channelBlocks) {
         byte Y, Cb, Cr;
 
@@ -241,6 +276,12 @@ public final class JPEG implements CompressionAlg{
         return reorderedBlocks;
     }
 
+    /**
+     * @brief Convierte el bloque dado en espacio de color YCbCr a RGB
+     *
+     * @param channelBlocks bloque en espacio de color YCbCr
+     * @return bloque en espacio de color RGB
+     */
     private static byte[][][] toRGB(byte[][][] channelBlocks) {
         byte R, G, B;
 
@@ -264,6 +305,12 @@ public final class JPEG implements CompressionAlg{
         return reorderedBlocks;
     }
 
+    /**
+     * @brief Dado un double, devuelve dicho double en formato de byte
+     *
+     * @param d double a transformar
+     * @return el double en fromato de byte
+     */
     private static byte doubleToByte(final double d) {
         int n = (int) d;
 

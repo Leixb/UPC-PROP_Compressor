@@ -235,6 +235,12 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
 
     }
 
+    /**
+     * @brief Calcula el numero de bits necesarios para representar el short n
+     *
+     * @param n el short a representar
+     * @return numero de bits necesarios para representar el short n
+     */
     private static int bitLength(final short n) {
         return 0xF & (int) (Math.floor(Math.log(Math.abs(n)) / Math.log(2)) + 1);
     }
@@ -338,6 +344,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
 
     /**
      * @brief Comprime un bloque 8x8 aplicando DCT, cuantización, zigZag y RLE
+     *
      * @param quality calidad de compresión (1-100)
      * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
      * @param data bloque 8x8 a codificar
@@ -354,6 +361,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
 
     /**
      * @brief Deshace RLE, zigZag, quantización y DCT para obtener el bloque 8x8 original
+     *
      * @param quality calidad de compresión (1-100)
      * @param isChrominance si es un bloque de Chrominance (si falso Luminance)
      * @param data bloque 8x8 a codificado en RLE

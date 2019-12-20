@@ -17,12 +17,22 @@ import java.util.stream.Stream;
  */
 public final class Folder {
 
+    /** Constructora vacía Folder */
     private Folder() {}
 
+    /// Marca separadora
     private static char MARKER = 0xFFFF;
 
+    /// MagicByte Folder
     public final static byte MAGIC_BYTE = (byte)0xf0;
 
+    /**
+     * @brief Dada la dirección de la carpeta a comprimir y un objeto de escritura del archivo comprimido, ejecuta la compresión con el algoritmo pertienente
+     *
+     * @param folderPath dirección de la carpeta a comprimir
+     * @param output objeto de escritura del archivo comprimido
+     * @throws IOException Lanza cualquier excepción generada al comprimir
+     */
     public static void compress(String folderPath, IO.Bit.writer output) throws IOException {
         Path basePath = Paths.get(folderPath);
         try(Stream<Path> files = Files.walk(basePath).filter(Files::isRegularFile)) {
@@ -36,6 +46,14 @@ public final class Folder {
         }
     }
 
+    /**
+     * @brief
+     *
+     * @param basePath
+     * @param file dirección del archivo
+     * @param output objeto de escritura del archivo comprimido
+     * @throws IOException Lanza cualquier excepción generada al comprimir
+     */
     private static void appendFile(Path basePath, Path file, IO.Bit.writer output) throws IOException {
         // Write filename + Marker then call compression algorithm
         for (char c : (basePath.relativize(file)).toString().toCharArray()) {
@@ -47,6 +65,13 @@ public final class Folder {
         }
     }
 
+    /**
+     * @brief Dada la dirección de la carpeta a descomprimir y un objeto de lectura del archivo comprimido, ejecuta la descompresión con el algoritmo pertienente
+     *
+     * @param folderPath dirección de la carpeta a descomprimir
+     * @param input objeto de lectura del archivo comprimido
+     * @throws IOException Lanza cualquier excepción generada al descomprimir
+     */
     public static void decompress(String folderPath, IO.Bit.reader input) throws IOException {
         // Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm
         for(;;) {

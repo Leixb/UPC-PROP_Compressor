@@ -19,6 +19,7 @@ public class CtrlDomini {
     private Statistics stats;
     private static CtrlDomini instance = null;
 
+    /** Constructora vacía CtrlDomini */
     private CtrlDomini () {}
 
     public static CtrlDomini getInstance() {
@@ -28,11 +29,12 @@ public class CtrlDomini {
 
     /**
      * @brief Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente
+     *
      * @param alg algoritmo con el que comprimir
      * @param fi nombre del archivo a comprimir
      * @param fo nombre del archivo comprimido
      * @param quality calidad de compresión para el JPEG
-     * @return Devuelve las estadisrticas generadas para la compresión
+     * @return Devuelve las estadisticas generadas para la compresión
      * @throws IOException Lanza cualquier excepción generada al comprimir
      */
     public void compress(int alg, String fi, String fo, Short quality) throws IOException {
@@ -59,6 +61,15 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
+    /**
+     * @brief Dado un algoritmo, el objeto de lectura de la entrada y el objeto de escritura del comprimido, ejecuta la compresión con el algoritmo pertienente
+     *
+     * @param alg algoritmo con el que comprimir
+     * @param input objeto de lectura del archivo a comprimir
+     * @param output objeto de escritura del archivo comprimido
+     * @param quality calidad de compresión para el JPEG
+     * @throws IOException Lanza cualquier excepción generada al comprimir
+     */
     void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality) throws IOException {
         CompressionAlg comp;
         switch(alg) {
@@ -100,6 +111,7 @@ public class CtrlDomini {
 
     /**
      * @brief Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió
+     *
      * @param fi nombre del fichero comprimido
      * @param fo nombre del fichero descomprimido
      * @return Estadisticas generadas durante la descompresión
@@ -130,6 +142,14 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
+    /**
+     * @brief Dado un objeto de lectura del archivo comprimido, el objeto de escritura para el archivo descomprimido y un magicbyte, descomprime el archivo usando el algoritmo identificado por el magicbyte
+     *
+     * @param input objeto de lectura del fichero comprimido
+     * @param output objeto de escritura del fichero descomprimido
+     * @param magicByte byte que identifica el algoritmo a utilizar
+     * @throws IOException Lanza cualquier excepción generada al descomprimir
+     */
     public void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
         CompressionAlg decomp;
 
@@ -180,6 +200,7 @@ public class CtrlDomini {
 
     /**
      * @brief Da el formato correcto al tamaño de un fichero (B,kB,etc)
+     *
      * @param d Tamaño de un fichero en bytes
      * @return Tamaño del fichero en la magnitud que le corresponda
      */
@@ -191,6 +212,9 @@ public class CtrlDomini {
         return new DecimalFormat("#,##0.##").format(d / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
     }
 
+    /**
+     * @brief Excepción de MagicByte
+     */
     public static class MagicByteException extends IOException {
 		private static final long serialVersionUID = 89896782363268431L;
 

@@ -7,7 +7,7 @@ package domini;
 import java.util.BitSet;
 
 /**
- * @brief BitSet con length() especifica
+ * @brief BitSet con length() especifica la longitud del bitset
  *
  * BitSet con length distinta al BitSet estandard.
  * El length de java.util.BitSet devuelve el numero de bits hasta el
@@ -51,7 +51,7 @@ public class BitSetL extends BitSet {
 
     /** Constructora con String, inicializa length al tamaño del String
      * y convierte la string en un bitset.
-     * @param s string de 0 y unos
+     * @param s string de 0s y 1s
      */
     public BitSetL(final String s) {
         super(s.length());
@@ -85,8 +85,8 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * @brief mete a true el bit en la posición dada
-     * @param pos posición del bit a meter true
+     * @brief pone a true el bit en la posición dada
+     * @param pos posición del bit que se pone a true
      */
     public void set(final int pos) {
         super.set(pos);
@@ -95,9 +95,9 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * @brief mete a true o false el bit en la posición dada en función del booleano val
+     * @brief pone a true o false el bit en la posición dada en función del booleano val
      * @param pos posición del bit a modificar
-     * @param val valor booleano que se asignar al bit
+     * @param val valor booleano que se asigna al bit
      */
     public void set(final int pos, final boolean val) {
         super.set(pos, val);
@@ -106,8 +106,8 @@ public class BitSetL extends BitSet {
     }
 
     /**
-     * @brief mete a false el bit en la posición dada
-     * @param pos posicion del bit a meter true
+     * @brief pone a false el bit en la posición dada
+     * @param pos posicion del bit que se pone a true
      */
     public void clear(final int pos) {
         super.clear(pos);

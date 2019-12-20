@@ -1,0 +1,169 @@
+\hypertarget{classdomini_1_1JPEGBlock_1_1ZigZag}{}\doxysection{Referencia de la Clase domini.\+J\+P\+E\+G\+Block.\+Zig\+Zag}
+\label{classdomini_1_1JPEGBlock_1_1ZigZag}\index{domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}}
+
+
+{\itshape Aplasta} un bloque 8x8 en zig\+Zag.  
+
+
+Diagrama de herencias de domini.\+J\+P\+E\+G\+Block.\+Zig\+Zag\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1JPEGBlock_1_1ZigZag}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_abdc9829862b59a0368c39228c880eda1}{encode}} (final short\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} block)
+\item 
+static short\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_a6047c9281b50b3587ac68cd763959b50}{decode}} (final short\mbox{[}$\,$\mbox{]} L)
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_a6e5a3ecbccd44cdf3a67c6fe48ed93e2}{calculate\+Correspondence\+Table}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Otros miembros heredados}
+
+
+\doxysubsection{Descripción detallada}
+{\itshape Aplasta} un bloque 8x8 en zig\+Zag. 
+
+Definición en la línea 160 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1ZigZag_a6e5a3ecbccd44cdf3a67c6fe48ed93e2}\label{classdomini_1_1JPEGBlock_1_1ZigZag_a6e5a3ecbccd44cdf3a67c6fe48ed93e2}} 
+\index{domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}!calculateCorrespondenceTable@{calculateCorrespondenceTable}}
+\index{calculateCorrespondenceTable@{calculateCorrespondenceTable}!domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}}
+\doxysubsubsection{\texorpdfstring{calculateCorrespondenceTable()}{calculateCorrespondenceTable()}}
+{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G\+Block.\+Zig\+Zag.\+calculate\+Correspondence\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 165 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{165                                                            \{}
+\DoxyCodeLine{166             \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}} = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[8][8];}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168             \textcolor{keywordtype}{int} i = 0, j = 0;}
+\DoxyCodeLine{169             \textcolor{keywordtype}{boolean} up = \textcolor{keyword}{true};}
+\DoxyCodeLine{170             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{byte} pos = 0; pos < 8 * 8; ++pos) \{}
+\DoxyCodeLine{171                 \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}}[i][j] = pos;}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173                 \textcolor{keywordflow}{if} (up) \{}
+\DoxyCodeLine{174                     -\/-\/i;}
+\DoxyCodeLine{175                     ++j;}
+\DoxyCodeLine{176                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{177                     ++i;}
+\DoxyCodeLine{178                     -\/-\/j;}
+\DoxyCodeLine{179                 \}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181                 \textcolor{keywordtype}{boolean} change\_dir = \textcolor{keyword}{true};}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183                 \textcolor{keywordflow}{if} (i == 8 \&\& j == -\/1) \{}
+\DoxyCodeLine{184                     i = 7;}
+\DoxyCodeLine{185                     j = 1;}
+\DoxyCodeLine{186                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i < 0) \{}
+\DoxyCodeLine{187                     i = 0;}
+\DoxyCodeLine{188                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (j < 0) \{}
+\DoxyCodeLine{189                     j = 0;}
+\DoxyCodeLine{190                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i >= 8) \{}
+\DoxyCodeLine{191                     i = 7;}
+\DoxyCodeLine{192                     j += 2;}
+\DoxyCodeLine{193                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (j >= 8) \{}
+\DoxyCodeLine{194                     j = 7;}
+\DoxyCodeLine{195                     i += 2;}
+\DoxyCodeLine{196                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{197                     change\_dir = \textcolor{keyword}{false};}
+\DoxyCodeLine{198                 \}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200                 \textcolor{keywordflow}{if} (change\_dir)}
+\DoxyCodeLine{201                     up = !up;}
+\DoxyCodeLine{202             \}}
+\DoxyCodeLine{203         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1ZigZag_a6047c9281b50b3587ac68cd763959b50}\label{classdomini_1_1JPEGBlock_1_1ZigZag_a6047c9281b50b3587ac68cd763959b50}} 
+\index{domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}!decode@{decode}}
+\index{decode@{decode}!domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Zig\+Zag.\+decode (\begin{DoxyParamCaption}\item[{final short\mbox{[}$\,$\mbox{]}}]{L }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 221 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{221                                                         \{}
+\DoxyCodeLine{222             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}} == \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{223                 \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_a6e5a3ecbccd44cdf3a67c6fe48ed93e2}{calculateCorrespondenceTable}}();}
+\DoxyCodeLine{224             \}}
+\DoxyCodeLine{225             \textcolor{keyword}{final} \textcolor{keywordtype}{short}[][] block = \textcolor{keyword}{new} \textcolor{keywordtype}{short}[8][8];}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 8; i++) \{}
+\DoxyCodeLine{228                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 8; j++) \{}
+\DoxyCodeLine{229                     block[i][j] = L[\mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}}[i][j]];}
+\DoxyCodeLine{230                 \}}
+\DoxyCodeLine{231             \}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233             \textcolor{keywordflow}{return} block;}
+\DoxyCodeLine{234         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1ZigZag_abdc9829862b59a0368c39228c880eda1}\label{classdomini_1_1JPEGBlock_1_1ZigZag_abdc9829862b59a0368c39228c880eda1}} 
+\index{domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}!encode@{encode}}
+\index{encode@{encode}!domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Zig\+Zag.\+encode (\begin{DoxyParamCaption}\item[{final short}]{block\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 205 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{205                                                             \{}
+\DoxyCodeLine{206             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}} == \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{207                 \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_a6e5a3ecbccd44cdf3a67c6fe48ed93e2}{calculateCorrespondenceTable}}();}
+\DoxyCodeLine{208             \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210             \textcolor{keyword}{final} \textcolor{keywordtype}{short}[] L = \textcolor{keyword}{new} \textcolor{keywordtype}{short}[8 * 8];}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 8; i++) \{}
+\DoxyCodeLine{213                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 8; j++) \{}
+\DoxyCodeLine{214                     L[\mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}{table}}[i][j]] = block[i][j];}
+\DoxyCodeLine{215                 \}}
+\DoxyCodeLine{216             \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218             \textcolor{keywordflow}{return} L;}
+\DoxyCodeLine{219         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}\label{classdomini_1_1JPEGBlock_1_1ZigZag_aeb834c950bd2ceddf014a076c26eba52}} 
+\index{domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}!table@{table}}
+\index{table@{table}!domini.JPEGBlock.ZigZag@{domini.JPEGBlock.ZigZag}}
+\doxysubsubsection{\texorpdfstring{table}{table}}
+{\footnotesize\ttfamily byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Zig\+Zag.\+table\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 163 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{JPEGBlock_8java}{J\+P\+E\+G\+Block.\+java}}\end{DoxyCompactItemize}

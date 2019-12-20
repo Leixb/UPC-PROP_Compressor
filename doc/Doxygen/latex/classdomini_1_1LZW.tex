@@ -2,79 +2,465 @@
 \label{classdomini_1_1LZW}\index{domini.LZW@{domini.LZW}}
 
 
-Compresión y descompresión de archivos de texto con \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}.  
+Compresión y descompresión de archivos con \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}.  
 
 
-\doxysubsection*{Métodos públicos estáticos}
+Diagrama de herencias de domini.\+L\+ZW\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1LZW}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{classdomini_1_1LZW_a898ab51040bb21f71d28a241fa91e6bc}{compress}} (final String input\+Filename, final String output\+Filename)  throws I\+O\+Exception 
-\begin{DoxyCompactList}\small\item\em L\+Lama a una función que comprime un archivo de texto. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classdomini_1_1LZW_ac2a78ca45cebfc39a37b8e4813f9cc7d}{decompress}} (final String input\+Filename, final String output\+Filename)  throws I\+O\+Exception 
-\begin{DoxyCompactList}\small\item\em L\+Lama a una función que descomprime un archivo de texto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{classdomini_1_1LZW_a3fb9d0d2f261d2ed9f02c01f3d0ff212}{L\+ZW}} ()
+\item 
+byte \mbox{\hyperlink{classdomini_1_1LZW_a34c93bdda928229c3d20ebe84c01c59c}{get\+Magic\+Byte}} ()
+\item 
+void \mbox{\hyperlink{classdomini_1_1LZW_a0e841fb556c70d08f16498a7c709773b}{compress}} (I\+O.\+Byte.\+reader input, I\+O.\+Bit.\+writer output)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Comprime un archivo implementando un algoritmo \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1LZW_a11c1f2ca20c9f9976c9122a7e8eebd4d}{decompress}} (I\+O.\+Bit.\+reader input, I\+O.\+Byte.\+writer output)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Descomprime un archivo implementando un algoritmo \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Atributos públicos estáticos}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classdomini_1_1LZW_a13457a473880ead801452f858cfae4ca}\label{classdomini_1_1LZW_a13457a473880ead801452f858cfae4ca}} 
 static final byte \mbox{\hyperlink{classdomini_1_1LZW_a13457a473880ead801452f858cfae4ca}{M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE}} = (byte) 0x11
 \begin{DoxyCompactList}\small\item\em Magic Byte \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classdomini_1_1LZW_af65400354ba1af10e1520cac41d66388}{create\+Compression\+Dictionary}} ()
+\begin{DoxyCompactList}\small\item\em Crea el diccionario de compresión y lo inicializa con los valores unitarios. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1LZW_a154b566c71b74018588691156f48aa40}{create\+Decompression\+Dictionary}} ()
+\begin{DoxyCompactList}\small\item\em Crea el diccionario de descompresión y lo inicializa con los valores unitarios. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classdomini_1_1LZW_aaae107a8538d80af64cb5c682394e446}{bits\+Needed}} (final int n)
+\begin{DoxyCompactList}\small\item\em Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}{write\+Code}} (int code, final I\+O.\+Bit.\+writer output)  throws I\+O\+Exception
+\begin{DoxyCompactList}\small\item\em Escribe en output el entero code representado en n bits precedido de 5 bits que codifican n. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static final int \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+S\+I\+ZE}} = 0x0\+FF
+\begin{DoxyCompactList}\small\item\em Tamaño inicial del diccionario. \end{DoxyCompactList}\item 
+static final int \mbox{\hyperlink{classdomini_1_1LZW_a8f9b580b6468484908bd38be4b7a2e38}{O\+V\+E\+R\+F\+L\+OW}} = 0x7\+F\+F\+F\+F\+F\+FD
+\begin{DoxyCompactList}\small\item\em Marca el overflow del diccionario. \end{DoxyCompactList}\item 
+static final int \mbox{\hyperlink{classdomini_1_1LZW_aef45f93c442c870b94cb6f3fc64c6561}{E\+OF}} = 0x7\+F\+F\+F\+F\+F\+FE
+\begin{DoxyCompactList}\small\item\em Pseudo E\+OF. \end{DoxyCompactList}\item 
+static Map$<$ Array\+List$<$ Byte $>$, Integer $>$ \mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compression\+Dictionary}}
+\begin{DoxyCompactList}\small\item\em Diccionario de compresión. \end{DoxyCompactList}\item 
+static Map$<$ Integer, Array\+List$<$ Byte $>$ $>$ \mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompression\+Dictionary}}
+\begin{DoxyCompactList}\small\item\em Diccionario de descompresión. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
-Compresión y descompresión de archivos de texto con \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. 
+Compresión y descompresión de archivos con \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. 
 
-\begin{DoxyAuthor}{Autor}
-Alex Herrero 
-\end{DoxyAuthor}
+Definición en la línea 18 del archivo L\+Z\+W.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1LZW_a3fb9d0d2f261d2ed9f02c01f3d0ff212}\label{classdomini_1_1LZW_a3fb9d0d2f261d2ed9f02c01f3d0ff212}} 
+\index{domini.LZW@{domini.LZW}!LZW@{LZW}}
+\index{LZW@{LZW}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{LZW()}{LZW()}}
+{\footnotesize\ttfamily domini.\+L\+Z\+W.\+L\+ZW (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creadora vacia \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}} 
+
+Definición en la línea 21 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{ \}}
+
+\end{DoxyCode}
 
 
 \doxysubsection{Documentación de las funciones miembro}
-\mbox{\Hypertarget{classdomini_1_1LZW_a898ab51040bb21f71d28a241fa91e6bc}\label{classdomini_1_1LZW_a898ab51040bb21f71d28a241fa91e6bc}} 
+\mbox{\Hypertarget{classdomini_1_1LZW_aaae107a8538d80af64cb5c682394e446}\label{classdomini_1_1LZW_aaae107a8538d80af64cb5c682394e446}} 
+\index{domini.LZW@{domini.LZW}!bitsNeeded@{bitsNeeded}}
+\index{bitsNeeded@{bitsNeeded}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{bitsNeeded()}{bitsNeeded()}}
+{\footnotesize\ttfamily static int domini.\+L\+Z\+W.\+bits\+Needed (\begin{DoxyParamCaption}\item[{final int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em n} & Numero integer del que se calculan cuantos bits son necesarios para codificarlo en base 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro 
+\end{DoxyReturn}
+
+
+Definición en la línea 75 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75                                                \{}
+\DoxyCodeLine{76         \textcolor{keywordflow}{if} (n <= 0)}
+\DoxyCodeLine{77             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{78         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int}) (Math.log(n) / Math.log(2) + 1e-\/10) + 1;}
+\DoxyCodeLine{79     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZW_a0e841fb556c70d08f16498a7c709773b}\label{classdomini_1_1LZW_a0e841fb556c70d08f16498a7c709773b}} 
 \index{domini.LZW@{domini.LZW}!compress@{compress}}
 \index{compress@{compress}!domini.LZW@{domini.LZW}}
 \doxysubsubsection{\texorpdfstring{compress()}{compress()}}
-{\footnotesize\ttfamily static void domini.\+L\+Z\+W.\+compress (\begin{DoxyParamCaption}\item[{final String}]{input\+Filename,  }\item[{final String}]{output\+Filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily void domini.\+L\+Z\+W.\+compress (\begin{DoxyParamCaption}\item[{I\+O.\+Byte.\+reader}]{input,  }\item[{I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-L\+Lama a una función que comprime un archivo de texto. 
+Comprime un archivo implementando un algoritmo \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. 
 
 
 \begin{DoxyParams}{Parámetros}
-{\em input\+Filename} & path y nombre del archivo que se quiere comprimir. \\
+{\em input} & objeto de lectura del archivo que se comprime \\
 \hline
-{\em output\+Filename} & path y nombre del archivo comprimido. \\
+{\em output} & objeto de ecritura del archivo comprimido \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em I\+O\+Exception} & se produce un error en la lectura / escritura. \\
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al comprimir \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{classdomini_1_1LZW_ac2a78ca45cebfc39a37b8e4813f9cc7d}\label{classdomini_1_1LZW_ac2a78ca45cebfc39a37b8e4813f9cc7d}} 
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a3a0ecc535a8ae0b4aa2b98abb7ea0496}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 102 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{102                                                                                          \{}
+\DoxyCodeLine{103         \mbox{\hyperlink{classdomini_1_1LZW_af65400354ba1af10e1520cac41d66388}{createCompressionDictionary}}();}
+\DoxyCodeLine{104         \textcolor{keywordtype}{int} i = \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{DICTIONARY\_SIZE}} + 1;}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106         ArrayList<Byte> bytes = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{107         \textcolor{keywordtype}{int} auxInt = input.read();}
+\DoxyCodeLine{108         \textcolor{keywordflow}{while} (auxInt != -\/1) \{}
+\DoxyCodeLine{109             \textcolor{keyword}{final} \textcolor{keywordtype}{byte} b = (byte) auxInt;}
+\DoxyCodeLine{110             ArrayList<Byte> aux = \textcolor{keyword}{new} ArrayList<>(bytes);}
+\DoxyCodeLine{111             aux.add(b);}
+\DoxyCodeLine{112             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}}.containsKey(aux)) \{}
+\DoxyCodeLine{113                 bytes = aux;}
+\DoxyCodeLine{114             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{115                 \textcolor{keyword}{final} \textcolor{keywordtype}{int} code = \mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}}.get(bytes);}
+\DoxyCodeLine{116                 \mbox{\hyperlink{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}{writeCode}}(code,output);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118                 \mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}}.put(aux,i++);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120                 bytes = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{121                 bytes.add(b);}
+\DoxyCodeLine{122             \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124             \textcolor{keywordflow}{if} (i >= \mbox{\hyperlink{classdomini_1_1LZW_a8f9b580b6468484908bd38be4b7a2e38}{OVERFLOW}}) \{  \textcolor{comment}{//[DICTIONARY OVERFLOW]}}
+\DoxyCodeLine{125                 \mbox{\hyperlink{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}{writeCode}}(\mbox{\hyperlink{classdomini_1_1LZW_a8f9b580b6468484908bd38be4b7a2e38}{OVERFLOW}},output);}
+\DoxyCodeLine{126                 \mbox{\hyperlink{classdomini_1_1LZW_af65400354ba1af10e1520cac41d66388}{createCompressionDictionary}}();}
+\DoxyCodeLine{127                 i = \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{DICTIONARY\_SIZE}};}
+\DoxyCodeLine{128             \}}
+\DoxyCodeLine{129             auxInt = input.read();}
+\DoxyCodeLine{130         \}}
+\DoxyCodeLine{131         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}}.containsKey(bytes)) \{}
+\DoxyCodeLine{132            \textcolor{keyword}{final} \textcolor{keywordtype}{int} code = \mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}}.get(bytes);}
+\DoxyCodeLine{133             \mbox{\hyperlink{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}{writeCode}}(code,output);}
+\DoxyCodeLine{134         \}}
+\DoxyCodeLine{135         \mbox{\hyperlink{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}{writeCode}}(\mbox{\hyperlink{classdomini_1_1LZW_aef45f93c442c870b94cb6f3fc64c6561}{EOF}},output);}
+\DoxyCodeLine{136     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZW_af65400354ba1af10e1520cac41d66388}\label{classdomini_1_1LZW_af65400354ba1af10e1520cac41d66388}} 
+\index{domini.LZW@{domini.LZW}!createCompressionDictionary@{createCompressionDictionary}}
+\index{createCompressionDictionary@{createCompressionDictionary}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{createCompressionDictionary()}{createCompressionDictionary()}}
+{\footnotesize\ttfamily static void domini.\+L\+Z\+W.\+create\+Compression\+Dictionary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea el diccionario de compresión y lo inicializa con los valores unitarios. 
+
+
+
+Definición en la línea 44 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44                                                       \{}
+\DoxyCodeLine{45         \mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}} = \textcolor{keyword}{new} HashMap<>();}
+\DoxyCodeLine{46         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <= \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{DICTIONARY\_SIZE}}; ++i)\{}
+\DoxyCodeLine{47             ArrayList<Byte> c = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{48             c.add((\textcolor{keywordtype}{byte}) i);}
+\DoxyCodeLine{49             \mbox{\hyperlink{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}{compressionDictionary}}.put(c ,i);}
+\DoxyCodeLine{50         \}}
+\DoxyCodeLine{51     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZW_a154b566c71b74018588691156f48aa40}\label{classdomini_1_1LZW_a154b566c71b74018588691156f48aa40}} 
+\index{domini.LZW@{domini.LZW}!createDecompressionDictionary@{createDecompressionDictionary}}
+\index{createDecompressionDictionary@{createDecompressionDictionary}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{createDecompressionDictionary()}{createDecompressionDictionary()}}
+{\footnotesize\ttfamily static void domini.\+L\+Z\+W.\+create\+Decompression\+Dictionary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea el diccionario de descompresión y lo inicializa con los valores unitarios. 
+
+
+
+Definición en la línea 56 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{56                                                         \{}
+\DoxyCodeLine{57         \mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}} = \textcolor{keyword}{new} HashMap<>();}
+\DoxyCodeLine{58         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <= \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{DICTIONARY\_SIZE}}; ++i)\{}
+\DoxyCodeLine{59             ArrayList<Byte> c = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{60             c.add((\textcolor{keywordtype}{byte}) i);}
+\DoxyCodeLine{61             \mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.put(i,c);}
+\DoxyCodeLine{62         \}}
+\DoxyCodeLine{63     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZW_a11c1f2ca20c9f9976c9122a7e8eebd4d}\label{classdomini_1_1LZW_a11c1f2ca20c9f9976c9122a7e8eebd4d}} 
 \index{domini.LZW@{domini.LZW}!decompress@{decompress}}
 \index{decompress@{decompress}!domini.LZW@{domini.LZW}}
 \doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
-{\footnotesize\ttfamily static void domini.\+L\+Z\+W.\+decompress (\begin{DoxyParamCaption}\item[{final String}]{input\+Filename,  }\item[{final String}]{output\+Filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily void domini.\+L\+Z\+W.\+decompress (\begin{DoxyParamCaption}\item[{I\+O.\+Bit.\+reader}]{input,  }\item[{I\+O.\+Byte.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-L\+Lama a una función que descomprime un archivo de texto. 
+Descomprime un archivo implementando un algoritmo \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. 
 
 
 \begin{DoxyParams}{Parámetros}
-{\em input\+Filename} & path y nombre del archivo que se quiere descomprimir. \\
+{\em input} & objeto de lectura del archivo que se descomprime \\
 \hline
-{\em output\+Filename} & path y nombre del archivo descomprimido. \\
+{\em output} & objeto de ecritura del archivo descomprimido \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em I\+O\+Exception} & se produce un error en la lectura / escritura. \\
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al comprimir \\
 \hline
 \end{DoxyExceptions}
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a06a05e8e073c22126a02c8514e571dbb}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 145 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{145                                                                                            \{}
+\DoxyCodeLine{146         \mbox{\hyperlink{classdomini_1_1LZW_a154b566c71b74018588691156f48aa40}{createDecompressionDictionary}}();}
+\DoxyCodeLine{147         \textcolor{keywordtype}{int} i = \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{DICTIONARY\_SIZE}} + 1;}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{150             \textcolor{keywordtype}{int} n = input.readBitSet(5).asInt();}
+\DoxyCodeLine{151             \textcolor{keywordtype}{int} oldCode = input.readBitSet(n+1).asInt();}
+\DoxyCodeLine{152             \textcolor{keywordflow}{if} (oldCode != \mbox{\hyperlink{classdomini_1_1LZW_aef45f93c442c870b94cb6f3fc64c6561}{EOF}}) \{}
+\DoxyCodeLine{153                 ArrayList<Byte> aux = \textcolor{keyword}{new} ArrayList<>(\mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.get(oldCode));}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{byte} b : aux) \{}
+\DoxyCodeLine{156                     output.write(b);}
+\DoxyCodeLine{157                 \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159                 \textcolor{keywordtype}{byte} ch = aux.get(0);}
+\DoxyCodeLine{160                 n = input.readBitSet(5).asInt();}
+\DoxyCodeLine{161                 \textcolor{keywordtype}{int} code = input.readBitSet(n+1).asInt();}
+\DoxyCodeLine{162                 \textcolor{keywordflow}{while} (code != \mbox{\hyperlink{classdomini_1_1LZW_aef45f93c442c870b94cb6f3fc64c6561}{EOF}}) \{}
+\DoxyCodeLine{163                     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.containsKey(code)) \{}
+\DoxyCodeLine{164                         aux = \textcolor{keyword}{new} ArrayList<>(\mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.get(code));}
+\DoxyCodeLine{165                     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{166                         aux = \textcolor{keyword}{new} ArrayList<>(\mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.get(oldCode));}
+\DoxyCodeLine{167                         aux.add(ch);}
+\DoxyCodeLine{168                     \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{byte} b : aux) \{}
+\DoxyCodeLine{171                         output.write(b);}
+\DoxyCodeLine{172                     \}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174                     ch = aux.get(0);}
+\DoxyCodeLine{175                     aux = \textcolor{keyword}{new} ArrayList<>(\mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.get(oldCode));}
+\DoxyCodeLine{176                     aux.add(ch);}
+\DoxyCodeLine{177                     \mbox{\hyperlink{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}{decompressionDictionary}}.put(i++, aux);}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179                     oldCode = code;}
+\DoxyCodeLine{180                     n = input.readBitSet(5).asInt();}
+\DoxyCodeLine{181                     code = input.readBitSet(n+1).asInt();}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183                     \textcolor{keywordflow}{if} (code == \mbox{\hyperlink{classdomini_1_1LZW_a8f9b580b6468484908bd38be4b7a2e38}{OVERFLOW}}) \{   \textcolor{comment}{//[DICTIONARY OVERFLOW DETECTED]}}
+\DoxyCodeLine{184                         \mbox{\hyperlink{classdomini_1_1LZW_a154b566c71b74018588691156f48aa40}{createDecompressionDictionary}}();}
+\DoxyCodeLine{185                         i = \mbox{\hyperlink{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}{DICTIONARY\_SIZE}};}
+\DoxyCodeLine{186                         n = input.readBitSet(5).asInt();}
+\DoxyCodeLine{187                         code = input.readBitSet(n+1).asInt();}
+\DoxyCodeLine{188                     \}}
+\DoxyCodeLine{189                 \}}
+\DoxyCodeLine{190             \}}
+\DoxyCodeLine{191         \} \textcolor{keywordflow}{catch} (EOFException e)\{}
+\DoxyCodeLine{192             \textcolor{comment}{//End of file reached.}}
+\DoxyCodeLine{193         \}}
+\DoxyCodeLine{194     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZW_a34c93bdda928229c3d20ebe84c01c59c}\label{classdomini_1_1LZW_a34c93bdda928229c3d20ebe84c01c59c}} 
+\index{domini.LZW@{domini.LZW}!getMagicByte@{getMagicByte}}
+\index{getMagicByte@{getMagicByte}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{getMagicByte()}{getMagicByte()}}
+{\footnotesize\ttfamily byte domini.\+L\+Z\+W.\+get\+Magic\+Byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a33aa566ff435b1027752a6adb980f3bc}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 65 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65                                \{}
+\DoxyCodeLine{66         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1LZW_a13457a473880ead801452f858cfae4ca}{MAGIC\_BYTE}};}
+\DoxyCodeLine{67     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}\label{classdomini_1_1LZW_a83c7152e382e8515c75f30ea62d49e6b}} 
+\index{domini.LZW@{domini.LZW}!writeCode@{writeCode}}
+\index{writeCode@{writeCode}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{writeCode()}{writeCode()}}
+{\footnotesize\ttfamily static void domini.\+L\+Z\+W.\+write\+Code (\begin{DoxyParamCaption}\item[{int}]{code,  }\item[{final I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Escribe en output el entero code representado en n bits precedido de 5 bits que codifican n. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em code} & Numero integer que se escribe \\
+\hline
+{\em output} & Salida de tipo I\+O.\+Bit.\+writer para escribir en el archivo comprimido \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al escribir \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 88 del archivo L\+Z\+W.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{88                                                                                            \{}
+\DoxyCodeLine{89         \textcolor{keywordtype}{int} nbits = \mbox{\hyperlink{classdomini_1_1LZW_aaae107a8538d80af64cb5c682394e446}{bitsNeeded}}(code);}
+\DoxyCodeLine{90         \textcolor{keyword}{final} BitSetL n = \textcolor{keyword}{new} BitSetL(nbits-\/1,5);}
+\DoxyCodeLine{91         output.write(n);}
+\DoxyCodeLine{92         \textcolor{keyword}{final} BitSetL bsNum = \textcolor{keyword}{new} BitSetL(code, nbits);}
+\DoxyCodeLine{93         output.write(bsNum);    \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}\label{classdomini_1_1LZW_a54c098c06be11edb02b4903e9d016b99}} 
+\index{domini.LZW@{domini.LZW}!compressionDictionary@{compressionDictionary}}
+\index{compressionDictionary@{compressionDictionary}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{compressionDictionary}{compressionDictionary}}
+{\footnotesize\ttfamily Map$<$Array\+List$<$Byte$>$, Integer$>$ domini.\+L\+Z\+W.\+compression\+Dictionary\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Diccionario de compresión. 
+
+
+
+Definición en la línea 36 del archivo L\+Z\+W.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}\label{classdomini_1_1LZW_af9614bd60bbdf8ad81cb2a240d08209b}} 
+\index{domini.LZW@{domini.LZW}!decompressionDictionary@{decompressionDictionary}}
+\index{decompressionDictionary@{decompressionDictionary}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{decompressionDictionary}{decompressionDictionary}}
+{\footnotesize\ttfamily Map$<$Integer, Array\+List$<$Byte$>$ $>$ domini.\+L\+Z\+W.\+decompression\+Dictionary\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Diccionario de descompresión. 
+
+
+
+Definición en la línea 39 del archivo L\+Z\+W.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}\label{classdomini_1_1LZW_a1900b092cd4f10fafdf9b00d2813702f}} 
+\index{domini.LZW@{domini.LZW}!DICTIONARY\_SIZE@{DICTIONARY\_SIZE}}
+\index{DICTIONARY\_SIZE@{DICTIONARY\_SIZE}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{DICTIONARY\_SIZE}{DICTIONARY\_SIZE}}
+{\footnotesize\ttfamily final int domini.\+L\+Z\+W.\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+S\+I\+ZE = 0x0\+FF\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Tamaño inicial del diccionario. 
+
+
+
+Definición en la línea 27 del archivo L\+Z\+W.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZW_aef45f93c442c870b94cb6f3fc64c6561}\label{classdomini_1_1LZW_aef45f93c442c870b94cb6f3fc64c6561}} 
+\index{domini.LZW@{domini.LZW}!EOF@{EOF}}
+\index{EOF@{EOF}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{EOF}{EOF}}
+{\footnotesize\ttfamily final int domini.\+L\+Z\+W.\+E\+OF = 0x7\+F\+F\+F\+F\+F\+FE\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Pseudo E\+OF. 
+
+
+
+Definición en la línea 33 del archivo L\+Z\+W.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZW_a13457a473880ead801452f858cfae4ca}\label{classdomini_1_1LZW_a13457a473880ead801452f858cfae4ca}} 
+\index{domini.LZW@{domini.LZW}!MAGIC\_BYTE@{MAGIC\_BYTE}}
+\index{MAGIC\_BYTE@{MAGIC\_BYTE}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{MAGIC\_BYTE}{MAGIC\_BYTE}}
+{\footnotesize\ttfamily final byte domini.\+L\+Z\+W.\+M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE = (byte) 0x11\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Magic Byte \mbox{\hyperlink{classdomini_1_1LZW}{L\+ZW}}. 
+
+
+
+Definición en la línea 24 del archivo L\+Z\+W.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZW_a8f9b580b6468484908bd38be4b7a2e38}\label{classdomini_1_1LZW_a8f9b580b6468484908bd38be4b7a2e38}} 
+\index{domini.LZW@{domini.LZW}!OVERFLOW@{OVERFLOW}}
+\index{OVERFLOW@{OVERFLOW}!domini.LZW@{domini.LZW}}
+\doxysubsubsection{\texorpdfstring{OVERFLOW}{OVERFLOW}}
+{\footnotesize\ttfamily final int domini.\+L\+Z\+W.\+O\+V\+E\+R\+F\+L\+OW = 0x7\+F\+F\+F\+F\+F\+FD\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Marca el overflow del diccionario. 
+
+
+
+Definición en la línea 30 del archivo L\+Z\+W.\+java.
+
 
 
 La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-src/main/java/domini/L\+Z\+W.\+java\end{DoxyCompactItemize}
+src/main/java/domini/\mbox{\hyperlink{LZW_8java}{L\+Z\+W.\+java}}\end{DoxyCompactItemize}

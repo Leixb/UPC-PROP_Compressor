@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.16"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Compressor: Fichero Fuente src/main/java/domini/Folder.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Compressor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.16 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_e6e4b3324dfebf3d3160a613b7a7203b.html">domini</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Folder.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Folder_8java.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">package </span>domini;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> <a class="code" href="namespacepersistencia.html">persistencia</a>.<a class="code" href="classpersistencia_1_1IO.html">IO</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.io.IOException;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> java.io.EOFException;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> java.io.File;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> java.nio.file.*;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> java.nio.file.attribute.BasicFileAttributes;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html">   18</a></span>&#160;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class </span><a class="code" href="classdomini_1_1Folder.html">Folder</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html#a0104321471654f1145ecdc1e6196dfda">   21</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="classdomini_1_1Folder.html#a0104321471654f1145ecdc1e6196dfda">Folder</a>() {}</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e">   24</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">char</span> <a class="code" href="classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e">EMPTY_FOLDER</a> = 0xFFEF;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885">   27</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">char</span> <a class="code" href="classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885">FILE</a> = 0xFFF1;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html#a883df73e289d0903985071f4bc71bd36">   30</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keywordtype">byte</span> <a class="code" href="classdomini_1_1Folder.html#a883df73e289d0903985071f4bc71bd36">MAGIC_BYTE</a> = (byte)0xf0;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html#aad5174c54047a56dc6fd7be76da913df">   39</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1Folder.html#aad5174c54047a56dc6fd7be76da913df">compress</a>(String folderPath, <a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit.html">Bit</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit_1_1writer.html">writer</a> output) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        Path root = Paths.get(folderPath);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        Files.walkFileTree(root, <span class="keyword">new</span> <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html">CompressFiles</a>(root, output));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html">   46</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html">CompressFiles</a> <span class="keyword">implements</span> FileVisitor&lt;Path&gt; {</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">   47</a></span>&#160;        <span class="keyword">private</span> <a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit.html">Bit</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit_1_1writer.html">writer</a> <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">   48</a></span>&#160;        <span class="keyword">private</span> Path <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">root</a>; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044">   50</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">boolean</span> <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044">emptyDir</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#a06cf9b31ba7524e5e310d66b65c933bd">   52</a></span>&#160;        <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a06cf9b31ba7524e5e310d66b65c933bd">CompressFiles</a>(Path <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">root</a>, <a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit.html">Bit</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit_1_1writer.html">writer</a> <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            this.<a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a> = <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            this.root = <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">root</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            this.emptyDir = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        @Override</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#ac36b51234bd0838985fe7bdea4a3e6d7">   59</a></span>&#160;        <span class="keyword">public</span> FileVisitResult <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#ac36b51234bd0838985fe7bdea4a3e6d7">postVisitDirectory</a>(Path dir, IOException exc) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044">emptyDir</a>) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">char</span> c : <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">root</a>.relativize(dir).toString().toCharArray()) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>.write(c);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>.write(<a class="code" href="classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e">EMPTY_FOLDER</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span> FileVisitResult.CONTINUE;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        @Override</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#aefec7ec6e64ab576eaf6cd25675f37aa">   70</a></span>&#160;        <span class="keyword">public</span> FileVisitResult <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#aefec7ec6e64ab576eaf6cd25675f37aa">preVisitDirectory</a>(Path dir, BasicFileAttributes attrs) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044">emptyDir</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> FileVisitResult.CONTINUE;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        @Override</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#a4861e9cb1758ae62f20c962b99efb8d7">   76</a></span>&#160;        <span class="keyword">public</span> FileVisitResult <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a4861e9cb1758ae62f20c962b99efb8d7">visitFile</a>(Path file, BasicFileAttributes attrs) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044">emptyDir</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">char</span> c : <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">root</a>.relativize(file).toString().toCharArray()) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>.write(c);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>.write(<a class="code" href="classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885">FILE</a>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">try</span> (<a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte.html">Byte</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte_1_1reader.html">reader</a> input = <span class="keyword">new</span> <a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte.html">Byte</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte_1_1reader.html">reader</a>(file.toString())) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <a class="code" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#a0ee87471a4690ffe10329d4c535a4d5f">getInstance</a>().<a class="code" href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">compress</a>(0, input, <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">output</a>, (<span class="keywordtype">short</span>) 0);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">return</span> FileVisitResult.CONTINUE;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        @Override</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1CompressFiles.html#a0c01dd0242e88c6ebaae931795724f75">   89</a></span>&#160;        <span class="keyword">public</span> FileVisitResult <a class="code" href="classdomini_1_1Folder_1_1CompressFiles.html#a0c01dd0242e88c6ebaae931795724f75">visitFileFailed</a>(Path file, IOException exc) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">throw</span> exc;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder.html#a52c4736cef844f37740d5556e725b79d">  101</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1Folder.html#a52c4736cef844f37740d5556e725b79d">decompress</a>(String folderPath, <a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit.html">Bit</a>.<a class="code" href="classpersistencia_1_1IO_1_1Bit_1_1reader.html">reader</a> input) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">// Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">for</span>(;;) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            String filename = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordtype">char</span> c;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="keywordflow">for</span> (;;) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    c = (char)input.readChar();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    <span class="keywordflow">if</span> (c == <a class="code" href="classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885">FILE</a> || c == <a class="code" href="classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e">EMPTY_FOLDER</a>) <span class="keywordflow">break</span>; <span class="comment">// got filename</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    filename += c;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            } <span class="keywordflow">catch</span> (EOFException e) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="comment">// EOF</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keyword">final</span> String filePath = Paths.get(folderPath, filename).toString();</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">if</span> (c == <a class="code" href="classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885">FILE</a>) {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <span class="keyword">new</span> File(filePath).getParentFile().mkdirs(); <span class="comment">// Create dirs if not exist</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="keywordflow">try</span> (<a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte.html">Byte</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte_1_1writer.html">writer</a> output = <span class="keyword">new</span> <a class="code" href="classpersistencia_1_1IO.html">IO</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte.html">Byte</a>.<a class="code" href="classpersistencia_1_1IO_1_1Byte_1_1writer.html">writer</a>(filePath)) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    <a class="code" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#a0ee87471a4690ffe10329d4c535a4d5f">getInstance</a>().<a class="code" href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">decompress</a>(input, output, (<span class="keywordtype">byte</span>)0);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                } </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c == <a class="code" href="classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e">EMPTY_FOLDER</a>) {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <span class="keyword">new</span> File(filePath).mkdirs(); <span class="comment">// Create dir</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classdomini_1_1Folder_1_1FolderFormatException.html">FolderFormatException</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1FolderFormatException.html">  133</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class </span><a class="code" href="classdomini_1_1Folder_1_1FolderFormatException.html">FolderFormatException</a> <span class="keyword">extends</span> IOException {</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1FolderFormatException.html#a3f4c89b678dfdcef3cd83578545317d0">  134</a></span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Folder_1_1FolderFormatException.html#a3f4c89b678dfdcef3cd83578545317d0">serialVersionUID</a> = 89267786123678912L;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classdomini_1_1Folder_1_1FolderFormatException.html#a8971e02eede2fdbbf504f9ab3e712133">  136</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="classdomini_1_1Folder_1_1FolderFormatException.html#a8971e02eede2fdbbf504f9ab3e712133">FolderFormatException</a>() {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            super(<span class="stringliteral">&quot;Invalid marker found&quot;</span>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_ae59c77daf391a6b6d8f9ed2eec95623e"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">domini.CtrlDomini.decompress</a></div><div class="ttdeci">void decompress(String fi, String fo)</div><div class="ttdoc">Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando e...</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00101">CtrlDomini.java:101</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a108deef06a76467f5e40580f13bc6078"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">domini.CtrlDomini.compress</a></div><div class="ttdeci">void compress(int alg, String fi, String fo, Short quality)</div><div class="ttdoc">Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido,...</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00040">CtrlDomini.java:40</a></div></div>
+<div class="ttc" id="anamespacepersistencia_html"><div class="ttname"><a href="namespacepersistencia.html">persistencia</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00005">IO.java:5</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_1_1Bit_1_1writer_html"><div class="ttname"><a href="classpersistencia_1_1IO_1_1Bit_1_1writer.html">persistencia.IO.Bit.writer</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00062">IO.java:62</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html"><div class="ttname"><a href="classdomini_1_1Folder.html">domini.Folder</a></div><div class="ttdoc">Compresor y descompresor de carpetas.</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00018">Folder.java:18</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_ac36b51234bd0838985fe7bdea4a3e6d7"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#ac36b51234bd0838985fe7bdea4a3e6d7">domini.Folder.CompressFiles.postVisitDirectory</a></div><div class="ttdeci">FileVisitResult postVisitDirectory(Path dir, IOException exc)</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00059">Folder.java:59</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html_a883df73e289d0903985071f4bc71bd36"><div class="ttname"><a href="classdomini_1_1Folder.html#a883df73e289d0903985071f4bc71bd36">domini.Folder.MAGIC_BYTE</a></div><div class="ttdeci">static final byte MAGIC_BYTE</div><div class="ttdoc">MagicByte Folder.</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00030">Folder.java:30</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_1_1Byte_1_1reader_html"><div class="ttname"><a href="classpersistencia_1_1IO_1_1Byte_1_1reader.html">persistencia.IO.Byte.reader</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00042">IO.java:42</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html_a0104321471654f1145ecdc1e6196dfda"><div class="ttname"><a href="classdomini_1_1Folder.html#a0104321471654f1145ecdc1e6196dfda">domini.Folder.Folder</a></div><div class="ttdeci">Folder()</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00021">Folder.java:21</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_a06cf9b31ba7524e5e310d66b65c933bd"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#a06cf9b31ba7524e5e310d66b65c933bd">domini.Folder.CompressFiles.CompressFiles</a></div><div class="ttdeci">CompressFiles(Path root, IO.Bit.writer output)</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00052">Folder.java:52</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_1_1Byte_html"><div class="ttname"><a href="classpersistencia_1_1IO_1_1Byte.html">persistencia.IO.Byte</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00041">IO.java:41</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html_a52c4736cef844f37740d5556e725b79d"><div class="ttname"><a href="classdomini_1_1Folder.html#a52c4736cef844f37740d5556e725b79d">domini.Folder.decompress</a></div><div class="ttdeci">static void decompress(String folderPath, IO.Bit.reader input)</div><div class="ttdoc">Dada la dirección de la carpeta a descomprimir y un objeto de lectura del archivo comprimido,...</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00101">Folder.java:101</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html_ac1d01dc5d32d14e2e8a9caec41cf8885"><div class="ttname"><a href="classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885">domini.Folder.FILE</a></div><div class="ttdeci">static char FILE</div><div class="ttdoc">Indicador de archivo.</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00027">Folder.java:27</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_a0a1f9fe29c1f60257eb10231ccf86044"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044">domini.Folder.CompressFiles.emptyDir</a></div><div class="ttdeci">boolean emptyDir</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00050">Folder.java:50</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_af34cf18449766a0c0055373e15e63cc8"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#af34cf18449766a0c0055373e15e63cc8">domini.Folder.CompressFiles.root</a></div><div class="ttdeci">Path root</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00048">Folder.java:48</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html_a5f97dc4861d75210db45e331e5551b6e"><div class="ttname"><a href="classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e">domini.Folder.EMPTY_FOLDER</a></div><div class="ttdeci">static char EMPTY_FOLDER</div><div class="ttdoc">Indicador de carpeta vacía.</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00024">Folder.java:24</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_html_aad5174c54047a56dc6fd7be76da913df"><div class="ttname"><a href="classdomini_1_1Folder.html#aad5174c54047a56dc6fd7be76da913df">domini.Folder.compress</a></div><div class="ttdeci">static void compress(String folderPath, IO.Bit.writer output)</div><div class="ttdoc">Dada la dirección de la carpeta a comprimir y un objeto de escritura del archivo comprimido,...</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00039">Folder.java:39</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html">domini.Folder.CompressFiles</a></div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00046">Folder.java:46</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1FolderFormatException_html_a8971e02eede2fdbbf504f9ab3e712133"><div class="ttname"><a href="classdomini_1_1Folder_1_1FolderFormatException.html#a8971e02eede2fdbbf504f9ab3e712133">domini.Folder.FolderFormatException.FolderFormatException</a></div><div class="ttdeci">FolderFormatException()</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00136">Folder.java:136</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_1_1Bit_html"><div class="ttname"><a href="classpersistencia_1_1IO_1_1Bit.html">persistencia.IO.Bit</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00061">IO.java:61</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_a4861e9cb1758ae62f20c962b99efb8d7"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#a4861e9cb1758ae62f20c962b99efb8d7">domini.Folder.CompressFiles.visitFile</a></div><div class="ttdeci">FileVisitResult visitFile(Path file, BasicFileAttributes attrs)</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00076">Folder.java:76</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_a0a1a0b3d5d46d54536b6134140f69ba0"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#a0a1a0b3d5d46d54536b6134140f69ba0">domini.Folder.CompressFiles.output</a></div><div class="ttdeci">IO.Bit.writer output</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00047">Folder.java:47</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a0ee87471a4690ffe10329d4c535a4d5f"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a0ee87471a4690ffe10329d4c535a4d5f">domini.CtrlDomini.getInstance</a></div><div class="ttdeci">static CtrlDomini getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00025">CtrlDomini.java:25</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_html"><div class="ttname"><a href="classpersistencia_1_1IO.html">persistencia.IO</a></div><div class="ttdoc">classes IO para lectura y escritura de Char, Byte, y Bit con buffer.</div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00024">IO.java:24</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_1_1Byte_1_1writer_html"><div class="ttname"><a href="classpersistencia_1_1IO_1_1Byte_1_1writer.html">persistencia.IO.Byte.writer</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00053">IO.java:53</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1FolderFormatException_html_a3f4c89b678dfdcef3cd83578545317d0"><div class="ttname"><a href="classdomini_1_1Folder_1_1FolderFormatException.html#a3f4c89b678dfdcef3cd83578545317d0">domini.Folder.FolderFormatException.serialVersionUID</a></div><div class="ttdeci">static final long serialVersionUID</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00134">Folder.java:134</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_a0c01dd0242e88c6ebaae931795724f75"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#a0c01dd0242e88c6ebaae931795724f75">domini.Folder.CompressFiles.visitFileFailed</a></div><div class="ttdeci">FileVisitResult visitFileFailed(Path file, IOException exc)</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00089">Folder.java:89</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1FolderFormatException_html"><div class="ttname"><a href="classdomini_1_1Folder_1_1FolderFormatException.html">domini.Folder.FolderFormatException</a></div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00133">Folder.java:133</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Folder_1_1CompressFiles_html_aefec7ec6e64ab576eaf6cd25675f37aa"><div class="ttname"><a href="classdomini_1_1Folder_1_1CompressFiles.html#aefec7ec6e64ab576eaf6cd25675f37aa">domini.Folder.CompressFiles.preVisitDirectory</a></div><div class="ttdeci">FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)</div><div class="ttdef"><b>Definition:</b> <a href="Folder_8java_source.html#l00070">Folder.java:70</a></div></div>
+<div class="ttc" id="aclasspersistencia_1_1IO_1_1Bit_1_1reader_html"><div class="ttname"><a href="classpersistencia_1_1IO_1_1Bit_1_1reader.html">persistencia.IO.Bit.reader</a></div><div class="ttdef"><b>Definition:</b> <a href="IO_8java_source.html#l00128">IO.java:128</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html">domini.CtrlDomini</a></div><div class="ttdoc">Controlador del dominio.</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00016">CtrlDomini.java:16</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.16
+</small></address>
+</body>
+</html>

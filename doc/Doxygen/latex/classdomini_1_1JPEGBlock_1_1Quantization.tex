@@ -1,0 +1,211 @@
+\hypertarget{classdomini_1_1JPEGBlock_1_1Quantization}{}\doxysection{Referencia de la Clase domini.\+J\+P\+E\+G\+Block.\+Quantization}
+\label{classdomini_1_1JPEGBlock_1_1Quantization}\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+
+
+Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada.  
+
+
+Diagrama de herencias de domini.\+J\+P\+E\+G\+Block.\+Quantization\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1JPEGBlock_1_1Quantization}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static short\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_aa958a818ccad0a1746249defd1f27970}{encode}} (final double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} data)
+\item 
+static short\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_a3ace36f579cedf4a98ee64ffbb6eacdd}{encode}} (final short quality, final boolean is\+Chrominance, final double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} block)
+\item 
+static double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_af2c78a7e66f11184d7e844a9ab32a10c}{decode}} (final short\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} data)
+\item 
+static double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_af6713798bf48fb265cca378f8a1e4adc}{decode}} (final short quality, final boolean is\+Chrominance, final short\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} block)
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones estáticas del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_aeb4315fabed133ac094d8409c6f73757}{quantization\+Value}} (final short quality, final boolean is\+Chrominance, final short x, final short y)
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static final byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_a981d7e86e0b621a8ceaee6072a232f9e}{Luminance\+Table}}
+\item 
+static final byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_a571b3db9c6c0ab3215453d97c7ec023b}{Chrominance\+Table}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Otros miembros heredados}
+
+
+\doxysubsection{Descripción detallada}
+Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada. 
+
+Definición en la línea 92 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_af6713798bf48fb265cca378f8a1e4adc}\label{classdomini_1_1JPEGBlock_1_1Quantization_af6713798bf48fb265cca378f8a1e4adc}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!decode@{decode}}
+\index{decode@{decode}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Quantization.\+decode (\begin{DoxyParamCaption}\item[{final short}]{quality,  }\item[{final boolean}]{is\+Chrominance,  }\item[{final short}]{block\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 148 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{148                                                                                                                  \{}
+\DoxyCodeLine{149             \textcolor{keyword}{final} \textcolor{keywordtype}{double}[][] data = \textcolor{keyword}{new} \textcolor{keywordtype}{double}[8][8];}
+\DoxyCodeLine{150             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{short} i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{151                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{short} j = 0; j < 8; ++j) \{}
+\DoxyCodeLine{152                     data[i][j] = block[i][j] * \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_aeb4315fabed133ac094d8409c6f73757}{quantizationValue}}(quality, isChrominance, i, j);}
+\DoxyCodeLine{153                 \}}
+\DoxyCodeLine{154             \}}
+\DoxyCodeLine{155             \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{156         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_af2c78a7e66f11184d7e844a9ab32a10c}\label{classdomini_1_1JPEGBlock_1_1Quantization_af2c78a7e66f11184d7e844a9ab32a10c}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!decode@{decode}}
+\index{decode@{decode}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Quantization.\+decode (\begin{DoxyParamCaption}\item[{final short}]{data\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 144 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{144                                                               \{}
+\DoxyCodeLine{145             \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_af2c78a7e66f11184d7e844a9ab32a10c}{decode}}((\textcolor{keywordtype}{short}) 50, \textcolor{keyword}{true}, data);}
+\DoxyCodeLine{146         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_aa958a818ccad0a1746249defd1f27970}\label{classdomini_1_1JPEGBlock_1_1Quantization_aa958a818ccad0a1746249defd1f27970}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!encode@{encode}}
+\index{encode@{encode}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Quantization.\+encode (\begin{DoxyParamCaption}\item[{final double}]{data\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 128 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{128                                                               \{}
+\DoxyCodeLine{129             \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_aa958a818ccad0a1746249defd1f27970}{encode}}((\textcolor{keywordtype}{short}) 50, \textcolor{keyword}{true}, data);}
+\DoxyCodeLine{130         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_a3ace36f579cedf4a98ee64ffbb6eacdd}\label{classdomini_1_1JPEGBlock_1_1Quantization_a3ace36f579cedf4a98ee64ffbb6eacdd}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!encode@{encode}}
+\index{encode@{encode}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Quantization.\+encode (\begin{DoxyParamCaption}\item[{final short}]{quality,  }\item[{final boolean}]{is\+Chrominance,  }\item[{final double}]{block\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 132 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{132                                                                                                                  \{}
+\DoxyCodeLine{133             \textcolor{keyword}{final} \textcolor{keywordtype}{short}[][] data = \textcolor{keyword}{new} \textcolor{keywordtype}{short}[8][8];}
+\DoxyCodeLine{134             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{short} i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{135                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{short} j = 0; j < 8; ++j) \{}
+\DoxyCodeLine{136                     \textcolor{keyword}{final} \textcolor{keywordtype}{double} quantVal = block[i][j] / \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_aeb4315fabed133ac094d8409c6f73757}{quantizationValue}}(quality, isChrominance, i, j);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138                     data[i][j] = (short) quantVal;}
+\DoxyCodeLine{139                 \}}
+\DoxyCodeLine{140             \}}
+\DoxyCodeLine{141             \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{142         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_aeb4315fabed133ac094d8409c6f73757}\label{classdomini_1_1JPEGBlock_1_1Quantization_aeb4315fabed133ac094d8409c6f73757}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!quantizationValue@{quantizationValue}}
+\index{quantizationValue@{quantizationValue}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{quantizationValue()}{quantizationValue()}}
+{\footnotesize\ttfamily static double domini.\+J\+P\+E\+G\+Block.\+Quantization.\+quantization\+Value (\begin{DoxyParamCaption}\item[{final short}]{quality,  }\item[{final boolean}]{is\+Chrominance,  }\item[{final short}]{x,  }\item[{final short}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 115 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{115                                                                                                                         \{}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117             \textcolor{keywordtype}{byte}[][] QTable = \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_a981d7e86e0b621a8ceaee6072a232f9e}{LuminanceTable}};}
+\DoxyCodeLine{118             \textcolor{keywordflow}{if} (isChrominance)}
+\DoxyCodeLine{119                 QTable = \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1Quantization_a571b3db9c6c0ab3215453d97c7ec023b}{ChrominanceTable}};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121             \textcolor{keywordtype}{double} q = 5000.0 / quality;}
+\DoxyCodeLine{122             \textcolor{keywordflow}{if} (quality >= 50)}
+\DoxyCodeLine{123                 q = 200 -\/ 2 * quality;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125             \textcolor{keywordflow}{return} (q * QTable[x][y] + 50) / 100;}
+\DoxyCodeLine{126         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_a571b3db9c6c0ab3215453d97c7ec023b}\label{classdomini_1_1JPEGBlock_1_1Quantization_a571b3db9c6c0ab3215453d97c7ec023b}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!ChrominanceTable@{ChrominanceTable}}
+\index{ChrominanceTable@{ChrominanceTable}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{ChrominanceTable}{ChrominanceTable}}
+{\footnotesize\ttfamily final byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Quantization.\+Chrominance\+Table\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{            \{  17 ,  18 ,  24 ,  47 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  18 ,  21 ,  26 ,  66 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  24 ,  26 ,  56 ,  99 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  47 ,  66 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 \},}
+\DoxyCodeLine{            \{  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 \}}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+
+
+Definición en la línea 104 del archivo J\+P\+E\+G\+Block.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1Quantization_a981d7e86e0b621a8ceaee6072a232f9e}\label{classdomini_1_1JPEGBlock_1_1Quantization_a981d7e86e0b621a8ceaee6072a232f9e}} 
+\index{domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}!LuminanceTable@{LuminanceTable}}
+\index{LuminanceTable@{LuminanceTable}!domini.JPEGBlock.Quantization@{domini.JPEGBlock.Quantization}}
+\doxysubsubsection{\texorpdfstring{LuminanceTable}{LuminanceTable}}
+{\footnotesize\ttfamily final byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+Quantization.\+Luminance\+Table\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{            \{  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 \},}
+\DoxyCodeLine{            \{  12 ,  12 ,  14 ,  19 ,  26 ,  58 ,  60 ,  55 \},}
+\DoxyCodeLine{            \{  14 ,  13 ,  16 ,  24 ,  40 ,  57 ,  69 ,  56 \},}
+\DoxyCodeLine{            \{  14 ,  17 ,  22 ,  29 ,  51 ,  87 ,  80 ,  62 \},}
+\DoxyCodeLine{            \{  18 ,  22 ,  37 ,  56 ,  68 , 109 , 103 ,  77 \},}
+\DoxyCodeLine{            \{  24 ,  35 ,  55 ,  64 ,  81 , 104 , 113 ,  92 \},}
+\DoxyCodeLine{            \{  49 ,  64 ,  78 ,  87 , 103 , 121 , 120 , 101 \},}
+\DoxyCodeLine{            \{  72 ,  92 ,  95 ,  98 , 112 , 100 , 103 ,  99 \}}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+
+
+Definición en la línea 93 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{JPEGBlock_8java}{J\+P\+E\+G\+Block.\+java}}\end{DoxyCompactItemize}

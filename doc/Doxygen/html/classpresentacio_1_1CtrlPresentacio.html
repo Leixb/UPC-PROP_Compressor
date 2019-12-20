@@ -61,12 +61,17 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>presentacio</b></li><li class="navelem"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacepresentacio.html">presentacio</a></li><li class="navelem"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
 <a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
+<a href="#pac-methods">Funciones del 'package'</a> &#124;
+<a href="#pri-methods">Métodos privados</a> &#124;
+<a href="#pri-attribs">Atributos privados</a> &#124;
+<a href="#pri-static-attribs">Atributos privados estáticos</a> &#124;
 <a href="classpresentacio_1_1CtrlPresentacio-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle">
 <div class="title">Referencia de la Clase presentacio.CtrlPresentacio</div>  </div>
@@ -76,24 +81,57 @@ $(function() {
 <p>Imprime por pantalla.  
  <a href="classpresentacio_1_1CtrlPresentacio.html#details">Más...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:ad273706e5bf6f54cefcbb729b739743c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#ad273706e5bf6f54cefcbb729b739743c">compress</a> (int alg, String fileIn, String fileOut, short qualityJPEG)  throws Exception </td></tr>
+<tr class="memdesc:ad273706e5bf6f54cefcbb729b739743c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y el nombre del archivo comprimido que luego pasa al CtrlDomini.  <a href="classpresentacio_1_1CtrlPresentacio.html#ad273706e5bf6f54cefcbb729b739743c">Más...</a><br /></td></tr>
+<tr class="separator:ad273706e5bf6f54cefcbb729b739743c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9b949987cbfbc91ecba11ca1e36a26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a6a9b949987cbfbc91ecba11ca1e36a26">decompress</a> (String fileIn, String fileOut)  throws Exception </td></tr>
+<tr class="memdesc:a6a9b949987cbfbc91ecba11ca1e36a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini.  <a href="classpresentacio_1_1CtrlPresentacio.html#a6a9b949987cbfbc91ecba11ca1e36a26">Más...</a><br /></td></tr>
+<tr class="separator:a6a9b949987cbfbc91ecba11ca1e36a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e7df3cf92499209679936c7104058a9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a3e7df3cf92499209679936c7104058a9">getTime</a> ()</td></tr>
+<tr class="separator:a3e7df3cf92499209679936c7104058a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0826e680ee535c2c6110f576f65637"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a6d0826e680ee535c2c6110f576f65637">getFileOut</a> ()</td></tr>
+<tr class="separator:a6d0826e680ee535c2c6110f576f65637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Métodos públicos estáticos</h2></td></tr>
-<tr class="memitem:add3cb77616585b47177d969383181460"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#add3cb77616585b47177d969383181460">printStatsCompress</a> (<a class="el" href="classdomini_1_1Statistics.html">Statistics</a> stats)</td></tr>
-<tr class="memdesc:add3cb77616585b47177d969383181460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime las estadisticas de compresión.  <a href="classpresentacio_1_1CtrlPresentacio.html#add3cb77616585b47177d969383181460">Más...</a><br /></td></tr>
-<tr class="separator:add3cb77616585b47177d969383181460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a253c3b712705cb8a758500d995bcfc85"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a253c3b712705cb8a758500d995bcfc85">printStatsDecompress</a> (<a class="el" href="classdomini_1_1Statistics.html">Statistics</a> stats)</td></tr>
-<tr class="memdesc:a253c3b712705cb8a758500d995bcfc85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime las estadisticas de descompresión.  <a href="classpresentacio_1_1CtrlPresentacio.html#a253c3b712705cb8a758500d995bcfc85">Más...</a><br /></td></tr>
-<tr class="separator:a253c3b712705cb8a758500d995bcfc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e4ff9ad9369410a1d9f17d36d63e820"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a1e4ff9ad9369410a1d9f17d36d63e820">readableFileSize</a> (double d)</td></tr>
-<tr class="memdesc:a1e4ff9ad9369410a1d9f17d36d63e820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Da el formato correcto al tamaño de un fichero (B,kB,etc)  <a href="classpresentacio_1_1CtrlPresentacio.html#a1e4ff9ad9369410a1d9f17d36d63e820">Más...</a><br /></td></tr>
-<tr class="separator:a1e4ff9ad9369410a1d9f17d36d63e820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5897304c27e05e8dac32a3e17b04ee84"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a5897304c27e05e8dac32a3e17b04ee84">getInstance</a> ()</td></tr>
+<tr class="separator:a5897304c27e05e8dac32a3e17b04ee84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Funciones del 'package'</h2></td></tr>
+<tr class="memitem:a1c71ba825e04a6289729f652422dd63b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a1c71ba825e04a6289729f652422dd63b">getDeflated</a> ()</td></tr>
+<tr class="separator:a1c71ba825e04a6289729f652422dd63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73c59d084b3c6090eac466edd3331363"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a73c59d084b3c6090eac466edd3331363">getSpeedCompress</a> ()</td></tr>
+<tr class="separator:a73c59d084b3c6090eac466edd3331363"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce767c8878480a5845aedeaaffb8884"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#afce767c8878480a5845aedeaaffb8884">getInflated</a> ()</td></tr>
+<tr class="separator:afce767c8878480a5845aedeaaffb8884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5144fe37f744a3ef352295acc78baf0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#ac5144fe37f744a3ef352295acc78baf0">getSpeedDecompress</a> ()</td></tr>
+<tr class="separator:ac5144fe37f744a3ef352295acc78baf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Métodos privados</h2></td></tr>
+<tr class="memitem:a01f9d62db9b0cdd63ba42ff1e23e8439"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a01f9d62db9b0cdd63ba42ff1e23e8439">CtrlPresentacio</a> ()</td></tr>
+<tr class="separator:a01f9d62db9b0cdd63ba42ff1e23e8439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Atributos privados</h2></td></tr>
+<tr class="memitem:a1d721189900cec1f6485a56affe44d88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a></td></tr>
+<tr class="separator:a1d721189900cec1f6485a56affe44d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Atributos privados estáticos</h2></td></tr>
+<tr class="memitem:a81d70eb61fc58847cf8053b97358783b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html#a81d70eb61fc58847cf8053b97358783b">instance</a> = new <a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a>()</td></tr>
+<tr class="separator:a81d70eb61fc58847cf8053b97358783b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Imprime por pantalla. </p>
-<dl class="section author"><dt>Autor</dt><dd>Albert Mercadé Plasencia / Aleix Boné </dd></dl>
-</div><h2 class="groupheader">Documentación de las funciones miembro</h2>
-<a id="add3cb77616585b47177d969383181460"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add3cb77616585b47177d969383181460">&#9670;&nbsp;</a></span>printStatsCompress()</h2>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00012">12</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a id="a01f9d62db9b0cdd63ba42ff1e23e8439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01f9d62db9b0cdd63ba42ff1e23e8439">&#9670;&nbsp;</a></span>CtrlPresentacio()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,10 +140,228 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void presentacio.CtrlPresentacio.printStatsCompress </td>
+          <td class="memname">presentacio.CtrlPresentacio.CtrlPresentacio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classdomini_1_1Statistics.html">Statistics</a>&#160;</td>
-          <td class="paramname"><em>stats</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00016">16</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                              {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a> = CtrlDomini.<a class="code" href="classdomini_1_1CtrlDomini.html#a0ee87471a4690ffe10329d4c535a4d5f">getInstance</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="ad273706e5bf6f54cefcbb729b739743c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad273706e5bf6f54cefcbb729b739743c">&#9670;&nbsp;</a></span>compress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void presentacio.CtrlPresentacio.compress </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>alg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fileIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fileOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>qualityJPEG</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws Exception</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y el nombre del archivo comprimido que luego pasa al CtrlDomini. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00028">28</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                                                                     {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">compress</a>(alg, fileIn, fileOut, qualityJPEG);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6a9b949987cbfbc91ecba11ca1e36a26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9b949987cbfbc91ecba11ca1e36a26">&#9670;&nbsp;</a></span>decompress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void presentacio.CtrlPresentacio.decompress </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fileIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fileOut</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws Exception</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00035">35</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                                                                           {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">decompress</a>(fileIn,fileOut);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a1c71ba825e04a6289729f652422dd63b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c71ba825e04a6289729f652422dd63b">&#9670;&nbsp;</a></span>getDeflated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String presentacio.CtrlPresentacio.getDeflated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00043">43</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                         {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#afd210d9add59e530e7f3530a0fc674f1">getDeflated</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6d0826e680ee535c2c6110f576f65637"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d0826e680ee535c2c6110f576f65637">&#9670;&nbsp;</a></span>getFileOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String presentacio.CtrlPresentacio.getFileOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00059">59</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                               {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#a098dffb27d82bb63025e2056e1364b93">getFileOut</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afce767c8878480a5845aedeaaffb8884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce767c8878480a5845aedeaaffb8884">&#9670;&nbsp;</a></span>getInflated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String presentacio.CtrlPresentacio.getInflated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00051">51</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                         {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#a7ed9f15691465ee82cccaab009937c9f">getInflated</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a5897304c27e05e8dac32a3e17b04ee84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5897304c27e05e8dac32a3e17b04ee84">&#9670;&nbsp;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a> presentacio.CtrlPresentacio.getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -116,18 +372,15 @@ Métodos públicos estáticos</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Imprime las estadisticas de compresión. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stats</td><td>Estadisticas generadas al comprimir </td></tr>
-  </table>
-  </dd>
-</dl>
-
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00020">20</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                                {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a81d70eb61fc58847cf8053b97358783b">instance</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a253c3b712705cb8a758500d995bcfc85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a253c3b712705cb8a758500d995bcfc85">&#9670;&nbsp;</a></span>printStatsDecompress()</h2>
+<a id="a73c59d084b3c6090eac466edd3331363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c59d084b3c6090eac466edd3331363">&#9670;&nbsp;</a></span>getSpeedCompress()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,32 +389,28 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void presentacio.CtrlPresentacio.printStatsDecompress </td>
+          <td class="memname">String presentacio.CtrlPresentacio.getSpeedCompress </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classdomini_1_1Statistics.html">Statistics</a>&#160;</td>
-          <td class="paramname"><em>stats</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Imprime las estadisticas de descompresión. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stats</td><td>Estadisticas generadas al descomprimir </td></tr>
-  </table>
-  </dd>
-</dl>
-
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00047">47</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                              {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#aeab41a6cbfc91b2fa162db2c9c2039b8">getSpeedCompress</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a1e4ff9ad9369410a1d9f17d36d63e820"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e4ff9ad9369410a1d9f17d36d63e820">&#9670;&nbsp;</a></span>readableFileSize()</h2>
+<a id="ac5144fe37f744a3ef352295acc78baf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5144fe37f744a3ef352295acc78baf0">&#9670;&nbsp;</a></span>getSpeedDecompress()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,35 +419,120 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static String presentacio.CtrlPresentacio.readableFileSize </td>
+          <td class="memname">String presentacio.CtrlPresentacio.getSpeedDecompress </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Da el formato correcto al tamaño de un fichero (B,kB,etc) </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">d</td><td>Tamaño de un fichero en bytes </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Devuelve</dt><dd>Tamaño del fichero en la magnitud que le corresponda </dd></dl>
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00055">55</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#add5ad04aeed99663f5955138176ac03f">getSpeedDecompress</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3e7df3cf92499209679936c7104058a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e7df3cf92499209679936c7104058a9">&#9670;&nbsp;</a></span>getTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String presentacio.CtrlPresentacio.getTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00039">39</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                            {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">cd</a>.<a class="code" href="classdomini_1_1CtrlDomini.html#a48a2b59453f323d4e844c199ab313e04">getTime</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="a1d721189900cec1f6485a56affe44d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d721189900cec1f6485a56affe44d88">&#9670;&nbsp;</a></span>cd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a> presentacio.CtrlPresentacio.cd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00013">13</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
+
+</div>
+</div>
+<a id="a81d70eb61fc58847cf8053b97358783b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d70eb61fc58847cf8053b97358783b">&#9670;&nbsp;</a></span>instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a> presentacio.CtrlPresentacio.instance = new <a class="el" href="classpresentacio_1_1CtrlPresentacio.html">CtrlPresentacio</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlPresentacio_8java_source.html#l00014">14</a> del archivo <a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a>.</p>
 
 </div>
 </div>
 <hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
-<li>src/main/java/presentacio/CtrlPresentacio.java</li>
+<li>src/main/java/presentacio/<a class="el" href="CtrlPresentacio_8java_source.html">CtrlPresentacio.java</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_ae59c77daf391a6b6d8f9ed2eec95623e"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">domini.CtrlDomini.decompress</a></div><div class="ttdeci">void decompress(String fi, String fo)</div><div class="ttdoc">Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando e...</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00101">CtrlDomini.java:101</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a108deef06a76467f5e40580f13bc6078"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">domini.CtrlDomini.compress</a></div><div class="ttdeci">void compress(int alg, String fi, String fo, Short quality)</div><div class="ttdoc">Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido,...</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00040">CtrlDomini.java:40</a></div></div>
+<div class="ttc" id="aclasspresentacio_1_1CtrlPresentacio_html_a81d70eb61fc58847cf8053b97358783b"><div class="ttname"><a href="classpresentacio_1_1CtrlPresentacio.html#a81d70eb61fc58847cf8053b97358783b">presentacio.CtrlPresentacio.instance</a></div><div class="ttdeci">static CtrlPresentacio instance</div><div class="ttdef"><b>Definition:</b> <a href="CtrlPresentacio_8java_source.html#l00014">CtrlPresentacio.java:14</a></div></div>
+<div class="ttc" id="aclasspresentacio_1_1CtrlPresentacio_html_a1d721189900cec1f6485a56affe44d88"><div class="ttname"><a href="classpresentacio_1_1CtrlPresentacio.html#a1d721189900cec1f6485a56affe44d88">presentacio.CtrlPresentacio.cd</a></div><div class="ttdeci">CtrlDomini cd</div><div class="ttdef"><b>Definition:</b> <a href="CtrlPresentacio_8java_source.html#l00013">CtrlPresentacio.java:13</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_aeab41a6cbfc91b2fa162db2c9c2039b8"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#aeab41a6cbfc91b2fa162db2c9c2039b8">domini.CtrlDomini.getSpeedCompress</a></div><div class="ttdeci">String getSpeedCompress()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00158">CtrlDomini.java:158</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a098dffb27d82bb63025e2056e1364b93"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a098dffb27d82bb63025e2056e1364b93">domini.CtrlDomini.getFileOut</a></div><div class="ttdeci">String getFileOut()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00178">CtrlDomini.java:178</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a7ed9f15691465ee82cccaab009937c9f"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a7ed9f15691465ee82cccaab009937c9f">domini.CtrlDomini.getInflated</a></div><div class="ttdeci">String getInflated()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00163">CtrlDomini.java:163</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a48a2b59453f323d4e844c199ab313e04"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a48a2b59453f323d4e844c199ab313e04">domini.CtrlDomini.getTime</a></div><div class="ttdeci">String getTime()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00148">CtrlDomini.java:148</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_add5ad04aeed99663f5955138176ac03f"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#add5ad04aeed99663f5955138176ac03f">domini.CtrlDomini.getSpeedDecompress</a></div><div class="ttdeci">String getSpeedDecompress()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00169">CtrlDomini.java:169</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a0ee87471a4690ffe10329d4c535a4d5f"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a0ee87471a4690ffe10329d4c535a4d5f">domini.CtrlDomini.getInstance</a></div><div class="ttdeci">static CtrlDomini getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00025">CtrlDomini.java:25</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_afd210d9add59e530e7f3530a0fc674f1"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#afd210d9add59e530e7f3530a0fc674f1">domini.CtrlDomini.getDeflated</a></div><div class="ttdeci">String getDeflated()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00152">CtrlDomini.java:152</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por &#160;<a href="http://www.doxygen.org/index.html">

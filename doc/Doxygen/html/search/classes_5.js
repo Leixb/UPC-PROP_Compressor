@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jpeg_58',['JPEG',['../classdomini_1_1JPEG.html',1,'domini']]],
-  ['jpegblock_59',['JPEGBlock',['../classdomini_1_1JPEGBlock.html',1,'domini']]]
+  ['invalidtableexception_280',['InvalidTableException',['../classdomini_1_1Huffman_1_1InvalidTableException.html',1,'domini::Huffman']]],
+  ['io_281',['IO',['../classpersistencia_1_1IO.html',1,'persistencia']]]
 ];

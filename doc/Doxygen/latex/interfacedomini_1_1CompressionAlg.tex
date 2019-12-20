@@ -1,0 +1,67 @@
+\hypertarget{interfacedomini_1_1CompressionAlg}{}\doxysection{Referencia de la Interfaz domini.\+Compression\+Alg}
+\label{interfacedomini_1_1CompressionAlg}\index{domini.CompressionAlg@{domini.CompressionAlg}}
+
+
+\mbox{\hyperlink{interfacedomini_1_1CompressionAlg}{Compression\+Alg}}.  
+
+
+Diagrama de herencias de domini.\+Compression\+Alg\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.842105cm]{interfacedomini_1_1CompressionAlg}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a3a0ecc535a8ae0b4aa2b98abb7ea0496}{compress}} (final I\+O.\+Byte.\+reader input, final I\+O.\+Bit.\+writer output)  throws I\+O\+Exception
+\item 
+void \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a06a05e8e073c22126a02c8514e571dbb}{decompress}} (final I\+O.\+Bit.\+reader input, final I\+O.\+Byte.\+writer output)  throws I\+O\+Exception
+\item 
+byte \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a33aa566ff435b1027752a6adb980f3bc}{get\+Magic\+Byte}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+\mbox{\hyperlink{interfacedomini_1_1CompressionAlg}{Compression\+Alg}}. 
+
+Definición en la línea 10 del archivo Compression\+Alg.\+java.
+
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{interfacedomini_1_1CompressionAlg_a3a0ecc535a8ae0b4aa2b98abb7ea0496}\label{interfacedomini_1_1CompressionAlg_a3a0ecc535a8ae0b4aa2b98abb7ea0496}} 
+\index{domini.CompressionAlg@{domini.CompressionAlg}!compress@{compress}}
+\index{compress@{compress}!domini.CompressionAlg@{domini.CompressionAlg}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily void domini.\+Compression\+Alg.\+compress (\begin{DoxyParamCaption}\item[{final I\+O.\+Byte.\+reader}]{input,  }\item[{final I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+
+
+Implementado en \mbox{\hyperlink{classdomini_1_1LZW_a0e841fb556c70d08f16498a7c709773b}{domini.\+L\+ZW}}, \mbox{\hyperlink{classdomini_1_1LZ78_aa24bc2df8ffe38daa00caae61bd88fd4}{domini.\+L\+Z78}}, \mbox{\hyperlink{classdomini_1_1LZSS_adbc8dccc074628218dfb37ff2ab4115a}{domini.\+L\+Z\+SS}} y \mbox{\hyperlink{classdomini_1_1JPEG_a8e1341c2f05884e2739b9d814e973dfb}{domini.\+J\+P\+EG}}.
+
+\mbox{\Hypertarget{interfacedomini_1_1CompressionAlg_a06a05e8e073c22126a02c8514e571dbb}\label{interfacedomini_1_1CompressionAlg_a06a05e8e073c22126a02c8514e571dbb}} 
+\index{domini.CompressionAlg@{domini.CompressionAlg}!decompress@{decompress}}
+\index{decompress@{decompress}!domini.CompressionAlg@{domini.CompressionAlg}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
+{\footnotesize\ttfamily void domini.\+Compression\+Alg.\+decompress (\begin{DoxyParamCaption}\item[{final I\+O.\+Bit.\+reader}]{input,  }\item[{final I\+O.\+Byte.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+
+
+Implementado en \mbox{\hyperlink{classdomini_1_1LZW_a11c1f2ca20c9f9976c9122a7e8eebd4d}{domini.\+L\+ZW}}, \mbox{\hyperlink{classdomini_1_1JPEG_ad40f92c5a9458e7a8dad1b22975b7a56}{domini.\+J\+P\+EG}}, \mbox{\hyperlink{classdomini_1_1LZ78_a7beb5b92edd31a0d28bf367ef4f8ef2d}{domini.\+L\+Z78}} y \mbox{\hyperlink{classdomini_1_1LZSS_a6efa453291525ea8de12322eb57a968c}{domini.\+L\+Z\+SS}}.
+
+\mbox{\Hypertarget{interfacedomini_1_1CompressionAlg_a33aa566ff435b1027752a6adb980f3bc}\label{interfacedomini_1_1CompressionAlg_a33aa566ff435b1027752a6adb980f3bc}} 
+\index{domini.CompressionAlg@{domini.CompressionAlg}!getMagicByte@{getMagicByte}}
+\index{getMagicByte@{getMagicByte}!domini.CompressionAlg@{domini.CompressionAlg}}
+\doxysubsubsection{\texorpdfstring{getMagicByte()}{getMagicByte()}}
+{\footnotesize\ttfamily byte domini.\+Compression\+Alg.\+get\+Magic\+Byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implementado en \mbox{\hyperlink{classdomini_1_1LZ78_a9b3dc4daf0f2e86fc35c84e9c27f09a5}{domini.\+L\+Z78}}, \mbox{\hyperlink{classdomini_1_1LZW_a34c93bdda928229c3d20ebe84c01c59c}{domini.\+L\+ZW}}, \mbox{\hyperlink{classdomini_1_1LZSS_afd201f75090c5d279478da8f9657c57e}{domini.\+L\+Z\+SS}} y \mbox{\hyperlink{classdomini_1_1JPEG_ac95916ccc975435c5bd3be5844d7845b}{domini.\+J\+P\+EG}}.
+
+
+
+La documentación para este interfaz fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{CompressionAlg_8java}{Compression\+Alg.\+java}}\end{DoxyCompactItemize}

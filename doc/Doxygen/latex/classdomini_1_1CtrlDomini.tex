@@ -8,31 +8,151 @@ Controlador del dominio.
 \doxysubsection*{Clases}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{enumdomini_1_1CtrlDomini_1_1Alg}{Alg}}
-\begin{DoxyCompactList}\small\item\em Enum para identificar cada algoritmo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \mbox{\hyperlink{classdomini_1_1CtrlDomini_1_1MagicByteException}{Magic\+Byte\+Exception}}
+\begin{DoxyCompactList}\small\item\em Excepción de Magic\+Byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdomini_1_1CtrlDomini_a108deef06a76467f5e40580f13bc6078}{compress}} (int alg, String fi, String fo, Short quality)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1CtrlDomini_ae59c77daf391a6b6d8f9ed2eec95623e}{decompress}} (String fi, String fo)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_a48a2b59453f323d4e844c199ab313e04}{get\+Time}} ()
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_afd210d9add59e530e7f3530a0fc674f1}{get\+Deflated}} ()
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_aeab41a6cbfc91b2fa162db2c9c2039b8}{get\+Speed\+Compress}} ()
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_a7ed9f15691465ee82cccaab009937c9f}{get\+Inflated}} ()
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_add5ad04aeed99663f5955138176ac03f}{get\+Speed\+Decompress}} ()
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_aa3b7d80cafef4ec276fc53422ad1e65c}{get\+File\+In}} ()
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_a098dffb27d82bb63025e2056e1364b93}{get\+File\+Out}} ()
+\end{DoxyCompactItemize}
 \doxysubsection*{Métodos públicos estáticos}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_abfdf98b615c4b5914b9e12be0e04ec63}{compress}} (\mbox{\hyperlink{enumdomini_1_1CtrlDomini_1_1Alg}{Alg}} alg, String file\+In, String file\+Out, Short quality)  throws Exception 
-\begin{DoxyCompactList}\small\item\em Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_a3100be54008cb05050ed7e728337b64b}{decompress}} (String file\+In, String file\+Out)  throws Exception 
-\begin{DoxyCompactList}\small\item\em Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_a0ee87471a4690ffe10329d4c535a4d5f}{get\+Instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdomini_1_1CtrlDomini_ae76daedc889b30664e16eef45e906181}{compress}} (int alg, I\+O.\+Byte.\+reader input, I\+O.\+Bit.\+writer output, Short quality)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dado un algoritmo, el objeto de lectura de la entrada y el objeto de escritura del comprimido, ejecuta la compresión con el algoritmo pertienente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1CtrlDomini_abe998f94522092cdc693134d8274c140}{decompress}} (I\+O.\+Bit.\+reader input, I\+O.\+Byte.\+writer output, byte magic\+Byte)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dado un objeto de lectura del archivo comprimido, el objeto de escritura para el archivo descomprimido y un magicbyte, descomprime el archivo usando el algoritmo identificado por el magicbyte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1CtrlDomini_aa92078fc85adf3132ecbf2ea10e9fb11}{Ctrl\+Domini}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static String \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readable\+File\+Size}} (double d)
+\begin{DoxyCompactList}\small\item\em Da el formato correcto al tamaño de un fichero (B,kB,etc) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{file\+In}}
+\item 
+String \mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{file\+Out}}
+\item 
+\mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} \mbox{\hyperlink{classdomini_1_1CtrlDomini_a73559a6fa030298a872231b0ef2f9e66}{instance}} = null
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
 Controlador del dominio. 
 
-\begin{DoxyAuthor}{Autor}
-Albert Mercadé Plasencia / Aleix Boné 
-\end{DoxyAuthor}
+Definición en la línea 16 del archivo Ctrl\+Domini.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_aa92078fc85adf3132ecbf2ea10e9fb11}\label{classdomini_1_1CtrlDomini_aa92078fc85adf3132ecbf2ea10e9fb11}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!CtrlDomini@{CtrlDomini}}
+\index{CtrlDomini@{CtrlDomini}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{CtrlDomini()}{CtrlDomini()}}
+{\footnotesize\ttfamily domini.\+Ctrl\+Domini.\+Ctrl\+Domini (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Constructora vacía \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} 
+
+Definición en la línea 23 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{\}}
+
+\end{DoxyCode}
 
 
 \doxysubsection{Documentación de las funciones miembro}
-\mbox{\Hypertarget{classdomini_1_1CtrlDomini_abfdf98b615c4b5914b9e12be0e04ec63}\label{classdomini_1_1CtrlDomini_abfdf98b615c4b5914b9e12be0e04ec63}} 
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_ae76daedc889b30664e16eef45e906181}\label{classdomini_1_1CtrlDomini_ae76daedc889b30664e16eef45e906181}} 
 \index{domini.CtrlDomini@{domini.CtrlDomini}!compress@{compress}}
 \index{compress@{compress}!domini.CtrlDomini@{domini.CtrlDomini}}
-\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} domini.\+Ctrl\+Domini.\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enumdomini_1_1CtrlDomini_1_1Alg}{Alg}}}]{alg,  }\item[{String}]{file\+In,  }\item[{String}]{file\+Out,  }\item[{Short}]{quality }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void domini.\+Ctrl\+Domini.\+compress (\begin{DoxyParamCaption}\item[{int}]{alg,  }\item[{I\+O.\+Byte.\+reader}]{input,  }\item[{I\+O.\+Bit.\+writer}]{output,  }\item[{Short}]{quality }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Dado un algoritmo, el objeto de lectura de la entrada y el objeto de escritura del comprimido, ejecuta la compresión con el algoritmo pertienente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em alg} & algoritmo con el que comprimir \\
+\hline
+{\em input} & objeto de lectura del archivo a comprimir \\
+\hline
+{\em output} & objeto de escritura del archivo comprimido \\
+\hline
+{\em quality} & calidad de compresión para el \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al comprimir \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 73 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73                                                                                                          \{}
+\DoxyCodeLine{74         CompressionAlg comp;}
+\DoxyCodeLine{75             \textcolor{keywordflow}{if} (alg == 0) \{}
+\DoxyCodeLine{76                 String filename = input.getFilename();}
+\DoxyCodeLine{77                 \textcolor{keywordflow}{if}(filename.endsWith(\textcolor{stringliteral}{".ppm"})) \{}
+\DoxyCodeLine{78                     comp = \textcolor{keyword}{new} JPEG((\textcolor{keywordtype}{short}) 90);}
+\DoxyCodeLine{79                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{80                     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a24d1cfeb94015f63179b20271b38c73b}{getIniFileSize}}() > 1048576) comp = \textcolor{keyword}{new} LZW(); \textcolor{comment}{// 1 MiB}}
+\DoxyCodeLine{81                     \textcolor{keywordflow}{else} comp = \textcolor{keyword}{new} LZ78();}
+\DoxyCodeLine{82                 \}}
+\DoxyCodeLine{83             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (alg == 1) comp = \textcolor{keyword}{new} LZ78();}
+\DoxyCodeLine{84               \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (alg == 2) comp = \textcolor{keyword}{new} LZSS();}
+\DoxyCodeLine{85               \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (alg == 3) comp = \textcolor{keyword}{new} LZW();}
+\DoxyCodeLine{86               \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (alg == 4) comp = \textcolor{keyword}{new} JPEG(quality);}
+\DoxyCodeLine{87               \textcolor{keywordflow}{else} \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"No s'hauria de poder arribar aqui."});}
+\DoxyCodeLine{88              }
+\DoxyCodeLine{89         output.write(comp.getMagicByte());}
+\DoxyCodeLine{90         comp.compress(input, output);}
+\DoxyCodeLine{91     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a108deef06a76467f5e40580f13bc6078}\label{classdomini_1_1CtrlDomini_a108deef06a76467f5e40580f13bc6078}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!compress@{compress}}
+\index{compress@{compress}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void domini.\+Ctrl\+Domini.\+compress (\begin{DoxyParamCaption}\item[{int}]{alg,  }\item[{String}]{fi,  }\item[{String}]{fo,  }\item[{Short}]{quality }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -42,26 +162,102 @@ Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimi
 \begin{DoxyParams}{Parámetros}
 {\em alg} & algoritmo con el que comprimir \\
 \hline
-{\em file\+In} & nombre del archivo a comprimir \\
+{\em fi} & nombre del archivo a comprimir \\
 \hline
-{\em file\+Out} & nombre del archivo comprimido \\
+{\em fo} & nombre del archivo comprimido \\
 \hline
 {\em quality} & calidad de compresión para el \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-Devuelve las estadisrticas generadas para la compresión 
+Devuelve las estadisticas generadas para la compresión 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em Exception} & Lanza cualquier excepción generada al comprimir \\
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al comprimir \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a3100be54008cb05050ed7e728337b64b}\label{classdomini_1_1CtrlDomini_a3100be54008cb05050ed7e728337b64b}} 
+
+
+Definición en la línea 40 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40                                                                                           \{}
+\DoxyCodeLine{41         \mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}} = fi;}
+\DoxyCodeLine{42         \mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}} = fo;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}} = \textcolor{keyword}{new} Statistics();}
+\DoxyCodeLine{45         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a6155479ff9b1ae2d5a175731278a1a25}{setIniFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}});}
+\DoxyCodeLine{46         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}{setStartingTime}}();}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{keywordflow}{if} (\textcolor{keyword}{new} File(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}}).isDirectory()) \{}
+\DoxyCodeLine{49             \textcolor{keywordflow}{try}(IO.Bit.writer output = \textcolor{keyword}{new} IO.Bit.writer(\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}})) \{}
+\DoxyCodeLine{50                 output.write(Folder.MAGIC\_BYTE);}
+\DoxyCodeLine{51                 Folder.compress(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}}, output);}
+\DoxyCodeLine{52             \}}
+\DoxyCodeLine{53         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{54             \textcolor{keywordflow}{try} (IO.Byte.reader input = \textcolor{keyword}{new} IO.Byte.reader(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}});}
+\DoxyCodeLine{55                  IO.Bit.writer output = \textcolor{keyword}{new} IO.Bit.writer(\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}})) \{}
+\DoxyCodeLine{56                 \mbox{\hyperlink{classdomini_1_1CtrlDomini_a108deef06a76467f5e40580f13bc6078}{compress}}(alg, input, output, quality);}
+\DoxyCodeLine{57             \}}
+\DoxyCodeLine{58         \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}{setEndingTime}}();}
+\DoxyCodeLine{61         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a60ae5c26033e27dcb4d355825682b716}{setFinFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}});}
+\DoxyCodeLine{62     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_abe998f94522092cdc693134d8274c140}\label{classdomini_1_1CtrlDomini_abe998f94522092cdc693134d8274c140}} 
 \index{domini.CtrlDomini@{domini.CtrlDomini}!decompress@{decompress}}
 \index{decompress@{decompress}!domini.CtrlDomini@{domini.CtrlDomini}}
-\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} domini.\+Ctrl\+Domini.\+decompress (\begin{DoxyParamCaption}\item[{String}]{file\+In,  }\item[{String}]{file\+Out }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void domini.\+Ctrl\+Domini.\+decompress (\begin{DoxyParamCaption}\item[{I\+O.\+Bit.\+reader}]{input,  }\item[{I\+O.\+Byte.\+writer}]{output,  }\item[{byte}]{magic\+Byte }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Dado un objeto de lectura del archivo comprimido, el objeto de escritura para el archivo descomprimido y un magicbyte, descomprime el archivo usando el algoritmo identificado por el magicbyte. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input} & objeto de lectura del fichero comprimido \\
+\hline
+{\em output} & objeto de escritura del fichero descomprimido \\
+\hline
+{\em magic\+Byte} & byte que identifica el algoritmo a utilizar \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al descomprimir \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 134 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{134                                                                                                    \{}
+\DoxyCodeLine{135         CompressionAlg decomp;}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137         \textcolor{keywordflow}{if}(magicByte == 0) magicByte = (byte)input.readByte();}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139         \textcolor{keywordflow}{if} (magicByte == LZ78.MAGIC\_BYTE) decomp = \textcolor{keyword}{new} LZ78();}
+\DoxyCodeLine{140         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (magicByte == LZSS.MAGIC\_BYTE) decomp = \textcolor{keyword}{new} LZSS();}
+\DoxyCodeLine{141         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (magicByte == LZW.MAGIC\_BYTE) decomp = \textcolor{keyword}{new} LZW();}
+\DoxyCodeLine{142         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (magicByte == JPEG.MAGIC\_BYTE) decomp = \textcolor{keyword}{new} JPEG((\textcolor{keywordtype}{short})0);}
+\DoxyCodeLine{143         \textcolor{keywordflow}{else} \textcolor{keywordflow}{throw} \textcolor{keyword}{new} MagicByteException(magicByte);}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145         decomp.decompress(input, output);}
+\DoxyCodeLine{146     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_ae59c77daf391a6b6d8f9ed2eec95623e}\label{classdomini_1_1CtrlDomini_ae59c77daf391a6b6d8f9ed2eec95623e}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!decompress@{decompress}}
+\index{decompress@{decompress}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void domini.\+Ctrl\+Domini.\+decompress (\begin{DoxyParamCaption}\item[{String}]{fi,  }\item[{String}]{fo }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -69,9 +265,9 @@ Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprim
 
 
 \begin{DoxyParams}{Parámetros}
-{\em file\+In} & nombre del fichero comprimido \\
+{\em fi} & nombre del fichero comprimido \\
 \hline
-{\em file\+Out} & nombre del fichero descomprimido \\
+{\em fo} & nombre del fichero descomprimido \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
@@ -79,11 +275,262 @@ Estadisticas generadas durante la descompresión
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em Exception} & Lanza cualquier excepción generada al descomprimir \\
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al descomprimir \\
 \hline
 \end{DoxyExceptions}
 
 
+Definición en la línea 101 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                                                     \{}
+\DoxyCodeLine{102         \mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}} = fi;}
+\DoxyCodeLine{103         \mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}} = fo;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105         \textcolor{keywordflow}{try} (IO.Bit.reader input = \textcolor{keyword}{new} IO.Bit.reader(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}})) \{}
+\DoxyCodeLine{106             \textcolor{keywordtype}{byte} magicByte = (byte) input.readByte();}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108             \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}} = \textcolor{keyword}{new} Statistics();}
+\DoxyCodeLine{109             \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a6155479ff9b1ae2d5a175731278a1a25}{setIniFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}});}
+\DoxyCodeLine{110             \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}{setStartingTime}}();}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112             \textcolor{keywordflow}{if} (magicByte == Folder.MAGIC\_BYTE) \{}
+\DoxyCodeLine{113                 Folder.decompress(\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}}, input);}
+\DoxyCodeLine{114             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{115                 \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}}.endsWith(\textcolor{stringliteral}{".ppm"}) \&\& magicByte == JPEG.MAGIC\_BYTE) \mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}} += \textcolor{stringliteral}{".ppm"};}
+\DoxyCodeLine{116                 \textcolor{keywordflow}{try} (IO.Byte.writer output = \textcolor{keyword}{new} IO.Byte.writer(\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}})) \{}
+\DoxyCodeLine{117                     \mbox{\hyperlink{classdomini_1_1CtrlDomini_ae59c77daf391a6b6d8f9ed2eec95623e}{decompress}}(input, output, magicByte);}
+\DoxyCodeLine{118                 \}}
+\DoxyCodeLine{119             \}}
+\DoxyCodeLine{120         \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}{setEndingTime}}();}
+\DoxyCodeLine{123         \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a60ae5c26033e27dcb4d355825682b716}{setFinFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}});}
+\DoxyCodeLine{124     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_afd210d9add59e530e7f3530a0fc674f1}\label{classdomini_1_1CtrlDomini_afd210d9add59e530e7f3530a0fc674f1}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getDeflated@{getDeflated}}
+\index{getDeflated@{getDeflated}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getDeflated()}{getDeflated()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+Deflated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 152 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{152                                 \{}
+\DoxyCodeLine{153         String iniFileSize = \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readableFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a24d1cfeb94015f63179b20271b38c73b}{getIniFileSize}}());}
+\DoxyCodeLine{154         String finFileSize = \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readableFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a7d6ce685bbe4f16fe7fff7d376b916ab}{getFinFileSize}}());}
+\DoxyCodeLine{155         \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"\%s -\/> \%s (\%.2f\%\%)"}, iniFileSize, finFileSize, \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a97a6bab90c4644334fbb7726a79f7a0e}{getPercentageCompressed}}());}
+\DoxyCodeLine{156     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_aa3b7d80cafef4ec276fc53422ad1e65c}\label{classdomini_1_1CtrlDomini_aa3b7d80cafef4ec276fc53422ad1e65c}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getFileIn@{getFileIn}}
+\index{getFileIn@{getFileIn}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getFileIn()}{getFileIn()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+File\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 174 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{174                               \{}
+\DoxyCodeLine{175         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}{fileIn}};}
+\DoxyCodeLine{176     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a098dffb27d82bb63025e2056e1364b93}\label{classdomini_1_1CtrlDomini_a098dffb27d82bb63025e2056e1364b93}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getFileOut@{getFileOut}}
+\index{getFileOut@{getFileOut}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getFileOut()}{getFileOut()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+File\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 178 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{178                                \{}
+\DoxyCodeLine{179         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}{fileOut}};}
+\DoxyCodeLine{180     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a7ed9f15691465ee82cccaab009937c9f}\label{classdomini_1_1CtrlDomini_a7ed9f15691465ee82cccaab009937c9f}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getInflated@{getInflated}}
+\index{getInflated@{getInflated}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getInflated()}{getInflated()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+Inflated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 163 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{163                                 \{}
+\DoxyCodeLine{164         String iniFileSize = \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readableFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a24d1cfeb94015f63179b20271b38c73b}{getIniFileSize}}());}
+\DoxyCodeLine{165         String finFileSize = \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readableFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a7d6ce685bbe4f16fe7fff7d376b916ab}{getFinFileSize}}());}
+\DoxyCodeLine{166         \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"\%s -\/> \%s (\%.2f\%\%)"}, iniFileSize, finFileSize, \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_aedcda3d7be443cee79759eb8db95c173}{getPercentageDecompressed}}());}
+\DoxyCodeLine{167     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a0ee87471a4690ffe10329d4c535a4d5f}\label{classdomini_1_1CtrlDomini_a0ee87471a4690ffe10329d4c535a4d5f}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} domini.\+Ctrl\+Domini.\+get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 25 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25                                            \{}
+\DoxyCodeLine{26         \textcolor{keywordflow}{if}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_a73559a6fa030298a872231b0ef2f9e66}{instance}} == \textcolor{keyword}{null}) \mbox{\hyperlink{classdomini_1_1CtrlDomini_a73559a6fa030298a872231b0ef2f9e66}{instance}} = \textcolor{keyword}{new} \mbox{\hyperlink{classdomini_1_1CtrlDomini_aa92078fc85adf3132ecbf2ea10e9fb11}{CtrlDomini}}();}
+\DoxyCodeLine{27         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1CtrlDomini_a73559a6fa030298a872231b0ef2f9e66}{instance}};}
+\DoxyCodeLine{28     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_aeab41a6cbfc91b2fa162db2c9c2039b8}\label{classdomini_1_1CtrlDomini_aeab41a6cbfc91b2fa162db2c9c2039b8}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getSpeedCompress@{getSpeedCompress}}
+\index{getSpeedCompress@{getSpeedCompress}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getSpeedCompress()}{getSpeedCompress()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+Speed\+Compress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 158 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{158                                      \{}
+\DoxyCodeLine{159         String compSpeed = \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readableFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_ad19947a9050f3afd889eb820fe2d9b09}{getSpeedCompressed}}());}
+\DoxyCodeLine{160         \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"\%s/s"}, compSpeed);}
+\DoxyCodeLine{161     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_add5ad04aeed99663f5955138176ac03f}\label{classdomini_1_1CtrlDomini_add5ad04aeed99663f5955138176ac03f}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getSpeedDecompress@{getSpeedDecompress}}
+\index{getSpeedDecompress@{getSpeedDecompress}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getSpeedDecompress()}{getSpeedDecompress()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+Speed\+Decompress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 169 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{169                                        \{}
+\DoxyCodeLine{170         String decompSpeed = \mbox{\hyperlink{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}{readableFileSize}}(\mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a04bb334e1ef878577f895e70ad6011ef}{getSpeedDecompressed}}());}
+\DoxyCodeLine{171         \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"\%s/s"}, decompSpeed);}
+\DoxyCodeLine{172     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a48a2b59453f323d4e844c199ab313e04}\label{classdomini_1_1CtrlDomini_a48a2b59453f323d4e844c199ab313e04}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!getTime@{getTime}}
+\index{getTime@{getTime}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 148 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{148                             \{}
+\DoxyCodeLine{149         \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"\%.2f s"}, \mbox{\hyperlink{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}{stats}}.\mbox{\hyperlink{classdomini_1_1Statistics_a5235cad1177bc87f79e97ca2771654b1}{getTime}}());}
+\DoxyCodeLine{150     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}\label{classdomini_1_1CtrlDomini_a2fe4d289ac3c77ebf890ea179df858cc}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!readableFileSize@{readableFileSize}}
+\index{readableFileSize@{readableFileSize}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{readableFileSize()}{readableFileSize()}}
+{\footnotesize\ttfamily static String domini.\+Ctrl\+Domini.\+readable\+File\+Size (\begin{DoxyParamCaption}\item[{double}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Da el formato correcto al tamaño de un fichero (B,kB,etc) 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em d} & Tamaño de un fichero en bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Tamaño del fichero en la magnitud que le corresponda 
+\end{DoxyReturn}
+
+
+Definición en la línea 188 del archivo Ctrl\+Domini.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{188                                                      \{}
+\DoxyCodeLine{189         \textcolor{keywordflow}{if} (d <= 0)}
+\DoxyCodeLine{190             \textcolor{keywordflow}{return} \textcolor{stringliteral}{"0"};}
+\DoxyCodeLine{191         \textcolor{keyword}{final} String[] units = \textcolor{keyword}{new} String[] \{ \textcolor{stringliteral}{"B"}, \textcolor{stringliteral}{"kB"}, \textcolor{stringliteral}{"MB"}, \textcolor{stringliteral}{"GB"}, \textcolor{stringliteral}{"TB"} \};}
+\DoxyCodeLine{192         \textcolor{keywordtype}{int} digitGroups = (int) (Math.log10(d) / Math.log10(1024));}
+\DoxyCodeLine{193         \textcolor{keywordflow}{return} \textcolor{keyword}{new} DecimalFormat(\textcolor{stringliteral}{"\#,\#\#0.\#\#"}).format(d / Math.pow(1024, digitGroups)) + \textcolor{stringliteral}{" "} + units[digitGroups];}
+\DoxyCodeLine{194     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}\label{classdomini_1_1CtrlDomini_a9de2d02e7cead018123f653a02a98937}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!fileIn@{fileIn}}
+\index{fileIn@{fileIn}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{fileIn}{fileIn}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+file\+In\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 17 del archivo Ctrl\+Domini.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}\label{classdomini_1_1CtrlDomini_afd69754d889f558ce0bf0b9cc0f05608}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!fileOut@{fileOut}}
+\index{fileOut@{fileOut}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{fileOut}{fileOut}}
+{\footnotesize\ttfamily String domini.\+Ctrl\+Domini.\+file\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 18 del archivo Ctrl\+Domini.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_a73559a6fa030298a872231b0ef2f9e66}\label{classdomini_1_1CtrlDomini_a73559a6fa030298a872231b0ef2f9e66}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!instance@{instance}}
+\index{instance@{instance}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} domini.\+Ctrl\+Domini.\+instance = null\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 20 del archivo Ctrl\+Domini.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}\label{classdomini_1_1CtrlDomini_af7558f248306a5b272c228e59dc2670f}} 
+\index{domini.CtrlDomini@{domini.CtrlDomini}!stats@{stats}}
+\index{stats@{stats}!domini.CtrlDomini@{domini.CtrlDomini}}
+\doxysubsubsection{\texorpdfstring{stats}{stats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} domini.\+Ctrl\+Domini.\+stats\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 19 del archivo Ctrl\+Domini.\+java.
+
+
+
 La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-src/main/java/domini/Ctrl\+Domini.\+java\end{DoxyCompactItemize}
+src/main/java/domini/\mbox{\hyperlink{CtrlDomini_8java}{Ctrl\+Domini.\+java}}\end{DoxyCompactItemize}

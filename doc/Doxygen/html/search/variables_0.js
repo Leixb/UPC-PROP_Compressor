@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['magic_5fbyte_104',['MAGIC_BYTE',['../classdomini_1_1JPEG.html#a861e9cafa18cd7321d434873bfc673c6',1,'domini.JPEG.MAGIC_BYTE()'],['../classdomini_1_1LZ78.html#a246de867500d4153b5e2149b95ae3d78',1,'domini.LZ78.MAGIC_BYTE()'],['../classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca',1,'domini.LZW.MAGIC_BYTE()']]]
+  ['_5flength_5f_455',['_length_',['../classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944',1,'domini::BitSetL']]]
 ];

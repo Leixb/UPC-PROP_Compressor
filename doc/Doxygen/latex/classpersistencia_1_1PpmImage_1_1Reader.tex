@@ -1,0 +1,306 @@
+\hypertarget{classpersistencia_1_1PpmImage_1_1Reader}{}\doxysection{Referencia de la Clase persistencia.\+Ppm\+Image.\+Reader}
+\label{classpersistencia_1_1PpmImage_1_1Reader}\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a2c456f7038c728a015e92a3c739da1e7}{Reader}} (I\+O.\+Byte.\+reader \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}})  throws I\+O\+Exception 
+\item 
+byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a959e34c575e41a019d3cf2878005fef0}{read\+Block}} ()  throws I\+O\+Exception 
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a914c13ba83ac1ebd10d0a0a32e481bb7}{get\+Width}} ()
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a3e651207e53390dd1764a33b65cd4e6c}{get\+Height}} ()
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a4e37c9018d56f8a64bb58dd760f708b5}{width\+Blocks}} ()
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a646b54c52daf9642b59ee40513bdb1a8}{height\+Blocks}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}{height}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a01c766fed021d120a0bde30c87f687d5}{fill\+Buffer}} ()  throws I\+O\+Exception 
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_af415c161bd5f6a535065e6ccad02ec31}{read\+Int}} ()  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+I\+O.\+Byte.\+reader \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}{buff\+Pos}}
+\item 
+byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}{buffer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Lector de \mbox{\hyperlink{classpersistencia_1_1PpmImage}{Ppm\+Image}} 
+
+Definición en la línea 15 del archivo Ppm\+Image.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a2c456f7038c728a015e92a3c739da1e7}\label{classpersistencia_1_1PpmImage_1_1Reader_a2c456f7038c728a015e92a3c739da1e7}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!Reader@{Reader}}
+\index{Reader@{Reader}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{Reader()}{Reader()}}
+{\footnotesize\ttfamily persistencia.\+Ppm\+Image.\+Reader.\+Reader (\begin{DoxyParamCaption}\item[{I\+O.\+Byte.\+reader}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 22 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22                                                               \{}
+\DoxyCodeLine{23             this.\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}} = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25             \textcolor{keyword}{final} \textcolor{keywordtype}{byte}[] magic = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[2];}
+\DoxyCodeLine{26             \textcolor{keywordflow}{if} (2 != \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}}.read(magic))}
+\DoxyCodeLine{27                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} EOFException();}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29             \textcolor{keywordflow}{if} (magic[0] != \textcolor{charliteral}{'P'} || magic[1] != \textcolor{charliteral}{'6'})}
+\DoxyCodeLine{30                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} FileFormatException(\textcolor{stringliteral}{"Not PPM image (P6)"});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32             this.\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}} = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_af415c161bd5f6a535065e6ccad02ec31}{readInt}}();}
+\DoxyCodeLine{33             this.\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}{height}} = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_af415c161bd5f6a535065e6ccad02ec31}{readInt}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35             \textcolor{keyword}{final} \textcolor{keywordtype}{int} maxVal = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_af415c161bd5f6a535065e6ccad02ec31}{readInt}}();}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37             \textcolor{keywordflow}{if} (maxVal >= 256)}
+\DoxyCodeLine{38                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} FileFormatException(\textcolor{stringliteral}{"bit depth > 255"});}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40             \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}{buffer}} = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}][8][3];}
+\DoxyCodeLine{41             \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}{buffPos}} = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}/8+1;}
+\DoxyCodeLine{42         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a01c766fed021d120a0bde30c87f687d5}\label{classpersistencia_1_1PpmImage_1_1Reader_a01c766fed021d120a0bde30c87f687d5}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!fillBuffer@{fillBuffer}}
+\index{fillBuffer@{fillBuffer}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{fillBuffer()}{fillBuffer()}}
+{\footnotesize\ttfamily void persistencia.\+Ppm\+Image.\+Reader.\+fill\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 61 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{61                                                      \{}
+\DoxyCodeLine{62             \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}{buffPos}} = 0;}
+\DoxyCodeLine{63             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 8; ++j) \{}
+\DoxyCodeLine{64                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}; ++i) \{}
+\DoxyCodeLine{65                     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}}.read(\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}{buffer}}[i][j]) != 3) \{}
+\DoxyCodeLine{66                         \textcolor{keywordflow}{if} (j == 0) \textcolor{keywordflow}{throw} \textcolor{keyword}{new} EOFException();}
+\DoxyCodeLine{67                         \textcolor{comment}{// EOF, fill the rest of buffer with previous rows and end}}
+\DoxyCodeLine{68                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = j; k < 8; ++k) \{}
+\DoxyCodeLine{69                             \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}{buffer}}[i][k] = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}{buffer}}[i][j-\/1];}
+\DoxyCodeLine{70                         \}}
+\DoxyCodeLine{71                         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{72                     \}}
+\DoxyCodeLine{73                 \}}
+\DoxyCodeLine{74             \}}
+\DoxyCodeLine{75         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a3e651207e53390dd1764a33b65cd4e6c}\label{classpersistencia_1_1PpmImage_1_1Reader_a3e651207e53390dd1764a33b65cd4e6c}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 80 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{80                                \{}
+\DoxyCodeLine{81             \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}{height}};}
+\DoxyCodeLine{82         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a914c13ba83ac1ebd10d0a0a32e481bb7}\label{classpersistencia_1_1PpmImage_1_1Reader_a914c13ba83ac1ebd10d0a0a32e481bb7}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 77 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{77                               \{}
+\DoxyCodeLine{78             \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}};}
+\DoxyCodeLine{79         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a646b54c52daf9642b59ee40513bdb1a8}\label{classpersistencia_1_1PpmImage_1_1Reader_a646b54c52daf9642b59ee40513bdb1a8}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!heightBlocks@{heightBlocks}}
+\index{heightBlocks@{heightBlocks}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{heightBlocks()}{heightBlocks()}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+height\+Blocks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 87 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{87                                   \{}
+\DoxyCodeLine{88             \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}{height}}/8 + ((\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}{height}}\%8 == 0)? 0 : 1);}
+\DoxyCodeLine{89         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a959e34c575e41a019d3cf2878005fef0}\label{classpersistencia_1_1PpmImage_1_1Reader_a959e34c575e41a019d3cf2878005fef0}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!readBlock@{readBlock}}
+\index{readBlock@{readBlock}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{readBlock()}{readBlock()}}
+{\footnotesize\ttfamily byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} persistencia.\+Ppm\+Image.\+Reader.\+read\+Block (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 44 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44                                                          \{}
+\DoxyCodeLine{45             \textcolor{keywordtype}{byte}[][][] block = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[8][8][3];}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}{buffPos}}*8 >= \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}) \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a01c766fed021d120a0bde30c87f687d5}{fillBuffer}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{50                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 8; ++j) \{}
+\DoxyCodeLine{51                     \textcolor{keywordtype}{int} x = Math.min(\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}{buffPos}}*8 + i, \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}} -\/ 1); \textcolor{comment}{// padding}}
+\DoxyCodeLine{52                     block[i][j] = \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}{buffer}}[x][j];}
+\DoxyCodeLine{53                 \}}
+\DoxyCodeLine{54             \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56             ++\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}{buffPos}}; \textcolor{comment}{// Advance bufferPos}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58             \textcolor{keywordflow}{return} block;}
+\DoxyCodeLine{59         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_af415c161bd5f6a535065e6ccad02ec31}\label{classpersistencia_1_1PpmImage_1_1Reader_af415c161bd5f6a535065e6ccad02ec31}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!readInt@{readInt}}
+\index{readInt@{readInt}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{readInt()}{readInt()}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+read\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 91 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{91                                                  \{}
+\DoxyCodeLine{92             \textcolor{keywordtype}{char} c;}
+\DoxyCodeLine{93             \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{94                 c = (char) \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}}.read();}
+\DoxyCodeLine{95                 \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\#'}) \{ \textcolor{comment}{// Comment, discard till newline}}
+\DoxyCodeLine{96                     \textcolor{keywordflow}{while} (c != \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{97                         c = (char) \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}}.read();}
+\DoxyCodeLine{98                 \}}
+\DoxyCodeLine{99             \} \textcolor{keywordflow}{while} (c < '0' || c > \textcolor{charliteral}{'9'});}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101             \textcolor{comment}{// Read till not ascii integer}}
+\DoxyCodeLine{102             \textcolor{keywordtype}{int} n = 0;}
+\DoxyCodeLine{103             \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{104                 n = n * 10 + c -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{105                 c = (char) \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}{file}}.read();}
+\DoxyCodeLine{106             \} \textcolor{keywordflow}{while} (c >= \textcolor{charliteral}{'0'} \&\& c <= \textcolor{charliteral}{'9'});}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108             \textcolor{keywordflow}{return} n;}
+\DoxyCodeLine{109         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a4e37c9018d56f8a64bb58dd760f708b5}\label{classpersistencia_1_1PpmImage_1_1Reader_a4e37c9018d56f8a64bb58dd760f708b5}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!widthBlocks@{widthBlocks}}
+\index{widthBlocks@{widthBlocks}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{widthBlocks()}{widthBlocks()}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+width\+Blocks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 84 del archivo Ppm\+Image.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{84                                  \{}
+\DoxyCodeLine{85             \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}/8 + ((\mbox{\hyperlink{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}{width}}\%8 == 0)? 0 : 1);}
+\DoxyCodeLine{86         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}\label{classpersistencia_1_1PpmImage_1_1Reader_a7628b25489c2eae474cb97b4c9fcf95e}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!buffer@{buffer}}
+\index{buffer@{buffer}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} persistencia.\+Ppm\+Image.\+Reader.\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 20 del archivo Ppm\+Image.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}\label{classpersistencia_1_1PpmImage_1_1Reader_ae480072c6b9ab650863b328b89db7df6}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!buffPos@{buffPos}}
+\index{buffPos@{buffPos}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{buffPos}{buffPos}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+buff\+Pos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 19 del archivo Ppm\+Image.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}\label{classpersistencia_1_1PpmImage_1_1Reader_a04553b137a7d46e202b8f489eb47ca49}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!file@{file}}
+\index{file@{file}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily I\+O.\+Byte.\+reader persistencia.\+Ppm\+Image.\+Reader.\+file\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 16 del archivo Ppm\+Image.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}\label{classpersistencia_1_1PpmImage_1_1Reader_add4146a9a2c1f2b9a57b1758f5d43b65}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!height@{height}}
+\index{height@{height}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+height\hspace{0.3cm}{\ttfamily [package]}}
+
+
+
+Definición en la línea 17 del archivo Ppm\+Image.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}\label{classpersistencia_1_1PpmImage_1_1Reader_a92987440c9d639b56796d27ebbbc4550}} 
+\index{persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}!width@{width}}
+\index{width@{width}!persistencia.PpmImage.Reader@{persistencia.PpmImage.Reader}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily int persistencia.\+Ppm\+Image.\+Reader.\+width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 17 del archivo Ppm\+Image.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/persistencia/\mbox{\hyperlink{PpmImage_8java}{Ppm\+Image.\+java}}\end{DoxyCompactItemize}

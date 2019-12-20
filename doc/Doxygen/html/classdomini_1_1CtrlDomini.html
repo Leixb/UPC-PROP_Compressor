@@ -61,13 +61,19 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>domini</b></li><li class="navelem"><a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacedomini.html">domini</a></li><li class="navelem"><a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Clases</a> &#124;
+<a href="#pub-methods">Métodos públicos</a> &#124;
 <a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
+<a href="#pac-methods">Funciones del 'package'</a> &#124;
+<a href="#pri-methods">Métodos privados</a> &#124;
+<a href="#pri-static-methods">Métodos privados estáticos</a> &#124;
+<a href="#pri-attribs">Atributos privados</a> &#124;
+<a href="#pri-static-attribs">Atributos privados estáticos</a> &#124;
 <a href="classdomini_1_1CtrlDomini-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle">
 <div class="title">Referencia de la Clase domini.CtrlDomini</div>  </div>
@@ -79,25 +85,79 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Clases</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enumdomini_1_1CtrlDomini_1_1Alg.html">Alg</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum para identificar cada algoritmo.  <a href="enumdomini_1_1CtrlDomini_1_1Alg.html#details">Más...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini_1_1MagicByteException.html">MagicByteException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Excepción de MagicByte.  <a href="classdomini_1_1CtrlDomini_1_1MagicByteException.html#details">Más...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:a108deef06a76467f5e40580f13bc6078"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">compress</a> (int alg, String fi, String fo, Short quality)  throws IOException </td></tr>
+<tr class="memdesc:a108deef06a76467f5e40580f13bc6078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente.  <a href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">Más...</a><br /></td></tr>
+<tr class="separator:a108deef06a76467f5e40580f13bc6078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59c77daf391a6b6d8f9ed2eec95623e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">decompress</a> (String fi, String fo)  throws IOException </td></tr>
+<tr class="memdesc:ae59c77daf391a6b6d8f9ed2eec95623e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió  <a href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">Más...</a><br /></td></tr>
+<tr class="separator:ae59c77daf391a6b6d8f9ed2eec95623e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a2b59453f323d4e844c199ab313e04"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a48a2b59453f323d4e844c199ab313e04">getTime</a> ()</td></tr>
+<tr class="separator:a48a2b59453f323d4e844c199ab313e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd210d9add59e530e7f3530a0fc674f1"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#afd210d9add59e530e7f3530a0fc674f1">getDeflated</a> ()</td></tr>
+<tr class="separator:afd210d9add59e530e7f3530a0fc674f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeab41a6cbfc91b2fa162db2c9c2039b8"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#aeab41a6cbfc91b2fa162db2c9c2039b8">getSpeedCompress</a> ()</td></tr>
+<tr class="separator:aeab41a6cbfc91b2fa162db2c9c2039b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ed9f15691465ee82cccaab009937c9f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a7ed9f15691465ee82cccaab009937c9f">getInflated</a> ()</td></tr>
+<tr class="separator:a7ed9f15691465ee82cccaab009937c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add5ad04aeed99663f5955138176ac03f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#add5ad04aeed99663f5955138176ac03f">getSpeedDecompress</a> ()</td></tr>
+<tr class="separator:add5ad04aeed99663f5955138176ac03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b7d80cafef4ec276fc53422ad1e65c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#aa3b7d80cafef4ec276fc53422ad1e65c">getFileIn</a> ()</td></tr>
+<tr class="separator:aa3b7d80cafef4ec276fc53422ad1e65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a098dffb27d82bb63025e2056e1364b93"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a098dffb27d82bb63025e2056e1364b93">getFileOut</a> ()</td></tr>
+<tr class="separator:a098dffb27d82bb63025e2056e1364b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Métodos públicos estáticos</h2></td></tr>
-<tr class="memitem:abfdf98b615c4b5914b9e12be0e04ec63"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdomini_1_1Statistics.html">Statistics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#abfdf98b615c4b5914b9e12be0e04ec63">compress</a> (<a class="el" href="enumdomini_1_1CtrlDomini_1_1Alg.html">Alg</a> alg, String fileIn, String fileOut, Short quality)  throws Exception </td></tr>
-<tr class="memdesc:abfdf98b615c4b5914b9e12be0e04ec63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente.  <a href="classdomini_1_1CtrlDomini.html#abfdf98b615c4b5914b9e12be0e04ec63">Más...</a><br /></td></tr>
-<tr class="separator:abfdf98b615c4b5914b9e12be0e04ec63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3100be54008cb05050ed7e728337b64b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdomini_1_1Statistics.html">Statistics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a3100be54008cb05050ed7e728337b64b">decompress</a> (String fileIn, String fileOut)  throws Exception </td></tr>
-<tr class="memdesc:a3100be54008cb05050ed7e728337b64b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió  <a href="classdomini_1_1CtrlDomini.html#a3100be54008cb05050ed7e728337b64b">Más...</a><br /></td></tr>
-<tr class="separator:a3100be54008cb05050ed7e728337b64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ee87471a4690ffe10329d4c535a4d5f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a0ee87471a4690ffe10329d4c535a4d5f">getInstance</a> ()</td></tr>
+<tr class="separator:a0ee87471a4690ffe10329d4c535a4d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Funciones del 'package'</h2></td></tr>
+<tr class="memitem:ae76daedc889b30664e16eef45e906181"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#ae76daedc889b30664e16eef45e906181">compress</a> (int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality)  throws IOException </td></tr>
+<tr class="memdesc:ae76daedc889b30664e16eef45e906181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dado un algoritmo, el objeto de lectura de la entrada y el objeto de escritura del comprimido, ejecuta la compresión con el algoritmo pertienente.  <a href="classdomini_1_1CtrlDomini.html#ae76daedc889b30664e16eef45e906181">Más...</a><br /></td></tr>
+<tr class="separator:ae76daedc889b30664e16eef45e906181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe998f94522092cdc693134d8274c140"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#abe998f94522092cdc693134d8274c140">decompress</a> (IO.Bit.reader input, IO.Byte.writer output, byte magicByte)  throws IOException </td></tr>
+<tr class="memdesc:abe998f94522092cdc693134d8274c140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dado un objeto de lectura del archivo comprimido, el objeto de escritura para el archivo descomprimido y un magicbyte, descomprime el archivo usando el algoritmo identificado por el magicbyte.  <a href="classdomini_1_1CtrlDomini.html#abe998f94522092cdc693134d8274c140">Más...</a><br /></td></tr>
+<tr class="separator:abe998f94522092cdc693134d8274c140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Métodos privados</h2></td></tr>
+<tr class="memitem:aa92078fc85adf3132ecbf2ea10e9fb11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#aa92078fc85adf3132ecbf2ea10e9fb11">CtrlDomini</a> ()</td></tr>
+<tr class="separator:aa92078fc85adf3132ecbf2ea10e9fb11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Métodos privados estáticos</h2></td></tr>
+<tr class="memitem:a2fe4d289ac3c77ebf890ea179df858cc"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a> (double d)</td></tr>
+<tr class="memdesc:a2fe4d289ac3c77ebf890ea179df858cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Da el formato correcto al tamaño de un fichero (B,kB,etc)  <a href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">Más...</a><br /></td></tr>
+<tr class="separator:a2fe4d289ac3c77ebf890ea179df858cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Atributos privados</h2></td></tr>
+<tr class="memitem:a9de2d02e7cead018123f653a02a98937"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a></td></tr>
+<tr class="separator:a9de2d02e7cead018123f653a02a98937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd69754d889f558ce0bf0b9cc0f05608"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a></td></tr>
+<tr class="separator:afd69754d889f558ce0bf0b9cc0f05608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7558f248306a5b272c228e59dc2670f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdomini_1_1Statistics.html">Statistics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a></td></tr>
+<tr class="separator:af7558f248306a5b272c228e59dc2670f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Atributos privados estáticos</h2></td></tr>
+<tr class="memitem:a73559a6fa030298a872231b0ef2f9e66"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1CtrlDomini.html#a73559a6fa030298a872231b0ef2f9e66">instance</a> = null</td></tr>
+<tr class="separator:a73559a6fa030298a872231b0ef2f9e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Controlador del dominio. </p>
-<dl class="section author"><dt>Autor</dt><dd>Albert Mercadé Plasencia / Aleix Boné </dd></dl>
-</div><h2 class="groupheader">Documentación de las funciones miembro</h2>
-<a id="abfdf98b615c4b5914b9e12be0e04ec63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfdf98b615c4b5914b9e12be0e04ec63">&#9670;&nbsp;</a></span>compress()</h2>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00016">16</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a id="aa92078fc85adf3132ecbf2ea10e9fb11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92078fc85adf3132ecbf2ea10e9fb11">&#9670;&nbsp;</a></span>CtrlDomini()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -106,22 +166,52 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classdomini_1_1Statistics.html">Statistics</a> domini.CtrlDomini.compress </td>
+          <td class="memname">domini.CtrlDomini.CtrlDomini </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="enumdomini_1_1CtrlDomini_1_1Alg.html">Alg</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructora vacía <a class="el" href="classdomini_1_1CtrlDomini.html" title="Controlador del dominio.">CtrlDomini</a> </p>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00023">23</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="ae76daedc889b30664e16eef45e906181"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae76daedc889b30664e16eef45e906181">&#9670;&nbsp;</a></span>compress() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.CtrlDomini.compress </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>alg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>fileIn</em>, </td>
+          <td class="paramtype">IO.Byte.reader&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>fileOut</em>, </td>
+          <td class="paramtype">IO.Bit.writer&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -132,38 +222,58 @@ Métodos públicos estáticos</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> throws Exception</td>
+          <td></td><td> throws IOException</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente. </p>
+<p>Dado un algoritmo, el objeto de lectura de la entrada y el objeto de escritura del comprimido, ejecuta la compresión con el algoritmo pertienente. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">alg</td><td>algoritmo con el que comprimir </td></tr>
-    <tr><td class="paramname">fileIn</td><td>nombre del archivo a comprimir </td></tr>
-    <tr><td class="paramname">fileOut</td><td>nombre del archivo comprimido </td></tr>
+    <tr><td class="paramname">input</td><td>objeto de lectura del archivo a comprimir </td></tr>
+    <tr><td class="paramname">output</td><td>objeto de escritura del archivo comprimido </td></tr>
     <tr><td class="paramname">quality</td><td>calidad de compresión para el <a class="el" href="classdomini_1_1JPEG.html" title="compresión y descompresión de imágenes PPM con JPEG">JPEG</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>Devuelve las estadisrticas generadas para la compresión </dd></dl>
 <dl class="exception"><dt>Excepciones</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">Exception</td><td>Lanza cualquier excepción generada al comprimir </td></tr>
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al comprimir </td></tr>
   </table>
   </dd>
 </dl>
 
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00073">73</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                                                                         {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        CompressionAlg comp;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">if</span> (alg == 0) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                String filename = input.getFilename();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordflow">if</span>(filename.endsWith(<span class="stringliteral">&quot;.ppm&quot;</span>)) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    comp = <span class="keyword">new</span> JPEG((<span class="keywordtype">short</span>) 90);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">getIniFileSize</a>() &gt; 1048576) comp = <span class="keyword">new</span> LZW(); <span class="comment">// 1 MiB</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    <span class="keywordflow">else</span> comp = <span class="keyword">new</span> LZ78();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (alg == 1) comp = <span class="keyword">new</span> LZ78();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;              <span class="keywordflow">else</span> <span class="keywordflow">if</span> (alg == 2) comp = <span class="keyword">new</span> LZSS();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;              <span class="keywordflow">else</span> <span class="keywordflow">if</span> (alg == 3) comp = <span class="keyword">new</span> LZW();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;              <span class="keywordflow">else</span> <span class="keywordflow">if</span> (alg == 4) comp = <span class="keyword">new</span> JPEG(quality);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;              <span class="keywordflow">else</span> <span class="keywordflow">throw</span> <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;No s&#39;hauria de poder arribar aqui.&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;             </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        output.write(comp.getMagicByte());</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        comp.compress(input, output);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a3100be54008cb05050ed7e728337b64b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3100be54008cb05050ed7e728337b64b">&#9670;&nbsp;</a></span>decompress()</h2>
+<a id="a108deef06a76467f5e40580f13bc6078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a108deef06a76467f5e40580f13bc6078">&#9670;&nbsp;</a></span>compress() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,21 +282,376 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classdomini_1_1Statistics.html">Statistics</a> domini.CtrlDomini.decompress </td>
+          <td class="memname">void domini.CtrlDomini.compress </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>fileIn</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>alg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>fileOut</em>&#160;</td>
+          <td class="paramname"><em>fi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Short&#160;</td>
+          <td class="paramname"><em>quality</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> throws Exception</td>
+          <td></td><td> throws IOException</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alg</td><td>algoritmo con el que comprimir </td></tr>
+    <tr><td class="paramname">fi</td><td>nombre del archivo a comprimir </td></tr>
+    <tr><td class="paramname">fo</td><td>nombre del archivo comprimido </td></tr>
+    <tr><td class="paramname">quality</td><td>calidad de compresión para el <a class="el" href="classdomini_1_1JPEG.html" title="compresión y descompresión de imágenes PPM con JPEG">JPEG</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve las estadisticas generadas para la compresión </dd></dl>
+<dl class="exception"><dt>Excepciones</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al comprimir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00040">40</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                                                          {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a> = fi;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a> = fo;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a> = <span class="keyword">new</span> Statistics();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a6155479ff9b1ae2d5a175731278a1a25">setIniFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a6a231da29a59260f2c368f615c3ef742">setStartingTime</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">new</span> File(<a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>).isDirectory()) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">try</span>(IO.Bit.writer output = <span class="keyword">new</span> IO.Bit.writer(<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>)) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                output.write(Folder.MAGIC_BYTE);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                Folder.compress(<a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>, output);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">try</span> (IO.Byte.reader input = <span class="keyword">new</span> IO.Byte.reader(<a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                 IO.Bit.writer output = <span class="keyword">new</span> IO.Bit.writer(<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>)) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <a class="code" href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">compress</a>(alg, input, output, quality);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a34c4fbe665e324bb04a1347ce568b5f3">setEndingTime</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a60ae5c26033e27dcb4d355825682b716">setFinFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="abe998f94522092cdc693134d8274c140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe998f94522092cdc693134d8274c140">&#9670;&nbsp;</a></span>decompress() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.CtrlDomini.decompress </td>
+          <td>(</td>
+          <td class="paramtype">IO.Bit.reader&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IO.Byte.writer&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>magicByte</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws IOException</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dado un objeto de lectura del archivo comprimido, el objeto de escritura para el archivo descomprimido y un magicbyte, descomprime el archivo usando el algoritmo identificado por el magicbyte. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>objeto de lectura del fichero comprimido </td></tr>
+    <tr><td class="paramname">output</td><td>objeto de escritura del fichero descomprimido </td></tr>
+    <tr><td class="paramname">magicByte</td><td>byte que identifica el algoritmo a utilizar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Excepciones</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al descomprimir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00134">134</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                                                                                                   {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        CompressionAlg decomp;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span>(magicByte == 0) magicByte = (byte)input.readByte();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> (magicByte == LZ78.MAGIC_BYTE) decomp = <span class="keyword">new</span> LZ78();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (magicByte == LZSS.MAGIC_BYTE) decomp = <span class="keyword">new</span> LZSS();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (magicByte == LZW.MAGIC_BYTE) decomp = <span class="keyword">new</span> LZW();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (magicByte == JPEG.MAGIC_BYTE) decomp = <span class="keyword">new</span> JPEG((<span class="keywordtype">short</span>)0);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">throw</span> <span class="keyword">new</span> MagicByteException(magicByte);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        decomp.decompress(input, output);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae59c77daf391a6b6d8f9ed2eec95623e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59c77daf391a6b6d8f9ed2eec95623e">&#9670;&nbsp;</a></span>decompress() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.CtrlDomini.decompress </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>fo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws IOException</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fi</td><td>nombre del fichero comprimido </td></tr>
+    <tr><td class="paramname">fo</td><td>nombre del fichero descomprimido </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Estadisticas generadas durante la descompresión </dd></dl>
+<dl class="exception"><dt>Excepciones</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al descomprimir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00101">101</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                                                    {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a> = fi;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a> = fo;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">try</span> (IO.Bit.reader input = <span class="keyword">new</span> IO.Bit.reader(<a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>)) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordtype">byte</span> magicByte = (byte) input.readByte();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a> = <span class="keyword">new</span> Statistics();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a6155479ff9b1ae2d5a175731278a1a25">setIniFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a6a231da29a59260f2c368f615c3ef742">setStartingTime</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordflow">if</span> (magicByte == Folder.MAGIC_BYTE) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                Folder.decompress(<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>, input);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordflow">if</span> (!<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>.endsWith(<span class="stringliteral">&quot;.ppm&quot;</span>) &amp;&amp; magicByte == JPEG.MAGIC_BYTE) <a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a> += <span class="stringliteral">&quot;.ppm&quot;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">try</span> (IO.Byte.writer output = <span class="keyword">new</span> IO.Byte.writer(<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>)) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    <a class="code" href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">decompress</a>(input, output, magicByte);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a34c4fbe665e324bb04a1347ce568b5f3">setEndingTime</a>();</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a60ae5c26033e27dcb4d355825682b716">setFinFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afd210d9add59e530e7f3530a0fc674f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd210d9add59e530e7f3530a0fc674f1">&#9670;&nbsp;</a></span>getDeflated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getDeflated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00152">152</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                                {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        String iniFileSize = <a class="code" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">getIniFileSize</a>());</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        String finFileSize = <a class="code" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab">getFinFileSize</a>());</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">return</span> String.format(<span class="stringliteral">&quot;%s -&gt; %s (%.2f%%)&quot;</span>, iniFileSize, finFileSize, <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a97a6bab90c4644334fbb7726a79f7a0e">getPercentageCompressed</a>());</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa3b7d80cafef4ec276fc53422ad1e65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b7d80cafef4ec276fc53422ad1e65c">&#9670;&nbsp;</a></span>getFileIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getFileIn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00174">174</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                              {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">fileIn</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a098dffb27d82bb63025e2056e1364b93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a098dffb27d82bb63025e2056e1364b93">&#9670;&nbsp;</a></span>getFileOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getFileOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00178">178</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                               {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">fileOut</a>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7ed9f15691465ee82cccaab009937c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed9f15691465ee82cccaab009937c9f">&#9670;&nbsp;</a></span>getInflated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getInflated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00163">163</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                                {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        String iniFileSize = <a class="code" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">getIniFileSize</a>());</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        String finFileSize = <a class="code" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab">getFinFileSize</a>());</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">return</span> String.format(<span class="stringliteral">&quot;%s -&gt; %s (%.2f%%)&quot;</span>, iniFileSize, finFileSize, <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#aedcda3d7be443cee79759eb8db95c173">getPercentageDecompressed</a>());</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0ee87471a4690ffe10329d4c535a4d5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee87471a4690ffe10329d4c535a4d5f">&#9670;&nbsp;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a> domini.CtrlDomini.getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -196,28 +661,270 @@ Métodos públicos estáticos</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió </p>
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00025">25</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                           {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="classdomini_1_1CtrlDomini.html#a73559a6fa030298a872231b0ef2f9e66">instance</a> == <span class="keyword">null</span>) <a class="code" href="classdomini_1_1CtrlDomini.html#a73559a6fa030298a872231b0ef2f9e66">instance</a> = <span class="keyword">new</span> <a class="code" href="classdomini_1_1CtrlDomini.html#aa92078fc85adf3132ecbf2ea10e9fb11">CtrlDomini</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1CtrlDomini.html#a73559a6fa030298a872231b0ef2f9e66">instance</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aeab41a6cbfc91b2fa162db2c9c2039b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeab41a6cbfc91b2fa162db2c9c2039b8">&#9670;&nbsp;</a></span>getSpeedCompress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getSpeedCompress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00158">158</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                                     {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        String compSpeed = <a class="code" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#ad19947a9050f3afd889eb820fe2d9b09">getSpeedCompressed</a>());</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> String.format(<span class="stringliteral">&quot;%s/s&quot;</span>, compSpeed);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="add5ad04aeed99663f5955138176ac03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add5ad04aeed99663f5955138176ac03f">&#9670;&nbsp;</a></span>getSpeedDecompress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getSpeedDecompress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00169">169</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                                       {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        String decompSpeed = <a class="code" href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">readableFileSize</a>(<a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a04bb334e1ef878577f895e70ad6011ef">getSpeedDecompressed</a>());</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">return</span> String.format(<span class="stringliteral">&quot;%s/s&quot;</span>, decompSpeed);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a48a2b59453f323d4e844c199ab313e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a2b59453f323d4e844c199ab313e04">&#9670;&nbsp;</a></span>getTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.getTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00148">148</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                            {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">return</span> String.format(<span class="stringliteral">&quot;%.2f s&quot;</span>, <a class="code" href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">stats</a>.<a class="code" href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">getTime</a>());</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2fe4d289ac3c77ebf890ea179df858cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe4d289ac3c77ebf890ea179df858cc">&#9670;&nbsp;</a></span>readableFileSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String domini.CtrlDomini.readableFileSize </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Da el formato correcto al tamaño de un fichero (B,kB,etc) </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fileIn</td><td>nombre del fichero comprimido </td></tr>
-    <tr><td class="paramname">fileOut</td><td>nombre del fichero descomprimido </td></tr>
+    <tr><td class="paramname">d</td><td>Tamaño de un fichero en bytes </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>Estadisticas generadas durante la descompresión </dd></dl>
-<dl class="exception"><dt>Excepciones</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>Lanza cualquier excepción generada al descomprimir </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Tamaño del fichero en la magnitud que le corresponda </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00188">188</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                                                     {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">if</span> (d &lt;= 0)</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">return</span> <span class="stringliteral">&quot;0&quot;</span>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keyword">final</span> String[] units = <span class="keyword">new</span> String[] { <span class="stringliteral">&quot;B&quot;</span>, <span class="stringliteral">&quot;kB&quot;</span>, <span class="stringliteral">&quot;MB&quot;</span>, <span class="stringliteral">&quot;GB&quot;</span>, <span class="stringliteral">&quot;TB&quot;</span> };</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordtype">int</span> digitGroups = (int) (Math.log10(d) / Math.log10(1024));</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> DecimalFormat(<span class="stringliteral">&quot;#,##0.##&quot;</span>).format(d / Math.pow(1024, digitGroups)) + <span class="stringliteral">&quot; &quot;</span> + units[digitGroups];</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="a9de2d02e7cead018123f653a02a98937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9de2d02e7cead018123f653a02a98937">&#9670;&nbsp;</a></span>fileIn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.fileIn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00017">17</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+
+</div>
+</div>
+<a id="afd69754d889f558ce0bf0b9cc0f05608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd69754d889f558ce0bf0b9cc0f05608">&#9670;&nbsp;</a></span>fileOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String domini.CtrlDomini.fileOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00018">18</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+
+</div>
+</div>
+<a id="a73559a6fa030298a872231b0ef2f9e66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73559a6fa030298a872231b0ef2f9e66">&#9670;&nbsp;</a></span>instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdomini_1_1CtrlDomini.html">CtrlDomini</a> domini.CtrlDomini.instance = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00020">20</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
+
+</div>
+</div>
+<a id="af7558f248306a5b272c228e59dc2670f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7558f248306a5b272c228e59dc2670f">&#9670;&nbsp;</a></span>stats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdomini_1_1Statistics.html">Statistics</a> domini.CtrlDomini.stats</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="CtrlDomini_8java_source.html#l00019">19</a> del archivo <a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a>.</p>
 
 </div>
 </div>
 <hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
-<li>src/main/java/domini/CtrlDomini.java</li>
+<li>src/main/java/domini/<a class="el" href="CtrlDomini_8java_source.html">CtrlDomini.java</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_ae59c77daf391a6b6d8f9ed2eec95623e"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#ae59c77daf391a6b6d8f9ed2eec95623e">domini.CtrlDomini.decompress</a></div><div class="ttdeci">void decompress(String fi, String fo)</div><div class="ttdoc">Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando e...</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00101">CtrlDomini.java:101</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a108deef06a76467f5e40580f13bc6078"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a108deef06a76467f5e40580f13bc6078">domini.CtrlDomini.compress</a></div><div class="ttdeci">void compress(int alg, String fi, String fo, Short quality)</div><div class="ttdoc">Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido,...</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00040">CtrlDomini.java:40</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a73559a6fa030298a872231b0ef2f9e66"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a73559a6fa030298a872231b0ef2f9e66">domini.CtrlDomini.instance</a></div><div class="ttdeci">static CtrlDomini instance</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00020">CtrlDomini.java:20</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a97a6bab90c4644334fbb7726a79f7a0e"><div class="ttname"><a href="classdomini_1_1Statistics.html#a97a6bab90c4644334fbb7726a79f7a0e">domini.Statistics.getPercentageCompressed</a></div><div class="ttdeci">double getPercentageCompressed()</div><div class="ttdoc">Getter del porcentage de compresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00133">Statistics.java:133</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a24d1cfeb94015f63179b20271b38c73b"><div class="ttname"><a href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">domini.Statistics.getIniFileSize</a></div><div class="ttdeci">long getIniFileSize()</div><div class="ttdoc">Getter del tamaño del fichero de entrada.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00101">Statistics.java:101</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_aa92078fc85adf3132ecbf2ea10e9fb11"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#aa92078fc85adf3132ecbf2ea10e9fb11">domini.CtrlDomini.CtrlDomini</a></div><div class="ttdeci">CtrlDomini()</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00023">CtrlDomini.java:23</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a9de2d02e7cead018123f653a02a98937"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937">domini.CtrlDomini.fileIn</a></div><div class="ttdeci">String fileIn</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00017">CtrlDomini.java:17</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a7d6ce685bbe4f16fe7fff7d376b916ab"><div class="ttname"><a href="classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab">domini.Statistics.getFinFileSize</a></div><div class="ttdeci">long getFinFileSize()</div><div class="ttdoc">Getter del tamaño del fichero de salida.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00109">Statistics.java:109</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a5235cad1177bc87f79e97ca2771654b1"><div class="ttname"><a href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">domini.Statistics.getTime</a></div><div class="ttdeci">double getTime()</div><div class="ttdoc">Getter de la duración de la compresión/descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00092">Statistics.java:92</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a6155479ff9b1ae2d5a175731278a1a25"><div class="ttname"><a href="classdomini_1_1Statistics.html#a6155479ff9b1ae2d5a175731278a1a25">domini.Statistics.setIniFileSize</a></div><div class="ttdeci">void setIniFileSize(final String filename)</div><div class="ttdoc">Setter de iniFileSize.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00057">Statistics.java:57</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_afd69754d889f558ce0bf0b9cc0f05608"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608">domini.CtrlDomini.fileOut</a></div><div class="ttdeci">String fileOut</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00018">CtrlDomini.java:18</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_ad19947a9050f3afd889eb820fe2d9b09"><div class="ttname"><a href="classdomini_1_1Statistics.html#ad19947a9050f3afd889eb820fe2d9b09">domini.Statistics.getSpeedCompressed</a></div><div class="ttdeci">double getSpeedCompressed()</div><div class="ttdoc">Getter de la velocidad de compresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00149">Statistics.java:149</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a34c4fbe665e324bb04a1347ce568b5f3"><div class="ttname"><a href="classdomini_1_1Statistics.html#a34c4fbe665e324bb04a1347ce568b5f3">domini.Statistics.setEndingTime</a></div><div class="ttdeci">void setEndingTime()</div><div class="ttdoc">Setter de endingTime.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00047">Statistics.java:47</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a6a231da29a59260f2c368f615c3ef742"><div class="ttname"><a href="classdomini_1_1Statistics.html#a6a231da29a59260f2c368f615c3ef742">domini.Statistics.setStartingTime</a></div><div class="ttdeci">void setStartingTime()</div><div class="ttdoc">Setter de startingTime.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00040">Statistics.java:40</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a04bb334e1ef878577f895e70ad6011ef"><div class="ttname"><a href="classdomini_1_1Statistics.html#a04bb334e1ef878577f895e70ad6011ef">domini.Statistics.getSpeedDecompressed</a></div><div class="ttdeci">double getSpeedDecompressed()</div><div class="ttdoc">Getter de la velocidad de descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00157">Statistics.java:157</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a60ae5c26033e27dcb4d355825682b716"><div class="ttname"><a href="classdomini_1_1Statistics.html#a60ae5c26033e27dcb4d355825682b716">domini.Statistics.setFinFileSize</a></div><div class="ttdeci">void setFinFileSize(final String filename)</div><div class="ttdoc">Setter de finFileSize.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00075">Statistics.java:75</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_af7558f248306a5b272c228e59dc2670f"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#af7558f248306a5b272c228e59dc2670f">domini.CtrlDomini.stats</a></div><div class="ttdeci">Statistics stats</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00019">CtrlDomini.java:19</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_aedcda3d7be443cee79759eb8db95c173"><div class="ttname"><a href="classdomini_1_1Statistics.html#aedcda3d7be443cee79759eb8db95c173">domini.Statistics.getPercentageDecompressed</a></div><div class="ttdeci">double getPercentageDecompressed()</div><div class="ttdoc">Getter del porcentage de descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00141">Statistics.java:141</a></div></div>
+<div class="ttc" id="aclassdomini_1_1CtrlDomini_html_a2fe4d289ac3c77ebf890ea179df858cc"><div class="ttname"><a href="classdomini_1_1CtrlDomini.html#a2fe4d289ac3c77ebf890ea179df858cc">domini.CtrlDomini.readableFileSize</a></div><div class="ttdeci">static String readableFileSize(double d)</div><div class="ttdoc">Da el formato correcto al tamaño de un fichero (B,kB,etc)</div><div class="ttdef"><b>Definition:</b> <a href="CtrlDomini_8java_source.html#l00188">CtrlDomini.java:188</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por &#160;<a href="http://www.doxygen.org/index.html">

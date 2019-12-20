@@ -1,0 +1,262 @@
+\hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader}{}\doxysection{Referencia de la Clase persistencia.\+I\+O.\+Bit.\+reader}
+\label{classpersistencia_1_1IO_1_1Bit_1_1reader}\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+Diagrama de herencias de persistencia.\+I\+O.\+Bit.\+reader\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpersistencia_1_1IO_1_1Bit_1_1reader}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_ad20a3856f0f05cdc70214965b470672e}{reader}} (final String filename)  throws I\+O\+Exception 
+\item 
+boolean \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_af8877b14e24960b0691ec9c2628a54c7}{read}} ()  throws I\+O\+Exception 
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_aae683aa3d7bfe8f13ca050b0cdbacf02}{read\+Byte}} ()  throws I\+O\+Exception 
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a983352430230576cf91eade90f69b04b}{read\+Char}} ()  throws I\+O\+Exception 
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_af9a2413649696032a10e00b76da6cf6e}{read\+Int}} ()  throws I\+O\+Exception 
+\item 
+\mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a31cad98dc6ffac96abcd63a9ab0bff1e}{read\+Bit\+Set}} (final int length)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_aac8a239ceb4c2766602b893a51182b02}{close}} ()  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a420c6f0bdfd1665d7da33f57b08d6d1c}{fill}} ()  throws I\+O\+Exception 
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_aaf2a2e4c72665e8eef2b4c6f7a23b09a}{read\+Mask}} (int mask)  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+final Buffered\+Input\+Stream \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a7c63c7c849f2ac25a081eea394be82a5}{in}}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}{buffer}}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}{n}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea 128 del archivo I\+O.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_ad20a3856f0f05cdc70214965b470672e}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_ad20a3856f0f05cdc70214965b470672e}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!reader@{reader}}
+\index{reader@{reader}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{reader()}{reader()}}
+{\footnotesize\ttfamily persistencia.\+I\+O.\+Bit.\+reader.\+reader (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 133 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{133                                                                     \{}
+\DoxyCodeLine{134                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a7c63c7c849f2ac25a081eea394be82a5}{in}} = \textcolor{keyword}{new} BufferedInputStream(\textcolor{keyword}{new} FileInputStream(filename));}
+\DoxyCodeLine{135                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}{buffer}} = 0;}
+\DoxyCodeLine{136                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}{n}} = 0;}
+\DoxyCodeLine{137             \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_aac8a239ceb4c2766602b893a51182b02}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_aac8a239ceb4c2766602b893a51182b02}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!close@{close}}
+\index{close@{close}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+reader.\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 182 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{182                                                    \{}
+\DoxyCodeLine{183                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a7c63c7c849f2ac25a081eea394be82a5}{in}}.close();}
+\DoxyCodeLine{184             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_a420c6f0bdfd1665d7da33f57b08d6d1c}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_a420c6f0bdfd1665d7da33f57b08d6d1c}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!fill@{fill}}
+\index{fill@{fill}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{fill()}{fill()}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+reader.\+fill (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 139 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{139                                                    \{}
+\DoxyCodeLine{140                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}{buffer}} = \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a7c63c7c849f2ac25a081eea394be82a5}{in}}.read();}
+\DoxyCodeLine{141                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}{n}} = 8;}
+\DoxyCodeLine{142                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}{buffer}} == -\/1)}
+\DoxyCodeLine{143                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} EOFException();}
+\DoxyCodeLine{144             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_af8877b14e24960b0691ec9c2628a54c7}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_af8877b14e24960b0691ec9c2628a54c7}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!read@{read}}
+\index{read@{read}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily boolean persistencia.\+I\+O.\+Bit.\+reader.\+read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 146 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{146                                                      \{}
+\DoxyCodeLine{147                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}{n}} == 0)}
+\DoxyCodeLine{148                     \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a420c6f0bdfd1665d7da33f57b08d6d1c}{fill}}();}
+\DoxyCodeLine{149                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}{n}}-\/-\/;}
+\DoxyCodeLine{150                 \textcolor{keyword}{final} \textcolor{keywordtype}{boolean} bit = ((\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}{buffer}} >>> \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}{n}}) \& 1) == 1;}
+\DoxyCodeLine{151                 \textcolor{keywordflow}{return} bit;}
+\DoxyCodeLine{152             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_a31cad98dc6ffac96abcd63a9ab0bff1e}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_a31cad98dc6ffac96abcd63a9ab0bff1e}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!readBitSet@{readBitSet}}
+\index{readBitSet@{readBitSet}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{readBitSet()}{readBitSet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} persistencia.\+I\+O.\+Bit.\+reader.\+read\+Bit\+Set (\begin{DoxyParamCaption}\item[{final int}]{length }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 176 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{176                                                                            \{}
+\DoxyCodeLine{177                 BitSetL bs = \textcolor{keyword}{new} BitSetL(length);}
+\DoxyCodeLine{178                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < length; ++k) bs.set(k, \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_af8877b14e24960b0691ec9c2628a54c7}{read}}());}
+\DoxyCodeLine{179                 \textcolor{keywordflow}{return} bs;}
+\DoxyCodeLine{180             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_aae683aa3d7bfe8f13ca050b0cdbacf02}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_aae683aa3d7bfe8f13ca050b0cdbacf02}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!readByte@{readByte}}
+\index{readByte@{readByte}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{readByte()}{readByte()}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+reader.\+read\+Byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 164 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164                                                      \{}
+\DoxyCodeLine{165                 \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_aaf2a2e4c72665e8eef2b4c6f7a23b09a}{readMask}}(0x80);}
+\DoxyCodeLine{166             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_a983352430230576cf91eade90f69b04b}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_a983352430230576cf91eade90f69b04b}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!readChar@{readChar}}
+\index{readChar@{readChar}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{readChar()}{readChar()}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+reader.\+read\+Char (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 168 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{168                                                      \{}
+\DoxyCodeLine{169                 \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_aaf2a2e4c72665e8eef2b4c6f7a23b09a}{readMask}}(0x8000);}
+\DoxyCodeLine{170             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_af9a2413649696032a10e00b76da6cf6e}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_af9a2413649696032a10e00b76da6cf6e}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!readInt@{readInt}}
+\index{readInt@{readInt}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{readInt()}{readInt()}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+reader.\+read\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 172 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{172                                                     \{}
+\DoxyCodeLine{173                 \textcolor{keywordflow}{return} \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_aaf2a2e4c72665e8eef2b4c6f7a23b09a}{readMask}}(0x80000000);}
+\DoxyCodeLine{174             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_aaf2a2e4c72665e8eef2b4c6f7a23b09a}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_aaf2a2e4c72665e8eef2b4c6f7a23b09a}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!readMask@{readMask}}
+\index{readMask@{readMask}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{readMask()}{readMask()}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+reader.\+read\+Mask (\begin{DoxyParamCaption}\item[{int}]{mask }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 154 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{154                                                               \{}
+\DoxyCodeLine{155                 \textcolor{keywordtype}{int} num = 0;}
+\DoxyCodeLine{156                 \textcolor{keywordflow}{while} (mask != 0) \{}
+\DoxyCodeLine{157                     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1reader_af8877b14e24960b0691ec9c2628a54c7}{read}}())}
+\DoxyCodeLine{158                         num |= mask;}
+\DoxyCodeLine{159                     mask >>>= 1;}
+\DoxyCodeLine{160                 \}}
+\DoxyCodeLine{161                 \textcolor{keywordflow}{return} num;}
+\DoxyCodeLine{162             \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_a3811e009a539230db4a872bc352089f1}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!buffer@{buffer}}
+\index{buffer@{buffer}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+reader.\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 130 del archivo I\+O.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_a7c63c7c849f2ac25a081eea394be82a5}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_a7c63c7c849f2ac25a081eea394be82a5}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!in@{in}}
+\index{in@{in}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{in}{in}}
+{\footnotesize\ttfamily final Buffered\+Input\+Stream persistencia.\+I\+O.\+Bit.\+reader.\+in\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 129 del archivo I\+O.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}\label{classpersistencia_1_1IO_1_1Bit_1_1reader_a45ae5a842be4b3e09297d674ea658a27}} 
+\index{persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}!n@{n}}
+\index{n@{n}!persistencia.IO.Bit.reader@{persistencia.IO.Bit.reader}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+reader.\+n\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 131 del archivo I\+O.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/persistencia/\mbox{\hyperlink{IO_8java}{I\+O.\+java}}\end{DoxyCompactItemize}

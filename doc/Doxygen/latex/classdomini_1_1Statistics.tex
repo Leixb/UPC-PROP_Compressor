@@ -8,18 +8,15 @@ Genera estadísticas de compresión/descompresión.
 \doxysubsection*{Métodos públicos}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classdomini_1_1Statistics_a687c5ef280bd9c73cc3e4eeb95d9d70d}\label{classdomini_1_1Statistics_a687c5ef280bd9c73cc3e4eeb95d9d70d}} 
 \mbox{\hyperlink{classdomini_1_1Statistics_a687c5ef280bd9c73cc3e4eeb95d9d70d}{Statistics}} ()
-\begin{DoxyCompactList}\small\item\em Constructora de la clase. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}\label{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}} 
+\item 
 void \mbox{\hyperlink{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}{set\+Starting\+Time}} ()
 \begin{DoxyCompactList}\small\item\em Setter de starting\+Time. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}\label{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}} 
 void \mbox{\hyperlink{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}{set\+Ending\+Time}} ()
 \begin{DoxyCompactList}\small\item\em Setter de ending\+Time. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classdomini_1_1Statistics_a6155479ff9b1ae2d5a175731278a1a25}{set\+Ini\+File\+Size}} (final String filename)
+void \mbox{\hyperlink{classdomini_1_1Statistics_a6155479ff9b1ae2d5a175731278a1a25}{set\+Ini\+File\+Size}} (final String filename)  throws I\+O\+Exception 
 \begin{DoxyCompactList}\small\item\em Setter de ini\+File\+Size. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classdomini_1_1Statistics_a60ae5c26033e27dcb4d355825682b716}{set\+Fin\+File\+Size}} (final String filename)
+void \mbox{\hyperlink{classdomini_1_1Statistics_a60ae5c26033e27dcb4d355825682b716}{set\+Fin\+File\+Size}} (final String filename)  throws I\+O\+Exception 
 \begin{DoxyCompactList}\small\item\em Setter de fin\+File\+Size. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classdomini_1_1Statistics_a5235cad1177bc87f79e97ca2771654b1}{get\+Time}} ()
 \begin{DoxyCompactList}\small\item\em Getter de la duración de la compresión/descompresión. \end{DoxyCompactList}\item 
@@ -35,17 +32,105 @@ double \mbox{\hyperlink{classdomini_1_1Statistics_ad19947a9050f3afd889eb820fe2d9
 \begin{DoxyCompactList}\small\item\em Getter de la velocidad de compresión. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classdomini_1_1Statistics_a04bb334e1ef878577f895e70ad6011ef}{get\+Speed\+Decompressed}} ()
 \begin{DoxyCompactList}\small\item\em Getter de la velocidad de descompresión. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+long \mbox{\hyperlink{classdomini_1_1Statistics_ab812d494c95da818d3b500ec16ebff64}{get\+Bytes\+Compressed}} ()
+\begin{DoxyCompactList}\small\item\em Getter de los bytes comprimidos. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classdomini_1_1Statistics_a7b9fa4129d464fbaee2adfc95d0531f2}{get\+Bytes\+Decompressed}} ()
+\begin{DoxyCompactList}\small\item\em Getter de los bytes descomprimidos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+long \mbox{\hyperlink{classdomini_1_1Statistics_aa0fb37c0b97c183a19e4e6fd830765c5}{starting\+Time}}
+\begin{DoxyCompactList}\small\item\em Tiempo de inicio. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classdomini_1_1Statistics_ad70e6d9e2e0922fe5786ea5023839804}{ending\+Time}}
+\begin{DoxyCompactList}\small\item\em Tiempo de finalización. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{ini\+File\+Size}}
+\begin{DoxyCompactList}\small\item\em Tamaño inicial. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{fin\+File\+Size}}
+\begin{DoxyCompactList}\small\item\em Tamaño final. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
 Genera estadísticas de compresión/descompresión. 
 
-\begin{DoxyAuthor}{Autor}
-Alex Herrero Pons / Aleix Boné / Albert Mercadé Plasencia 
-\end{DoxyAuthor}
+Definición en la línea 15 del archivo Statistics.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1Statistics_a687c5ef280bd9c73cc3e4eeb95d9d70d}\label{classdomini_1_1Statistics_a687c5ef280bd9c73cc3e4eeb95d9d70d}} 
+\index{domini.Statistics@{domini.Statistics}!Statistics@{Statistics}}
+\index{Statistics@{Statistics}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{Statistics()}{Statistics()}}
+{\footnotesize\ttfamily domini.\+Statistics.\+Statistics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructora vacía \mbox{\hyperlink{classdomini_1_1Statistics}{Statistics}} 
+
+Definición en la línea 30 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                          \{}
+\DoxyCodeLine{31         \mbox{\hyperlink{classdomini_1_1Statistics_aa0fb37c0b97c183a19e4e6fd830765c5}{startingTime}} = 0;}
+\DoxyCodeLine{32         \mbox{\hyperlink{classdomini_1_1Statistics_ad70e6d9e2e0922fe5786ea5023839804}{endingTime}} = 0;}
+\DoxyCodeLine{33         \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}} = 0;}
+\DoxyCodeLine{34         \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}} = 0;}
+\DoxyCodeLine{35     \}}
+
+\end{DoxyCode}
 
 
 \doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1Statistics_ab812d494c95da818d3b500ec16ebff64}\label{classdomini_1_1Statistics_ab812d494c95da818d3b500ec16ebff64}} 
+\index{domini.Statistics@{domini.Statistics}!getBytesCompressed@{getBytesCompressed}}
+\index{getBytesCompressed@{getBytesCompressed}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{getBytesCompressed()}{getBytesCompressed()}}
+{\footnotesize\ttfamily long domini.\+Statistics.\+get\+Bytes\+Compressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Getter de los bytes comprimidos. 
+
+\begin{DoxyReturn}{Devuelve}
+Cantidad de bytes comprimidos 
+\end{DoxyReturn}
+
+
+Definición en la línea 117 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117                                        \{}
+\DoxyCodeLine{118         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}} -\/ \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}};}
+\DoxyCodeLine{119     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Statistics_a7b9fa4129d464fbaee2adfc95d0531f2}\label{classdomini_1_1Statistics_a7b9fa4129d464fbaee2adfc95d0531f2}} 
+\index{domini.Statistics@{domini.Statistics}!getBytesDecompressed@{getBytesDecompressed}}
+\index{getBytesDecompressed@{getBytesDecompressed}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{getBytesDecompressed()}{getBytesDecompressed()}}
+{\footnotesize\ttfamily long domini.\+Statistics.\+get\+Bytes\+Decompressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Getter de los bytes descomprimidos. 
+
+\begin{DoxyReturn}{Devuelve}
+Cantidad de bytes descomprimidos 
+\end{DoxyReturn}
+
+
+Definición en la línea 125 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{125                                          \{}
+\DoxyCodeLine{126         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}} -\/ \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}};}
+\DoxyCodeLine{127     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a7d6ce685bbe4f16fe7fff7d376b916ab}\label{classdomini_1_1Statistics_a7d6ce685bbe4f16fe7fff7d376b916ab}} 
 \index{domini.Statistics@{domini.Statistics}!getFinFileSize@{getFinFileSize}}
 \index{getFinFileSize@{getFinFileSize}!domini.Statistics@{domini.Statistics}}
@@ -59,6 +144,17 @@ Getter del tamaño del fichero de salida.
 \begin{DoxyReturn}{Devuelve}
 Tamaño del archivo de salida en bytes 
 \end{DoxyReturn}
+
+
+Definición en la línea 109 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{109                                  \{}
+\DoxyCodeLine{110         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}};}
+\DoxyCodeLine{111     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a24d1cfeb94015f63179b20271b38c73b}\label{classdomini_1_1Statistics_a24d1cfeb94015f63179b20271b38c73b}} 
 \index{domini.Statistics@{domini.Statistics}!getIniFileSize@{getIniFileSize}}
 \index{getIniFileSize@{getIniFileSize}!domini.Statistics@{domini.Statistics}}
@@ -72,6 +168,17 @@ Getter del tamaño del fichero de entrada.
 \begin{DoxyReturn}{Devuelve}
 Tamaño del archivo de entrada en bytes 
 \end{DoxyReturn}
+
+
+Definición en la línea 101 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                  \{}
+\DoxyCodeLine{102         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}};}
+\DoxyCodeLine{103     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a97a6bab90c4644334fbb7726a79f7a0e}\label{classdomini_1_1Statistics_a97a6bab90c4644334fbb7726a79f7a0e}} 
 \index{domini.Statistics@{domini.Statistics}!getPercentageCompressed@{getPercentageCompressed}}
 \index{getPercentageCompressed@{getPercentageCompressed}!domini.Statistics@{domini.Statistics}}
@@ -85,6 +192,17 @@ Getter del porcentage de compresión.
 \begin{DoxyReturn}{Devuelve}
 Porcentage de compresión 
 \end{DoxyReturn}
+
+
+Definición en la línea 133 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{133                                              \{}
+\DoxyCodeLine{134         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{double}) \mbox{\hyperlink{classdomini_1_1Statistics_ab812d494c95da818d3b500ec16ebff64}{getBytesCompressed}}()*100.0 / \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}};}
+\DoxyCodeLine{135     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_aedcda3d7be443cee79759eb8db95c173}\label{classdomini_1_1Statistics_aedcda3d7be443cee79759eb8db95c173}} 
 \index{domini.Statistics@{domini.Statistics}!getPercentageDecompressed@{getPercentageDecompressed}}
 \index{getPercentageDecompressed@{getPercentageDecompressed}!domini.Statistics@{domini.Statistics}}
@@ -98,6 +216,17 @@ Getter del porcentage de descompresión.
 \begin{DoxyReturn}{Devuelve}
 Porcentage de descompresión 
 \end{DoxyReturn}
+
+
+Definición en la línea 141 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141                                                \{}
+\DoxyCodeLine{142         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{double}) \mbox{\hyperlink{classdomini_1_1Statistics_a7b9fa4129d464fbaee2adfc95d0531f2}{getBytesDecompressed}}()*100.0 / \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}};}
+\DoxyCodeLine{143     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_ad19947a9050f3afd889eb820fe2d9b09}\label{classdomini_1_1Statistics_ad19947a9050f3afd889eb820fe2d9b09}} 
 \index{domini.Statistics@{domini.Statistics}!getSpeedCompressed@{getSpeedCompressed}}
 \index{getSpeedCompressed@{getSpeedCompressed}!domini.Statistics@{domini.Statistics}}
@@ -111,6 +240,17 @@ Getter de la velocidad de compresión.
 \begin{DoxyReturn}{Devuelve}
 Velocidad de compresión en bytes por segundo 
 \end{DoxyReturn}
+
+
+Definición en la línea 149 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{149                                         \{}
+\DoxyCodeLine{150         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{double})\mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}} / \mbox{\hyperlink{classdomini_1_1Statistics_a5235cad1177bc87f79e97ca2771654b1}{getTime}}();}
+\DoxyCodeLine{151     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a04bb334e1ef878577f895e70ad6011ef}\label{classdomini_1_1Statistics_a04bb334e1ef878577f895e70ad6011ef}} 
 \index{domini.Statistics@{domini.Statistics}!getSpeedDecompressed@{getSpeedDecompressed}}
 \index{getSpeedDecompressed@{getSpeedDecompressed}!domini.Statistics@{domini.Statistics}}
@@ -124,6 +264,17 @@ Getter de la velocidad de descompresión.
 \begin{DoxyReturn}{Devuelve}
 Velocidad de descompresión en bytes por segundo 
 \end{DoxyReturn}
+
+
+Definición en la línea 157 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{157                                           \{}
+\DoxyCodeLine{158         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{double})\mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}} / \mbox{\hyperlink{classdomini_1_1Statistics_a5235cad1177bc87f79e97ca2771654b1}{getTime}}();}
+\DoxyCodeLine{159     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a5235cad1177bc87f79e97ca2771654b1}\label{classdomini_1_1Statistics_a5235cad1177bc87f79e97ca2771654b1}} 
 \index{domini.Statistics@{domini.Statistics}!getTime@{getTime}}
 \index{getTime@{getTime}!domini.Statistics@{domini.Statistics}}
@@ -137,11 +288,43 @@ Getter de la duración de la compresión/descompresión.
 \begin{DoxyReturn}{Devuelve}
 Tiempo de ejecución de la compresión/descompresión en segundos 
 \end{DoxyReturn}
+
+
+Definición en la línea 92 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{92                              \{}
+\DoxyCodeLine{93         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{double})(\mbox{\hyperlink{classdomini_1_1Statistics_ad70e6d9e2e0922fe5786ea5023839804}{endingTime}} -\/ \mbox{\hyperlink{classdomini_1_1Statistics_aa0fb37c0b97c183a19e4e6fd830765c5}{startingTime}})/1000.0;}
+\DoxyCodeLine{94     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}\label{classdomini_1_1Statistics_a34c4fbe665e324bb04a1347ce568b5f3}} 
+\index{domini.Statistics@{domini.Statistics}!setEndingTime@{setEndingTime}}
+\index{setEndingTime@{setEndingTime}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{setEndingTime()}{setEndingTime()}}
+{\footnotesize\ttfamily void domini.\+Statistics.\+set\+Ending\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setter de ending\+Time. 
+
+
+
+Definición en la línea 47 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47                                  \{}
+\DoxyCodeLine{48         \mbox{\hyperlink{classdomini_1_1Statistics_ad70e6d9e2e0922fe5786ea5023839804}{endingTime}} = System.currentTimeMillis();}
+\DoxyCodeLine{49     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a60ae5c26033e27dcb4d355825682b716}\label{classdomini_1_1Statistics_a60ae5c26033e27dcb4d355825682b716}} 
 \index{domini.Statistics@{domini.Statistics}!setFinFileSize@{setFinFileSize}}
 \index{setFinFileSize@{setFinFileSize}!domini.Statistics@{domini.Statistics}}
 \doxysubsubsection{\texorpdfstring{setFinFileSize()}{setFinFileSize()}}
-{\footnotesize\ttfamily void domini.\+Statistics.\+set\+Fin\+File\+Size (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void domini.\+Statistics.\+set\+Fin\+File\+Size (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -152,11 +335,35 @@ Setter de fin\+File\+Size.
 {\em filename} & nombre del archivo de salida cuyo tamaño se quiere consultar \\
 \hline
 \end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepcion generada al acceder al archivo \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 75 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75                                                                          \{}
+\DoxyCodeLine{76         File file = \textcolor{keyword}{new} File(filename);}
+\DoxyCodeLine{77         \textcolor{keywordflow}{if} (file.isFile()) \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}} = file.length();}
+\DoxyCodeLine{78         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (file.isDirectory())\{}
+\DoxyCodeLine{79             \textcolor{comment}{// carpeta}}
+\DoxyCodeLine{80             \mbox{\hyperlink{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}{finFileSize}} = Files.walk(Paths.get(filename))}
+\DoxyCodeLine{81               .filter(p -\/> p.toFile().isFile())}
+\DoxyCodeLine{82               .mapToLong(p -\/> p.toFile().length())}
+\DoxyCodeLine{83               .sum();}
+\DoxyCodeLine{84         \}}
+\DoxyCodeLine{85     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1Statistics_a6155479ff9b1ae2d5a175731278a1a25}\label{classdomini_1_1Statistics_a6155479ff9b1ae2d5a175731278a1a25}} 
 \index{domini.Statistics@{domini.Statistics}!setIniFileSize@{setIniFileSize}}
 \index{setIniFileSize@{setIniFileSize}!domini.Statistics@{domini.Statistics}}
 \doxysubsubsection{\texorpdfstring{setIniFileSize()}{setIniFileSize()}}
-{\footnotesize\ttfamily void domini.\+Statistics.\+set\+Ini\+File\+Size (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void domini.\+Statistics.\+set\+Ini\+File\+Size (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -168,7 +375,111 @@ Setter de ini\+File\+Size.
 \hline
 \end{DoxyParams}
 
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepcion generada al acceder al archivo \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 57 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57                                                                           \{}
+\DoxyCodeLine{58         File file = \textcolor{keyword}{new} File(filename);}
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} (file.isFile()) \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}} = file.length();}
+\DoxyCodeLine{60         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (file.isDirectory())\{}
+\DoxyCodeLine{61             \textcolor{comment}{// carpeta}}
+\DoxyCodeLine{62             \mbox{\hyperlink{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}{iniFileSize}} = Files.walk(Paths.get(filename))}
+\DoxyCodeLine{63               .filter(p -\/> p.toFile().isFile())}
+\DoxyCodeLine{64               .mapToLong(p -\/> p.toFile().length())}
+\DoxyCodeLine{65               .sum();}
+\DoxyCodeLine{66         \}}
+\DoxyCodeLine{67     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}\label{classdomini_1_1Statistics_a6a231da29a59260f2c368f615c3ef742}} 
+\index{domini.Statistics@{domini.Statistics}!setStartingTime@{setStartingTime}}
+\index{setStartingTime@{setStartingTime}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{setStartingTime()}{setStartingTime()}}
+{\footnotesize\ttfamily void domini.\+Statistics.\+set\+Starting\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setter de starting\+Time. 
+
+
+
+Definición en la línea 40 del archivo Statistics.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40                                    \{}
+\DoxyCodeLine{41         \mbox{\hyperlink{classdomini_1_1Statistics_aa0fb37c0b97c183a19e4e6fd830765c5}{startingTime}} = System.currentTimeMillis();}
+\DoxyCodeLine{42     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1Statistics_ad70e6d9e2e0922fe5786ea5023839804}\label{classdomini_1_1Statistics_ad70e6d9e2e0922fe5786ea5023839804}} 
+\index{domini.Statistics@{domini.Statistics}!endingTime@{endingTime}}
+\index{endingTime@{endingTime}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{endingTime}{endingTime}}
+{\footnotesize\ttfamily long domini.\+Statistics.\+ending\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tiempo de finalización. 
+
+
+
+Definición en la línea 21 del archivo Statistics.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}\label{classdomini_1_1Statistics_a427b6f427d7da4475200223d455d638e}} 
+\index{domini.Statistics@{domini.Statistics}!finFileSize@{finFileSize}}
+\index{finFileSize@{finFileSize}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{finFileSize}{finFileSize}}
+{\footnotesize\ttfamily long domini.\+Statistics.\+fin\+File\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tamaño final. 
+
+
+
+Definición en la línea 27 del archivo Statistics.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}\label{classdomini_1_1Statistics_a3527be2f4024ec425e2e1795264c453c}} 
+\index{domini.Statistics@{domini.Statistics}!iniFileSize@{iniFileSize}}
+\index{iniFileSize@{iniFileSize}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{iniFileSize}{iniFileSize}}
+{\footnotesize\ttfamily long domini.\+Statistics.\+ini\+File\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tamaño inicial. 
+
+
+
+Definición en la línea 24 del archivo Statistics.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Statistics_aa0fb37c0b97c183a19e4e6fd830765c5}\label{classdomini_1_1Statistics_aa0fb37c0b97c183a19e4e6fd830765c5}} 
+\index{domini.Statistics@{domini.Statistics}!startingTime@{startingTime}}
+\index{startingTime@{startingTime}!domini.Statistics@{domini.Statistics}}
+\doxysubsubsection{\texorpdfstring{startingTime}{startingTime}}
+{\footnotesize\ttfamily long domini.\+Statistics.\+starting\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tiempo de inicio. 
+
+
+
+Definición en la línea 18 del archivo Statistics.\+java.
+
+
 
 La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-src/main/java/domini/Statistics.\+java\end{DoxyCompactItemize}
+src/main/java/domini/\mbox{\hyperlink{Statistics_8java}{Statistics.\+java}}\end{DoxyCompactItemize}

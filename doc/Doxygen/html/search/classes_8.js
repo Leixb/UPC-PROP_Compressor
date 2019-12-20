@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ppmimage_64',['PpmImage',['../classdomini_1_1PpmImage.html',1,'domini']]]
+  ['magicbyteexception_290',['MagicByteException',['../classdomini_1_1CtrlDomini_1_1MagicByteException.html',1,'domini::CtrlDomini']]],
+  ['main_291',['Main',['../classpresentacio_1_1Main.html',1,'presentacio']]]
 ];

@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['height_20',['height',['../classdomini_1_1PpmImage.html#a255f87faf8cb3cb2607121bcb5007fc7',1,'domini::PpmImage']]],
-  ['huffman_21',['Huffman',['../classdomini_1_1Huffman.html',1,'domini.Huffman'],['../classdomini_1_1Huffman.html#a1dec11e27d7a163e8382d6b95da45b4d',1,'domini.Huffman.Huffman()']]]
+  ['empty_5ffolder_73',['EMPTY_FOLDER',['../classdomini_1_1Folder.html#a5f97dc4861d75210db45e331e5551b6e',1,'domini::Folder']]],
+  ['emptydir_74',['emptyDir',['../classdomini_1_1Folder_1_1CompressFiles.html#a0a1f9fe29c1f60257eb10231ccf86044',1,'domini::Folder::CompressFiles']]],
+  ['encode_75',['encode',['../interfacedomini_1_1Codec.html#aac082f3dd5d26b9add518c9b7aa892a9',1,'domini.Codec.encode()'],['../classdomini_1_1Huffman.html#a1446aa841cf0ffe0a0eb792bfec5824d',1,'domini.Huffman.encode()'],['../classdomini_1_1JPEGBlock_1_1DCT.html#a8d62bfc29b82dfcea67c495284672219',1,'domini.JPEGBlock.DCT.encode()'],['../classdomini_1_1JPEGBlock_1_1Quantization.html#aa958a818ccad0a1746249defd1f27970',1,'domini.JPEGBlock.Quantization.encode(final double[][] data)'],['../classdomini_1_1JPEGBlock_1_1Quantization.html#a3ace36f579cedf4a98ee64ffbb6eacdd',1,'domini.JPEGBlock.Quantization.encode(final short quality, final boolean isChrominance, final double[][] block)'],['../classdomini_1_1JPEGBlock_1_1ZigZag.html#abdc9829862b59a0368c39228c880eda1',1,'domini.JPEGBlock.ZigZag.encode()'],['../classdomini_1_1JPEGBlock_1_1RLE.html#a06cef7582057e0150909259e8a87d605',1,'domini.JPEGBlock.RLE.encode()'],['../classdomini_1_1JPEGBlock.html#a73a8962ed7956ea5d4b86dcf0f47d8eb',1,'domini.JPEGBlock.encode()']]],
+  ['endingtime_76',['endingTime',['../classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804',1,'domini::Statistics']]],
+  ['eof_77',['EOF',['../classdomini_1_1LZSS.html#a9e95c3b29cb1d6c62c68185beaec5a17',1,'domini.LZSS.EOF()'],['../classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561',1,'domini.LZW.EOF()'],['../classpersistencia_1_1PpmImage_1_1Writer.html#a546dd3576f2307170ec52bcafa7e536c',1,'persistencia.PpmImage.Writer.EOF()']]]
 ];

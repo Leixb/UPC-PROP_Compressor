@@ -1,0 +1,323 @@
+\hypertarget{classpresentacio_1_1Presentacio}{}\doxysection{Referencia de la Clase presentacio.\+Presentacio}
+\label{classpresentacio_1_1Presentacio}\index{presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1Presentacio_af4b8e6f1906992b5980c1555226ed337}{Presentacio}} ()
+\item 
+J\+Component \mbox{\hyperlink{classpresentacio_1_1Presentacio_a54a51646fd6d289b3ec053f493245903}{\$ \$get\+Root\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Presentacio_a5f362aae72d00faf431862e9843e8f4a}{main}} (String\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1Presentacio_a77d36cd9afab5bd4c94591085181d047}{\mbox{[}instance initializer\mbox{]}}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones estáticas del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Presentacio_af69698d78532f2d289eeb71fb58e8d23}{show\+Presentacio}} (Point p, Dimension d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1Presentacio_a365f0106ba32846f917c5cfbbfa64247}{\$ \$setup\+UI}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Presentacio_a52f1daad47b8250eeeca16ff8d3d8a69}{set\+Window\+Location\+And\+Dimension}} (Point p, Dimension d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}{label\+Name}}
+\item 
+J\+Panel \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panel\+Main}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}{button\+Decompress}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}{button\+Compress}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}{button\+Exit}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static J\+Frame \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}} = new J\+Frame(\char`\"{}P\+IZ Compressor $\vert$ Welcome\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea 12 del archivo Presentacio.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_af4b8e6f1906992b5980c1555226ed337}\label{classpresentacio_1_1Presentacio_af4b8e6f1906992b5980c1555226ed337}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!Presentacio@{Presentacio}}
+\index{Presentacio@{Presentacio}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{Presentacio()}{Presentacio()}}
+{\footnotesize\ttfamily presentacio.\+Presentacio.\+Presentacio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 21 del archivo Presentacio.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21                          \{}
+\DoxyCodeLine{22         ImageIcon icon = \textcolor{keyword}{new} ImageIcon(\textcolor{stringliteral}{"src/main/resources/logo.png"});}
+\DoxyCodeLine{23         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}{labelName}}.setIcon(icon);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25         \mbox{\hyperlink{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}{buttonCompress}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{26             @Override}
+\DoxyCodeLine{27             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{28                 \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{29                 Compress c = \textcolor{keyword}{new} Compress();}
+\DoxyCodeLine{30                 c.showCompress(\mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.getSize());}
+\DoxyCodeLine{31             \}}
+\DoxyCodeLine{32         \});}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}{buttonDecompress}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{35             @Override}
+\DoxyCodeLine{36             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{37                 \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{38                 Decompress d = \textcolor{keyword}{new} Decompress();}
+\DoxyCodeLine{39                 d.showDecompress(\mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.getSize());}
+\DoxyCodeLine{40             \}}
+\DoxyCodeLine{41         \});}
+\DoxyCodeLine{42         \mbox{\hyperlink{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}{buttonExit}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{43             @Override}
+\DoxyCodeLine{44             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{45                 System.exit(0);}
+\DoxyCodeLine{46             \}}
+\DoxyCodeLine{47         \});}
+\DoxyCodeLine{48     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a54a51646fd6d289b3ec053f493245903}\label{classpresentacio_1_1Presentacio_a54a51646fd6d289b3ec053f493245903}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!\$ \$getRootComponent@{\$ \$getRootComponent}}
+\index{\$ \$getRootComponent@{\$ \$getRootComponent}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{\$ \$getRootComponent()}{$ $getRootComponent()}}
+{\footnotesize\ttfamily J\+Component presentacio.\+Presentacio.\$ \$get\+Root\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@noinspection A\+LL 
+
+Definición en la línea 132 del archivo Presentacio.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{132                                                \{}
+\DoxyCodeLine{133         \textcolor{keywordflow}{return} \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}};}
+\DoxyCodeLine{134     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a365f0106ba32846f917c5cfbbfa64247}\label{classpresentacio_1_1Presentacio_a365f0106ba32846f917c5cfbbfa64247}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!\$ \$setupUI@{\$ \$setupUI}}
+\index{\$ \$setupUI@{\$ \$setupUI}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{\$ \$setupUI()}{$ $setupUI()}}
+{\footnotesize\ttfamily void presentacio.\+Presentacio.\$ \$setup\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Method generated by IntelliJ I\+D\+EA G\+UI Designer \begin{quote}
+\begin{quote}
+\begin{quote}
+I\+M\+P\+O\+R\+T\+A\+N\+T!! $<$$<$$<$ \end{quote}
+\end{quote}
+\end{quote}
+DO N\+OT edit this method OR call it in your code!
+
+@noinspection A\+LL 
+
+Definición en la línea 87 del archivo Presentacio.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{87                                  \{}
+\DoxyCodeLine{88         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}} = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{89         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}}.setLayout(\textcolor{keyword}{new} GridLayoutManager(6, 1, \textcolor{keyword}{new} Insets(0, 0, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{90         \textcolor{keyword}{final} JPanel panel1 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{91         panel1.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 4, \textcolor{keyword}{new} Insets(10, 0, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{92         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}}.add(panel1, \textcolor{keyword}{new} GridConstraints(2, 0, 2, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{93         \textcolor{keyword}{final} JPanel panel2 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{94         panel2.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 1, \textcolor{keyword}{new} Insets(0, 10, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{95         panel1.add(panel2, \textcolor{keyword}{new} GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{96         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}{buttonDecompress}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{97         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}{buttonDecompress}}.setText(\textcolor{stringliteral}{"Descomprimir"});}
+\DoxyCodeLine{98         panel2.add(\mbox{\hyperlink{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}{buttonDecompress}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{new} Dimension(140, 40), \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{99         \textcolor{keyword}{final} JPanel panel3 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{100         panel3.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 1, \textcolor{keyword}{new} Insets(0, 0, 0, 10), -\/1, -\/1));}
+\DoxyCodeLine{101         panel1.add(panel3, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{102         \mbox{\hyperlink{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}{buttonCompress}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{103         \mbox{\hyperlink{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}{buttonCompress}}.setText(\textcolor{stringliteral}{"Comprimir"});}
+\DoxyCodeLine{104         panel3.add(\mbox{\hyperlink{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}{buttonCompress}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{new} Dimension(140, 40), \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{105         \textcolor{keyword}{final} Spacer spacer1 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{106         panel1.add(spacer1, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{107         \textcolor{keyword}{final} Spacer spacer2 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{108         panel1.add(spacer2, \textcolor{keyword}{new} GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{109         \textcolor{keyword}{final} JPanel panel4 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{110         panel4.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 1, \textcolor{keyword}{new} Insets(0, 0, 30, 0), -\/1, -\/1));}
+\DoxyCodeLine{111         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}}.add(panel4, \textcolor{keyword}{new} GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{112         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}{labelName}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{113         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}{labelName}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{114         panel4.add(\mbox{\hyperlink{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}{labelName}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{115         \textcolor{keyword}{final} Spacer spacer3 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{116         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}}.add(spacer3, \textcolor{keyword}{new} GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{117         \textcolor{keyword}{final} Spacer spacer4 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{118         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}}.add(spacer4, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{119         \textcolor{keyword}{final} JPanel panel5 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{120         panel5.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 2, \textcolor{keyword}{new} Insets(0, 5, 5, 5), -\/1, -\/1));}
+\DoxyCodeLine{121         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}}.add(panel5, \textcolor{keyword}{new} GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{122         \textcolor{keyword}{final} Spacer spacer5 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{123         panel5.add(spacer5, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{124         \mbox{\hyperlink{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}{buttonExit}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{125         \mbox{\hyperlink{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}{buttonExit}}.setText(\textcolor{stringliteral}{"Sortir"});}
+\DoxyCodeLine{126         panel5.add(\mbox{\hyperlink{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}{buttonExit}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{127     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a77d36cd9afab5bd4c94591085181d047}\label{classpresentacio_1_1Presentacio_a77d36cd9afab5bd4c94591085181d047}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!\mbox{[}instance initializer\mbox{]}@{[instance initializer]}}
+\index{\mbox{[}instance initializer\mbox{]}@{[instance initializer]}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{[instance initializer]()}{[instance initializer]()}}
+{\footnotesize\ttfamily presentacio.\+Presentacio.\mbox{[}instance initializer\mbox{]} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a5f362aae72d00faf431862e9843e8f4a}\label{classpresentacio_1_1Presentacio_a5f362aae72d00faf431862e9843e8f4a}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!main@{main}}
+\index{main@{main}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily static void presentacio.\+Presentacio.\+main (\begin{DoxyParamCaption}\item[{String\mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 67 del archivo Presentacio.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{67                                            \{}
+\DoxyCodeLine{68         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{69         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af69698d78532f2d289eeb71fb58e8d23}{showPresentacio}}(\textcolor{keyword}{new} Point(screenSize.width / 3, screenSize.height * 3 / 8 -\/ 100),}
+\DoxyCodeLine{70                 \textcolor{keyword}{new} Dimension(screenSize.width / 3, screenSize.height / 4));}
+\DoxyCodeLine{71     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a52f1daad47b8250eeeca16ff8d3d8a69}\label{classpresentacio_1_1Presentacio_a52f1daad47b8250eeeca16ff8d3d8a69}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!setWindowLocationAndDimension@{setWindowLocationAndDimension}}
+\index{setWindowLocationAndDimension@{setWindowLocationAndDimension}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{setWindowLocationAndDimension()}{setWindowLocationAndDimension()}}
+{\footnotesize\ttfamily static void presentacio.\+Presentacio.\+set\+Window\+Location\+And\+Dimension (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 59 del archivo Presentacio.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59                                                                             \{}
+\DoxyCodeLine{60         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setLocation(p);}
+\DoxyCodeLine{63         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setPreferredSize(d);}
+\DoxyCodeLine{64         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setMinimumSize(\textcolor{keyword}{new} Dimension(screenSize.width / 3, screenSize.height / 4));}
+\DoxyCodeLine{65     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_af69698d78532f2d289eeb71fb58e8d23}\label{classpresentacio_1_1Presentacio_af69698d78532f2d289eeb71fb58e8d23}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!showPresentacio@{showPresentacio}}
+\index{showPresentacio@{showPresentacio}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{showPresentacio()}{showPresentacio()}}
+{\footnotesize\ttfamily static void presentacio.\+Presentacio.\+show\+Presentacio (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 50 del archivo Presentacio.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{50                                                       \{}
+\DoxyCodeLine{51         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setResizable(\textcolor{keyword}{true});}
+\DoxyCodeLine{52         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setContentPane(\textcolor{keyword}{new} \mbox{\hyperlink{classpresentacio_1_1Presentacio_af4b8e6f1906992b5980c1555226ed337}{Presentacio}}().\mbox{\hyperlink{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}{panelMain}});}
+\DoxyCodeLine{53         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);}
+\DoxyCodeLine{54         \mbox{\hyperlink{classpresentacio_1_1Presentacio_a52f1daad47b8250eeeca16ff8d3d8a69}{setWindowLocationAndDimension}}(p, d);}
+\DoxyCodeLine{55         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.pack();}
+\DoxyCodeLine{56         \mbox{\hyperlink{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}{f}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{57     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}\label{classpresentacio_1_1Presentacio_aaa433e7caef9c06a856cfe69fb3feeba}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!buttonCompress@{buttonCompress}}
+\index{buttonCompress@{buttonCompress}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{buttonCompress}{buttonCompress}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Presentacio.\+button\+Compress\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 16 del archivo Presentacio.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}\label{classpresentacio_1_1Presentacio_a86c28bf31c15f63c519e4bfef22a5e94}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!buttonDecompress@{buttonDecompress}}
+\index{buttonDecompress@{buttonDecompress}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{buttonDecompress}{buttonDecompress}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Presentacio.\+button\+Decompress\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 15 del archivo Presentacio.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}\label{classpresentacio_1_1Presentacio_ac76bc7d59cdd905a112d0f2daabdee74}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!buttonExit@{buttonExit}}
+\index{buttonExit@{buttonExit}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{buttonExit}{buttonExit}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Presentacio.\+button\+Exit\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 17 del archivo Presentacio.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}\label{classpresentacio_1_1Presentacio_af2ce1efe1f5162e2c3e2588dc056169f}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!f@{f}}
+\index{f@{f}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily J\+Frame presentacio.\+Presentacio.\+f = new J\+Frame(\char`\"{}P\+IZ Compressor $\vert$ Welcome\char`\"{})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 19 del archivo Presentacio.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}\label{classpresentacio_1_1Presentacio_af01d45f78774d9311af5f934099be5b3}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!labelName@{labelName}}
+\index{labelName@{labelName}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{labelName}{labelName}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Presentacio.\+label\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 13 del archivo Presentacio.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}\label{classpresentacio_1_1Presentacio_a6a067b4463c9d74ef709e02e16f8aeb0}} 
+\index{presentacio.Presentacio@{presentacio.Presentacio}!panelMain@{panelMain}}
+\index{panelMain@{panelMain}!presentacio.Presentacio@{presentacio.Presentacio}}
+\doxysubsubsection{\texorpdfstring{panelMain}{panelMain}}
+{\footnotesize\ttfamily J\+Panel presentacio.\+Presentacio.\+panel\+Main\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 14 del archivo Presentacio.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/presentacio/\mbox{\hyperlink{Presentacio_8java}{Presentacio.\+java}}\end{DoxyCompactItemize}

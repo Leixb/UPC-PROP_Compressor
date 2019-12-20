@@ -2,79 +2,532 @@
 \label{classdomini_1_1LZSS}\index{domini.LZSS@{domini.LZSS}}
 
 
-Compresión y decompresión de archivos de texto con \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}.  
+Compresión y decompresión de archivos con \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}.  
 
 
-\doxysubsection*{Métodos públicos estáticos}
+Diagrama de herencias de domini.\+L\+Z\+SS\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1LZSS}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{classdomini_1_1LZSS_aa574760397e24ec236c330c8cd3bbbbd}{compress}} (final String input\+Filename, final String output\+Filename)  throws I\+O\+Exception 
-\begin{DoxyCompactList}\small\item\em Crea el objeto lector y escritor para la compresión y llama al compresor. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classdomini_1_1LZSS_a3a76caf8c9f560f68d0dd41ef8364341}{decompress}} (final String input\+Filename, final String output\+Filename)  throws I\+O\+Exception 
-\begin{DoxyCompactList}\small\item\em Crea el objeto lector y escritor para la descompresión y llama al descompresor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{classdomini_1_1LZSS_a51f5a47b82d272ae1587d3ab415d81e1}{L\+Z\+SS}} ()
+\item 
+byte \mbox{\hyperlink{classdomini_1_1LZSS_afd201f75090c5d279478da8f9657c57e}{get\+Magic\+Byte}} ()
+\item 
+void \mbox{\hyperlink{classdomini_1_1LZSS_adbc8dccc074628218dfb37ff2ab4115a}{compress}} (final I\+O.\+Byte.\+reader input, final I\+O.\+Bit.\+writer output)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Comprime un archivo utilizando el algoritmo \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classdomini_1_1LZSS_a6efa453291525ea8de12322eb57a968c}{decompress}} (final I\+O.\+Bit.\+reader input, final I\+O.\+Byte.\+writer output)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Descomprime un archivo utilizando el algoritmo \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Atributos públicos estáticos}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classdomini_1_1LZSS_a6b6d248d983ea00b6987bc3ef1064387}\label{classdomini_1_1LZSS_a6b6d248d983ea00b6987bc3ef1064387}} 
-static final byte {\bfseries M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE} = 0x55
-\end{DoxyCompactItemize}
+static final byte \mbox{\hyperlink{classdomini_1_1LZSS_a6b6d248d983ea00b6987bc3ef1064387}{M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE}} = 0x55
+\begin{DoxyCompactList}\small\item\em Magic Byte \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdomini_1_1LZSS_aae3f718abe6da3b3220a81f0717a9fc2}{compute\+L\+P\+S\+Array}} (final int\mbox{[}$\,$\mbox{]} lps, int pat\+Length)
+\begin{DoxyCompactList}\small\item\em Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classdomini_1_1LZSS_a594a8febc237001739c865020c7059c4}{kmp}} (int current\+A\+C\+Index, int current\+S\+W\+Index, boolean full\+SW)
+\begin{DoxyCompactList}\small\item\em Usando el algoritmo Knuth-\/\+Morris-\/\+Pratt calcula índice de la primera ocurrencia de un patron. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}{log2}} (final double n)
+\begin{DoxyCompactList}\small\item\em Calcula el logaritmo en base 2 de un real. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+final byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{sliding\+Window}}
+\begin{DoxyCompactList}\small\item\em Sliding Window. \end{DoxyCompactList}\item 
+final byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actual\+Characters}}
+\begin{DoxyCompactList}\small\item\em Carácteres actuales. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static final int \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+\+SW}} = 1023
+\begin{DoxyCompactList}\small\item\em Tamaño máximo del sliding window. \end{DoxyCompactList}\item 
+static final int \mbox{\hyperlink{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}{M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+C\+O\+I\+N\+C\+I\+D\+E\+N\+CE}} = 17
+\begin{DoxyCompactList}\small\item\em Máxima longitud de la coincidencia. \end{DoxyCompactList}\item 
+static final int \mbox{\hyperlink{classdomini_1_1LZSS_a9e95c3b29cb1d6c62c68185beaec5a17}{E\+OF}} = 0
+\begin{DoxyCompactList}\small\item\em Pseudo E\+OF. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
-Compresión y decompresión de archivos de texto con \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. 
+Compresión y decompresión de archivos con \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. 
 
-\begin{DoxyAuthor}{Autor}
-Albert Mercadé Plasencia 
-\end{DoxyAuthor}
+Definición en la línea 14 del archivo L\+Z\+S\+S.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1LZSS_a51f5a47b82d272ae1587d3ab415d81e1}\label{classdomini_1_1LZSS_a51f5a47b82d272ae1587d3ab415d81e1}} 
+\index{domini.LZSS@{domini.LZSS}!LZSS@{LZSS}}
+\index{LZSS@{LZSS}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{LZSS()}{LZSS()}}
+{\footnotesize\ttfamily domini.\+L\+Z\+S\+S.\+L\+Z\+SS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creadora vacía \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}} 
+
+Definición en la línea 17 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17                   \{}
+\DoxyCodeLine{18         \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}} = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[\mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}];}
+\DoxyCodeLine{19         \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}} = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[\mbox{\hyperlink{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}{MAX\_LENGTH\_COINCIDENCE}}];}
+\DoxyCodeLine{20     \}}
+
+\end{DoxyCode}
 
 
 \doxysubsection{Documentación de las funciones miembro}
-\mbox{\Hypertarget{classdomini_1_1LZSS_aa574760397e24ec236c330c8cd3bbbbd}\label{classdomini_1_1LZSS_aa574760397e24ec236c330c8cd3bbbbd}} 
+\mbox{\Hypertarget{classdomini_1_1LZSS_adbc8dccc074628218dfb37ff2ab4115a}\label{classdomini_1_1LZSS_adbc8dccc074628218dfb37ff2ab4115a}} 
 \index{domini.LZSS@{domini.LZSS}!compress@{compress}}
 \index{compress@{compress}!domini.LZSS@{domini.LZSS}}
 \doxysubsubsection{\texorpdfstring{compress()}{compress()}}
-{\footnotesize\ttfamily static void domini.\+L\+Z\+S\+S.\+compress (\begin{DoxyParamCaption}\item[{final String}]{input\+Filename,  }\item[{final String}]{output\+Filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily void domini.\+L\+Z\+S\+S.\+compress (\begin{DoxyParamCaption}\item[{final I\+O.\+Byte.\+reader}]{input,  }\item[{final I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Crea el objeto lector y escritor para la compresión y llama al compresor. 
+Comprime un archivo utilizando el algoritmo \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. 
 
 
 \begin{DoxyParams}{Parámetros}
-{\em input\+Filename} & nombre del archivo que se quiere comprimir \\
+{\em input} & objeto de lectura del archivo que se comprime \\
 \hline
-{\em output\+Filename} & nombre del archivo comprimido \\
+{\em output} & objeto de escritura del archivo comprimido \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em I\+O\+Exception} & se lanza cuando hay un error de lectura o escritura \\
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al comprimir \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{classdomini_1_1LZSS_a3a76caf8c9f560f68d0dd41ef8364341}\label{classdomini_1_1LZSS_a3a76caf8c9f560f68d0dd41ef8364341}} 
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a3a0ecc535a8ae0b4aa2b98abb7ea0496}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 51 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51                                                                                                     \{}
+\DoxyCodeLine{52         \textcolor{comment}{// calculating num of bits needed for offset and length according}}
+\DoxyCodeLine{53         \textcolor{comment}{// to MAX\_SIZE\_SW size and MAX\_LENGTH\_COINCIDENCE}}
+\DoxyCodeLine{54         \textcolor{keyword}{final} \textcolor{keywordtype}{int} nBitsLength = (int) \mbox{\hyperlink{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}{log2}}(\mbox{\hyperlink{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}{MAX\_LENGTH\_COINCIDENCE}} -\/ 1);}
+\DoxyCodeLine{55         \textcolor{keyword}{final} \textcolor{keywordtype}{int} nBitsOffset = (int) \mbox{\hyperlink{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}{log2}}(\mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}} + 1);}
+\DoxyCodeLine{56         \textcolor{keywordtype}{int} minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;}
+\DoxyCodeLine{57         \textcolor{keywordflow}{if}(minLength < 2) minLength = 2;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59         \textcolor{keywordtype}{int} currentSWIndex = 0, currentACIndex = 0;}
+\DoxyCodeLine{60         \textcolor{keywordtype}{boolean} fullSW = \textcolor{keyword}{false};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         \textcolor{keywordtype}{int} index = 0, prevMatchingIndex = 0;}
+\DoxyCodeLine{63         \textcolor{keywordtype}{boolean} extraChar = \textcolor{keyword}{false};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65         \textcolor{keywordtype}{byte} c;}
+\DoxyCodeLine{66         \textcolor{keywordtype}{int} iAux = input.read();}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68         \textcolor{keywordflow}{while}(iAux != -\/1) \{}
+\DoxyCodeLine{69             c = (byte)iAux;}
+\DoxyCodeLine{70             \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[currentACIndex] = c;}
+\DoxyCodeLine{71             ++currentACIndex;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73             prevMatchingIndex = index;}
+\DoxyCodeLine{74             index = \mbox{\hyperlink{classdomini_1_1LZSS_a594a8febc237001739c865020c7059c4}{kmp}}(currentACIndex, currentSWIndex, fullSW);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76             \textcolor{keywordflow}{if}(index == -\/1 || currentACIndex >= \mbox{\hyperlink{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}{MAX\_LENGTH\_COINCIDENCE}}) \{}
+\DoxyCodeLine{77                 \textcolor{keywordtype}{int} auxACIndex = currentACIndex;}
+\DoxyCodeLine{78                 \textcolor{keywordflow}{if}(auxACIndex >= 2) -\/-\/auxACIndex;}
+\DoxyCodeLine{79                 \textcolor{keywordflow}{if}(auxACIndex >= minLength) \{}
+\DoxyCodeLine{80                     output.write(\textcolor{keyword}{true});}
+\DoxyCodeLine{81                     output.write(\textcolor{keyword}{new} BitSetL(prevMatchingIndex, nBitsOffset));}
+\DoxyCodeLine{82                     output.write(\textcolor{keyword}{new} BitSetL(auxACIndex -\/ minLength, nBitsLength));}
+\DoxyCodeLine{83                     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < auxACIndex; ++i) \{}
+\DoxyCodeLine{84                         \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[currentSWIndex] = \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[i];}
+\DoxyCodeLine{85                         ++currentSWIndex;}
+\DoxyCodeLine{86                         \textcolor{keywordflow}{if}(currentSWIndex >= \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) \{}
+\DoxyCodeLine{87                             currentSWIndex = 0;}
+\DoxyCodeLine{88                             fullSW = \textcolor{keyword}{true};}
+\DoxyCodeLine{89                         \}}
+\DoxyCodeLine{90                     \}}
+\DoxyCodeLine{91                 \}}
+\DoxyCodeLine{92                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{93                     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < auxACIndex; ++i) \{}
+\DoxyCodeLine{94                         output.write(\textcolor{keyword}{false});}
+\DoxyCodeLine{95                         output.write(\textcolor{keyword}{new} BitSetL(\mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[i], 8));}
+\DoxyCodeLine{96                         \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[currentSWIndex] = \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[i];}
+\DoxyCodeLine{97                         ++currentSWIndex;}
+\DoxyCodeLine{98                         \textcolor{keywordflow}{if}(currentSWIndex >= \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) \{}
+\DoxyCodeLine{99                             currentSWIndex = 0;}
+\DoxyCodeLine{100                             fullSW = \textcolor{keyword}{true};}
+\DoxyCodeLine{101                         \}}
+\DoxyCodeLine{102                     \}}
+\DoxyCodeLine{103                 \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105                 \textcolor{keywordflow}{if}(currentACIndex >= 2) extraChar = \textcolor{keyword}{true};}
+\DoxyCodeLine{106                 currentACIndex = 0;}
+\DoxyCodeLine{107             \}}
+\DoxyCodeLine{108             \textcolor{keywordflow}{if}(!extraChar) iAux = input.read();}
+\DoxyCodeLine{109             extraChar = \textcolor{keyword}{false};}
+\DoxyCodeLine{110         \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112         \textcolor{keywordflow}{if}(currentACIndex >= minLength) \{}
+\DoxyCodeLine{113             output.write(\textcolor{keyword}{true});}
+\DoxyCodeLine{114             output.write(\textcolor{keyword}{new} BitSetL(index -\/ 1, nBitsOffset));}
+\DoxyCodeLine{115             output.write(\textcolor{keyword}{new} BitSetL(currentACIndex -\/ minLength, nBitsLength));}
+\DoxyCodeLine{116         \}}
+\DoxyCodeLine{117         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (currentACIndex > 0) \{}
+\DoxyCodeLine{118             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < currentACIndex; ++i) \{}
+\DoxyCodeLine{119                 output.write(\textcolor{keyword}{false});}
+\DoxyCodeLine{120                 output.write(\textcolor{keyword}{new} BitSetL(\mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[i], 8));}
+\DoxyCodeLine{121             \}}
+\DoxyCodeLine{122         \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124         output.write(\textcolor{keyword}{true});}
+\DoxyCodeLine{125         output.write(\textcolor{keyword}{new} BitSetL(\mbox{\hyperlink{classdomini_1_1LZSS_a9e95c3b29cb1d6c62c68185beaec5a17}{EOF}}, nBitsLength + nBitsOffset));}
+\DoxyCodeLine{126     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZSS_aae3f718abe6da3b3220a81f0717a9fc2}\label{classdomini_1_1LZSS_aae3f718abe6da3b3220a81f0717a9fc2}} 
+\index{domini.LZSS@{domini.LZSS}!computeLPSArray@{computeLPSArray}}
+\index{computeLPSArray@{computeLPSArray}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{computeLPSArray()}{computeLPSArray()}}
+{\footnotesize\ttfamily void domini.\+L\+Z\+S\+S.\+compute\+L\+P\+S\+Array (\begin{DoxyParamCaption}\item[{final int\mbox{[}$\,$\mbox{]}}]{lps,  }\item[{int}]{pat\+Length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em lps} & es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición \\
+\hline
+{\em pat\+Length} & Length del pattern para el que se quiere computar el array lps \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea 191 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{191                                                                  \{}
+\DoxyCodeLine{192         \textcolor{keywordtype}{int} length = 0;}
+\DoxyCodeLine{193         \textcolor{keywordtype}{int} i = 1;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195         lps[0] = 0;}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197         \textcolor{keywordflow}{while} (i < patLength) \{}
+\DoxyCodeLine{198             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[i] == \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[length]) \{}
+\DoxyCodeLine{199                 ++length;}
+\DoxyCodeLine{200                 lps[i] = length;}
+\DoxyCodeLine{201                 ++i;}
+\DoxyCodeLine{202             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (length != 0)}
+\DoxyCodeLine{203                 length = lps[length -\/ 1];}
+\DoxyCodeLine{204             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{205                 lps[i] = 0;}
+\DoxyCodeLine{206                 ++i;}
+\DoxyCodeLine{207             \}}
+\DoxyCodeLine{208         \}}
+\DoxyCodeLine{209     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZSS_a6efa453291525ea8de12322eb57a968c}\label{classdomini_1_1LZSS_a6efa453291525ea8de12322eb57a968c}} 
 \index{domini.LZSS@{domini.LZSS}!decompress@{decompress}}
 \index{decompress@{decompress}!domini.LZSS@{domini.LZSS}}
 \doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
-{\footnotesize\ttfamily static void domini.\+L\+Z\+S\+S.\+decompress (\begin{DoxyParamCaption}\item[{final String}]{input\+Filename,  }\item[{final String}]{output\+Filename }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily void domini.\+L\+Z\+S\+S.\+decompress (\begin{DoxyParamCaption}\item[{final I\+O.\+Bit.\+reader}]{input,  }\item[{final I\+O.\+Byte.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Crea el objeto lector y escritor para la descompresión y llama al descompresor. 
+Descomprime un archivo utilizando el algoritmo \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. 
 
 
 \begin{DoxyParams}{Parámetros}
-{\em input\+Filename} & nombre del archivo comprimido \\
+{\em input} & objeto de lectura del archivo comprimido \\
 \hline
-{\em output\+Filename} & nombre del archivo descomprimido \\
+{\em output} & objeto de escritura del archivo descomprimido \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em I\+O\+Exception} & se lanza cuando hay un error de lectura o escritura \\
+{\em I\+O\+Exception} & se lanza cuando hay un error de lecturo o escritura \\
 \hline
 \end{DoxyExceptions}
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a06a05e8e073c22126a02c8514e571dbb}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 135 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{135                                                                                                       \{}
+\DoxyCodeLine{136         \textcolor{comment}{// calculating num of bits needed for offset and length according}}
+\DoxyCodeLine{137         \textcolor{comment}{// to MAX\_SIZE\_SW size and MAX\_LENGTH\_COINCIDENCE}}
+\DoxyCodeLine{138         \textcolor{keyword}{final} \textcolor{keywordtype}{int} nBitsLength = (int) \mbox{\hyperlink{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}{log2}}(\mbox{\hyperlink{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}{MAX\_LENGTH\_COINCIDENCE}} -\/ 1);}
+\DoxyCodeLine{139         \textcolor{keyword}{final} \textcolor{keywordtype}{int} nBitsOffset = (int) \mbox{\hyperlink{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}{log2}}(\mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}} + 1);}
+\DoxyCodeLine{140         \textcolor{keywordtype}{int} minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;}
+\DoxyCodeLine{141         \textcolor{keywordflow}{if}(minLength < 2) minLength = 2;}
+\DoxyCodeLine{142         \textcolor{keywordtype}{int} currentSWIndex = 0;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144         \textcolor{keywordtype}{boolean} c = input.read();}
+\DoxyCodeLine{145         \textcolor{keywordtype}{boolean} eof = \textcolor{keyword}{false};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147         \textcolor{keywordflow}{while} (!eof) \{}
+\DoxyCodeLine{148             \textcolor{comment}{// if c is 1, then read offset and length and write the characters in output}}
+\DoxyCodeLine{149             \textcolor{comment}{// otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed}}
+\DoxyCodeLine{150             \textcolor{keywordflow}{if} (c) \{}
+\DoxyCodeLine{151                 \textcolor{keyword}{final} \textcolor{keywordtype}{int} index = input.readBitSet(nBitsOffset).asInt();}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153                 \textcolor{keywordflow}{if}(index == 0) eof = \textcolor{keyword}{true};}
+\DoxyCodeLine{154                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{155                     \textcolor{keyword}{final} \textcolor{keywordtype}{int} length = input.readBitSet(nBitsLength).asInt() + minLength;}
+\DoxyCodeLine{156                     \textcolor{keywordtype}{int} indexBase;}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158                     \textcolor{keywordflow}{if}(currentSWIndex -\/ index < 0) indexBase = \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}} + currentSWIndex -\/ index;}
+\DoxyCodeLine{159                     \textcolor{keywordflow}{else} indexBase = currentSWIndex -\/ index;}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < length; ++i) \{}
+\DoxyCodeLine{162                         \textcolor{keywordtype}{byte} cAux = \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[indexBase];}
+\DoxyCodeLine{163                         ++indexBase;}
+\DoxyCodeLine{164                         \textcolor{keywordflow}{if}(indexBase >= \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) indexBase = 0;}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166                         output.write(cAux);}
+\DoxyCodeLine{167                         \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[currentSWIndex] = (byte)cAux;}
+\DoxyCodeLine{168                         ++currentSWIndex;}
+\DoxyCodeLine{169                         \textcolor{keywordflow}{if}(currentSWIndex >= \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) currentSWIndex = 0;}
+\DoxyCodeLine{170                     \}}
+\DoxyCodeLine{171                 \}}
+\DoxyCodeLine{172             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{173                 \textcolor{keywordtype}{byte} cAux = (byte)input.readBitSet(8).asInt();}
+\DoxyCodeLine{174                 output.write(cAux);}
+\DoxyCodeLine{175                 \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[currentSWIndex] = cAux;}
+\DoxyCodeLine{176                 ++currentSWIndex;}
+\DoxyCodeLine{177                 \textcolor{keywordflow}{if}(currentSWIndex >= \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) currentSWIndex = 0;}
+\DoxyCodeLine{178             \}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180             \textcolor{comment}{//read next bit}}
+\DoxyCodeLine{181             \textcolor{keywordflow}{if} (!eof) c = input.read();}
+\DoxyCodeLine{182         \}}
+\DoxyCodeLine{183     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZSS_afd201f75090c5d279478da8f9657c57e}\label{classdomini_1_1LZSS_afd201f75090c5d279478da8f9657c57e}} 
+\index{domini.LZSS@{domini.LZSS}!getMagicByte@{getMagicByte}}
+\index{getMagicByte@{getMagicByte}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{getMagicByte()}{getMagicByte()}}
+{\footnotesize\ttfamily byte domini.\+L\+Z\+S\+S.\+get\+Magic\+Byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a33aa566ff435b1027752a6adb980f3bc}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 40 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40                                \{}
+\DoxyCodeLine{41         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1LZSS_a6b6d248d983ea00b6987bc3ef1064387}{MAGIC\_BYTE}};}
+\DoxyCodeLine{42     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZSS_a594a8febc237001739c865020c7059c4}\label{classdomini_1_1LZSS_a594a8febc237001739c865020c7059c4}} 
+\index{domini.LZSS@{domini.LZSS}!kmp@{kmp}}
+\index{kmp@{kmp}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{kmp()}{kmp()}}
+{\footnotesize\ttfamily int domini.\+L\+Z\+S\+S.\+kmp (\begin{DoxyParamCaption}\item[{int}]{current\+A\+C\+Index,  }\item[{int}]{current\+S\+W\+Index,  }\item[{boolean}]{full\+SW }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Usando el algoritmo Knuth-\/\+Morris-\/\+Pratt calcula índice de la primera ocurrencia de un patron. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em current\+A\+C\+Index} & la length del pattern \\
+\hline
+{\em current\+S\+W\+Index} & el indice donde empieza el sliding\+Window, ya que es circular \\
+\hline
+{\em full\+SW} & indica el estado de la sliding\+Window, true si lo está, false en caso contrario \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devuelve el indice empezando por el final de la primera ocurrencia de actual\+Characters dentro de sliding\+Window o -\/1 si actual\+Characters no se encuentra dentro del sliding\+Window 
+\end{DoxyReturn}
+
+
+Definición en la línea 219 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{219                                                                             \{}
+\DoxyCodeLine{220         \textcolor{keyword}{final} \textcolor{keywordtype}{int} patLength = currentACIndex, txtLength = currentSWIndex;}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222         \textcolor{keyword}{final} \textcolor{keywordtype}{int}[] lps = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[patLength];}
+\DoxyCodeLine{223         \mbox{\hyperlink{classdomini_1_1LZSS_aae3f718abe6da3b3220a81f0717a9fc2}{computeLPSArray}}(lps, patLength);}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225         \textcolor{keywordtype}{int} j = 0, i;}
+\DoxyCodeLine{226         \textcolor{keywordflow}{if}(fullSW) i = currentSWIndex;}
+\DoxyCodeLine{227         \textcolor{keywordflow}{else} i = 0;}
+\DoxyCodeLine{228         \textcolor{keywordtype}{boolean} end = \textcolor{keyword}{false};}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230         \textcolor{keywordflow}{while} (!end) \{}
+\DoxyCodeLine{231             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[i] == \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[j]) \{}
+\DoxyCodeLine{232                 ++j;}
+\DoxyCodeLine{233                 ++i;}
+\DoxyCodeLine{234                 \textcolor{keywordflow}{if}(i == \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) i = 0;}
+\DoxyCodeLine{235                 \textcolor{keywordflow}{if}(i == txtLength) end = \textcolor{keyword}{true};}
+\DoxyCodeLine{236             \}}
+\DoxyCodeLine{237             \textcolor{keywordflow}{if} (j == patLength) \{}
+\DoxyCodeLine{238                 \textcolor{keywordtype}{int} index = txtLength -\/ i + j;}
+\DoxyCodeLine{239                 \textcolor{keywordflow}{if}(index <= 0) \textcolor{keywordflow}{return} index + \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}};}
+\DoxyCodeLine{240                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} index;}
+\DoxyCodeLine{241             \}}
+\DoxyCodeLine{242             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!end \&\& \mbox{\hyperlink{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}{slidingWindow}}[i] != \mbox{\hyperlink{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}{actualCharacters}}[j]) \{}
+\DoxyCodeLine{243                 \textcolor{keywordflow}{if} (j != 0)}
+\DoxyCodeLine{244                     j = lps[j -\/ 1];}
+\DoxyCodeLine{245                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{246                     ++i;}
+\DoxyCodeLine{247                     \textcolor{keywordflow}{if}(i == \mbox{\hyperlink{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}{MAX\_SIZE\_SW}}) i = 0;}
+\DoxyCodeLine{248                     \textcolor{keywordflow}{if}(i == txtLength) end = \textcolor{keyword}{true};}
+\DoxyCodeLine{249                 \}}
+\DoxyCodeLine{250             \}}
+\DoxyCodeLine{251         \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{254     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}\label{classdomini_1_1LZSS_a98acedc140eebdd461f9bd6430d8b141}} 
+\index{domini.LZSS@{domini.LZSS}!log2@{log2}}
+\index{log2@{log2}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{log2()}{log2()}}
+{\footnotesize\ttfamily static double domini.\+L\+Z\+S\+S.\+log2 (\begin{DoxyParamCaption}\item[{final double}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calcula el logaritmo en base 2 de un real. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em n} & es el numero para el cual queremos calcular su logaritmo en base 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devuelve el logaritmo en base 2 de n 
+\end{DoxyReturn}
+
+
+Definición en la línea 262 del archivo L\+Z\+S\+S.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{262                                                \{}
+\DoxyCodeLine{263         \textcolor{keywordflow}{return} Math.log(n)/Math.log(2);}
+\DoxyCodeLine{264     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}\label{classdomini_1_1LZSS_affb5d338f93e15983df7d989a821813a}} 
+\index{domini.LZSS@{domini.LZSS}!actualCharacters@{actualCharacters}}
+\index{actualCharacters@{actualCharacters}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{actualCharacters}{actualCharacters}}
+{\footnotesize\ttfamily final byte \mbox{[}$\,$\mbox{]} domini.\+L\+Z\+S\+S.\+actual\+Characters\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Carácteres actuales. 
+
+
+
+Definición en la línea 32 del archivo L\+Z\+S\+S.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZSS_a9e95c3b29cb1d6c62c68185beaec5a17}\label{classdomini_1_1LZSS_a9e95c3b29cb1d6c62c68185beaec5a17}} 
+\index{domini.LZSS@{domini.LZSS}!EOF@{EOF}}
+\index{EOF@{EOF}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{EOF}{EOF}}
+{\footnotesize\ttfamily final int domini.\+L\+Z\+S\+S.\+E\+OF = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Pseudo E\+OF. 
+
+
+
+Definición en la línea 38 del archivo L\+Z\+S\+S.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZSS_a6b6d248d983ea00b6987bc3ef1064387}\label{classdomini_1_1LZSS_a6b6d248d983ea00b6987bc3ef1064387}} 
+\index{domini.LZSS@{domini.LZSS}!MAGIC\_BYTE@{MAGIC\_BYTE}}
+\index{MAGIC\_BYTE@{MAGIC\_BYTE}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{MAGIC\_BYTE}{MAGIC\_BYTE}}
+{\footnotesize\ttfamily final byte domini.\+L\+Z\+S\+S.\+M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE = 0x55\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Magic Byte \mbox{\hyperlink{classdomini_1_1LZSS}{L\+Z\+SS}}. 
+
+
+
+Definición en la línea 35 del archivo L\+Z\+S\+S.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}\label{classdomini_1_1LZSS_a85537bccb97676f4a29b2791eda8852d}} 
+\index{domini.LZSS@{domini.LZSS}!MAX\_LENGTH\_COINCIDENCE@{MAX\_LENGTH\_COINCIDENCE}}
+\index{MAX\_LENGTH\_COINCIDENCE@{MAX\_LENGTH\_COINCIDENCE}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGTH\_COINCIDENCE}{MAX\_LENGTH\_COINCIDENCE}}
+{\footnotesize\ttfamily final int domini.\+L\+Z\+S\+S.\+M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+C\+O\+I\+N\+C\+I\+D\+E\+N\+CE = 17\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Máxima longitud de la coincidencia. 
+
+
+
+Definición en la línea 26 del archivo L\+Z\+S\+S.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}\label{classdomini_1_1LZSS_a91c9773bfed3eec53addc661978258e9}} 
+\index{domini.LZSS@{domini.LZSS}!MAX\_SIZE\_SW@{MAX\_SIZE\_SW}}
+\index{MAX\_SIZE\_SW@{MAX\_SIZE\_SW}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{MAX\_SIZE\_SW}{MAX\_SIZE\_SW}}
+{\footnotesize\ttfamily final int domini.\+L\+Z\+S\+S.\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+\+SW = 1023\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Tamaño máximo del sliding window. 
+
+
+
+Definición en la línea 23 del archivo L\+Z\+S\+S.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}\label{classdomini_1_1LZSS_a6a5d83be4b36bdb3982bacd2b2ce3231}} 
+\index{domini.LZSS@{domini.LZSS}!slidingWindow@{slidingWindow}}
+\index{slidingWindow@{slidingWindow}!domini.LZSS@{domini.LZSS}}
+\doxysubsubsection{\texorpdfstring{slidingWindow}{slidingWindow}}
+{\footnotesize\ttfamily final byte \mbox{[}$\,$\mbox{]} domini.\+L\+Z\+S\+S.\+sliding\+Window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sliding Window. 
+
+
+
+Definición en la línea 29 del archivo L\+Z\+S\+S.\+java.
+
 
 
 La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-src/main/java/domini/L\+Z\+S\+S.\+java\end{DoxyCompactItemize}
+src/main/java/domini/\mbox{\hyperlink{LZSS_8java}{L\+Z\+S\+S.\+java}}\end{DoxyCompactItemize}

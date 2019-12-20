@@ -1,0 +1,153 @@
+\hypertarget{classdomini_1_1JPEGBlock_1_1RLE}{}\doxysection{Referencia de la Clase domini.\+J\+P\+E\+G\+Block.\+R\+LE}
+\label{classdomini_1_1JPEGBlock_1_1RLE}\index{domini.JPEGBlock.RLE@{domini.JPEGBlock.RLE}}
+
+
+Codifica/\+Decodifica en \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1RLE}{R\+LE}} (Run Length Encoding)  
+
+
+Diagrama de herencias de domini.\+J\+P\+E\+G\+Block.\+R\+LE\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1JPEGBlock_1_1RLE}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1RLE_a06cef7582057e0150909259e8a87d605}{encode}} (final short\mbox{[}$\,$\mbox{]} data)
+\item 
+static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1RLE_a755b278518ff04522a67cf8caa6722f4}{decode}} (final short\mbox{[}$\,$\mbox{]} data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Otros miembros heredados}
+
+
+\doxysubsection{Descripción detallada}
+Codifica/\+Decodifica en \mbox{\hyperlink{classdomini_1_1JPEGBlock_1_1RLE}{R\+LE}} (Run Length Encoding) 
+
+shorts en parejas, primer short contiene numero de ceros precedentes (4 bits en la mascara 0x\+F0) $\ast$ y longitud del valor en bits (4 bits en la mascara 0x0F) , segundo short contiene el valor.
+
+2 casos especiales\+:
+\begin{DoxyItemize}
+\item 00 -\/$>$ E\+OB (End of Block) marca el fin del bloque (el resto son 0)
+\item F0 -\/$>$ Z\+RL (Zero Run Lenght) 16 ceros seguidos 
+\end{DoxyItemize}
+
+Definición en la línea 260 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1RLE_a755b278518ff04522a67cf8caa6722f4}\label{classdomini_1_1JPEGBlock_1_1RLE_a755b278518ff04522a67cf8caa6722f4}} 
+\index{domini.JPEGBlock.RLE@{domini.JPEGBlock.RLE}!decode@{decode}}
+\index{decode@{decode}!domini.JPEGBlock.RLE@{domini.JPEGBlock.RLE}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+R\+L\+E.\+decode (\begin{DoxyParamCaption}\item[{final short\mbox{[}$\,$\mbox{]}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 309 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{309                                                          \{}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311             \textcolor{keyword}{final} \textcolor{keywordtype}{short}[] decodedData = \textcolor{keyword}{new} \textcolor{keywordtype}{short}[64];}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313             \textcolor{comment}{// i (data), j (decodedData)}}
+\DoxyCodeLine{314             \textcolor{keywordtype}{int} i, j = 1;}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316             \textcolor{comment}{// data[0] = length DC, data[1] = DC}}
+\DoxyCodeLine{317             \textcolor{keywordflow}{if} (data[0] == 0) \{}
+\DoxyCodeLine{318                 decodedData[0] = 0;}
+\DoxyCodeLine{319                 i = 1;}
+\DoxyCodeLine{320             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{321                 decodedData[0] = data[1];}
+\DoxyCodeLine{322                 i = 2;}
+\DoxyCodeLine{323             \}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325             \textcolor{keywordflow}{for} (; i < data.length; ) \{}
+\DoxyCodeLine{326                 \textcolor{keywordflow}{if} (data[i] == 0x00) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328                 \textcolor{keyword}{final} \textcolor{keywordtype}{int} run = (data[i] \& 0xF0) >> 4;}
+\DoxyCodeLine{329                 \textcolor{keyword}{final} \textcolor{keywordtype}{int} length = data[i] \& 0x0F;}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331                 j += run; \textcolor{comment}{// Fill with zeros}}
+\DoxyCodeLine{332                 ++i;}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334                 \textcolor{keywordflow}{if} (length == 0) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{335                 decodedData[j] = data[i];}
+\DoxyCodeLine{336                 ++i;}
+\DoxyCodeLine{337                 ++j;}
+\DoxyCodeLine{338             \}}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340             \textcolor{keywordflow}{return} decodedData;}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEGBlock_1_1RLE_a06cef7582057e0150909259e8a87d605}\label{classdomini_1_1JPEGBlock_1_1RLE_a06cef7582057e0150909259e8a87d605}} 
+\index{domini.JPEGBlock.RLE@{domini.JPEGBlock.RLE}!encode@{encode}}
+\index{encode@{encode}!domini.JPEGBlock.RLE@{domini.JPEGBlock.RLE}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G\+Block.\+R\+L\+E.\+encode (\begin{DoxyParamCaption}\item[{final short\mbox{[}$\,$\mbox{]}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 261 del archivo J\+P\+E\+G\+Block.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{261                                                          \{}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263             \textcolor{keyword}{final} ArrayList<Short> buff = \textcolor{keyword}{new} ArrayList<Short>();}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265             \textcolor{comment}{// Afegim DC}}
+\DoxyCodeLine{266             \textcolor{keywordflow}{if} (data[0] == 0) buff.add((\textcolor{keywordtype}{short})0);}
+\DoxyCodeLine{267             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{268                 buff.add((\textcolor{keywordtype}{short})\mbox{\hyperlink{classdomini_1_1JPEGBlock_aae5175fbdae9c1f8087639d561ed9ae9}{bitLength}}(data[0]));}
+\DoxyCodeLine{269                 buff.add(data[0]);}
+\DoxyCodeLine{270             \}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272             \textcolor{comment}{// Comencem des de 1 ja que 0 es el DC}}
+\DoxyCodeLine{273             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < data.length; ++i) \{}
+\DoxyCodeLine{274                 \textcolor{keywordtype}{byte} count = 0;}
+\DoxyCodeLine{275                 \textcolor{keywordflow}{while} (i < data.length \&\& data[i] == 0) \{}
+\DoxyCodeLine{276                     ++i;}
+\DoxyCodeLine{277                     ++count;}
+\DoxyCodeLine{278                 \}}
+\DoxyCodeLine{279                 \textcolor{keywordflow}{if} (i >= data.length) \{}
+\DoxyCodeLine{280                     \textcolor{comment}{// buff.add((short) 0x00); // EOB}}
+\DoxyCodeLine{281                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{282                 \}}
+\DoxyCodeLine{283                 \textcolor{keywordflow}{if} (count >= 16) \{}
+\DoxyCodeLine{284                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < count / 16; ++j) \{}
+\DoxyCodeLine{285                         buff.add((\textcolor{keywordtype}{short}) 0xF0); \textcolor{comment}{// ZRL}}
+\DoxyCodeLine{286                     \}}
+\DoxyCodeLine{287                     count \%= 16;}
+\DoxyCodeLine{288                 \}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290                 \textcolor{keywordflow}{if} (data[i] > 1023) \{}
+\DoxyCodeLine{291                     data[i] = 1023;}
+\DoxyCodeLine{292                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data[i] < -\/1023) \{}
+\DoxyCodeLine{293                     data[i] = -\/1023;}
+\DoxyCodeLine{294                 \}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296                 buff.add((\textcolor{keywordtype}{short}) ((count << 4) | \mbox{\hyperlink{classdomini_1_1JPEGBlock_aae5175fbdae9c1f8087639d561ed9ae9}{bitLength}}(data[i])));}
+\DoxyCodeLine{297                 buff.add(data[i]);}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299             \}}
+\DoxyCodeLine{300             buff.add((\textcolor{keywordtype}{short}) 0x00); \textcolor{comment}{// EOB}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302             \textcolor{keyword}{final} \textcolor{keywordtype}{short}[] r = \textcolor{keyword}{new} \textcolor{keywordtype}{short}[buff.size()];}
+\DoxyCodeLine{303             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < buff.size(); ++i) \{}
+\DoxyCodeLine{304                 r[i] = buff.get(i);}
+\DoxyCodeLine{305             \}}
+\DoxyCodeLine{306             \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{307         \}}
+
+\end{DoxyCode}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{JPEGBlock_8java}{J\+P\+E\+G\+Block.\+java}}\end{DoxyCompactItemize}

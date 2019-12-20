@@ -10,6 +10,10 @@ package Persistencia {
     class PpmImage
 }
 
+package Presentacio {
+    class CtrlPresentacio
+}
+
 package Domini {
     class "CtrlDomini" as CDom {
         -fileIn : String
@@ -132,6 +136,65 @@ package Domini {
         void compress(final IO.Byte.reader input, final IO.Bit.writer output)
         void decompress(final IO.Bit.reader input, final IO.Byte.writer output)
     }
+    interface Codec<A,B> {
+        B encode(A)
+        A decode(B)
+    }
+    class JPEGBlock as "JPEGBlock <? implements Codec<byte[][], short[]> >" {
+        -JPEGBlock()
+        {static}+short[] encode(final short quality, final boolean isChrominance, final byte[][] data)
+        {static}+byte[][] decode(final short quality, final boolean isChrominance, final short[] data)
+    }
+    class DCT {
+        {static}+double[][] encode(final byte[][] data)
+        {static}+byte[][] decode(final double[][] data)
+    }
+    class Quantization {
+        {static}-LuminanceTable : byte[][]
+        {static}-ChrominanceTable : byte[][]
+        {static}~double quantizationValue(final short quality, final boolean isChrominance, final short x, final short y)
+        {static}+short[][] encode(final double[][] data)
+        {static}+encode(final short quality, final boolean isChrominance, final double[][] block)
+        {static}+double[][] decode(final short[][] data)
+        {static}+double[][] decode(final short quality, final boolean isChrominance, final short[][] block)
+    }
+    class ZigZag {
+        {static}-table : byte[][]
+        {static}-void calculateCorrespondenceTable()
+        {static}+short[] encode(final short[][] block)
+        {static}+short[][] decode(final short[] L)
+    }
+    class RLE {
+        {static}+short[] encode(final short[] data)
+        {static}+short[] decode(final short[] data)
+    }
+    class Huffman {
+        - root : Node
+        - table : Map<Short, BitSetL>
+        +Huffman(final boolean isAC, final boolean isChrominance)
+        -void readTable(final String filename)
+        -void addToTree(final Short value, final BitSetL bs)
+        +BitSetL encode(final Short value)
+        +Node decode(final boolean b)
+        +Node decode(final Node n, final boolean b)
+    }
+    class Node {
+        ~value : Short
+        ~leaf : boolean
+        ~L : Node
+        ~R : Node
+        +boolean isLeaf()
+        +Short getValue()
+    }
+    class LookupException {
+        {static} -serialVersionUID : long
+        ~LookupException(Short n)
+    }
+    class InvalidTableException {
+        {static} -serialVersionUID : long
+        ~InvalidTableException(final String filename)
+    }
+    CDom <-- CtrlPresentacio
 
     CDom o-- "1" Statistics
     CDom o-- CompressionAlg
@@ -145,6 +208,7 @@ package Domini {
     LZSS ..> IO
     LZW ..> IO
     JPEG ..> IO
+    Huffman ..> IO
 
     LZ78 <|-- Pair
     LZ78 <|-- Tree
@@ -157,6 +221,21 @@ package Domini {
     BitSetL <.. LZSS
     BitSetL <.. JPEG
     BitSetL <.. LZW
+
+    JPEG *-- JPEGBlock
+    JPEG o-- Huffman
+
+    Huffman ..> BitSetL
+
+    JPEGBlock *-- DCT
+    JPEGBlock *-- Quantization
+    JPEGBlock *-- ZigZag
+    JPEGBlock *-- RLE
+    JPEGBlock --|> Codec
+
+    Huffman *-- Node
+    Huffman *-- LookupException
+    Huffman *-- InvalidTableException
 }
 
 @enduml

@@ -10,6 +10,8 @@ import java.io.*;
  * @brief Imagen PPM
  */
 public class PpmImage {
+
+    /** Lector de PpmImage */
     static public class Reader {
         private IO.Byte.reader file;
         private int width, height;
@@ -17,12 +19,6 @@ public class PpmImage {
         private int buffPos; // Bloque actual en el buffer
         private byte[][][] buffer;
 
-        /**
-         * @brief
-         *
-         * @param file objeto de lectura
-         * @throws IOException
-         */
         public Reader(IO.Byte.reader file) throws IOException {
             this.file = file;
 
@@ -113,6 +109,7 @@ public class PpmImage {
         }
     }
 
+    /** Escritor de PpmImage */
     static public class Writer {
         private IO.Byte.writer file;
 
@@ -180,6 +177,7 @@ public class PpmImage {
         }
     }
 
+    /** Excepción del formato de archivo  */
     public static class FileFormatException extends IOException {
         private static final long serialVersionUID = 483426725025690872L;
 

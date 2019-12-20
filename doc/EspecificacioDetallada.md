@@ -612,7 +612,7 @@ para la compresión/descompresión JPEG de un bloque de 8x8.
 
 ## IO
 
-**Descripción:** Classes IO para lectura y escritura de Char, Byte, y Bit con 
+**Descripción:** Clases IO para lectura y escritura de Char, Byte, y Bit con 
 buffer.
 
 ### Subclase: Char

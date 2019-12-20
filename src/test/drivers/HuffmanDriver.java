@@ -1,4 +1,4 @@
-/*import domini.Huffman;
+import domini.Huffman;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ class HuffmanDriver {
 
     private static Huffman huff;
 
-    private static void testConstructora() {
+    public static void testConstructora() {
         System.out.print("isAC (true/false): ");
         boolean isAC = scanner.nextBoolean();
         System.out.print("isChrominance (true/false): ");
@@ -22,17 +22,7 @@ class HuffmanDriver {
         }
     }
 
-    private static void testIsLeaf() {
-        System.out.println("isLeaf: " + huff.Node.isLeaf());
-        System.out.println("DONE");
-    }
-
-    private static void testGetValue() {
-        System.out.println("getValue: " + huff.Node.getValue());
-        System.out.println("DONE");
-    }
-
-    private static void testEncode() {
+    public static void testEncode() {
         System.out.print("Value: ");
         short value = scanner.nextShort();
 
@@ -45,41 +35,33 @@ class HuffmanDriver {
         }
     }
 
-    private static void testDecode() {
-        System.out.print("bit: ");
+    public static void testDecode() {
+        System.out.print("Bit: ");
         boolean bit = scanner.nextInt() != 0;
+        Huffman.Node n = huff.decode(bit);
 
-        System.out.println("decode: " + huff.decode(bit));
-        System.out.println("DONE");
-    }
-
-    private static void testDecodeNode() {
-        System.out.print("node: ");
-        Huffman.Node node = scanner.next();
-        System.out.print("bit: ");
-        boolean bit = scanner.nextInt() != 0;
-
-        System.out.println("decodeNode: " + huff.decode(node,bit));
-        System.out.println("DONE");
-    }
-
-    private static void decode() {
-        String[] options = {
-                "decode(bool)",
-                "decode(Node,bool)"
-        };
-
-        int action = prompt(options);
-        while (action<1 || action>2){
-            System.out.println("Invalid option");
-            action = prompt(options);
+        if (n == null) {
+            System.out.println("NOT found");
+            System.out.println("DONE");
+            return;
         }
 
-        if (action == 1) testDecode();
-        else if (action == 2) testDecodeNode();
+        while (!n.isLeaf()) {
+            System.out.print("Next bit: ");
+            bit = scanner.nextInt() != 0;
+            n = huff.decode(n, bit);
+            if (n == null) {
+                System.out.println("NOT found");
+                System.out.println("DONE");
+                return;
+            }
+        }
+
+        System.out.printf("Decoded: %d", n.getValue());
+        System.out.println("DONE");
     }
 
-    private static int prompt(String[] options) {
+    public static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);
@@ -91,8 +73,6 @@ class HuffmanDriver {
 
         String[] options = {
             "Constructora",
-            "isLeaf",
-            "getValue",
             "encode",
             "decode",
             "exit"
@@ -100,13 +80,11 @@ class HuffmanDriver {
 
         int action = prompt(options);
 
-        while (action != 6) {
+        while (action != 4) {
 
             if (action == 1) testConstructora();
-            else if (action == 2) testIsLeaf();
-            else if (action == 3) testGetValue();
-            else if (action == 4) testEncode();
-            else if (action == 5) decode();
+            else if (action == 2) testEncode();
+            else if (action == 3) testDecode();
             else System.out.println("Invalid option");
 
             action = prompt(options);
@@ -115,4 +93,3 @@ class HuffmanDriver {
         scanner.close();
     }
 }
-*/

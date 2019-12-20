@@ -6,7 +6,7 @@ package domini;
 
 import persistencia.IO;
 
-import java.io.EOFException;
+import java.io.IOException;
 import java.io.File;
 import java.text.DecimalFormat;
 
@@ -17,6 +17,14 @@ public class CtrlDomini {
     private String fileIn;
     private String fileOut;
     private Statistics stats;
+    private static CtrlDomini instance = null;
+
+    private CtrlDomini () {}
+
+    public static CtrlDomini getInstance() {
+        if(instance == null) instance = new CtrlDomini();
+        return instance;
+    }
 
     /**
      * @brief Dado un algoritmo, el nombre fichero de entrada y el nombre del fichero comprimido, ejecuta la compresión con el algoritmo pertienente
@@ -25,9 +33,9 @@ public class CtrlDomini {
      * @param fo nombre del archivo comprimido
      * @param quality calidad de compresión para el JPEG
      * @return Devuelve las estadisrticas generadas para la compresión
-     * @throws Exception Lanza cualquier excepción generada al comprimir
+     * @throws IOException Lanza cualquier excepción generada al comprimir
      */
-    public void compress(int alg, String fi, String fo, Short quality) throws Exception {
+    public void compress(int alg, String fi, String fo, Short quality) throws IOException {
         fileIn = fi;
         fileOut = fo;
 
@@ -37,43 +45,64 @@ public class CtrlDomini {
 
         if (new File(fileIn).isDirectory()) {
             try(IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
+                output.write(Folder.MAGIC_BYTE);
                 Folder.compress(fileIn, output);
             }
         } else {
             try (IO.Byte.reader input = new IO.Byte.reader(fileIn);
                  IO.Bit.writer output = new IO.Bit.writer(fileOut)) {
+                compress(alg, input, output, quality);
+            }
+        }
 
-                switch(alg) {
-                    case 0:
-                        if(fileIn.endsWith(".ppm")){
-                            quality = 80; // auto JPEG qualitat 80.
-                            JPEG.compress(input, output, quality);
-                        }
-                        else if(fileIn.endsWith(".txt")){
-                            if(fileIn.length()<1000000){ //1MB
-                                LZ78.compress(input, output);
-                            }
-                            else {
-                                LZW.compress(input, output);
-                            }
-                        }
-                        else {
-                            LZSS.compress(input, output);
-                        }
-                        break;
-                    case 1:
-                        LZ78.compress(input, output);
-                        break;
-                    case 2:
-                        LZSS.compress(input, output);
-                        break;
-                    case 3:
-                        LZW.compress(input, output);
-                        break;
-                    case 4:
-                        JPEG.compress(input, output, quality);
-                        break;
-                    default:
+        stats.setEndingTime();
+        stats.setFinFileSize(fileOut);
+    }
+
+    void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality) throws IOException {
+        CompressionAlg comp;
+            if (alg == 0) {
+                String filename = input.getFilename();
+                if(filename.endsWith(".ppm")) {
+                    comp = new JPEG((short) 90);
+                } else {
+                    if (stats.getIniFileSize() > 1048576) comp = new LZW(); // 1 MiB
+                    else comp = new LZ78();
+                }
+            } else if (alg == 1) comp = new LZ78();
+              else if (alg == 2) comp = new LZSS();
+              else if (alg == 3) comp = new LZW();
+              else if (alg == 4) comp = new JPEG(quality);
+              else throw new RuntimeException("No s'hauria de poder arribar aqui.");
+             
+        output.write(comp.getMagicByte());
+        comp.compress(input, output);
+    }
+
+    /**
+     * @brief Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió
+     * @param fi nombre del fichero comprimido
+     * @param fo nombre del fichero descomprimido
+     * @return Estadisticas generadas durante la descompresión
+     * @throws IOException Lanza cualquier excepción generada al descomprimir
+     */
+    public void decompress(String fi, String fo) throws IOException {
+        fileIn = fi;
+        fileOut = fo;
+
+        try (IO.Bit.reader input = new IO.Bit.reader(fileIn)) {
+            byte magicByte = (byte) input.readByte();
+
+            stats = new Statistics();
+            stats.setIniFileSize(fileIn);
+            stats.setStartingTime();
+
+            if (magicByte == Folder.MAGIC_BYTE) {
+                Folder.decompress(fileOut, input);
+            } else {
+                if (!fileOut.endsWith(".ppm") && magicByte == JPEG.MAGIC_BYTE) fileOut += ".ppm";
+                try (IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
+                    decompress(input, output, magicByte);
                 }
             }
         }
@@ -82,68 +111,18 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
-    /**
-     * @brief Dado un archivo comprimido y el nombre para el archivo descomprimido, descomprime el archivo usando el mismo algoritmo con el que se comprimió
-     * @param fi nombre del fichero comprimido
-     * @param fo nombre del fichero descomprimido
-     * @return Estadisticas generadas durante la descompresión
-     * @throws Exception Lanza cualquier excepción generada al descomprimir
-     */
-    public void decompress(String fi, String fo) throws Exception {
-        fileIn = fi;
-        fileOut = fo;
+    public void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
+        CompressionAlg decomp;
 
-        int b;
-        try(IO.Byte.reader reader = new IO.Byte.reader(fileIn)){
-            b = reader.read();
-        }
+        if(magicByte == 0) magicByte = (byte)input.readByte();
 
-        if(b == -1) throw new EOFException();
+        if (magicByte == LZ78.MAGIC_BYTE) decomp = new LZ78();
+        else if (magicByte == LZSS.MAGIC_BYTE) decomp = new LZSS();
+        else if (magicByte == LZW.MAGIC_BYTE) decomp = new LZW();
+        else if (magicByte == JPEG.MAGIC_BYTE) decomp = new JPEG((short)0);
+        else throw new MagicByteException(magicByte);
 
-        byte magicByte = (byte) b;
-
-        int alg;
-        if(magicByte==LZ78.MAGIC_BYTE) alg = 1;
-        else if(magicByte==LZSS.MAGIC_BYTE) alg = 2;
-        else if(magicByte==LZW.MAGIC_BYTE) alg = 3;
-        else if(magicByte==JPEG.MAGIC_BYTE) alg = 4;
-        else if(magicByte==Folder.MAGIC_BYTE) alg = 5;
-        else throw new Exception("Fitxer a descomprimir invàlid.");
-
-        if(!fileOut.endsWith(".ppm") && alg == 4) fileOut += ".ppm";
-
-        stats = new Statistics();
-        stats.setIniFileSize(fileIn);
-        stats.setStartingTime();
-
-        if (alg == 5) {
-            try(IO.Bit.reader input = new IO.Bit.reader(fileIn)) {
-                Folder.decompress(fileOut, input);
-            }
-        } else {
-            try (IO.Bit.reader input = new IO.Bit.reader(fileIn);
-                 IO.Byte.writer output = new IO.Byte.writer(fileOut)) {
-
-                switch(alg) {
-                    case 1:
-                        LZ78.decompress(input, output);
-                        break;
-                    case 2:
-                        LZSS.decompress(input, output);
-                        break;
-                    case 3:
-                        LZW.decompress(input, output);
-                        break;
-                    case 4:
-                        JPEG.decompress(input, output);
-                        break;
-                    default:
-                }
-            }
-        }
-
-        stats.setEndingTime();
-        stats.setFinFileSize(fileOut);
+        decomp.decompress(input, output);
     }
 
     public String getTime() {
@@ -191,5 +170,13 @@ public class CtrlDomini {
         final String[] units = new String[] { "B", "kB", "MB", "GB", "TB" };
         int digitGroups = (int) (Math.log10(d) / Math.log10(1024));
         return new DecimalFormat("#,##0.##").format(d / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    }
+
+    public static class MagicByteException extends IOException {
+        private static final long serialVersionUID = 89896782363268431L;
+
+        public MagicByteException(byte b) {
+            super(String.format("Unknown magic byte: 0x%02x", b));
+        }
     }
 }

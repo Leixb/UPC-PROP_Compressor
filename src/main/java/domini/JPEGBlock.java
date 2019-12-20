@@ -17,7 +17,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     private JPEGBlock () {}
 
     /** @brief DCT (Discrete Cosine Transform) */
-    public static class DCT implements Codec<byte[][], double[][]> {
+    static class DCT implements Codec<byte[][], double[][]> {
         public static double[][] encode(final byte[][] data) {
             final double[][] G = new double[8][8];
 
@@ -89,7 +89,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /** @brief Cuantización con tablas predefinidas ajustadas según la calidad de compresión especificada */
-    public static class Quantization implements Codec<double[][], short[][]> {
+    static class Quantization implements Codec<double[][], short[][]> {
         final static private byte[][] LuminanceTable = {
             {  16 ,  11 ,  10 ,  16 ,  24 ,  40 ,  51 ,  61 },
             {  12 ,  12 ,  14 ,  19 ,  26 ,  58 ,  60 ,  55 },
@@ -112,14 +112,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             {  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 ,  99 }
         };
 
-        static double QuantizationValue(final short quality, final boolean isChrominance, final short x, final short y)
-                throws IllegalArgumentException {
-            if (quality < 1 || quality > 100)
-                throw new IllegalArgumentException("Quality must be between 1 and 100");
-            if (x < 0 || x >= 8)
-                throw new IllegalArgumentException("0 < x < 8");
-            if (y < 0 || y >= 8)
-                throw new IllegalArgumentException("0 < y < 8");
+        static double quantizationValue(final short quality, final boolean isChrominance, final short x, final short y) {
 
             byte[][] QTable = LuminanceTable;
             if (isChrominance)
@@ -140,7 +133,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             final short[][] data = new short[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
-                    final double quantVal = block[i][j] / QuantizationValue(quality, isChrominance, i, j);
+                    final double quantVal = block[i][j] / quantizationValue(quality, isChrominance, i, j);
 
                     data[i][j] = (short) quantVal;
                 }
@@ -156,7 +149,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
             final double[][] data = new double[8][8];
             for (short i = 0; i < 8; ++i) {
                 for (short j = 0; j < 8; ++j) {
-                    data[i][j] = block[i][j] * QuantizationValue(quality, isChrominance, i, j);
+                    data[i][j] = block[i][j] * quantizationValue(quality, isChrominance, i, j);
                 }
             }
             return data;
@@ -164,7 +157,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
     }
 
     /** @brief _Aplasta_ un bloque 8x8 en zigZag. */
-    public static class ZigZag implements Codec<short[][], short[]> {
+    static class ZigZag implements Codec<short[][], short[]> {
 
         // Correspondencia coordenades taula amb ZigZag
         private static byte[][] table;
@@ -258,7 +251,7 @@ public final class JPEGBlock implements Codec<byte[][], short[]> {
      *  - F0 -> ZRL (Zero Run Lenght) 16 ceros seguidos
      *
      */
-    public static class RLE implements Codec<short[], short[]> {
+    static class RLE implements Codec<short[], short[]> {
         public static short[] encode(final short[] data) {
 
             final ArrayList<Short> buff = new ArrayList<Short>();

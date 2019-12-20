@@ -12,8 +12,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class Decompress {
-    private CtrlPresentacio cp = new CtrlPresentacio();
-
     private JPanel panelDecompress;
     private JButton buttonBack;
     private JButton buttonDecompress;

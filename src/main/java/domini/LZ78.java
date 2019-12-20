@@ -17,12 +17,14 @@ import java.util.List;
 /**
  * @brief Compresor y descompresor de archivos de texto con LZ78
  */
-public final class LZ78{
+public final class LZ78 implements CompressionAlg{
 
-    private LZ78() {}
+    public LZ78() {
+        decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
+    }
 
     //Declaración del HashMap de Decompression
-    private static Map<Integer, ArrayList<Byte>> decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
+    private static Map<Integer, ArrayList<Byte>> decompress_dict;
 
     /**Byte escrito al principio del archivo comprimido para saber
      * con que algoritmo ha sido comprimido
@@ -113,6 +115,10 @@ public final class LZ78{
         }
     }
 
+    public byte getMagicByte() {
+        return MAGIC_BYTE;
+    }
+
     /**
      * @brief Llamada para escribir en el archivo comprimido el array pasado como parametro.
      * @param arrayList Array que contiene la codificacion del archivo original.
@@ -138,8 +144,7 @@ public final class LZ78{
      * @param output Archivo de salida comprimido
      * @throws IOException Excepcion en caso de intentar leer un dato inexistente
      */
-    public static void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
-        output.write(MAGIC_BYTE);
+    public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
         boolean loop = true;
         Tree arbre = new Tree();
         loop = arbre.crearTree(input);
@@ -173,9 +178,7 @@ public final class LZ78{
      * @param output  Archivo de salida descomprimido
      * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
      */
-    public static void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
-        input.readByte();
-
+    public void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
         int num = 1;//Numero que representa el value de la siguiente entrada en el HashMap
         int nbyte = 0;//Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
         int number=0;//Key del HashMap codificada antes de cada byte en el archivo comprimido

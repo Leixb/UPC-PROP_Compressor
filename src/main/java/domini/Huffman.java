@@ -72,7 +72,7 @@ public class Huffman {
                 final String[] sp = s.split(" ", 2);
 
                 if (sp.length != 2)
-                    throw new IOException("Invalid input table");
+                    throw new InvalidTableException(filename);
 
                 final Short value = Short.parseShort(sp[0], 16);
                 final BitSetL bs = new BitSetL(sp[1]);
@@ -122,27 +122,28 @@ public class Huffman {
      *
      * @param value valor a buscar en la tabla
      * @return código Huffman
-     * @throws HuffmanLookupException si el valor no se encuentra en la tabla
      */
-    public BitSetL encode(final Short value) throws HuffmanLookupException {
+    public BitSetL encode(final Short value) {
         BitSetL bs = table.get(value);
         if (bs == null) {
-            throw new HuffmanLookupException(value);
+            throw new LookupException(value);
         }
         return bs;
     }
 
-    public static class HuffmanLookupException extends Exception {
+    public static class LookupException extends RuntimeException {
         private static final long serialVersionUID = 716585856065058709L;
 
-        HuffmanLookupException() {
-            super();
+        LookupException(Short n) {
+            super(String.format("Huffman lookup failed for value: %d", n));
         }
-        HuffmanLookupException(String s) {
-            super(s);
-        }
-        HuffmanLookupException(Short n) {
-            super(String.format("Huffman lookup failed for: %d", n));
+    }
+
+    public static class InvalidTableException extends IOException {
+        private static final long serialVersionUID = 1547862892655535861L;
+
+        InvalidTableException(final String filename) {
+            super(String.format("Invalid Table on file: %s", filename));
         }
     }
 

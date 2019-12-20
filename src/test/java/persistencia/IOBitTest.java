@@ -1,5 +1,6 @@
+package persistencia;
+
 import domini.BitSetL;
-import persistencia.IO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

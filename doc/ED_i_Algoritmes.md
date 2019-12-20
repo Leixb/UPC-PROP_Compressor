@@ -91,7 +91,6 @@ que la composición de la codificación de un byte consta de:
 Cada codificación se guarda en un ArrayList hasta que éste se llena o se acaba
 el archivo, entonces se recorre y se escribe en el fichero comprimido. En caso
 de overflow se crea un nuevo Tree y un nuevo ArrayList.
-
 ### Descompresión
 
 #### Estructuras de Datos

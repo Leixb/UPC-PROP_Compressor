@@ -1,5 +1,9 @@
 name: reviewdog PMD
-on: [pull_request]
+on: 
+  pull_request:
+    paths-ignore:
+    - 'doc/**'
+    - '**.md'
 
 env:
   PMD_RELEASE: pmd-bin-6.19.0

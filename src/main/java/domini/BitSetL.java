@@ -7,7 +7,7 @@ package domini;
 import java.util.BitSet;
 
 /**
- * @brief BitSet con length() especifica la longitud del bitset
+ * @brief BitSet con length() específica
  *
  * BitSet con length distinta al BitSet estandard.
  * El length de java.util.BitSet devuelve el numero de bits hasta el

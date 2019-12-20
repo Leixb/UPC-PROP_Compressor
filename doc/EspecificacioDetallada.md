@@ -214,17 +214,17 @@ IO.Byte.writer output)`
     * output: Objeto de escritura al archivo descomprimido.
   * **Return:** Es void por tanto no devuelve nada.
 
-###Subclase Pair
+### Subclase Pair
 
 **Descripción:** Clase Pair para poder crear, en este caso, pairs de Integers y 
 bytes.
 
-###Subclase Nodo
+### Subclase Nodo
 
 **Descripción:** Clase para crear un Nodo del árbol, el cual tiene un indice de 
 tipo int y 256 hijos.
 
-###Subclase Tree
+### Subclase Tree
 
 **Descripción:** Clase para inicializar un árbol con un método bool para 
 llenarlo con Nodos codificando el archivo que se desea comprimir y devuelve 

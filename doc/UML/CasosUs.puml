@@ -7,28 +7,33 @@ title Diagrama de Casos d'ús
 rectangle "Compressor" {
     usecase Com as "Comprimir
     ==
-    Demana algoritme, nom del fitxer a comprimir,
+    Demana algoritme, nom del fitxer/directori a comprimir,
     nom del fitxer destí i qualitat de compressió
     en el cas de JPEG"
     usecase Des as "Descomprimir
     ==
     Demana nom del fitxer comprimit
-    i del fitxer destí"
+    i del fitxer/directori destí"
     usecase (Automàtic) as Auto
     usecase (LZ78)
     usecase (LZSS)
     usecase (LZW)
     usecase (JPEG)
+    usecase (Fitxer)
+    usecase (Directori)
 }
 
 :Usuari:
 
 Usuari --> Com
 Usuari --> Des
-(Com) ..> Auto
-(Com) ..> (LZ78)
-(Com) ..> (LZSS)
-(Com) ..> (LZW)
-(Com) ..> (JPEG)
+Com --> (Fitxer)
+Com --> (Directori)
+(Fitxer) --> Auto
+(Fitxer) --> (LZ78)
+(Fitxer) --> (LZSS)
+(Fitxer) --> (LZW)
+(Fitxer) --> (JPEG)
+(Directori) --> Auto
 
 @enduml

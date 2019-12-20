@@ -58,7 +58,7 @@ copy_test_resources: dirs $(TEST_RESOURCES)
 build_test: copy_test_resources
 	$(JC) -d $(CP_TESTS) -cp $(CP):$(TEST_JARS) $(TEST_FILES)
 
-run_test: build_test
+run_test:
 	@$(JAVA) -jar libs/junit-platform-console-standalone-1.5.2.jar -cp $(CP):$(CP_TESTS) --scan-class-path
 
 jar: $(JAR_FILE)
@@ -72,9 +72,6 @@ runjar:
 
 build_drivers: dirs
 	$(JC) -d $(CP_DRIVERS) -cp $(CP) $(DRIVER_FILES)
-
-# Drivers SIN stubs
-# ( Para stubs usar ./buildRunDriver.sh <nombre-classe> )
 
 run_JPEG_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) JPEGDriver
@@ -99,12 +96,3 @@ run_IO_driver:
 
 run_BitSetL_driver:
 	$(JAVA) -cp $(CP):$(CP_DRIVERS) BitSetLDriver
-
-run_AutoSelection_Test:
-	$(JAVA) -cp $(CP):$(CP_DRIVERS) AutoSelectionTest
-
-build_AutoSelectionTest: dirs
-	$(JC) -d $(CP_DRIVERS) -cp $(CP) src/test/drivers/AutoSelectionTest.java
-
-run_AutoSelection_Test:
-	$(JAVA) -cp $(CP):$(CP_DRIVERS) AutoSelectionTest

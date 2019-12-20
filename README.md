@@ -1,73 +1,60 @@
-# El Compressor
+# El Compresor
 
-Projecte PROP Quatrimestre tardor 2019/20
+Proyecto PROP Cuatrimestre Otoño 2019/20
 
 ## Miembros del grupo
 
-- ***REMOVED*** <***REMOVED***>
-- ***REMOVED*** <***REMOVED***>
-- ***REMOVED*** <***REMOVED***>
-- ***REMOVED*** <***REMOVED***>
+- ***REMOVED*** <***REMOVED***> ***REMOVED***
+  <***REMOVED***> ***REMOVED***
+  <***REMOVED***> ***REMOVED***
+  <***REMOVED***>
 
-## Lista de classes implementadas por cada miembro:
+## Lista de clases y documentos implementados por cada miembro del grupo:
 
-- **JPEG**: ***REMOVED***
-- **LZ78**: ***REMOVED***
-- **LZW**: ***REMOVED***
-- **LZSS**: Alber Mercadé
+- **Clases**:
+  - **JPEG**: ***REMOVED***
+  - **LZ78**: ***REMOVED***
+  - **LZW**: ***REMOVED***
+  - **LZSS**: Alber Mercadé
+  - **Folder**: ***REMOVED***
+  - **JPEGBlock**: ***REMOVED***
+  - **Huffman**: ***REMOVED***
+  - **PpmImage**: ***REMOVED***
+  - **BitSetL**: ***REMOVED***
+  - **IO**: ***REMOVED***
+  - **Statistics**: ***REMOVED***
+  - **CtrlDomini**: ***REMOVED***
+  - **CtrlPresentacio**:  ***REMOVED***
+  - **Main**: ***REMOVED***
+- **Interfaz gráfica de usuario**: toda hecha por ***REMOVED***
+- **Juegos de prueba**: todos hechos por ***REMOVED***
+- **Drivers**: ***REMOVED***
+- **Documentación**:
+  - **Diagramas de clase/Casos de uso**: ***REMOVED***
+  - **Especificación detallada**: ***REMOVED***
+  - **Explicación juegos de prueba**: ***REMOVED***
+  - **Doxygen**: ***REMOVED***
+  - **Explicación ED & Algoritmos**: ***REMOVED***
 
-- **JPEGBlock**: ***REMOVED***
-- **Huffman**: ***REMOVED***
-- **PpmImage**: ***REMOVED***
-- **BitSetL**: ***REMOVED***
-- **IO**: ***REMOVED***
-- **Statistics**: ***REMOVED***
-- **CtrlDomini**: ***REMOVED***
-- **CtrlPresentacio**:  ***REMOVED***
-- **Main**: ***REMOVED***
+## Lista librerías externas
 
-## Uso de la aplicación
-
-Compilar aplicacion:
-```bash
-make
-```
-
-Ejecutar:
-```bash
-make run
-```
-Crear jar (`target/ProjecteProp-1.0-SNAPSHOT.jar`):
-```bash
-make jar
-```
-
-### JUnit5
-
-Compilar tests JUnit:
-```bash
-make build_test
-```
-Ejecutar tests JUnit:
-```bash
-make run_test
-```
-
-### Drivers
-Para compilar y ejecutar los drivers:
-```bash
-bash ./buildRunDriver.sh NombreDeClasseAProbar
-# Ejemplo para JPEGDriver:
-bash ./buildRunDriver.sh JPEG
-```
+- **Forms_rt**: Hemos implementado la interfaz gráfica de usuario usando el
+*designer* que nos proporcionaba el propio *IntelliJ IDEA* y necesitamos la
+librería Forms_rt, de la cual usamos la versión 7.0.3, para generar todas las
+inicializaciones de los componentes de gráficos que usamos (JLabel, JSpinner,
+JButton, etc) acorde a lo especificado en el *designer*.
+- **API Guardian/Hamcrest Core/JUnit Jupiter/Junit Jupiter Api/JUnit Platform
+Console Standalone**: Todas estas librerías las usamos para hacer los test con
+JUnit, muy necesarios para poder probar todos los componentes de nuestro
+código por separado mientras los desarrollábamos o mejorábamos.
 
 ## Diagramas
 
-### Diagrama Casos d'Us
+### Diagrama Casos de Uso
 
 ![Diagrama Casos d'us](doc/UML/CasosUs.png)
 
-### Diagrames de Classes
+### Diagramas de Clases
 
 ![Diagrama Classes](doc/UML/DiagramaClasses.png)
 ![Diagrama Classes IO](doc/UML/DiagramaClasses_IO.png)

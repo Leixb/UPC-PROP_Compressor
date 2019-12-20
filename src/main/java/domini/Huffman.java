@@ -140,7 +140,7 @@ public class Huffman {
         return bs;
     }
 
-    /** */
+    /** Excecpión de búqueda de un valor en la tabla */
     public static class LookupException extends RuntimeException {
         private static final long serialVersionUID = 716585856065058709L;
 
@@ -149,7 +149,7 @@ public class Huffman {
         }
     }
 
-    /** */
+    /** Excepción de tabla invalida */
     public static class InvalidTableException extends IOException {
 		private static final long serialVersionUID = 1547862892655535861L;
 
@@ -159,9 +159,9 @@ public class Huffman {
     }
 
     /**
-     * @brief
+     * @brief Devuelve siguiente nodo del árbol des de la raíz
      *
-     * @param b booleano
+     * @param b bit a decodificar
      * @return Siguiente nodo del árbol des de la raíz
      */
     public Node decode(final boolean b) {
@@ -169,10 +169,10 @@ public class Huffman {
     }
 
     /**
-     * @brief
+     * @brief Dado un node, devuelve siguiente nodo del árbol
      *
      * @param n Nodo del árbol
-     * @param b booleano
+     * @param b bit a decodificar
      * @return Siguiente nodo en el árbol
      */
     public Node decode(final Node n, final boolean b) {

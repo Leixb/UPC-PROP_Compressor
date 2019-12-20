@@ -6,12 +6,7 @@ import java.util.Scanner;
 class CtrlDominiDriver {
     private static Scanner scanner;
 
-    private static CtrlDomini ctdom;
-
-    private static void testGetInstance (){
-        System.out.println("getInstance: " + ctdom.getInstance());
-        System.out.println("DONE");
-    }
+    private static CtrlDomini ctdom = CtrlDomini.getInstance();
 
     private static void testCompress () {
         System.out.println("Compression algorithm: ");
@@ -39,7 +34,7 @@ class CtrlDominiDriver {
         }
     }
 
-    private static void testDecompress  () {
+    private static void testDecompress() {
         System.out.println("Input file (file to decompress): ");
         String inputFile = scanner.next();
         System.out.println("Output file: ");
@@ -100,7 +95,7 @@ class CtrlDominiDriver {
 
         String[] options = {
                 "compress", "decompress",
-                "getInstance", "getTime",
+                "getTime",
                 "getDeflated", "getInflated",
                 "getSpeedCompress", "getSpeedDecompress",
                 "getFileIn", "getFileOut",
@@ -108,18 +103,17 @@ class CtrlDominiDriver {
 
         int action = prompt(options);
 
-        while (action != 11) {
+        while (action != options.length) {
 
             if (action == 1) testCompress();
             else if (action == 2) testDecompress();
-            else if (action == 3) testGetInstance();
-            else if (action == 4) testGetTime();
-            else if (action == 5) testGetDeflated();
-            else if (action == 6) testGetInflated();
-            else if (action == 7) testGetSpeedCompress();
-            else if (action == 8) testGetSpeedDecompress();
-            else if (action == 9) testGetFileIn();
-            else if (action == 10) testGetFileOut();
+            else if (action == 3) testGetTime();
+            else if (action == 4) testGetDeflated();
+            else if (action == 5) testGetInflated();
+            else if (action == 6) testGetSpeedCompress();
+            else if (action == 7) testGetSpeedDecompress();
+            else if (action == 8) testGetFileIn();
+            else if (action == 9) testGetFileOut();
             else System.out.println("Invalid option");
 
             action = prompt(options);

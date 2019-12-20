@@ -6,7 +6,7 @@ import java.util.Scanner;
 class LZ78Driver {
     private static Scanner scanner;
 
-    private LZ78 lz78;
+    private static LZ78 lz78;
 
     private static void testConstructor(){
         lz78 = new LZ78();
@@ -19,8 +19,8 @@ class LZ78Driver {
         System.out.print("Output file compressed: ");
         String outputFilename = scanner.next();
 
-        try (IO.Byte.reader input = new IO.Byte.reader.reader(inputFilename);
-             IO.Bit.writer output = new IO.Bit.writer.writer(outputFilename)) {
+        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
+             IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
             lz78.compress(input, output);
             System.out.println("Successful compression!");
         } catch (Exception e) {
@@ -35,8 +35,8 @@ class LZ78Driver {
         System.out.print("Output file decompressed: ");
         String outputFilename = scanner.next();
 
-        try (IO.Bit.reader input = new IO.Bit.reader.reader(inputFilename);
-             IO.Byte.writer output = new IO.Byte.writer.writer(outputFilename)) {
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
+             IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
             lz78.decompress(input, output);
             System.out.println("Successful decompression");
         } catch (Exception e) {

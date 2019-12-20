@@ -1,4 +1,5 @@
 import domini.JPEG;
+import persistencia.IO;
 
 import java.util.Scanner;
 
@@ -8,7 +9,6 @@ class JPEGDriver {
     private static JPEG jpeg;
 
     private static void testConstructor(){
-        String outputFilename = scanner.next();
         System.out.print("Quality: ");
         short quality = scanner.nextShort();
         jpeg = new JPEG(quality);
@@ -19,6 +19,7 @@ class JPEGDriver {
         System.out.print("Input file to compress: ");
         String inputFilename = scanner.next();
         System.out.print("Output file compressed: ");
+        String outputFilename = scanner.next();
 
         try (IO.Byte.reader input = new IO.Byte.reader(inputFilename);
              IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
@@ -32,9 +33,9 @@ class JPEGDriver {
 
     private static void testDecompress() {
         System.out.print("Input file (file to decompress): ");
-        String inputFile = scanner.next();
+        String inputFilename = scanner.next();
         System.out.print("Output file: ");
-        String outputFile = scanner.next();
+        String outputFilename = scanner.next();
 
         try (IO.Bit.reader input = new IO.Bit.reader(inputFilename);
              IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {

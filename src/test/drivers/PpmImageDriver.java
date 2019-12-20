@@ -1,165 +1,138 @@
 import persistencia.PpmImage;
 import persistencia.IO;
 
-import java.io.File;
 import java.util.Scanner;
+import java.io.IOException;
 
 class PpmImageDriver {
     private static Scanner scanner;
 
-    private static PpmImage image;
+    private static PpmImage.Reader imgReader;
+    private static PpmImage.Writer imgWriter;
 
-    private static void testReaderConstructor() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
-
-        try (IO.Byte.reader file = IO.Byte.reader.reader(filename)) {
-            image.Reader = new PpmImage.Reader(file);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    private static void testReadBlock() {
-        try {
-            byte[][][] block = image.Reader.readBlock();
-            System.out.println("readBlock: " + block);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    private static void testGetWidth() {
-        System.out.println("getWidth: " + image.Reader.getWidth());
-        System.out.println("DONE");
-    }
-
-    private static void testGetHeight() {
-        System.out.println("getHeight: " + image.Reader.getHeight());
-        System.out.println("DONE");
-    }
-
-    private static void testReaderWidhtBlocks() {
-        System.out.println("Reader widthBlocks: " + image.Reader.widthBlocks());
-        System.out.println("DONE");
-    }
-
-    private static void testReaderHeightBlocks() {
-        System.out.println("Reader heightBlocks: " + image.Reader.heightBlocks());
-        System.out.println("DONE");
-    }
-
-    private static void reader() {
-        String[] options = {
-                "constructor",
-                "readBlock",
-                "getWidth",
-                "getHeight",
-                "widthBlocks",
-                "heightBlocks"
-        };
-
-        int action = prompt(options);
-        while (action<1 || action>6){
-            System.out.println("Invalid option");
-            action = prompt(options);
-        }
-
-        if (action == 1) testReaderConstructor();
-        else if (action == 2) testReadBlock();
-        else if (action == 3) testGetWidth();
-        else if (action == 4) testGetHeight();
-        else if (action == 5) testReaderWidhtBlocks();
-        else if (action == 6) testReaderHeightBlocks();
-    }
-
-    private static void testWriterConstructor() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
-        System.out.print("Height: ");
-        int height = scanner.next();
-        System.out.print("Width: ");
-        int width = scanner.next();
-
-        try (IO.Byte.writer file = new IO.Byte.writer.writer(filename)) {
-            image.Writer = new PpmImage.Writer(file,height,width);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    private static void testWriteBlock() {
-        System.out.print("Block: ");
-        byte[][][] block = scanner.next();
-        try {
-            image.Writer.writeBlock(block);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    private static void testWriterWidthBlocks() {
-        System.out.println("Writer widthBlocks: " + image.Writer.widthBlocks());
-        System.out.println("DONE");
-    }
-
-    private static void testWriterHeightBlocks() {
-        System.out.println("Writer heightBlocks: " + image.Writer.heightBlocks());
-        System.out.println("DONE");
-    }
-
-    private static void writer() {
-        String[] options = {
-                "constructor",
-                "writeBlock",
-                "widthBlocks",
-                "heightBlocks"
-        };
-
-        int action = prompt(options);
-        while (action<1 || action>4){
-            System.out.println("Invalid option");
-            action = prompt(options);
-        }
-
-        if (action == 1) testWriterConstructor();
-        else if (action == 2) testWriteBlock();
-        else if (action == 3) testWriterWidthBlocks();
-        else if (action == 4) testWriterHeightBlocks();
-    }
-
-    private static int prompt(String[] options) {
+    public static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);
         return scanner.nextInt();
     }
 
+    public static void testReaderReadBlock() {
+        try {
+            byte[][][] block = imgReader.readBlock();
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        }
+    }
+    public static void testReaderWidthBlocks() {
+        System.out.printf("int: %d\n", imgReader.widthBlocks());
+    }
+    public static void testReaderHeightBlocks() {
+        System.out.printf("int: %d\n", imgReader.heightBlocks());
+    }
+
+    public static void testReader() {
+        System.out.print("Input file to read: ");
+        String filename = scanner.next();
+
+        String[] options = {
+            "readBlock",
+            "widthBlocks",
+            "heightBlocks"
+        };
+
+        try (IO.Byte.reader input = new IO.Byte.reader(filename)) {
+            imgReader = new PpmImage.Reader(input);
+
+            int action = prompt(options);
+
+            while (action != options.length) {
+
+                if (action == 1) testReaderReadBlock();
+                else if (action == 2) testReaderWidthBlocks();
+                else if (action == 3) testReaderHeightBlocks();
+                else System.out.println("Invalid option");
+
+                action = prompt(options);
+            }
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        } finally {
+            imgReader = null;
+        }
+    }
+
+    public static void testWriterWriteBlock() {
+        byte[][][] block = new byte[8][8][3];
+        try {
+            imgWriter.writeBlock(block);
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        }
+    }
+    public static void testWriterWidthBlocks() {
+        System.out.printf("int: %d\n", imgWriter.widthBlocks());
+    }
+    public static void testWriterHeightBlocks() {
+        System.out.printf("int: %d\n", imgWriter.heightBlocks());
+    }
+
+    public static void testWriter() {
+        System.out.print("Input file to write: ");
+        String filename = scanner.next();
+
+        System.out.print("width: ");
+        int width = scanner.nextInt();
+        System.out.print("height: ");
+        int height = scanner.nextInt();
+
+        String[] options = {
+            "writeBlock",
+            "widthBlocks",
+            "heightBlocks"
+        };
+
+        try (IO.Byte.writer output = new IO.Byte.writer(filename)) {
+            imgWriter = new PpmImage.Writer(output, width, height);
+
+            int action = prompt(options);
+
+            while (action != options.length) {
+
+                if (action == 1) testWriterWriteBlock();
+                else if (action == 2) testWriterWidthBlocks();
+                else if (action == 3) testWriterHeightBlocks();
+                else System.out.println("Invalid option");
+
+                action = prompt(options);
+            }
+
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        } finally {
+            imgWriter = null;
+        }
+    }
+
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
         String[] options = {
-            "reader",
-            "writer",
+            "Reader",
+            "Writer",
             "exit"
         };
 
-        image = new PpmImage();
-
         int action = prompt(options);
 
-        while (action != 3) {
+        while (action != options.length) {
 
-            if (action == 1) reader();
-            else if (action == 2) writer();
+            if (action == 1) testReader();
+            else if (action == 2) testWriter();
             else System.out.println("Invalid option");
 
             action = prompt(options);

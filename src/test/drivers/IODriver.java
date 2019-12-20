@@ -5,17 +5,19 @@ import java.util.Scanner;
 import java.io.IOException;
 
 class IODriver{
+
     private static Scanner scanner;
 
-    private static IO io;
-
     //Char
-    private static void testCharReader() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
+    public static void testCharRead() {
+        System.out.print("Input file to read a char: ");
+        String inputFilename = scanner.next();
 
-        try {
-            io.Char.reader = new IO.Char.reader.reader(filename);
+        String[] options = {"read", "back"};
+        try (IO.Char.reader input = new IO.Char.reader(inputFilename)) {
+            while (prompt(options) != 2) {
+                System.out.printf("byte: %c\n", input.read());
+            }
             System.out.println("DONE");
         } catch (Exception e) {
             System.out.println("FAILED");
@@ -23,12 +25,17 @@ class IODriver{
         }
     }
 
-    private static void testCharWriter() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
+    public static void testCharWrite() {
+        System.out.print("Input file to write a char: ");
+        String outputFilename = scanner.next();
 
-        try {
-            io.Char.writer = new IO.Char.writer.writer(filename);
+        String[] options = {"write", "back"};
+        try (IO.Char.writer output = new IO.Char.writer(outputFilename)) {
+            while (prompt(options) != 2) {
+                System.out.print("Input a char to write: ");
+                char test = scanner.next().charAt(0);
+                output.write(test);
+            }
             System.out.println("DONE");
         } catch (Exception e) {
             System.out.println("FAILED");
@@ -37,12 +44,15 @@ class IODriver{
     }
 
     //Byte
-    private static void testByteReader() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
+    public static void testByteRead() {
+        System.out.print("Input file to read a byte: ");
+        String inputFilename = scanner.next();
 
-        try {
-            io.Byte.reader = new IO.Byte.reader.reader(filename);
+        String[] options = {"read", "back"};
+        try (IO.Byte.reader input = new IO.Byte.reader(inputFilename)) {
+            while (prompt(options) != 2) {
+                System.out.printf("byte: %x\n", input.read());
+            }
             System.out.println("DONE");
         } catch (Exception e) {
             System.out.println("FAILED");
@@ -50,12 +60,16 @@ class IODriver{
         }
     }
 
-    private static void testByteWriter() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
-
-        try {
-            io.Byte.writer = new IO.Byte.writer.writer(filename);
+    public static void testByteWrite(){
+        System.out.print("Input file to write a byte: ");
+        String outputFilename = scanner.next();
+        String[] options = {"write", "back"};
+        try (IO.Byte.writer output = new IO.Byte.writer(outputFilename)) {
+            while (prompt(options) != 2) {
+                System.out.print("Input byte to write (hex): ");
+                byte test = scanner.nextByte(16);
+                output.write(test);
+            }
             System.out.println("DONE");
         } catch (Exception e) {
             System.out.println("FAILED");
@@ -63,13 +77,26 @@ class IODriver{
         }
     }
 
-    //Bit
-    private static void testBitReader() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
+    public static void testBitReader() {
+        System.out.print("Input file to read: ");
+        String inputFilename = scanner.next();
 
-        try {
-            io.Bit.reader = new IO.Bit.reader.reader(filename);
+        String[] options = {"read", "readByte", "readChar", "readInt", "readBitSet", "back"};
+
+        try (IO.Bit.reader input = new IO.Bit.reader(inputFilename)) {
+
+            int action = prompt(options);
+
+            while (action != 6) {
+                if (action == 1) testBitReaderRead(input);
+                if (action == 2) testBitReaderReadByte(input);
+                if (action == 3) testBitReaderReadChar(input);
+                if (action == 4) testBitReaderReadInt(input);
+                if (action == 5) testBitReaderReadBitSet(input);
+                else System.out.println("Invalid option");
+
+                action = prompt(options);
+            }
             System.out.println("DONE");
         } catch (Exception e) {
             System.out.println("FAILED");
@@ -77,53 +104,48 @@ class IODriver{
         }
     }
 
-    private static void testRead() {
-        try {
-            System.out.println("read: " + io.Bit.reader.read());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitReaderRead(IO.Bit.reader input) throws IOException {
+        System.out.printf("read bool: %b\n", input.read());
     }
-
-    private static void testReadByte() {
-        try {
-            System.out.println("readByte: " + io.Bit.reader.readByte());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitReaderReadByte(IO.Bit.reader input) throws IOException {
+        System.out.printf("read byte: %x\n", input.readByte());
     }
-
-    private static void testReadChar() {
-        try {
-            System.out.println("readChar: " + io.Bit.reader.readChar());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitReaderReadChar(IO.Bit.reader input) throws IOException {
+        System.out.printf("read char: %c\n", input.readChar());
     }
-
-    private static void testReadInt() {
-        try {
-            System.out.println("readInt: " + io.Bit.reader.readInt());
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitReaderReadInt(IO.Bit.reader input) throws IOException {
+        System.out.printf("read int: %d\n", input.readInt());
     }
-
-    private static void testReadBitSet() {
+    public static void testBitReaderReadBitSet(IO.Bit.reader input) throws IOException {
         System.out.print("Length: ");
         int length = scanner.nextInt();
 
-        try {
-            BitSetL bs = io.Bit.reader.readBitSet(length);
-            System.out.println("read: " + bs.toString());
+        BitSetL bs = input.readBitSet(length);
+
+        System.out.printf("read BitSet: %s\n", bs.toString());
+    }
+
+    public static void testBitWriter() {
+        System.out.print("Input file to write: ");
+        String outputFilename = scanner.next();
+
+        String[] options = {"write(boolean)", "write(byte)", "write(char)",
+            "write(int)", "write(BitSetL)", "back"};
+
+        try (IO.Bit.writer output = new IO.Bit.writer(outputFilename)) {
+
+            int action = prompt(options);
+
+            while (action != 6) {
+                if (action == 1) testBitWriterBool(output);
+                if (action == 2) testBitWriterByte(output);
+                if (action == 3) testBitWriterChar(output);
+                if (action == 4) testBitWriterInt(output);
+                if (action == 5) testBitWriterBitSetL(output);
+                else System.out.println("Invalid option");
+
+                action = prompt(options);
+            }
             System.out.println("DONE");
         } catch (Exception e) {
             System.out.println("FAILED");
@@ -131,132 +153,29 @@ class IODriver{
         }
     }
 
-    private static void bitReader(){
-        String[] options = {
-                "creadora",
-                "readBit",
-                "readByte",
-                "readChar",
-                "readInt",
-                "readBitSet",
-                "close"
-        };
-
-        int action = prompt(options);
-        while (action<1 || action>7){
-            System.out.println("Invalid option");
-            action = prompt(options);
-        }
-
-        if (action == 1) testBitReader();
-        else if (action == 2) testRead();
-        else if (action == 3) testReadByte();
-        else if (action == 4) testReadChar();
-        else if (action == 5) testReadInt();
-        else if (action == 6) testReadBitSet();
-        else if (action == 7) testReaderClose();
+    public static void testBitWriterBool(IO.Bit.writer output) throws IOException {
+        System.out.print("Bit to write: ");
+        output.write(scanner.nextInt() != 0);
     }
-
-    private static void testBitWriter() {
-        System.out.print("Filename: ");
-        String filename = scanner.next();
-
-        try {
-            io.Bit.writer = new IO.Bit.writer.writer(filename);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitWriterByte(IO.Bit.writer output) throws IOException {
+        System.out.print("Byte to write: ");
+        output.write(scanner.nextByte());
     }
-
-    private static void testWrite() {
-        System.out.print("Bit: ");
-        boolean b = scanner.nextInt() != 0;
-        try {
-            io.Bit.writer.write(b);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitWriterChar(IO.Bit.writer output) throws IOException {
+        System.out.print("Char to write: ");
+        output.write(scanner.next().charAt(0));
     }
-
-    private static void testWriteByte() {
-        System.out.print("Byte: ");
-        byte b = scanner.next();
-        try {
-            io.Bit.writer.write(b);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+    public static void testBitWriterInt(IO.Bit.writer output) throws IOException {
+        System.out.print("Int to write: ");
+        output.write(scanner.nextInt());
     }
-
-    private static void testWriteChar() {
-        System.out.print("Char: ");
-        char c = scanner.next();
-        try {
-            io.Bit.writer.write(c);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    private static void testWriteInt() {
-        System.out.print("Int: ");
-        int i = scanner.next();
-        try {
-            io.Bit.writer.write(i);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    private static void testWriteBitSet() {
+    public static void testBitWriterBitSetL(IO.Bit.writer output) throws IOException {
         System.out.print("Bitset to write: ");
         BitSetL bs = new BitSetL(scanner.next());
-        try {
-            io.Bit.writer.write(bs);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
+        output.write(bs);
     }
 
-    private static void bitWriter(){
-        String[] options = {
-                "creadora",
-                "writeBit",
-                "writeByte",
-                "writeChar",
-                "writeInt",
-                "writeBitSet",
-                "close"
-        };
-
-        int action = prompt(options);
-        while (action<1 || action>7){
-            System.out.println("Invalid option");
-            action = prompt(options);
-        }
-
-        if (action == 1) testBitWriter();
-        else if (action == 2) testWrite();
-        else if (action == 3) testWriteByte();
-        else if (action == 4) testWriteChar();
-        else if (action == 5) testWriteInt();
-        else if (action == 6) testWriteBitSet();
-        else if (action == 7) testWriterClose();
-    }
-
-    private static int prompt(String[] options) {
+    public static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
             System.out.printf("- [%d] : %s\n", i, options[i-1]);
         System.out.printf("Chose one option (%d-%d): ", 1, options.length);
@@ -266,36 +185,39 @@ class IODriver{
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
-        String[] options1 = {
-            "Char",
-            "Byte",
-            "Bit",
-            "exit"
-        };
+        String[] options1 = {"Char", "Byte", "Bit", "exit"};
 
         int action = prompt(options1);
 
         while (action != 4) {
-            String[] options2 = {
-                    "Reader",
-                    "Writer"
-            };
-
-            int action2 = prompt(options2);
-            while (action2<1 || action2>2){
-                System.out.println("Invalid option");
-                action2 = prompt(options2);
-            }
 
             if (action == 1){
-                if (action2 == 1) testCharReader();
-                else if (action2 == 2) testCharWriter();
+                String[] options2 = {"Read", "Write", "back"};
+                int action2 = prompt(options2);
+                while (action2!=3){
+                    if (action2==1) testCharRead();
+                    else if (action2==2) testCharWrite();
+                    else System.out.println("Invalid option");
+                    action2 = prompt(options2);
+                }
             } else if (action == 2){
-                if (action2 == 1) testByteReader();
-                else if (action2 == 2) testByteWriter();
+                String[] options2 = {"Read", "Write", "back"};
+                int action2 = prompt(options2);
+                while (action2!=3){
+                    if (action2==1) testByteRead();
+                    else if (action2==2) testByteWrite();
+                    else System.out.println("Invalid option");
+                    action2 = prompt(options2);
+                }
             } else if (action==3){
-                if (action2 == 1) bitReader();
-                else if (action2 == 2) bitWriter();
+                String[] options2 = {"Read", "Write", "back"};
+                int action2 = prompt(options2);
+                while (action2!=3){
+                    if (action2==1) testBitReader();
+                    else if (action2==2) testBitWriter();
+                    else System.out.println("Invalid option");
+                    action2 = prompt(options2);
+                }
             } else System.out.println("Invalid option");
             action = prompt(options1);
         }

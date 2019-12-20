@@ -6,7 +6,7 @@ import java.util.Scanner;
 class LZSSDriver {
     private static Scanner scanner;
 
-    private LZSS lzss;
+    private static LZSS lzss;
 
     private static void testConstructor(){
         lzss = new LZSS();

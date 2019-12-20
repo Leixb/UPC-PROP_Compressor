@@ -21,10 +21,9 @@ class AutoSelectionTest {
             System.out.println("[" + (i+1) + "] Archivo: " + fileIn[i]);
             for (int j = 0; j < algName.length; ++j) {
                 try {
-                    CtrlDomini ctrlDom = new CtrlDomini();
-                    ctrlDom.compress(j+1, fileIn[i], fileComp, (short) 0);
+                    CtrlDomini.getInstance().compress(j+1, fileIn[i], fileComp, (short) 0);
 
-                    System.out.println(" - " + algName[j] + ": " + ctrlDom.getDeflated());
+                    System.out.println(" - " + algName[j] + ": " + CtrlDomini.getInstance().getDeflated());
                 } catch (Exception e){
 
                 }

@@ -1,4 +1,4 @@
-import domini.Huffman;
+/*import domini.Huffman;
 
 import java.util.Scanner;
 
@@ -55,7 +55,7 @@ class HuffmanDriver {
 
     private static void testDecodeNode() {
         System.out.print("node: ");
-        Node node = scanner.next();
+        Huffman.Node node = scanner.next();
         System.out.print("bit: ");
         boolean bit = scanner.nextInt() != 0;
 
@@ -115,3 +115,4 @@ class HuffmanDriver {
         scanner.close();
     }
 }
+*/

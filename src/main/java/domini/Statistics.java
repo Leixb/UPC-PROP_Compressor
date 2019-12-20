@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/domini/Statistics.java
- * @author Alex Herrero Pons / Aleix Boné / Albert Mercadé Plasencia
+ * @author Alex Herrero
 */
 package domini;
 

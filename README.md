@@ -15,7 +15,7 @@ Proyecto PROP Cuatrimestre Otoño 2019/20
   - **JPEG**: Aleix Boné
   - **LZ78**: Alex González
   - **LZW**: Alex Herrero
-  - **LZSS**: Alber Mercadé
+  - **LZSS**: Albert Mercadé
   - **Folder**: Aleix Boné
   - **JPEGBlock**: Aleix Boné
   - **Huffman**: Aleix Boné
@@ -47,6 +47,25 @@ JButton, etc) acorde a lo especificado en el *designer*.
 Console Standalone**: Todas estas librerías las usamos para hacer los test con
 JUnit, muy necesarios para poder probar todos los componentes de nuestro
 código por separado mientras los desarrollábamos o mejorábamos.
+
+
+## Lista de funcionalidades implementadas:
+
+### 1a Entrega:
+- Los algoritmos LZs solo comprimían y descomprimían archivos de tipo `.txt`.
+- El algoritmo JPEG comprimía archivos de tipo `.ppm`.
+- Se generaban estadísticas de compresión y descompresión.
+
+### 2a Entrega:
+Además de las funcionalidades implementadas en la 1a entrega.
+- **Obligatorio**:
+    - Se permite comprimir y descomprimir carpetas (con subcarpetas y/o todo tipo de archivos).
+    - En esta segunda entrega hemos implementado una interfaz gráfica con la que interactua el usuario, en lugar de con la consola.
+    - Con esta interfaz gráfica se permite la visualización de un fichero de entrada y su correspondiente descompresión despues de aplicar el proceso de compresión/descompresión con un cierto algoritmo.
+- **Opcional**:
+    - Hemos mejorado los algoritmos LZs de forma que ahora comprimen y descomprimen todo tipo de archivos.
+    - Además el algoritmo LZ78 ahora implementa la compresión con `Tree`.
+
 
 ## Diagramas
 

@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/domini/CtrlDomini.java
- * @author Albert Mercadé Plasencia / Aleix Boné
+ * @author Albert Mercadé
  */
 package domini;
 

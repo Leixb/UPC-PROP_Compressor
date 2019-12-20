@@ -136,6 +136,7 @@ public class Main {
 
                 if (option.charAt(0) == 'N') return;
                 else if (option.charAt(0) == 'S') {
+                    if(filename.endsWith(".piz")) filename = filename.substring(0, filename.lastIndexOf('/') + 1);
                     Runtime.getRuntime().exec("xdg-open " + filename);
                     return;
                 }

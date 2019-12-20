@@ -62,12 +62,12 @@
           <component id="466e7" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <minimum-size width="165" height="-1"/>
+                <minimum-size width="180" height="-1"/>
               </grid>
             </constraints>
             <properties>
               <font/>
-              <text value="Fitxer a comprimir:"/>
+              <text value="Fitxer/directori a comprimir:"/>
             </properties>
           </component>
           <component id="9bf2a" class="javax.swing.JButton" binding="buttonSelectFileIn">
@@ -77,7 +77,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Seleccionar fitxer"/>
+              <text value="Seleccionar"/>
             </properties>
           </component>
           <hspacer id="64179">
@@ -113,7 +113,7 @@
           <component id="30aca" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <minimum-size width="165" height="-1"/>
+                <minimum-size width="180" height="-1"/>
               </grid>
             </constraints>
             <properties>

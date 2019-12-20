@@ -116,7 +116,7 @@ public class Compress {
                 if ("".equals(fileIn)) fc = new JFileChooser();
                 else {
                     File fileInObj = new File(fileIn);
-                    if(fileInObj.isFile()) fc = new JFileChooser(fileIn);
+                    if (fileInObj.isFile()) fc = new JFileChooser(fileIn);
                     else fc = new JFileChooser(fileInObj.getParent());
                 }
                 fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -147,16 +147,14 @@ public class Compress {
                 if ("".equals(fileOut)) {
                     File fileInObj = new File(fileIn);
                     fileOutAux = fileInObj.getName();
-                    if(fileInObj.isFile()) {
+                    if (fileInObj.isFile()) {
                         fc = new JFileChooser(fileIn);
                         fileOutAux = fileOutAux.substring(0, fileOutAux.lastIndexOf('.'));
-                    }
-                    else {
+                    } else {
                         fc = new JFileChooser(fileInObj.getParent());
                     }
                     fileOutAux += ".piz";
-                }
-                else {
+                } else {
                     File fileOutObj = new File(fileOut);
                     fc = new JFileChooser(fileOut);
                     fileOutAux = fileOutObj.getName();
@@ -233,7 +231,7 @@ public class Compress {
     }
 
     private String fittingLabel(String file, JLabel label) {
-        int maxWidth = f.getWidth() - 405;
+        int maxWidth = f.getWidth() - 420;
         FontMetrics fm = label.getFontMetrics(label.getFont());
 
         String fittingText = "";
@@ -302,10 +300,10 @@ public class Compress {
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$(null, -1, -1, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("Fitxer a comprimir:");
-        panel2.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(165, -1), null, null, 0, false));
+        label1.setText("Fitxer/directori a comprimir:");
+        panel2.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(180, -1), null, null, 0, false));
         buttonSelectFileIn = new JButton();
-        buttonSelectFileIn.setText("Seleccionar fitxer");
+        buttonSelectFileIn.setText("Seleccionar");
         panel2.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel2.add(spacer4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
@@ -324,7 +322,7 @@ public class Compress {
         Font label2Font = this.$$$getFont$$$(null, -1, -1, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setText("Nom fitxer destí (*.piz):");
-        panel3.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(165, -1), null, null, 0, false));
+        panel3.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(180, -1), null, null, 0, false));
         labelFileOut = new JLabel();
         Font labelFileOutFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileOut.getFont());
         if (labelFileOutFont != null) labelFileOut.setFont(labelFileOutFont);

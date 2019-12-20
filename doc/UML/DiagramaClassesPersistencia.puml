@@ -97,9 +97,9 @@ package Persistencia {
     BufferedOutputStream <|-- writerByte
     BufferedInputStream <|-- readerByte
 
-    PpmImage <|-- readerPpm
-    PpmImage <|-- writerPpm
-    PpmImage <|-- FileFormatException
+    PpmImage *-- readerPpm
+    PpmImage *-- writerPpm
+    PpmImage *-- FileFormatException
 
     IO <.. PpmImage
 

@@ -11,11 +11,11 @@ package Persistencia {
 }
 
 package Presentacio {
-    class CtrlPresentacio
+    class CtrlPresentacio << (S,#FF7700) Singleton >>
 }
 
 package Domini {
-    class "CtrlDomini" as CDom {
+    class "CtrlDomini" as CDom << (S,#FF7700) Singleton >>{
         -fileIn : String
         -fileOut : String
         -stats : Statistics
@@ -52,6 +52,24 @@ package Domini {
         {static}-int bits_needed(final int n)
 
     }
+    -class "Pair<First,Second>" as Pair {
+        first : First
+        second : Second
+        Pair(First first, Second second)
+    }
+    -class Nodo {
+        hijos : Nodo[]
+        index : int
+        Nodo()
+    }
+    -class Tree {
+        arrel : Nodo
+        codnum : int
+        last : Boolean
+        padre : int
+        arrayList : List<Pair<Integer, Byte>>
+        boolean crearTree(final IO.Byte.reader input)
+    }
     class LZW {
         {static}+ MAGIC_BYTE : byte
         {static}-DICTIONARY_SIZE : int
@@ -79,6 +97,28 @@ package Domini {
         +void decompress(final IO.Bit.reader input, final IO.Byte.writer output)
         -void computeLPSArray(final int[] lps, int patLength)
         -int kmp(int currentACIndex, int currentSWIndex, boolean fullSW)
+    }
+    class Folder {
+        {static}-EMPTY_FOLDER : char
+        {static}-FILE : char
+        {static}+MAGIC_BYTE : byte
+        -Folder()
+        {static}+void compress(String folderPath, IO.Bit.writer output)
+        {static}+void decompress(String folderPath, IO.Bit.reader input)
+    }
+    class CompressFiles {
+        -output : IO.Bit.writer
+        -root : Path
+        -emptyDir : boolean
+        +CompressFiles(Path root, IO.Bit.writer output)
+        +FileVisitResult postVisitDirectory(Path dir, IOException exc)
+        +FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+        +FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+        +FileVisitResult visitFileFailed(Path file, IOException exc)
+    }
+    class FolderFormatException {
+        {static}-serialVersionUID : long
+        +FolderFormatException()
     }
     class Statistics {
         -startingTime : long
@@ -113,24 +153,6 @@ package Domini {
         +void set(int pos, boolean val)
         +void clear(int pos)
         +int length()
-    }
-    -class "Pair<First,Second>" as Pair {
-        first : First
-        second : Second
-        Pair(First first, Second second)
-    }
-    -class Nodo {
-        hijos : Nodo[]
-        index : int
-        Nodo()
-    }
-    -class Tree {
-        arrel : Nodo
-        codnum : int
-        last : Boolean
-        padre : int
-        arrayList : List<Pair<Integer, Byte>>
-        boolean crearTree(final IO.Byte.reader input)
     }
     interface CompressionAlg {
         void compress(final IO.Byte.reader input, final IO.Bit.writer output)
@@ -198,11 +220,12 @@ package Domini {
 
     CDom o-- "1" Statistics
     CDom o-- CompressionAlg
+    CDom o-- Folder
 
-    CompressionAlg +-- LZ78
-    CompressionAlg +-- LZW
-    CompressionAlg +-- LZSS
-    CompressionAlg +-- JPEG
+    CompressionAlg <|.. LZ78
+    CompressionAlg <|.. LZW
+    CompressionAlg <|.. LZSS
+    CompressionAlg <|.. JPEG
 
     LZ78 ..> IO
     LZSS ..> IO
@@ -210,11 +233,14 @@ package Domini {
     JPEG ..> IO
     Huffman ..> IO
 
-    LZ78 <|-- Pair
-    LZ78 <|-- Tree
-    LZ78 <|-- Nodo
+    LZ78 *-- Pair
+    LZ78 *-- Tree
+    LZ78 *-- Nodo
 
-    PpmImage <|-- JPEG
+    Folder *-- CompressFiles
+    Folder *-- FolderFormatException
+
+    PpmImage *-- JPEG
 
     BitSetL <.. IO
     BitSetL <.. LZ78
@@ -231,7 +257,7 @@ package Domini {
     JPEGBlock *-- Quantization
     JPEGBlock *-- ZigZag
     JPEGBlock *-- RLE
-    JPEGBlock --|> Codec
+    JPEGBlock ..|> Codec
 
     Huffman *-- Node
     Huffman *-- LookupException

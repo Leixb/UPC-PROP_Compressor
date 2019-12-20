@@ -5,11 +5,11 @@ skinparam classAttributeIconSize 0
 title Diagrama de classes de Presentacio
 
 package Domini {
-    class CtrlDomini
+    class CtrlDomini << (S,#FF7700) Singleton >>
 }
 
 package Presentacio {
-    class CtrlPresentacio {
+    class CtrlPresentacio << (S,#FF7700) Singleton >>{
         -cd : CtrlDomini
         {static}-instance : CtrlPresentacio
         -CtrlPresentacio()

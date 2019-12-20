@@ -69,6 +69,6 @@ bash ./buildRunDriver.sh JPEG
 
 ### Diagrames de Classes
 
-![Diagrama Classes](doc/UML/DiagramaClasses.png)
-![Diagrama Classes IO](doc/UML/DiagramaClasses_IO.png)
-![Diagrama Classes JPEG](doc/UML/DiagramaClasses_JPEG.png)
+![Diagrama Classes Domini](doc/UML/DiagramaClassesDomini.png)
+![Diagrama Classes Persistència](doc/UML/DiagramaClassesPersistencia.png)
+![Diagrama Classes Presentació](doc/UML/DiagramaClassesPresentacio.png)

@@ -1,0 +1,118 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+title Diagrama de classes de Persistencia
+
+package Persistencia {
+    class IO {
+    }
+    class Char
+    class readerChar as "reader" {
+        +reader(final String filename)
+    }
+    class writerChar as "writer" {
+        +writer(final String filename)
+    }
+    class Byte
+    class readerByte as "reader" {
+        -filename : String
+        +reader(final String filename)
+    }
+    class writerByte as "writer" {
+        +writer(final String filename)
+    }
+    class Bit
+    class readerBit as "reader" {
+        -in : BufferedInputStream
+        -buffer : int
+        -n : int
+        +reader(final String filename)
+        -void fill()
+        +boolean read()
+        -int readMask(int mask)
+        +byte readByte()
+        +char readChar()
+        +int readInt()
+        +BitSetL readBitSet()
+        +void close()
+    }
+    class writerBit as "writer" {
+        -out : BufferedOutputStream
+        -buffer : int
+        -n : int
+        +writer(String filename)
+        +void write(final boolean bit)
+        +void write(final BitSetL bs)
+        +void write(final byte b)
+        +void write(final char c)
+        +void write(final int num)
+        -void writeMask(final int num, int mask)
+        -void clear()
+        +void flush()
+        +void close()
+    }
+    class BufferedInputStream
+    class BufferedOutputStream
+    class FileInputStream
+    class FileOutputStream
+
+    class PpmImage
+    class readerPpm as "reader" {
+        -file : IO.Byte.reader
+        -width : int
+        -height : int
+        -buffPos : int
+        -buffer : byte[][][]
+        +Reader(IO.Byte.reader file)
+        +byte[][][] readBlock()
+        -void fillBuffer()
+        +int widthBlocks()
+        +int heightBlocks()
+        -int readInt()
+    }
+    class writerPpm as "writer" {
+        -file : IO.Byte.reader
+        -width : int
+        -height : int
+        -buffPos : int
+        -buffer : byte[][][]
+        -writtenBuffers : int
+        -EOF : boolean
+        {static}-HEADER_FORMAT : String
+        +Writer(IO.Byte.writer file, int width, int height)
+        -void writeHeader()
+        +void writeBlock(byte[][][] block)
+        -void writeBuffer()
+        +int widthBlocks()
+        +int heightBlocks()
+    }
+    class FileFormatException {
+        {static}-serialVersionUID : long
+        +FileFormatException(String s)
+    }
+
+    FileOutputStream <|-- writerChar
+    FileInputStream <|-- readerChar
+    BufferedOutputStream <|-- writerByte
+    BufferedInputStream <|-- readerByte
+
+    PpmImage *-- readerPpm
+    PpmImage *-- writerPpm
+    PpmImage *-- FileFormatException
+
+    IO <.. PpmImage
+
+    IO *-- Char
+    IO *-- Byte
+    IO *-- Bit
+    Char *-- writerChar
+    Char *-- readerChar
+    Byte *-- writerByte
+    Byte *-- readerByte
+    Bit *-- readerBit
+    Bit *-- writerBit
+}
+
+
+@enduml

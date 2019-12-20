@@ -56,6 +56,6 @@ código por separado mientras los desarrollábamos o mejorábamos.
 
 ### Diagramas de Clases
 
-![Diagrama Classes](doc/UML/DiagramaClasses.png)
-![Diagrama Classes IO](doc/UML/DiagramaClasses_IO.png)
-![Diagrama Classes JPEG](doc/UML/DiagramaClasses_JPEG.png)
+![Diagrama Classes Domini](doc/UML/DiagramaClassesDomini.png)
+![Diagrama Classes Persistència](doc/UML/DiagramaClassesPersistencia.png)
+![Diagrama Classes Presentació](doc/UML/DiagramaClassesPresentacio.png)

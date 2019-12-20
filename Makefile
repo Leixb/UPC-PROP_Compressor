@@ -12,6 +12,7 @@ JAVA = java
 JAR = jar
 
 MAIN = presentacio.Presentacio
+MAIN_CLI = presentacio.Main
 VERSION = 1.0-SNAPSHOT
 JAR_FILE = $(TARGET)/ProjecteProp-$(VERSION).jar
 
@@ -40,6 +41,9 @@ clean:
 
 run:
 	@$(JAVA) -cp $(CP):$(UI_JARS) $(MAIN)
+
+run_console:
+	@$(JAVA) -cp $(CP):$(UI_JARS) $(MAIN_CLI)
 
 dirs:
 	@mkdir -p $(DIRS)

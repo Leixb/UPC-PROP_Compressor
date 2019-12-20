@@ -1,0 +1,142 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+title Diagrama de classes de Presentacio
+
+package Domini {
+    class CtrlDomini << (S,#FF7700) Singleton >>
+}
+
+package Presentacio {
+    class CtrlPresentacio << (S,#FF7700) Singleton >>{
+        -cd : CtrlDomini
+        {static}-instance : CtrlPresentacio
+        -CtrlPresentacio()
+        {static}+CtrlPresentacio getInstance()
+        +void compress(int alg, String fileIn, String fileOut, short qualityJPEG)
+        +void decompress(String fileIn, String fileOut)
+    }
+    class Presentacio {
+        -labelName : JLabel
+        -panelMain : JPanel
+        -buttonDecompress : JButton
+        -buttonCompress : JButton
+        -buttonExit : JButton
+        {static}-f : JFrame
+        +Presentacio()
+        {static}~void showPresentacio(Point p, Dimension d)
+        {static}-void setWindowLocationAndDimension(Point p, Dimension d)
+        {static}+void main(String[] args)
+    }
+    class Compress {
+        -panelCompress : JPanel
+        -menuAlgs : JComboBox
+        -qualityJPEG : Spinner
+        -labelQJPEG : JLabel
+        -buttonCompress : JButton
+        -buttonBack : JButton
+        -buttonSelectFileIn : JButton
+        -labelFileIn : JLabel
+        -buttonSelectFileOut : JButton
+        -labelFileOut : JLabel
+        -buttonViewFile : JButton
+        -f : JFrame
+        -algSelected : int
+        -jpegQuality : int
+        -fileIn : String
+        -fileOut : String
+        ~Compress()
+        -String fittingLabel(String file, JLabel label)
+        ~void showCompress(Point p, Dimension d)
+        -void setWindowLocationAndDimension(Point p, Dimension d)
+    }
+    class Decompress {
+        -panelDecompress : JPanel
+        -buttonBack : JButton
+        -buttonDecompress : JButton
+        -buttonSelectFileIn : JButton
+        -textfieldSelectFileOut : JTextField
+        -labelFileIn : JLabel
+        -buttonSelectFileOut : JButton
+        -labelFileOut : JLabel
+        {static}-f : JFrame
+        -fileIn : String
+        -fileOut : String
+        ~Decompress()
+        -String fittingLabel(String file, JLabel label)
+        ~void showDecompress(Point p, Dimension d)
+        -void setWindowLocationAndDimension(Point p, Dimension d)
+    }
+    class LoadingCompress {
+        -cp : CtrlPresentacio
+        -panelLC : JPanel
+        -labelGIF : JLabel
+        -buttonCancelComp : JButton
+        {static}-f : JFrame
+        -sw : SwingWorker
+        ~LoadingCompress()
+        ~void showLoadingCompress(int alg, String fileIn, String fileOut, short qualityJPEG, Point p, Dimension d)
+        -void setWindowLocationAndDimension(Point p, Dimension d)
+        -void compress(int alg, String fileIn, String fileOut, short qualityJPEG)
+    }
+    class LoadingDecompress {
+        -cp : CtrlPresentacio
+        -labelGIF : JLabel
+        -panelLD : JPanel
+        -buttonCancelDescomp : JButton
+        {static}-f : JFrame
+        -sw : SwingWorker
+        ~LoadingDecompress()
+        ~void showLoadingDecompress(String fileIn, String fileOut, Point p, Dimension d)
+        -void setWindowLocationAndDimension(Point p, Dimension d)
+        -void decompress(String fileIn, String fileOut)
+    }
+    class StatsCompress {
+        -cp : CtrlPresentacio
+        -panelStatsComp : JPanel
+        -buttonExit : JButton
+        -buttonHome : JButton
+        -labelTime : JLabel
+        -labelDeflate : JLabel
+        -labelSpeed : JLabel
+        -buttonShowFile : JButton
+        {static}-f : JFrame
+        ~StatsCompress(CtrlPresentacio ctrlPres)
+        ~void showStatsCompress(Point p, Dimension d)
+        -void setWindowLocationAndDimension(Point p, Dimension d)
+    }
+    class StatsDecompress {
+        -cp : CtrlPresentacio
+        -panelStatsDecomp : JPanel
+        -buttonHome : JButton
+        -buttonExit : JButton
+        -labelTime : JLabel
+        -labelInflate : JLabel
+        -labelSpeed : JLabel
+        -buttonOpenFile : JButton
+        {static}-f : JFrame
+        ~StatsDecompress(CtrlPresentacio ctrlPres)
+        ~void showStatsDecompress(Point p, Dimension d)
+        -void setWindowLocationAndDimension(Point p, Dimension d)
+    }
+}
+
+CtrlDomini <-- CtrlPresentacio
+CtrlPresentacio <-- LoadingCompress
+CtrlPresentacio <-- LoadingDecompress
+CtrlPresentacio <-- StatsCompress
+CtrlPresentacio <-- StatsDecompress
+
+Presentacio -- Compress
+Presentacio -- Decompress
+Compress --> LoadingCompress
+Decompress --> LoadingDecompress
+LoadingCompress --> StatsCompress
+LoadingCompress --> Presentacio
+LoadingDecompress --> StatsDecompress
+LoadingDecompress --> Presentacio
+StatsCompress --> Presentacio
+StatsDecompress --> Presentacio
+
+@enduml

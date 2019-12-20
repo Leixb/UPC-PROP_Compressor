@@ -199,7 +199,7 @@ public class CtrlDomini {
     public static class MagicByteException extends IOException {
         private static final long serialVersionUID = 89896782363268431L;
 
-        public MagicByteException(byte b) {
+        MagicByteException(byte b) {
             super(String.format("Unknown magic byte: 0x%02x", b));
         }
     }

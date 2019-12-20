@@ -20,16 +20,16 @@ public final class LZSS implements CompressionAlg{
     }
 
     /// Tamaño máximo del sliding window
-    final static int MAX_SIZE_SW = 1023;
+    private final static int MAX_SIZE_SW = 1023;
 
     /// Máxima longitud de la coincidencia
-    final static int MAX_LENGTH_COINCIDENCE = 17;
+    private final static int MAX_LENGTH_COINCIDENCE = 17;
 
     /// Sliding Window
-    final byte[] slidingWindow;
+    private final byte[] slidingWindow;
 
     /// Carácteres actuales
-    final byte[] actualCharacters;
+    private final byte[] actualCharacters;
 
     /// Magic Byte LZSS
     public final static byte MAGIC_BYTE = 0x55;
@@ -147,7 +147,7 @@ public final class LZSS implements CompressionAlg{
         while (!eof) {
             // if c is 1, then read offset and length and write the characters in output
             // otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed
-            if (c == true) {
+            if (c) {
                 final int index = input.readBitSet(nBitsOffset).asInt();
 
                 if(index == 0) eof = true;

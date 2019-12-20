@@ -113,7 +113,7 @@ public class Compress {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc;
-                if ("".equals(fileIn)) fc = new JFileChooser();
+                if ("".equals(fileIn)) fc = new JFileChooser("./data");
                 else {
                     File fileInObj = new File(fileIn);
                     if (fileInObj.isFile()) fc = new JFileChooser(fileIn);

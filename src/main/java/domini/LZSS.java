@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/domini/LZSS.java
- * @author Albert Mercadé Plasencia
+ * @author Albert Mercadé
 */
 package domini;
 

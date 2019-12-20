@@ -61,39 +61,20 @@ public class CtrlDomini {
 
     void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, Short quality) throws IOException {
         CompressionAlg comp;
-        switch(alg) {
-            case 0:
+            if (alg == 0) {
                 String filename = input.getFilename();
-                if(filename.endsWith(".ppm")){
+                if(filename.endsWith(".ppm")) {
                     comp = new JPEG((short) 90);
+                } else {
+                    if (stats.getIniFileSize() > 1048576) comp = new LZW(); // 1 MiB
+                    else comp = new LZ78();
                 }
-                else if(filename.endsWith(".txt")){
-                    if(filename.length()<1000000){ //1MB
-                        comp = new LZ78();
-                    }
-                    else {
-                        comp = new LZW();
-                    }
-                }
-                else {
-                    comp = new LZSS();
-                }
-                break;
-            case 1:
-                comp = new LZ78();
-                break;
-            case 2:
-                comp = new LZSS();
-                break;
-            case 3:
-                comp = new LZW();
-                break;
-            case 4:
-                comp = new JPEG(quality);
-                break;
-            default:
-                throw new RuntimeException("No s'hauria de poder arribar aqui.");
-        }
+            } else if (alg == 1) comp = new LZ78();
+              else if (alg == 2) comp = new LZSS();
+              else if (alg == 3) comp = new LZW();
+              else if (alg == 4) comp = new JPEG(quality);
+              else throw new RuntimeException("No s'hauria de poder arribar aqui.");
+             
         output.write(comp.getMagicByte());
         comp.compress(input, output);
     }

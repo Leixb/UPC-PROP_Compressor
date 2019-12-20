@@ -5,7 +5,7 @@ import java.util.Scanner;
 class JPEGBlockDriver {
     private static Scanner scanner;
 
-    public static void testEncode() {
+    private static void testEncode() {
         System.out.print("Quality: ");
         short quality = scanner.nextShort();
 
@@ -36,7 +36,7 @@ class JPEGBlockDriver {
         }
     }
 
-    public static void testDecode() {
+    private static void testDecode() {
         System.out.print("Quality: ");
         short quality = scanner.nextShort();
 
@@ -83,7 +83,7 @@ class JPEGBlockDriver {
 
         int action = prompt(options);
 
-        while (action != 3) {
+        while (action != options.length) {
 
             if (action == 1) testEncode();
             else if (action == 2) testDecode();

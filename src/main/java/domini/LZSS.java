@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/domini/LZSS.java
- * @author Albert Mercadé Plasencia
+ * @author Albert Mercadé
 */
 package domini;
 
@@ -13,27 +13,40 @@ import java.io.IOException;
  */
 public final class LZSS implements CompressionAlg{
 
+    /** Creadora vacía LZSS */
     public LZSS() {
         slidingWindow = new byte[MAX_SIZE_SW];
         actualCharacters = new byte[MAX_LENGTH_COINCIDENCE];
     }
 
-    final static int MAX_SIZE_SW = 1023; // maximum size of the sliding window
-    final static int MAX_LENGTH_COINCIDENCE = 17; //
-    final byte[] slidingWindow;
-    final byte[] actualCharacters;
-    public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
-    private final static int EOF = 0; // Pseudo EOF
+    /// Tamaño máximo del sliding window
+    private final static int MAX_SIZE_SW = 1023;
+
+    /// Máxima longitud de la coincidencia
+    private final static int MAX_LENGTH_COINCIDENCE = 17;
+
+    /// Sliding Window
+    private final byte[] slidingWindow;
+
+    /// Carácteres actuales
+    private final byte[] actualCharacters;
+
+    /// Magic Byte LZSS
+    public final static byte MAGIC_BYTE = 0x55;
+
+    /// Pseudo EOF
+    private final static int EOF = 0;
 
     public byte getMagicByte() {
         return MAGIC_BYTE;
     }
 
     /**
-     * @brief Usando el algoritmo LZSS esta función comprime un archivo
-     * @param input objeto de lectura del archivo que se quiere comprimir
+     * @brief Comprime un archivo utilizando el algoritmo LZSS
+     *
+     * @param input objeto de lectura del archivo que se comprime
      * @param output objeto de escritura del archivo comprimido
-     * @throws IOException se lanza cuando hay un error de lectura o escritura
+     * @throws IOException Lanza cualquier excepción generada al comprimir
      */
     public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
         // calculating num of bits needed for offset and length according
@@ -113,8 +126,8 @@ public final class LZSS implements CompressionAlg{
     }
 
     /**
+     * @brief Descomprime un archivo utilizando el algoritmo LZSS
      *
-     * @brief Usando el algoritmo LZSS esta función descomprime un archivo previamente comprimido por este compresor
      * @param input objeto de lectura del archivo comprimido
      * @param output objeto de escritura del archivo descomprimido
      * @throws IOException se lanza cuando hay un error de lecturo o escritura
@@ -134,7 +147,7 @@ public final class LZSS implements CompressionAlg{
         while (!eof) {
             // if c is 1, then read offset and length and write the characters in output
             // otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed
-            if (c == true) {
+            if (c) {
                 final int index = input.readBitSet(nBitsOffset).asInt();
 
                 if(index == 0) eof = true;
@@ -170,11 +183,10 @@ public final class LZSS implements CompressionAlg{
     }
 
     /**
-     * @brief Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que
-     *        también es sufijo hasta esa posición
-     * @param lps es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud
-     *        máxima del prefijo que también es sufijo desde el principio hasta esa posición
-     * @param pathLength Length del pattern para el que se quiere computar el array lps
+     * @brief Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición
+     *
+     * @param lps es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición
+     * @param patLength Length del pattern para el que se quiere computar el array lps
      */
     private void computeLPSArray(final int[] lps, int patLength) {
         int length = 0;
@@ -198,11 +210,11 @@ public final class LZSS implements CompressionAlg{
 
     /**
      * @brief Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron
+     *
      * @param currentACIndex la length del pattern
      * @param currentSWIndex el indice donde empieza el slidingWindow, ya que es circular
      * @param fullSW indica el estado de la slidingWindow, true si lo está, false en caso contrario
-     * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de
-     *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
+     * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
      */
     private int kmp(int currentACIndex, int currentSWIndex, boolean fullSW) {
         final int patLength = currentACIndex, txtLength = currentSWIndex;
@@ -243,6 +255,7 @@ public final class LZSS implements CompressionAlg{
 
     /**
      * @brief Calcula el logaritmo en base 2 de un real
+     * 
      * @param n es el numero para el cual queremos calcular su logaritmo en base 2
      * @return Devuelve el logaritmo en base 2 de n
      */

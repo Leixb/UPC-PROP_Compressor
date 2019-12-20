@@ -1,5 +1,5 @@
 /**
- * @file ./src/main/java/domini/PpmImage.java
+ * @file ./src/main/java/persistencia/PpmImage.java
  * @author Aleix Boné
 */
 package persistencia;
@@ -10,6 +10,8 @@ import java.io.*;
  * @brief Imagen PPM
  */
 public class PpmImage {
+
+    /** Lector de PpmImage */
     static public class Reader {
         private IO.Byte.reader file;
         private int width, height;
@@ -17,7 +19,7 @@ public class PpmImage {
         private int buffPos; // Bloque actual en el buffer
         private byte[][][] buffer;
 
-        public Reader(IO.Byte.reader file) throws EOFException, IOException {
+        public Reader(IO.Byte.reader file) throws IOException {
             this.file = file;
 
             final byte[] magic = new byte[2];
@@ -25,7 +27,7 @@ public class PpmImage {
                 throw new EOFException();
 
             if (magic[0] != 'P' || magic[1] != '6')
-                throw new IOException("Unsupported File format (not a P6 image)");
+                throw new FileFormatException("Not PPM image (P6)");
 
             this.width = readInt();
             this.height = readInt();
@@ -33,7 +35,7 @@ public class PpmImage {
             final int maxVal = readInt();
 
             if (maxVal >= 256)
-                throw new IOException("Unsupported File Format (bit depth > 255)");
+                throw new FileFormatException("bit depth > 255");
 
             buffer = new byte[width][8][3];
             buffPos = width/8+1;
@@ -107,6 +109,7 @@ public class PpmImage {
         }
     }
 
+    /** Escritor de PpmImage */
     static public class Writer {
         private IO.Byte.writer file;
 
@@ -171,6 +174,15 @@ public class PpmImage {
         }
         public int heightBlocks() {
             return height/8 + ((height%8 == 0)? 0 : 1);
+        }
+    }
+
+    /** Excepción del formato de archivo  */
+    public static class FileFormatException extends IOException {
+        private static final long serialVersionUID = 483426725025690872L;
+
+        public FileFormatException(String s) {
+            super(String.format("Invalid file format: %s", s));
         }
     }
 }

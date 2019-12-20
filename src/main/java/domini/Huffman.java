@@ -19,8 +19,11 @@ import java.io.IOException;
  */
 public class Huffman {
 
-    private Node root; //< Raíz del árbol Huffman
-    private Map<Short, BitSetL> table; //< Tabla de Huffman
+    /// Raíz del árbol Huffman
+    private Node root;
+
+    /// Tabla de Huffman
+    private Map<Short, BitSetL> table;
 
     /// Nodo del arbol huffman
     public static class Node {
@@ -29,7 +32,7 @@ public class Huffman {
         boolean leaf;
         Node L, R;
 
-        public boolean isLeaf() {
+        boolean isLeaf() {
             return leaf;
         }
 
@@ -39,11 +42,11 @@ public class Huffman {
     }
 
     /**
-     * @brief Leer la tabla del disco en memoria y construye el árbol.
+     * @brief Leer la tabla del disco en memoria y construye el árbol
      *
-     * @param isAC  si cierto se lee la tabla AC, sino la DC.
+     * @param isAC  si cierto se lee la tabla AC, sino la DC
      * @param isChrominance  si cierto se lee la tabla de Chrominance, sino Luminance
-     * @throws IOException si se produce un error en la lectura de las tablas.
+     * @throws IOException si se produce un error en la lectura de las tablas
      */
     public Huffman(final boolean isAC, final boolean isChrominance) throws IOException {
         String filename;
@@ -64,6 +67,12 @@ public class Huffman {
         readTable(URLDecoder.decode(resource.getFile(), "UTF-8"));
     }
 
+    /**
+     * @brief Lee una tabla Huffman
+     *
+     * @param filename nombre del archivo a leer
+     * @throws IOException Lanza cualquier excepción generada al leer
+     */
     private void readTable(final String filename) throws IOException {
         table = new HashMap<Short, BitSetL>();
         try (IO.Char.reader input = new IO.Char.reader(filename)) {
@@ -72,7 +81,7 @@ public class Huffman {
                 final String[] sp = s.split(" ", 2);
 
                 if (sp.length != 2)
-                    throw new IOException("Invalid input table");
+                    throw new InvalidTableException(filename);
 
                 final Short value = Short.parseShort(sp[0], 16);
                 final BitSetL bs = new BitSetL(sp[1]);
@@ -122,32 +131,37 @@ public class Huffman {
      *
      * @param value valor a buscar en la tabla
      * @return código Huffman
-     * @throws HuffmanLookupException si el valor no se encuentra en la tabla
      */
-    public BitSetL encode(final Short value) throws HuffmanLookupException {
+    public BitSetL encode(final Short value) {
         BitSetL bs = table.get(value);
         if (bs == null) {
-            throw new HuffmanLookupException(value);
+            throw new LookupException(value);
         }
         return bs;
     }
 
-    public static class HuffmanLookupException extends Exception {
+    /** Excecpión de búqueda de un valor en la tabla */
+    public static class LookupException extends RuntimeException {
         private static final long serialVersionUID = 716585856065058709L;
 
-        HuffmanLookupException() {
-            super();
+        LookupException(Short n) {
+            super(String.format("Huffman lookup failed for value: %d", n));
         }
-        HuffmanLookupException(String s) {
-            super(s);
-        }
-        HuffmanLookupException(Short n) {
-            super(String.format("Huffman lookup failed for: %d", n));
+    }
+
+    /** Excepción de tabla invalida */
+    public static class InvalidTableException extends IOException {
+        private static final long serialVersionUID = 1547862892655535861L;
+
+        InvalidTableException(final String filename) {
+            super(String.format("Invalid Table on file: %s", filename));
         }
     }
 
     /**
-     * @param b booleano
+     * @brief Devuelve siguiente nodo del árbol des de la raíz
+     *
+     * @param b bit a decodificar
      * @return Siguiente nodo del árbol des de la raíz
      */
     public Node decode(final boolean b) {
@@ -155,8 +169,10 @@ public class Huffman {
     }
 
     /**
+     * @brief Dado un node, devuelve siguiente nodo del árbol
+     *
      * @param n Nodo del árbol
-     * @param b booleano
+     * @param b bit a decodificar
      * @return Siguiente nodo en el árbol
      */
     public Node decode(final Node n, final boolean b) {

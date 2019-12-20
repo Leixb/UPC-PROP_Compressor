@@ -10,10 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
 
 public class Decompress {
-    private CtrlPresentacio cp = new CtrlPresentacio();
-
     private JPanel panelDecompress;
     private JButton buttonBack;
     private JButton buttonDecompress;
@@ -29,11 +28,13 @@ public class Decompress {
     private String fileOut;
 
 
-    public Decompress() {
+    Decompress() {
         f = new JFrame("PIZ Compressor | Descomprimir");
 
         labelFileIn.setVisible(false);
         labelFileOut.setVisible(false);
+        buttonSelectFileOut.setEnabled(false);
+        buttonDecompress.setEnabled(false);
 
         fileIn = fileOut = "";
 
@@ -63,6 +64,7 @@ public class Decompress {
                     labelFileIn.setToolTipText(fileIn);
                     labelFileIn.setForeground(new Color(0, 190, 0));
                     labelFileIn.setVisible(true);
+                    buttonSelectFileOut.setEnabled(true);
                 } else if (result == JFileChooser.ERROR_OPTION) {
                     labelFileIn.setText("Error pujant fitxer.");
                     labelFileIn.setForeground(new Color(220, 0, 0));
@@ -78,10 +80,14 @@ public class Decompress {
                     JOptionPane.showMessageDialog(f, "Selecciona un fitxer a descomprimir.", "PIZ Compressor", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JFileChooser fc;
-                    if ("".equals(fileOut)) fc = new JFileChooser(fileIn);
-                    else fc = new JFileChooser(fileOut.substring(0, fileOut.lastIndexOf('/') + 1));
-                    fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
+                    if ("".equals(fileOut)) fc = new JFileChooser(fileIn);
+                    else {
+                        fc = new JFileChooser(fileOut);
+                        fc.setSelectedFile(new File(fileOut));
+                    }
+
+                    fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                     int result = fc.showSaveDialog(f);
                     if (result == JFileChooser.APPROVE_OPTION) {
                         fileOut = fc.getSelectedFile().getAbsolutePath();
@@ -89,6 +95,7 @@ public class Decompress {
                         labelFileOut.setToolTipText(fileOut);
                         labelFileOut.setForeground(new Color(0, 190, 0));
                         labelFileOut.setVisible(true);
+                        buttonDecompress.setEnabled(true);
                     } else if (result == JFileChooser.ERROR_OPTION) {
                         labelFileOut.setText("Error al seleccionar fitxer destí.");
                         labelFileOut.setForeground(new Color(220, 0, 0));
@@ -117,7 +124,7 @@ public class Decompress {
     }
 
     private String fittingLabel(String file, JLabel label) {
-        int maxWidth = f.getWidth() - 400;
+        int maxWidth = f.getWidth() - 425;
         FontMetrics fm = label.getFontMetrics(label.getFont());
 
         String fittingText = "";
@@ -171,9 +178,9 @@ public class Decompress {
         panelDecompress.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Fitxer a descomprimir:");
-        panel1.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
+        panel1.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(185, -1), null, null, 0, false));
         buttonSelectFileIn = new JButton();
-        buttonSelectFileIn.setText("Seleccionar fitxer");
+        buttonSelectFileIn.setText("Seleccionar");
         panel1.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
         labelFileIn = new JLabel();
         Font labelFileInFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileIn.getFont());
@@ -188,8 +195,8 @@ public class Decompress {
         panel2.setLayout(new GridLayoutManager(1, 5, new Insets(0, 20, 0, 20), -1, -1));
         panelDecompress.add(panel2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Nom fitxer destí:");
-        panel2.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
+        label2.setText("Nom fitxer/directori destí:");
+        panel2.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(185, -1), null, null, 0, false));
         labelFileOut = new JLabel();
         Font labelFileOutFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileOut.getFont());
         if (labelFileOutFont != null) labelFileOut.setFont(labelFileOutFont);

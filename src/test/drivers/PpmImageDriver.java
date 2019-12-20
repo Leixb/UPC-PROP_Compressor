@@ -1,115 +1,14 @@
-import domini.PpmImage;
+import persistencia.PpmImage;
+import persistencia.IO;
 
 import java.util.Scanner;
+import java.io.IOException;
 
 class PpmImageDriver {
     private static Scanner scanner;
 
-    private static PpmImage image;
-
-    public static void testSetDimensions() {
-        System.out.print("Width: ");
-        int width = scanner.nextInt();
-        System.out.print("Heigth: ");
-        int heigth = scanner.nextInt();
-
-        image.setDimensions(width, heigth);
-        System.out.println("DONE");
-    }
-
-    public static void testReadFile() {
-        System.out.println("Filename: ");
-        String filename = scanner.nextLine();
-
-        try {
-            image.readFile(filename);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    public static void testWritefile() {
-        System.out.println("Filename: ");
-        String filename = scanner.nextLine();
-
-        try {
-            image.writeFile(filename);
-            System.out.println("DONE");
-        } catch (Exception e) {
-            System.out.println("FAILED");
-            e.printStackTrace();
-        }
-    }
-
-    public static void testToRGB() {
-        image.toRGB();
-        System.out.println("DONE");
-    }
-
-    public static void testToYCbCr() {
-        image.toYCbCr();
-        System.out.println("DONE");
-    }
-
-    public static void testReadBlock() {
-        System.out.print("channel: ");
-        int channel = scanner.nextInt();
-        System.out.print("x: ");
-        int x = scanner.nextInt();
-        System.out.print("y: ");
-        int y = scanner.nextInt();
-
-        byte[][] block = image.readBlock(channel, x, y);
-
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                System.out.printf("%04x ", block[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println("DONE");
-    }
-    public static void testWriteBlock() {
-        System.out.print("channel: ");
-        int channel = scanner.nextInt();
-        System.out.print("x: ");
-        int x = scanner.nextInt();
-        System.out.print("y: ");
-        int y = scanner.nextInt();
-
-        System.out.println("Enter 8x8 block (in hex):");
-
-        byte[][] block = new byte[8][8];
-
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                block[i][j] = scanner.nextByte(16);
-            }
-        }
-
-        image.writeBlock(block, channel, x, y);
-
-        System.out.println("DONE");
-    }
-
-    public static void testWidth() {
-        System.out.printf("width: %d\n", image.width());
-        System.out.println("DONE");
-    }
-    public static void testHeight() {
-        System.out.printf("height: %d\n", image.height());
-        System.out.println("DONE");
-    }
-    public static void testColumns() {
-        System.out.printf("columns: %d\n", image.columns());
-        System.out.println("DONE");
-    }
-    public static void testRows() {
-        System.out.printf("rows: %d\n", image.rows());
-        System.out.println("DONE");
-    }
+    private static PpmImage.Reader imgReader;
+    private static PpmImage.Writer imgWriter;
 
     public static int prompt(String[] options) {
         for (int i = 1; i <= options.length; ++i)
@@ -118,41 +17,140 @@ class PpmImageDriver {
         return scanner.nextInt();
     }
 
+    public static void testReaderReadBlock() {
+        try {
+            byte[][][] block = imgReader.readBlock();
+
+            for (int i = 0; i < 8; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    for (int chan = 0; chan < 3; ++chan) {
+                        System.out.printf("%02x ", block[i][j][chan]);
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+            }
+
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        }
+    }
+    public static void testReaderWidthBlocks() {
+        System.out.printf("int: %d\n", imgReader.widthBlocks());
+    }
+    public static void testReaderHeightBlocks() {
+        System.out.printf("int: %d\n", imgReader.heightBlocks());
+    }
+
+    public static void testReader() {
+        System.out.print("Input file to read: ");
+        String filename = scanner.next();
+
+        String[] options = {
+            "readBlock",
+            "widthBlocks",
+            "heightBlocks"
+        };
+
+        try (IO.Byte.reader input = new IO.Byte.reader(filename)) {
+            imgReader = new PpmImage.Reader(input);
+
+            int action = prompt(options);
+
+            while (action != options.length) {
+
+                if (action == 1) testReaderReadBlock();
+                else if (action == 2) testReaderWidthBlocks();
+                else if (action == 3) testReaderHeightBlocks();
+                else System.out.println("Invalid option");
+
+                action = prompt(options);
+            }
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        } finally {
+            imgReader = null;
+        }
+    }
+
+    public static void testWriterWriteBlock() {
+        byte[][][] block = new byte[8][8][3];
+        try {
+            System.out.print("Enter byte to fill block (hex): ");
+            byte b = scanner.nextByte(16);
+            for (int i = 0; i < 8; ++i)
+                for (int j = 0; j < 8; ++j)
+                    for (int chan = 0; chan < 3; ++chan)
+                        block[i][j][chan] = b;
+
+            imgWriter.writeBlock(block);
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        }
+    }
+    public static void testWriterWidthBlocks() {
+        System.out.printf("int: %d\n", imgWriter.widthBlocks());
+    }
+    public static void testWriterHeightBlocks() {
+        System.out.printf("int: %d\n", imgWriter.heightBlocks());
+    }
+
+    public static void testWriter() {
+        System.out.print("Input file to write: ");
+        String filename = scanner.next();
+
+        System.out.print("width: ");
+        int width = scanner.nextInt();
+        System.out.print("height: ");
+        int height = scanner.nextInt();
+
+        String[] options = {
+            "writeBlock",
+            "widthBlocks",
+            "heightBlocks"
+        };
+
+        try (IO.Byte.writer output = new IO.Byte.writer(filename)) {
+            imgWriter = new PpmImage.Writer(output, width, height);
+
+            int action = prompt(options);
+
+            while (action != options.length) {
+
+                if (action == 1) testWriterWriteBlock();
+                else if (action == 2) testWriterWidthBlocks();
+                else if (action == 3) testWriterHeightBlocks();
+                else System.out.println("Invalid option");
+
+                action = prompt(options);
+            }
+
+        } catch (IOException e) {
+            System.out.println("FAILED");
+            e.printStackTrace();
+        } finally {
+            imgWriter = null;
+        }
+    }
+
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
         String[] options = {
-            "setDimensions",
-            "readFile",
-            "writefile",
-            "toRGB",
-            "toYCbCr",
-            "readBlock",
-            "writeBlock",
-            "width",
-            "height",
-            "columns",
-            "rows",
+            "Reader",
+            "Writer",
             "exit"
         };
 
-        image = new PpmImage();
-
         int action = prompt(options);
 
-        while (action != 12) {
+        while (action != options.length) {
 
-            if (action == 1) testSetDimensions();
-            else if (action == 2) testReadFile();
-            else if (action == 3) testWritefile();
-            else if (action == 4) testToRGB();
-            else if (action == 5) testToYCbCr();
-            else if (action == 6) testReadBlock();
-            else if (action == 7) testWriteBlock();
-            else if (action == 8) testWidth();
-            else if (action == 9) testHeight();
-            else if (action == 10) testColumns();
-            else if (action == 11) testRows();
+            if (action == 1) testReader();
+            else if (action == 2) testWriter();
             else System.out.println("Invalid option");
 
             action = prompt(options);

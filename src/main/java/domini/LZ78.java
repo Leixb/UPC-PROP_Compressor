@@ -22,7 +22,7 @@ public final class LZ78 implements CompressionAlg{
     /** Constructora vacía LZ78 */
     public LZ78() { }
 
-    /// Declaración del HashMap de Decompression
+    /// Diccionario de decompresión
     private static Map<Integer, ArrayList<Byte>> decompress_dict;
 
     /// Magic Byte LZ78

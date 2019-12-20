@@ -2,31 +2,32 @@
 
 skinparam classAttributeIconSize 0
 
-title Diagrama de classes IO
+title Diagrama de classes de Persistencia
 
-package Domini {
+package Persistencia {
     class IO {
     }
     class Char
     class readerChar as "reader" {
-        +reader(filename)
+        +reader(final String filename)
     }
     class writerChar as "writer" {
-        +writer(filename)
+        +writer(final String filename)
     }
     class Byte
     class readerByte as "reader" {
-        +reader(filename)
+        -filename : String
+        +reader(final String filename)
     }
     class writerByte as "writer" {
-        +writer(filename)
+        +writer(final String filename)
     }
     class Bit
     class readerBit as "reader" {
-        - in : BufferedInputStream
-        - buffer : int
-        - n : int
-        +reader(String filename)
+        -in : BufferedInputStream
+        -buffer : int
+        -n : int
+        +reader(final String filename)
         -void fill()
         +boolean read()
         -int readMask(int mask)
@@ -37,31 +38,70 @@ package Domini {
         +void close()
     }
     class writerBit as "writer" {
-        - out : BufferedOutputStream
-        - buffer : int
-        - n : int
+        -out : BufferedOutputStream
+        -buffer : int
+        -n : int
         +writer(String filename)
-        +write(bit)
-        +write(bs)
-        +write(b)
-        +write(c)
-        +write(num)
-        -writeMask(int num, int mask)
-        -clear()
-        +flush()
-        +close()
+        +void write(final boolean bit)
+        +void write(final BitSetL bs)
+        +void write(final byte b)
+        +void write(final char c)
+        +void write(final int num)
+        -void writeMask(final int num, int mask)
+        -void clear()
+        +void flush()
+        +void close()
     }
-
     class BufferedInputStream
     class BufferedOutputStream
     class FileInputStream
     class FileOutputStream
+
+    class PpmImage
+    class readerPpm as "reader" {
+        -file : IO.Byte.reader
+        -width : int
+        -height : int
+        -buffPos : int
+        -buffer : byte[][][]
+        +Reader(IO.Byte.reader file)
+        +byte[][][] readBlock()
+        -void fillBuffer()
+        +int widthBlocks()
+        +int heightBlocks()
+        -int readInt()
+    }
+    class writerPpm as "writer" {
+        -file : IO.Byte.reader
+        -width : int
+        -height : int
+        -buffPos : int
+        -buffer : byte[][][]
+        -writtenBuffers : int
+        -EOF : boolean
+        {static}-HEADER_FORMAT : String
+        +Writer(IO.Byte.writer file, int width, int height)
+        -void writeHeader()
+        +void writeBlock(byte[][][] block)
+        -void writeBuffer()
+        +int widthBlocks()
+        +int heightBlocks()
+    }
+    class FileFormatException {
+        {static}-serialVersionUID : long
+        +FileFormatException(String s)
+    }
 
     FileOutputStream <|-- writerChar
     FileInputStream <|-- readerChar
     BufferedOutputStream <|-- writerByte
     BufferedInputStream <|-- readerByte
 
+    PpmImage <|-- readerPpm
+    PpmImage <|-- writerPpm
+    PpmImage <|-- FileFormatException
+
+    IO <.. PpmImage
 
     IO *-- Char
     IO *-- Byte

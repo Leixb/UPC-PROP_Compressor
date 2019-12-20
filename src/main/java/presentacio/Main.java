@@ -1,3 +1,7 @@
+/**
+ * @file ./src/main/java/presentacio/Main.java
+ * @author Alex Herrero
+ */
 package presentacio;
 
 import domini.CtrlDomini;
@@ -6,7 +10,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * @author Albert Mercadé Plasencia / Alex Herrero Pons / Aleix Boné
  * @brief Recibe todos los inputs necesarios del usuario para la compresión/descompresión
  */
 

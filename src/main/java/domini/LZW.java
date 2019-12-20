@@ -139,7 +139,7 @@ public final class LZW implements CompressionAlg{
      * @brief Descomprime un archivo implementando un algoritmo LZW
      *
      * @param input objeto de lectura del archivo que se descomprime
-     * @param output objeto de ecritura del archivo desccomprimido
+     * @param output objeto de ecritura del archivo descomprimido
      * @throws IOException Lanza cualquier excepción generada al comprimir
      */
     public void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {

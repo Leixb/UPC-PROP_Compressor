@@ -214,8 +214,7 @@ public final class LZSS implements CompressionAlg{
      * @param currentACIndex la length del pattern
      * @param currentSWIndex el indice donde empieza el slidingWindow, ya que es circular
      * @param fullSW indica el estado de la slidingWindow, true si lo está, false en caso contrario
-     * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de
-     *         slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
+     * @return Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow
      */
     private int kmp(int currentACIndex, int currentSWIndex, boolean fullSW) {
         final int patLength = currentACIndex, txtLength = currentSWIndex;

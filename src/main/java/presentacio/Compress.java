@@ -231,7 +231,7 @@ public class Compress {
     }
 
     private String fittingLabel(String file, JLabel label) {
-        int maxWidth = f.getWidth() - 420;
+        int maxWidth = f.getWidth() - 435;
         FontMetrics fm = label.getFontMetrics(label.getFont());
 
         String fittingText = "";
@@ -301,7 +301,7 @@ public class Compress {
         Font label1Font = this.$$$getFont$$$(null, -1, -1, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Fitxer/directori a comprimir:");
-        panel2.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(180, -1), null, null, 0, false));
+        panel2.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(195, -1), null, null, 0, false));
         buttonSelectFileIn = new JButton();
         buttonSelectFileIn.setText("Seleccionar");
         panel2.add(buttonSelectFileIn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(160, -1), null, null, 0, false));
@@ -322,7 +322,7 @@ public class Compress {
         Font label2Font = this.$$$getFont$$$(null, -1, -1, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setText("Nom fitxer destí (*.piz):");
-        panel3.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(180, -1), null, null, 0, false));
+        panel3.add(label2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(195, -1), null, null, 0, false));
         labelFileOut = new JLabel();
         Font labelFileOutFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelFileOut.getFont());
         if (labelFileOutFont != null) labelFileOut.setFont(labelFileOutFont);

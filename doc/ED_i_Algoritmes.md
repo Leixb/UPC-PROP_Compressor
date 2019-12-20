@@ -66,11 +66,13 @@ de importancia en ninguna de las dos entregas.
 
 ### Compresión
 
-#### Estructuras de Datos En la primera entrega el algoritmo LZ78 solo podia
-#comprimir archivos de texto y para ello se utilizaba un HashMap con key String
-#y value Integer, actuando de diccionario y de manera que todos los caracteres
-#que se leían del archivo input quedaban guardados en este. No había manera de
-#controlar eficientemente el overflow ni el fin de archivo.
+#### Estructuras de Datos
+
+En la primera entrega el algoritmo LZ78 solo podia comprimir archivos de texto
+y para ello se utilizaba un HashMap con key String y value Integer, actuando de
+diccionario y de manera que todos los caracteres que se leían del archivo input
+quedaban guardados en este. No había manera de controlar eficientemente el
+overflow ni el fin de archivo.
 
 Ahora, para poder comprimir todo tipo de archivos de manera óptima con el
 algoritmo LZ78, hemos utilizado lectura de bytes y un Tree compuesto por Nodos.
@@ -92,9 +94,11 @@ de overflow se crea un nuevo Tree y un nuevo ArrayList.
 
 ### Descompresión
 
-#### Estructuras de Datos En la primera entrega, al poder comprimir solo
-#archivos de texto, el HashMap de descompresión en lugar de tener value
-#ArrayList <Byte> tenia String.
+#### Estructuras de Datos
+
+En la primera entrega, al poder comprimir solo
+archivos de texto, el HashMap de descompresión en lugar de tener value
+ArrayList <Byte> tenia String.
 
 En la segunda entrega, para descomprimir hemos utilizado en este caso un HashMap
 con key Integer y value ArrayList <Byte> actuando como diccionario. Al
@@ -108,8 +112,10 @@ diccionario junto con el byte leído.
 
 ### Compresión
 
-#### Estructuras de Datos En la primera entrega el algoritmo LZW solo podia
-#comprimir archivos de texto por lo que el HashMap tenia cómo key String.
+#### Estructuras de Datos
+
+En la primera entrega el algoritmo LZW solo podia comprimir archivos de texto
+por lo que el HashMap tenia cómo key String.
 
 Para comprimir en el algoritmo LZW hemos utilizado un HashMap con key
 ArrayList<Byte> y value Integer, actuando de diccionario y de manera que todos
@@ -126,9 +132,10 @@ considerablemente el tamaño de la compresión.
 
 ### Descompresión
 
-#### Estructuras de Datos En la primera entrega, al poder comprimir solo
-#archivos de texto, el HashMap de descompresión en lugar de tener value
-#ArrayList <Byte> tenia String.
+#### Estructuras de Datos
+
+En la primera entrega, al poder comprimir solo archivos de texto, el HashMap de
+descompresión en lugar de tener value ArrayList <Byte> tenia String.
 
 Para descomprimir hemos utilizado en este caso un HashMap inverso al de
 compresión, con key Integer y value ArrayList<Byte>, actuando también como

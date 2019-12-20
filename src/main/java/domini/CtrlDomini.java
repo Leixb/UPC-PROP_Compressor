@@ -111,7 +111,7 @@ public class CtrlDomini {
         stats.setFinFileSize(fileOut);
     }
 
-    public void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
+    void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
         CompressionAlg decomp;
 
         if(magicByte == 0) magicByte = (byte)input.readByte();

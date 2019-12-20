@@ -156,6 +156,9 @@ overflow se reinicia el diccionario.
 
 Para la compresión se ha usado una tabla Huffman con valores predefinidos.
 
+En la primera entrega, se leía la imagen entera en la memoria y luego se comprimía.
+En la segunda, se lee la imagen por hileras y se comprime en el mismo momento.
+
 #### Algoritmos
 
 - *DCT (Discrete Cosine Transform)* Transforma los datos de la imagen como sumas
@@ -171,6 +174,10 @@ DCT, hay muchos 0 lo que permite comprimir los datos con RLE.
 
 Para descomprimir el archivo, se ha usado la misma tabla de Huffman que en la
 compresión pero en formato de árbol.
+
+Al igual que al comprimir, en la primera entrega, se creava la imagen entera en
+la memoria mientras se descomprimía y luego se escribía.  En la segunda entrega, se escribe la
+imagen por hileras a medida que se va descomprimiendo.
 
 #### Algoritmos
 

@@ -20,6 +20,17 @@ class PpmImageDriver {
     public static void testReaderReadBlock() {
         try {
             byte[][][] block = imgReader.readBlock();
+
+            for (int i = 0; i < 8; ++i) {
+                for (int j = 0; j < 8; ++j) {
+                    for (int chan = 0; chan < 3; ++chan) {
+                        System.out.printf("%02x ", block[i][j][chan]);
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+            }
+
         } catch (IOException e) {
             System.out.println("FAILED");
             e.printStackTrace();
@@ -67,6 +78,13 @@ class PpmImageDriver {
     public static void testWriterWriteBlock() {
         byte[][][] block = new byte[8][8][3];
         try {
+            System.out.print("Enter byte to fill block (hex): ");
+            byte b = scanner.nextByte(16);
+            for (int i = 0; i < 8; ++i)
+                for (int j = 0; j < 8; ++j)
+                    for (int chan = 0; chan < 3; ++chan)
+                        block[i][j][chan] = b;
+
             imgWriter.writeBlock(block);
         } catch (IOException e) {
             System.out.println("FAILED");

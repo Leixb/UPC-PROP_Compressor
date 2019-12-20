@@ -80,7 +80,7 @@ class HuffmanDriver {
 
         int action = prompt(options);
 
-        while (action != 4) {
+        while (action != options.length) {
 
             if (action == 1) testConstructora();
             else if (action == 2) testEncode();

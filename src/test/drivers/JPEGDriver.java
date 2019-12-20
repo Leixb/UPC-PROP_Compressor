@@ -60,15 +60,16 @@ class JPEGDriver {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
-        String[] options = {"compress", "decompress", "getMagicByte", "exit"};
+        String[] options = {"constructora", "compress", "decompress", "getMagicByte", "exit"};
 
         int action = prompt(options);
 
-        while (action != 4) {
+        while (action != options.length) {
 
-            if (action == 1) testCompress();
-            else if (action == 2) testDecompress();
-            else if (action == 3) testGetMagicByte();
+            if (action == 1) testConstructor();
+            else if (action == 2) testCompress();
+            else if (action == 3) testDecompress();
+            else if (action == 4) testGetMagicByte();
             else System.out.println("Invalid option");
 
             action = prompt(options);

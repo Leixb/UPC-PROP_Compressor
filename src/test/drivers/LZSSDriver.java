@@ -62,7 +62,7 @@ class LZSSDriver {
 
         int action = prompt(options);
 
-        while (action != 5) {
+        while (action != options.length) {
 
             if (action == 1) testConstructor();
             else if (action == 2) testCompress();

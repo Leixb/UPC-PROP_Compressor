@@ -83,7 +83,7 @@ class JPEGBlockDriver {
 
         int action = prompt(options);
 
-        while (action != 3) {
+        while (action != options.length) {
 
             if (action == 1) testEncode();
             else if (action == 2) testDecode();

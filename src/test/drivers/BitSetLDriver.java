@@ -136,7 +136,7 @@ class BitSetLDriver {
 
         int action = prompt(options);
 
-        while (action != 7) {
+        while (action != options.length) {
 
             if (action == 1) constructor();
             else if (action == 2) testAsInt();

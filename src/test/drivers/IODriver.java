@@ -87,7 +87,7 @@ class IODriver{
 
             int action = prompt(options);
 
-            while (action != 6) {
+            while (action != options.length) {
                 if (action == 1) testBitReaderRead(input);
                 if (action == 2) testBitReaderReadByte(input);
                 if (action == 3) testBitReaderReadChar(input);
@@ -136,7 +136,7 @@ class IODriver{
 
             int action = prompt(options);
 
-            while (action != 6) {
+            while (action != options.length) {
                 if (action == 1) testBitWriterBool(output);
                 if (action == 2) testBitWriterByte(output);
                 if (action == 3) testBitWriterChar(output);
@@ -189,12 +189,12 @@ class IODriver{
 
         int action = prompt(options1);
 
-        while (action != 4) {
+        while (action != options1.length) {
 
             if (action == 1){
                 String[] options2 = {"Read", "Write", "back"};
                 int action2 = prompt(options2);
-                while (action2!=3){
+                while (action2 != options2.length){
                     if (action2==1) testCharRead();
                     else if (action2==2) testCharWrite();
                     else System.out.println("Invalid option");
@@ -203,7 +203,7 @@ class IODriver{
             } else if (action == 2){
                 String[] options2 = {"Read", "Write", "back"};
                 int action2 = prompt(options2);
-                while (action2!=3){
+                while (action2 != options2.length){
                     if (action2==1) testByteRead();
                     else if (action2==2) testByteWrite();
                     else System.out.println("Invalid option");
@@ -212,7 +212,7 @@ class IODriver{
             } else if (action==3){
                 String[] options2 = {"Read", "Write", "back"};
                 int action2 = prompt(options2);
-                while (action2!=3){
+                while (action2 != options2.length){
                     if (action2==1) testBitReader();
                     else if (action2==2) testBitWriter();
                     else System.out.println("Invalid option");

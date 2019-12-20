@@ -157,11 +157,11 @@ Para la compresión se ha usado una tabla Huffman con valores predefinidos.
 #### Algoritmos
 
 - *DCT (Discrete Cosine Transform)* Transforma los datos de la imagen como sumas
-  de cosenos bidimensionales. *RLE (Run Length Encoding)* Codifica los datos
-  según el número de 0 que lo preceden (Run) y los bits necesarios para
-  representar-lo (Length). Los valores de Run y length son los que se codifican
-  con la tabla Huffman. Gracias a la DCT, hay muchos 0 lo que permite comprimir
-  los datos con RLE.
+  de cosenos bidimensionales.
+- *RLE (Run Length Encoding)* Codifica los datos según el número de 0 que lo
+preceden (Run) y los bits necesarios para representar-lo (Length). Los valores
+de Run y length son los que se codifican con la tabla Huffman. Gracias a la
+DCT, hay muchos 0 lo que permite comprimir los datos con RLE.
 
 ### Descompresión
 
@@ -172,5 +172,26 @@ compresión pero en formato de árbol.
 
 #### Algoritmos
 
-- *inverse DCT (Discrete Cosine Transform)* Deshace la DCT de la compresión *RLE
-- (Run Length Encoding)* Deshace el RLE de la compresión.
+- *inverse DCT (Discrete Cosine Transform)* Deshace la DCT de la compresión 
+- *RLE (Run Length Encoding)* Deshace el RLE de la compresión.
+
+## Folder
+
+### Compresión
+
+Para comprimir carpetas, recorremos el árbol de ficheros en orden y guardamos
+para cada fichero su *path* relativo en el árbol en formato string, seguido de
+un marcador para señalizar el fin de la String. Después de cada marcador,
+siguen los datos comprimidos con los algoritmos pertinentes (con su magic byte
+correspondiente). La selección de algoritmo de compresión es la misa que usamos
+para la compresión automática de ficheros. Usamos un marcador especial para
+distinguir entre carpetas vacías y archivos normales.
+
+### Descompresión
+
+La descompresión es simplemente leer los caracteres hasta llegar al marcador de
+fin de String y descomprimir los datos que le siguen con el algoritmo indicado
+por el magic byte. Cuando se ha descomprimido el fichero, buscamos la siguiente
+String con marcador, repitiendo el proceso anterior hasta llegar al fin del
+fichero.
+

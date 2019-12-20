@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/domini/Statistics.java
- * @author Alex Herrero Pons / Aleix Boné / Albert Mercadé Plasencia
+ * @author Alex Herrero
 */
 package domini;
 
@@ -13,14 +13,20 @@ import java.nio.file.Paths;
  * @brief Genera estadísticas de compresión/descompresión.
  */
 public class Statistics {
+
+    /// Tiempo de inicio
     private long startingTime;
+
+    /// Tiempo de finalización
     private long endingTime;
+
+    /// Tamaño inicial
     private long iniFileSize;
+
+    /// Tamaño final
     private long finFileSize;
 
-    /**
-     * @brief Constructora de la clase
-     */
+    /** Constructora vacía Statistics */
     public Statistics () {
         startingTime = 0;
         endingTime = 0;
@@ -44,7 +50,9 @@ public class Statistics {
 
     /**
      * @brief Setter de iniFileSize
+     *
      * @param filename nombre del archivo de entrada cuyo tamaño se quiere consultar
+     * @throws IOException Lanza cualquier excepcion generada al acceder al archivo
      */
     public void setIniFileSize (final String filename) throws IOException {
         File file = new File(filename);
@@ -60,7 +68,9 @@ public class Statistics {
 
     /**
      * @brief Setter de finFileSize
+     *
      * @param filename nombre del archivo de salida cuyo tamaño se quiere consultar
+     * @throws IOException Lanza cualquier excepcion generada al acceder al archivo
      */
     public void setFinFileSize(final String filename) throws IOException {
         File file = new File(filename);
@@ -76,6 +86,7 @@ public class Statistics {
 
     /**
      * @brief Getter de la duración de la compresión/descompresión
+     *
      * @return Tiempo de ejecución de la compresión/descompresión en segundos
      */
     public double getTime () {
@@ -84,6 +95,7 @@ public class Statistics {
 
     /**
      * @brief Getter del tamaño del fichero de entrada
+     *
      * @return Tamaño del archivo de entrada en bytes
      */
     public long getIniFileSize() {

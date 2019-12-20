@@ -1,6 +1,6 @@
 /**
  * @file ./src/main/java/presentacio/CtrlPresentacio.java
- * @author Albert Mercadé Plasencia / Aleix Boné
+ * @author Albert Mercadé
 */
 package presentacio;
 

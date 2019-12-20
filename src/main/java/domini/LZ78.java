@@ -19,22 +19,19 @@ import java.util.List;
  */
 public final class LZ78 implements CompressionAlg{
 
-    public LZ78() {
-        decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
-    }
+    /** Constructora vacía LZ78 */
+    public LZ78() { }
 
-    //Declaración del HashMap de Decompression
+    /// Diccionario de decompresión
     private static Map<Integer, ArrayList<Byte>> decompress_dict;
 
-    /**Byte escrito al principio del archivo comprimido para saber
-     * con que algoritmo ha sido comprimido
-     * para poder asi descomprimirlo después con el mismo
-     */
+    /// Magic Byte LZ78
     public final static byte MAGIC_BYTE = 0x78;
 
 
     /**
      * @brief Classe Pair para poder crear, en este caso, pairs de Integers y bytes
+     *
      * @param <First> Tipo de la key del pair
      * @param <Second> Tipo del value del pair
      */
@@ -73,6 +70,7 @@ public final class LZ78 implements CompressionAlg{
 
         /**
          * @brief Metodo tipo boolean para crearlo mientras se lee el archivo a comprimir
+         *
          * @param input Archivo de entrada que se desea comprimir
          * @return Devuelve true en caso de overflow, se tenga que seguir leyendo y crear otro arbol
          * @throws IOException Excepcion en caso de intentar leer un dato inexistente
@@ -120,9 +118,10 @@ public final class LZ78 implements CompressionAlg{
     }
 
     /**
-     * @brief Llamada para escribir en el archivo comprimido el array pasado como parametro.
-     * @param arrayList Array que contiene la codificacion del archivo original.
-     * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido.
+     * @brief Llamada para escribir en el archivo comprimido el array pasado como parametro
+     *
+     * @param arrayList Array que contiene la codificacion del archivo original
+     * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
      * @throws IOException
      */
     private static void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output) throws IOException{
@@ -140,6 +139,7 @@ public final class LZ78 implements CompressionAlg{
 
     /**
      * @brief Comprime el archivo pasado por parametro input y escribe la compresion en el parametro output
+     *
      * @param input Archivo de entrada que se desea comprimir
      * @param output Archivo de salida comprimido
      * @throws IOException Excepcion en caso de intentar leer un dato inexistente
@@ -162,9 +162,10 @@ public final class LZ78 implements CompressionAlg{
     }
 
     /**
-     * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.
-     * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2.
-     * @return Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parámetro.
+     * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro
+     *
+     * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
+     * @return Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parámetro
      */
     private static int bits_needed(final int n) {
         if (n <= 0)
@@ -174,11 +175,13 @@ public final class LZ78 implements CompressionAlg{
 
     /**
      * @brief Descomprime el archivo comprimido pasado por input y escribe la descompresion por el parametro output
+     *
      * @param input  Archivo comprimido que se desea descomprimir
      * @param output  Archivo de salida descomprimido
      * @throws IOException  Excepcion en caso de intentar leer un dato inexistente
      */
     public void decompress(final IO.Bit.reader input, final IO.Byte.writer output) throws IOException {
+        decompress_dict = new HashMap<Integer, ArrayList<Byte>>();
         int num = 1;//Numero que representa el value de la siguiente entrada en el HashMap
         int nbyte = 0;//Num de codificaciones para saber cuantos bits representan la key del HashMap de descompresion
         int number=0;//Key del HashMap codificada antes de cada byte en el archivo comprimido

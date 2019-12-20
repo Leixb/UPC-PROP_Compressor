@@ -13,10 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @brief Compresión y descompresión de archivos con LZW.
+ * @brief Compresión y descompresión de archivos con LZW
  */
 public final class LZW implements CompressionAlg{
 
+    /** Creadora vacia LZW */
     public LZW() { }
 
     /// Magic Byte LZW
@@ -25,7 +26,7 @@ public final class LZW implements CompressionAlg{
     /// Tamaño inicial del diccionario
     private final static int DICTIONARY_SIZE = 0x0FF;
 
-    /// Overflow del diccionario
+    /// Marca el overflow del diccionario
     private final static int OVERFLOW = 0x7FFFFFFD;
 
     /// Pseudo EOF
@@ -38,7 +39,7 @@ public final class LZW implements CompressionAlg{
     private static Map<Integer, ArrayList<Byte> > decompressionDictionary;
 
     /**
-     * @brief Crea el diccionario de compresión y lo inicializa.
+     * @brief Crea el diccionario de compresión y lo inicializa con los valores unitarios
      */
     private static void createCompressionDictionary() {
         compressionDictionary = new HashMap<>();
@@ -50,7 +51,7 @@ public final class LZW implements CompressionAlg{
     }
 
     /**
-     * @brief Crea el diccionario de descompresión y lo inicializa.
+     * @brief Crea el diccionario de descompresión y lo inicializa con los valores unitarios
      */
     private static void createDecompressionDictionary() {
         decompressionDictionary = new HashMap<>();
@@ -66,9 +67,9 @@ public final class LZW implements CompressionAlg{
     }
 
     /**
-
      * @brief  Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro
-     * @param n  Numero integer del que se va a calcular cuantos bits son necesarios para codificarlo en base 2
+     *
+     * @param n  Numero integer del que se calculan cuantos bits son necesarios para codificarlo en base 2
      * @return Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro
      */
     private static int bitsNeeded(final int n) {
@@ -78,10 +79,11 @@ public final class LZW implements CompressionAlg{
     }
 
     /**
-     * @brief  Escribe en output el entero n en 5 bits seguido del entero code representado en n bits
-     * @param code Numero integer que se quiere escribir
+     * @brief  Escribe en output el entero code representado en n bits precedido de 5 bits que codifican n
+     *
+     * @param code Numero integer que se escribe
      * @param output Salida de tipo IO.Bit.writer para escribir en el archivo comprimido
-     * @return
+     * @throws IOException Lanza cualquier excepción generada al escribir
      */
     private static void writeCode (int code, final IO.Bit.writer output) throws IOException{
         int nbits = bitsNeeded(code);
@@ -91,11 +93,11 @@ public final class LZW implements CompressionAlg{
         output.write(bsNum);    }
 
     /**
-     * @brief Comprime un archivo de texto implementando un algoritmo LZW.
+     * @brief Comprime un archivo implementando un algoritmo LZW
      *
-     * @param input objeto de lectura del archivo que se quiere comprimir.
-     * @param output objeto de ecritura del archivo comprimido.
-     * @throws IOException se produce un error en la lectura / escritura.
+     * @param input objeto de lectura del archivo que se comprime
+     * @param output objeto de ecritura del archivo comprimido
+     * @throws IOException Lanza cualquier excepción generada al comprimir
      */
     public void compress (IO.Byte.reader input, IO.Bit.writer output) throws IOException {
         createCompressionDictionary();
@@ -131,16 +133,14 @@ public final class LZW implements CompressionAlg{
             writeCode(code,output);
         }
         writeCode(EOF,output);
-
-        compressionDictionary = new HashMap<>();
     }
 
     /**
-     * @brief Descomprime un archivo implementando un algoritmo LZW.
+     * @brief Descomprime un archivo implementando un algoritmo LZW
      *
-     * @param input es el objeto de lectura del archivo que se quiere descomprimir.
-     * @param output es el objeto de ecritura del archivo desccomprimido.
-     * @throws IOException se produce un error en la lectura / escritura.
+     * @param input objeto de lectura del archivo que se descomprime
+     * @param output objeto de ecritura del archivo descomprimido
+     * @throws IOException Lanza cualquier excepción generada al comprimir
      */
     public void decompress (IO.Bit.reader input, IO.Byte.writer output) throws IOException {
         createDecompressionDictionary();
@@ -191,7 +191,5 @@ public final class LZW implements CompressionAlg{
         } catch (EOFException e){
             //End of file reached.
         }
-
-        decompressionDictionary = new HashMap<>();
     }
 }

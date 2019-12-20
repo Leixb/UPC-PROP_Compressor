@@ -131,7 +131,7 @@ public class CtrlDomini {
      * @param magicByte byte que identifica el algoritmo a utilizar
      * @throws IOException Lanza cualquier excepción generada al descomprimir
      */
-    public void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
+    void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte) throws IOException {
         CompressionAlg decomp;
 
         if(magicByte == 0) magicByte = (byte)input.readByte();

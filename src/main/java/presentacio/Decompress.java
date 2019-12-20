@@ -83,7 +83,6 @@ public class Decompress {
 
                     if ("".equals(fileOut)) fc = new JFileChooser(fileIn);
                     else {
-                        String fileOutAux;
                         fc = new JFileChooser(fileOut);
                         fc.setSelectedFile(new File(fileOut));
                     }

@@ -28,7 +28,7 @@ TEST_RESOURCES = $(wildcard src/test/resources/*)
 
 DRIVER_FILES = $(shell find src/test/drivers -type f -name '*.java')
 
-.PHONY: all build run copy_java_resources copy_test_resources build_test run_test jar run_jar
+.PHONY: all build run copy_java_resources copy_test_resources build_test run_test jar runjar
 
 # all: build run
 #
@@ -68,7 +68,7 @@ $(JAR_FILE): $(JAVA_FILES) $(JAVA_RESOURCES)
 	$(JAR) -cfe $(JAR_FILE) $(MAIN) -C $(CP) .
 
 runjar:
-	@$(JAVA) -jar $(JAR_FILE)
+	@$(JAVA) -cp $(JAR_FILE):$(UI_JARS) $(MAIN)
 
 build_drivers: dirs
 	$(JC) -d $(CP_DRIVERS) -cp $(CP) $(DRIVER_FILES)

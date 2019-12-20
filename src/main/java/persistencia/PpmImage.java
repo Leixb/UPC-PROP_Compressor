@@ -1,5 +1,5 @@
 /**
- * @file ./src/main/java/domini/PpmImage.java
+ * @file ./src/main/java/persistencia/PpmImage.java
  * @author Aleix Boné
 */
 package persistencia;

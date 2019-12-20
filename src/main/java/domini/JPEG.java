@@ -36,7 +36,7 @@ public final class JPEG implements CompressionAlg{
      * @brief Comprime una imagen PPM bloque a bloque
      *
      * @param input  objeto lector del fichero de entrada
-     * @param output objeto escritor fichero comprimido
+     * @param output objeto escritor del fichero comprimido
      * @throws IOException Si se produce un error de lectura / escritura
      */
     public void compress(final IO.Byte.reader input, final IO.Bit.writer output) throws IOException {
@@ -75,7 +75,7 @@ public final class JPEG implements CompressionAlg{
      * @brief Descomprime un fichero comprimido en JPEG y lo guarda la imagen resultante en un fichero PPM raw
      *
      * @param input  objeto lector del fichero comprimido
-     * @param output objeto escritor fichero descomprimido
+     * @param output objeto escritor del fichero descomprimido
      * @throws IOException Si se produce un error de lectura / escritura
      */
     public void decompress(IO.Bit.reader input, IO.Byte.writer output) throws IOException {
@@ -154,12 +154,12 @@ public final class JPEG implements CompressionAlg{
     }
 
     /**
-     * @brief
+     * @brief Lee un código Huffman del fichero y lo decodifica
      *
-     * @param huff
-     * @param file
-     * @return
-     * @throws IOException
+     * @param huff objeto tipo Huffman
+     * @param file objeto escritor del fichero comprimido
+     * @return devuelve el valor asociado al código Huffman leído
+     * @throws IOException error en la lectura
      */
     private static short readHuffman(Huffman huff, IO.Bit.reader file) throws IOException {
         Huffman.Node n = huff.decode(file.read());
@@ -248,10 +248,10 @@ public final class JPEG implements CompressionAlg{
     }
 
     /**
-     * @brief
+     * @brief Convierte el bloque dado en espacio de color RGB a YCbCr
      *
-     * @param channelBlocks
-     * @return
+     * @param channelBlocks bloque en espacio de color RGB
+     * @return bloque en espacio de color YCbCr
      */
     private static byte[][][] toYCbCr(byte[][][] channelBlocks) {
         byte Y, Cb, Cr;
@@ -277,10 +277,10 @@ public final class JPEG implements CompressionAlg{
     }
 
     /**
-     * @brief
+     * @brief Convierte el bloque dado en espacio de color YCbCr a RGB
      *
-     * @param channelBlocks
-     * @return
+     * @param channelBlocks bloque en espacio de color YCbCr
+     * @return bloque en espacio de color RGB
      */
     private static byte[][][] toRGB(byte[][][] channelBlocks) {
         byte R, G, B;

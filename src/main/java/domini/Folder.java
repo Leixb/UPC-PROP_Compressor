@@ -55,25 +55,25 @@ public final class Folder {
             this.emptyDir = true;
         }
 
-		@Override
-		public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+        @Override
+        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
             if (emptyDir) {
                 for (char c : root.relativize(dir).toString().toCharArray()) {
                     output.write(c);
                 }
                 output.write(EMPTY_FOLDER);
             }
-			return FileVisitResult.CONTINUE;
-		}
+            return FileVisitResult.CONTINUE;
+        }
 
-		@Override
-		public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+        @Override
+        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
             emptyDir = true;
-			return FileVisitResult.CONTINUE;
-		}
+            return FileVisitResult.CONTINUE;
+        }
 
-		@Override
-		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        @Override
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
             emptyDir = false;
             for (char c : root.relativize(file).toString().toCharArray()) {
                 output.write(c);
@@ -82,13 +82,13 @@ public final class Folder {
             try (IO.Byte.reader input = new IO.Byte.reader(file.toString())) {
                 CtrlDomini.getInstance().compress(0, input, output, (short) 0);
             }
-			return FileVisitResult.CONTINUE;
-		}
+            return FileVisitResult.CONTINUE;
+        }
 
-		@Override
-		public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+        @Override
+        public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
             throw exc;
-		}
+        }
     }
 
     /**
@@ -131,7 +131,7 @@ public final class Folder {
 
     /** Excepcion de formato de carpeta */
     public static class FolderFormatException extends IOException {
-		private static final long serialVersionUID = 89267786123678912L;
+        private static final long serialVersionUID = 89267786123678912L;
 
         public FolderFormatException() {
             super("Invalid marker found");

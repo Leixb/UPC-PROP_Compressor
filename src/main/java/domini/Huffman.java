@@ -151,7 +151,7 @@ public class Huffman {
 
     /** Excepción de tabla invalida */
     public static class InvalidTableException extends IOException {
-		private static final long serialVersionUID = 1547862892655535861L;
+        private static final long serialVersionUID = 1547862892655535861L;
 
         InvalidTableException(final String filename) {
             super(String.format("Invalid Table on file: %s", filename));

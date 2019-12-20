@@ -181,7 +181,7 @@ public class PpmImage {
     }
 
     public static class FileFormatException extends IOException {
-		private static final long serialVersionUID = 483426725025690872L;
+        private static final long serialVersionUID = 483426725025690872L;
 
         public FileFormatException(String s) {
             super(String.format("Invalid file format: %s", s));

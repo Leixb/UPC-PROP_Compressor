@@ -18,10 +18,10 @@ public final class LZSS implements CompressionAlg{
         actualCharacters = new byte[MAX_LENGTH_COINCIDENCE];
     }
 
-    final static int MAX_SIZE_SW = 1023; // maximum size of the sliding window
-    final static int MAX_LENGTH_COINCIDENCE = 17; //
-    final byte[] slidingWindow;
-    final byte[] actualCharacters;
+    private final static int MAX_SIZE_SW = 1023; // maximum size of the sliding window
+    private final static int MAX_LENGTH_COINCIDENCE = 17; //
+    private final byte[] slidingWindow;
+    private final byte[] actualCharacters;
     public final static byte MAGIC_BYTE = 0x55; // magic byte for LZSS
     private final static int EOF = 0; // Pseudo EOF
 
@@ -134,7 +134,7 @@ public final class LZSS implements CompressionAlg{
         while (!eof) {
             // if c is 1, then read offset and length and write the characters in output
             // otherwise c = 0, so we only need to read 16 bits (one character) as it hasn't been compressed
-            if (c == true) {
+            if (c) {
                 final int index = input.readBitSet(nBitsOffset).asInt();
 
                 if(index == 0) eof = true;
@@ -174,7 +174,6 @@ public final class LZSS implements CompressionAlg{
      *        también es sufijo hasta esa posición
      * @param lps es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud
      *        máxima del prefijo que también es sufijo desde el principio hasta esa posición
-     * @param pathLength Length del pattern para el que se quiere computar el array lps
      */
     private void computeLPSArray(final int[] lps, int patLength) {
         int length = 0;

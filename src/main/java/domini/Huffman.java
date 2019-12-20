@@ -29,7 +29,7 @@ public class Huffman {
         boolean leaf;
         Node L, R;
 
-        public boolean isLeaf() {
+        boolean isLeaf() {
             return leaf;
         }
 

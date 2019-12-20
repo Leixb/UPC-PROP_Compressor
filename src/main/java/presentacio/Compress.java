@@ -35,7 +35,7 @@ public class Compress {
     private String fileIn;
     private String fileOut;
 
-    public Compress() {
+    Compress() {
         f = new JFrame("PIZ Compressor | Comprimir");
 
         labelQJPEG.setVisible(false);

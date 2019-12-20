@@ -93,7 +93,7 @@ public final class LZW implements CompressionAlg{
         output.write(bsNum);    }
 
     /**
-     * @brief Comprime un archivo de texto implementando un algoritmo LZW
+     * @brief Comprime un archivo implementando un algoritmo LZW
      *
      * @param input objeto de lectura del archivo que se comprime
      * @param output objeto de ecritura del archivo comprimido

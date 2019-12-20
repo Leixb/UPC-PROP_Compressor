@@ -70,6 +70,10 @@ de importancia en ninguna de las dos entregas.
 ### Compresión
 
 #### Estructuras de Datos
+En la primera entrega el algoritmo LZ78 solo podia comprimir archivos de texto
+y para ello se utilizaba un HashMap con key String y value Integer, actuando de diccionario y 
+de manera que todos los caracteres que se leian del archivo input quedaban guardados en este.
+No habia manera de controlar eficientemente el overflow ni el fin de archivo.
 
 En la primera entrega el algoritmo LZ78 solo podia comprimir archivos de texto
 y para ello se utilizaba un HashMap con key String y value Integer, actuando de
@@ -97,6 +101,8 @@ de overflow se crea un nuevo Tree y un nuevo ArrayList.
 ### Descompresión
 
 #### Estructuras de Datos
+En la primera entrega, al poder comprimir solo archivos de texto, el HashMap de
+descompresión en lugar de tener value ArrayList <Byte> tenia String.
 
 En la primera entrega, al poder comprimir solo
 archivos de texto, el HashMap de descompresión en lugar de tener value
@@ -115,6 +121,8 @@ diccionario junto con el byte leído.
 ### Compresión
 
 #### Estructuras de Datos
+En la primera entrega el algoritmo LZW solo podia comprimir archivos de texto
+por lo que el HashMap tenia como key String.
 
 En la primera entrega el algoritmo LZW solo podia comprimir archivos de texto
 por lo que el HashMap tenia cómo key String.
@@ -135,6 +143,8 @@ considerablemente el tamaño de la compresión.
 ### Descompresión
 
 #### Estructuras de Datos
+En la primera entrega, al poder comprimir solo archivos de texto, el HashMap de
+descompresión en lugar de tener value ArrayList <Byte> tenia String.
 
 En la primera entrega, al poder comprimir solo archivos de texto, el HashMap de
 descompresión en lugar de tener value ArrayList <Byte> tenia String.

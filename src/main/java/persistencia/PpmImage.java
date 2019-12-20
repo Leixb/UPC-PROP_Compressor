@@ -17,6 +17,12 @@ public class PpmImage {
         private int buffPos; // Bloque actual en el buffer
         private byte[][][] buffer;
 
+        /**
+         * @brief
+         *
+         * @param file objeto de lectura
+         * @throws IOException
+         */
         public Reader(IO.Byte.reader file) throws IOException {
             this.file = file;
 

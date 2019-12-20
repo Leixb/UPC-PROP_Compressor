@@ -12,7 +12,7 @@ import java.util.BitSet;
  * BitSet con length distinta al BitSet estandard.
  * El length de java.util.BitSet devuelve el numero de bits hasta el
  * último 1. BitSetL devuelve el numero de bits del último bit modificado
- * o el especificado al construir-se el BitSetL.
+ * o el especificado al construirse el BitSetL.
  */
 public class BitSetL extends BitSet {
     private static final long serialVersionUID = 1L;
@@ -25,7 +25,8 @@ public class BitSetL extends BitSet {
         _length_ = -1;
     }
 
-    /** Constructora con longitud, inicializa length a la longitud dada
+    /**
+     * Constructora con longitud, inicializa length a la longitud dada
      * @param l longitud del bitset
      */
     public BitSetL(final int l) {
@@ -62,7 +63,7 @@ public class BitSetL extends BitSet {
 
     /**
      * @brief Devuelve el bitset como un entero (32 bits)
-     * @pre el bitset no tiene mas de 32 bits
+     * @pre el bitset no tiene más de 32 bits
      * @return bitset como entero
      */
     public int asInt() {

@@ -34,9 +34,9 @@ public final class Folder {
         private IO.Bit.writer output;
         private Path root; 
 
-        private boolean emptyDir = true;
+        private boolean emptyDir;
 
-        public CompressFiles(Path root, IO.Bit.writer output) {
+        CompressFiles(Path root, IO.Bit.writer output) {
             this.output = output;
             this.root = root;
             this.emptyDir = true;

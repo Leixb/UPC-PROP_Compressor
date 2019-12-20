@@ -56,7 +56,9 @@ public class Decompress {
         buttonSelectFileIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fc = new JFileChooser();
+                JFileChooser fc;
+                if ("".equals(fileIn)) fc = new JFileChooser("./data");
+                else fc = new JFileChooser(fileIn);
                 int result = fc.showOpenDialog(f);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     fileIn = fc.getSelectedFile().getAbsolutePath();

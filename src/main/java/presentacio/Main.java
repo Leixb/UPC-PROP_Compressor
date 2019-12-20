@@ -2,6 +2,7 @@ package presentacio;
 
 import domini.CtrlDomini;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -99,10 +100,13 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Error en la compressió:" + e.getMessage());
             }
+            promptObrirFitxer(fileOut);
         }
+
     }
 
     /**
+     * @throws IOException
      * @brief Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a CtrlDomini.
      */
     private static void descomprimir() {
@@ -118,6 +122,28 @@ public class Main {
             printStatsDecompress();
         } catch (Exception e) {
             System.out.println("Error en la descompressió:" + e.getMessage());
+        }
+
+        promptObrirFitxer(fileOut);
+
+    }
+
+    private static void promptObrirFitxer(String filename) {
+        try {
+            for(;;) {
+                System.out.print("Obrir fitxer?: [S/N] ");
+                String option = scanner.nextLine();
+
+                if (option.charAt(0) == 'N') return;
+                else if (option.charAt(0) == 'S') {
+                    Runtime.getRuntime().exec("xdg-open " + filename);
+                    return;
+                }
+
+                System.out.println("[ERROR] Opció no vàlida");
+            }
+        } catch (IOException e) {
+            System.out.println("Error en la opertura de fitxer:" + e.getMessage());
         }
     }
 

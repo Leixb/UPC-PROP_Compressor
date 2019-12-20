@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ctrldomini_53',['CtrlDomini',['../classdomini_1_1CtrlDomini.html',1,'domini']]],
-  ['ctrlpersistencia_54',['CtrlPersistencia',['../classpersistencia_1_1CtrlPersistencia.html',1,'persistencia']]],
-  ['ctrlpresentacio_55',['CtrlPresentacio',['../classpresentacio_1_1CtrlPresentacio.html',1,'presentacio']]]
+  ['dct_274',['DCT',['../classdomini_1_1JPEGBlock_1_1DCT.html',1,'domini::JPEGBlock']]],
+  ['decompress_275',['Decompress',['../classpresentacio_1_1Decompress.html',1,'presentacio']]]
 ];

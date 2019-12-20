@@ -1,10 +1,4 @@
 var searchData=
 [
-  ['getfinfilesize_75',['getFinFileSize',['../classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab',1,'domini::Statistics']]],
-  ['getinifilesize_76',['getIniFileSize',['../classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b',1,'domini::Statistics']]],
-  ['getpercentagecompressed_77',['getPercentageCompressed',['../classdomini_1_1Statistics.html#a97a6bab90c4644334fbb7726a79f7a0e',1,'domini::Statistics']]],
-  ['getpercentagedecompressed_78',['getPercentageDecompressed',['../classdomini_1_1Statistics.html#aedcda3d7be443cee79759eb8db95c173',1,'domini::Statistics']]],
-  ['getspeedcompressed_79',['getSpeedCompressed',['../classdomini_1_1Statistics.html#ad19947a9050f3afd889eb820fe2d9b09',1,'domini::Statistics']]],
-  ['getspeeddecompressed_80',['getSpeedDecompressed',['../classdomini_1_1Statistics.html#a04bb334e1ef878577f895e70ad6011ef',1,'domini::Statistics']]],
-  ['gettime_81',['getTime',['../classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1',1,'domini::Statistics']]]
+  ['encode_358',['encode',['../interfacedomini_1_1Codec.html#aac082f3dd5d26b9add518c9b7aa892a9',1,'domini.Codec.encode()'],['../classdomini_1_1Huffman.html#a1446aa841cf0ffe0a0eb792bfec5824d',1,'domini.Huffman.encode()'],['../classdomini_1_1JPEGBlock_1_1DCT.html#a8d62bfc29b82dfcea67c495284672219',1,'domini.JPEGBlock.DCT.encode()'],['../classdomini_1_1JPEGBlock_1_1Quantization.html#aa958a818ccad0a1746249defd1f27970',1,'domini.JPEGBlock.Quantization.encode(final double[][] data)'],['../classdomini_1_1JPEGBlock_1_1Quantization.html#a3ace36f579cedf4a98ee64ffbb6eacdd',1,'domini.JPEGBlock.Quantization.encode(final short quality, final boolean isChrominance, final double[][] block)'],['../classdomini_1_1JPEGBlock_1_1ZigZag.html#abdc9829862b59a0368c39228c880eda1',1,'domini.JPEGBlock.ZigZag.encode()'],['../classdomini_1_1JPEGBlock_1_1RLE.html#a06cef7582057e0150909259e8a87d605',1,'domini.JPEGBlock.RLE.encode()'],['../classdomini_1_1JPEGBlock.html#a73a8962ed7956ea5d4b86dcf0f47d8eb',1,'domini.JPEGBlock.encode()']]]
 ];

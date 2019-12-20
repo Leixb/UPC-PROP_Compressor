@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['io_22',['IO',['../classdomini_1_1IO.html',1,'domini']]]
+  ['f_78',['f',['../classpresentacio_1_1Compress.html#a898e9f6d486650f8907dc9eebbc7c2ec',1,'presentacio.Compress.f()'],['../classpresentacio_1_1Decompress.html#afe04f7b1327a7d3332348b857f681cd5',1,'presentacio.Decompress.f()'],['../classpresentacio_1_1LoadingCompress.html#a2d569f4f3792f693eee95efef3f407a9',1,'presentacio.LoadingCompress.f()'],['../classpresentacio_1_1LoadingDecompress.html#a7173af50170b8bcbbbd2d6057d82e91c',1,'presentacio.LoadingDecompress.f()'],['../classpresentacio_1_1Presentacio.html#af2ce1efe1f5162e2c3e2588dc056169f',1,'presentacio.Presentacio.f()'],['../classpresentacio_1_1StatsCompress.html#a335923affdf540b0a2dd01b973e21792',1,'presentacio.StatsCompress.f()'],['../classpresentacio_1_1StatsDecompress.html#a015a30bdabfada592599d75e797f9834',1,'presentacio.StatsDecompress.f()']]],
+  ['file_79',['FILE',['../classdomini_1_1Folder.html#ac1d01dc5d32d14e2e8a9caec41cf8885',1,'domini.Folder.FILE()'],['../classpersistencia_1_1PpmImage_1_1Reader.html#a04553b137a7d46e202b8f489eb47ca49',1,'persistencia.PpmImage.Reader.file()'],['../classpersistencia_1_1PpmImage_1_1Writer.html#a06e2e0a7a29fa3f733c4a8a514e39942',1,'persistencia.PpmImage.Writer.file()']]],
+  ['fileformatexception_80',['FileFormatException',['../classpersistencia_1_1PpmImage_1_1FileFormatException.html',1,'persistencia.PpmImage.FileFormatException'],['../classpersistencia_1_1PpmImage_1_1FileFormatException.html#a45436073ac8938b4be07f33e58412f9e',1,'persistencia.PpmImage.FileFormatException.FileFormatException()']]],
+  ['filein_81',['fileIn',['../classdomini_1_1CtrlDomini.html#a9de2d02e7cead018123f653a02a98937',1,'domini.CtrlDomini.fileIn()'],['../classpresentacio_1_1Compress.html#a2464f0d222b6f48a6f763c0e8f09326f',1,'presentacio.Compress.fileIn()'],['../classpresentacio_1_1Decompress.html#afe8c7213b9c6ca341918e621d32a0136',1,'presentacio.Decompress.fileIn()']]],
+  ['filename_82',['filename',['../classpersistencia_1_1IO_1_1Byte_1_1reader.html#aaf7b2d3d9d54035d5b9c9dfb70f2e282',1,'persistencia::IO::Byte::reader']]],
+  ['fileout_83',['fileOut',['../classdomini_1_1CtrlDomini.html#afd69754d889f558ce0bf0b9cc0f05608',1,'domini.CtrlDomini.fileOut()'],['../classpresentacio_1_1Compress.html#afe7f093089837a70fafb59e999150899',1,'presentacio.Compress.fileOut()'],['../classpresentacio_1_1Decompress.html#ac4b099544fff181e04b8fb0406d1a409',1,'presentacio.Decompress.fileOut()']]],
+  ['fill_84',['fill',['../classpersistencia_1_1IO_1_1Bit_1_1reader.html#a420c6f0bdfd1665d7da33f57b08d6d1c',1,'persistencia::IO::Bit::reader']]],
+  ['fillbuffer_85',['fillBuffer',['../classpersistencia_1_1PpmImage_1_1Reader.html#a01c766fed021d120a0bde30c87f687d5',1,'persistencia::PpmImage::Reader']]],
+  ['finfilesize_86',['finFileSize',['../classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e',1,'domini::Statistics']]],
+  ['first_87',['first',['../classdomini_1_1LZ78_1_1Pair.html#a37a00eac168705fa4cf1613f26d0c60a',1,'domini::LZ78::Pair']]],
+  ['fittinglabel_88',['fittingLabel',['../classpresentacio_1_1Compress.html#ae5b0fe7f720d2ecae4b1216cfea2482f',1,'presentacio.Compress.fittingLabel()'],['../classpresentacio_1_1Decompress.html#a5846c8c150ec6c558d4cd064ff217375',1,'presentacio.Decompress.fittingLabel()']]],
+  ['flip_89',['flip',['../classdomini_1_1BitSetL.html#ab5399b1c6931b56fcb39679181e86f22',1,'domini::BitSetL']]],
+  ['flush_90',['flush',['../classpersistencia_1_1IO_1_1Bit_1_1writer.html#abc14bd30e052d8f9dd4b134e63c04670',1,'persistencia::IO::Bit::writer']]],
+  ['folder_91',['Folder',['../classdomini_1_1Folder.html',1,'domini.Folder'],['../classdomini_1_1Folder.html#a0104321471654f1145ecdc1e6196dfda',1,'domini.Folder.Folder()']]],
+  ['folder_2ejava_92',['Folder.java',['../Folder_8java.html',1,'']]],
+  ['folderformatexception_93',['FolderFormatException',['../classdomini_1_1Folder_1_1FolderFormatException.html',1,'domini.Folder.FolderFormatException'],['../classdomini_1_1Folder_1_1FolderFormatException.html#a8971e02eede2fdbbf504f9ab3e712133',1,'domini.Folder.FolderFormatException.FolderFormatException()']]]
 ];

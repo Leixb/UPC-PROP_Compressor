@@ -1,0 +1,186 @@
+\hypertarget{classdomini_1_1Folder_1_1CompressFiles}{}\doxysection{Referencia de la Clase domini.\+Folder.\+Compress\+Files}
+\label{classdomini_1_1Folder_1_1CompressFiles}\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+Diagrama de herencias de domini.\+Folder.\+Compress\+Files\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1Folder_1_1CompressFiles}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+File\+Visit\+Result \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_ac36b51234bd0838985fe7bdea4a3e6d7}{post\+Visit\+Directory}} (Path dir, I\+O\+Exception exc)  throws I\+O\+Exception 
+\item 
+File\+Visit\+Result \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_aefec7ec6e64ab576eaf6cd25675f37aa}{pre\+Visit\+Directory}} (Path dir, Basic\+File\+Attributes attrs)  throws I\+O\+Exception 
+\item 
+File\+Visit\+Result \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a4861e9cb1758ae62f20c962b99efb8d7}{visit\+File}} (Path file, Basic\+File\+Attributes attrs)  throws I\+O\+Exception 
+\item 
+File\+Visit\+Result \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0c01dd0242e88c6ebaae931795724f75}{visit\+File\+Failed}} (Path file, I\+O\+Exception exc)  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a06cf9b31ba7524e5e310d66b65c933bd}{Compress\+Files}} (Path \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}{root}}, I\+O.\+Bit.\+writer \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+I\+O.\+Bit.\+writer \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}}
+\item 
+Path \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}{root}}
+\item 
+boolean \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}{empty\+Dir}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+File visitor que comprime los archivos 
+
+Definición en la línea 46 del archivo Folder.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_a06cf9b31ba7524e5e310d66b65c933bd}\label{classdomini_1_1Folder_1_1CompressFiles_a06cf9b31ba7524e5e310d66b65c933bd}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!CompressFiles@{CompressFiles}}
+\index{CompressFiles@{CompressFiles}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{CompressFiles()}{CompressFiles()}}
+{\footnotesize\ttfamily domini.\+Folder.\+Compress\+Files.\+Compress\+Files (\begin{DoxyParamCaption}\item[{Path}]{root,  }\item[{I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 52 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52                                                        \{}
+\DoxyCodeLine{53             this.\mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}} = \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}};}
+\DoxyCodeLine{54             this.\mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}{root}} = \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}{root}};}
+\DoxyCodeLine{55             this.\mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}{emptyDir}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{56         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_ac36b51234bd0838985fe7bdea4a3e6d7}\label{classdomini_1_1Folder_1_1CompressFiles_ac36b51234bd0838985fe7bdea4a3e6d7}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!postVisitDirectory@{postVisitDirectory}}
+\index{postVisitDirectory@{postVisitDirectory}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{postVisitDirectory()}{postVisitDirectory()}}
+{\footnotesize\ttfamily File\+Visit\+Result domini.\+Folder.\+Compress\+Files.\+post\+Visit\+Directory (\begin{DoxyParamCaption}\item[{Path}]{dir,  }\item[{I\+O\+Exception}]{exc }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 59 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59                                                                                                 \{}
+\DoxyCodeLine{60             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}{emptyDir}}) \{}
+\DoxyCodeLine{61                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{char} c : \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}{root}}.relativize(dir).toString().toCharArray()) \{}
+\DoxyCodeLine{62                     \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}}.write(c);}
+\DoxyCodeLine{63                 \}}
+\DoxyCodeLine{64                 \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}}.write(\mbox{\hyperlink{classdomini_1_1Folder_a5f97dc4861d75210db45e331e5551b6e}{EMPTY\_FOLDER}});}
+\DoxyCodeLine{65             \}}
+\DoxyCodeLine{66             \textcolor{keywordflow}{return} FileVisitResult.CONTINUE;}
+\DoxyCodeLine{67         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_aefec7ec6e64ab576eaf6cd25675f37aa}\label{classdomini_1_1Folder_1_1CompressFiles_aefec7ec6e64ab576eaf6cd25675f37aa}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!preVisitDirectory@{preVisitDirectory}}
+\index{preVisitDirectory@{preVisitDirectory}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{preVisitDirectory()}{preVisitDirectory()}}
+{\footnotesize\ttfamily File\+Visit\+Result domini.\+Folder.\+Compress\+Files.\+pre\+Visit\+Directory (\begin{DoxyParamCaption}\item[{Path}]{dir,  }\item[{Basic\+File\+Attributes}]{attrs }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 70 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{70                                                                                                          \{}
+\DoxyCodeLine{71             \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}{emptyDir}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{72             \textcolor{keywordflow}{return} FileVisitResult.CONTINUE;}
+\DoxyCodeLine{73         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_a4861e9cb1758ae62f20c962b99efb8d7}\label{classdomini_1_1Folder_1_1CompressFiles_a4861e9cb1758ae62f20c962b99efb8d7}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!visitFile@{visitFile}}
+\index{visitFile@{visitFile}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{visitFile()}{visitFile()}}
+{\footnotesize\ttfamily File\+Visit\+Result domini.\+Folder.\+Compress\+Files.\+visit\+File (\begin{DoxyParamCaption}\item[{Path}]{file,  }\item[{Basic\+File\+Attributes}]{attrs }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 76 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                                                                                   \{}
+\DoxyCodeLine{77             \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}{emptyDir}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{78             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{char} c : \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}{root}}.relativize(file).toString().toCharArray()) \{}
+\DoxyCodeLine{79                 \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}}.write(c);}
+\DoxyCodeLine{80             \}}
+\DoxyCodeLine{81             \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}}.write(\mbox{\hyperlink{classdomini_1_1Folder_ac1d01dc5d32d14e2e8a9caec41cf8885}{FILE}});}
+\DoxyCodeLine{82             \textcolor{keywordflow}{try} (IO.Byte.reader input = \textcolor{keyword}{new} IO.Byte.reader(file.toString())) \{}
+\DoxyCodeLine{83                 CtrlDomini.getInstance().compress(0, input, \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}{output}}, (\textcolor{keywordtype}{short}) 0);}
+\DoxyCodeLine{84             \}}
+\DoxyCodeLine{85             \textcolor{keywordflow}{return} FileVisitResult.CONTINUE;}
+\DoxyCodeLine{86         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_a0c01dd0242e88c6ebaae931795724f75}\label{classdomini_1_1Folder_1_1CompressFiles_a0c01dd0242e88c6ebaae931795724f75}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!visitFileFailed@{visitFileFailed}}
+\index{visitFileFailed@{visitFileFailed}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{visitFileFailed()}{visitFileFailed()}}
+{\footnotesize\ttfamily File\+Visit\+Result domini.\+Folder.\+Compress\+Files.\+visit\+File\+Failed (\begin{DoxyParamCaption}\item[{Path}]{file,  }\item[{I\+O\+Exception}]{exc }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 89 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{89                                                                                               \{}
+\DoxyCodeLine{90             \textcolor{keywordflow}{throw} exc;}
+\DoxyCodeLine{91         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}\label{classdomini_1_1Folder_1_1CompressFiles_a0a1f9fe29c1f60257eb10231ccf86044}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!emptyDir@{emptyDir}}
+\index{emptyDir@{emptyDir}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{emptyDir}{emptyDir}}
+{\footnotesize\ttfamily boolean domini.\+Folder.\+Compress\+Files.\+empty\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 50 del archivo Folder.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}\label{classdomini_1_1Folder_1_1CompressFiles_a0a1a0b3d5d46d54536b6134140f69ba0}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!output@{output}}
+\index{output@{output}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{output}{output}}
+{\footnotesize\ttfamily I\+O.\+Bit.\+writer domini.\+Folder.\+Compress\+Files.\+output\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 47 del archivo Folder.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}\label{classdomini_1_1Folder_1_1CompressFiles_af34cf18449766a0c0055373e15e63cc8}} 
+\index{domini.Folder.CompressFiles@{domini.Folder.CompressFiles}!root@{root}}
+\index{root@{root}!domini.Folder.CompressFiles@{domini.Folder.CompressFiles}}
+\doxysubsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily Path domini.\+Folder.\+Compress\+Files.\+root\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 48 del archivo Folder.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{Folder_8java}{Folder.\+java}}\end{DoxyCompactItemize}

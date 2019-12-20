@@ -1,0 +1,314 @@
+\hypertarget{classpresentacio_1_1LoadingCompress}{}\doxysection{Referencia de la Clase presentacio.\+Loading\+Compress}
+\label{classpresentacio_1_1LoadingCompress}\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+J\+Component \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a82b66d1043863bd7c1a8ec3a10e511ca}{\$ \$get\+Root\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_ac5f6b6270f455c3d350f7113bfaa89ae}{Loading\+Compress}} ()
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_ad9d390958bfce3e3daf276e9853040ea}{show\+Loading\+Compress}} (int alg, String file\+In, String file\+Out, short quality\+J\+P\+EG, Point p, Dimension d)
+\item 
+\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_aa63615eb10003f733cf2b029481dd722}{\mbox{[}instance initializer\mbox{]}}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a72c8a96ea92a9f4993bb199799771500}{set\+Window\+Location\+And\+Dimension}} (Point p, Dimension d)
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_acc6f19b61a970e330375d9c55abf72f7}{compress}} (int alg, String file\+In, String file\+Out, short quality\+J\+P\+EG)
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_aa98720a827e9dca6bfb3d58cda424a25}{\$ \$setup\+UI}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio}{Ctrl\+Presentacio}} \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}{cp}}
+\item 
+J\+Panel \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panel\+LC}}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}{label\+G\+IF}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}{button\+Cancel\+Comp}}
+\item 
+Swing\+Worker \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a052e6c08938a997d7d7769de8f059d56}{sw}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static J\+Frame \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea 13 del archivo Loading\+Compress.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_ac5f6b6270f455c3d350f7113bfaa89ae}\label{classpresentacio_1_1LoadingCompress_ac5f6b6270f455c3d350f7113bfaa89ae}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!LoadingCompress@{LoadingCompress}}
+\index{LoadingCompress@{LoadingCompress}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{LoadingCompress()}{LoadingCompress()}}
+{\footnotesize\ttfamily presentacio.\+Loading\+Compress.\+Loading\+Compress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 24 del archivo Loading\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24                       \{}
+\DoxyCodeLine{25         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}{cp}} = CtrlPresentacio.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_a5897304c27e05e8dac32a3e17b04ee84}{getInstance}}();}
+\DoxyCodeLine{26         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}} = \textcolor{keyword}{new} JFrame(\textcolor{stringliteral}{"PIZ Compressor"});}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28         ImageIcon icon = \textcolor{keyword}{new} ImageIcon(\textcolor{stringliteral}{"src/main/resources/loading.gif"});}
+\DoxyCodeLine{29         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}{labelGIF}}.setIcon(icon);}
+\DoxyCodeLine{30         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}{buttonCancelComp}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{31             @Override}
+\DoxyCodeLine{32             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{33                 \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a052e6c08938a997d7d7769de8f059d56}{sw}}.cancel(\textcolor{keyword}{true});}
+\DoxyCodeLine{34             \}}
+\DoxyCodeLine{35         \});}
+\DoxyCodeLine{36     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a82b66d1043863bd7c1a8ec3a10e511ca}\label{classpresentacio_1_1LoadingCompress_a82b66d1043863bd7c1a8ec3a10e511ca}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!\$ \$getRootComponent@{\$ \$getRootComponent}}
+\index{\$ \$getRootComponent@{\$ \$getRootComponent}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$getRootComponent()}{$ $getRootComponent()}}
+{\footnotesize\ttfamily J\+Component presentacio.\+Loading\+Compress.\$ \$get\+Root\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@noinspection A\+LL 
+
+Definición en la línea 135 del archivo Loading\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{135                                                \{}
+\DoxyCodeLine{136         \textcolor{keywordflow}{return} \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}};}
+\DoxyCodeLine{137     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_aa98720a827e9dca6bfb3d58cda424a25}\label{classpresentacio_1_1LoadingCompress_aa98720a827e9dca6bfb3d58cda424a25}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!\$ \$setupUI@{\$ \$setupUI}}
+\index{\$ \$setupUI@{\$ \$setupUI}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$setupUI()}{$ $setupUI()}}
+{\footnotesize\ttfamily void presentacio.\+Loading\+Compress.\$ \$setup\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Method generated by IntelliJ I\+D\+EA G\+UI Designer \begin{quote}
+\begin{quote}
+\begin{quote}
+I\+M\+P\+O\+R\+T\+A\+N\+T!! $<$$<$$<$ \end{quote}
+\end{quote}
+\end{quote}
+DO N\+OT edit this method OR call it in your code!
+
+@noinspection A\+LL 
+
+Definición en la línea 105 del archivo Loading\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{105                                  \{}
+\DoxyCodeLine{106         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}} = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{107         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}}.setLayout(\textcolor{keyword}{new} GridLayoutManager(4, 1, \textcolor{keyword}{new} Insets(0, 0, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{108         \textcolor{keyword}{final} Spacer spacer1 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{109         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}}.add(spacer1, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{110         \textcolor{keyword}{final} Spacer spacer2 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{111         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}}.add(spacer2, \textcolor{keyword}{new} GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{112         \textcolor{keyword}{final} JPanel panel1 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{113         panel1.setLayout(\textcolor{keyword}{new} GridLayoutManager(2, 1, \textcolor{keyword}{new} Insets(0, 0, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{114         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}}.add(panel1, \textcolor{keyword}{new} GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{115         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}{labelGIF}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{116         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}{labelGIF}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{117         panel1.add(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}{labelGIF}}, \textcolor{keyword}{new} GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{118         \textcolor{keyword}{final} JPanel panel2 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{119         panel2.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 1, \textcolor{keyword}{new} Insets(0, 0, 15, 0), -\/1, -\/1));}
+\DoxyCodeLine{120         panel1.add(panel2, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{121         \textcolor{keyword}{final} JLabel label1 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{122         label1.setText(\textcolor{stringliteral}{"Comprimint fitxer..."});}
+\DoxyCodeLine{123         panel2.add(label1, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{124         \textcolor{keyword}{final} JPanel panel3 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{125         panel3.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 1, \textcolor{keyword}{new} Insets(0, 0, 5, 0), -\/1, -\/1));}
+\DoxyCodeLine{126         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}}.add(panel3, \textcolor{keyword}{new} GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{127         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}{buttonCancelComp}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{128         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}{buttonCancelComp}}.setText(\textcolor{stringliteral}{"Cancel·lar compressió"});}
+\DoxyCodeLine{129         panel3.add(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}{buttonCancelComp}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{130     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_aa63615eb10003f733cf2b029481dd722}\label{classpresentacio_1_1LoadingCompress_aa63615eb10003f733cf2b029481dd722}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!\mbox{[}instance initializer\mbox{]}@{[instance initializer]}}
+\index{\mbox{[}instance initializer\mbox{]}@{[instance initializer]}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{[instance initializer]()}{[instance initializer]()}}
+{\footnotesize\ttfamily presentacio.\+Loading\+Compress.\mbox{[}instance initializer\mbox{]} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_acc6f19b61a970e330375d9c55abf72f7}\label{classpresentacio_1_1LoadingCompress_acc6f19b61a970e330375d9c55abf72f7}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!compress@{compress}}
+\index{compress@{compress}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily void presentacio.\+Loading\+Compress.\+compress (\begin{DoxyParamCaption}\item[{int}]{alg,  }\item[{String}]{file\+In,  }\item[{String}]{file\+Out,  }\item[{short}]{quality\+J\+P\+EG }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 57 del archivo Loading\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57                                                                                      \{}
+\DoxyCodeLine{58         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a052e6c08938a997d7d7769de8f059d56}{sw}} = \textcolor{keyword}{new} SwingWorker() \{}
+\DoxyCodeLine{59             @Override}
+\DoxyCodeLine{60             \textcolor{keyword}{protected} Object doInBackground() throws Exception \{}
+\DoxyCodeLine{61                 \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}{cp}}.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_ad273706e5bf6f54cefcbb729b739743c}{compress}}(alg, fileIn, fileOut, qualityJPEG);}
+\DoxyCodeLine{62                 \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{63             \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65             @Override}
+\DoxyCodeLine{66             \textcolor{keyword}{protected} \textcolor{keywordtype}{void} done() \{}
+\DoxyCodeLine{67                 \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{68                     \textcolor{keywordflow}{if} (this.isCancelled()) \{}
+\DoxyCodeLine{69                         File file = \textcolor{keyword}{new} File(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}{cp}}.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_a6d0826e680ee535c2c6110f576f65637}{getFileOut}}());}
+\DoxyCodeLine{70                         file.delete();}
+\DoxyCodeLine{71                         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{72                         Presentacio.showPresentacio(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.getSize());}
+\DoxyCodeLine{73                     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{74                         \textcolor{keyword}{get}();}
+\DoxyCodeLine{75                         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{76                         StatsCompress sc = \textcolor{keyword}{new} StatsCompress(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}{cp}});}
+\DoxyCodeLine{77                         sc.showStatsCompress(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.getSize());}
+\DoxyCodeLine{78                     \}}
+\DoxyCodeLine{79                 \} \textcolor{keywordflow}{catch} (Exception e) \{}
+\DoxyCodeLine{80                     JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}, \textcolor{stringliteral}{"Error al comprimir: "} + e.getCause().getMessage(), \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.ERROR\_MESSAGE);}
+\DoxyCodeLine{81                     \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{82                     Presentacio.showPresentacio(\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.getSize());}
+\DoxyCodeLine{83                 \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85             \}}
+\DoxyCodeLine{86         \};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a052e6c08938a997d7d7769de8f059d56}{sw}}.execute();}
+\DoxyCodeLine{89     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a72c8a96ea92a9f4993bb199799771500}\label{classpresentacio_1_1LoadingCompress_a72c8a96ea92a9f4993bb199799771500}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!setWindowLocationAndDimension@{setWindowLocationAndDimension}}
+\index{setWindowLocationAndDimension@{setWindowLocationAndDimension}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{setWindowLocationAndDimension()}{setWindowLocationAndDimension()}}
+{\footnotesize\ttfamily void presentacio.\+Loading\+Compress.\+set\+Window\+Location\+And\+Dimension (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 49 del archivo Loading\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                                                      \{}
+\DoxyCodeLine{50         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setLocation(p);}
+\DoxyCodeLine{53         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setPreferredSize(d);}
+\DoxyCodeLine{54         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setMinimumSize(\textcolor{keyword}{new} Dimension(screenSize.width / 3, screenSize.height / 4));}
+\DoxyCodeLine{55     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_ad9d390958bfce3e3daf276e9853040ea}\label{classpresentacio_1_1LoadingCompress_ad9d390958bfce3e3daf276e9853040ea}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!showLoadingCompress@{showLoadingCompress}}
+\index{showLoadingCompress@{showLoadingCompress}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{showLoadingCompress()}{showLoadingCompress()}}
+{\footnotesize\ttfamily void presentacio.\+Loading\+Compress.\+show\+Loading\+Compress (\begin{DoxyParamCaption}\item[{int}]{alg,  }\item[{String}]{file\+In,  }\item[{String}]{file\+Out,  }\item[{short}]{quality\+J\+P\+EG,  }\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 38 del archivo Loading\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38                                                                                                               \{}
+\DoxyCodeLine{39         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setResizable(\textcolor{keyword}{true});}
+\DoxyCodeLine{40         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setContentPane(this.\mbox{\hyperlink{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}{panelLC}});}
+\DoxyCodeLine{41         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);}
+\DoxyCodeLine{42         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a72c8a96ea92a9f4993bb199799771500}{setWindowLocationAndDimension}}(p, d);}
+\DoxyCodeLine{43         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.pack();}
+\DoxyCodeLine{44         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}{f}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46         \mbox{\hyperlink{classpresentacio_1_1LoadingCompress_acc6f19b61a970e330375d9c55abf72f7}{compress}}(alg, fileIn, fileOut, qualityJPEG);}
+\DoxyCodeLine{47     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}\label{classpresentacio_1_1LoadingCompress_a0dbb4294e58259b288bfa26c8b491b84}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!buttonCancelComp@{buttonCancelComp}}
+\index{buttonCancelComp@{buttonCancelComp}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{buttonCancelComp}{buttonCancelComp}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Loading\+Compress.\+button\+Cancel\+Comp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 18 del archivo Loading\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}\label{classpresentacio_1_1LoadingCompress_a271ba2b3d12f0015fa7f35fd78b35932}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!cp@{cp}}
+\index{cp@{cp}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{cp}{cp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio}{Ctrl\+Presentacio}} presentacio.\+Loading\+Compress.\+cp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 14 del archivo Loading\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}\label{classpresentacio_1_1LoadingCompress_a2d569f4f3792f693eee95efef3f407a9}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!f@{f}}
+\index{f@{f}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily J\+Frame presentacio.\+Loading\+Compress.\+f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 20 del archivo Loading\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}\label{classpresentacio_1_1LoadingCompress_a29cccf870b1a0722829550b310ad860d}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!labelGIF@{labelGIF}}
+\index{labelGIF@{labelGIF}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{labelGIF}{labelGIF}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Loading\+Compress.\+label\+G\+IF\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 17 del archivo Loading\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}\label{classpresentacio_1_1LoadingCompress_af7fc496d7a3094befb82312a34296deb}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!panelLC@{panelLC}}
+\index{panelLC@{panelLC}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{panelLC}{panelLC}}
+{\footnotesize\ttfamily J\+Panel presentacio.\+Loading\+Compress.\+panel\+LC\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 16 del archivo Loading\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1LoadingCompress_a052e6c08938a997d7d7769de8f059d56}\label{classpresentacio_1_1LoadingCompress_a052e6c08938a997d7d7769de8f059d56}} 
+\index{presentacio.LoadingCompress@{presentacio.LoadingCompress}!sw@{sw}}
+\index{sw@{sw}!presentacio.LoadingCompress@{presentacio.LoadingCompress}}
+\doxysubsubsection{\texorpdfstring{sw}{sw}}
+{\footnotesize\ttfamily Swing\+Worker presentacio.\+Loading\+Compress.\+sw\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 22 del archivo Loading\+Compress.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/presentacio/\mbox{\hyperlink{LoadingCompress_8java}{Loading\+Compress.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,284 @@
+\hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer}{}\doxysection{Referencia de la Clase persistencia.\+I\+O.\+Bit.\+writer}
+\label{classpersistencia_1_1IO_1_1Bit_1_1writer}\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+Diagrama de herencias de persistencia.\+I\+O.\+Bit.\+writer\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpersistencia_1_1IO_1_1Bit_1_1writer}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_aec54d7e3e03c02a4240cd9921c8e08b4}{writer}} (final String filename)  throws File\+Not\+Found\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a96d94be66a5cf1fc7f3e8d65141740e2}{write}} (final boolean bit)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_afa8636437aa8da6ace6fb4435138a657}{write}} (final \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} bs)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a29065b3e83a942f0b40eac1e92b51d9d}{write}} (final byte b)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_aecc3a89c8b5cff263890aea5a3066660}{write}} (final char c)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a9840f197e491b0db17a33c23516eac78}{write}} (final int num)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a1d1fb8071422dbf690ef274b67003f25}{close}} ()  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a081932098ef7d4c11eef61ddec321f4a}{write\+Mask}} (final int num, int mask)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5c2f52cca3c47a1345ba15c03e0f5d49}{clear}} ()  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_abc14bd30e052d8f9dd4b134e63c04670}{flush}} ()  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+final Buffered\+Output\+Stream \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}{out}}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}}
+\item 
+int \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea 62 del archivo I\+O.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_aec54d7e3e03c02a4240cd9921c8e08b4}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_aec54d7e3e03c02a4240cd9921c8e08b4}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!writer@{writer}}
+\index{writer@{writer}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{writer()}{writer()}}
+{\footnotesize\ttfamily persistencia.\+I\+O.\+Bit.\+writer.\+writer (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 67 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{67                                                                               \{}
+\DoxyCodeLine{68                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}{out}} = \textcolor{keyword}{new} BufferedOutputStream(\textcolor{keyword}{new} FileOutputStream(filename));}
+\DoxyCodeLine{69                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}} = 0;}
+\DoxyCodeLine{70                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}} = 0;}
+\DoxyCodeLine{71             \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a5c2f52cca3c47a1345ba15c03e0f5d49}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a5c2f52cca3c47a1345ba15c03e0f5d49}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!clear@{clear}}
+\index{clear@{clear}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 108 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108                                                     \{}
+\DoxyCodeLine{109                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}} == 0)}
+\DoxyCodeLine{110                     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{111                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}} <<= 8 -\/ \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}};}
+\DoxyCodeLine{112                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}{out}}.write(\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}});}
+\DoxyCodeLine{113                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}} = 0;}
+\DoxyCodeLine{114                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}} = 0;}
+\DoxyCodeLine{115             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a1d1fb8071422dbf690ef274b67003f25}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a1d1fb8071422dbf690ef274b67003f25}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!close@{close}}
+\index{close@{close}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 122 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{122                                                    \{}
+\DoxyCodeLine{123                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_abc14bd30e052d8f9dd4b134e63c04670}{flush}}();}
+\DoxyCodeLine{124                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}{out}}.close();}
+\DoxyCodeLine{125             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_abc14bd30e052d8f9dd4b134e63c04670}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_abc14bd30e052d8f9dd4b134e63c04670}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!flush@{flush}}
+\index{flush@{flush}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 117 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117                                                     \{}
+\DoxyCodeLine{118                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5c2f52cca3c47a1345ba15c03e0f5d49}{clear}}();}
+\DoxyCodeLine{119                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}{out}}.flush();}
+\DoxyCodeLine{120             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_afa8636437aa8da6ace6fb4435138a657}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_afa8636437aa8da6ace6fb4435138a657}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!write@{write}}
+\index{write@{write}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}}}]{bs }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 83 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{83                                                                    \{}
+\DoxyCodeLine{84                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < bs.length(); ++i) \{}
+\DoxyCodeLine{85                     \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a96d94be66a5cf1fc7f3e8d65141740e2}{write}}(bs.get(i));}
+\DoxyCodeLine{86                 \}}
+\DoxyCodeLine{87             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a96d94be66a5cf1fc7f3e8d65141740e2}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a96d94be66a5cf1fc7f3e8d65141740e2}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!write@{write}}
+\index{write@{write}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final boolean}]{bit }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 73 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73                                                                     \{}
+\DoxyCodeLine{74                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}} <<= 1;}
+\DoxyCodeLine{75                 \textcolor{keywordflow}{if} (bit)}
+\DoxyCodeLine{76                     \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}{buffer}} |= 1;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78                 ++\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}};}
+\DoxyCodeLine{79                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}{n}} >= 8)}
+\DoxyCodeLine{80                     \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a5c2f52cca3c47a1345ba15c03e0f5d49}{clear}}();}
+\DoxyCodeLine{81             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a29065b3e83a942f0b40eac1e92b51d9d}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a29065b3e83a942f0b40eac1e92b51d9d}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!write@{write}}
+\index{write@{write}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final byte}]{b }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 89 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{89                                                                \{}
+\DoxyCodeLine{90                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a081932098ef7d4c11eef61ddec321f4a}{writeMask}}(b, 0x80);}
+\DoxyCodeLine{91             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_aecc3a89c8b5cff263890aea5a3066660}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_aecc3a89c8b5cff263890aea5a3066660}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!write@{write}}
+\index{write@{write}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final char}]{c }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 93 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{93                                                                \{}
+\DoxyCodeLine{94                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a081932098ef7d4c11eef61ddec321f4a}{writeMask}}(c, 0x8000);}
+\DoxyCodeLine{95             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a9840f197e491b0db17a33c23516eac78}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a9840f197e491b0db17a33c23516eac78}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!write@{write}}
+\index{write@{write}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final int}]{num }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definición en la línea 97 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97                                                                 \{}
+\DoxyCodeLine{98                 \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a081932098ef7d4c11eef61ddec321f4a}{writeMask}}(num, 0x80000000);}
+\DoxyCodeLine{99             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a081932098ef7d4c11eef61ddec321f4a}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a081932098ef7d4c11eef61ddec321f4a}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!writeMask@{writeMask}}
+\index{writeMask@{writeMask}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{writeMask()}{writeMask()}}
+{\footnotesize\ttfamily void persistencia.\+I\+O.\+Bit.\+writer.\+write\+Mask (\begin{DoxyParamCaption}\item[{final int}]{num,  }\item[{int}]{mask }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 101 del archivo I\+O.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                                                                \{}
+\DoxyCodeLine{102                 \textcolor{keywordflow}{while} (mask != 0) \{}
+\DoxyCodeLine{103                     \mbox{\hyperlink{classpersistencia_1_1IO_1_1Bit_1_1writer_a96d94be66a5cf1fc7f3e8d65141740e2}{write}}((num \& mask) != 0);}
+\DoxyCodeLine{104                     mask >>>= 1;}
+\DoxyCodeLine{105                 \}}
+\DoxyCodeLine{106             \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_ae159b70303ed78e5e61dd7d8f654c4b7}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!buffer@{buffer}}
+\index{buffer@{buffer}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+writer.\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 64 del archivo I\+O.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_a5bfe195bd3de163107ff0266bbbb8d9a}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!n@{n}}
+\index{n@{n}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily int persistencia.\+I\+O.\+Bit.\+writer.\+n\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 65 del archivo I\+O.\+java.
+
+\mbox{\Hypertarget{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}\label{classpersistencia_1_1IO_1_1Bit_1_1writer_ad87c6441ece3bcad2e4d5a448ee87dc8}} 
+\index{persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}!out@{out}}
+\index{out@{out}!persistencia.IO.Bit.writer@{persistencia.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{out}{out}}
+{\footnotesize\ttfamily final Buffered\+Output\+Stream persistencia.\+I\+O.\+Bit.\+writer.\+out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 63 del archivo I\+O.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/persistencia/\mbox{\hyperlink{IO_8java}{I\+O.\+java}}\end{DoxyCompactItemize}

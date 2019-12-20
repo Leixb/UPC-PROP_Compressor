@@ -61,44 +61,92 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>domini</b></li><li class="navelem"><a class="el" href="classdomini_1_1LZW.html">LZW</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacedomini.html">domini</a></li><li class="navelem"><a class="el" href="classdomini_1_1LZW.html">LZW</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
+<a href="#pub-methods">Métodos públicos</a> &#124;
 <a href="#pub-static-attribs">Atributos públicos estáticos</a> &#124;
+<a href="#pri-static-methods">Métodos privados estáticos</a> &#124;
+<a href="#pri-static-attribs">Atributos privados estáticos</a> &#124;
 <a href="classdomini_1_1LZW-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle">
 <div class="title">Referencia de la Clase domini.LZW</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Compresión y descompresión de archivos de texto con <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos de texto con LZW.">LZW</a>.  
+<p>Compresión y descompresión de archivos con <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>.  
  <a href="classdomini_1_1LZW.html#details">Más...</a></p>
+<div class="dynheader">
+Diagrama de herencias de domini.LZW</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classdomini_1_1LZW.png" usemap="#domini.LZW_map" alt=""/>
+  <map id="domini.LZW_map" name="domini.LZW_map">
+<area href="interfacedomini_1_1CompressionAlg.html" title="CompressionAlg." alt="domini.CompressionAlg" shape="rect" coords="0,0,144,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Métodos públicos estáticos</h2></td></tr>
-<tr class="memitem:a898ab51040bb21f71d28a241fa91e6bc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a898ab51040bb21f71d28a241fa91e6bc">compress</a> (final String inputFilename, final String outputFilename)  throws IOException </td></tr>
-<tr class="memdesc:a898ab51040bb21f71d28a241fa91e6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">LLama a una función que comprime un archivo de texto.  <a href="classdomini_1_1LZW.html#a898ab51040bb21f71d28a241fa91e6bc">Más...</a><br /></td></tr>
-<tr class="separator:a898ab51040bb21f71d28a241fa91e6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2a78ca45cebfc39a37b8e4813f9cc7d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#ac2a78ca45cebfc39a37b8e4813f9cc7d">decompress</a> (final String inputFilename, final String outputFilename)  throws IOException </td></tr>
-<tr class="memdesc:ac2a78ca45cebfc39a37b8e4813f9cc7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">LLama a una función que descomprime un archivo de texto.  <a href="classdomini_1_1LZW.html#ac2a78ca45cebfc39a37b8e4813f9cc7d">Más...</a><br /></td></tr>
-<tr class="separator:ac2a78ca45cebfc39a37b8e4813f9cc7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:a3fb9d0d2f261d2ed9f02c01f3d0ff212"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a3fb9d0d2f261d2ed9f02c01f3d0ff212">LZW</a> ()</td></tr>
+<tr class="separator:a3fb9d0d2f261d2ed9f02c01f3d0ff212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34c93bdda928229c3d20ebe84c01c59c"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a34c93bdda928229c3d20ebe84c01c59c">getMagicByte</a> ()</td></tr>
+<tr class="separator:a34c93bdda928229c3d20ebe84c01c59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e841fb556c70d08f16498a7c709773b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a0e841fb556c70d08f16498a7c709773b">compress</a> (IO.Byte.reader input, IO.Bit.writer output)  throws IOException </td></tr>
+<tr class="memdesc:a0e841fb556c70d08f16498a7c709773b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprime un archivo implementando un algoritmo <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>.  <a href="classdomini_1_1LZW.html#a0e841fb556c70d08f16498a7c709773b">Más...</a><br /></td></tr>
+<tr class="separator:a0e841fb556c70d08f16498a7c709773b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c1f2ca20c9f9976c9122a7e8eebd4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a11c1f2ca20c9f9976c9122a7e8eebd4d">decompress</a> (IO.Bit.reader input, IO.Byte.writer output)  throws IOException </td></tr>
+<tr class="memdesc:a11c1f2ca20c9f9976c9122a7e8eebd4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descomprime un archivo implementando un algoritmo <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>.  <a href="classdomini_1_1LZW.html#a11c1f2ca20c9f9976c9122a7e8eebd4d">Más...</a><br /></td></tr>
+<tr class="separator:a11c1f2ca20c9f9976c9122a7e8eebd4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Atributos públicos estáticos</h2></td></tr>
-<tr class="memitem:a13457a473880ead801452f858cfae4ca"><td class="memItemLeft" align="right" valign="top"><a id="a13457a473880ead801452f858cfae4ca"></a>
-static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">MAGIC_BYTE</a> = (byte) 0x11</td></tr>
-<tr class="memdesc:a13457a473880ead801452f858cfae4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Magic Byte <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos de texto con LZW.">LZW</a>. <br /></td></tr>
+<tr class="memitem:a13457a473880ead801452f858cfae4ca"><td class="memItemLeft" align="right" valign="top">static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">MAGIC_BYTE</a> = (byte) 0x11</td></tr>
+<tr class="memdesc:a13457a473880ead801452f858cfae4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Magic Byte <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>.  <a href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">Más...</a><br /></td></tr>
 <tr class="separator:a13457a473880ead801452f858cfae4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Métodos privados estáticos</h2></td></tr>
+<tr class="memitem:af65400354ba1af10e1520cac41d66388"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#af65400354ba1af10e1520cac41d66388">createCompressionDictionary</a> ()</td></tr>
+<tr class="memdesc:af65400354ba1af10e1520cac41d66388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea el diccionario de compresión y lo inicializa con los valores unitarios.  <a href="classdomini_1_1LZW.html#af65400354ba1af10e1520cac41d66388">Más...</a><br /></td></tr>
+<tr class="separator:af65400354ba1af10e1520cac41d66388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a154b566c71b74018588691156f48aa40"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a154b566c71b74018588691156f48aa40">createDecompressionDictionary</a> ()</td></tr>
+<tr class="memdesc:a154b566c71b74018588691156f48aa40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea el diccionario de descompresión y lo inicializa con los valores unitarios.  <a href="classdomini_1_1LZW.html#a154b566c71b74018588691156f48aa40">Más...</a><br /></td></tr>
+<tr class="separator:a154b566c71b74018588691156f48aa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaae107a8538d80af64cb5c682394e446"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#aaae107a8538d80af64cb5c682394e446">bitsNeeded</a> (final int n)</td></tr>
+<tr class="memdesc:aaae107a8538d80af64cb5c682394e446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.  <a href="classdomini_1_1LZW.html#aaae107a8538d80af64cb5c682394e446">Más...</a><br /></td></tr>
+<tr class="separator:aaae107a8538d80af64cb5c682394e446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83c7152e382e8515c75f30ea62d49e6b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">writeCode</a> (int code, final IO.Bit.writer output)  throws IOException</td></tr>
+<tr class="memdesc:a83c7152e382e8515c75f30ea62d49e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe en output el entero code representado en n bits precedido de 5 bits que codifican n.  <a href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">Más...</a><br /></td></tr>
+<tr class="separator:a83c7152e382e8515c75f30ea62d49e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Atributos privados estáticos</h2></td></tr>
+<tr class="memitem:a1900b092cd4f10fafdf9b00d2813702f"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a> = 0x0FF</td></tr>
+<tr class="memdesc:a1900b092cd4f10fafdf9b00d2813702f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño inicial del diccionario.  <a href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">Más...</a><br /></td></tr>
+<tr class="separator:a1900b092cd4f10fafdf9b00d2813702f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f9b580b6468484908bd38be4b7a2e38"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">OVERFLOW</a> = 0x7FFFFFFD</td></tr>
+<tr class="memdesc:a8f9b580b6468484908bd38be4b7a2e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marca el overflow del diccionario.  <a href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">Más...</a><br /></td></tr>
+<tr class="separator:a8f9b580b6468484908bd38be4b7a2e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef45f93c442c870b94cb6f3fc64c6561"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">EOF</a> = 0x7FFFFFFE</td></tr>
+<tr class="memdesc:aef45f93c442c870b94cb6f3fc64c6561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pseudo EOF.  <a href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">Más...</a><br /></td></tr>
+<tr class="separator:aef45f93c442c870b94cb6f3fc64c6561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c098c06be11edb02b4903e9d016b99"><td class="memItemLeft" align="right" valign="top">static Map&lt; ArrayList&lt; Byte &gt;, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a></td></tr>
+<tr class="memdesc:a54c098c06be11edb02b4903e9d016b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diccionario de compresión.  <a href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">Más...</a><br /></td></tr>
+<tr class="separator:a54c098c06be11edb02b4903e9d016b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9614bd60bbdf8ad81cb2a240d08209b"><td class="memItemLeft" align="right" valign="top">static Map&lt; Integer, ArrayList&lt; Byte &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a></td></tr>
+<tr class="memdesc:af9614bd60bbdf8ad81cb2a240d08209b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diccionario de descompresión.  <a href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">Más...</a><br /></td></tr>
+<tr class="separator:af9614bd60bbdf8ad81cb2a240d08209b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>Compresión y descompresión de archivos de texto con <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos de texto con LZW.">LZW</a>. </p>
-<dl class="section author"><dt>Autor</dt><dd>***REMOVED*** </dd></dl>
-</div><h2 class="groupheader">Documentación de las funciones miembro</h2>
-<a id="a898ab51040bb21f71d28a241fa91e6bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a898ab51040bb21f71d28a241fa91e6bc">&#9670;&nbsp;</a></span>compress()</h2>
+<div class="textblock"><p>Compresión y descompresión de archivos con <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00018">18</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a id="a3fb9d0d2f261d2ed9f02c01f3d0ff212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fb9d0d2f261d2ed9f02c01f3d0ff212">&#9670;&nbsp;</a></span>LZW()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -107,16 +155,88 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="e
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void domini.LZW.compress </td>
+          <td class="memname">domini.LZW.LZW </td>
           <td>(</td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>inputFilename</em>, </td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Creadora vacia <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a> </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00021">21</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{ }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="aaae107a8538d80af64cb5c682394e446"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaae107a8538d80af64cb5c682394e446">&#9670;&nbsp;</a></span>bitsNeeded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int domini.LZW.bitsNeeded </td>
+          <td>(</td>
+          <td class="paramtype">final int&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Numero integer del que se calculan cuantos bits son necesarios para codificarlo en base 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve el numero de bits necesarios para codificar en base 2 el int pasado por parametro </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00075">75</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                               {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span> (n &lt;= 0)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) (Math.log(n) / Math.log(2) + 1e-10) + 1;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0e841fb556c70d08f16498a7c709773b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e841fb556c70d08f16498a7c709773b">&#9670;&nbsp;</a></span>compress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.LZW.compress </td>
+          <td>(</td>
+          <td class="paramtype">IO.Byte.reader&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>outputFilename</em>&#160;</td>
+          <td class="paramtype">IO.Bit.writer&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -126,30 +246,69 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="e
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>LLama a una función que comprime un archivo de texto. </p>
+<p>Comprime un archivo implementando un algoritmo <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inputFilename</td><td>path y nombre del archivo que se quiere comprimir. </td></tr>
-    <tr><td class="paramname">outputFilename</td><td>path y nombre del archivo comprimido. </td></tr>
+    <tr><td class="paramname">input</td><td>objeto de lectura del archivo que se comprime </td></tr>
+    <tr><td class="paramname">output</td><td>objeto de ecritura del archivo comprimido </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Excepciones</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>se produce un error en la lectura / escritura. </td></tr>
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al comprimir </td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implementa <a class="el" href="interfacedomini_1_1CompressionAlg.html#a3a0ecc535a8ae0b4aa2b98abb7ea0496">domini.CompressionAlg</a>.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00102">102</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                                                                                         {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classdomini_1_1LZW.html#af65400354ba1af10e1520cac41d66388">createCompressionDictionary</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">int</span> i = <a class="code" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a> + 1;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        ArrayList&lt;Byte&gt; bytes = <span class="keyword">new</span> ArrayList&lt;&gt;();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordtype">int</span> auxInt = input.read();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">while</span> (auxInt != -1) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keyword">final</span> <span class="keywordtype">byte</span> b = (byte) auxInt;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            ArrayList&lt;Byte&gt; aux = <span class="keyword">new</span> ArrayList&lt;&gt;(bytes);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            aux.add(b);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a>.containsKey(aux)) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                bytes = aux;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keyword">final</span> <span class="keywordtype">int</span> code = <a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a>.get(bytes);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <a class="code" href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">writeCode</a>(code,output);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a>.put(aux,i++);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                bytes = <span class="keyword">new</span> ArrayList&lt;&gt;();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                bytes.add(b);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keywordflow">if</span> (i &gt;= <a class="code" href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">OVERFLOW</a>) {  <span class="comment">//[DICTIONARY OVERFLOW]</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <a class="code" href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">writeCode</a>(<a class="code" href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">OVERFLOW</a>,output);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <a class="code" href="classdomini_1_1LZW.html#af65400354ba1af10e1520cac41d66388">createCompressionDictionary</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                i = <a class="code" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            auxInt = input.read();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a>.containsKey(bytes)) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;           <span class="keyword">final</span> <span class="keywordtype">int</span> code = <a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a>.get(bytes);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <a class="code" href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">writeCode</a>(code,output);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">writeCode</a>(<a class="code" href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">EOF</a>,output);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="ac2a78ca45cebfc39a37b8e4813f9cc7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2a78ca45cebfc39a37b8e4813f9cc7d">&#9670;&nbsp;</a></span>decompress()</h2>
+<a id="af65400354ba1af10e1520cac41d66388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af65400354ba1af10e1520cac41d66388">&#9670;&nbsp;</a></span>createCompressionDictionary()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,16 +317,90 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="e
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void domini.LZW.decompress </td>
+          <td class="memname">static void domini.LZW.createCompressionDictionary </td>
           <td>(</td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>inputFilename</em>, </td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Crea el diccionario de compresión y lo inicializa con los valores unitarios. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00044">44</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                                      {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a> = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= <a class="code" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a>; ++i){</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            ArrayList&lt;Byte&gt; c = <span class="keyword">new</span> ArrayList&lt;&gt;();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            c.add((<span class="keywordtype">byte</span>) i);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a>.put(c ,i);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a154b566c71b74018588691156f48aa40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a154b566c71b74018588691156f48aa40">&#9670;&nbsp;</a></span>createDecompressionDictionary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void domini.LZW.createDecompressionDictionary </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Crea el diccionario de descompresión y lo inicializa con los valores unitarios. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00056">56</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                                        {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a> = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= <a class="code" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a>; ++i){</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            ArrayList&lt;Byte&gt; c = <span class="keyword">new</span> ArrayList&lt;&gt;();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            c.add((<span class="keywordtype">byte</span>) i);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.put(i,c);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a11c1f2ca20c9f9976c9122a7e8eebd4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c1f2ca20c9f9976c9122a7e8eebd4d">&#9670;&nbsp;</a></span>decompress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.LZW.decompress </td>
+          <td>(</td>
+          <td class="paramtype">IO.Bit.reader&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>outputFilename</em>&#160;</td>
+          <td class="paramtype">IO.Byte.writer&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -177,32 +410,344 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="e
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>LLama a una función que descomprime un archivo de texto. </p>
+<p>Descomprime un archivo implementando un algoritmo <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inputFilename</td><td>path y nombre del archivo que se quiere descomprimir. </td></tr>
-    <tr><td class="paramname">outputFilename</td><td>path y nombre del archivo descomprimido. </td></tr>
+    <tr><td class="paramname">input</td><td>objeto de lectura del archivo que se descomprime </td></tr>
+    <tr><td class="paramname">output</td><td>objeto de ecritura del archivo descomprimido </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Excepciones</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>se produce un error en la lectura / escritura. </td></tr>
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al comprimir </td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Implementa <a class="el" href="interfacedomini_1_1CompressionAlg.html#a06a05e8e073c22126a02c8514e571dbb">domini.CompressionAlg</a>.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00145">145</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                                                                           {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <a class="code" href="classdomini_1_1LZW.html#a154b566c71b74018588691156f48aa40">createDecompressionDictionary</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordtype">int</span> i = <a class="code" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a> + 1;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keywordtype">int</span> n = input.readBitSet(5).asInt();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordtype">int</span> oldCode = input.readBitSet(n+1).asInt();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">if</span> (oldCode != <a class="code" href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">EOF</a>) {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                ArrayList&lt;Byte&gt; aux = <span class="keyword">new</span> ArrayList&lt;&gt;(<a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.get(oldCode));</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> b : aux) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                    output.write(b);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                <span class="keywordtype">byte</span> ch = aux.get(0);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                n = input.readBitSet(5).asInt();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <span class="keywordtype">int</span> code = input.readBitSet(n+1).asInt();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                <span class="keywordflow">while</span> (code != <a class="code" href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">EOF</a>) {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                    <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.containsKey(code)) {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                        aux = <span class="keyword">new</span> ArrayList&lt;&gt;(<a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.get(code));</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                        aux = <span class="keyword">new</span> ArrayList&lt;&gt;(<a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.get(oldCode));</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                        aux.add(ch);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                    }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> b : aux) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                        output.write(b);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    ch = aux.get(0);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    aux = <span class="keyword">new</span> ArrayList&lt;&gt;(<a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.get(oldCode));</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    aux.add(ch);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    <a class="code" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a>.put(i++, aux);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    oldCode = code;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                    n = input.readBitSet(5).asInt();</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    code = input.readBitSet(n+1).asInt();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <span class="keywordflow">if</span> (code == <a class="code" href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">OVERFLOW</a>) {   <span class="comment">//[DICTIONARY OVERFLOW DETECTED]</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                        <a class="code" href="classdomini_1_1LZW.html#a154b566c71b74018588691156f48aa40">createDecompressionDictionary</a>();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                        i = <a class="code" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                        n = input.readBitSet(5).asInt();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                        code = input.readBitSet(n+1).asInt();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                }</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        } <span class="keywordflow">catch</span> (EOFException e){</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="comment">//End of file reached.</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a34c93bdda928229c3d20ebe84c01c59c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34c93bdda928229c3d20ebe84c01c59c">&#9670;&nbsp;</a></span>getMagicByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte domini.LZW.getMagicByte </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="interfacedomini_1_1CompressionAlg.html#a33aa566ff435b1027752a6adb980f3bc">domini.CompressionAlg</a>.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00065">65</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                               {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">MAGIC_BYTE</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a83c7152e382e8515c75f30ea62d49e6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83c7152e382e8515c75f30ea62d49e6b">&#9670;&nbsp;</a></span>writeCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void domini.LZW.writeCode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final IO.Bit.writer&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws IOException</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Escribe en output el entero code representado en n bits precedido de 5 bits que codifican n. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>Numero integer que se escribe </td></tr>
+    <tr><td class="paramname">output</td><td>Salida de tipo IO.Bit.writer para escribir en el archivo comprimido </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Excepciones</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al escribir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00088">88</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                                                                           {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordtype">int</span> nbits = <a class="code" href="classdomini_1_1LZW.html#aaae107a8538d80af64cb5c682394e446">bitsNeeded</a>(code);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">final</span> BitSetL n = <span class="keyword">new</span> BitSetL(nbits-1,5);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        output.write(n);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">final</span> BitSetL bsNum = <span class="keyword">new</span> BitSetL(code, nbits);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        output.write(bsNum);    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="a54c098c06be11edb02b4903e9d016b99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54c098c06be11edb02b4903e9d016b99">&#9670;&nbsp;</a></span>compressionDictionary</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;ArrayList&lt;Byte&gt;, Integer&gt; domini.LZW.compressionDictionary</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Diccionario de compresión. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00036">36</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+
+</div>
+</div>
+<a id="af9614bd60bbdf8ad81cb2a240d08209b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9614bd60bbdf8ad81cb2a240d08209b">&#9670;&nbsp;</a></span>decompressionDictionary</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;Integer, ArrayList&lt;Byte&gt; &gt; domini.LZW.decompressionDictionary</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Diccionario de descompresión. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00039">39</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+
+</div>
+</div>
+<a id="a1900b092cd4f10fafdf9b00d2813702f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1900b092cd4f10fafdf9b00d2813702f">&#9670;&nbsp;</a></span>DICTIONARY_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int domini.LZW.DICTIONARY_SIZE = 0x0FF</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tamaño inicial del diccionario. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00027">27</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+
+</div>
+</div>
+<a id="aef45f93c442c870b94cb6f3fc64c6561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef45f93c442c870b94cb6f3fc64c6561">&#9670;&nbsp;</a></span>EOF</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int domini.LZW.EOF = 0x7FFFFFFE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pseudo EOF. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00033">33</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+
+</div>
+</div>
+<a id="a13457a473880ead801452f858cfae4ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13457a473880ead801452f858cfae4ca">&#9670;&nbsp;</a></span>MAGIC_BYTE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final byte domini.LZW.MAGIC_BYTE = (byte) 0x11</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Magic Byte <a class="el" href="classdomini_1_1LZW.html" title="Compresión y descompresión de archivos con LZW.">LZW</a>. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00024">24</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
+
+</div>
+</div>
+<a id="a8f9b580b6468484908bd38be4b7a2e38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f9b580b6468484908bd38be4b7a2e38">&#9670;&nbsp;</a></span>OVERFLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int domini.LZW.OVERFLOW = 0x7FFFFFFD</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Marca el overflow del diccionario. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZW_8java_source.html#l00030">30</a> del archivo <a class="el" href="LZW_8java_source.html">LZW.java</a>.</p>
 
 </div>
 </div>
 <hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
-<li>src/main/java/domini/LZW.java</li>
+<li>src/main/java/domini/<a class="el" href="LZW_8java_source.html">LZW.java</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1LZW_html_a154b566c71b74018588691156f48aa40"><div class="ttname"><a href="classdomini_1_1LZW.html#a154b566c71b74018588691156f48aa40">domini.LZW.createDecompressionDictionary</a></div><div class="ttdeci">static void createDecompressionDictionary()</div><div class="ttdoc">Crea el diccionario de descompresión y lo inicializa con los valores unitarios.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00056">LZW.java:56</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_aaae107a8538d80af64cb5c682394e446"><div class="ttname"><a href="classdomini_1_1LZW.html#aaae107a8538d80af64cb5c682394e446">domini.LZW.bitsNeeded</a></div><div class="ttdeci">static int bitsNeeded(final int n)</div><div class="ttdoc">Calcula el numero de bits necesarios para codificar en base 2 el int pasado por parametro.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00075">LZW.java:75</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_af9614bd60bbdf8ad81cb2a240d08209b"><div class="ttname"><a href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">domini.LZW.decompressionDictionary</a></div><div class="ttdeci">static Map&lt; Integer, ArrayList&lt; Byte &gt; &gt; decompressionDictionary</div><div class="ttdoc">Diccionario de descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00039">LZW.java:39</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_a83c7152e382e8515c75f30ea62d49e6b"><div class="ttname"><a href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">domini.LZW.writeCode</a></div><div class="ttdeci">static void writeCode(int code, final IO.Bit.writer output)</div><div class="ttdoc">Escribe en output el entero code representado en n bits precedido de 5 bits que codifican n.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00088">LZW.java:88</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_a13457a473880ead801452f858cfae4ca"><div class="ttname"><a href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">domini.LZW.MAGIC_BYTE</a></div><div class="ttdeci">static final byte MAGIC_BYTE</div><div class="ttdoc">Magic Byte LZW.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00024">LZW.java:24</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_a1900b092cd4f10fafdf9b00d2813702f"><div class="ttname"><a href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">domini.LZW.DICTIONARY_SIZE</a></div><div class="ttdeci">static final int DICTIONARY_SIZE</div><div class="ttdoc">Tamaño inicial del diccionario.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00027">LZW.java:27</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_a8f9b580b6468484908bd38be4b7a2e38"><div class="ttname"><a href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">domini.LZW.OVERFLOW</a></div><div class="ttdeci">static final int OVERFLOW</div><div class="ttdoc">Marca el overflow del diccionario.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00030">LZW.java:30</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_af65400354ba1af10e1520cac41d66388"><div class="ttname"><a href="classdomini_1_1LZW.html#af65400354ba1af10e1520cac41d66388">domini.LZW.createCompressionDictionary</a></div><div class="ttdeci">static void createCompressionDictionary()</div><div class="ttdoc">Crea el diccionario de compresión y lo inicializa con los valores unitarios.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00044">LZW.java:44</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_a54c098c06be11edb02b4903e9d016b99"><div class="ttname"><a href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">domini.LZW.compressionDictionary</a></div><div class="ttdeci">static Map&lt; ArrayList&lt; Byte &gt;, Integer &gt; compressionDictionary</div><div class="ttdoc">Diccionario de compresión.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00036">LZW.java:36</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZW_html_aef45f93c442c870b94cb6f3fc64c6561"><div class="ttname"><a href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">domini.LZW.EOF</a></div><div class="ttdeci">static final int EOF</div><div class="ttdoc">Pseudo EOF.</div><div class="ttdef"><b>Definition:</b> <a href="LZW_8java_source.html#l00033">LZW.java:33</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por &#160;<a href="http://www.doxygen.org/index.html">

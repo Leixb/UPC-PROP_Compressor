@@ -5,39 +5,95 @@
 compresión y descompresión de imágenes P\+PM con \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}}  
 
 
-\doxysubsection*{Métodos públicos estáticos}
+Diagrama de herencias de domini.\+J\+P\+EG\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1JPEG}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{classdomini_1_1JPEG_af7f9bed2f9b877004ecbc7ffc6ee5c99}{compress}} (final String input\+File, final String output\+File, final short quality)  throws Invalid\+File\+Format, I\+O\+Exception, Huffman\+Lookup\+Exception 
+\mbox{\hyperlink{classdomini_1_1JPEG_acef5414f60496ec48aeb064d2729ecc9}{J\+P\+EG}} (final short \mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}})
+\item 
+byte \mbox{\hyperlink{classdomini_1_1JPEG_ac95916ccc975435c5bd3be5844d7845b}{get\+Magic\+Byte}} ()
+\item 
+void \mbox{\hyperlink{classdomini_1_1JPEG_a8e1341c2f05884e2739b9d814e973dfb}{compress}} (final I\+O.\+Byte.\+reader input, final I\+O.\+Bit.\+writer output)  throws I\+O\+Exception 
 \begin{DoxyCompactList}\small\item\em Comprime una imagen P\+PM bloque a bloque. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classdomini_1_1JPEG_ab9de66231b23b6eefa213c0878f4d42b}{decompress}} (final String input\+File, final String output\+File)  throws I\+O\+Exception 
-\begin{DoxyCompactList}\small\item\em Descomprime un fichero comprimido en \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} y lo guarda la imagen resultante en un fichero P\+PM raw. \end{DoxyCompactList}\item 
-static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}{read\+Block}} (final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+AC, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+DC, final I\+O.\+Bit.\+reader file)  throws I\+O\+Exception 
-\begin{DoxyCompactList}\small\item\em Lee un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. \end{DoxyCompactList}\item 
-static void \mbox{\hyperlink{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}{write\+Block}} (final short\mbox{[}$\,$\mbox{]} encoded, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+AC, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+DC, final I\+O.\+Bit.\+writer file)  throws I\+O\+Exception, Huffman\+Lookup\+Exception 
-\begin{DoxyCompactList}\small\item\em Escribe un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classdomini_1_1JPEG_ad40f92c5a9458e7a8dad1b22975b7a56}{decompress}} (I\+O.\+Bit.\+reader input, I\+O.\+Byte.\+writer output)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Descomprime un fichero comprimido en \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} y lo guarda la imagen resultante en un fichero P\+PM raw. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Atributos públicos estáticos}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}\label{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}} 
 static final byte \mbox{\hyperlink{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}{M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE}} = (byte) 0x98
 \begin{DoxyCompactList}\small\item\em Magic Byte \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Funciones estáticas del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+static short\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}{read\+Block}} (final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+AC, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+DC, final I\+O.\+Bit.\+reader file)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Lee un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}{write\+Block}} (final short\mbox{[}$\,$\mbox{]} encoded, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+AC, final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff\+DC, final I\+O.\+Bit.\+writer file)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Escribe un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static short \mbox{\hyperlink{classdomini_1_1JPEG_a9d07a4b2bb88fe46b7cf83d9f742c4b8}{read\+Huffman}} (\mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} huff, I\+O.\+Bit.\+reader file)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Lee un código \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} del fichero y lo decodifica. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1JPEG_adc03ce9c37342b62c3506c4926a8347e}{write}} (int value, int l, I\+O.\+Bit.\+writer file)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dado un valor, una longitud y un objeto de escritura, escribe el valor representado con la longitud dada en el objeto de escritura. \end{DoxyCompactList}\item 
+static short \mbox{\hyperlink{classdomini_1_1JPEG_ab2ed8eab3dc7affd99fd4eb3967eaab6}{read}} (int length, I\+O.\+Bit.\+reader file)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dada una longitud y un objeto de lectura, se leen los bits correspondientes a la longitud dada del objeto de lectura. \end{DoxyCompactList}\item 
+static byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEG_a293f8543133bf130fe28595aea7af229}{to\+Y\+Cb\+Cr}} (byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} channel\+Blocks)
+\begin{DoxyCompactList}\small\item\em Convierte el bloque dado en espacio de color R\+GB a Y\+Cb\+Cr. \end{DoxyCompactList}\item 
+static byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classdomini_1_1JPEG_aa62344747f9d288fb1e5b6a05bbcc904}{to\+R\+GB}} (byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} channel\+Blocks)
+\begin{DoxyCompactList}\small\item\em Convierte el bloque dado en espacio de color Y\+Cb\+Cr a R\+GB. \end{DoxyCompactList}\item 
+static byte \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{double\+To\+Byte}} (final double d)
+\begin{DoxyCompactList}\small\item\em Dado un double, devuelve dicho double en formato de byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+short \mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}}
+\begin{DoxyCompactList}\small\item\em Calidad de compresión. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
 compresión y descompresión de imágenes P\+PM con \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} 
 
-\begin{DoxyAuthor}{Autor}
-***REMOVED*** 
-\end{DoxyAuthor}
+Definición en la línea 16 del archivo J\+P\+E\+G.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1JPEG_acef5414f60496ec48aeb064d2729ecc9}\label{classdomini_1_1JPEG_acef5414f60496ec48aeb064d2729ecc9}} 
+\index{domini.JPEG@{domini.JPEG}!JPEG@{JPEG}}
+\index{JPEG@{JPEG}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{JPEG()}{JPEG()}}
+{\footnotesize\ttfamily domini.\+J\+P\+E\+G.\+J\+P\+EG (\begin{DoxyParamCaption}\item[{final short}]{quality }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructora \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}} con calidad, inicializa quality con la calidad dada 
+\begin{DoxyParams}{Parámetros}
+{\em quality} & calidad de compresión \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea 24 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24                                      \{}
+\DoxyCodeLine{25         this.\mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}} = \mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}};}
+\DoxyCodeLine{26     \}}
+
+\end{DoxyCode}
 
 
 \doxysubsection{Documentación de las funciones miembro}
-\mbox{\Hypertarget{classdomini_1_1JPEG_af7f9bed2f9b877004ecbc7ffc6ee5c99}\label{classdomini_1_1JPEG_af7f9bed2f9b877004ecbc7ffc6ee5c99}} 
+\mbox{\Hypertarget{classdomini_1_1JPEG_a8e1341c2f05884e2739b9d814e973dfb}\label{classdomini_1_1JPEG_a8e1341c2f05884e2739b9d814e973dfb}} 
 \index{domini.JPEG@{domini.JPEG}!compress@{compress}}
 \index{compress@{compress}!domini.JPEG@{domini.JPEG}}
 \doxysubsubsection{\texorpdfstring{compress()}{compress()}}
-{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+compress (\begin{DoxyParamCaption}\item[{final String}]{input\+File,  }\item[{final String}]{output\+File,  }\item[{final short}]{quality }\end{DoxyParamCaption}) throws Invalid\+File\+Format, I\+O\+Exception, Huffman\+Lookup\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily void domini.\+J\+P\+E\+G.\+compress (\begin{DoxyParamCaption}\item[{final I\+O.\+Byte.\+reader}]{input,  }\item[{final I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -45,27 +101,63 @@ Comprime una imagen P\+PM bloque a bloque.
 
 
 \begin{DoxyParams}{Parámetros}
-{\em input\+File} & nombre del fichero de entrada (imagen ppm) \\
+{\em input} & objeto lector del fichero de entrada \\
 \hline
-{\em output\+File} & nombre del fichero de salida (comprimido) \\
-\hline
-{\em quality} & calidad de compreso (1-\/100) donde 100 es la mejor calidad \\
+{\em output} & objeto escritor del fichero comprimido \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Excepciones}
-{\em Invalid\+File\+Format} & Si el fichero de entrada no es un P\+PM raw valido \\
-\hline
 {\em I\+O\+Exception} & Si se produce un error de lectura / escritura \\
 \hline
-{\em Huffman\+Lookup\+Exception} & Si no se puede codificar algún valor (Solo sucede si la tabla \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} no es correcta) \\
-\hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{classdomini_1_1JPEG_ab9de66231b23b6eefa213c0878f4d42b}\label{classdomini_1_1JPEG_ab9de66231b23b6eefa213c0878f4d42b}} 
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a3a0ecc535a8ae0b4aa2b98abb7ea0496}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 42 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42                                                                                                     \{}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         \textcolor{keyword}{final} Huffman huffAcChrom = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{true}, \textcolor{keyword}{true});}
+\DoxyCodeLine{45         \textcolor{keyword}{final} Huffman huffAcLum = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{true}, \textcolor{keyword}{false});}
+\DoxyCodeLine{46         \textcolor{keyword}{final} Huffman huffDcChrom = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{false}, \textcolor{keyword}{true});}
+\DoxyCodeLine{47         \textcolor{keyword}{final} Huffman huffDcLum = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{false}, \textcolor{keyword}{false});}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49         PpmImage.Reader img = \textcolor{keyword}{new} PpmImage.Reader(input);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51         output.write((\textcolor{keywordtype}{int}) \mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}});}
+\DoxyCodeLine{52         output.write(img.getWidth());}
+\DoxyCodeLine{53         output.write(img.getHeight());}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         \textcolor{keyword}{final} \textcolor{keywordtype}{int} cols = img.widthBlocks();}
+\DoxyCodeLine{56         \textcolor{keyword}{final} \textcolor{keywordtype}{int} rows = img.heightBlocks();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < rows; ++j) \{}
+\DoxyCodeLine{59             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < cols; ++i) \{}
+\DoxyCodeLine{60                 \textcolor{keyword}{final} \textcolor{keywordtype}{byte}[][][] channelBlocks = \mbox{\hyperlink{classdomini_1_1JPEG_a293f8543133bf130fe28595aea7af229}{toYCbCr}}(img.readBlock());}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} chan = 0; chan < 3; ++chan) \{}
+\DoxyCodeLine{64                     \textcolor{keyword}{final} \textcolor{keywordtype}{short}[] encoded = JPEGBlock.encode(\mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}}, chan != 0, channelBlocks[chan]);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66                     \textcolor{keywordflow}{if} (chan == 0)  \mbox{\hyperlink{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}{writeBlock}}(encoded, huffAcLum,   huffDcLum,   output);}
+\DoxyCodeLine{67                     \textcolor{keywordflow}{else}            \mbox{\hyperlink{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}{writeBlock}}(encoded, huffAcChrom, huffDcChrom, output);}
+\DoxyCodeLine{68                 \}}
+\DoxyCodeLine{69             \}}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_ad40f92c5a9458e7a8dad1b22975b7a56}\label{classdomini_1_1JPEG_ad40f92c5a9458e7a8dad1b22975b7a56}} 
 \index{domini.JPEG@{domini.JPEG}!decompress@{decompress}}
 \index{decompress@{decompress}!domini.JPEG@{domini.JPEG}}
 \doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
-{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+decompress (\begin{DoxyParamCaption}\item[{final String}]{input\+File,  }\item[{final String}]{output\+File }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily void domini.\+J\+P\+E\+G.\+decompress (\begin{DoxyParamCaption}\item[{I\+O.\+Bit.\+reader}]{input,  }\item[{I\+O.\+Byte.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -73,9 +165,9 @@ Descomprime un fichero comprimido en \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\
 
 
 \begin{DoxyParams}{Parámetros}
-{\em input\+File} & nombre del fichero de entrada (comprimido) \\
+{\em input} & objeto lector del fichero comprimido \\
 \hline
-{\em output\+File} & nombre del fichero de salida (imagen P\+PM) \\
+{\em output} & objeto escritor del fichero descomprimido \\
 \hline
 \end{DoxyParams}
 
@@ -83,11 +175,160 @@ Descomprime un fichero comprimido en \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\
 {\em I\+O\+Exception} & Si se produce un error de lectura / escritura \\
 \hline
 \end{DoxyExceptions}
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a06a05e8e073c22126a02c8514e571dbb}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 81 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{81                                                                                           \{}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83         \textcolor{keyword}{final} Huffman huffAcChrom = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{true}, \textcolor{keyword}{true});}
+\DoxyCodeLine{84         \textcolor{keyword}{final} Huffman huffAcLum = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{true}, \textcolor{keyword}{false});}
+\DoxyCodeLine{85         \textcolor{keyword}{final} Huffman huffDcChrom = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{false}, \textcolor{keyword}{true});}
+\DoxyCodeLine{86         \textcolor{keyword}{final} Huffman huffDcLum = \textcolor{keyword}{new} Huffman(\textcolor{keyword}{false}, \textcolor{keyword}{false});}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88         \textcolor{keyword}{final} \textcolor{keywordtype}{short} \mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}} = (short) input.readInt();}
+\DoxyCodeLine{89         \textcolor{keyword}{final} \textcolor{keywordtype}{int} w = input.readInt();}
+\DoxyCodeLine{90         \textcolor{keyword}{final} \textcolor{keywordtype}{int} h = input.readInt();}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92         PpmImage.Writer img = \textcolor{keyword}{new} PpmImage.Writer(output, w, h);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94         \textcolor{keyword}{final} \textcolor{keywordtype}{int} cols = img.widthBlocks();}
+\DoxyCodeLine{95         \textcolor{keyword}{final} \textcolor{keywordtype}{int} rows = img.heightBlocks();}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < rows; ++j) \{}
+\DoxyCodeLine{98             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < cols; ++i) \{}
+\DoxyCodeLine{99                 \textcolor{keyword}{final} \textcolor{keywordtype}{byte}[][][] channelBlocks = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[3][8][8];}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} chan = 0; chan < 3; ++chan) \{}
+\DoxyCodeLine{102                     \textcolor{keywordtype}{short}[] encoded;}
+\DoxyCodeLine{103                     }
+\DoxyCodeLine{104                     \textcolor{keywordflow}{if} (chan == 0)  encoded = \mbox{\hyperlink{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}{readBlock}}(huffAcLum,   huffDcLum,   input);}
+\DoxyCodeLine{105                     \textcolor{keywordflow}{else}            encoded = \mbox{\hyperlink{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}{readBlock}}(huffAcChrom, huffDcChrom, input);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107                     channelBlocks[chan] = JPEGBlock.decode(\mbox{\hyperlink{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}{quality}}, chan != 0, encoded);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109                 \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111                 img.writeBlock(\mbox{\hyperlink{classdomini_1_1JPEG_aa62344747f9d288fb1e5b6a05bbcc904}{toRGB}}(channelBlocks));}
+\DoxyCodeLine{112             \}}
+\DoxyCodeLine{113         \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}\label{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}} 
+\index{domini.JPEG@{domini.JPEG}!doubleToByte@{doubleToByte}}
+\index{doubleToByte@{doubleToByte}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{doubleToByte()}{doubleToByte()}}
+{\footnotesize\ttfamily static byte domini.\+J\+P\+E\+G.\+double\+To\+Byte (\begin{DoxyParamCaption}\item[{final double}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Dado un double, devuelve dicho double en formato de byte. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em d} & double a transformar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+el double en fromato de byte 
+\end{DoxyReturn}
+
+
+Definición en la línea 314 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{314                                                      \{}
+\DoxyCodeLine{315         \textcolor{keywordtype}{int} n = (int) d;}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317         \textcolor{keywordflow}{if} (n < 0)}
+\DoxyCodeLine{318             n = 0;}
+\DoxyCodeLine{319         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (n > 255)}
+\DoxyCodeLine{320             n = 255;}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{byte}) n;}
+\DoxyCodeLine{323     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_ac95916ccc975435c5bd3be5844d7845b}\label{classdomini_1_1JPEG_ac95916ccc975435c5bd3be5844d7845b}} 
+\index{domini.JPEG@{domini.JPEG}!getMagicByte@{getMagicByte}}
+\index{getMagicByte@{getMagicByte}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{getMagicByte()}{getMagicByte()}}
+{\footnotesize\ttfamily byte domini.\+J\+P\+E\+G.\+get\+Magic\+Byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interfacedomini_1_1CompressionAlg_a33aa566ff435b1027752a6adb980f3bc}{domini.\+Compression\+Alg}}.
+
+
+
+Definición en la línea 31 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31                                \{}
+\DoxyCodeLine{32         \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}{MAGIC\_BYTE}};}
+\DoxyCodeLine{33     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_ab2ed8eab3dc7affd99fd4eb3967eaab6}\label{classdomini_1_1JPEG_ab2ed8eab3dc7affd99fd4eb3967eaab6}} 
+\index{domini.JPEG@{domini.JPEG}!read@{read}}
+\index{read@{read}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily static short domini.\+J\+P\+E\+G.\+read (\begin{DoxyParamCaption}\item[{int}]{length,  }\item[{I\+O.\+Bit.\+reader}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Dada una longitud y un objeto de lectura, se leen los bits correspondientes a la longitud dada del objeto de lectura. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em length} & longitud que se lee \\
+\hline
+{\em file} & objeto de lectura del archivo del cual se lee \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+short leído 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al leer \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 237 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{237                                                                                  \{}
+\DoxyCodeLine{238         BitSetL bs = file.readBitSet(length);}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240         \textcolor{keywordtype}{short} num =0;}
+\DoxyCodeLine{241         \textcolor{keywordflow}{if} (bs.get(0)) \{}
+\DoxyCodeLine{242             num = (short) bs.asInt();}
+\DoxyCodeLine{243         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{244             bs.flip();}
+\DoxyCodeLine{245             num = (short) -\/bs.asInt();}
+\DoxyCodeLine{246         \}}
+\DoxyCodeLine{247         \textcolor{keywordflow}{return} num;}
+\DoxyCodeLine{248     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}\label{classdomini_1_1JPEG_a0d38abc0db0336f1c20d1124146ff307}} 
 \index{domini.JPEG@{domini.JPEG}!readBlock@{readBlock}}
 \index{readBlock@{readBlock}!domini.JPEG@{domini.JPEG}}
 \doxysubsubsection{\texorpdfstring{readBlock()}{readBlock()}}
-{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G.\+read\+Block (\begin{DoxyParamCaption}\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+AC,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+DC,  }\item[{final I\+O.\+Bit.\+reader}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static short \mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G.\+read\+Block (\begin{DoxyParamCaption}\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+AC,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+DC,  }\item[{final I\+O.\+Bit.\+reader}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [package]}}
 
 
 
@@ -110,11 +351,225 @@ bloque codificado sin \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}
 {\em I\+O\+Exception} & error en la lectura \\
 \hline
 \end{DoxyExceptions}
+
+
+Definición en la línea 126 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{127                                \{}
+\DoxyCodeLine{128         \textcolor{keyword}{final} ArrayList<Short> block = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130         block.add(\mbox{\hyperlink{classdomini_1_1JPEG_a9d07a4b2bb88fe46b7cf83d9f742c4b8}{readHuffman}}(huffDC, file));}
+\DoxyCodeLine{131         \textcolor{keywordflow}{if} (block.get(0) != 0)}
+\DoxyCodeLine{132             block.add(\mbox{\hyperlink{classdomini_1_1JPEG_ab2ed8eab3dc7affd99fd4eb3967eaab6}{read}}(block.get(0), file));}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 64; ++i) \{}
+\DoxyCodeLine{135             \textcolor{keyword}{final} \textcolor{keywordtype}{short} decodedValue = \mbox{\hyperlink{classdomini_1_1JPEG_a9d07a4b2bb88fe46b7cf83d9f742c4b8}{readHuffman}}(huffAC, file);}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137             block.add(decodedValue);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139             \textcolor{keywordflow}{if} (decodedValue == 0x00)}
+\DoxyCodeLine{140                 \textcolor{keywordflow}{break}; \textcolor{comment}{// EOB}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142             \textcolor{keyword}{final} \textcolor{keywordtype}{int} length = decodedValue \& 0xF;}
+\DoxyCodeLine{143             \textcolor{keywordflow}{if} (length == 0)}
+\DoxyCodeLine{144                 \textcolor{keywordflow}{continue}; \textcolor{comment}{// ZRL}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146             block.add(\mbox{\hyperlink{classdomini_1_1JPEG_ab2ed8eab3dc7affd99fd4eb3967eaab6}{read}}(length, file));}
+\DoxyCodeLine{147         \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149         \textcolor{keyword}{final} \textcolor{keywordtype}{short}[] r = \textcolor{keyword}{new} \textcolor{keywordtype}{short}[block.size()];}
+\DoxyCodeLine{150         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < block.size(); ++i) \{}
+\DoxyCodeLine{151             r[i] = block.get(i);}
+\DoxyCodeLine{152         \}}
+\DoxyCodeLine{153         \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{154     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_a9d07a4b2bb88fe46b7cf83d9f742c4b8}\label{classdomini_1_1JPEG_a9d07a4b2bb88fe46b7cf83d9f742c4b8}} 
+\index{domini.JPEG@{domini.JPEG}!readHuffman@{readHuffman}}
+\index{readHuffman@{readHuffman}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{readHuffman()}{readHuffman()}}
+{\footnotesize\ttfamily static short domini.\+J\+P\+E\+G.\+read\+Huffman (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff,  }\item[{I\+O.\+Bit.\+reader}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Lee un código \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} del fichero y lo decodifica. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em huff} & objeto tipo \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} \\
+\hline
+{\em file} & objeto escritor del fichero comprimido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+devuelve el valor asociado al código \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}} leído 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & error en la lectura \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 164 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164                                                                                           \{}
+\DoxyCodeLine{165         Huffman.Node n = huff.decode(file.read());}
+\DoxyCodeLine{166         \textcolor{keywordflow}{while} (!n.isLeaf()) \{}
+\DoxyCodeLine{167             n = huff.decode(n, file.read());}
+\DoxyCodeLine{168         \}}
+\DoxyCodeLine{169         \textcolor{keywordflow}{return} n.getValue();}
+\DoxyCodeLine{170     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_aa62344747f9d288fb1e5b6a05bbcc904}\label{classdomini_1_1JPEG_aa62344747f9d288fb1e5b6a05bbcc904}} 
+\index{domini.JPEG@{domini.JPEG}!toRGB@{toRGB}}
+\index{toRGB@{toRGB}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{toRGB()}{toRGB()}}
+{\footnotesize\ttfamily static byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G.\+to\+R\+GB (\begin{DoxyParamCaption}\item[{byte}]{channel\+Blocks\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Convierte el bloque dado en espacio de color Y\+Cb\+Cr a R\+GB. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em channel\+Blocks} & bloque en espacio de color Y\+Cb\+Cr \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+bloque en espacio de color R\+GB 
+\end{DoxyReturn}
+
+
+Definición en la línea 285 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{285                                                               \{}
+\DoxyCodeLine{286         \textcolor{keywordtype}{byte} R, G, B;}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288         \textcolor{keywordtype}{byte}[][][] reorderedBlocks = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[8][8][3];}
+\DoxyCodeLine{289         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{290             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 8; ++j) \{}
+\DoxyCodeLine{291                 \textcolor{keyword}{final} \textcolor{keywordtype}{double} Y = Byte.toUnsignedInt(channelBlocks [0][i][j]);}
+\DoxyCodeLine{292                 \textcolor{keyword}{final} \textcolor{keywordtype}{double} Cb = Byte.toUnsignedInt(channelBlocks[1][i][j]);}
+\DoxyCodeLine{293                 \textcolor{keyword}{final} \textcolor{keywordtype}{double} Cr = Byte.toUnsignedInt(channelBlocks[2][i][j]);}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295                 R = \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{doubleToByte}}(Y + 1.402 * (Cr -\/ 128));}
+\DoxyCodeLine{296                 G = \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{doubleToByte}}(Y -\/ 0.34414 * (Cb -\/ 128) -\/ 0.71414 * (Cr -\/ 128));}
+\DoxyCodeLine{297                 B = \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{doubleToByte}}(Y + 1.772 * (Cb -\/ 128));}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299                 reorderedBlocks[i][j][0] = R;}
+\DoxyCodeLine{300                 reorderedBlocks[i][j][1] = G;}
+\DoxyCodeLine{301                 reorderedBlocks[i][j][2] = B;}
+\DoxyCodeLine{302             \}}
+\DoxyCodeLine{303         \}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305         \textcolor{keywordflow}{return} reorderedBlocks;}
+\DoxyCodeLine{306     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_a293f8543133bf130fe28595aea7af229}\label{classdomini_1_1JPEG_a293f8543133bf130fe28595aea7af229}} 
+\index{domini.JPEG@{domini.JPEG}!toYCbCr@{toYCbCr}}
+\index{toYCbCr@{toYCbCr}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{toYCbCr()}{toYCbCr()}}
+{\footnotesize\ttfamily static byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} domini.\+J\+P\+E\+G.\+to\+Y\+Cb\+Cr (\begin{DoxyParamCaption}\item[{byte}]{channel\+Blocks\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Convierte el bloque dado en espacio de color R\+GB a Y\+Cb\+Cr. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em channel\+Blocks} & bloque en espacio de color R\+GB \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+bloque en espacio de color Y\+Cb\+Cr 
+\end{DoxyReturn}
+
+
+Definición en la línea 256 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{256                                                                 \{}
+\DoxyCodeLine{257         \textcolor{keywordtype}{byte} Y, Cb, Cr;}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259         \textcolor{keywordtype}{byte}[][][] reorderedBlocks = \textcolor{keyword}{new} \textcolor{keywordtype}{byte}[3][8][8];}
+\DoxyCodeLine{260         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{261             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 8; ++j) \{}
+\DoxyCodeLine{262                 \textcolor{keyword}{final} \textcolor{keywordtype}{double} R = Byte.toUnsignedInt(channelBlocks[i][j][0]);}
+\DoxyCodeLine{263                 \textcolor{keyword}{final} \textcolor{keywordtype}{double} G = Byte.toUnsignedInt(channelBlocks[i][j][1]);}
+\DoxyCodeLine{264                 \textcolor{keyword}{final} \textcolor{keywordtype}{double} B = Byte.toUnsignedInt(channelBlocks[i][j][2]);}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266                 Y = \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{doubleToByte}}(0 + 0.299 * R + 0.587 * G + 0.114 * B);}
+\DoxyCodeLine{267                 Cb = \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{doubleToByte}}(128 -\/ 0.1687 * R -\/ 0.3313 * G + 0.5 * B);}
+\DoxyCodeLine{268                 Cr = \mbox{\hyperlink{classdomini_1_1JPEG_aef635ccff63cfffc5521a2db5211cd80}{doubleToByte}}(128 + 0.5 * R -\/ 0.4187 * G -\/ 0.0813 * B);}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270                 reorderedBlocks[0][i][j] = Y;}
+\DoxyCodeLine{271                 reorderedBlocks[1][i][j] = Cb;}
+\DoxyCodeLine{272                 reorderedBlocks[2][i][j] = Cr;}
+\DoxyCodeLine{273             \}}
+\DoxyCodeLine{274         \}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276         \textcolor{keywordflow}{return} reorderedBlocks;}
+\DoxyCodeLine{277     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1JPEG_adc03ce9c37342b62c3506c4926a8347e}\label{classdomini_1_1JPEG_adc03ce9c37342b62c3506c4926a8347e}} 
+\index{domini.JPEG@{domini.JPEG}!write@{write}}
+\index{write@{write}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+write (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{int}]{l,  }\item[{I\+O.\+Bit.\+writer}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Dado un valor, una longitud y un objeto de escritura, escribe el valor representado con la longitud dada en el objeto de escritura. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em value} & valor que se ecribe \\
+\hline
+{\em l} & longitud de valor que se escribe \\
+\hline
+{\em file} & objeto de escritura del archivo al que se escribe \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al escribir \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 217 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{217                                                                                        \{}
+\DoxyCodeLine{218         BitSetL bs;}
+\DoxyCodeLine{219         \textcolor{keywordflow}{if} (value < 0) \{}
+\DoxyCodeLine{220             bs = \textcolor{keyword}{new} BitSetL(-\/value, l);}
+\DoxyCodeLine{221             bs.flip();}
+\DoxyCodeLine{222         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{223             bs = \textcolor{keyword}{new} BitSetL(value, l);}
+\DoxyCodeLine{224         \}}
+\DoxyCodeLine{225         file.write(bs);}
+\DoxyCodeLine{226     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}\label{classdomini_1_1JPEG_a3b8957025472c7cb71b18a137aacf127}} 
 \index{domini.JPEG@{domini.JPEG}!writeBlock@{writeBlock}}
 \index{writeBlock@{writeBlock}!domini.JPEG@{domini.JPEG}}
 \doxysubsubsection{\texorpdfstring{writeBlock()}{writeBlock()}}
-{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+write\+Block (\begin{DoxyParamCaption}\item[{final short\mbox{[}$\,$\mbox{]}}]{encoded,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+AC,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+DC,  }\item[{final I\+O.\+Bit.\+writer}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception, Huffman\+Lookup\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static void domini.\+J\+P\+E\+G.\+write\+Block (\begin{DoxyParamCaption}\item[{final short\mbox{[}$\,$\mbox{]}}]{encoded,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+AC,  }\item[{final \mbox{\hyperlink{classdomini_1_1Huffman}{Huffman}}}]{huff\+DC,  }\item[{final I\+O.\+Bit.\+writer}]{file }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [package]}}
 
 
 
@@ -138,6 +593,71 @@ Escribe un bloque codificado con las tablas \mbox{\hyperlink{classdomini_1_1Huff
 \end{DoxyExceptions}
 
 
+Definición en la línea 180 del archivo J\+P\+E\+G.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{181                                                          \{}
+\DoxyCodeLine{182         \textcolor{comment}{// write DC coefficient}}
+\DoxyCodeLine{183         file.write(huffDC.encode(encoded[0]));}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185         \textcolor{keywordtype}{int} k;}
+\DoxyCodeLine{186         \textcolor{keywordflow}{if} (encoded[0] != 0) \{}
+\DoxyCodeLine{187             \mbox{\hyperlink{classdomini_1_1JPEG_adc03ce9c37342b62c3506c4926a8347e}{write}}(encoded[1], encoded[0], file);}
+\DoxyCodeLine{188             k = 2;}
+\DoxyCodeLine{189         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{190             k = 1;}
+\DoxyCodeLine{191         \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193         \textcolor{comment}{// write AC coefficients}}
+\DoxyCodeLine{194         \textcolor{keywordflow}{for} (; k < encoded.length; ++k) \{}
+\DoxyCodeLine{195             \textcolor{comment}{// escriu codi huffman}}
+\DoxyCodeLine{196             file.write(huffAC.encode(encoded[k]));}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198             \textcolor{keyword}{final} \textcolor{keywordtype}{int} l = encoded[k]\&0x0F;}
+\DoxyCodeLine{199             \textcolor{keywordflow}{if} (l == 0) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201             ++k;}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203             \mbox{\hyperlink{classdomini_1_1JPEG_adc03ce9c37342b62c3506c4926a8347e}{write}}(encoded[k], l, file);}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205         \}}
+\DoxyCodeLine{206     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}\label{classdomini_1_1JPEG_a861e9cafa18cd7321d434873bfc673c6}} 
+\index{domini.JPEG@{domini.JPEG}!MAGIC\_BYTE@{MAGIC\_BYTE}}
+\index{MAGIC\_BYTE@{MAGIC\_BYTE}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{MAGIC\_BYTE}{MAGIC\_BYTE}}
+{\footnotesize\ttfamily final byte domini.\+J\+P\+E\+G.\+M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE = (byte) 0x98\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Magic Byte \mbox{\hyperlink{classdomini_1_1JPEG}{J\+P\+EG}}. 
+
+
+
+Definición en la línea 29 del archivo J\+P\+E\+G.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}\label{classdomini_1_1JPEG_a1b72fa79abe5ba2ce10e480f08d06d28}} 
+\index{domini.JPEG@{domini.JPEG}!quality@{quality}}
+\index{quality@{quality}!domini.JPEG@{domini.JPEG}}
+\doxysubsubsection{\texorpdfstring{quality}{quality}}
+{\footnotesize\ttfamily short domini.\+J\+P\+E\+G.\+quality\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calidad de compresión. 
+
+
+
+Definición en la línea 18 del archivo J\+P\+E\+G.\+java.
+
+
+
 La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-src/main/java/domini/J\+P\+E\+G.\+java\end{DoxyCompactItemize}
+src/main/java/domini/\mbox{\hyperlink{JPEG_8java}{J\+P\+E\+G.\+java}}\end{DoxyCompactItemize}

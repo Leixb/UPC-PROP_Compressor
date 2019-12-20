@@ -1,0 +1,211 @@
+\hypertarget{classdomini_1_1Folder}{}\doxysection{Referencia de la Clase domini.\+Folder}
+\label{classdomini_1_1Folder}\index{domini.Folder@{domini.Folder}}
+
+
+Compresor y descompresor de carpetas.  
+
+
+\doxysubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdomini_1_1Folder_1_1CompressFiles}{Compress\+Files}}
+\item 
+class \mbox{\hyperlink{classdomini_1_1Folder_1_1FolderFormatException}{Folder\+Format\+Exception}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classdomini_1_1Folder_aad5174c54047a56dc6fd7be76da913df}{compress}} (String folder\+Path, I\+O.\+Bit.\+writer output)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dada la dirección de la carpeta a comprimir y un objeto de escritura del archivo comprimido, ejecuta la compresión con el algoritmo pertienente. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classdomini_1_1Folder_a52c4736cef844f37740d5556e725b79d}{decompress}} (String folder\+Path, I\+O.\+Bit.\+reader input)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Dada la dirección de la carpeta a descomprimir y un objeto de lectura del archivo comprimido, ejecuta la descompresión con el algoritmo pertienente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static final byte \mbox{\hyperlink{classdomini_1_1Folder_a883df73e289d0903985071f4bc71bd36}{M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE}} = (byte)0xf0
+\begin{DoxyCompactList}\small\item\em Magic\+Byte \mbox{\hyperlink{classdomini_1_1Folder}{Folder}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1Folder_a0104321471654f1145ecdc1e6196dfda}{Folder}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static char \mbox{\hyperlink{classdomini_1_1Folder_a5f97dc4861d75210db45e331e5551b6e}{E\+M\+P\+T\+Y\+\_\+\+F\+O\+L\+D\+ER}} = 0x\+F\+F\+EF
+\begin{DoxyCompactList}\small\item\em Indicador de carpeta vacía. \end{DoxyCompactList}\item 
+static char \mbox{\hyperlink{classdomini_1_1Folder_ac1d01dc5d32d14e2e8a9caec41cf8885}{F\+I\+LE}} = 0x\+F\+F\+F1
+\begin{DoxyCompactList}\small\item\em Indicador de archivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Compresor y descompresor de carpetas. 
+
+Definición en la línea 18 del archivo Folder.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1Folder_a0104321471654f1145ecdc1e6196dfda}\label{classdomini_1_1Folder_a0104321471654f1145ecdc1e6196dfda}} 
+\index{domini.Folder@{domini.Folder}!Folder@{Folder}}
+\index{Folder@{Folder}!domini.Folder@{domini.Folder}}
+\doxysubsubsection{\texorpdfstring{Folder()}{Folder()}}
+{\footnotesize\ttfamily domini.\+Folder.\+Folder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Constructora vacía \mbox{\hyperlink{classdomini_1_1Folder}{Folder}} 
+
+Definición en la línea 21 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1Folder_aad5174c54047a56dc6fd7be76da913df}\label{classdomini_1_1Folder_aad5174c54047a56dc6fd7be76da913df}} 
+\index{domini.Folder@{domini.Folder}!compress@{compress}}
+\index{compress@{compress}!domini.Folder@{domini.Folder}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily static void domini.\+Folder.\+compress (\begin{DoxyParamCaption}\item[{String}]{folder\+Path,  }\item[{I\+O.\+Bit.\+writer}]{output }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Dada la dirección de la carpeta a comprimir y un objeto de escritura del archivo comprimido, ejecuta la compresión con el algoritmo pertienente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em folder\+Path} & dirección de la carpeta a comprimir \\
+\hline
+{\em output} & objeto de escritura del archivo comprimido \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al comprimir \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 39 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{39                                                                                             \{}
+\DoxyCodeLine{40         Path root = Paths.get(folderPath);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42         Files.walkFileTree(root, \textcolor{keyword}{new} CompressFiles(root, output));}
+\DoxyCodeLine{43     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1Folder_a52c4736cef844f37740d5556e725b79d}\label{classdomini_1_1Folder_a52c4736cef844f37740d5556e725b79d}} 
+\index{domini.Folder@{domini.Folder}!decompress@{decompress}}
+\index{decompress@{decompress}!domini.Folder@{domini.Folder}}
+\doxysubsubsection{\texorpdfstring{decompress()}{decompress()}}
+{\footnotesize\ttfamily static void domini.\+Folder.\+decompress (\begin{DoxyParamCaption}\item[{String}]{folder\+Path,  }\item[{I\+O.\+Bit.\+reader}]{input }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Dada la dirección de la carpeta a descomprimir y un objeto de lectura del archivo comprimido, ejecuta la descompresión con el algoritmo pertienente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em folder\+Path} & dirección de la carpeta a descomprimir \\
+\hline
+{\em input} & objeto de lectura del archivo comprimido \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Lanza cualquier excepción generada al descomprimir \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 101 del archivo Folder.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                                                                              \{}
+\DoxyCodeLine{102         \textcolor{comment}{// Till EOF: Read filenames (with markers), then magic byte and then call decompress of the corresponding algorithm}}
+\DoxyCodeLine{103         \textcolor{keywordflow}{for}(;;) \{}
+\DoxyCodeLine{104             String filename = \textcolor{stringliteral}{""};}
+\DoxyCodeLine{105             \textcolor{keywordtype}{char} c;}
+\DoxyCodeLine{106             \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{107                 \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{108                     c = (char)input.readChar();}
+\DoxyCodeLine{109                     \textcolor{keywordflow}{if} (c == \mbox{\hyperlink{classdomini_1_1Folder_ac1d01dc5d32d14e2e8a9caec41cf8885}{FILE}} || c == \mbox{\hyperlink{classdomini_1_1Folder_a5f97dc4861d75210db45e331e5551b6e}{EMPTY\_FOLDER}}) \textcolor{keywordflow}{break}; \textcolor{comment}{// got filename}}
+\DoxyCodeLine{110                     filename += c;}
+\DoxyCodeLine{111                 \}}
+\DoxyCodeLine{112             \} \textcolor{keywordflow}{catch} (EOFException e) \{}
+\DoxyCodeLine{113                 \textcolor{comment}{// EOF}}
+\DoxyCodeLine{114                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{115             \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117             \textcolor{keyword}{final} String filePath = Paths.get(folderPath, filename).toString();}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119             \textcolor{keywordflow}{if} (c == \mbox{\hyperlink{classdomini_1_1Folder_ac1d01dc5d32d14e2e8a9caec41cf8885}{FILE}}) \{}
+\DoxyCodeLine{120                 \textcolor{keyword}{new} File(filePath).getParentFile().mkdirs(); \textcolor{comment}{// Create dirs if not exist}}
+\DoxyCodeLine{121                 \textcolor{keywordflow}{try} (IO.Byte.writer output = \textcolor{keyword}{new} IO.Byte.writer(filePath)) \{}
+\DoxyCodeLine{122                     CtrlDomini.getInstance().decompress(input, output, (\textcolor{keywordtype}{byte})0);}
+\DoxyCodeLine{123                 \} }
+\DoxyCodeLine{124             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \mbox{\hyperlink{classdomini_1_1Folder_a5f97dc4861d75210db45e331e5551b6e}{EMPTY\_FOLDER}}) \{}
+\DoxyCodeLine{125                 \textcolor{keyword}{new} File(filePath).mkdirs(); \textcolor{comment}{// Create dir}}
+\DoxyCodeLine{126             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{127                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} FolderFormatException();}
+\DoxyCodeLine{128             \}}
+\DoxyCodeLine{129         \}}
+\DoxyCodeLine{130     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1Folder_a5f97dc4861d75210db45e331e5551b6e}\label{classdomini_1_1Folder_a5f97dc4861d75210db45e331e5551b6e}} 
+\index{domini.Folder@{domini.Folder}!EMPTY\_FOLDER@{EMPTY\_FOLDER}}
+\index{EMPTY\_FOLDER@{EMPTY\_FOLDER}!domini.Folder@{domini.Folder}}
+\doxysubsubsection{\texorpdfstring{EMPTY\_FOLDER}{EMPTY\_FOLDER}}
+{\footnotesize\ttfamily char domini.\+Folder.\+E\+M\+P\+T\+Y\+\_\+\+F\+O\+L\+D\+ER = 0x\+F\+F\+EF\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Indicador de carpeta vacía. 
+
+
+
+Definición en la línea 24 del archivo Folder.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Folder_ac1d01dc5d32d14e2e8a9caec41cf8885}\label{classdomini_1_1Folder_ac1d01dc5d32d14e2e8a9caec41cf8885}} 
+\index{domini.Folder@{domini.Folder}!FILE@{FILE}}
+\index{FILE@{FILE}!domini.Folder@{domini.Folder}}
+\doxysubsubsection{\texorpdfstring{FILE}{FILE}}
+{\footnotesize\ttfamily char domini.\+Folder.\+F\+I\+LE = 0x\+F\+F\+F1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Indicador de archivo. 
+
+
+
+Definición en la línea 27 del archivo Folder.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1Folder_a883df73e289d0903985071f4bc71bd36}\label{classdomini_1_1Folder_a883df73e289d0903985071f4bc71bd36}} 
+\index{domini.Folder@{domini.Folder}!MAGIC\_BYTE@{MAGIC\_BYTE}}
+\index{MAGIC\_BYTE@{MAGIC\_BYTE}!domini.Folder@{domini.Folder}}
+\doxysubsubsection{\texorpdfstring{MAGIC\_BYTE}{MAGIC\_BYTE}}
+{\footnotesize\ttfamily final byte domini.\+Folder.\+M\+A\+G\+I\+C\+\_\+\+B\+Y\+TE = (byte)0xf0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Magic\+Byte \mbox{\hyperlink{classdomini_1_1Folder}{Folder}}. 
+
+
+
+Definición en la línea 30 del archivo Folder.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{Folder_8java}{Folder.\+java}}\end{DoxyCompactItemize}

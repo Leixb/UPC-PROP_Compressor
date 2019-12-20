@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['decode_71',['decode',['../classdomini_1_1Huffman.html#a2c0e950d4b230dd08b05fb3259797bd3',1,'domini.Huffman.decode(final boolean b)'],['../classdomini_1_1Huffman.html#ab593dd7db8b8502b762a6ded52b0b102',1,'domini.Huffman.decode(final Node n, final boolean b)'],['../classdomini_1_1JPEGBlock.html#aa80d1acbf18563a8e345601fde4f0425',1,'domini.JPEGBlock.decode()']]],
-  ['decompress_72',['decompress',['../classdomini_1_1CtrlDomini.html#a3100be54008cb05050ed7e728337b64b',1,'domini.CtrlDomini.decompress()'],['../classdomini_1_1JPEG.html#ab9de66231b23b6eefa213c0878f4d42b',1,'domini.JPEG.decompress()'],['../classdomini_1_1LZ78.html#a48a014e1e2bd3c0a281151ca452f75dd',1,'domini.LZ78.decompress()'],['../classdomini_1_1LZSS.html#a3a76caf8c9f560f68d0dd41ef8364341',1,'domini.LZSS.decompress()'],['../classdomini_1_1LZW.html#ac2a78ca45cebfc39a37b8e4813f9cc7d',1,'domini.LZW.decompress()']]]
+  ['bitlength_338',['bitLength',['../classdomini_1_1JPEGBlock.html#aae5175fbdae9c1f8087639d561ed9ae9',1,'domini::JPEGBlock']]],
+  ['bits_5fneeded_339',['bits_needed',['../classdomini_1_1LZ78.html#aa543eb0f42adfd7ba9dd62f5fc9bd71e',1,'domini::LZ78']]],
+  ['bitsetl_340',['BitSetL',['../classdomini_1_1BitSetL.html#a72855cac4bdba9e03119bfca52626f4c',1,'domini.BitSetL.BitSetL()'],['../classdomini_1_1BitSetL.html#abf10573e9995e3dc305c7a0f1dc83b8b',1,'domini.BitSetL.BitSetL(final int l)'],['../classdomini_1_1BitSetL.html#a9aa347fbedf32fa875ab7b55fdbaa12c',1,'domini.BitSetL.BitSetL(final int n, final int l)'],['../classdomini_1_1BitSetL.html#a264ba1bb9a8ac41140ea050a5ddb61c1',1,'domini.BitSetL.BitSetL(final String s)']]],
+  ['bitsneeded_341',['bitsNeeded',['../classdomini_1_1LZW.html#aaae107a8538d80af64cb5c682394e446',1,'domini::LZW']]]
 ];

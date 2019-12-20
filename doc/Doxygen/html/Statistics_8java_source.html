@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.16"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Compressor: Fichero Fuente src/main/java/domini/Statistics.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Compressor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.16 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_e6e4b3324dfebf3d3160a613b7a7203b.html">domini</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Statistics.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Statistics_8java.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">package </span>domini;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> java.io.File;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.io.IOException;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.nio.file.Files;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> java.nio.file.Paths;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html">   15</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classdomini_1_1Statistics.html">Statistics</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#aa0fb37c0b97c183a19e4e6fd830765c5">   18</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#aa0fb37c0b97c183a19e4e6fd830765c5">startingTime</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804">   21</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804">endingTime</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">   24</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">   27</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a687c5ef280bd9c73cc3e4eeb95d9d70d">   30</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classdomini_1_1Statistics.html#a687c5ef280bd9c73cc3e4eeb95d9d70d">Statistics</a> () {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classdomini_1_1Statistics.html#aa0fb37c0b97c183a19e4e6fd830765c5">startingTime</a> = 0;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804">endingTime</a> = 0;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a> = 0;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a> = 0;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a6a231da29a59260f2c368f615c3ef742">   40</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1Statistics.html#a6a231da29a59260f2c368f615c3ef742">setStartingTime</a> () {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classdomini_1_1Statistics.html#aa0fb37c0b97c183a19e4e6fd830765c5">startingTime</a> = System.currentTimeMillis();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a34c4fbe665e324bb04a1347ce568b5f3">   47</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1Statistics.html#a34c4fbe665e324bb04a1347ce568b5f3">setEndingTime</a> () {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804">endingTime</a> = System.currentTimeMillis();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a6155479ff9b1ae2d5a175731278a1a25">   57</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1Statistics.html#a6155479ff9b1ae2d5a175731278a1a25">setIniFileSize</a> (<span class="keyword">final</span> String filename) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        File file = <span class="keyword">new</span> File(filename);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">if</span> (file.isFile()) <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a> = file.length();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (file.isDirectory()){</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">// carpeta</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a> = Files.walk(Paths.get(filename))</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;              .filter(p -&gt; p.toFile().isFile())</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;              .mapToLong(p -&gt; p.toFile().length())</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;              .sum();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a60ae5c26033e27dcb4d355825682b716">   75</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1Statistics.html#a60ae5c26033e27dcb4d355825682b716">setFinFileSize</a>(<span class="keyword">final</span> String filename) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        File file = <span class="keyword">new</span> File(filename);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span> (file.isFile()) <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a> = file.length();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (file.isDirectory()){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="comment">// carpeta</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a> = Files.walk(Paths.get(filename))</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;              .filter(p -&gt; p.toFile().isFile())</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;              .mapToLong(p -&gt; p.toFile().length())</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;              .sum();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">   92</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">getTime</a> () {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)(<a class="code" href="classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804">endingTime</a> - <a class="code" href="classdomini_1_1Statistics.html#aa0fb37c0b97c183a19e4e6fd830765c5">startingTime</a>)/1000.0;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">  101</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">getIniFileSize</a>() {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab">  109</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab">getFinFileSize</a>() {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#ab812d494c95da818d3b500ec16ebff64">  117</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#ab812d494c95da818d3b500ec16ebff64">getBytesCompressed</a> () {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a> - <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a7b9fa4129d464fbaee2adfc95d0531f2">  125</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1Statistics.html#a7b9fa4129d464fbaee2adfc95d0531f2">getBytesDecompressed</a> () {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a> - <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a97a6bab90c4644334fbb7726a79f7a0e">  133</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classdomini_1_1Statistics.html#a97a6bab90c4644334fbb7726a79f7a0e">getPercentageCompressed</a> () {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">double</span>) <a class="code" href="classdomini_1_1Statistics.html#ab812d494c95da818d3b500ec16ebff64">getBytesCompressed</a>()*100.0 / <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#aedcda3d7be443cee79759eb8db95c173">  141</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classdomini_1_1Statistics.html#aedcda3d7be443cee79759eb8db95c173">getPercentageDecompressed</a> () {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">double</span>) <a class="code" href="classdomini_1_1Statistics.html#a7b9fa4129d464fbaee2adfc95d0531f2">getBytesDecompressed</a>()*100.0 / <a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#ad19947a9050f3afd889eb820fe2d9b09">  149</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classdomini_1_1Statistics.html#ad19947a9050f3afd889eb820fe2d9b09">getSpeedCompressed</a> () {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)<a class="code" href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">iniFileSize</a> / <a class="code" href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">getTime</a>();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="classdomini_1_1Statistics.html#a04bb334e1ef878577f895e70ad6011ef">  157</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">double</span> <a class="code" href="classdomini_1_1Statistics.html#a04bb334e1ef878577f895e70ad6011ef">getSpeedDecompressed</a> () {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">double</span>)<a class="code" href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">finFileSize</a> / <a class="code" href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">getTime</a>();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a97a6bab90c4644334fbb7726a79f7a0e"><div class="ttname"><a href="classdomini_1_1Statistics.html#a97a6bab90c4644334fbb7726a79f7a0e">domini.Statistics.getPercentageCompressed</a></div><div class="ttdeci">double getPercentageCompressed()</div><div class="ttdoc">Getter del porcentage de compresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00133">Statistics.java:133</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a24d1cfeb94015f63179b20271b38c73b"><div class="ttname"><a href="classdomini_1_1Statistics.html#a24d1cfeb94015f63179b20271b38c73b">domini.Statistics.getIniFileSize</a></div><div class="ttdeci">long getIniFileSize()</div><div class="ttdoc">Getter del tamaño del fichero de entrada.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00101">Statistics.java:101</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a3527be2f4024ec425e2e1795264c453c"><div class="ttname"><a href="classdomini_1_1Statistics.html#a3527be2f4024ec425e2e1795264c453c">domini.Statistics.iniFileSize</a></div><div class="ttdeci">long iniFileSize</div><div class="ttdoc">Tamaño inicial.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00024">Statistics.java:24</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a7b9fa4129d464fbaee2adfc95d0531f2"><div class="ttname"><a href="classdomini_1_1Statistics.html#a7b9fa4129d464fbaee2adfc95d0531f2">domini.Statistics.getBytesDecompressed</a></div><div class="ttdeci">long getBytesDecompressed()</div><div class="ttdoc">Getter de los bytes descomprimidos.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00125">Statistics.java:125</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a7d6ce685bbe4f16fe7fff7d376b916ab"><div class="ttname"><a href="classdomini_1_1Statistics.html#a7d6ce685bbe4f16fe7fff7d376b916ab">domini.Statistics.getFinFileSize</a></div><div class="ttdeci">long getFinFileSize()</div><div class="ttdoc">Getter del tamaño del fichero de salida.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00109">Statistics.java:109</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a5235cad1177bc87f79e97ca2771654b1"><div class="ttname"><a href="classdomini_1_1Statistics.html#a5235cad1177bc87f79e97ca2771654b1">domini.Statistics.getTime</a></div><div class="ttdeci">double getTime()</div><div class="ttdoc">Getter de la duración de la compresión/descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00092">Statistics.java:92</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a6155479ff9b1ae2d5a175731278a1a25"><div class="ttname"><a href="classdomini_1_1Statistics.html#a6155479ff9b1ae2d5a175731278a1a25">domini.Statistics.setIniFileSize</a></div><div class="ttdeci">void setIniFileSize(final String filename)</div><div class="ttdoc">Setter de iniFileSize.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00057">Statistics.java:57</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_ad70e6d9e2e0922fe5786ea5023839804"><div class="ttname"><a href="classdomini_1_1Statistics.html#ad70e6d9e2e0922fe5786ea5023839804">domini.Statistics.endingTime</a></div><div class="ttdeci">long endingTime</div><div class="ttdoc">Tiempo de finalización.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00021">Statistics.java:21</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html"><div class="ttname"><a href="classdomini_1_1Statistics.html">domini.Statistics</a></div><div class="ttdoc">Genera estadísticas de compresión/descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00015">Statistics.java:15</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_ab812d494c95da818d3b500ec16ebff64"><div class="ttname"><a href="classdomini_1_1Statistics.html#ab812d494c95da818d3b500ec16ebff64">domini.Statistics.getBytesCompressed</a></div><div class="ttdeci">long getBytesCompressed()</div><div class="ttdoc">Getter de los bytes comprimidos.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00117">Statistics.java:117</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_ad19947a9050f3afd889eb820fe2d9b09"><div class="ttname"><a href="classdomini_1_1Statistics.html#ad19947a9050f3afd889eb820fe2d9b09">domini.Statistics.getSpeedCompressed</a></div><div class="ttdeci">double getSpeedCompressed()</div><div class="ttdoc">Getter de la velocidad de compresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00149">Statistics.java:149</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a34c4fbe665e324bb04a1347ce568b5f3"><div class="ttname"><a href="classdomini_1_1Statistics.html#a34c4fbe665e324bb04a1347ce568b5f3">domini.Statistics.setEndingTime</a></div><div class="ttdeci">void setEndingTime()</div><div class="ttdoc">Setter de endingTime.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00047">Statistics.java:47</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a427b6f427d7da4475200223d455d638e"><div class="ttname"><a href="classdomini_1_1Statistics.html#a427b6f427d7da4475200223d455d638e">domini.Statistics.finFileSize</a></div><div class="ttdeci">long finFileSize</div><div class="ttdoc">Tamaño final.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00027">Statistics.java:27</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a687c5ef280bd9c73cc3e4eeb95d9d70d"><div class="ttname"><a href="classdomini_1_1Statistics.html#a687c5ef280bd9c73cc3e4eeb95d9d70d">domini.Statistics.Statistics</a></div><div class="ttdeci">Statistics()</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00030">Statistics.java:30</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a6a231da29a59260f2c368f615c3ef742"><div class="ttname"><a href="classdomini_1_1Statistics.html#a6a231da29a59260f2c368f615c3ef742">domini.Statistics.setStartingTime</a></div><div class="ttdeci">void setStartingTime()</div><div class="ttdoc">Setter de startingTime.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00040">Statistics.java:40</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a04bb334e1ef878577f895e70ad6011ef"><div class="ttname"><a href="classdomini_1_1Statistics.html#a04bb334e1ef878577f895e70ad6011ef">domini.Statistics.getSpeedDecompressed</a></div><div class="ttdeci">double getSpeedDecompressed()</div><div class="ttdoc">Getter de la velocidad de descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00157">Statistics.java:157</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_aa0fb37c0b97c183a19e4e6fd830765c5"><div class="ttname"><a href="classdomini_1_1Statistics.html#aa0fb37c0b97c183a19e4e6fd830765c5">domini.Statistics.startingTime</a></div><div class="ttdeci">long startingTime</div><div class="ttdoc">Tiempo de inicio.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00018">Statistics.java:18</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_a60ae5c26033e27dcb4d355825682b716"><div class="ttname"><a href="classdomini_1_1Statistics.html#a60ae5c26033e27dcb4d355825682b716">domini.Statistics.setFinFileSize</a></div><div class="ttdeci">void setFinFileSize(final String filename)</div><div class="ttdoc">Setter de finFileSize.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00075">Statistics.java:75</a></div></div>
+<div class="ttc" id="aclassdomini_1_1Statistics_html_aedcda3d7be443cee79759eb8db95c173"><div class="ttname"><a href="classdomini_1_1Statistics.html#aedcda3d7be443cee79759eb8db95c173">domini.Statistics.getPercentageDecompressed</a></div><div class="ttdeci">double getPercentageDecompressed()</div><div class="ttdoc">Getter del porcentage de descompresión.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8java_source.html#l00141">Statistics.java:141</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.16
+</small></address>
+</body>
+</html>

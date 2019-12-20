@@ -10,20 +10,231 @@ Recibe todos los inputs necesarios del usuario para la compresión/descompresió
 \item 
 static int \mbox{\hyperlink{classpresentacio_1_1Main_a4a80e82be57d22be34b6a54722151998}{prompt}} (String\mbox{[}$\,$\mbox{]} options)
 \begin{DoxyCompactList}\small\item\em Dadas una opciones las imprime y da a escoger una de ellas. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classpresentacio_1_1Main_aefda1e506c2fa6c2f24cdc528252149a}\label{classpresentacio_1_1Main_aefda1e506c2fa6c2f24cdc528252149a}} 
-static void {\bfseries main} (String\mbox{[}$\,$\mbox{]} args)
+static void \mbox{\hyperlink{classpresentacio_1_1Main_aefda1e506c2fa6c2f24cdc528252149a}{main}} (String\mbox{[}$\,$\mbox{]} args)
+\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Main_a0c57cbfe97009c2404a212a3a920a440}{print\+Stats\+Compress}} ()
+\begin{DoxyCompactList}\small\item\em Imprime las estadisticas de compresión. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Main_a4b4da4419db1706571adb36575ac9057}{print\+Stats\+Decompress}} ()
+\begin{DoxyCompactList}\small\item\em Imprime las estadisticas de descompresión. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Main_a5bd3e1a5afc031b4e22f8f6ee016cb7c}{comprimir}} ()
+\begin{DoxyCompactList}\small\item\em Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y el nombre del archivo comprimido que luego pasa al Ctrl\+Domini. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Main_ae6139e7850cd423d8a9fcc77932980d8}{descomprimir}} ()
+\begin{DoxyCompactList}\small\item\em Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a Ctrl\+Domini. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpresentacio_1_1Main_a8273af8754433c1b1c46d1546b84ca76}{prompt\+Obrir\+Fitxer}} (String filename)
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static String \mbox{\hyperlink{classpresentacio_1_1Main_aa4b6ea40bc576c845793419a267cd6db}{banner}}
+\item 
+static Scanner \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}
+\item 
+static \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Descripción detallada}
 Recibe todos los inputs necesarios del usuario para la compresión/descompresión. 
 
-\begin{DoxyAuthor}{Autor}
-***REMOVED*** Plasencia / ***REMOVED*** Pons / ***REMOVED*** 
-\end{DoxyAuthor}
+Definición en la línea 16 del archivo Main.\+java.
+
 
 
 \doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpresentacio_1_1Main_a5bd3e1a5afc031b4e22f8f6ee016cb7c}\label{classpresentacio_1_1Main_a5bd3e1a5afc031b4e22f8f6ee016cb7c}} 
+\index{presentacio.Main@{presentacio.Main}!comprimir@{comprimir}}
+\index{comprimir@{comprimir}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{comprimir()}{comprimir()}}
+{\footnotesize\ttfamily static void presentacio.\+Main.\+comprimir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Da a elegir al usuario el algoritmo para la compresión y le pide el nombre del archivo a comprimir y el nombre del archivo comprimido que luego pasa al Ctrl\+Domini. 
+
+
+
+Definición en la línea 73 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73                                     \{}
+\DoxyCodeLine{74         \textcolor{keywordtype}{int} action;}
+\DoxyCodeLine{75         \textcolor{keywordtype}{boolean} invalid;}
+\DoxyCodeLine{76         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{77             System.out.println(\textcolor{stringliteral}{"Tipus de compressió:"});}
+\DoxyCodeLine{78             String[] options = \{\textcolor{stringliteral}{"Automàtic"}, \textcolor{stringliteral}{"LZ78"}, \textcolor{stringliteral}{"LZSS"}, \textcolor{stringliteral}{"LZW"}, \textcolor{stringliteral}{"JPEG"}, \textcolor{stringliteral}{"Menú"}\};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80             action = \mbox{\hyperlink{classpresentacio_1_1Main_a4a80e82be57d22be34b6a54722151998}{prompt}}(options);}
+\DoxyCodeLine{81             invalid = (action < 1 || action > 6);}
+\DoxyCodeLine{82             \textcolor{keywordflow}{if} (invalid) System.out.println(\textcolor{stringliteral}{"[ERROR] Opció no vàlida"});}
+\DoxyCodeLine{83         \} \textcolor{keywordflow}{while} (invalid);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85         \textcolor{keywordflow}{if} (action!=6) \{}
+\DoxyCodeLine{86             System.out.println(\textcolor{stringliteral}{"Fitxer a comprimir:"});}
+\DoxyCodeLine{87             \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{88             String fileIn = \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90             System.out.println(\textcolor{stringliteral}{"Fitxer desti (*.piz):"});}
+\DoxyCodeLine{91             String fileOut = \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93             \textcolor{keywordtype}{short} quality = 0;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95             \textcolor{keywordflow}{if}(action==5) \{}
+\DoxyCodeLine{96                 System.out.println(\textcolor{stringliteral}{"Qualitat [1-\/99]:"});}
+\DoxyCodeLine{97                 quality = \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextShort();}
+\DoxyCodeLine{98             \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100             \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{101                 \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_a108deef06a76467f5e40580f13bc6078}{compress}}(action, fileIn, fileOut, quality);}
+\DoxyCodeLine{102                 \mbox{\hyperlink{classpresentacio_1_1Main_a0c57cbfe97009c2404a212a3a920a440}{printStatsCompress}}();}
+\DoxyCodeLine{103             \} \textcolor{keywordflow}{catch} (Exception e) \{}
+\DoxyCodeLine{104                 System.out.println(\textcolor{stringliteral}{"Error en la compressió:"} + e.getMessage());}
+\DoxyCodeLine{105             \}}
+\DoxyCodeLine{106             \mbox{\hyperlink{classpresentacio_1_1Main_a8273af8754433c1b1c46d1546b84ca76}{promptObrirFitxer}}(fileOut);}
+\DoxyCodeLine{107         \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Main_ae6139e7850cd423d8a9fcc77932980d8}\label{classpresentacio_1_1Main_ae6139e7850cd423d8a9fcc77932980d8}} 
+\index{presentacio.Main@{presentacio.Main}!descomprimir@{descomprimir}}
+\index{descomprimir@{descomprimir}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{descomprimir()}{descomprimir()}}
+{\footnotesize\ttfamily static void presentacio.\+Main.\+descomprimir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Le pide al usuario el nombre del archivo comprimido y del archivo destino y se los pasa a Ctrl\+Domini. 
+
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 115 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{115                                        \{}
+\DoxyCodeLine{116         System.out.println(\textcolor{stringliteral}{"Fitxer a descomprimir (*.piz):"});}
+\DoxyCodeLine{117         \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{118         String fileIn = \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120         System.out.println(\textcolor{stringliteral}{"Fitxer desti:"});}
+\DoxyCodeLine{121         String fileOut = \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123         \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{124             \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_ae59c77daf391a6b6d8f9ed2eec95623e}{decompress}}(fileIn,fileOut);}
+\DoxyCodeLine{125             \mbox{\hyperlink{classpresentacio_1_1Main_a4b4da4419db1706571adb36575ac9057}{printStatsDecompress}}();}
+\DoxyCodeLine{126         \} \textcolor{keywordflow}{catch} (Exception e) \{}
+\DoxyCodeLine{127             System.out.println(\textcolor{stringliteral}{"Error en la descompressió:"} + e.getMessage());}
+\DoxyCodeLine{128         \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130         \mbox{\hyperlink{classpresentacio_1_1Main_a8273af8754433c1b1c46d1546b84ca76}{promptObrirFitxer}}(fileOut);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Main_aefda1e506c2fa6c2f24cdc528252149a}\label{classpresentacio_1_1Main_aefda1e506c2fa6c2f24cdc528252149a}} 
+\index{presentacio.Main@{presentacio.Main}!main@{main}}
+\index{main@{main}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily static void presentacio.\+Main.\+main (\begin{DoxyParamCaption}\item[{String\mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definición en la línea 44 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44                                            \{}
+\DoxyCodeLine{45         \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}} = \textcolor{keyword}{new} Scanner(System.in);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47         \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}} = CtrlDomini.\mbox{\hyperlink{classdomini_1_1CtrlDomini_a0ee87471a4690ffe10329d4c535a4d5f}{getInstance}}();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49         System.out.println(\textcolor{stringliteral}{"BENVINGUT A"});}
+\DoxyCodeLine{50         System.out.println(\mbox{\hyperlink{classpresentacio_1_1Main_aa4b6ea40bc576c845793419a267cd6db}{banner}});}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         System.out.println(\textcolor{stringliteral}{"Menú:"});}
+\DoxyCodeLine{53         String[] options = \{\textcolor{stringliteral}{"Comprimir"}, \textcolor{stringliteral}{"Descomprimir"}, \textcolor{stringliteral}{"Sortir"}\};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         \textcolor{keywordtype}{int} action = \mbox{\hyperlink{classpresentacio_1_1Main_a4a80e82be57d22be34b6a54722151998}{prompt}}(options);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57         \textcolor{keywordflow}{while} (action != 3) \{}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59             \textcolor{keywordflow}{if} (action == 1) \mbox{\hyperlink{classpresentacio_1_1Main_a5bd3e1a5afc031b4e22f8f6ee016cb7c}{comprimir}}();}
+\DoxyCodeLine{60             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (action == 2) \mbox{\hyperlink{classpresentacio_1_1Main_ae6139e7850cd423d8a9fcc77932980d8}{descomprimir}}();}
+\DoxyCodeLine{61             \textcolor{keywordflow}{else} System.out.println(\textcolor{stringliteral}{"[ERROR] Opció no vàlida"});}
+\DoxyCodeLine{62             System.out.println(\textcolor{stringliteral}{"Menú:"});}
+\DoxyCodeLine{63             action = \mbox{\hyperlink{classpresentacio_1_1Main_a4a80e82be57d22be34b6a54722151998}{prompt}}(options);}
+\DoxyCodeLine{64         \}}
+\DoxyCodeLine{65         System.out.println(\textcolor{stringliteral}{"Finalitzant execució"});}
+\DoxyCodeLine{66         \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.close();}
+\DoxyCodeLine{67     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Main_a0c57cbfe97009c2404a212a3a920a440}\label{classpresentacio_1_1Main_a0c57cbfe97009c2404a212a3a920a440}} 
+\index{presentacio.Main@{presentacio.Main}!printStatsCompress@{printStatsCompress}}
+\index{printStatsCompress@{printStatsCompress}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{printStatsCompress()}{printStatsCompress()}}
+{\footnotesize\ttfamily static void presentacio.\+Main.\+print\+Stats\+Compress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Imprime las estadisticas de compresión. 
+
+
+
+Definición en la línea 157 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{157                                             \{}
+\DoxyCodeLine{158         System.out.println(\textcolor{stringliteral}{"-\/-\/-\/ Compressió exitosa -\/-\/-\/"});}
+\DoxyCodeLine{159         System.out.println(\textcolor{stringliteral}{"-\/-\/-\/-\/-\/-\/-\/-\/-\/ Stats -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"});}
+\DoxyCodeLine{160         System.out.println(\textcolor{stringliteral}{"-\/ Temps:     "} + \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_a48a2b59453f323d4e844c199ab313e04}{getTime}}());}
+\DoxyCodeLine{161         System.out.println(\textcolor{stringliteral}{"-\/ Desinflat: "} + \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_afd210d9add59e530e7f3530a0fc674f1}{getDeflated}}());}
+\DoxyCodeLine{162         System.out.println(\textcolor{stringliteral}{"-\/ Velocitat: "} + \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_aeab41a6cbfc91b2fa162db2c9c2039b8}{getSpeedCompress}}());}
+\DoxyCodeLine{163         System.out.println(\textcolor{stringliteral}{"-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"});}
+\DoxyCodeLine{164     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Main_a4b4da4419db1706571adb36575ac9057}\label{classpresentacio_1_1Main_a4b4da4419db1706571adb36575ac9057}} 
+\index{presentacio.Main@{presentacio.Main}!printStatsDecompress@{printStatsDecompress}}
+\index{printStatsDecompress@{printStatsDecompress}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{printStatsDecompress()}{printStatsDecompress()}}
+{\footnotesize\ttfamily static void presentacio.\+Main.\+print\+Stats\+Decompress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Imprime las estadisticas de descompresión. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em stats} & Estadisticas generadas al descomprimir \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea 170 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{170                                               \{}
+\DoxyCodeLine{171         System.out.println(\textcolor{stringliteral}{"-\/-\/-\/ Decompressió exitosa -\/-\/-\/"});}
+\DoxyCodeLine{172         System.out.println(\textcolor{stringliteral}{"-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ Stats -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"});}
+\DoxyCodeLine{173         System.out.println(\textcolor{stringliteral}{"-\/ Temps:     "} + \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_a48a2b59453f323d4e844c199ab313e04}{getTime}}());}
+\DoxyCodeLine{174         System.out.println(\textcolor{stringliteral}{"-\/ Desinflat: "} + \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_a7ed9f15691465ee82cccaab009937c9f}{getInflated}}());}
+\DoxyCodeLine{175         System.out.println(\textcolor{stringliteral}{"-\/ Velocitat: "} + \mbox{\hyperlink{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}{cd}}.\mbox{\hyperlink{classdomini_1_1CtrlDomini_add5ad04aeed99663f5955138176ac03f}{getSpeedDecompress}}());}
+\DoxyCodeLine{176         System.out.println(\textcolor{stringliteral}{"-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"});}
+\DoxyCodeLine{177     \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classpresentacio_1_1Main_a4a80e82be57d22be34b6a54722151998}\label{classpresentacio_1_1Main_a4a80e82be57d22be34b6a54722151998}} 
 \index{presentacio.Main@{presentacio.Main}!prompt@{prompt}}
 \index{prompt@{prompt}!presentacio.Main@{presentacio.Main}}
@@ -44,6 +255,98 @@ Devuelve la opción elegida por el usuario
 \end{DoxyReturn}
 
 
+Definición en la línea 36 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36                                                \{}
+\DoxyCodeLine{37         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= options.length; ++i)}
+\DoxyCodeLine{38             System.out.printf(\textcolor{stringliteral}{"-\/ [\%d] : \%s\(\backslash\)n"}, i, options[i-\/1]);}
+\DoxyCodeLine{39         System.out.printf(\textcolor{stringliteral}{"Escull una opció (\%d-\/\%d): "}, 1, options.length);}
+\DoxyCodeLine{40         \textcolor{keywordflow}{return} \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextInt();}
+\DoxyCodeLine{41     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Main_a8273af8754433c1b1c46d1546b84ca76}\label{classpresentacio_1_1Main_a8273af8754433c1b1c46d1546b84ca76}} 
+\index{presentacio.Main@{presentacio.Main}!promptObrirFitxer@{promptObrirFitxer}}
+\index{promptObrirFitxer@{promptObrirFitxer}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{promptObrirFitxer()}{promptObrirFitxer()}}
+{\footnotesize\ttfamily static void presentacio.\+Main.\+prompt\+Obrir\+Fitxer (\begin{DoxyParamCaption}\item[{String}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 134 del archivo Main.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{134                                                            \{}
+\DoxyCodeLine{135         \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{136             \textcolor{keywordflow}{for}(;;) \{}
+\DoxyCodeLine{137                 System.out.print(\textcolor{stringliteral}{"Obrir fitxer?: [S/N] "});}
+\DoxyCodeLine{138                 String option = \mbox{\hyperlink{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}{scanner}}.nextLine();}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140                 \textcolor{keywordflow}{if} (option.charAt(0) == \textcolor{charliteral}{'N'}) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{141                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (option.charAt(0) == \textcolor{charliteral}{'S'}) \{}
+\DoxyCodeLine{142                     \textcolor{keywordflow}{if}(filename.endsWith(\textcolor{stringliteral}{".piz"})) filename = filename.substring(0, filename.lastIndexOf(\textcolor{charliteral}{'/'}) + 1);}
+\DoxyCodeLine{143                     Runtime.getRuntime().exec(\textcolor{stringliteral}{"xdg-\/open "} + filename);}
+\DoxyCodeLine{144                     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{145                 \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147                 System.out.println(\textcolor{stringliteral}{"[ERROR] Opció no vàlida"});}
+\DoxyCodeLine{148             \}}
+\DoxyCodeLine{149         \} \textcolor{keywordflow}{catch} (IOException e) \{}
+\DoxyCodeLine{150             System.out.println(\textcolor{stringliteral}{"Error en la opertura de fitxer:"} + e.getMessage());}
+\DoxyCodeLine{151         \}}
+\DoxyCodeLine{152     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpresentacio_1_1Main_aa4b6ea40bc576c845793419a267cd6db}\label{classpresentacio_1_1Main_aa4b6ea40bc576c845793419a267cd6db}} 
+\index{presentacio.Main@{presentacio.Main}!banner@{banner}}
+\index{banner@{banner}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{banner}{banner}}
+{\footnotesize\ttfamily String presentacio.\+Main.\+banner\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{            \textcolor{stringliteral}{"██████╗ ██╗███████╗     ██████╗ ██████╗ ███╗   ███╗██████╗ ██████╗ ███████╗███████╗███████╗ ██████╗ ██████╗ \(\backslash\)n"} +}
+\DoxyCodeLine{            \textcolor{stringliteral}{"██╔══██╗██║╚══███╔╝    ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██╔═══██╗██╔══██╗\(\backslash\)n"} +}
+\DoxyCodeLine{            \textcolor{stringliteral}{"██████╔╝██║  ███╔╝     ██║     ██║   ██║██╔████╔██║██████╔╝██████╔╝█████╗  ███████╗███████╗██║   ██║██████╔╝\(\backslash\)n"} +}
+\DoxyCodeLine{            \textcolor{stringliteral}{"██╔═══╝ ██║ ███╔╝      ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██╔══██╗██╔══╝  ╚════██║╚════██║██║   ██║██╔══██╗\(\backslash\)n"} +}
+\DoxyCodeLine{            \textcolor{stringliteral}{"██║     ██║███████╗    ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ██║  ██║███████╗███████║███████║╚██████╔╝██║  ██║\(\backslash\)n"} +}
+\DoxyCodeLine{            \textcolor{stringliteral}{"╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝\(\backslash\)n"} +}
+\DoxyCodeLine{            \textcolor{stringliteral}{"                                                                                                            \(\backslash\)n"}}
+
+\end{DoxyCode}
+
+
+Definición en la línea 18 del archivo Main.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}\label{classpresentacio_1_1Main_aa1835ddc6f5dd60468325915e0842491}} 
+\index{presentacio.Main@{presentacio.Main}!cd@{cd}}
+\index{cd@{cd}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{cd}{cd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdomini_1_1CtrlDomini}{Ctrl\+Domini}} presentacio.\+Main.\+cd\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 29 del archivo Main.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}\label{classpresentacio_1_1Main_a8519a11b7635a6823b6c51d22ff1b047}} 
+\index{presentacio.Main@{presentacio.Main}!scanner@{scanner}}
+\index{scanner@{scanner}!presentacio.Main@{presentacio.Main}}
+\doxysubsubsection{\texorpdfstring{scanner}{scanner}}
+{\footnotesize\ttfamily Scanner presentacio.\+Main.\+scanner\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 27 del archivo Main.\+java.
+
+
+
 La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-src/main/java/presentacio/Main.\+java\end{DoxyCompactItemize}
+src/main/java/presentacio/\mbox{\hyperlink{Main_8java}{Main.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.16"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Compressor: Fichero Fuente src/main/java/domini/BitSetL.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Compressor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.16 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_e6e4b3324dfebf3d3160a613b7a7203b.html">domini</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">BitSetL.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="BitSetL_8java.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespacedomini.html">    5</a></span>&#160;<span class="keyword">package </span>domini;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> java.util.BitSet;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html">   17</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classdomini_1_1BitSetL.html">BitSetL</a> <span class="keyword">extends</span> BitSet {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a5a2b3b5e90e3115f5b37e15050891971">   18</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">long</span> <a class="code" href="classdomini_1_1BitSetL.html#a5a2b3b5e90e3115f5b37e15050891971">serialVersionUID</a> = 1L;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">   20</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span> <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a72855cac4bdba9e03119bfca52626f4c">   23</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classdomini_1_1BitSetL.html#a72855cac4bdba9e03119bfca52626f4c">BitSetL</a>() {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        super();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a> = -1;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#abf10573e9995e3dc305c7a0f1dc83b8b">   32</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classdomini_1_1BitSetL.html#abf10573e9995e3dc305c7a0f1dc83b8b">BitSetL</a>(<span class="keyword">final</span> <span class="keywordtype">int</span> l) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        super(l);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a> = l;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a9aa347fbedf32fa875ab7b55fdbaa12c">   42</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classdomini_1_1BitSetL.html#a9aa347fbedf32fa875ab7b55fdbaa12c">BitSetL</a>(<span class="keyword">final</span> <span class="keywordtype">int</span> n, <span class="keyword">final</span> <span class="keywordtype">int</span> l) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        super(l);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> mask = 1 &lt;&lt; (l - 1);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; l; ++i) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">if</span> ((n &amp; mask) != 0)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keyword">set</span>(i);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            mask &gt;&gt;&gt;= 1;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a> = l;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a264ba1bb9a8ac41140ea050a5ddb61c1">   57</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classdomini_1_1BitSetL.html#a264ba1bb9a8ac41140ea050a5ddb61c1">BitSetL</a>(<span class="keyword">final</span> String s) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        super(s.length());</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; s.length(); i++) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keyword">set</span>(i, s.charAt(i) == <span class="charliteral">&#39;1&#39;</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a1c91afcb8c9178120afeca64abeae986">   69</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classdomini_1_1BitSetL.html#a1c91afcb8c9178120afeca64abeae986">asInt</a>() {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">int</span> v = 0;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>; ++i) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            v &lt;&lt;= 1;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> (<span class="keyword">get</span>(i))</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                v |= 1;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> v;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#ab5399b1c6931b56fcb39679181e86f22">   82</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1BitSetL.html#ab5399b1c6931b56fcb39679181e86f22">flip</a>() {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>; i++) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <a class="code" href="classdomini_1_1BitSetL.html#ab5399b1c6931b56fcb39679181e86f22">flip</a>(i);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a117d4440c734d91f741a479317ddbc51">   92</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keyword">final</span> <span class="keywordtype">int</span> pos) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        super.set(pos);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span> (pos + 1 &gt; <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a> = pos + 1;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#aacecfe6c69a55dfc3ce772d444337910">  103</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keyword">final</span> <span class="keywordtype">int</span> pos, <span class="keyword">final</span> <span class="keywordtype">boolean</span> val) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        super.set(pos, val);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">if</span> (pos + 1 &gt; <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>)</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a> = pos + 1;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#a1557928b7d81bc1ed487d84f64ef7b1c">  113</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classdomini_1_1BitSetL.html#a1557928b7d81bc1ed487d84f64ef7b1c">clear</a>(<span class="keyword">final</span> <span class="keywordtype">int</span> pos) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        super.clear(pos);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">if</span> (pos + 1 &gt; <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a> = pos + 1;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classdomini_1_1BitSetL.html#ad1e391d27dc99ed80d23d77bb8d5ffa3">  123</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classdomini_1_1BitSetL.html#ad1e391d27dc99ed80d23d77bb8d5ffa3">length</a>() {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">_length_</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_af5fda9e7504274f0f5143ab259570944"><div class="ttname"><a href="classdomini_1_1BitSetL.html#af5fda9e7504274f0f5143ab259570944">domini.BitSetL._length_</a></div><div class="ttdeci">int _length_</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00020">BitSetL.java:20</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_a1557928b7d81bc1ed487d84f64ef7b1c"><div class="ttname"><a href="classdomini_1_1BitSetL.html#a1557928b7d81bc1ed487d84f64ef7b1c">domini.BitSetL.clear</a></div><div class="ttdeci">void clear(final int pos)</div><div class="ttdoc">pone a false el bit en la posición dada</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00113">BitSetL.java:113</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_a264ba1bb9a8ac41140ea050a5ddb61c1"><div class="ttname"><a href="classdomini_1_1BitSetL.html#a264ba1bb9a8ac41140ea050a5ddb61c1">domini.BitSetL.BitSetL</a></div><div class="ttdeci">BitSetL(final String s)</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00057">BitSetL.java:57</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html"><div class="ttname"><a href="classdomini_1_1BitSetL.html">domini.BitSetL</a></div><div class="ttdoc">BitSet con length() específica.</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00017">BitSetL.java:17</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_ad1e391d27dc99ed80d23d77bb8d5ffa3"><div class="ttname"><a href="classdomini_1_1BitSetL.html#ad1e391d27dc99ed80d23d77bb8d5ffa3">domini.BitSetL.length</a></div><div class="ttdeci">int length()</div><div class="ttdoc">devuelve la longitud del bitset</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00123">BitSetL.java:123</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_a9aa347fbedf32fa875ab7b55fdbaa12c"><div class="ttname"><a href="classdomini_1_1BitSetL.html#a9aa347fbedf32fa875ab7b55fdbaa12c">domini.BitSetL.BitSetL</a></div><div class="ttdeci">BitSetL(final int n, final int l)</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00042">BitSetL.java:42</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_a5a2b3b5e90e3115f5b37e15050891971"><div class="ttname"><a href="classdomini_1_1BitSetL.html#a5a2b3b5e90e3115f5b37e15050891971">domini.BitSetL.serialVersionUID</a></div><div class="ttdeci">static final long serialVersionUID</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00018">BitSetL.java:18</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_abf10573e9995e3dc305c7a0f1dc83b8b"><div class="ttname"><a href="classdomini_1_1BitSetL.html#abf10573e9995e3dc305c7a0f1dc83b8b">domini.BitSetL.BitSetL</a></div><div class="ttdeci">BitSetL(final int l)</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00032">BitSetL.java:32</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_a72855cac4bdba9e03119bfca52626f4c"><div class="ttname"><a href="classdomini_1_1BitSetL.html#a72855cac4bdba9e03119bfca52626f4c">domini.BitSetL.BitSetL</a></div><div class="ttdeci">BitSetL()</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00023">BitSetL.java:23</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_ab5399b1c6931b56fcb39679181e86f22"><div class="ttname"><a href="classdomini_1_1BitSetL.html#ab5399b1c6931b56fcb39679181e86f22">domini.BitSetL.flip</a></div><div class="ttdeci">void flip()</div><div class="ttdoc">Invierte los bits del bitset. (Solo hasta length)</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00082">BitSetL.java:82</a></div></div>
+<div class="ttc" id="aclassdomini_1_1BitSetL_html_a1c91afcb8c9178120afeca64abeae986"><div class="ttname"><a href="classdomini_1_1BitSetL.html#a1c91afcb8c9178120afeca64abeae986">domini.BitSetL.asInt</a></div><div class="ttdeci">int asInt()</div><div class="ttdoc">Devuelve el bitset como un entero (32 bits)</div><div class="ttdef"><b>Definition:</b> <a href="BitSetL_8java_source.html#l00069">BitSetL.java:69</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.16
+</small></address>
+</body>
+</html>

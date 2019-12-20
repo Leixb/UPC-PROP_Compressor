@@ -1,0 +1,225 @@
+\hypertarget{classdomini_1_1IO_1_1Bit_1_1writer}{}\doxysection{Referencia de la Clase domini.\+I\+O.\+Bit.\+writer}
+\label{classdomini_1_1IO_1_1Bit_1_1writer}\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+Diagrama de herencias de domini.\+I\+O.\+Bit.\+writer\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdomini_1_1IO_1_1Bit_1_1writer}
+\end{center}
+\end{figure}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a9e90fd8e1f14f0f95f0305dcd7d85957}{writer}} (final String filename)  throws File\+Not\+Found\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a9dd4e9654bc3dc19644905cb2a1ddde3}{write}} (final boolean bit)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_abf160952ff663045e8bc1c74f3c37948}{write}} (final \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}} bs)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a95c09f54e89ce33cb7ac3faa42ed0d8e}{write}} (final byte b)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a7a87eb83dffdf4d4b86e388836a31951}{write}} (final char c)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_af3be1f67b719646a3a2d2d05e0d78566}{write}} (final int num)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aca0e7ee0f72e7268f2214e6b66366763}{close}} ()  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a0a404833c7d4d87ca88f67a3bf25a948}{write\+Mask}} (final int num, int mask)  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a5fa1583395be9d41f60a11c0761f381a}{clear}} ()  throws I\+O\+Exception 
+\item 
+void \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a984a75d66545bf6759b8e92f98b0ba44}{flush}} ()  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+final Buffered\+Output\+Stream \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}{out}}
+\item 
+int \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}}
+\item 
+int \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a9e90fd8e1f14f0f95f0305dcd7d85957}\label{classdomini_1_1IO_1_1Bit_1_1writer_a9e90fd8e1f14f0f95f0305dcd7d85957}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!writer@{writer}}
+\index{writer@{writer}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{writer()}{writer()}}
+{\footnotesize\ttfamily domini.\+I\+O.\+Bit.\+writer.\+writer (\begin{DoxyParamCaption}\item[{final String}]{filename }\end{DoxyParamCaption}) throws File\+Not\+Found\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{60                                                                               \{}
+\DoxyCodeLine{61                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}{out}} = \textcolor{keyword}{new} BufferedOutputStream(\textcolor{keyword}{new} FileOutputStream(filename));}
+\DoxyCodeLine{62                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}} = 0;}
+\DoxyCodeLine{63                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}} = 0;}
+\DoxyCodeLine{64             \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a5fa1583395be9d41f60a11c0761f381a}\label{classdomini_1_1IO_1_1Bit_1_1writer_a5fa1583395be9d41f60a11c0761f381a}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!clear@{clear}}
+\index{clear@{clear}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                                     \{}
+\DoxyCodeLine{102                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}} == 0)}
+\DoxyCodeLine{103                     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{104                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}} <<= (8 -\/ \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}});}
+\DoxyCodeLine{105                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}{out}}.write(\mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}});}
+\DoxyCodeLine{106                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}} = 0;}
+\DoxyCodeLine{107                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}} = 0;}
+\DoxyCodeLine{108             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_aca0e7ee0f72e7268f2214e6b66366763}\label{classdomini_1_1IO_1_1Bit_1_1writer_aca0e7ee0f72e7268f2214e6b66366763}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!close@{close}}
+\index{close@{close}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{115                                                    \{}
+\DoxyCodeLine{116                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a984a75d66545bf6759b8e92f98b0ba44}{flush}}();}
+\DoxyCodeLine{117                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}{out}}.close();}
+\DoxyCodeLine{118             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a984a75d66545bf6759b8e92f98b0ba44}\label{classdomini_1_1IO_1_1Bit_1_1writer_a984a75d66545bf6759b8e92f98b0ba44}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!flush@{flush}}
+\index{flush@{flush}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{110                                                     \{}
+\DoxyCodeLine{111                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a5fa1583395be9d41f60a11c0761f381a}{clear}}();}
+\DoxyCodeLine{112                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}{out}}.flush();}
+\DoxyCodeLine{113             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_abf160952ff663045e8bc1c74f3c37948}\label{classdomini_1_1IO_1_1Bit_1_1writer_abf160952ff663045e8bc1c74f3c37948}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!write@{write}}
+\index{write@{write}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final \mbox{\hyperlink{classdomini_1_1BitSetL}{Bit\+SetL}}}]{bs }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                                                    \{}
+\DoxyCodeLine{77                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < bs.length(); ++i) \{}
+\DoxyCodeLine{78                     \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a9dd4e9654bc3dc19644905cb2a1ddde3}{write}}(bs.get(i));}
+\DoxyCodeLine{79                 \}}
+\DoxyCodeLine{80             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a9dd4e9654bc3dc19644905cb2a1ddde3}\label{classdomini_1_1IO_1_1Bit_1_1writer_a9dd4e9654bc3dc19644905cb2a1ddde3}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!write@{write}}
+\index{write@{write}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final boolean}]{bit }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66                                                                     \{}
+\DoxyCodeLine{67                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}} <<= 1;}
+\DoxyCodeLine{68                 \textcolor{keywordflow}{if} (bit)}
+\DoxyCodeLine{69                     \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}{buffer}} |= 1;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71                 ++\mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}};}
+\DoxyCodeLine{72                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}{n}} >= 8)}
+\DoxyCodeLine{73                     \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a5fa1583395be9d41f60a11c0761f381a}{clear}}();}
+\DoxyCodeLine{74             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a95c09f54e89ce33cb7ac3faa42ed0d8e}\label{classdomini_1_1IO_1_1Bit_1_1writer_a95c09f54e89ce33cb7ac3faa42ed0d8e}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!write@{write}}
+\index{write@{write}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final byte}]{b }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82                                                                \{}
+\DoxyCodeLine{83                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a0a404833c7d4d87ca88f67a3bf25a948}{writeMask}}(b, 0x80);}
+\DoxyCodeLine{84             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a7a87eb83dffdf4d4b86e388836a31951}\label{classdomini_1_1IO_1_1Bit_1_1writer_a7a87eb83dffdf4d4b86e388836a31951}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!write@{write}}
+\index{write@{write}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final char}]{c }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{86                                                                \{}
+\DoxyCodeLine{87                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a0a404833c7d4d87ca88f67a3bf25a948}{writeMask}}(c, 0x8000);}
+\DoxyCodeLine{88             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_af3be1f67b719646a3a2d2d05e0d78566}\label{classdomini_1_1IO_1_1Bit_1_1writer_af3be1f67b719646a3a2d2d05e0d78566}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!write@{write}}
+\index{write@{write}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+write (\begin{DoxyParamCaption}\item[{final int}]{num }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90                                                                 \{}
+\DoxyCodeLine{91                 \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a0a404833c7d4d87ca88f67a3bf25a948}{writeMask}}(num, 0x80000000);}
+\DoxyCodeLine{92             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a0a404833c7d4d87ca88f67a3bf25a948}\label{classdomini_1_1IO_1_1Bit_1_1writer_a0a404833c7d4d87ca88f67a3bf25a948}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!writeMask@{writeMask}}
+\index{writeMask@{writeMask}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{writeMask()}{writeMask()}}
+{\footnotesize\ttfamily void domini.\+I\+O.\+Bit.\+writer.\+write\+Mask (\begin{DoxyParamCaption}\item[{final int}]{num,  }\item[{int}]{mask }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{94                                                                                \{}
+\DoxyCodeLine{95                 \textcolor{keywordflow}{while} (mask != 0) \{}
+\DoxyCodeLine{96                     \mbox{\hyperlink{classdomini_1_1IO_1_1Bit_1_1writer_a9dd4e9654bc3dc19644905cb2a1ddde3}{write}}((num \& mask) != 0);}
+\DoxyCodeLine{97                     mask >>>= 1;}
+\DoxyCodeLine{98                 \}}
+\DoxyCodeLine{99             \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}\label{classdomini_1_1IO_1_1Bit_1_1writer_a3c7a8c32cce596516c2d89f6c6faa086}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!buffer@{buffer}}
+\index{buffer@{buffer}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily int domini.\+I\+O.\+Bit.\+writer.\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}\label{classdomini_1_1IO_1_1Bit_1_1writer_aa8dcb4874a47295ef24e3665603b0e2b}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!n@{n}}
+\index{n@{n}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily int domini.\+I\+O.\+Bit.\+writer.\+n\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}\label{classdomini_1_1IO_1_1Bit_1_1writer_ada9a37ea304d2c446a751af95c17aac7}} 
+\index{domini.IO.Bit.writer@{domini.IO.Bit.writer}!out@{out}}
+\index{out@{out}!domini.IO.Bit.writer@{domini.IO.Bit.writer}}
+\doxysubsubsection{\texorpdfstring{out}{out}}
+{\footnotesize\ttfamily final Buffered\+Output\+Stream domini.\+I\+O.\+Bit.\+writer.\+out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{IO_8java}{I\+O.\+java}}\end{DoxyCompactItemize}

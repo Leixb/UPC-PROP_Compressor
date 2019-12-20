@@ -1,0 +1,501 @@
+\hypertarget{classpresentacio_1_1Decompress}{}\doxysection{Referencia de la Clase presentacio.\+Decompress}
+\label{classpresentacio_1_1Decompress}\index{presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+J\+Component \mbox{\hyperlink{classpresentacio_1_1Decompress_a6c95ee516dba5d4daf8fdf84a89d9b9c}{\$ \$get\+Root\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1Decompress_a501689185aee64c1b3cefa19a730f18e}{Decompress}} ()
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1Decompress_ac4a6e1b97edbd882109e457112dd0f93}{show\+Decompress}} (Point p, Dimension d)
+\item 
+\mbox{\hyperlink{classpresentacio_1_1Decompress_af80904f2f95bfbdd0dc95bea5bcb4cc5}{\mbox{[}instance initializer\mbox{]}}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}{fitting\+Label}} (String file, J\+Label label)
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1Decompress_aef26d8420df7bdfb77c2d6750ee616e3}{set\+Window\+Location\+And\+Dimension}} (Point p, Dimension d)
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1Decompress_a700f6592364435b5641226022edce5d6}{\$ \$setup\+UI}} ()
+\item 
+Font \mbox{\hyperlink{classpresentacio_1_1Decompress_a7d84a49595112b8f4f6b1705c70c740e}{\$ \$get\+Font}} (String font\+Name, int style, int size, Font current\+Font)
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+J\+Panel \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panel\+Decompress}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}{button\+Back}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{button\+Decompress}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}{button\+Select\+File\+In}}
+\item 
+J\+Text\+Field \mbox{\hyperlink{classpresentacio_1_1Decompress_abc308d951e3685e0a8cf6b64628e202a}{textfield\+Select\+File\+Out}}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{label\+File\+In}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{button\+Select\+File\+Out}}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{label\+File\+Out}}
+\item 
+String \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{file\+In}}
+\item 
+String \mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{file\+Out}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static J\+Frame \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea 15 del archivo Decompress.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a501689185aee64c1b3cefa19a730f18e}\label{classpresentacio_1_1Decompress_a501689185aee64c1b3cefa19a730f18e}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!Decompress@{Decompress}}
+\index{Decompress@{Decompress}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{Decompress()}{Decompress()}}
+{\footnotesize\ttfamily presentacio.\+Decompress.\+Decompress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 31 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31                  \{}
+\DoxyCodeLine{32         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}} = \textcolor{keyword}{new} JFrame(\textcolor{stringliteral}{"PIZ Compressor | Descomprimir"});}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{35         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{36         \mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{buttonSelectFileOut}}.setEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{37         \mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{buttonDecompress}}.setEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}} = \mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}} = \textcolor{stringliteral}{""};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{buttonDecompress}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{42             @Override}
+\DoxyCodeLine{43             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{44                 \textcolor{keywordflow}{if} (\textcolor{stringliteral}{""}.equals(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}})) \{}
+\DoxyCodeLine{45                     JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}, \textcolor{stringliteral}{"Selecciona un fitxer a descomprimir."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.WARNING\_MESSAGE);}
+\DoxyCodeLine{46                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\textcolor{stringliteral}{""}.equals(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}})) \{}
+\DoxyCodeLine{47                     JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}, \textcolor{stringliteral}{"Inserta un nom pel fitxer de destí."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.WARNING\_MESSAGE);}
+\DoxyCodeLine{48                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{49                     \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{50                     LoadingDecompress ld = \textcolor{keyword}{new} LoadingDecompress();}
+\DoxyCodeLine{51                     ld.showLoadingDecompress(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}}, \mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}}, \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.getSize());}
+\DoxyCodeLine{52                 \}}
+\DoxyCodeLine{53             \}}
+\DoxyCodeLine{54         \});}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56         \mbox{\hyperlink{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}{buttonSelectFileIn}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{57             @Override}
+\DoxyCodeLine{58             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{59                 JFileChooser fc;}
+\DoxyCodeLine{60                 \textcolor{keywordflow}{if} (\textcolor{stringliteral}{""}.equals(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}})) fc = \textcolor{keyword}{new} JFileChooser(\textcolor{stringliteral}{"./data"});}
+\DoxyCodeLine{61                 \textcolor{keywordflow}{else} fc = \textcolor{keyword}{new} JFileChooser(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}});}
+\DoxyCodeLine{62                 \textcolor{keywordtype}{int} result = fc.showOpenDialog(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}});}
+\DoxyCodeLine{63                 \textcolor{keywordflow}{if} (result == JFileChooser.APPROVE\_OPTION) \{}
+\DoxyCodeLine{64                     \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}} = fc.getSelectedFile().getAbsolutePath();}
+\DoxyCodeLine{65                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setText(\mbox{\hyperlink{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}{fittingLabel}}(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}}, \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}));}
+\DoxyCodeLine{66                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setToolTipText(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}});}
+\DoxyCodeLine{67                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setForeground(\textcolor{keyword}{new} Color(0, 190, 0));}
+\DoxyCodeLine{68                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{69                     \mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{buttonSelectFileOut}}.setEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{70                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result == JFileChooser.ERROR\_OPTION) \{}
+\DoxyCodeLine{71                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setText(\textcolor{stringliteral}{"Error pujant fitxer."});}
+\DoxyCodeLine{72                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setForeground(\textcolor{keyword}{new} Color(220, 0, 0));}
+\DoxyCodeLine{73                     \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{74                 \}}
+\DoxyCodeLine{75             \}}
+\DoxyCodeLine{76         \});}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78         \mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{buttonSelectFileOut}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{79             @Override}
+\DoxyCodeLine{80             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{81                 \textcolor{keywordflow}{if} (\textcolor{stringliteral}{""}.equals(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}})) \{}
+\DoxyCodeLine{82                     JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}, \textcolor{stringliteral}{"Selecciona un fitxer a descomprimir."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.WARNING\_MESSAGE);}
+\DoxyCodeLine{83                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{84                     JFileChooser fc;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86                     \textcolor{keywordflow}{if} (\textcolor{stringliteral}{""}.equals(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}})) fc = \textcolor{keyword}{new} JFileChooser(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}});}
+\DoxyCodeLine{87                     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{88                         fc = \textcolor{keyword}{new} JFileChooser(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}});}
+\DoxyCodeLine{89                         fc.setSelectedFile(\textcolor{keyword}{new} File(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}}));}
+\DoxyCodeLine{90                     \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92                     fc.setFileSelectionMode(JFileChooser.FILES\_AND\_DIRECTORIES);}
+\DoxyCodeLine{93                     \textcolor{keywordtype}{int} result = fc.showSaveDialog(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}});}
+\DoxyCodeLine{94                     \textcolor{keywordflow}{if} (result == JFileChooser.APPROVE\_OPTION) \{}
+\DoxyCodeLine{95                         \mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}} = fc.getSelectedFile().getAbsolutePath();}
+\DoxyCodeLine{96                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setText(\mbox{\hyperlink{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}{fittingLabel}}(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}}, \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}));}
+\DoxyCodeLine{97                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setToolTipText(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}});}
+\DoxyCodeLine{98                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setForeground(\textcolor{keyword}{new} Color(0, 190, 0));}
+\DoxyCodeLine{99                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{100                         \mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{buttonDecompress}}.setEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{101                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result == JFileChooser.ERROR\_OPTION) \{}
+\DoxyCodeLine{102                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setText(\textcolor{stringliteral}{"Error al seleccionar fitxer destí."});}
+\DoxyCodeLine{103                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setForeground(\textcolor{keyword}{new} Color(220, 0, 0));}
+\DoxyCodeLine{104                         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{105                     \}}
+\DoxyCodeLine{106                 \}}
+\DoxyCodeLine{107             \}}
+\DoxyCodeLine{108         \});}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110         \mbox{\hyperlink{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}{buttonBack}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{111             @Override}
+\DoxyCodeLine{112             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{113                 \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{114                 Presentacio.showPresentacio(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.getSize());}
+\DoxyCodeLine{115             \}}
+\DoxyCodeLine{116         \});}
+\DoxyCodeLine{117         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.addComponentListener(\textcolor{keyword}{new} ComponentAdapter() \{}
+\DoxyCodeLine{118             @Override}
+\DoxyCodeLine{119             \textcolor{keyword}{public} \textcolor{keywordtype}{void} componentResized(ComponentEvent e) \{}
+\DoxyCodeLine{120                 super.componentResized(e);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122                 \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setText(\mbox{\hyperlink{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}{fittingLabel}}(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}{fileIn}}, \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}));}
+\DoxyCodeLine{123                 \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setText(\mbox{\hyperlink{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}{fittingLabel}}(\mbox{\hyperlink{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}{fileOut}}, \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}));}
+\DoxyCodeLine{124             \}}
+\DoxyCodeLine{125         \});}
+\DoxyCodeLine{126     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a7d84a49595112b8f4f6b1705c70c740e}\label{classpresentacio_1_1Decompress_a7d84a49595112b8f4f6b1705c70c740e}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!\$ \$getFont@{\$ \$getFont}}
+\index{\$ \$getFont@{\$ \$getFont}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$getFont()}{$ $getFont()}}
+{\footnotesize\ttfamily Font presentacio.\+Decompress.\$ \$get\+Font (\begin{DoxyParamCaption}\item[{String}]{font\+Name,  }\item[{int}]{style,  }\item[{int}]{size,  }\item[{Font}]{current\+Font }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+@noinspection A\+LL 
+
+Definición en la línea 238 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{238                                                                                        \{}
+\DoxyCodeLine{239         \textcolor{keywordflow}{if} (currentFont == \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{240         String resultName;}
+\DoxyCodeLine{241         \textcolor{keywordflow}{if} (fontName == \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{242             resultName = currentFont.getName();}
+\DoxyCodeLine{243         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{244             Font testFont = \textcolor{keyword}{new} Font(fontName, Font.PLAIN, 10);}
+\DoxyCodeLine{245             \textcolor{keywordflow}{if} (testFont.canDisplay(\textcolor{charliteral}{'a'}) \&\& testFont.canDisplay(\textcolor{charliteral}{'1'})) \{}
+\DoxyCodeLine{246                 resultName = fontName;}
+\DoxyCodeLine{247             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{248                 resultName = currentFont.getName();}
+\DoxyCodeLine{249             \}}
+\DoxyCodeLine{250         \}}
+\DoxyCodeLine{251         \textcolor{keywordflow}{return} \textcolor{keyword}{new} Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());}
+\DoxyCodeLine{252     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a6c95ee516dba5d4daf8fdf84a89d9b9c}\label{classpresentacio_1_1Decompress_a6c95ee516dba5d4daf8fdf84a89d9b9c}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!\$ \$getRootComponent@{\$ \$getRootComponent}}
+\index{\$ \$getRootComponent@{\$ \$getRootComponent}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$getRootComponent()}{$ $getRootComponent()}}
+{\footnotesize\ttfamily J\+Component presentacio.\+Decompress.\$ \$get\+Root\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@noinspection A\+LL 
+
+Definición en la línea 257 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{257                                                \{}
+\DoxyCodeLine{258         \textcolor{keywordflow}{return} \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}};}
+\DoxyCodeLine{259     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a700f6592364435b5641226022edce5d6}\label{classpresentacio_1_1Decompress_a700f6592364435b5641226022edce5d6}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!\$ \$setupUI@{\$ \$setupUI}}
+\index{\$ \$setupUI@{\$ \$setupUI}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$setupUI()}{$ $setupUI()}}
+{\footnotesize\ttfamily void presentacio.\+Decompress.\$ \$setup\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Method generated by IntelliJ I\+D\+EA G\+UI Designer \begin{quote}
+\begin{quote}
+\begin{quote}
+I\+M\+P\+O\+R\+T\+A\+N\+T!! $<$$<$$<$ \end{quote}
+\end{quote}
+\end{quote}
+DO N\+OT edit this method OR call it in your code!
+
+@noinspection A\+LL 
+
+Definición en la línea 173 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{173                                  \{}
+\DoxyCodeLine{174         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}} = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{175         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.setLayout(\textcolor{keyword}{new} GridLayoutManager(6, 1, \textcolor{keyword}{new} Insets(0, 0, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{176         \textcolor{keyword}{final} Spacer spacer1 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{177         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.add(spacer1, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{178         \textcolor{keyword}{final} JPanel panel1 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{179         panel1.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 5, \textcolor{keyword}{new} Insets(0, 20, 0, 20), -\/1, -\/1));}
+\DoxyCodeLine{180         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.add(panel1, \textcolor{keyword}{new} GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{181         \textcolor{keyword}{final} JLabel label1 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{182         label1.setText(\textcolor{stringliteral}{"Fitxer a descomprimir:"});}
+\DoxyCodeLine{183         panel1.add(label1, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR\_WEST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{new} Dimension(185, -\/1), \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{184         \mbox{\hyperlink{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}{buttonSelectFileIn}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{185         \mbox{\hyperlink{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}{buttonSelectFileIn}}.setText(\textcolor{stringliteral}{"Seleccionar"});}
+\DoxyCodeLine{186         panel1.add(\mbox{\hyperlink{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}{buttonSelectFileIn}}, \textcolor{keyword}{new} GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR\_EAST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{new} Dimension(160, -\/1), \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{187         \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{188         Font labelFileInFont = this.\$\$\$getFont\$\$\$(\textcolor{keyword}{null}, Font.BOLD, -\/1, \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.getFont());}
+\DoxyCodeLine{189         \textcolor{keywordflow}{if} (labelFileInFont != \textcolor{keyword}{null}) \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setFont(labelFileInFont);}
+\DoxyCodeLine{190         \mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{191         panel1.add(\mbox{\hyperlink{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}{labelFileIn}}, \textcolor{keyword}{new} GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{192         \textcolor{keyword}{final} Spacer spacer2 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{193         panel1.add(spacer2, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{194         \textcolor{keyword}{final} Spacer spacer3 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{195         panel1.add(spacer3, \textcolor{keyword}{new} GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{196         \textcolor{keyword}{final} JPanel panel2 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{197         panel2.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 5, \textcolor{keyword}{new} Insets(0, 20, 0, 20), -\/1, -\/1));}
+\DoxyCodeLine{198         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.add(panel2, \textcolor{keyword}{new} GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{199         \textcolor{keyword}{final} JLabel label2 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{200         label2.setText(\textcolor{stringliteral}{"Nom fitxer/directori destí:"});}
+\DoxyCodeLine{201         panel2.add(label2, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR\_WEST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{new} Dimension(185, -\/1), \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{202         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{203         Font labelFileOutFont = this.\$\$\$getFont\$\$\$(\textcolor{keyword}{null}, Font.BOLD, -\/1, \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.getFont());}
+\DoxyCodeLine{204         \textcolor{keywordflow}{if} (labelFileOutFont != \textcolor{keyword}{null}) \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setFont(labelFileOutFont);}
+\DoxyCodeLine{205         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{206         panel2.add(\mbox{\hyperlink{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}{labelFileOut}}, \textcolor{keyword}{new} GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{207         \mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{buttonSelectFileOut}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{208         \mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{buttonSelectFileOut}}.setText(\textcolor{stringliteral}{"Seleccionar destí"});}
+\DoxyCodeLine{209         panel2.add(\mbox{\hyperlink{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}{buttonSelectFileOut}}, \textcolor{keyword}{new} GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR\_EAST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{new} Dimension(160, -\/1), \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{210         \textcolor{keyword}{final} Spacer spacer4 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{211         panel2.add(spacer4, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{212         \textcolor{keyword}{final} Spacer spacer5 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{213         panel2.add(spacer5, \textcolor{keyword}{new} GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{214         \textcolor{keyword}{final} Spacer spacer6 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{215         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.add(spacer6, \textcolor{keyword}{new} GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{216         \textcolor{keyword}{final} JPanel panel3 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{217         panel3.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 3, \textcolor{keyword}{new} Insets(0, 5, 5, 5), -\/1, -\/1));}
+\DoxyCodeLine{218         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.add(panel3, \textcolor{keyword}{new} GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{219         \mbox{\hyperlink{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}{buttonBack}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{220         \mbox{\hyperlink{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}{buttonBack}}.setText(\textcolor{stringliteral}{"Enrere"});}
+\DoxyCodeLine{221         panel3.add(\mbox{\hyperlink{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}{buttonBack}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{222         \textcolor{keyword}{final} Spacer spacer7 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{223         panel3.add(spacer7, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{224         \mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{buttonDecompress}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{225         \mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{buttonDecompress}}.setText(\textcolor{stringliteral}{"Descomprimir"});}
+\DoxyCodeLine{226         panel3.add(\mbox{\hyperlink{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}{buttonDecompress}}, \textcolor{keyword}{new} GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{227         \textcolor{keyword}{final} JPanel panel4 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{228         panel4.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 1, \textcolor{keyword}{new} Insets(0, 0, 20, 0), -\/1, -\/1));}
+\DoxyCodeLine{229         \mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}}.add(panel4, \textcolor{keyword}{new} GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{230         \textcolor{keyword}{final} JLabel label3 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{231         label3.setText(\textcolor{stringliteral}{"DESCOMPRIMIR"});}
+\DoxyCodeLine{232         panel4.add(label3, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{233     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_af80904f2f95bfbdd0dc95bea5bcb4cc5}\label{classpresentacio_1_1Decompress_af80904f2f95bfbdd0dc95bea5bcb4cc5}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!\mbox{[}instance initializer\mbox{]}@{[instance initializer]}}
+\index{\mbox{[}instance initializer\mbox{]}@{[instance initializer]}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{[instance initializer]()}{[instance initializer]()}}
+{\footnotesize\ttfamily presentacio.\+Decompress.\mbox{[}instance initializer\mbox{]} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}\label{classpresentacio_1_1Decompress_a5846c8c150ec6c558d4cd064ff217375}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!fittingLabel@{fittingLabel}}
+\index{fittingLabel@{fittingLabel}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{fittingLabel()}{fittingLabel()}}
+{\footnotesize\ttfamily String presentacio.\+Decompress.\+fitting\+Label (\begin{DoxyParamCaption}\item[{String}]{file,  }\item[{J\+Label}]{label }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 128 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{128                                                            \{}
+\DoxyCodeLine{129         \textcolor{keywordtype}{int} maxWidth = \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.getWidth() -\/ 425;}
+\DoxyCodeLine{130         FontMetrics fm = label.getFontMetrics(label.getFont());}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132         String fittingText = \textcolor{stringliteral}{""};}
+\DoxyCodeLine{133         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = file.length() -\/ 1; i >= 0; -\/-\/i) \{}
+\DoxyCodeLine{134             \textcolor{keywordflow}{if} (fm.stringWidth(fittingText + \textcolor{stringliteral}{"..."}) < maxWidth) \{}
+\DoxyCodeLine{135                 fittingText = file.charAt(i) + fittingText;}
+\DoxyCodeLine{136             \}}
+\DoxyCodeLine{137         \}}
+\DoxyCodeLine{138         \textcolor{keywordflow}{if} (file.equals(fittingText)) \textcolor{keywordflow}{return} file;}
+\DoxyCodeLine{139         \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{stringliteral}{"..."} + fittingText;}
+\DoxyCodeLine{140     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_aef26d8420df7bdfb77c2d6750ee616e3}\label{classpresentacio_1_1Decompress_aef26d8420df7bdfb77c2d6750ee616e3}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!setWindowLocationAndDimension@{setWindowLocationAndDimension}}
+\index{setWindowLocationAndDimension@{setWindowLocationAndDimension}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{setWindowLocationAndDimension()}{setWindowLocationAndDimension()}}
+{\footnotesize\ttfamily void presentacio.\+Decompress.\+set\+Window\+Location\+And\+Dimension (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 151 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{151                                                                      \{}
+\DoxyCodeLine{152         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setLocation(p);}
+\DoxyCodeLine{155         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setPreferredSize(d);}
+\DoxyCodeLine{156         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setMinimumSize(\textcolor{keyword}{new} Dimension(screenSize.width / 3, screenSize.height / 4));}
+\DoxyCodeLine{157     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_ac4a6e1b97edbd882109e457112dd0f93}\label{classpresentacio_1_1Decompress_ac4a6e1b97edbd882109e457112dd0f93}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!showDecompress@{showDecompress}}
+\index{showDecompress@{showDecompress}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{showDecompress()}{showDecompress()}}
+{\footnotesize\ttfamily void presentacio.\+Decompress.\+show\+Decompress (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 142 del archivo Decompress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{142                                               \{}
+\DoxyCodeLine{143         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setResizable(\textcolor{keyword}{true});}
+\DoxyCodeLine{144         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setContentPane(this.\mbox{\hyperlink{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}{panelDecompress}});}
+\DoxyCodeLine{145         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);}
+\DoxyCodeLine{146         \mbox{\hyperlink{classpresentacio_1_1Decompress_aef26d8420df7bdfb77c2d6750ee616e3}{setWindowLocationAndDimension}}(p, d);}
+\DoxyCodeLine{147         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.pack();}
+\DoxyCodeLine{148         \mbox{\hyperlink{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}{f}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{149     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}\label{classpresentacio_1_1Decompress_a7766d13732c3096933531145b5bbf49d}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!buttonBack@{buttonBack}}
+\index{buttonBack@{buttonBack}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{buttonBack}{buttonBack}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Decompress.\+button\+Back\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 17 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}\label{classpresentacio_1_1Decompress_a3af3793ff8aeca30a4bb3935d06f8189}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!buttonDecompress@{buttonDecompress}}
+\index{buttonDecompress@{buttonDecompress}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{buttonDecompress}{buttonDecompress}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Decompress.\+button\+Decompress\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 18 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}\label{classpresentacio_1_1Decompress_adcd3c381b415e485836887d43db0d233}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!buttonSelectFileIn@{buttonSelectFileIn}}
+\index{buttonSelectFileIn@{buttonSelectFileIn}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{buttonSelectFileIn}{buttonSelectFileIn}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Decompress.\+button\+Select\+File\+In\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 19 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}\label{classpresentacio_1_1Decompress_abd3d6c06836f4d046322d9716e568480}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!buttonSelectFileOut@{buttonSelectFileOut}}
+\index{buttonSelectFileOut@{buttonSelectFileOut}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{buttonSelectFileOut}{buttonSelectFileOut}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Decompress.\+button\+Select\+File\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 22 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}\label{classpresentacio_1_1Decompress_afe04f7b1327a7d3332348b857f681cd5}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!f@{f}}
+\index{f@{f}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily J\+Frame presentacio.\+Decompress.\+f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 25 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}\label{classpresentacio_1_1Decompress_afe8c7213b9c6ca341918e621d32a0136}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!fileIn@{fileIn}}
+\index{fileIn@{fileIn}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{fileIn}{fileIn}}
+{\footnotesize\ttfamily String presentacio.\+Decompress.\+file\+In\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 27 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}\label{classpresentacio_1_1Decompress_ac4b099544fff181e04b8fb0406d1a409}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!fileOut@{fileOut}}
+\index{fileOut@{fileOut}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{fileOut}{fileOut}}
+{\footnotesize\ttfamily String presentacio.\+Decompress.\+file\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 28 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}\label{classpresentacio_1_1Decompress_a1c6815e3f12cd513612a83e6c6f11873}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!labelFileIn@{labelFileIn}}
+\index{labelFileIn@{labelFileIn}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{labelFileIn}{labelFileIn}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Decompress.\+label\+File\+In\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 21 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}\label{classpresentacio_1_1Decompress_afe8acdc5f287bb788fca778b9ada66cb}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!labelFileOut@{labelFileOut}}
+\index{labelFileOut@{labelFileOut}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{labelFileOut}{labelFileOut}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Decompress.\+label\+File\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 23 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}\label{classpresentacio_1_1Decompress_a521b876d8beca30364b364548fd20a2a}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!panelDecompress@{panelDecompress}}
+\index{panelDecompress@{panelDecompress}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{panelDecompress}{panelDecompress}}
+{\footnotesize\ttfamily J\+Panel presentacio.\+Decompress.\+panel\+Decompress\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 16 del archivo Decompress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1Decompress_abc308d951e3685e0a8cf6b64628e202a}\label{classpresentacio_1_1Decompress_abc308d951e3685e0a8cf6b64628e202a}} 
+\index{presentacio.Decompress@{presentacio.Decompress}!textfieldSelectFileOut@{textfieldSelectFileOut}}
+\index{textfieldSelectFileOut@{textfieldSelectFileOut}!presentacio.Decompress@{presentacio.Decompress}}
+\doxysubsubsection{\texorpdfstring{textfieldSelectFileOut}{textfieldSelectFileOut}}
+{\footnotesize\ttfamily J\+Text\+Field presentacio.\+Decompress.\+textfield\+Select\+File\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 20 del archivo Decompress.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/presentacio/\mbox{\hyperlink{Decompress_8java}{Decompress.\+java}}\end{DoxyCompactItemize}

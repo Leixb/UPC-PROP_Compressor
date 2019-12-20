@@ -1,0 +1,411 @@
+\hypertarget{classpresentacio_1_1StatsCompress}{}\doxysection{Referencia de la Clase presentacio.\+Stats\+Compress}
+\label{classpresentacio_1_1StatsCompress}\index{presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+J\+Component \mbox{\hyperlink{classpresentacio_1_1StatsCompress_aad2765008a168b298ac1feefc0353495}{\$ \$get\+Root\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae5ee450411b5be847528cfde211f0583}{Stats\+Compress}} (\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio}{Ctrl\+Presentacio}} ctrl\+Pres)
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1StatsCompress_aa9b19f1df3fd688996f0f91fab769414}{show\+Stats\+Compress}} (Point p, Dimension d)
+\item 
+\mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae8ac141473d96a2e596b52ca8d8fca34}{\mbox{[}instance initializer\mbox{]}}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a587bcb3b7d25982d398c5c7c3b185f01}{set\+Window\+Location\+And\+Dimension}} (Point p, Dimension d)
+\item 
+void \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a57936c1ce2b311d0b2df37676d1489a9}{\$ \$setup\+UI}} ()
+\item 
+Font \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab06de9885c2f52da0209c2abf226a31f}{\$ \$get\+Font}} (String font\+Name, int style, int size, Font current\+Font)
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio}{Ctrl\+Presentacio}} \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}{cp}}
+\item 
+J\+Panel \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panel\+Stats\+Comp}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}{button\+Exit}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}{button\+Home}}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}{label\+Time}}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}{label\+Deflate}}
+\item 
+J\+Label \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}{label\+Speed}}
+\item 
+J\+Button \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}{button\+Show\+File}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Atributos privados estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static J\+Frame \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea 14 del archivo Stats\+Compress.\+java.
+
+
+
+\doxysubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_ae5ee450411b5be847528cfde211f0583}\label{classpresentacio_1_1StatsCompress_ae5ee450411b5be847528cfde211f0583}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!StatsCompress@{StatsCompress}}
+\index{StatsCompress@{StatsCompress}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{StatsCompress()}{StatsCompress()}}
+{\footnotesize\ttfamily presentacio.\+Stats\+Compress.\+Stats\+Compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio}{Ctrl\+Presentacio}}}]{ctrl\+Pres }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 28 del archivo Stats\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28                                             \{}
+\DoxyCodeLine{29         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}} = \textcolor{keyword}{new} JFrame(\textcolor{stringliteral}{"PIZ Compressor | Estadístiques"});}
+\DoxyCodeLine{30         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}{cp}} = ctrlPres;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}{buttonHome}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{33             @Override}
+\DoxyCodeLine{34             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{35                 \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{36                 Presentacio.showPresentacio(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.getLocation(), \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.getSize());}
+\DoxyCodeLine{37             \}}
+\DoxyCodeLine{38         \});}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}{buttonShowFile}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{41             @Override}
+\DoxyCodeLine{42             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{43                 String fileOut = \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}{cp}}.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_a6d0826e680ee535c2c6110f576f65637}{getFileOut}}();}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45                 String currentOS = System.getProperty(\textcolor{stringliteral}{"os.name"}).toLowerCase(Locale.ENGLISH);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47                 \textcolor{keywordflow}{if} (currentOS.contains(\textcolor{stringliteral}{"win"})) \{}
+\DoxyCodeLine{48                     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{49                         Runtime.getRuntime().exec(\textcolor{stringliteral}{"start "} + fileOut.substring(0, fileOut.lastIndexOf(\textcolor{charliteral}{'/'}) + 1));}
+\DoxyCodeLine{50                     \} \textcolor{keywordflow}{catch} (IOException ex) \{}
+\DoxyCodeLine{51                         JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}, \textcolor{stringliteral}{"Error al intentar mostrar el fitxer."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.ERROR\_MESSAGE);}
+\DoxyCodeLine{52                     \}}
+\DoxyCodeLine{53                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (currentOS.contains(\textcolor{stringliteral}{"mac"})) \{}
+\DoxyCodeLine{54                     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{55                         Runtime.getRuntime().exec(\textcolor{stringliteral}{"open -\/R "} + fileOut);}
+\DoxyCodeLine{56                     \} \textcolor{keywordflow}{catch} (IOException ex) \{}
+\DoxyCodeLine{57                         JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}, \textcolor{stringliteral}{"Error al intentar mostrar el fitxer."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.ERROR\_MESSAGE);}
+\DoxyCodeLine{58                     \}}
+\DoxyCodeLine{59                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (currentOS.contains(\textcolor{stringliteral}{"nix"}) || currentOS.contains(\textcolor{stringliteral}{"nux"}) || currentOS.contains(\textcolor{stringliteral}{"aix"})) \{}
+\DoxyCodeLine{60                     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{61                         Runtime.getRuntime().exec(\textcolor{stringliteral}{"xdg-\/open "} + fileOut.substring(0, fileOut.lastIndexOf(\textcolor{charliteral}{'/'}) + 1));}
+\DoxyCodeLine{62                     \} \textcolor{keywordflow}{catch} (IOException ex) \{}
+\DoxyCodeLine{63                         JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}, \textcolor{stringliteral}{"Error al intentar mostrar el fitxer."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.ERROR\_MESSAGE);}
+\DoxyCodeLine{64                     \}}
+\DoxyCodeLine{65                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{66                     JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}, \textcolor{stringliteral}{"SO no suportat."}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.ERROR\_MESSAGE);}
+\DoxyCodeLine{67                 \}}
+\DoxyCodeLine{68             \}}
+\DoxyCodeLine{69         \});}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}{buttonExit}}.addActionListener(\textcolor{keyword}{new} ActionListener() \{}
+\DoxyCodeLine{72             @Override}
+\DoxyCodeLine{73             \textcolor{keyword}{public} \textcolor{keywordtype}{void} actionPerformed(ActionEvent e) \{}
+\DoxyCodeLine{74                 System.exit(0);}
+\DoxyCodeLine{75             \}}
+\DoxyCodeLine{76         \});}
+\DoxyCodeLine{77     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_ab06de9885c2f52da0209c2abf226a31f}\label{classpresentacio_1_1StatsCompress_ab06de9885c2f52da0209c2abf226a31f}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!\$ \$getFont@{\$ \$getFont}}
+\index{\$ \$getFont@{\$ \$getFont}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$getFont()}{$ $getFont()}}
+{\footnotesize\ttfamily Font presentacio.\+Stats\+Compress.\$ \$get\+Font (\begin{DoxyParamCaption}\item[{String}]{font\+Name,  }\item[{int}]{style,  }\item[{int}]{size,  }\item[{Font}]{current\+Font }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+@noinspection A\+LL 
+
+Definición en la línea 184 del archivo Stats\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{184                                                                                        \{}
+\DoxyCodeLine{185         \textcolor{keywordflow}{if} (currentFont == \textcolor{keyword}{null}) \textcolor{keywordflow}{return} \textcolor{keyword}{null};}
+\DoxyCodeLine{186         String resultName;}
+\DoxyCodeLine{187         \textcolor{keywordflow}{if} (fontName == \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{188             resultName = currentFont.getName();}
+\DoxyCodeLine{189         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{190             Font testFont = \textcolor{keyword}{new} Font(fontName, Font.PLAIN, 10);}
+\DoxyCodeLine{191             \textcolor{keywordflow}{if} (testFont.canDisplay(\textcolor{charliteral}{'a'}) \&\& testFont.canDisplay(\textcolor{charliteral}{'1'})) \{}
+\DoxyCodeLine{192                 resultName = fontName;}
+\DoxyCodeLine{193             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{194                 resultName = currentFont.getName();}
+\DoxyCodeLine{195             \}}
+\DoxyCodeLine{196         \}}
+\DoxyCodeLine{197         \textcolor{keywordflow}{return} \textcolor{keyword}{new} Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());}
+\DoxyCodeLine{198     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_aad2765008a168b298ac1feefc0353495}\label{classpresentacio_1_1StatsCompress_aad2765008a168b298ac1feefc0353495}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!\$ \$getRootComponent@{\$ \$getRootComponent}}
+\index{\$ \$getRootComponent@{\$ \$getRootComponent}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$getRootComponent()}{$ $getRootComponent()}}
+{\footnotesize\ttfamily J\+Component presentacio.\+Stats\+Compress.\$ \$get\+Root\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@noinspection A\+LL 
+
+Definición en la línea 203 del archivo Stats\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{203                                                \{}
+\DoxyCodeLine{204         \textcolor{keywordflow}{return} \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}};}
+\DoxyCodeLine{205     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a57936c1ce2b311d0b2df37676d1489a9}\label{classpresentacio_1_1StatsCompress_a57936c1ce2b311d0b2df37676d1489a9}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!\$ \$setupUI@{\$ \$setupUI}}
+\index{\$ \$setupUI@{\$ \$setupUI}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{\$ \$setupUI()}{$ $setupUI()}}
+{\footnotesize\ttfamily void presentacio.\+Stats\+Compress.\$ \$setup\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Method generated by IntelliJ I\+D\+EA G\+UI Designer \begin{quote}
+\begin{quote}
+\begin{quote}
+I\+M\+P\+O\+R\+T\+A\+N\+T!! $<$$<$$<$ \end{quote}
+\end{quote}
+\end{quote}
+DO N\+OT edit this method OR call it in your code!
+
+@noinspection A\+LL 
+
+Definición en la línea 119 del archivo Stats\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{119                                  \{}
+\DoxyCodeLine{120         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}} = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{121         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}}.setLayout(\textcolor{keyword}{new} GridLayoutManager(5, 1, \textcolor{keyword}{new} Insets(0, 0, 0, 0), -\/1, -\/1));}
+\DoxyCodeLine{122         \textcolor{keyword}{final} Spacer spacer1 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{123         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}}.add(spacer1, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{124         \textcolor{keyword}{final} JPanel panel1 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{125         panel1.setLayout(\textcolor{keyword}{new} GridLayoutManager(4, 4, \textcolor{keyword}{new} Insets(0, 105, 10, 105), -\/1, -\/1));}
+\DoxyCodeLine{126         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}}.add(panel1, \textcolor{keyword}{new} GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{127         \textcolor{keyword}{final} JLabel label1 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{128         Font label1Font = this.\$\$\$getFont\$\$\$(\textcolor{keyword}{null}, Font.BOLD, 16, label1.getFont());}
+\DoxyCodeLine{129         \textcolor{keywordflow}{if} (label1Font != \textcolor{keyword}{null}) label1.setFont(label1Font);}
+\DoxyCodeLine{130         label1.setText(\textcolor{stringliteral}{"Estadístiques de Compressió"});}
+\DoxyCodeLine{131         label1.setVerticalAlignment(1);}
+\DoxyCodeLine{132         panel1.add(label1, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{new} Dimension(-\/1, 30), \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{133         \textcolor{keyword}{final} JLabel label2 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{134         label2.setText(\textcolor{stringliteral}{"Temps:"});}
+\DoxyCodeLine{135         panel1.add(label2, \textcolor{keyword}{new} GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR\_WEST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{new} Dimension(70, -\/1), \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{136         \textcolor{keyword}{final} JLabel label3 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{137         label3.setText(\textcolor{stringliteral}{"Desinflat:"});}
+\DoxyCodeLine{138         panel1.add(label3, \textcolor{keyword}{new} GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR\_WEST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{new} Dimension(70, -\/1), \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{139         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}{labelDeflate}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{140         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}{labelDeflate}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{141         panel1.add(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}{labelDeflate}}, \textcolor{keyword}{new} GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR\_EAST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{142         \textcolor{keyword}{final} JLabel label4 = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{143         label4.setText(\textcolor{stringliteral}{"Velocitat:"});}
+\DoxyCodeLine{144         panel1.add(label4, \textcolor{keyword}{new} GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR\_WEST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{new} Dimension(70, -\/1), \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{145         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}{labelSpeed}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{146         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}{labelSpeed}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{147         panel1.add(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}{labelSpeed}}, \textcolor{keyword}{new} GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR\_EAST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{148         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}{labelTime}} = \textcolor{keyword}{new} JLabel();}
+\DoxyCodeLine{149         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}{labelTime}}.setText(\textcolor{stringliteral}{""});}
+\DoxyCodeLine{150         panel1.add(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}{labelTime}}, \textcolor{keyword}{new} GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR\_EAST, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_FIXED, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{151         \textcolor{keyword}{final} Spacer spacer2 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{152         panel1.add(spacer2, \textcolor{keyword}{new} GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{153         \textcolor{keyword}{final} Spacer spacer3 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{154         panel1.add(spacer3, \textcolor{keyword}{new} GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{155         \textcolor{keyword}{final} Spacer spacer4 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{156         panel1.add(spacer4, \textcolor{keyword}{new} GridConstraints(3, 3, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{157         \textcolor{keyword}{final} Spacer spacer5 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{158         panel1.add(spacer5, \textcolor{keyword}{new} GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{159         \textcolor{keyword}{final} Spacer spacer6 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{160         panel1.add(spacer6, \textcolor{keyword}{new} GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{161         \textcolor{keyword}{final} Spacer spacer7 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{162         panel1.add(spacer7, \textcolor{keyword}{new} GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{163         \textcolor{keyword}{final} Spacer spacer8 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{164         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}}.add(spacer8, \textcolor{keyword}{new} GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_VERTICAL, 1, GridConstraints.SIZEPOLICY\_WANT\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{165         \textcolor{keyword}{final} JPanel panel2 = \textcolor{keyword}{new} JPanel();}
+\DoxyCodeLine{166         panel2.setLayout(\textcolor{keyword}{new} GridLayoutManager(1, 3, \textcolor{keyword}{new} Insets(0, 5, 5, 5), -\/1, -\/1));}
+\DoxyCodeLine{167         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}}.add(panel2, \textcolor{keyword}{new} GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_BOTH, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{168         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}{buttonExit}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{169         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}{buttonExit}}.setText(\textcolor{stringliteral}{"Sortir"});}
+\DoxyCodeLine{170         panel2.add(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}{buttonExit}}, \textcolor{keyword}{new} GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{171         \textcolor{keyword}{final} Spacer spacer9 = \textcolor{keyword}{new} Spacer();}
+\DoxyCodeLine{172         panel2.add(spacer9, \textcolor{keyword}{new} GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_WANT\_GROW, 1, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{173         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}{buttonHome}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{174         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}{buttonHome}}.setText(\textcolor{stringliteral}{"Tornar a l'inici"});}
+\DoxyCodeLine{175         panel2.add(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}{buttonHome}}, \textcolor{keyword}{new} GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_HORIZONTAL, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{176         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}{buttonShowFile}} = \textcolor{keyword}{new} JButton();}
+\DoxyCodeLine{177         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}{buttonShowFile}}.setText(\textcolor{stringliteral}{"Mostrar fitxer comprimit"});}
+\DoxyCodeLine{178         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}}.add(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}{buttonShowFile}}, \textcolor{keyword}{new} GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR\_CENTER, GridConstraints.FILL\_NONE, GridConstraints.SIZEPOLICY\_CAN\_SHRINK | GridConstraints.SIZEPOLICY\_CAN\_GROW, GridConstraints.SIZEPOLICY\_FIXED, \textcolor{keyword}{null}, \textcolor{keyword}{null}, \textcolor{keyword}{null}, 0, \textcolor{keyword}{false}));}
+\DoxyCodeLine{179     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_ae8ac141473d96a2e596b52ca8d8fca34}\label{classpresentacio_1_1StatsCompress_ae8ac141473d96a2e596b52ca8d8fca34}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!\mbox{[}instance initializer\mbox{]}@{[instance initializer]}}
+\index{\mbox{[}instance initializer\mbox{]}@{[instance initializer]}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{[instance initializer]()}{[instance initializer]()}}
+{\footnotesize\ttfamily presentacio.\+Stats\+Compress.\mbox{[}instance initializer\mbox{]} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a587bcb3b7d25982d398c5c7c3b185f01}\label{classpresentacio_1_1StatsCompress_a587bcb3b7d25982d398c5c7c3b185f01}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!setWindowLocationAndDimension@{setWindowLocationAndDimension}}
+\index{setWindowLocationAndDimension@{setWindowLocationAndDimension}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{setWindowLocationAndDimension()}{setWindowLocationAndDimension()}}
+{\footnotesize\ttfamily void presentacio.\+Stats\+Compress.\+set\+Window\+Location\+And\+Dimension (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 97 del archivo Stats\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97                                                                      \{}
+\DoxyCodeLine{98         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setLocation(p);}
+\DoxyCodeLine{101         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setPreferredSize(d);}
+\DoxyCodeLine{102         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setMinimumSize(\textcolor{keyword}{new} Dimension(screenSize.width / 3, screenSize.height / 4));}
+\DoxyCodeLine{103     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_aa9b19f1df3fd688996f0f91fab769414}\label{classpresentacio_1_1StatsCompress_aa9b19f1df3fd688996f0f91fab769414}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!showStatsCompress@{showStatsCompress}}
+\index{showStatsCompress@{showStatsCompress}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{showStatsCompress()}{showStatsCompress()}}
+{\footnotesize\ttfamily void presentacio.\+Stats\+Compress.\+show\+Stats\+Compress (\begin{DoxyParamCaption}\item[{Point}]{p,  }\item[{Dimension}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Definición en la línea 79 del archivo Stats\+Compress.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{79                                                  \{}
+\DoxyCodeLine{80         String time = \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}{cp}}.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_a3e7df3cf92499209679936c7104058a9}{getTime}}();}
+\DoxyCodeLine{81         String deflate = \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}{cp}}.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_a1c71ba825e04a6289729f652422dd63b}{getDeflated}}();}
+\DoxyCodeLine{82         String speed = \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}{cp}}.\mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio_a73c59d084b3c6090eac466edd3331363}{getSpeedCompress}}();}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}{labelTime}}.setText(time);}
+\DoxyCodeLine{85         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}{labelDeflate}}.setText(deflate);}
+\DoxyCodeLine{86         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}{labelSpeed}}.setText(speed);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setResizable(\textcolor{keyword}{true});}
+\DoxyCodeLine{89         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setContentPane(this.\mbox{\hyperlink{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}{panelStatsComp}});}
+\DoxyCodeLine{90         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);}
+\DoxyCodeLine{91         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a587bcb3b7d25982d398c5c7c3b185f01}{setWindowLocationAndDimension}}(p, d);}
+\DoxyCodeLine{92         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.pack();}
+\DoxyCodeLine{93         \mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}.setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{94         JOptionPane.showMessageDialog(\mbox{\hyperlink{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}{f}}, \textcolor{stringliteral}{"Compressió exitosa!"}, \textcolor{stringliteral}{"PIZ Compressor"}, JOptionPane.PLAIN\_MESSAGE);}
+\DoxyCodeLine{95     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}\label{classpresentacio_1_1StatsCompress_acd6dddf7d9254b1650958d35e5dc5d00}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!buttonExit@{buttonExit}}
+\index{buttonExit@{buttonExit}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{buttonExit}{buttonExit}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Stats\+Compress.\+button\+Exit\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 18 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}\label{classpresentacio_1_1StatsCompress_a1a47a3371c3be242db836c9cb369c706}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!buttonHome@{buttonHome}}
+\index{buttonHome@{buttonHome}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{buttonHome}{buttonHome}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Stats\+Compress.\+button\+Home\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 19 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}\label{classpresentacio_1_1StatsCompress_ae2f0dd1535ea937e3d52eb04868e12af}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!buttonShowFile@{buttonShowFile}}
+\index{buttonShowFile@{buttonShowFile}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{buttonShowFile}{buttonShowFile}}
+{\footnotesize\ttfamily J\+Button presentacio.\+Stats\+Compress.\+button\+Show\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 23 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}\label{classpresentacio_1_1StatsCompress_a7360c6da56704df49cd73074824a12c6}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!cp@{cp}}
+\index{cp@{cp}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{cp}{cp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpresentacio_1_1CtrlPresentacio}{Ctrl\+Presentacio}} presentacio.\+Stats\+Compress.\+cp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 15 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}\label{classpresentacio_1_1StatsCompress_a335923affdf540b0a2dd01b973e21792}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!f@{f}}
+\index{f@{f}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily J\+Frame presentacio.\+Stats\+Compress.\+f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definición en la línea 25 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}\label{classpresentacio_1_1StatsCompress_a55f5dcdfa2654792145c7b8be379653a}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!labelDeflate@{labelDeflate}}
+\index{labelDeflate@{labelDeflate}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{labelDeflate}{labelDeflate}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Stats\+Compress.\+label\+Deflate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 21 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}\label{classpresentacio_1_1StatsCompress_a24da5ddb9198c1172d4f1f7632cd8670}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!labelSpeed@{labelSpeed}}
+\index{labelSpeed@{labelSpeed}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{labelSpeed}{labelSpeed}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Stats\+Compress.\+label\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 22 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}\label{classpresentacio_1_1StatsCompress_ae956dd217a04b7e54f8e0a4966d5fd0e}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!labelTime@{labelTime}}
+\index{labelTime@{labelTime}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{labelTime}{labelTime}}
+{\footnotesize\ttfamily J\+Label presentacio.\+Stats\+Compress.\+label\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 20 del archivo Stats\+Compress.\+java.
+
+\mbox{\Hypertarget{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}\label{classpresentacio_1_1StatsCompress_ab2ae64c1cb9734f53b2dd4f20e56cb07}} 
+\index{presentacio.StatsCompress@{presentacio.StatsCompress}!panelStatsComp@{panelStatsComp}}
+\index{panelStatsComp@{panelStatsComp}!presentacio.StatsCompress@{presentacio.StatsCompress}}
+\doxysubsubsection{\texorpdfstring{panelStatsComp}{panelStatsComp}}
+{\footnotesize\ttfamily J\+Panel presentacio.\+Stats\+Compress.\+panel\+Stats\+Comp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definición en la línea 17 del archivo Stats\+Compress.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/presentacio/\mbox{\hyperlink{StatsCompress_8java}{Stats\+Compress.\+java}}\end{DoxyCompactItemize}

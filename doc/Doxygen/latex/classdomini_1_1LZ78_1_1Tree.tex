@@ -1,0 +1,155 @@
+\hypertarget{classdomini_1_1LZ78_1_1Tree}{}\doxysection{Referencia de la Clase domini.\+L\+Z78.\+Tree}
+\label{classdomini_1_1LZ78_1_1Tree}\index{domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsection*{Funciones del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a0bbd70eac18c916e2a113db7aaa426dd}{crear\+Tree}} (final I\+O.\+Byte.\+reader input)  throws I\+O\+Exception
+\begin{DoxyCompactList}\small\item\em Metodo tipo boolean para crearlo mientras se lee el archivo a comprimir. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos del \textquotesingle{}package\textquotesingle{}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdomini_1_1LZ78_1_1Nodo}{Nodo}} \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_ace4b9272c20e1c5ff4c61dc48514ec36}{arrel}} = new \mbox{\hyperlink{classdomini_1_1LZ78_1_1Nodo}{Nodo}}()
+\item 
+int \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}{codnum}} = 0
+\item 
+boolean \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_af1b6f4c5d08ef5c0777e02bed2d344b1}{last}} =false
+\item 
+int \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a9a51330121b436e1baf764bc960d2262}{padre}} = 0
+\item 
+List$<$ \mbox{\hyperlink{classdomini_1_1LZ78_1_1Pair}{Pair}}$<$ Integer, Byte $>$ $>$ \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a4c31a45e0e289fd6f7254da00279d853}{array\+List}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase para inicializar un arbol 
+
+Definición en la línea 62 del archivo L\+Z78.\+java.
+
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classdomini_1_1LZ78_1_1Tree_a0bbd70eac18c916e2a113db7aaa426dd}\label{classdomini_1_1LZ78_1_1Tree_a0bbd70eac18c916e2a113db7aaa426dd}} 
+\index{domini.LZ78.Tree@{domini.LZ78.Tree}!crearTree@{crearTree}}
+\index{crearTree@{crearTree}!domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsubsection{\texorpdfstring{crearTree()}{crearTree()}}
+{\footnotesize\ttfamily boolean domini.\+L\+Z78.\+Tree.\+crear\+Tree (\begin{DoxyParamCaption}\item[{final I\+O.\+Byte.\+reader}]{input }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Metodo tipo boolean para crearlo mientras se lee el archivo a comprimir. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em input} & Archivo de entrada que se desea comprimir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Devuelve true en caso de overflow, se tenga que seguir leyendo y crear otro arbol 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Excepciones}
+{\em I\+O\+Exception} & Excepcion en caso de intentar leer un dato inexistente \\
+\hline
+\end{DoxyExceptions}
+
+
+Definición en la línea 78 del archivo L\+Z78.\+java.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{78                                                                         \{}
+\DoxyCodeLine{79             Nodo actual = \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_ace4b9272c20e1c5ff4c61dc48514ec36}{arrel}};}
+\DoxyCodeLine{80             \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a4c31a45e0e289fd6f7254da00279d853}{arrayList}} = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{81             \textcolor{keywordtype}{int} chinAux = input.read();}
+\DoxyCodeLine{82             \textcolor{keywordtype}{byte} pre=0;}
+\DoxyCodeLine{83             \textcolor{keywordtype}{byte} chin;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85             \textcolor{keywordflow}{while} (chinAux!=-\/1 \&\& \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}{codnum}}<1000000) \{ \textcolor{comment}{//Cuando codnum llega a 1.000.000 se produce overflow}}
+\DoxyCodeLine{86                 chin = (byte) chinAux;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88                 \textcolor{keywordflow}{if} (actual.hijos[chin+128]!= \textcolor{keyword}{null})\{}
+\DoxyCodeLine{89                     \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a9a51330121b436e1baf764bc960d2262}{padre}} = actual.index;}
+\DoxyCodeLine{90                     actual = actual.hijos[chin+128];}
+\DoxyCodeLine{91                     \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_af1b6f4c5d08ef5c0777e02bed2d344b1}{last}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{92                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{93                     actual.hijos[chin+128] = \textcolor{keyword}{new} Nodo();}
+\DoxyCodeLine{94                     \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a4c31a45e0e289fd6f7254da00279d853}{arrayList}}.add(\textcolor{keyword}{new} Pair<Integer, Byte>(actual.index,chin));}
+\DoxyCodeLine{95                     ++\mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}{codnum}};}
+\DoxyCodeLine{96                     actual.hijos[chin+128].index = \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}{codnum}};}
+\DoxyCodeLine{97                     actual = \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_ace4b9272c20e1c5ff4c61dc48514ec36}{arrel}};}
+\DoxyCodeLine{98                     \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_af1b6f4c5d08ef5c0777e02bed2d344b1}{last}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{99                 \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101                 pre = chin;}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103                 \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}{codnum}} <1000000)\{}
+\DoxyCodeLine{104                     chinAux = input.read();}
+\DoxyCodeLine{105                 \}}
+\DoxyCodeLine{106             \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_af1b6f4c5d08ef5c0777e02bed2d344b1}{last}}) \{}
+\DoxyCodeLine{109                 \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a4c31a45e0e289fd6f7254da00279d853}{arrayList}}.add(\textcolor{keyword}{new} Pair<Integer, Byte>(\mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_a9a51330121b436e1baf764bc960d2262}{padre}},pre));}
+\DoxyCodeLine{110             \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112             \textcolor{keywordflow}{return} \mbox{\hyperlink{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}{codnum}}>=1000000;}
+\DoxyCodeLine{113         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classdomini_1_1LZ78_1_1Tree_a4c31a45e0e289fd6f7254da00279d853}\label{classdomini_1_1LZ78_1_1Tree_a4c31a45e0e289fd6f7254da00279d853}} 
+\index{domini.LZ78.Tree@{domini.LZ78.Tree}!arrayList@{arrayList}}
+\index{arrayList@{arrayList}!domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsubsection{\texorpdfstring{arrayList}{arrayList}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classdomini_1_1LZ78_1_1Pair}{Pair}}$<$Integer, Byte$>$ $>$ domini.\+L\+Z78.\+Tree.\+array\+List\hspace{0.3cm}{\ttfamily [package]}}
+
+
+
+Definición en la línea 69 del archivo L\+Z78.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZ78_1_1Tree_ace4b9272c20e1c5ff4c61dc48514ec36}\label{classdomini_1_1LZ78_1_1Tree_ace4b9272c20e1c5ff4c61dc48514ec36}} 
+\index{domini.LZ78.Tree@{domini.LZ78.Tree}!arrel@{arrel}}
+\index{arrel@{arrel}!domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsubsection{\texorpdfstring{arrel}{arrel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdomini_1_1LZ78_1_1Nodo}{Nodo}} domini.\+L\+Z78.\+Tree.\+arrel = new \mbox{\hyperlink{classdomini_1_1LZ78_1_1Nodo}{Nodo}}()\hspace{0.3cm}{\ttfamily [package]}}
+
+
+
+Definición en la línea 63 del archivo L\+Z78.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}\label{classdomini_1_1LZ78_1_1Tree_aecc72a9ba8264cf4b9302e392c4ba00b}} 
+\index{domini.LZ78.Tree@{domini.LZ78.Tree}!codnum@{codnum}}
+\index{codnum@{codnum}!domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsubsection{\texorpdfstring{codnum}{codnum}}
+{\footnotesize\ttfamily int domini.\+L\+Z78.\+Tree.\+codnum = 0\hspace{0.3cm}{\ttfamily [package]}}
+
+
+
+Definición en la línea 65 del archivo L\+Z78.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZ78_1_1Tree_af1b6f4c5d08ef5c0777e02bed2d344b1}\label{classdomini_1_1LZ78_1_1Tree_af1b6f4c5d08ef5c0777e02bed2d344b1}} 
+\index{domini.LZ78.Tree@{domini.LZ78.Tree}!last@{last}}
+\index{last@{last}!domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsubsection{\texorpdfstring{last}{last}}
+{\footnotesize\ttfamily boolean domini.\+L\+Z78.\+Tree.\+last =false\hspace{0.3cm}{\ttfamily [package]}}
+
+
+
+Definición en la línea 66 del archivo L\+Z78.\+java.
+
+\mbox{\Hypertarget{classdomini_1_1LZ78_1_1Tree_a9a51330121b436e1baf764bc960d2262}\label{classdomini_1_1LZ78_1_1Tree_a9a51330121b436e1baf764bc960d2262}} 
+\index{domini.LZ78.Tree@{domini.LZ78.Tree}!padre@{padre}}
+\index{padre@{padre}!domini.LZ78.Tree@{domini.LZ78.Tree}}
+\doxysubsubsection{\texorpdfstring{padre}{padre}}
+{\footnotesize\ttfamily int domini.\+L\+Z78.\+Tree.\+padre = 0\hspace{0.3cm}{\ttfamily [package]}}
+
+
+
+Definición en la línea 67 del archivo L\+Z78.\+java.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/domini/\mbox{\hyperlink{LZ78_8java}{L\+Z78.\+java}}\end{DoxyCompactItemize}

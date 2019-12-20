@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>domini</b></li><li class="navelem"><a class="el" href="classdomini_1_1LZW.html">LZW</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacedomini.html">domini</a></li><li class="navelem"><a class="el" href="classdomini_1_1LZW.html">LZW</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -72,9 +72,20 @@ $(function() {
 
 <p>Lista completa de los miembros de <a class="el" href="classdomini_1_1LZW.html">domini.LZW</a>, incluyendo todos los heredados:</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a898ab51040bb21f71d28a241fa91e6bc">compress</a>(final String inputFilename, final String outputFilename)</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#ac2a78ca45cebfc39a37b8e4813f9cc7d">decompress</a>(final String inputFilename, final String outputFilename)</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">MAGIC_BYTE</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#aaae107a8538d80af64cb5c682394e446">bitsNeeded</a>(final int n)</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a0e841fb556c70d08f16498a7c709773b">compress</a>(IO.Byte.reader input, IO.Bit.writer output)</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a54c098c06be11edb02b4903e9d016b99">compressionDictionary</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#af65400354ba1af10e1520cac41d66388">createCompressionDictionary</a>()</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a154b566c71b74018588691156f48aa40">createDecompressionDictionary</a>()</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a11c1f2ca20c9f9976c9122a7e8eebd4d">decompress</a>(IO.Bit.reader input, IO.Byte.writer output)</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#af9614bd60bbdf8ad81cb2a240d08209b">decompressionDictionary</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a1900b092cd4f10fafdf9b00d2813702f">DICTIONARY_SIZE</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#aef45f93c442c870b94cb6f3fc64c6561">EOF</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a34c93bdda928229c3d20ebe84c01c59c">getMagicByte</a>()</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a3fb9d0d2f261d2ed9f02c01f3d0ff212">LZW</a>()</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a13457a473880ead801452f858cfae4ca">MAGIC_BYTE</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a8f9b580b6468484908bd38be4b7a2e38">OVERFLOW</a></td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classdomini_1_1LZW.html#a83c7152e382e8515c75f30ea62d49e6b">writeCode</a>(int code, final IO.Bit.writer output)</td><td class="entry"><a class="el" href="classdomini_1_1LZW.html">domini.LZW</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

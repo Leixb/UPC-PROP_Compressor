@@ -61,43 +61,97 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>domini</b></li><li class="navelem"><a class="el" href="classdomini_1_1LZSS.html">LZSS</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacedomini.html">domini</a></li><li class="navelem"><a class="el" href="classdomini_1_1LZSS.html">LZSS</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
+<a href="#pub-methods">Métodos públicos</a> &#124;
 <a href="#pub-static-attribs">Atributos públicos estáticos</a> &#124;
+<a href="#pri-methods">Métodos privados</a> &#124;
+<a href="#pri-static-methods">Métodos privados estáticos</a> &#124;
+<a href="#pri-attribs">Atributos privados</a> &#124;
+<a href="#pri-static-attribs">Atributos privados estáticos</a> &#124;
 <a href="classdomini_1_1LZSS-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle">
 <div class="title">Referencia de la Clase domini.LZSS</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Compresión y decompresión de archivos de texto con <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos de texto con LZSS.">LZSS</a>.  
+<p>Compresión y decompresión de archivos con <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>.  
  <a href="classdomini_1_1LZSS.html#details">Más...</a></p>
+<div class="dynheader">
+Diagrama de herencias de domini.LZSS</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classdomini_1_1LZSS.png" usemap="#domini.LZSS_map" alt=""/>
+  <map id="domini.LZSS_map" name="domini.LZSS_map">
+<area href="interfacedomini_1_1CompressionAlg.html" title="CompressionAlg." alt="domini.CompressionAlg" shape="rect" coords="0,0,144,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Métodos públicos estáticos</h2></td></tr>
-<tr class="memitem:aa574760397e24ec236c330c8cd3bbbbd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#aa574760397e24ec236c330c8cd3bbbbd">compress</a> (final String inputFilename, final String outputFilename)  throws IOException </td></tr>
-<tr class="memdesc:aa574760397e24ec236c330c8cd3bbbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea el objeto lector y escritor para la compresión y llama al compresor.  <a href="classdomini_1_1LZSS.html#aa574760397e24ec236c330c8cd3bbbbd">Más...</a><br /></td></tr>
-<tr class="separator:aa574760397e24ec236c330c8cd3bbbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a76caf8c9f560f68d0dd41ef8364341"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a3a76caf8c9f560f68d0dd41ef8364341">decompress</a> (final String inputFilename, final String outputFilename)  throws IOException </td></tr>
-<tr class="memdesc:a3a76caf8c9f560f68d0dd41ef8364341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea el objeto lector y escritor para la descompresión y llama al descompresor.  <a href="classdomini_1_1LZSS.html#a3a76caf8c9f560f68d0dd41ef8364341">Más...</a><br /></td></tr>
-<tr class="separator:a3a76caf8c9f560f68d0dd41ef8364341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:a51f5a47b82d272ae1587d3ab415d81e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a51f5a47b82d272ae1587d3ab415d81e1">LZSS</a> ()</td></tr>
+<tr class="separator:a51f5a47b82d272ae1587d3ab415d81e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd201f75090c5d279478da8f9657c57e"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#afd201f75090c5d279478da8f9657c57e">getMagicByte</a> ()</td></tr>
+<tr class="separator:afd201f75090c5d279478da8f9657c57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbc8dccc074628218dfb37ff2ab4115a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#adbc8dccc074628218dfb37ff2ab4115a">compress</a> (final IO.Byte.reader input, final IO.Bit.writer output)  throws IOException </td></tr>
+<tr class="memdesc:adbc8dccc074628218dfb37ff2ab4115a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprime un archivo utilizando el algoritmo <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>.  <a href="classdomini_1_1LZSS.html#adbc8dccc074628218dfb37ff2ab4115a">Más...</a><br /></td></tr>
+<tr class="separator:adbc8dccc074628218dfb37ff2ab4115a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efa453291525ea8de12322eb57a968c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a6efa453291525ea8de12322eb57a968c">decompress</a> (final IO.Bit.reader input, final IO.Byte.writer output)  throws IOException </td></tr>
+<tr class="memdesc:a6efa453291525ea8de12322eb57a968c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descomprime un archivo utilizando el algoritmo <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>.  <a href="classdomini_1_1LZSS.html#a6efa453291525ea8de12322eb57a968c">Más...</a><br /></td></tr>
+<tr class="separator:a6efa453291525ea8de12322eb57a968c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Atributos públicos estáticos</h2></td></tr>
-<tr class="memitem:a6b6d248d983ea00b6987bc3ef1064387"><td class="memItemLeft" align="right" valign="top"><a id="a6b6d248d983ea00b6987bc3ef1064387"></a>
-static final byte&#160;</td><td class="memItemRight" valign="bottom"><b>MAGIC_BYTE</b> = 0x55</td></tr>
+<tr class="memitem:a6b6d248d983ea00b6987bc3ef1064387"><td class="memItemLeft" align="right" valign="top">static final byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a6b6d248d983ea00b6987bc3ef1064387">MAGIC_BYTE</a> = 0x55</td></tr>
+<tr class="memdesc:a6b6d248d983ea00b6987bc3ef1064387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Magic Byte <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>.  <a href="classdomini_1_1LZSS.html#a6b6d248d983ea00b6987bc3ef1064387">Más...</a><br /></td></tr>
 <tr class="separator:a6b6d248d983ea00b6987bc3ef1064387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Métodos privados</h2></td></tr>
+<tr class="memitem:aae3f718abe6da3b3220a81f0717a9fc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#aae3f718abe6da3b3220a81f0717a9fc2">computeLPSArray</a> (final int[] lps, int patLength)</td></tr>
+<tr class="memdesc:aae3f718abe6da3b3220a81f0717a9fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición.  <a href="classdomini_1_1LZSS.html#aae3f718abe6da3b3220a81f0717a9fc2">Más...</a><br /></td></tr>
+<tr class="separator:aae3f718abe6da3b3220a81f0717a9fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a594a8febc237001739c865020c7059c4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a594a8febc237001739c865020c7059c4">kmp</a> (int currentACIndex, int currentSWIndex, boolean fullSW)</td></tr>
+<tr class="memdesc:a594a8febc237001739c865020c7059c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron.  <a href="classdomini_1_1LZSS.html#a594a8febc237001739c865020c7059c4">Más...</a><br /></td></tr>
+<tr class="separator:a594a8febc237001739c865020c7059c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Métodos privados estáticos</h2></td></tr>
+<tr class="memitem:a98acedc140eebdd461f9bd6430d8b141"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">log2</a> (final double n)</td></tr>
+<tr class="memdesc:a98acedc140eebdd461f9bd6430d8b141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el logaritmo en base 2 de un real.  <a href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">Más...</a><br /></td></tr>
+<tr class="separator:a98acedc140eebdd461f9bd6430d8b141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Atributos privados</h2></td></tr>
+<tr class="memitem:a6a5d83be4b36bdb3982bacd2b2ce3231"><td class="memItemLeft" align="right" valign="top">final byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a></td></tr>
+<tr class="memdesc:a6a5d83be4b36bdb3982bacd2b2ce3231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sliding Window.  <a href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">Más...</a><br /></td></tr>
+<tr class="separator:a6a5d83be4b36bdb3982bacd2b2ce3231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affb5d338f93e15983df7d989a821813a"><td class="memItemLeft" align="right" valign="top">final byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a></td></tr>
+<tr class="memdesc:affb5d338f93e15983df7d989a821813a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carácteres actuales.  <a href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">Más...</a><br /></td></tr>
+<tr class="separator:affb5d338f93e15983df7d989a821813a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Atributos privados estáticos</h2></td></tr>
+<tr class="memitem:a91c9773bfed3eec53addc661978258e9"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a> = 1023</td></tr>
+<tr class="memdesc:a91c9773bfed3eec53addc661978258e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño máximo del sliding window.  <a href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">Más...</a><br /></td></tr>
+<tr class="separator:a91c9773bfed3eec53addc661978258e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85537bccb97676f4a29b2791eda8852d"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">MAX_LENGTH_COINCIDENCE</a> = 17</td></tr>
+<tr class="memdesc:a85537bccb97676f4a29b2791eda8852d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máxima longitud de la coincidencia.  <a href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">Más...</a><br /></td></tr>
+<tr class="separator:a85537bccb97676f4a29b2791eda8852d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e95c3b29cb1d6c62c68185beaec5a17"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdomini_1_1LZSS.html#a9e95c3b29cb1d6c62c68185beaec5a17">EOF</a> = 0</td></tr>
+<tr class="memdesc:a9e95c3b29cb1d6c62c68185beaec5a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pseudo EOF.  <a href="classdomini_1_1LZSS.html#a9e95c3b29cb1d6c62c68185beaec5a17">Más...</a><br /></td></tr>
+<tr class="separator:a9e95c3b29cb1d6c62c68185beaec5a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>Compresión y decompresión de archivos de texto con <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos de texto con LZSS.">LZSS</a>. </p>
-<dl class="section author"><dt>Autor</dt><dd>***REMOVED*** Plasencia </dd></dl>
-</div><h2 class="groupheader">Documentación de las funciones miembro</h2>
-<a id="aa574760397e24ec236c330c8cd3bbbbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa574760397e24ec236c330c8cd3bbbbd">&#9670;&nbsp;</a></span>compress()</h2>
+<div class="textblock"><p>Compresión y decompresión de archivos con <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00014">14</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a id="a51f5a47b82d272ae1587d3ab415d81e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51f5a47b82d272ae1587d3ab415d81e1">&#9670;&nbsp;</a></span>LZSS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -106,16 +160,49 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><b>MAGIC_BY
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void domini.LZSS.compress </td>
+          <td class="memname">domini.LZSS.LZSS </td>
           <td>(</td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>inputFilename</em>, </td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Creadora vacía <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a> </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00017">17</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                  {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a> = <span class="keyword">new</span> <span class="keywordtype">byte</span>[<a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>];</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a> = <span class="keyword">new</span> <span class="keywordtype">byte</span>[<a class="code" href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">MAX_LENGTH_COINCIDENCE</a>];</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="adbc8dccc074628218dfb37ff2ab4115a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbc8dccc074628218dfb37ff2ab4115a">&#9670;&nbsp;</a></span>compress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.LZSS.compress </td>
+          <td>(</td>
+          <td class="paramtype">final IO.Byte.reader&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>outputFilename</em>&#160;</td>
+          <td class="paramtype">final IO.Bit.writer&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -125,30 +212,110 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><b>MAGIC_BY
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea el objeto lector y escritor para la compresión y llama al compresor. </p>
+<p>Comprime un archivo utilizando el algoritmo <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inputFilename</td><td>nombre del archivo que se quiere comprimir </td></tr>
-    <tr><td class="paramname">outputFilename</td><td>nombre del archivo comprimido </td></tr>
+    <tr><td class="paramname">input</td><td>objeto de lectura del archivo que se comprime </td></tr>
+    <tr><td class="paramname">output</td><td>objeto de escritura del archivo comprimido </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Excepciones</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>se lanza cuando hay un error de lectura o escritura </td></tr>
+    <tr><td class="paramname">IOException</td><td>Lanza cualquier excepción generada al comprimir </td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implementa <a class="el" href="interfacedomini_1_1CompressionAlg.html#a3a0ecc535a8ae0b4aa2b98abb7ea0496">domini.CompressionAlg</a>.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00051">51</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                                                                                    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// calculating num of bits needed for offset and length according</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">final</span> <span class="keywordtype">int</span> nBitsLength = (int) <a class="code" href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">log2</a>(<a class="code" href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">MAX_LENGTH_COINCIDENCE</a> - 1);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">final</span> <span class="keywordtype">int</span> nBitsOffset = (int) <a class="code" href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">log2</a>(<a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a> + 1);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">int</span> minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span>(minLength &lt; 2) minLength = 2;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">int</span> currentSWIndex = 0, currentACIndex = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">boolean</span> fullSW = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">int</span> index = 0, prevMatchingIndex = 0;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">boolean</span> extraChar = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">byte</span> c;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">int</span> iAux = input.read();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">while</span>(iAux != -1) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            c = (byte)iAux;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[currentACIndex] = c;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            ++currentACIndex;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            prevMatchingIndex = index;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            index = <a class="code" href="classdomini_1_1LZSS.html#a594a8febc237001739c865020c7059c4">kmp</a>(currentACIndex, currentSWIndex, fullSW);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span>(index == -1 || currentACIndex &gt;= <a class="code" href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">MAX_LENGTH_COINCIDENCE</a>) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordtype">int</span> auxACIndex = currentACIndex;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">if</span>(auxACIndex &gt;= 2) --auxACIndex;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keywordflow">if</span>(auxACIndex &gt;= minLength) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    output.write(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    output.write(<span class="keyword">new</span> BitSetL(prevMatchingIndex, nBitsOffset));</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    output.write(<span class="keyword">new</span> BitSetL(auxACIndex - minLength, nBitsLength));</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; auxACIndex; ++i) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                        <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[currentSWIndex] = <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[i];</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        ++currentSWIndex;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        <span class="keywordflow">if</span>(currentSWIndex &gt;= <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                            currentSWIndex = 0;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                            fullSW = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; auxACIndex; ++i) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        output.write(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        output.write(<span class="keyword">new</span> BitSetL(<a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[i], 8));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[currentSWIndex] = <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[i];</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        ++currentSWIndex;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        <span class="keywordflow">if</span>(currentSWIndex &gt;= <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                            currentSWIndex = 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                            fullSW = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">if</span>(currentACIndex &gt;= 2) extraChar = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                currentACIndex = 0;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">if</span>(!extraChar) iAux = input.read();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            extraChar = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span>(currentACIndex &gt;= minLength) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            output.write(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            output.write(<span class="keyword">new</span> BitSetL(index - 1, nBitsOffset));</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            output.write(<span class="keyword">new</span> BitSetL(currentACIndex - minLength, nBitsLength));</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentACIndex &gt; 0) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; currentACIndex; ++i) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                output.write(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                output.write(<span class="keyword">new</span> BitSetL(<a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[i], 8));</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        output.write(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        output.write(<span class="keyword">new</span> BitSetL(<a class="code" href="classdomini_1_1LZSS.html#a9e95c3b29cb1d6c62c68185beaec5a17">EOF</a>, nBitsLength + nBitsOffset));</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a3a76caf8c9f560f68d0dd41ef8364341"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a76caf8c9f560f68d0dd41ef8364341">&#9670;&nbsp;</a></span>decompress()</h2>
+<a id="aae3f718abe6da3b3220a81f0717a9fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3f718abe6da3b3220a81f0717a9fc2">&#9670;&nbsp;</a></span>computeLPSArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,16 +324,82 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><b>MAGIC_BY
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void domini.LZSS.decompress </td>
+          <td class="memname">void domini.LZSS.computeLPSArray </td>
           <td>(</td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>inputFilename</em>, </td>
+          <td class="paramtype">final int[]&#160;</td>
+          <td class="paramname"><em>lps</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">final String&#160;</td>
-          <td class="paramname"><em>outputFilename</em>&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>patLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que también es sufijo hasta esa posición. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lps</td><td>es un vector vacio que tras ejecutar esta función contiene para cada posición del vector la longitud máxima del prefijo que también es sufijo desde el principio hasta esa posición </td></tr>
+    <tr><td class="paramname">patLength</td><td>Length del pattern para el que se quiere computar el array lps </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00191">191</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                                                                 {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordtype">int</span> length = 0;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordtype">int</span> i = 1;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        lps[0] = 0;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">while</span> (i &lt; patLength) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[i] == <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[length]) {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                ++length;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                lps[i] = length;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                ++i;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (length != 0)</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                length = lps[length - 1];</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                lps[i] = 0;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                ++i;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6efa453291525ea8de12322eb57a968c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6efa453291525ea8de12322eb57a968c">&#9670;&nbsp;</a></span>decompress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void domini.LZSS.decompress </td>
+          <td>(</td>
+          <td class="paramtype">final IO.Bit.reader&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final IO.Byte.writer&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -176,32 +409,414 @@ static final byte&#160;</td><td class="memItemRight" valign="bottom"><b>MAGIC_BY
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea el objeto lector y escritor para la descompresión y llama al descompresor. </p>
+<p>Descomprime un archivo utilizando el algoritmo <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inputFilename</td><td>nombre del archivo comprimido </td></tr>
-    <tr><td class="paramname">outputFilename</td><td>nombre del archivo descomprimido </td></tr>
+    <tr><td class="paramname">input</td><td>objeto de lectura del archivo comprimido </td></tr>
+    <tr><td class="paramname">output</td><td>objeto de escritura del archivo descomprimido </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Excepciones</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>se lanza cuando hay un error de lectura o escritura </td></tr>
+    <tr><td class="paramname">IOException</td><td>se lanza cuando hay un error de lecturo o escritura </td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Implementa <a class="el" href="interfacedomini_1_1CompressionAlg.html#a06a05e8e073c22126a02c8514e571dbb">domini.CompressionAlg</a>.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00135">135</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                                                                                                      {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="comment">// calculating num of bits needed for offset and length according</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="comment">// to MAX_SIZE_SW size and MAX_LENGTH_COINCIDENCE</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keyword">final</span> <span class="keywordtype">int</span> nBitsLength = (int) <a class="code" href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">log2</a>(<a class="code" href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">MAX_LENGTH_COINCIDENCE</a> - 1);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keyword">final</span> <span class="keywordtype">int</span> nBitsOffset = (int) <a class="code" href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">log2</a>(<a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a> + 1);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordtype">int</span> minLength = (1 + nBitsLength + nBitsOffset) / 9 + 1;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">if</span>(minLength &lt; 2) minLength = 2;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">int</span> currentSWIndex = 0;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordtype">boolean</span> c = input.read();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordtype">boolean</span> eof = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">while</span> (!eof) {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="comment">// if c is 1, then read offset and length and write the characters in output</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="comment">// otherwise c = 0, so we only need to read 16 bits (one character) as it hasn&#39;t been compressed</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keywordflow">if</span> (c) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="keyword">final</span> <span class="keywordtype">int</span> index = input.readBitSet(nBitsOffset).asInt();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                <span class="keywordflow">if</span>(index == 0) eof = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                    <span class="keyword">final</span> <span class="keywordtype">int</span> length = input.readBitSet(nBitsLength).asInt() + minLength;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                    <span class="keywordtype">int</span> indexBase;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    <span class="keywordflow">if</span>(currentSWIndex - index &lt; 0) indexBase = <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a> + currentSWIndex - index;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                    <span class="keywordflow">else</span> indexBase = currentSWIndex - index;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; length; ++i) {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        <span class="keywordtype">byte</span> cAux = <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[indexBase];</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        ++indexBase;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                        <span class="keywordflow">if</span>(indexBase &gt;= <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) indexBase = 0;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                        output.write(cAux);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                        <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[currentSWIndex] = (byte)cAux;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                        ++currentSWIndex;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                        <span class="keywordflow">if</span>(currentSWIndex &gt;= <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) currentSWIndex = 0;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                <span class="keywordtype">byte</span> cAux = (byte)input.readBitSet(8).asInt();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                output.write(cAux);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[currentSWIndex] = cAux;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                ++currentSWIndex;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">if</span>(currentSWIndex &gt;= <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) currentSWIndex = 0;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="comment">//read next bit</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="keywordflow">if</span> (!eof) c = input.read();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afd201f75090c5d279478da8f9657c57e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd201f75090c5d279478da8f9657c57e">&#9670;&nbsp;</a></span>getMagicByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte domini.LZSS.getMagicByte </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="interfacedomini_1_1CompressionAlg.html#a33aa566ff435b1027752a6adb980f3bc">domini.CompressionAlg</a>.</p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00040">40</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                               {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classdomini_1_1LZSS.html#a6b6d248d983ea00b6987bc3ef1064387">MAGIC_BYTE</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a594a8febc237001739c865020c7059c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a594a8febc237001739c865020c7059c4">&#9670;&nbsp;</a></span>kmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int domini.LZSS.kmp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentACIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentSWIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>fullSW</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">currentACIndex</td><td>la length del pattern </td></tr>
+    <tr><td class="paramname">currentSWIndex</td><td>el indice donde empieza el slidingWindow, ya que es circular </td></tr>
+    <tr><td class="paramname">fullSW</td><td>indica el estado de la slidingWindow, true si lo está, false en caso contrario </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve el indice empezando por el final de la primera ocurrencia de actualCharacters dentro de slidingWindow o -1 si actualCharacters no se encuentra dentro del slidingWindow </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00219">219</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                                                                            {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keyword">final</span> <span class="keywordtype">int</span> patLength = currentACIndex, txtLength = currentSWIndex;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keyword">final</span> <span class="keywordtype">int</span>[] lps = <span class="keyword">new</span> <span class="keywordtype">int</span>[patLength];</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <a class="code" href="classdomini_1_1LZSS.html#aae3f718abe6da3b3220a81f0717a9fc2">computeLPSArray</a>(lps, patLength);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">int</span> j = 0, i;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">if</span>(fullSW) i = currentSWIndex;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">else</span> i = 0;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordtype">boolean</span> end = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">while</span> (!end) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[i] == <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[j]) {</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                ++j;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                ++i;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keywordflow">if</span>(i == <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) i = 0;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="keywordflow">if</span>(i == txtLength) end = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordflow">if</span> (j == patLength) {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                <span class="keywordtype">int</span> index = txtLength - i + j;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="keywordflow">if</span>(index &lt;= 0) <span class="keywordflow">return</span> index + <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">return</span> index;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!end &amp;&amp; <a class="code" href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">slidingWindow</a>[i] != <a class="code" href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">actualCharacters</a>[j]) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                <span class="keywordflow">if</span> (j != 0)</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    j = lps[j - 1];</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                    ++i;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                    <span class="keywordflow">if</span>(i == <a class="code" href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">MAX_SIZE_SW</a>) i = 0;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                    <span class="keywordflow">if</span>(i == txtLength) end = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a98acedc140eebdd461f9bd6430d8b141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98acedc140eebdd461f9bd6430d8b141">&#9670;&nbsp;</a></span>log2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double domini.LZSS.log2 </td>
+          <td>(</td>
+          <td class="paramtype">final double&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcula el logaritmo en base 2 de un real. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>es el numero para el cual queremos calcular su logaritmo en base 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Devuelve el logaritmo en base 2 de n </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00262">262</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                                               {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">return</span> Math.log(n)/Math.log(2);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="affb5d338f93e15983df7d989a821813a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affb5d338f93e15983df7d989a821813a">&#9670;&nbsp;</a></span>actualCharacters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final byte [] domini.LZSS.actualCharacters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Carácteres actuales. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00032">32</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+
+</div>
+</div>
+<a id="a9e95c3b29cb1d6c62c68185beaec5a17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e95c3b29cb1d6c62c68185beaec5a17">&#9670;&nbsp;</a></span>EOF</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int domini.LZSS.EOF = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pseudo EOF. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00038">38</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+
+</div>
+</div>
+<a id="a6b6d248d983ea00b6987bc3ef1064387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b6d248d983ea00b6987bc3ef1064387">&#9670;&nbsp;</a></span>MAGIC_BYTE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final byte domini.LZSS.MAGIC_BYTE = 0x55</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Magic Byte <a class="el" href="classdomini_1_1LZSS.html" title="Compresión y decompresión de archivos con LZSS.">LZSS</a>. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00035">35</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+
+</div>
+</div>
+<a id="a85537bccb97676f4a29b2791eda8852d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85537bccb97676f4a29b2791eda8852d">&#9670;&nbsp;</a></span>MAX_LENGTH_COINCIDENCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int domini.LZSS.MAX_LENGTH_COINCIDENCE = 17</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Máxima longitud de la coincidencia. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00026">26</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+
+</div>
+</div>
+<a id="a91c9773bfed3eec53addc661978258e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91c9773bfed3eec53addc661978258e9">&#9670;&nbsp;</a></span>MAX_SIZE_SW</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int domini.LZSS.MAX_SIZE_SW = 1023</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tamaño máximo del sliding window. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00023">23</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
+
+</div>
+</div>
+<a id="a6a5d83be4b36bdb3982bacd2b2ce3231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5d83be4b36bdb3982bacd2b2ce3231">&#9670;&nbsp;</a></span>slidingWindow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final byte [] domini.LZSS.slidingWindow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sliding Window. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="LZSS_8java_source.html#l00029">29</a> del archivo <a class="el" href="LZSS_8java_source.html">LZSS.java</a>.</p>
 
 </div>
 </div>
 <hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
-<li>src/main/java/domini/LZSS.java</li>
+<li>src/main/java/domini/<a class="el" href="LZSS_8java_source.html">LZSS.java</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a6b6d248d983ea00b6987bc3ef1064387"><div class="ttname"><a href="classdomini_1_1LZSS.html#a6b6d248d983ea00b6987bc3ef1064387">domini.LZSS.MAGIC_BYTE</a></div><div class="ttdeci">static final byte MAGIC_BYTE</div><div class="ttdoc">Magic Byte LZSS.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00035">LZSS.java:35</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a6a5d83be4b36bdb3982bacd2b2ce3231"><div class="ttname"><a href="classdomini_1_1LZSS.html#a6a5d83be4b36bdb3982bacd2b2ce3231">domini.LZSS.slidingWindow</a></div><div class="ttdeci">final byte[] slidingWindow</div><div class="ttdoc">Sliding Window.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00029">LZSS.java:29</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a594a8febc237001739c865020c7059c4"><div class="ttname"><a href="classdomini_1_1LZSS.html#a594a8febc237001739c865020c7059c4">domini.LZSS.kmp</a></div><div class="ttdeci">int kmp(int currentACIndex, int currentSWIndex, boolean fullSW)</div><div class="ttdoc">Usando el algoritmo Knuth-Morris-Pratt calcula índice de la primera ocurrencia de un patron.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00219">LZSS.java:219</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a91c9773bfed3eec53addc661978258e9"><div class="ttname"><a href="classdomini_1_1LZSS.html#a91c9773bfed3eec53addc661978258e9">domini.LZSS.MAX_SIZE_SW</a></div><div class="ttdeci">static final int MAX_SIZE_SW</div><div class="ttdoc">Tamaño máximo del sliding window.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00023">LZSS.java:23</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_affb5d338f93e15983df7d989a821813a"><div class="ttname"><a href="classdomini_1_1LZSS.html#affb5d338f93e15983df7d989a821813a">domini.LZSS.actualCharacters</a></div><div class="ttdeci">final byte[] actualCharacters</div><div class="ttdoc">Carácteres actuales.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00032">LZSS.java:32</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a9e95c3b29cb1d6c62c68185beaec5a17"><div class="ttname"><a href="classdomini_1_1LZSS.html#a9e95c3b29cb1d6c62c68185beaec5a17">domini.LZSS.EOF</a></div><div class="ttdeci">static final int EOF</div><div class="ttdoc">Pseudo EOF.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00038">LZSS.java:38</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a85537bccb97676f4a29b2791eda8852d"><div class="ttname"><a href="classdomini_1_1LZSS.html#a85537bccb97676f4a29b2791eda8852d">domini.LZSS.MAX_LENGTH_COINCIDENCE</a></div><div class="ttdeci">static final int MAX_LENGTH_COINCIDENCE</div><div class="ttdoc">Máxima longitud de la coincidencia.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00026">LZSS.java:26</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_a98acedc140eebdd461f9bd6430d8b141"><div class="ttname"><a href="classdomini_1_1LZSS.html#a98acedc140eebdd461f9bd6430d8b141">domini.LZSS.log2</a></div><div class="ttdeci">static double log2(final double n)</div><div class="ttdoc">Calcula el logaritmo en base 2 de un real.</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00262">LZSS.java:262</a></div></div>
+<div class="ttc" id="aclassdomini_1_1LZSS_html_aae3f718abe6da3b3220a81f0717a9fc2"><div class="ttname"><a href="classdomini_1_1LZSS.html#aae3f718abe6da3b3220a81f0717a9fc2">domini.LZSS.computeLPSArray</a></div><div class="ttdeci">void computeLPSArray(final int[] lps, int patLength)</div><div class="ttdoc">Calcula el vector lps, que para cada posición del vector nos dice la longitud máxima del prefijo que ...</div><div class="ttdef"><b>Definition:</b> <a href="LZSS_8java_source.html#l00191">LZSS.java:191</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por &#160;<a href="http://www.doxygen.org/index.html">

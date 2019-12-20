@@ -28,6 +28,10 @@ package Domini {
         +void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte)
         {static}-String readableFileSize(double d)
     }
+    class MagicByteException {
+        {static}-serialVersionUID : long
+        ~MagicByteException(byte b)
+    }
     class JPEG {
         - quality : Short
         {static}+MAGIC_BYTE : byte
@@ -86,11 +90,11 @@ package Domini {
         {static}-void writeCode (int code, final IO.Bit.writer output)
     }
     class LZSS {
-        ~ slidingWindow : byte[]
-        ~ actualCharacters : byte[]
-        {static}~ MAX_SIZE_SW : int
-        {static}~ MAX_LENGTH_COINCIDENCE : int
-        {static}+ MAGIC_BYTE : byte
+        -slidingWindow : byte[]
+        -actualCharacters : byte[]
+        {static}-MAX_SIZE_SW : int
+        {static}-MAX_LENGTH_COINCIDENCE : int
+        {static}+MAGIC_BYTE : byte
         {static}-EOF : int
         +LZSS()
         +void compress(final IO.Byte.reader input, final IO.Bit.writer output)
@@ -110,7 +114,7 @@ package Domini {
         -output : IO.Bit.writer
         -root : Path
         -emptyDir : boolean
-        +CompressFiles(Path root, IO.Bit.writer output)
+        ~CompressFiles(Path root, IO.Bit.writer output)
         +FileVisitResult postVisitDirectory(Path dir, IOException exc)
         +FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
         +FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
@@ -205,7 +209,7 @@ package Domini {
         ~leaf : boolean
         ~L : Node
         ~R : Node
-        +boolean isLeaf()
+        ~boolean isLeaf()
         +Short getValue()
     }
     class LookupException {
@@ -221,6 +225,8 @@ package Domini {
     CDom o-- "1" Statistics
     CDom o-- CompressionAlg
     CDom o-- Folder
+
+    CDom *-- MagicByteException
 
     CompressionAlg <|.. LZ78
     CompressionAlg <|.. LZW

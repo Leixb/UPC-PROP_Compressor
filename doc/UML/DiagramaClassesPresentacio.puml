@@ -46,7 +46,7 @@ package Presentacio {
         -jpegQuality : int
         -fileIn : String
         -fileOut : String
-        +Compress()
+        ~Compress()
         -String fittingLabel(String file, JLabel label)
         ~void showCompress(Point p, Dimension d)
         -void setWindowLocationAndDimension(Point p, Dimension d)
@@ -57,13 +57,13 @@ package Presentacio {
         -buttonDecompress : JButton
         -buttonSelectFileIn : JButton
         -textfieldSelectFileOut : JTextField
-        - labelFileIn : JLabel
+        -labelFileIn : JLabel
         -buttonSelectFileOut : JButton
         -labelFileOut : JLabel
         {static}-f : JFrame
         -fileIn : String
         -fileOut : String
-        +Decompress()
+        ~Decompress()
         -String fittingLabel(String file, JLabel label)
         ~void showDecompress(Point p, Dimension d)
         -void setWindowLocationAndDimension(Point p, Dimension d)

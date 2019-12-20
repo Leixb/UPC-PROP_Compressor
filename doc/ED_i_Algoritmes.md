@@ -1,4 +1,7 @@
---- geometry: margin=2cm lang: es -
+---
+geometry: margin=2cm
+lang: es
+---
 
 \tableofcontents
 

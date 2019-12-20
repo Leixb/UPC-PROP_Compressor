@@ -1,0 +1,273 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam genericDisplay old
+
+title Diagrama de Classes del Domini
+
+package Persistencia {
+    class IO
+    class PpmImage
+}
+
+package Presentacio {
+    class CtrlPresentacio << (S,#FF7700) Singleton >>
+}
+
+package Domini {
+    class "CtrlDomini" as CDom << (S,#FF7700) Singleton >>{
+        -fileIn : String
+        -fileOut : String
+        -stats : Statistics
+        {static}-instance : CtrlDomini
+        -CtrlDomini()
+        {static} + CtrlDomini getInstance()
+        +void compress(int alg, String fi,String fo,short quality)
+        +void compress(int alg, IO.Byte.reader input, IO.Bit.writer output, short quality)
+        +void decompress(String fi, String fo)
+        +void decompress(IO.Bit.reader input, IO.Byte.writer output, byte magicByte)
+        {static}-String readableFileSize(double d)
+    }
+    class MagicByteException {
+        {static}-serialVersionUID : long
+        ~MagicByteException(byte b)
+    }
+    class JPEG {
+        - quality : Short
+        {static}+MAGIC_BYTE : byte
+        +JPEG(final short quality)
+        +void compress(final IO.Byte.reader input, final IO.Bit.writer output)
+        +void decompress(IO.Bit.reader input, IO.Byte.writer output)
+        {static}+static short[] readBlock(final Huffman huffAC, final Huffman huffDC, final IO.Bit.reader file)
+        {static}-short readHuffman(Huffman huff, IO.Bit.reader file)
+        {static}+void writeBlock(final short[] encoded, final Huffman huffAC, final Huffman huffDC, final IO.Bit.writer file)
+        {static}-void write(int value, int l, IO.Bit.writer file)
+        {static}-short read(int length, IO.Bit.reader file)
+        {static}-byte[][][] toRGB(byte[][][] channelBlocks)
+        {static}-byte[][][] toYCbCr(byte[][][] channelBlocks)
+    }
+    class LZ78 {
+        {static}-decompress_dict : Map<Integer, ArrayList<Byte>>
+        {static}+MAGIC_BYTE : byte
+        +LZ78()
+        +void compress(final IO.Byte.reader input, final IO.Bit.writer output)
+        +void decompress(final IO.Bit.reader input, final IO.Byte.writer output)
+        {static}-void printArray (List<Pair <Integer, Byte>> arrayList, final IO.Bit.writer output)
+        {static}-int bits_needed(final int n)
+
+    }
+    -class "Pair<First,Second>" as Pair {
+        first : First
+        second : Second
+        Pair(First first, Second second)
+    }
+    -class Nodo {
+        hijos : Nodo[]
+        index : int
+        Nodo()
+    }
+    -class Tree {
+        arrel : Nodo
+        codnum : int
+        last : Boolean
+        padre : int
+        arrayList : List<Pair<Integer, Byte>>
+        boolean crearTree(final IO.Byte.reader input)
+    }
+    class LZW {
+        {static}+ MAGIC_BYTE : byte
+        {static}-DICTIONARY_SIZE : int
+        {static}-OVERFLOW : int
+        {static}-EOF : int
+        {static}-compressionDictionary : Map<ArrayList<Byte>, Integer>
+        {static}-decompressionDictionary : Map<Integer, ArrayList<Byte>>
+        +LZW()
+        {static}-void createCompressionDictionary()
+        {static}-void createDecompressionDictionary()
+        +void compress (IO.Byte.reader input, IO.Bit.writer output)
+        +void decompress (IO.Bit.reader input, IO.Byte.writer output)
+        {static}-int bitsNeeded(final int n)
+        {static}-void writeCode (int code, final IO.Bit.writer output)
+    }
+    class LZSS {
+        -slidingWindow : byte[]
+        -actualCharacters : byte[]
+        {static}-MAX_SIZE_SW : int
+        {static}-MAX_LENGTH_COINCIDENCE : int
+        {static}+MAGIC_BYTE : byte
+        {static}-EOF : int
+        +LZSS()
+        +void compress(final IO.Byte.reader input, final IO.Bit.writer output)
+        +void decompress(final IO.Bit.reader input, final IO.Byte.writer output)
+        -void computeLPSArray(final int[] lps, int patLength)
+        -int kmp(int currentACIndex, int currentSWIndex, boolean fullSW)
+    }
+    class Folder {
+        {static}-EMPTY_FOLDER : char
+        {static}-FILE : char
+        {static}+MAGIC_BYTE : byte
+        -Folder()
+        {static}+void compress(String folderPath, IO.Bit.writer output)
+        {static}+void decompress(String folderPath, IO.Bit.reader input)
+    }
+    class CompressFiles {
+        -output : IO.Bit.writer
+        -root : Path
+        -emptyDir : boolean
+        ~CompressFiles(Path root, IO.Bit.writer output)
+        +FileVisitResult postVisitDirectory(Path dir, IOException exc)
+        +FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+        +FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+        +FileVisitResult visitFileFailed(Path file, IOException exc)
+    }
+    class FolderFormatException {
+        {static}-serialVersionUID : long
+        +FolderFormatException()
+    }
+    class Statistics {
+        -startingTime : long
+        -endingTime : long
+        -iniFileSize : long
+        -finFileSize : long
+        +Statistics()
+        +void setStartingTime()
+        +void setEndingTime()
+        +void setIniFileSize(final String filename)
+        +void setFinFileSize(final String filename)
+        +double getTime()
+        +long getIniFileSize()
+        +long getFinFileSize()
+        -long getBytesCompressed()
+        -long getBytesDecompressed()
+        +double getPercentageCompressed()
+        +double getPercentageDecompressed()
+        +double getSpeedCompressed()
+        +double getSpeedDecompressed()
+    }
+    class BitSetL {
+        {static}- serialVersionUID : long
+        -_length_ : int
+        +BitSetL()
+        +BitSetL(int l)
+        +BitSetL(int n, int l)
+        +BitSetL(String s)
+        +int asInt()
+        +void flip()
+        +void set(int pos)
+        +void set(int pos, boolean val)
+        +void clear(int pos)
+        +int length()
+    }
+    interface CompressionAlg {
+        void compress(final IO.Byte.reader input, final IO.Bit.writer output)
+        void decompress(final IO.Bit.reader input, final IO.Byte.writer output)
+    }
+    interface Codec<A,B> {
+        B encode(A)
+        A decode(B)
+    }
+    class JPEGBlock as "JPEGBlock <? implements Codec<byte[][], short[]> >" {
+        -JPEGBlock()
+        {static}+short[] encode(final short quality, final boolean isChrominance, final byte[][] data)
+        {static}+byte[][] decode(final short quality, final boolean isChrominance, final short[] data)
+    }
+    class DCT {
+        {static}+double[][] encode(final byte[][] data)
+        {static}+byte[][] decode(final double[][] data)
+    }
+    class Quantization {
+        {static}-LuminanceTable : byte[][]
+        {static}-ChrominanceTable : byte[][]
+        {static}~double quantizationValue(final short quality, final boolean isChrominance, final short x, final short y)
+        {static}+short[][] encode(final double[][] data)
+        {static}+encode(final short quality, final boolean isChrominance, final double[][] block)
+        {static}+double[][] decode(final short[][] data)
+        {static}+double[][] decode(final short quality, final boolean isChrominance, final short[][] block)
+    }
+    class ZigZag {
+        {static}-table : byte[][]
+        {static}-void calculateCorrespondenceTable()
+        {static}+short[] encode(final short[][] block)
+        {static}+short[][] decode(final short[] L)
+    }
+    class RLE {
+        {static}+short[] encode(final short[] data)
+        {static}+short[] decode(final short[] data)
+    }
+    class Huffman {
+        - root : Node
+        - table : Map<Short, BitSetL>
+        +Huffman(final boolean isAC, final boolean isChrominance)
+        -void readTable(final String filename)
+        -void addToTree(final Short value, final BitSetL bs)
+        +BitSetL encode(final Short value)
+        +Node decode(final boolean b)
+        +Node decode(final Node n, final boolean b)
+    }
+    class Node {
+        ~value : Short
+        ~leaf : boolean
+        ~L : Node
+        ~R : Node
+        ~boolean isLeaf()
+        +Short getValue()
+    }
+    class LookupException {
+        {static} -serialVersionUID : long
+        ~LookupException(Short n)
+    }
+    class InvalidTableException {
+        {static} -serialVersionUID : long
+        ~InvalidTableException(final String filename)
+    }
+    CDom <-- CtrlPresentacio
+
+    CDom o-- "1" Statistics
+    CDom o-- CompressionAlg
+    CDom o-- Folder
+
+    CDom *-- MagicByteException
+
+    CompressionAlg <|.. LZ78
+    CompressionAlg <|.. LZW
+    CompressionAlg <|.. LZSS
+    CompressionAlg <|.. JPEG
+
+    LZ78 ..> IO
+    LZSS ..> IO
+    LZW ..> IO
+    JPEG ..> IO
+    Huffman ..> IO
+
+    LZ78 *-- Pair
+    LZ78 *-- Tree
+    LZ78 *-- Nodo
+
+    Folder *-- CompressFiles
+    Folder *-- FolderFormatException
+
+    PpmImage *-- JPEG
+
+    BitSetL <.. IO
+    BitSetL <.. LZ78
+    BitSetL <.. LZSS
+    BitSetL <.. JPEG
+    BitSetL <.. LZW
+
+    JPEG *-- JPEGBlock
+    JPEG o-- Huffman
+
+    Huffman ..> BitSetL
+
+    JPEGBlock *-- DCT
+    JPEGBlock *-- Quantization
+    JPEGBlock *-- ZigZag
+    JPEGBlock *-- RLE
+    JPEGBlock ..|> Codec
+
+    Huffman *-- Node
+    Huffman *-- LookupException
+    Huffman *-- InvalidTableException
+}
+
+@enduml

@@ -28,7 +28,7 @@ public class Decompress {
     private String fileOut;
 
 
-    public Decompress() {
+    Decompress() {
         f = new JFrame("PIZ Compressor | Descomprimir");
 
         labelFileIn.setVisible(false);

@@ -7,7 +7,7 @@ lang: es
 
 # Explicación de los juegos de pruebas
 
-##Prueba 1
+## Prueba 1
 
 **Descripción:** Archivo de texto vacío.
 
@@ -24,7 +24,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido (de mayor tamaño que 
 el original)/descomprimido correspondiente.
 
-##Prueba 2
+## Prueba 2
 
 **Descripción:** Archivo de texto grande (17,9MB).
 
@@ -41,7 +41,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 3
+## Prueba 3
 
 **Descripción:** Imagen ppm de tamaño estandar (3MB).
 
@@ -57,7 +57,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 4
+## Prueba 4
 
 **Descripción:** Imagen ppm de gran tamaño (47,8MB).
 
@@ -73,7 +73,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 5
+## Prueba 5
 
 **Descripción:** Archivo pdf de gran tamaño (9,4MB).
 
@@ -89,7 +89,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 6
+## Prueba 6
 
 **Descripción:** Archivo mp3 de tamaño mediano (8,2MB 4:02 min).
 
@@ -105,7 +105,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 7
+## Prueba 7
 
 **Descripción:** Archivo mp4 de tamaño medio (11,5MB 3:54 min).
 
@@ -121,7 +121,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 8
+## Prueba 8
 
 **Descripción:** Carpeta con poco contenido, un texto pequeño y una imagen ppm
  (4,4MB en total).
@@ -138,7 +138,7 @@ visualizar el resultado.
 **Efectos secundarios:** Creación del archivo comprimido/descomprimido 
 correspondiente.
 
-##Prueba 9
+## Prueba 9
 
 **Descripción:** Carpeta con todas la pruebas anteriores, incluyendo una 
 carpeta vacia (102MB).

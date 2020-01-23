@@ -4,10 +4,10 @@ Proyecto PROP Cuatrimestre Otoño 2019/20
 
 ## Miembros del grupo
 
-- ***REMOVED*** <***REMOVED***> ***REMOVED***
-  <***REMOVED***> ***REMOVED***
-  <***REMOVED***> ***REMOVED***
-  <***REMOVED***>
+- ***REMOVED*** <***REMOVED***>
+- ***REMOVED*** <***REMOVED***>
+- ***REMOVED*** <***REMOVED***>
+- ***REMOVED*** <***REMOVED***>
 
 ## Lista de clases y documentos implementados por cada miembro del grupo:
 
